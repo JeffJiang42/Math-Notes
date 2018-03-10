@@ -3,4 +3,4 @@
 *.out
 *.pdfsync
 *.synctex.gz
-
+*.fdb_latexmk
