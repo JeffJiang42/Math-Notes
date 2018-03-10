@@ -4,3 +4,5 @@
 *.pdfsync
 *.synctex.gz
 *.fdb_latexmk
+*.dvi
+*.toc
