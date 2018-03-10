@@ -1,0 +1,222 @@
+\documentclass[psamsfonts]{amsart}
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+%-------Packages---------
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{yfonts}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{mathtools}
+
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\emptyset}{\varnothing}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{R}\mathbf{P}}
+\newcommand{\CP}{\mathbb{C}\mathbf{P}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\ind}{\lambda \in \Lambda}
+\newcommand{\set}[1]{\left\lbrace#1 \right\rbrace}
+\newcommand{\imp}[2]{ \underline{ #1 \implies #2} }
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+
+\newcommand{\bd}{\partial}
+
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+
+
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\grap}{graph}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\coker}{coker}
+
+
+
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+
+
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=black
+}
+
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+
+
+\setcounter{section}{1}
+\begin{document}
+\author{Jeffrey Jiang}
+\title{Universal Properties}
+\maketitle
+
+\Large
+Some initial remarks and definitions for use later by both Carl and myself.
+\begin{rem*}
+All rings will be commutative and have a multiplicative identity.
+\end{rem*}
+
+\begin{defn}
+For a ring $R$, an $R$\textbf{-module} $M$ is an abelian group $(M,+)$ with a map $\bullet: R\times M \to M$ such that for $r,s \in R$, $v,w \in M$,
+\begin{enumerate}
+\item $r \cdot(v + w) = r \cdot v + r\cdot w$
+\item $(r+s)\cdot v = r\cdot v + s \cdot v$
+\item $(rs) \cdot v = r\cdot(s\cdot v)$
+\item $1\cdot v = v$
+\end{enumerate}
+Note that this is very similar to the axioms of a vector space. Actually, if $R$ is a field, this is a vector space. Structure preserving maps between $R$-modules are called $R$\textbf{-linear}, and are analgous to linear transformations between vector spaces.
+\end{defn}
+In some sense, if some object satisfies a universal property, it is the ``smallest" object that satisfies a given property. For example, in analysis, when you talk about the completion of a metric space, you discuss how $\R$ is the completion of $\Q$. Note that $\C$ is also a complete metric space containing $\Q$, but it isn't the ``smallest" so to speak. We say that $\R$ satisfies the universal property of the completion of a metric space. Universal properties are difficult to discuss in generality, but show up often as easier ways to characterize things. The best way to discuss this is actually just to give some examples.
+\subsectionend
+
+Most of you will have encounted a product before. What universal property does the product satisfy? Given two objects (sets, groups, vector spaces, etc) $X$ and $Y$, the \textbf{product} of $X$ and $Y$ is the unique object (up to unique isomorphism) which we usually denote $X \times Y$, equipped with functions $\pi_X: X \times Y \to X$ and $\pi_Y: X \times Y \to Y$ such that when given functions $f_X: Z \to X$ and $f_Y: Z \to Y$, there exists a unique function $f: Z \to X\times Y$ such that the following diagram commutes:
+\begin{align*}
+\xymatrix{
+& Z\ar[dl]_{f_X} \ar@{-->}[d]^f \ar[dr]^{f_Y}  & \\
+X  & \ar[l]^{\pi_X} X\times Y \ar[r]_{\pi_Y} & Y
+}
+\end{align*}
+
+A phrase you'll commonly hear is that ``giving a map to $X \times Y$ is equivalent to giving maps to $X$ and to $Y$. In most situations, $X \times Y$ is the cartesian product of the two underlying sets $X$ and $Y$, with the additional condition that the maps are structure preserving. In the case of $X,Y$ being sets, this doesn't mean much, but if they are rings, vector spaces, topological spaces, etc. we want this functions to be ring homomorphisms, linear transformations, or continuous. How do we interpret the diagram in this context? Let's work through an example here. Lets suppose $X,Y$ and $Z$ are vector spaces over $\C$. We know the cartesian product $X \times Y$ inherits a vector space structure where addition works pointwise and scalar multiplication distributes to the two coordinates. Then given linear transformations $T_X: Z \to X$ and $T_Y: Z \to Y$, this uniquely determines a map
+\begin{align*}
+T_X \times T_Y: Z &\to X\times Y \\
+z &\mapsto (T_X(z), T_Y(z))
+\end{align*}
+So we see that $X \times Y$ satisfies the universal property of the product that we specified earlier. 
+\subsectionend
+Perhaps a more interesting universal property to talk about is the \textbf{kernel}. A lot of mathematical objects we study have the concept of a $0$ or an identity like $0$ in a module/vector spaces and $e$ in a group. In these cases, $\set{0}$ and $\set{e}$ are bona fide modules/groups in and of themselves. Rings are a bit weird in this case since we have two identities. What universal property does the kernel satsify? Given a  structure preserving map $\varphi : X \to Y$, the kernel of $\varphi$ is an object $K$ with a map (usually inclusion) $\iota_K : K \to X$ such that for the zero map $z_K$, the diagram commutes 
+\begin{align*}
+\xymatrix{
+ X \ar[r]^\varphi & Y \\
+ K \ar[u]^{\iota_K} \ar[ur]_{z_K}
+}
+\end{align*}
+
+In addition, given another object and maps $(T,\iota_T, z_T)$ that also satisfies this condition, we have a unique map $\psi: T \to K$ such that the following diagram commutes as well.
+\begin{align*}
+\xymatrix{
+& X \ar[r]^\varphi & Y \\
+& K \ar[u]^{\iota_K} \ar[ur]_{z_K} \\
+T \ar[ur]^\psi \ar@/^1pc/[uur]^{\iota_T} \ar@/_2pc/[uurr]_{z_T}
+}
+\end{align*}
+Which captures the idea of ``unique up to unique isomorphism." and gives us the universal property of $\ker \varphi$\\
+
+Many universal properties also have a dual concept, which usually arises from flipping arrows and reversing roles. You can usually identify a dual property from the prefix ``co-" In this case, what would the ``cokernel" be? Let's take a look at the diagram for $\coker \varphi$
+
+\begin{align*}
+\xymatrix{
+X \ar[dr]_{z_C} \ar[r]^\varphi & Y \ar[d]^\pi \\
+& C
+}
+\end{align*}
+Where $z_C$ is again the zero map. Similarly, if there exists some $C'$ that satsifies the same property, we get a unique map $C' \to C$. Unlike the kernel, you might not have seen $\coker \varphi$ before, so we should probably identify what it is. Lets look at this in the context of modules. Suppose $X$ and $Y$ are modules over a ring $R$ and the map $\varphi$ is $R$-linear. Since the diagram commutes, going from $X \to C$ via the $z_C$ is the same as going through $Y$ first via $\varphi$. This means that $\im X \subset \ker \pi$. We can then idenitfy $\coker \varphi$ as $Y/\im \varphi$. 
+\subsectionend
+
+While these are some of the simpler examples, it's good to see what universal properties objects you already know satisfy to gain a more precise idea of what they are. In other cases, what you think an object is might actually just be the universal property that it satisfies. A good example of this, which will be explained shortly by Carl, regards the tensor product of modules.
+
+
+
+ 
+
+\end{document}

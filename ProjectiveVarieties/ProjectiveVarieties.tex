@@ -1,0 +1,120 @@
+\documentclass[psamsfonts]{amsart}
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+%-------Packages---------
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+\newtheorem{sol}[thm]{Solution}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{rem*}{Remark}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\V}{\mathbb{V}}
+
+
+\begin{document}
+\author{Jeffrey Jiang}
+\title{Projective Varieties}
+\maketitle
+
+\large
+\section{Projective Space}
+In affine $2$-space $\A^2$, two lines intersect at one point \dots usually. In the case they are parallel, they never intersect. This gives us the motivation to create a space that is very similar to $\A^2$, but with the additional requirement that two lines always intersect at a point. We can think of this as adding a line at infinity, one for every possible slope.
+
+\begin{defn}
+We define \textit{Projective n-space} $\p^n$ as the set of all 1-dimensional subspaces in $\C^{n+1}$ (i.e. the set of all lines through the origin).\\\\
+Alternatively, we can define $\p^n$ as
+\begin{equation*}
+\frac{\C^{n+1} - \{0\}}{\thicksim}
+\end{equation*}
+$ $\\
+Where $\thicksim$ is the equivalence relation where for $v,w \in \C^{n+1}$, $v \thicksim w$ if $v = \lambda w$ for some $\lambda \in \C$, and a line can be thought of the equivalence class $[u] = \{\lambda u | ~ \lambda \in \C, ~u \neq 0\}$ For notational purposes, we will refer to $[u]$ with the "homogeneous coordinates" $[u_0: u_1 \dots~ :u_n]$ where each $u_i$ is defined up to a scalar. This captures the exact same idea as the other definition, since each line is uniquely defined by a single vector, and vectors that are scalar multiples of each other lie on the same line.
+\end{defn}
+
+This might seem a bit strange at first to define a space in terms of a set of lines, but it's actually an intuitive way for us to define the "points at infinity".
+
+For example, consider $\C^2$ and define $\p^1$ accordingly. Then if we fix a line in $\C^2$ that doesn't pass through the origin, say $y = 1$, every element of $\p^1$ intersects this line at a point except for one, namely the one that is parallel to this line. Therefore, every point on this line can be uniquely identified with a line through the origin, and the parallel line defines the point at infinity. In general, since we know each line through the origin is uniquely defined by it's slope, (excluding the vertical axis) we have the map 
+\begin{align*}
+&f: \p^1 \to \C \cup \{\infty\} \\
+&[x:y] \mapsto \begin{cases} \hfill \frac{y}{x} \hfill & $for $ x \neq 0 \\
+\hfill \infty \hfill & $for $ x = 0
+ \end{cases}
+\end{align*}
+Intuitively, we can interpret $\p^1$ as the regular affine line $\A^1$, but we've glued $-\infty$ and $\infty$ together, so $\p^1$ in some sense, looks like a circle.\\
+
+Extending this to two dimensional projective space $\p^2$, if we fix a plane in $\C^3$, every line through the origin passes through a point in the plane - except for those that lie in the plane parallel to one we've fixed. Notice that every single line in this parallel plane fails to intersect the plane we've fixed - and what does the set of all lines in the plane look like? It is exactly $\p^1$! So by forcing  these two planes to intersect at a "line at infinity", we've just added a copy of projective $\p^1$ as our "line at infinity". So we can think of $\p^2$ as $\C^2 \cup \p^1$, and extending to arbitrary dimension, $\p^n = \C^n \cup \p^{n-1}$. In fact, its useful to think of $\p^n$ as $n+1$ "copies" of $\A^n$ by fixing one of the homogeneous coordinates $x_i$ to be non-zero (we'll use 1 for simplicity's sake), and we'll define this to be the open set $U_{x_i}$. This makes $\p^n$ a manifold, and it is in fact compact. Consider the definition of $\p^n$ as a quotient space of $\C^{n+1} - \{0\}$. Then if we consider the projection map (which is continuous)
+\begin{align*}
+&\pi : \C^{n+1} - \{0\} \to \p^n \\
+& x \mapsto [x]
+\end{align*}
+the image of the sphere $S^{n+1} \subset \C^{n+1}$, $\pi(S^{n+1}) = \p^n$ since every line is uniquely defined by a unit vector, and since $S^{n+1}$ is compact and $\pi$ is continuous, its image is also compact, and as you know from topology and analysis, compact spaces are very nice to deal with.
+
+\section{Projective Varieties}
+In complex-affine space $\A^n$ we've discussed affine algebraic varieties, but in $\p^n$, we can't discuss the vanishing of the set of arbitrary polynomials. In general, since we've defined $\p^n$ as the set of lines, it doesn't even make sense to talk about the value of a polynomial in $\p^n$, since points are only defined up to a scalar. However, we are able to talk about the vanishing of a certain class of polynomial. Since we've defined $\p^n$ as the set of lines through the origin, we should be considering polynomials that are invariant under scaling. The polynomials we are looking for are the ones where all the terms have the same degree, and we call these homogeneous polynomials. Note that if a homogeneous polynomial vanishes at a point, that all scalar multiples of that point vanish as well. For example, if we consider $x^2 - yx$, this polynomial vanishes at the point $(1,1)$, but also vanishes on the entire line $y = x$.
+
+\begin{defn}
+A \textit{projective variety} in $\p^n$ is defined as the common vanishing points of a collection of homogeneous polynomials in $n+1$ variables.
+\end{defn}
+
+For example, consider the projective variety $V = \V(x^2 + y^2 - z^2)$. What does this look like in $U_x,U_y,U_z$? If we fix $z = 1$, in this "copy" of $\A^2$, $V$ is just the vanishing of the polynomial $x^2 + y^2 -1$, which is just the unit circle. In $U_y$ and $U_x$, $V$ looks like the vanishing of $x^2 + 1 - z^2$ and $1 + y^2 - z^2$ respectively. In general, given any projective variety, we can identify it as the union of all of the vanishing points of $V$ in $U_{x_i}$
+
+Just like in $\A^n$, besides the standard Euclidean topology we know and love, we can impose the Zariski topology on $\p^n$, where we define the closed sets as the zero sets of homogeneous polynomials $\V(\{P(x_0 \dots x_n)\})$, and the open sets are their complements (as they should be).\\
+
+Recall that if we pick some $x_i$ and fix $x_i = 1$, the corresponding open set $U_{x_i}$ is isomorphic to $\A^n$. Therefore, we can embed any old variety $\V(\{P(x_0 \dots x_1)\}) \subset \A^n$ into projective space, simply by "forgetting" the homogeneous coordinate $x_i$, and then considering its closure in $\p^n$ in either the Euclidean or Zariski topology, which give the same result.\\\\
+For example, the parabola $\V(y-x^2) \subset \A^2$ can be naturally embedded in the plane $U_z \subset \p^2$ where $z  = 1$. We simply do this by considering the projective variety $V = \V(yz-x^2)$ and looking at its intersection with $U_z$. Then in $\p^2$, this parabola looks like all the lines that pass through a point in the parabola embedded in the plane $z = 1$. Notices how all the lines that intersect further out get flatter and flatter, and get arbitrarily close the the $y$-axis. The line is in the projective closure $\overline{V}$, with homogeneous coordinates $[0:1:0]$ (the point at infinity corresponding to $y$-axis), which captures the idea that the two ends of the parabola eventually meet at infinity. We can also think of this in $\A^2$, where if we draw all the lines through the origin in $A^2$ that intersect the parabola, the slopes tend to infinity, and we can get arbitrarily close to the line $y = 0$. If we look at the homogeneous coordinates, we'll get a better picture of what's going on. In general, points on the parabola are going to look like \begin{equation*}
+[x:x^2:1]
+\end{equation*}
+which we can rescale to get
+\begin{equation*}
+\left[ \frac{1}{x}:1:\frac{1}{x^2} \right]
+\end{equation*}
+Then it's easier to see that as $x \to \infty$ and $x \to -\infty$ that the point on our parabola limit to the point at infinity defined by the $y$-axis $[0:1:0]$, which exactly captures the idea that the lines in $\A^2$ intersecting the parabola eventually meet at the $y$-axis. Note that the homogenized polynomial $yz - x^2$ vanishes on the $y$-axis, so this homogeneous polynomial defines the projective closure of $y-x^2$ in $\p^2$.
+
+In general given any variety $V = \V(\{P(x_0 \dots x_{n-1})\}) \subset \A^n$, we can embed it in the open set $U_{x_n}\cong \A^n$ where $x_n = 1$, and then homogenize it into a homogeneous polynomial simply by multiplying each term by $x_n^d$, until each term has the same degree. For example, 
+\begin{align*}
+x &\to xy \\
+x +x^2y^2 +y &\to xz^3 + x^2y^2 + yz^3 \\
+x_0 + x_1 + \dots + x_{n-1} &\to x_0x_n + x_1x_n + \dots + x_{n-1}x_n 
+\end{align*}
+
+So if we are given an affine variety $V \subset \A^n \subset \p^n$, we have the corresponding radical ideal $I \subset \C[x_0 \dots x_{n-1}]$. If we homogenize all of the polynomials in $I$, and look at the ideal $I'$ that they generate, this ideal now corresponds with the projective closure $\overline{V} \subset \p^n$. From Hilbert's Nullstellensatz, we then have a bijection from radical ideals of the polynomial ring generated by homogeneous polynomials (excluding the origin) and projective varieties.   
+
+\end{document}

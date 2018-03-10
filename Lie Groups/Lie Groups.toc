@@ -1,0 +1,7 @@
+\contentsline {section}{\tocsection {}{1}{Matrix Lie Groups}}{1}{section.1}
+\contentsline {subsection}{\tocsubsection {}{}{Chapter 1 Exercises}}{4}{section*.2}
+\contentsline {section}{\tocsection {}{2}{The Matrix Exponential}}{7}{section.2}
+\contentsline {subsection}{\tocsubsection {}{}{Chapter 2 Exercises}}{10}{section*.3}
+\contentsline {section}{\tocsection {}{3}{Lie Algebras}}{10}{section.3}
+\contentsline {subsection}{\tocsubsection {}{}{Chapter 3 Exercises}}{15}{section*.4}
+\contentsline {section}{\tocsection {}{4}{Representation Theory}}{19}{section.4}

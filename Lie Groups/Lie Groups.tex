@@ -1,0 +1,1356 @@
+\documentclass[psamsfonts]{amsart}
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+%-------Packages---------
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{yfonts}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{mathtools}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\emptyset}{\varnothing}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{R}\mathbf{P}}
+\newcommand{\CP}{\mathbb{C}\mathbf{P}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathsf{GL}}
+\newcommand{\SL}{\mathsf{SL}}
+\newcommand{\SP}{\mathsf{SP}}
+\newcommand{\SO}{\mathsf{SO}}
+\newcommand{\SU}{\mathsf{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\ind}{\lambda \in \Lambda}
+\newcommand{\set}[1]{\left\lbrace#1 \right\rbrace}
+\newcommand{\imp}[2]{ \underline{ #1 \implies #2} }
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+
+\newcommand{\bd}{\partial}
+
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+
+
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\grap}{graph}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+
+
+
+
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+
+
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=black
+}
+
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+
+
+\setcounter{section}{1}
+\begin{document}
+\author{Jeffrey Jiang}
+\title{Lie Groups and Lie Algebras}
+\maketitle
+
+These are notes and selected exercise solutions I've compiled during my time reading \emph{Lie Groups, Lie Algebras, and Representations} by Brian C. Hall.
+\tableofcontents
+
+\large
+\setcounter{section}{0}
+
+
+\section{Matrix Lie Groups}
+
+Lie groups are often referred to as \emph{continuous groups}. That is, they have a group structure along with some topological and smooth properties. For this to be meaningful a Lie group is a smooth manifold that is also a group in which the group operations play nicely with the smooth structure of the manifold. We'll come back and define this more rigorously later. First, we're going to consider some examples. The ones that come up the most often are matrix groups.
+
+\begin{defn}
+The \textbf{General Linear Group} $\GL_n(\R)$ is the group of all invertible $n \times n$ matrices over $\R$. $\GL_n(C)$ is defined similarly. In more generality, given some vector space $V$, the General Linear Group over $V$ is the group of all automorphisms of $V$. That is, $\GL (V) = \Aut (V)$.
+\end{defn}
+
+
+\begin{rem*}
+$\mathcal{M}_{nn}(\R)$ will denote the set of all $n \times n$ matrices with coefficients in $\R$. $\mathcal{M}_{nn}(\C)$ is defined similarly. These two spaces are isomorphic to $\R^{n^2}$ and $\C^{n^2}$ via an obvious isomorphism. Note that both sets can be made into groups with matrix addition, but do not form groups under matrix multiplication, since they both contain singular matrices.
+\end{rem*}
+
+\begin{defn}
+A sequence $(A_k)$ of matrices \textbf{converges} to a matrix $A$, if it converges entry wise to $A$. That is, for all $i,j$,
+$$\lim_{k \to \infty} A_{k_{ij}} = A_{ij} $$
+\end{defn}
+
+\begin{defn}
+A \textbf{Matrix Lie Group} $G$ is a subgroup of $\GL_n(\C)$ such that for any sequence convergent sequence $(A_k) \subset G$, the limit of the sequence is in $G$, or is not invertible.
+\end{defn}
+
+The definition for a Matrix Lie Group is that $G$ must be a closed subgroup of $\GL_n(\C)$, i.e. a subgroup that is also a closed set. Note that $G$ only needs to be closed $\GL_n(\C)$, not all of $\mathcal{M}_{nn}$. Finally, note that under this definition, $\GL_n(\R)$ is a Matrix Lie Group.
+
+\begin{defn}
+The \textbf{Special Linear Group} $\SL_n$ over $\R$ or $\C$ is the set of all $n \times n$ matrices with determinant $1$. This is a subgroup of $\GL_n$ since the determinants are all nonzero, and is closed in $\GL$ as well, since a sequence of matrices with determinant $1$ must converge to a matrix with determinant $1$ by continuity of the determinant.
+\end{defn}
+
+\begin{defn}
+A matrix $U \in \mathcal{M}_{nn}(\C)$ is \textbf{unitary} if $A^\dagger A = I$.
+\end{defn}
+
+\begin{defn}
+The \textbf{unitary group} is the group of all unitary matrices, denoted $\mathsf{U}_n$. The subset of unitary matrices with determinant $1$ is the \textbf{special unitary group}, denoted $\SU_n$.
+\end{defn}
+
+There is an analogous concept for real valued matrices
+\begin{defn}
+The \textbf{orthogonal group}, denoted $\mathsf{O}(n)$ is the group of all matrices such that $A^TA = I$. Alternatively, it is the set of all matrices that preserve the standard inner product $\langle \cdot, \cdot \rangle$ on $\R^n$.
+\end{defn}
+
+The orthogonal group is defined in terms of the standard inner product. That being said, we can define a similar group in terms of other bilinear forms
+\begin{defn}
+For $n,k \in \Z^+$, define the bilinear form $[\cdot,\cdot]_{nk}$ on $\R^{n+k}$ where
+$$[x,y]_{nk} = \sum_{j = 1}^n x_jy_j - \sum_{j = 1}^{k}x_{n+j}y_{n+j} $$
+Then the set of $n+k \times n+k$ matrices that preserve this form is the \textbf{generalized orthogonal group}, denoted $\mathsf{O}(n:k)$. Physicists often care about the group $\mathsf{O}(3:1)$, calling it the \textbf{Lorentz Group}.
+\end{defn}
+
+Another famous example from physics,
+\begin{defn}
+The \textbf{Heisenberg Group} is the set of all matrices $A \in \mathcal{M}_{nn}$ of the form
+$$A = \begin{pmatrix}
+1 & a & b \\
+0 & 1 & c \\
+0 & 0 & 1
+\end{pmatrix} $$
+\end{defn}
+
+Another group,
+\begin{defn}
+Consider the skew symmetric bilinear form $\omega$ on $\R^{2n}$ where
+$$\omega(x,y) = \sum_{j = 1}^n (x_jy_{n+j}) - (x_{n+j}y_{j}) $$
+We can also describe $\omega$ in terms of a matrix, where
+$$\omega(x,y) = \begin{pmatrix}
+x_1 & \ldots  & x_{2n}
+\end{pmatrix} \begin{pmatrix}
+0 & \id_{\R^n} \\
+-\id_{\R^n} & 0
+\end{pmatrix} \begin{pmatrix}
+y_1 \\
+\vdots \\
+y_{2n}
+\end{pmatrix}$$
+The \textbf{Symplectic Group} $\SP_n(\R)$ is the group of real matrices that preserve $\omega$. The complex symplectic griuo $\SP_n(\C)$ is defined similarly. The \textbf{Compact Symplectic Group} $\SP(n)$ is then defined to be 
+$$\SP(n) = \SP_n(\C) \cap \mathsf{U}_n $$
+\end{defn}
+
+The definition for the compact symplectic group $\SP(n)$ means that elements of $\SP(n)$ have the interesting property that they preserve the standard inner product on $\C^{2n}$ and the bilinear form $\omega$. We can investigate a bit further into the structure of $\SP(n)$. Let $J: \C^{2n} \to \C^{2n}$ where for $\alpha,\beta \in \C^n$,
+$$J(\alpha,\beta) = (-\bar{\beta}, \bar{\alpha}) $$
+This map is clearly \emph{conjugate linear} Then we can define the form $\omega$ in terms of the standard Hermitian inner product 
+$$\omega(x,y) = \langle Jx, y \rangle $$
+To see this, we compute
+\begin{align*}
+J(x_1, \ldots, x_n, x_{n+1} \ldots x_{2n}) = (-\overline{x}_{n+1}, \ldots , -\overline{x}_{2n},x_1, \ldots, x_n)
+\end{align*}
+This gives us that 
+$$\langle Jx,y \rangle = \sum_{j = 1}^n (-x_{n+j}y_j) + x_jy_{n+j} = \omega(x,y)  $$
+We also note that $J^2 = -\id$. 
+\begin{prop}
+If $U \in \mathsf{U}_{2n}$, then $U \in \SP(n)$ if and only if $U$ commutes with $J$
+\end{prop}
+
+\begin{proof}
+Since $U$ is unitary, we have that for any $x,y \in \C^{2n}$
+$$\langle Ux, Uy \rangle = \langle x, y \rangle $$
+By definition, $U \in \SP_n$ if and only if it preserves $\omega$, that is
+$$\omega(x,y) = \omega(Ux,Uy) $$
+which in our alternate formulation, implies that
+\begin{align*}
+&\langle JUx, Uy \rangle = \langle Jx, y \rangle \\
+\implies &\langle U^\dagger JUx, y \rangle = \langle Jx, y \rangle \\
+\implies & U^\dagger J U = J
+\end{align*}
+And since $U$ is unitary, we have that $U^\dagger = U \inv$, so $U$ commutes with $J$.
+\end{proof}
+
+We can use this to conclude that $\SU(n)$ is the set of all matrices that are ``quaternion linear," but I'm a bit too lazy to go through the motions.\\
+
+Lets discuss some topological properties
+\begin{defn}
+A matrix Lie group $G$ is \textbf{compact} if every open cover of $G$ admits a finite subcover. Alternatively, since we can identify $G$ as embedded in $\C^{n^2}$ or $\R^{n^2}$, $G$ is compact if and only if $G$ is closed and bounded.
+\end{defn}
+
+\begin{defn}
+A matrix Lie group $G$ is \textbf{path connected} if for any two $A,B \in G$, we have that there exists a continuous/smooth map $\gamma: [0,1] \to G$ such that $\gamma(0) = A$ and $\gamma(1) = B$. The \textbf{identity component} of $G$, denoted $G_0$ is the set of all matrices with a path to the identity matrix.
+\end{defn}
+\begin{rem*}
+We'll soon see that path-connectedness and connectedness are equivalent. This follows from the manifold structure of $G$.
+\end{rem*}
+
+It's easy to see that path connectedness defines an equivalence relation.
+\begin{prop}
+The identity component $G_0$ is a normal subgroup of $G$.
+\end{prop}
+
+\begin{proof}
+We first show that $G_0$ is indeed a subgroup. Given $A, B \in G_0$,  let $\gamma_A$ and $\gamma_B$ denote the curves connecting the identity matrix $I$ with $A$ and $B$ respectively. We know that mapping $A \mapsto A\inv$ is smooth, so composing the inversion map with $\gamma_A$ gives us a smooth curve to $A\inv$, so $G_0$ is closed under inverses. In addition, since matrix multiplication is smooth, we have the map
+\begin{align*}
+\gamma_{AB}:[0,1] &\to G \\
+t &\mapsto \gamma_A(t)\cdot\gamma_B(t)
+\end{align*} 
+is a smooth path from $I$ to $AB$, so $G_0$ is indeed a subgroup
+
+To show that $G_0$ is normal, let $K \in G_0$ and let $A \in G$. Then let $\gamma_K$ be the curve connecting $K$ with $I$. Then the matrix $AKA\inv \in G_0$, since we can construct the map
+\begin{align*}
+f_A: [0,1] &\to G \\
+t &\mapsto A\gamma_K(t)A\inv
+\end{align*}
+which is a smooth map connecting $I$ with $AKA\inv$.
+\end{proof}
+
+\begin{defn}
+A matrix lie group $G$ is \textbf{simply connected} if  every loop $f: S^1 \to G$ is homotopic to a constant map
+\end{defn}
+
+We've mainly dealt with the topological and smooth properties of matrix Lie groups, but we note that they also have a group structure, so we should also discuss their algebraic properties.
+
+\begin{defn}
+For two Lie groups $G, H$, a map $\varphi: G \to H$ is a \textbf{Lie Group Homomorphism} if $\varphi$ is a smooth homomorphism. If $\varphi$ is a group isomorphism in addition to being a diffeomorphism, we say that $\varphi$ is a \textbf{Lie Group Isomorphism}
+\end{defn}
+
+We now take off the training wheels and define a Lie group in its true form
+
+\begin{defn}
+A \textbf{Lie group} is a group $G$ that is also a smooth manifold such that 
+\begin{enumerate}
+\item The group product $\bullet: G \times G \to G$ is a smooth map
+\item The inversion map $g \mapsto g\inv$ is a smooth map
+\end{enumerate}
+\end{defn}
+So a Lie group is a group/manifold such that the group operations respect the smooth structure of the manifold.
+
+\subsection*{Chapter 1 Exercises}
+
+\setcounter{thm}{0}
+\begin{exer}
+Let $[\cdot,\cdot]_{nk}$ the the bilinear form on $\R^{n+k}$  we defined earlier for the generalized orthogonal group $\mathsf{O}(n:k)$. Let
+$$g = \begin{pmatrix}
+\id_{\R^n} & 0 \\
+0 & -\id_{\R^k}
+\end{pmatrix} $$
+Show that for all $x,y \in \R^{n+k}$ we have that 
+$$[x,y]_{nk} = \langle x, gy \rangle $$
+where $\langle \cdot, \cdot \rangle$ is the standard inner product on $\R^{n+k}$. In addition, show that a matrix $A \in \mathsf{O}(n:k)$ if and only if $gA^Tg = A\inv$.
+\end{exer}
+
+\begin{proof}[Solution]
+We first compute for $y = (y_1, \ldots, y_n, y_{n+1}, \ldots y_{n+k})$
+$$gy = (y_1, \ldots, y_n, -y_{n+1} \ldots -y_{n+k}) $$
+Then it clearly follows that 
+$$[x,y] = \langle x, gy \rangle $$
+Then given a matrix $A \in \mathsf{O}(n:k)$, we have that $A$ preserves $[\cdot,\cdot]_{nk}$, i.e. for all $x,y \in \R^{n+k}$, we have that
+$$\langle Ax,gAy \rangle = \langle x, gy \rangle $$
+Which is true if and only if 
+$$\langle x, A^TgAy \rangle = \langle x, gy \rangle $$
+noting that $g\inv = g$, we have that this holds if and only if 
+\begin{align*}
+&A^TgA = g \\
+\iff &A^Tg = gA\inv \\
+\iff &gA^Tg = A\inv
+\end{align*}
+\end{proof}
+
+\begin{exer}
+Let $\omega$ be the bilinear form defined on $\R^{2n}$ as for the symplectic group. Then let 
+$$\Omega = \begin{pmatrix}
+0 & \id_{\R^n} \\
+-\id_{\R^n} & 0 
+\end{pmatrix} $$
+Show that 
+$$\omega(x,y) = \langle x, \Omega y \rangle $$
+Additionally, show that a matrix $A \in \SP_n(\R)$ if and only if $-\Omega A^T\Omega = A\inv$.
+\end{exer}
+
+\begin{proof}[Solution]
+Let $x.y \in \R^{2n}$ where $y = (y_1, \ldots, y_n, y_{n+1}, \ldots, y_{2n})$. We then compute
+$$\Omega y = (-y_{n+1}, \ldots -y_{2n}, y_1, \ldots, y_n) $$
+It then clearly follows that 
+$$\omega(x,y) = \langle x, \Omega y \rangle $$
+Then consider an arbitrary $A \in \SP_n(\R)$. We have that $A$ preserves $\omega$, so for all $x,y \in \R^{2n}$,
+$$\langle Ax, \Omega Ay \rangle = \langle x, \Omega y \rangle $$ Noting that $\Omega\inv = -\Omega$, this holds if and only if 
+\begin{align*}
+&\langle x, A^T\Omega A y \rangle = \langle x, \Omega y \rangle \\
+\iff & A^T \Omega A = \Omega \\
+\iff & A^T\Omega = \Omega A\inv \\
+\iff &-\Omega A^T \Omega = A\inv
+\end{align*}
+\end{proof}
+
+\begin{exer}
+Prove the following equalities
+\begin{enumerate}
+\item $\SP_1(\R) = \SL_2(\R)$
+\item $\SP_1(\C) = \SL_2(\C)$
+\item $\SP(1) = \SU_2$
+\end{enumerate}
+\end{exer}
+
+\begin{proof}[Solution]
+$ $ \\
+\begin{enumerate}
+\item Consider some matrix $A \in \SP_1(\R)$. We wish to show that $\det A = 1$. We note for arbitrary $x,y \in \R^2$, we have that 
+\begin{align*}
+\omega(x,y) &= \begin{pmatrix}
+x_1 & x_2
+\end{pmatrix} \begin{pmatrix}
+0 & 1 \\
+-1 & 0
+\end{pmatrix} \begin{pmatrix}
+y_1 \\
+y_2
+\end{pmatrix} \\
+&= x_1y_2-x_2y_1 \\
+&= \det \begin{pmatrix}
+x_1 & y_1 \\
+x_2 & y_2
+\end{pmatrix}
+\end{align*}
+So $\omega(x,y)$ is just the determinant of the matrix $(x,y)$ with the columns being $x$ and $y$. Then $A \in \SP_1(\R)$ implies that $A$ preserves $\omega$, so we have that $\det (Ax,Ay) = \det (x,y)$. We note that $(Ax,Ay)$ is the just the matrix product $A \cdot (x,y)$. We then conclude that 
+$$\det A \cdot (x,y) = \det (x,y) $$
+which is true if and only if
+$$ (\det A)(\det (x,y)) =  \det (x,y) $$
+Thus, $A \in \SP_1(\R) \iff A \in \SL_1(\R)$.
+\item The proof here is identical to the proof given in $(1)$.
+\item We proved in $(2)$ that $\SP_1(\C) = \SL_2(\C)$. Therefore, 
+$$\SP(1) = \SL_2(\C) \cap \mathsf{U}_2$$
+ which is exactly the definition of $\SU_2$.
+\end{enumerate}
+\end{proof}
+
+\setcounter{thm}{6}
+
+\begin{exer}
+You may assume the following theorem
+\begin{thm*}
+Given $U \in \SP(n)$, there exists an orthonormal basis $\set{u_1, \ldots, u_n, v_1, \ldots, v_n}$  for $\C^{2n}$ such that for the map $J(a,b) = (-\overline{b},\overline{a})$, $J(u_j) = (v_j)$ and for $\set{\theta_i}_{i = 1}^n$ we have that
+\begin{align*}
+Uu_j &= e^{i\theta_j}u_j\\
+Uv_j &= e^{-i\theta_j}v_j
+\end{align*}
+and 
+\begin{align*}
+\omega(u_j, u_k) &= \omega(v_j, v_k) = 0 \\
+\omega(u_j,v_k) &= \delta_{jk}
+\end{align*}
+Conversely, given a matrix $U$ for which such an orthonormal basis exists, $U \in \SP(n)$.
+\end{thm*}
+Prove that $\SP(n)$ is connected and that for any $U \in \SP(n)$, $\det U = 1$.
+\end{exer}
+
+\begin{proof}[Solution]
+Let $\set{u_1, \ldots ,u_n, v_1 \ldots v_n}$ be such an orthonormal basis for $U$. Then define linear map $U_t$ where 
+\begin{align*}
+U_tu_j &= e^{i\theta_jt}u_j \\
+U_tv_k &= e^{-i\theta_jt}v_j
+\end{align*}
+Then $\set{u_1, \ldots, u_n, v_1, \ldots, v_n}$ also satisfies the conditions for $U_t$, so we conclude $U_t \in \SP(n)$. Then the map
+\begin{align*}
+\varphi: [0,1] &\to \SP(n) \\
+t &\mapsto U_t
+\end{align*} 
+defines a smooth path where $\varphi(0) = I$ and $\varphi(1) = U$. Therefore, every matrix in $\SP(n)$ lies inside the identity component, so $\SP(n)$ is connected. To show that $\det U = 1$ for any $U \in \SP(n)$, we have that the condition $-\Omega A^T \Omega  = A\inv$ implies that $\det A = \pm 1$, since $\det \Omega = \det -\Omega =1$. Then noting that $\det$ is a continuous function and that $\SP(n)$ is connected, we have that $\det$ must map $\SP(n)$ to a connected subset of $\C$. The set $\set{\pm 1}$ is not connected, so $\det$ must be constant on $\SP(n)$. We have that $\det I = 1$, so we conclude that $\det U = 1$ for any $U \in \SP(n)$.
+\end{proof}
+
+\setcounter{thm}{10}
+\begin{exer}
+For a  Lie group $G$, a subset $E \subset G$ is \textbf{discrete} if for all $g \in E$, there exists an open set $U \subset G$ containing $g$ such that $U \cap (E -  \set{g}) = \emptyset$. Now suppose $G$ is a connected Lie group and $N \triangleleft G$ is a discrete normal subgroup. Prove $N < Z(G)$.
+\end{exer}
+
+\begin{proof}[Solution]
+Fix some $g\in G$ an $n \in N$. Then let $\gamma_g$ be the curve with $\gamma_g(0) = e$ and $\gamma_g(1) = g$. Then if we consider the map
+\begin{align*}
+\varphi_n: [0,1] &\to G \\
+t &\mapsto \gamma_g(t)\cdot n \cdot \gamma_g(t)\inv
+\end{align*}
+This determines a smooth curve from $n$ to its conjugate $gng\inv$. Since $N$ is a normal subgroup, we have that $\varphi_n(t) \in N$ for all $t$. Therefore, $\varphi_n$ must be constant, since $N$ is discrete, so $gng\inv = n$, so $n \in (G)$.
+\end{proof}
+
+\begin{exer}
+Prove $\GL_n(\C)$ is connected. 
+\begin{hint*}
+Given invertible matrices $A,B \in \GL_n(\C)$, show that there exists only finitely many $\lambda \in \C$ such that 
+$$\det(\lambda A + (1 - \lambda)B) = 0 $$
+Then show there exists a smooth path $\gamma(t)$ of the form
+$$\gamma(t) = \lambda(t)A + (1-\lambda(t))B $$
+connecting $A$ to $B$ with $\gamma(t) \in \GL_n(\C)$ for all $t$ where $\lambda(t)$ is a smooth path connecting $0$ to $1$
+\end{hint*}
+\end{exer}
+
+\begin{proof}[Solution]
+We first prove the hint. Fix two matrices $A,B \in \GL_n(\C)$. Then define the function $p: \C \to \C$ where
+$$p(\lambda) = \det (\lambda A + (1 - \lambda)B) $$
+We note that $p$ is a polynomial in $\lambda$, so it admits finitely many roots $R =\set{\lambda_i}_{i = 1}^k$. The let 
+$$R' = R \cup \set{1-\lambda_i}_{i =1}^k $$
+We know $\C - R'$ is connected, which can be seen through the obvious identification $\C \sim \R^2$. Therefore, we can find a smooth path $\lambda [0,1] \to \C - R'$ where $\lambda(0) = 0$ and $\lambda(1) = 1$. Therefore, the map $\gamma:[0,1] \to \GL_n(\C$. given by the mapping
+$$t \mapsto \lambda(t) A + (1-\lambda(t)) B $$
+is a smooth map with $\gamma(0) = A$ and $\gamma(1) = B$, with the property that $\gamma(t)$ is invertible for all $t$, since we constructed the map $\lambda$ such that $\lambda(t)$ is never a root of the polynomial $p$, so $\gamma(t)$ is always non-singular. This proves that $\GL_n(\C)$ is connected.
+\end{proof}
+
+\section{The Matrix Exponential}
+
+We know the standard exponential map $\exp: \R \to \R$ where $x \mapsto e^x$ can be defined in terms of the power series
+$$\exp(x) = \sum\limits_{n = 0}^\infty \frac{x^n}{n!} $$
+This formula also makes sense for matrices, where we can define the \textbf{matrix exponential} for a square matrix $X$ as the series
+$$e^X = \sum\limits_{n = 0}^\infty \frac{X^n}{n!} $$
+This will become vital when we introduce the concept of a Lie algebra, as the matrix exponential will end up being the dictionary from which we translate information between a Lie group and its associated Lie algebra. We probably want to check that this series actually converges for any $X$, or else we would be extremely upset. To do this, we're going to introduce the concept of an \textbf{operator norm}
+\begin{defn}
+For $X \in \mathcal{M}_{nn}(\C)$. define the \textbf{Hilbert-Schmidt norm} of $X$, denoted $\norm{X}$ to be 
+$$\norm{X} = \left( \sum\limits_{j,k} |X_{jk}|^2 \right)^{\frac{1}{2}} $$
+\end{defn}
+Note that this is just the standard norm on $\mathcal{M}_{nn}(\C)$ identified in the obvious way with $\C^{n^2}$. This gives us the standard metric space properties we want on $\mathcal{M}_{nn}(\C)$ such as the Cauchy-Schwarz inequality, the triangle inequality, a Cauchy sequence, etc. One helpful thing to note,
+\begin{prop}
+For any square matrix $X \in \mathcal{M}_{nn}(\C)$, we have that 
+$$\norm{X} =  \sqrt{\trace (X^\dagger X)}$$
+\end{prop}
+
+\begin{proof}
+We compute that 
+\begin{align*}
+(X^\dagger X)_{jj} &= \sum_{k} \overline{X^\dagger}_{jk} X_{k j} \\
+&= \sum_{k} \overline{X}_{kj} X_{kj} \\
+&= \sum_{k}|X_{kj}|
+\end{align*}
+This gives us that 
+$$\trace (X^\dagger X) = \sum_{j,k}|X_{jk}|^2 = \norm{X}^2 $$
+\end{proof}
+
+We now prove that the series indeed converges
+\begin{prop}
+For any $X \in \mathcal{M}_{nn}(\C)$, we have that the series
+$$\sum_{n = 0} \frac{X^n}{n!}$$
+converges.
+\end{prop}
+
+\begin{proof}
+From Cauchy-Schwarz, we have that 
+$$\norm{X^m} \leq \norm{X}^m $$
+this gives us that 
+$$\sum_{n = 1}^\infty \frac{\norm{X^n}}{n!} \leq \norm{I} + \sum_{n=1}^\infty \frac{\norm{X}^n}{n!} $$
+Therefore, the series converges
+\end{proof}
+
+We have some properties of the matrix exponential
+\begin{prop}
+For $X,Y \in \mathcal{M}_{nn}(\C)$,
+\begin{enumerate}
+\item $e^0 = I$ 
+\item $\left( e^X \right)^\dagger = \left( e^{X ^\dagger} \right)$
+\item $e^X$ is invertible and $e^{X\inv} = \left( e^{X} \right)\inv$
+\item $e^{(a + b)X} = e^{aX}e^{bX}$ for any $a, b \in \C$
+\item If $XY = YX$, then $e^{X + Y} = e^Xe^Y$
+\item If $C \in \GL_n(\C)$, then $e^{CXC\inv} = Ce^XC\inv$
+\end{enumerate}
+\end{prop}
+
+Again, I'm a bit lazy to prove all of these, so we're just going to use these as facts. Another fact that will come into use soon,
+
+\begin{prop}
+For $X \in \M_{nn}(\C)$, we have that $e^{tX}$ defines a smooth curve in $\M_{nn}(\C)$ and
+$$\frac{d}{dt}e^{tX} = Xe^{tX} = e^{tX}X $$
+which gives us that
+$$\frac{d}{dt}e^{tX}\restriction_0 = X $$
+\begin{rem*}
+Unfortunately, we do not have that 
+$$e^{X + tY} = e^{x+tY}Y $$
+\end{rem*}
+\end{prop}
+
+The above proposition can be proven by differentiating each term of the power series, which is allowed since we are differentiating within the radius of convergence. That being said, the power series definition isn't particularly useful when it comes to computing the matrix exponential. There are usually easier ways to compute it. Firstly, we note that for a diagonal matrix $D$, with diagonal elements $\lambda_j$, we have that
+$$e^D = \begin{pmatrix}
+e^{\lambda_1} & \ldots & 0 \\
+\vdots & \ddots & \vdots \\
+0 & \ldots & e^{\lambda_n}
+\end{pmatrix} $$
+
+Then if our matrix $X$ is diagonalizable where $X = ADA\inv$ with $D$ a diagonal matrix, we have that 
+$$e^X = C e^D C\inv $$
+So you can ``disassemble" the matrix $X$, compute the easy exponential, and ``put it back together." We also note that if the matrix $X$ is nilpotent, the series terminates. From linear algebra, any matrix $X$ can be written as a sum $X = S + N$ with $S$ diagonalizable, $N$ nilpotent, and $SN = NS$, so if our matrix isn't diagonalizable, we just need to find the nilpotent matrix, and then we an compute
+$$e^X = e^Se^N $$
+
+Now that we have a matrix exponential, we should expect an ``inverse" function, the matrix logarithm. Unfortunately, the complications are twofold. Firstly, the logarithm for complex numbers is already a bit hairy, since every non-zero $z \in \C$ can be written in the form $e^\lambda$ for some $\lambda \in \C$, but this $\lambda$ is far from unique. 
+
+\begin{defn}
+For $A \in \M_{nn}(\C)$, let 
+$$\log A = \sum_{m = 1}^\infty (-1)^{m+1}\frac{(A-I)^m}{m} $$
+whenever the series converges.
+\end{defn}
+Using the properties of the complex logarithm, we have that this series converges whenever 
+$$\norm{A -I} < 1 $$
+but this is not a necessary condition. For example, we could have that $\norm{A - I} >$, but if $A - I$ is nilpotent (i.e. $A$ is unipotent), then this series converges as well, since it is finite.
+
+\begin{thm}[\textbf{Lie Product Formula}]
+For all $X,Y \in \M_{nn}(\C)$, 
+$$e^{X + Y} = \lim_{m \to \infty}\left( e^{\frac{X}{m}}e^{\frac{Y}{m}} \right)^m $$
+\end{thm}
+
+\begin{thm}
+For any $X \in \M_{nn}(\C)$, we have
+$$\det e^X = e^{\trace(X)} $$
+\end{thm}
+
+\begin{proof}
+If $X$ is diagonalizable $X = CDC\inv$, then $e^X = Ce^DC\inv$. The diagonal of $D$ consists of $e^{\lambda_j}$ where $\lambda_j$ are the eigenvalues of $X$. Then $\det e^X = e^{\sum_j \lambda_j} = e^{\trace (X)}$. In the case that $X$ is not diagonalizable, we approximate it with diagonalizable matrices.
+\end{proof}
+
+\begin{defn}
+A function $\phi: \R \to \GL_n(\C)$ is a \textbf{one-parameter subgroup} of $\GL_n(\C)$ if 
+\begin{enumerate}
+\item $\phi$ is smooth
+\item $\phi(0) = I$
+\item $\phi(t + s) = \phi(t)\phi(s)$
+\end{enumerate}
+In other words, $\phi$ is a Lie group homomorphism from the additive group $(\R, +)$ to the general linear group.
+\end{defn}
+
+\begin{thm}
+If $\phi$ is a one-parameter subgroup of $\GL_n(\C)$, there exists a unique $X \in \M_{nn}(\C)$ such that $\phi(t) = e^tX$.
+\end{thm}
+
+\subsection*{Chapter 2 Exercises}
+
+\setcounter{thm}{1}
+\begin{exer}
+Show that for $X \in \M_{nn}(\C)$ and any orthonomal basis $\set{u_j}$ for $\C^n$,
+$$ \norm{X}^2 = \sum_{j,k}\abs{\langle u_j, Xu_k \rangle}^2 $$
+Where $\norm{\cdot}$ is the Hilbert-Schmidt norm. Then show that if $\lambda$ is an eigenvalue of $X$, then $\abs{\lambda} \leq \norm{X}$
+\end{exer}
+
+\begin{proof}[Solution]
+Let 
+$$c_{jk} = \langle u_j, Xu_k \rangle$$
+Then the matrix $C$ consisting of these $c_{jk}$ as entries is the coordinate representation of $X$ in the $\set{u_j}$ basis. 
+We then note that $\norm{X}^2 = \trace{X^\dagger X}^2$, which is basis invariant, so $\norm{X} = \norm{C}$, concluding the proof of the first part. 
+
+For the second part, let $v$ be an eigenvector of $X$, which we take WLOG to be a unit vector. Then $Xv$ is a linear combination of the columns of $X$, and from the triangle inequality, we conclude that 
+$$\abs{\sum_{j ,k} c_{jk}v_j }\leq \sum_{j,k}\abs{c_{jk}v_j} $$
+So $\abs{\lambda} \leq \norm{X}$
+\end{proof}
+
+\setcounter{thm}{3}
+
+\begin{exer}
+You may assume the following theorem:
+\begin{thm*}
+Every matrix is conjugate to an upper triangular matrix. Every nilpotent matrix is conjugate to upper triangular matrix with $0$s on the diagonal.
+\end{thm*}
+Show that every matrix $A \in \M_{nn}(\C)$ is the limit of a sequence of diagonalizable matrices. 
+\begin{hint*}
+If a matrix in $\M_{nn}(\C)$ has $n$ distinct eigenvalues, it is necessarily diagonalizable
+\end{hint*}
+\end{exer}
+
+\begin{proof}[Solution]
+Given an arbitrary matrix $A$, we have that $A = CPC\inv$ for some upper triangular matrix $P$. We know that the eigenvalues of an upper triangular matrix are precisely the diagonal elements. We can then choose a sequence of upper triangular matrices $P_t$ with distinct diagonal elements that converge to $P$. Since the diagonal elements are all distinct, each $P_t$ is diagonalizable, so $CP_tC\inv$ is as well.
+\end{proof}
+
+\section{Lie Algebras}
+
+Unlike our approach with Lie groups, we're going to start with the abstract definition first.
+
+\begin{defn}
+A finite-dimension real/complex \textbf{Lie Algebra} is a finite dimensional real/complex vector space $\mathfrak{g}$ with a map $[\cdot,\cdot]: \mathfrak{g} \times \mathfrak{g} \to \mathfrak{g}$ called a \textbf{Lie bracket} such that 
+\begin{enumerate}
+\item $\bra{\cdot}{\cdot}$ is bilinear
+\item For all $X,Y \in \mathfrak{g}$, 
+$$\bra{X}{Y} = -\bra{Y}{X} $$
+\item For all $X,Y,Z \in \mathfrak{g}$,
+$$\bra{X}{\bra{Y}{Z}} + \bra{Z}{\bra{X}{Y}} + \bra{Y}{\bra{Z}{X}} = 0 $$
+\end{enumerate}
+The last condition is called the \textbf{Jacobi Identity}
+\end{defn}
+
+\begin{defn}
+Two elements $X,Y \in \mathfrak{g}$ \textbf{commute} if $\bra{X}{Y} = 0$. A Lie algebra $\mathfrak{g}$ is \textbf{commutative} if every pair of elements in $\mathfrak{g}$ commute.
+\end{defn}
+
+As a trivial example, an arbitrary vector space $V$ can be made into a Lie algebra, by defining the Lie bracket to be $\bra{X}{Y} = 0$ for all $X,Y \in V$.
+
+As a more enlightening example, let $\mathscr{A}$ be any associative $\R$-algebra ($\C$ works here too) such that $\mathscr{A}$ contains all commutators $XY - YX$. Then we can make $\mathscr{A}$ into a Lie algebra by defining the Lie bracket to be the commutator bracket
+$$\bra{X}{Y} = XY - YX $$
+
+As an example that will be of more use shortly,
+\begin{exmp}
+Let $\mathfrak{sl}_n(\C)$ denote the space of all $X$ such that $\trace{X} = 0$. Then $\mathfrak{sl}_n(\C)$ forms a Lie algebra under the commutator bracket.
+\end{exmp}
+
+\begin{proof}
+We first note that $\mathfrak{sl}_n(\C)$ clearly forms a $\C$-vector space, since the $0$ trace property is preserved through matrix addition and scalar multiplication. The commutator bracket also clearly satisfies the conditions, provided it is closed, i.e. 
+$$\bra{X}{Y} \in \mathfrak{sl}_n(\C) $$
+for all $X,Y \in \mathfrak{sl}_n(\C)$. To see this, we note 
+$$\trace(XY) = \trace(YX) \implies \trace\bra{X}{Y} = 0 $$
+\end{proof}
+
+\begin{defn}
+For a Lie algebra $\mathfrak{g}$, a subspace $\mathfrak{h}$ is a \textbf{subalgebra} of $\mathfrak{g}$ if it forms a Lie algebra with the Lie bracket defined to be the restriction of the Lie bracket to $\mathfrak{h}$.
+\end{defn}
+
+\begin{defn}
+A subalgebra $\mathfrak{h} \subset \mathfrak{g}$ is an \textbf{ideal} if $\bra{X}{H} \in \mathfrak{h}$ for all $X \in \mathfrak{g}$ and $H \in \mathfrak{h}$.
+\end{defn}
+
+\begin{defn}
+The \textbf{center} of a Lie algebra $\mathfrak{g}$ is the set of all $X \in \mathfrak{g}$ such that $\bra{X}{Y} = 0$ for all $Y \in \mathfrak{g}$.
+\end{defn}
+
+As with Lie groups, there are also Lie algebra homomorphisms
+\begin{defn}
+For Lie algebras $\mathfrak{g}$ and $\mathfrak{h}$, A linear map $\varphi: \mathfrak{g} \to \mathfrak{h}$ is a \textbf{Lie algebra homomorphism} if 
+$$\varphi\bra{X}{Y} = \bra{\varphi(X)}{\varphi(Y)} $$
+for all $X,Y \in \mathfrak{g}$. If $\varphi$ is bijective, then it is a \textbf{Lie algebra isomorphism}.
+\end{defn}
+
+\begin{prop}
+For any Lie algebra homomorphism $\Phi: \g \to \mathfrak{h}$, $\ker \Phi$ is an ideal of $\g$.
+\end{prop}
+
+\begin{proof}
+We first note that $\ker \Phi$ is a subspace. To show that $\ker \Phi$ forms a subalgebra, let $v,w \in \ker \Phi$. We then claim that $\bra{v}{w} \in \ker \Phi$. Since $\Phi$ is a Lie algebra homomorphism, we have that 
+$$\Phi\bra{v}{w} = \bra{\Phi(v)}{\Phi(w)} = \bra{0}{0} = 0 $$
+The same computation with $v \in \ker \Phi$, $w \in \g$ proves that $\bra{v}{w} \in \ker \Phi$, so it does indeed form an ideal of $\g$.
+\end{proof}
+
+We note for an inner product space $V$, if we fix a $v \in V$, we can define a linear map $\langle v, \cdot \rangle : V \to \R$. Similarly, in a group $G$, if we fix some $g \in G$, we get the induced map $\mu_g: G \to G$ defined by left/right multiplication by $g$. The bracket operations allows us to do something similar here. 
+
+\begin{defn}
+For a Lie algebra $\mathfrak{g}$, fix some $X \in \mathfrak{g}$. Then this defines the \textbf{adjoint map}, denoted $\ad_X$, where
+$$\ad_X(Y) = \bra{X}{Y} $$
+\end{defn}
+
+Given some Lie algebra $\g$. Then the set of all linear maps $\g \to \g$ forms a vector space, denoted $\End(\g)$, which can be given a Lie algebra structure with the commutator bracket.
+
+\begin{prop}
+For a Lie algebra $\g$, the \textbf{adjoint representation}
+\begin{align*}
+\ad: \g &\to \End(\g) \\
+X &\mapsto \ad_X
+\end{align*}
+is a Lie algebra homomorphism
+\end{prop}
+
+\begin{proof}
+We first verify that the adjoint representation is linear. Let $X,Y \in \g$. Then from bilinearity of the Lie bracket, we have
+\begin{align*}
+\left(  \ad_X + \ad_Y \right)(Z) = \bra{X}{Z} + \bra {Y}{Z} = \bra{X + Y}{Z} = \ad_{X+Y}(Z)
+\end{align*}
+Scalar multiplication follows similarly. We then check compatibility with the commutator bracket. We then compute
+\begin{align*}
+\ad_{\bra{X}{Y}}(Z) = \bra{\bra{X}{Y}}{Z}
+\end{align*}
+We compare this with
+\begin{align*}
+\bra{\ad_X}{\ad_Y}(Z) = \bra{X}{\bra{Y}{Z}} - \bra{Y}{\bra{X}{Z}}
+\end{align*}
+Equality then follows directly from the Jacobi identity.
+\end{proof}
+
+As with vector spaces, and most other objects we consider, once we have two Lie algebras, we can make another
+\begin{defn}
+For Lie algebras $\g$ and $\mathfrak{h}$, the \textbf{direct sum} $\g \oplus \mathfrak{h}$ is the direct sum vector space equipped with the bracket
+$$\bra{(g_1,h_1}{(g_2,h_2)} = \left( \bra{g_1}{g_2}_\g, \bra{h_1}{h_2}_\mathfrak{h}  \right) $$
+\end{defn}
+
+\begin{defn}
+For a Lie algebra $\g$ with subalgebras $\g_1$ and $\g_2$, we say $\g$ decomposes as a direct sum if $\g = \g_1 \oplus \g_2$ as a vector space, and $\bra{g_1}{g_2} = 0$ for all $g_1 \in \g_1$ and $g_2 \in \g_2$.
+\end{defn}
+
+Some concepts that come up in physics (less so in mathematics)
+
+\begin{defn}
+Given a basis $\set{v_j}$ for a finite dimensional Lie algebra $\g$, there exist unique constants $c_{jk\ell}$ called \textbf{structure constants} with respect to $\set{v_j}$ such that 
+$$\bra{v_j}{v_k} = \sum\limits_{\ell = 1}^n c_{jk\ell}v_\ell $$
+\end{defn}
+The structure constants satisfy the following conditions, which follow directly from skew symmetry of the Lie bracket and the Jacobi Identity.
+\begin{enumerate}
+\item $c_{jk\ell} + c_{kj\ell} = 0$
+\item $\sum_n (c_{jkn}c_{nlm} + c_{kln} c_{njm} + c_{c\ell jn}c_{nkm}) = 0$
+\end{enumerate}
+
+Lie algebras have some similar structures to groups and rings, as they should, since there should be some sort of dictionary between Lie groups and Lie algebras
+
+\begin{defn}
+A Lie algebra $\g$ is \textbf{irreducible} if the only ideals in $\g$ are $\g$ and $\set{0}$.
+\end{defn}
+
+\begin{defn}
+A Lie algebra $\g$ is simple if it is irreducible and $\dim g \geq 2$.
+\end{defn}
+
+One particular thing to note is that if a Lie algebra $\g$ is one dimensional, then it is necessarily commutative. This is because any nontrivial vector $v \in \g$ defines a basis, and we have that $\bra{v}{v} = 0$, and bilinearity gives us that $\bra{\alpha v}{\beta v} = 0$ for all scalars $\alpha, \beta$. We also note that for a commutative Lie algebra $\mathfrak{h}$, any subspace of $\mathfrak{h}$ is an ideal, since $\bra{h}{g} = 0$ for all $h,g \in \mathfrak{h}$, and $0$ is contained in every subspace.
+
+\begin{defn}
+For a Lie algebra $\g$, the \textbf{commutator ideal} of $\g$, denoted $\bra{\g}{\g}$, is the space of all linear combinations of commutators $\bra{X}{Y}$.
+\end{defn}
+
+\begin{defn}
+For a Lie algebra $\g$, Let $\g_0 = \g$. Then recursively define $\g_{j+1} = \bra{\g_j}{\g_j}$.  The sequence $\set{\g_j}$ of ideals is the \textbf{derived series} of $\g$.  We then say $\g$ is \textbf{solvable} if this series terminates, i.e. $\g_j = \set{0}$ for some $j$.
+\end{defn}
+
+\begin{defn}
+For a Lie algebra $\g$, let $\g^0 = \g$. Then recursively define the sequence of ideals $\g^j$ where 
+$$\g^{j+1} =  \set{v \in \text{span } \bra{X}{Y}~|~ X \in \g, Y \in \g^j}$$
+This sequence is called the \textbf{upper central series} of $\g$. We then say $\g$ is \textbf{nilpotent} if $\g^j = \set{0}$ for some $j$. We note that $\g_j \subset g^j$, so if a Lie algebra is nilpotent, it is solvable.
+\end{defn}
+
+Now that we've constructed the abstract definition of a Lie algebra, its time we relate then to Lie groups.
+
+\begin{defn}
+For a \emph{matrix} Lie group $G$, the \textbf{Lie algebra} of $G$, which we denote $\g$, is the set of all $X \in \M_{nn}(\C)$ such that $e^tX \in G$ for all $t \in \R$. Equivalently, $X \in \g$ if the one parameter subgroup $e^{tX} \subset G$.
+\end{defn}
+
+We'll endow this space with a bracket operation shortly. First, some observations
+
+\begin{prop}
+If $X \in \g$, then $e^{tX}$ lies in the identity component of $G$.
+\end{prop}
+
+\begin{proof}
+We know $e^{tX}$ defines a smooth curve in $G$. We note that $e^{0X} = \id$, so $e^{tX}$ defines a smooth curve starting at the identity to the matrix $e^{t'X}$ for any $t' \in \R$. 
+\end{proof}
+
+\begin{thm}
+For a matrix Lie group $G$, let $\g$ be its Lie algebra. Let $X,Y \in \g$. Then
+\begin{enumerate}
+\item $AXA\inv \in \g$ for all $A \in G$
+\item $sX \in \g$ for all $s \in \R$
+\item $X + Y \in \g$
+\item $XY-YX \in \g$
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+$ $\\
+\begin{enumerate}
+\item We compute $e^{tAXA\inv} = Ae^{tX}A\inv \in G$
+\item This one is obvious
+\item We use the Lie product formula here. 
+$$e^{t(X+Y)} = \lim_{m \to \infty} \left( e^{\frac{tX}{m}}e^{\frac{tX}{m}} \right)^m $$
+We then note that $\left( e^{\frac{tX}{m}}e^{\frac{tY}{m}}  \right)^m \in G$ for all $m$, and since $e^X$ is invertible for all matrices and $G$ is a closed subgroup of $\GL_n(\C)$, we conclude that $e^{t(X+Y)} \in G$ for all $t$.
+\item We use the product rule to compute
+$$\frac{d}{dt}\left( e^{tX}Ye^{-tX} \right)\bigg\vert_{t = 0} = XYe^0 + e^0Y(-X) = XY-YX $$
+\end{enumerate}
+\end{proof}
+
+We then easily see that $\g$ is a vector space that is closed with respect to the commutator bracket, so this gives it a Lie algebra structure. Note that the above points only make $\g$ a real vector space.
+
+\begin{defn}
+A matrix Lie group $G$ is \textbf{complex} if its Lie algebra $\g$ is a complex vector space, i.e. $iX \in \g$ for all $X \in \g$.
+\end{defn}
+
+\begin{prop}
+If $G$ is abelian, then $\g$ is commutative
+\end{prop}
+
+\begin{lem}
+For $X,Y \in \M_{nn}(\C)$,
+$$\bra{X}{Y} = \frac{\bd}{\bd t}\left( \frac{\bd}{\bd s} e^{tX}e^{sY}e^{-tX}\bigg\vert_{s = 0} \right)\bigg\vert_{t = 0} $$
+\end{lem}
+
+\begin{proof}
+We compute using the identity $\frac{\bd}{\bd t}e^{tX} = Xe^{tX}$
+\begin{align*}
+\frac{\bd}{\bd t}\left( \frac{\bd}{\bd s} e^{tX}e^{sY}e^{-tX}\bigg\vert_{s = 0} \right)\bigg\vert_{t = 0} = \frac{\bd}{\bd t}\left( e^{tX}Ye^{-tX}  \right)\bigg\vert_{t = 0}
+\end{align*}
+Then using the product rule for $A(t) = e^{tX}$ and $B(t) = Ye^{-tX}$, we compute
+\begin{align*}
+\frac{\bd}{\bd t}\left( e^{tX}Ye^{-tX}  \right)\bigg\vert_{t = 0} &=\left( Xe^{tX}Ye^{-tX} + -YXe^{tX} \right)\bigg\vert_{t = 0} \\
+&= XY - YX
+\end{align*}
+\end{proof}
+
+\begin{proof}
+For $X,Y \in \M_{nn}(\C)$, we have that 
+$$\bra{X}{Y} = \frac{\bd}{\bd t}\left(\frac{\bd }{\bd s}e^{tX}e^{sY}e^{-tX}\bigg\vert_{s = 0}  \right)\bigg\vert_{t=0} $$
+Then since $G$ is commutative and $X,Y \in \g$, $e^{tX}$ and $e^{sX}$ commute, so the right hand side is independent of $t$, so $\bra{X}{Y} = 0$.
+\end{proof}
+
+One thing that will become apparent soon is that for matrix Lie groups with the ``determinant $1$ requirement," is that their corresponding Lie algebras will all have the ``trace $0$ requirement."
+
+\begin{prop}
+Suppose $G$ is a matrix Lie group where for all $X \in G$, $\det X = 1$. Then for every $Y$ contained in the corresponding Lie algebra $\g$, $\trace Y = 0$ 
+\end{prop}
+
+\begin{proof}
+We have that for any $X \in \M_{nn}(\C)$, 
+$$\det e^X = e^{\trace X} $$
+Therefore, if for every $X \in \g$, $e^{tX} \in G$, we have that $\trace X = 0$.
+\end{proof}
+
+So now that we have this correspondence between Lie groups and Lie algebras, we should expect some sort of functoriality here. That is, given a map of Lie groups, this should probably induce a map between their corresponding Lie algebras. 
+
+\begin{thm}
+Let $G$ and $H$ be Lie groups with corresponding Lie algebras $\g$ and $\mathfrak{h}$ respectively. Then given a Lie group homomorphism $\varphi: G \to H$, there exists a unique Lie algebra homomorphism $\Phi: \g \to \mathfrak{h}$ such that 
+$$\varphi(e^X) = e^{\Phi(X)} $$
+In addition, $\Phi$ has the property that 
+$$\Phi(AXA\inv) = \Phi(A)\Phi(X)\Phi(A)\inv $$
+for all $X \in \g$ and $A \in G$.
+\end{thm}
+
+If we assume the knowledge that $\g$ is just $T_{I}G$, we expect that $\Phi$ is just the derivative map $d\varphi_I: T_IG \to T_IH$, which is exactly what it is. A lot of theorems become much easier to prove in this context, so we're going to assume it.
+
+\begin{prop}
+If we are given Lie group homomorphisms $\varphi, \psi$, with corresponding Lie algebra homomorphisms $\Phi, \Psi$, then the corresponding Lie algebra map to the homomorphism $\varphi \circ \psi$ is $\Phi \circ \Psi$.
+\end{prop}
+
+\begin{prop}
+Given a Lie group homomorphism $\Phi: G\to H$, and $\varphi$ is the corresponding Lie algebra homomorphism. Then $\ker \Phi$ is a closed normal subgroup of $G$, and $\Lie(\ker \Phi) = \ker \varphi$
+\end{prop}
+
+\begin{proof}
+Since $\Phi$ is a Lie group homomorphism, it is smooth, so $\Phi\inv(I) = \ker \Phi$ is closed, being the preimage of a closed set. In addition, if $X \in \ker \varphi$, then $e^{\varphi(X)} = \Phi(e^{tX})$, so $\Phi(e^{tX}) = I$. Therefore, we have that $X \in \Lie(\ker \Phi)$. In the other direction, suppose $X \in \Lie(\ker \Phi)$. Then we have that $\Phi(e^{tX}) = e^{t\varphi(X)}=I$ for all $t$. Differentiating this with respect to $t$ and evaluating at $t = 0$ gives us that $\varphi(X) = 0$.
+\end{proof}
+
+Recall for a Lie algebra $\g$, for every element $X \in \g$, we can assign to it the mapping $\ad_X: \g \to \g$ where $\ad_X(Y) = \bra{X}{Y}$. There's a similar concept for Lie groups, which we will suggestively (though confusingly) also call the \textbf{adjoint map}
+
+\begin{defn}
+Let $G$ be a Lie group with Lie algebra $\g$. Then for every $g \in G$, define the map
+\begin{align*}
+\Ad_g: &\g \to \g \\
+X &\mapsto gXg\inv
+\end{align*}
+\end{defn}
+Unsurprisingly, the map $\Ad$ where $g \mapsto \Ad_g$ is a Lie group homomorphism $G \to \GL(\g)$, and the corresponding differential Lie algebra map is exactly $\ad$. This gives us that 
+$$e^{\ad_X} = \Ad_{e^X} $$
+
+Recall that for a matrix Lie group $G$, its Lie algebra $\g$ is only required to be a $\R$-vector space. In some cases, $\g$ will also end up being a $\C$-vector space, but this need not hold in general. In some cases, we might want to pass to complex Lie algebra
+
+\begin{defn}
+For a finite dimensional $\R$-vector space $V$, the \textbf{complexification} of $V$ is the complex vector space $V_\C$ of formal linear combinations 
+$$v + iw $$
+for $v,w \in V$. We can then define multiplication by $i$ over $V_\C$ by the rule
+$$i(v + iw) = -w + iv$$
+For those more algebraically incline, this is just the extension of scalars for the real vector space $V$, by constructing the tensor product $V \otimes \C$, where we view $\C$ as a $2$-dimensional vector space over $\R$. Note that $V_\C$ contains an isomorphic copy of $V$ as a subspace, namely all the pairs $v + 0w$.
+\end{defn}
+
+With this in mind, given a Lie algebra $\g$, we can cosntruct it's complexification $\g_\C$ by taking the complexification of the underlying vector space, and defining the Lie bracket to be 
+$$\bra{v_1 + iv_2}{w_1 + iw_2} = \bra{v_1}{w_1} + i\bra{v_1}{w_2} + i\bra{v_2}{w_1} - \bra{v_2}{w_2} $$
+which we derived by expanding out the expression $\bra{v_1 + iv_2}{w_1 + iw_2}$ such that the bracket remains bilinear. Using the  universal property of the tensor product, given a real Lie algebra $\g$ and a homomorphism $\varphi: \g \to \mathfrak{h}$ into a complex Lie algebra , there exists a unique extension $\tilde{\varphi}: \g_\C \to \mathfrak{h}$ such that $\tilde{\varphi}\big\vert_\g = \varphi$. This is done via the mapping
+$$\tilde{\varphi}(v + iw) = \varphi(v) + i\varphi(w) $$
+
+\subsection*{Chapter 3 Exercises}
+\setcounter{thm}{0}
+\begin{exer}\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item If $\g$ is a Lie algebra, show the center of $\g$ is an ideal
+\item If $\g$ and $\mathfrak{h}$ are Lie algebras and $\phi: \g \to \mathfrak{h}$ is Lie algebra homomorphism. Show that $\ker \phi$ is an ideal of $\g$
+\end{enumerate}
+\end{exer}
+
+\begin{proof}[Solution]\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item We first prove that $Z(\g)$ forms a subspace. Given $X,Y \in Z(\g)$ and $Z \in \g$, we have that 
+$$\bra{X+Y}{Z} = \bra{X}{Z} + \bra{Y}{Z} = 0 + 0 = 0$$
+So $X+ Y \in Z(\g)$. Likewise, for $\lambda \in \R$, we have 
+$$\bra{\lambda X}{Z} = \lambda\bra{X}{Z} = \lambda 0 = 0 $$
+To show that $Z(\g)$ is an ideal, we then show for all $\bra{X}{Z} \in Z(\g)$. Let $W \in \g$ be arbitrary. Then
+$$\bra{\bra{X}{Z}}{W} = \bra{0}{W} = 0 $$
+So $Z(\g)$ is an ideal
+\item Let $X,Y \in \ker \phi$, $Z \in \g$, and $\lambda \in \R$. The fact that $\ker \phi$ is a subspace follows from the fact that $\phi$ is a linear map, so all we need to check is closure under the Lie bracket. Then
+$$\phi\left( \bra{X}{Y} \right) = \bra{\phi(X)}{\phi(Y)} = \bra{0}{0} = 0 $$
+We also have that 
+$$\phi \left(  \bra{X}{Z}\right ) = \bra{\phi(X)}{\phi(Z)} = \bra{0}{\phi(Z)} = 0$$
+So $\ker \phi$ forms an ideal.
+\end{enumerate}
+\end{proof}
+
+\begin{exer}
+Classify up to isomorphism all the $1$ and $2$-dimensional Lie algebras. There is one isomorphism class of $1$-dimensional Lie algebras and two isomorphism classes of $2$-dimensional Lie algebras.
+\end{exer}
+
+\begin{proof}[Solution]
+We note that if $\g$ is $1$-dimensional, then $\g$ is necessarily abelian. This uniquely determines the Lie algebra structure, since given two one dimensional Lie algebras $\g$ and $\mathfrak{h}$, we can construct a linear isomorphism $\g \to \mathfrak{h}$ by mapping a basis to a basis, and then this linear map immediately becomes a Lie algebra homomorphism due to the abelian nature of $1$-dimensional Lie algebras. In the case of $2$-dimensional Lie algebras, we still have the case that $\g$ is abelian. In this case, $\g$ is any two dimensional vector space with the bracket defined to be the $0$ map. However, in the case that $\g$ is non-abelian, consider the set of all matrices of the form
+$$\begin{pmatrix}
+0 & a \\
+0 & b
+\end{pmatrix} $$
+With $a,b \in \R$. It is easily seen that this forms a $2$-dimensional Lie algebra under the commutator bracket. In addition, this is non-abelian, since if we consider the matrices
+\begin{align*}
+&A = \begin{pmatrix}
+0 & 1 \\
+0 & 2
+\end{pmatrix} & B = \begin{pmatrix}
+0 & 2 \\
+0 & 1
+\end{pmatrix}
+\end{align*}
+They don't commute. To show that this is unique, we note that for the basis 
+$$\set{A= \begin{pmatrix}
+0 & 1 \\
+0 & 0
+\end{pmatrix}, B= \begin{pmatrix}
+0 & 0 \\
+0 & 1
+\end{pmatrix}} $$
+We have that $\bra{A}{B} = A$. Then for any other non-abelian Lie algebra $\g$, we know that $\bra{X}{Y} \neq 0$ for some pair or linearly independent vectors $X,Y$. Then $\bra{X}{Y} = aX + bY$ for some $a,b \in \R$. Then we know that for $Z = aX + bY$, that $\set{Z,\lambda Y}$ also forms a basis for $\g$ for any $\lambda \neq 0$.  We note that if $b = 0$, we are done, since we can just construct the Lie algebra homomorphism that maps 
+$$\frac{1}{a}X \mapsto A$$ 
+ $$Y \mapsto B$$
+ Likewise, if $a = 0$, we have that $\bra{Y}{X} = -bY$, so we construct the map 
+ $$-\frac{1}{b}Y \mapsto A$$
+ $$X \mapsto B$$
+  Otherwise, $a$ is nonzero, so we can construct the isomorphism 
+  $$Z \mapsto A$$ 
+  $$\frac{1}{a}Y \mapsto B$$
+In this way, we can see that any $2$-dimensional Lie algebra admits a basis $v,w$ such that $\bra{v}{w} = v$, which we can use to construct the isomorphism.
+\end{proof}
+
+\begin{exer}
+Let $\g \subset \M_{nn}(\C)$ denote the space of all upper triangular matrices with $0$s on the diagonal. Show that $\g$ is a nilpotent Lie algebra under the bracket $\bra{X}{Y} = XY - YX$.
+\end{exer}
+
+\begin{proof}[Solution]
+Let $E_{ij}$ denote the matrix that is all $0$ except for a $1$ in the $ij$ entry. We then note that $\set{E_{ij}: i < j}$ forms a basis for $\g$. We compute the matrix product
+$$E_{ij}E_{k\ell} = \begin{cases}
+0 & j \neq k \\
+E_{i\ell} & j = k
+\end{cases} $$
+Finally, we note that $E_{ij}E_{k\ell}$ and $E_{k\ell}E_{ij}$ are only both nonzero if and only if $E_{k\ell} = E_{ji}$, which implies that $E_{k\ell} \notin \g$. This gives us the commutation relations
+$$\bra{E_{ij}}{E_{k\ell}} = \begin{cases}
+0 & j \neq k \\
+\pm E_{i\ell} &j = k
+\end{cases} $$
+We note that the condition that $i < j$ and $k < \ell$ gives us that $i < \ell - 1$. Then 
+$$\g^1 = \text{span} \set{E_{i\ell}: i < \ell - 1} $$
+It's easy to see that this process reduces the dimension of $\g^j$ for each iteration by verifying on the bases of $E_{ij}$. Therefore, this sequence must eventually terminate at some $\g^m = \set{0}$.
+\end{proof}
+
+\setcounter{thm}{5}
+
+\begin{exer}
+Let $G$ and $H$ be Lie groups with $H \subset G$, so $\mathfrak{h} \subset \g$. 
+\begin{enumerate}
+\item Show that if $H$ is normal in $G$, then $\mathfrak{h}$ is an ideal of $\g$
+\item Show that if $G$ and $H$ are connected and $\mathfrak{h}$ is an ideal of $\g$, then $H$ is a normal subgroup of $G$
+\end{enumerate}
+\end{exer}
+
+\begin{proof}[Solution]\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item Let $X \in \g$ and $Y \in \mathfrak{h}$. We then use the identity
+$$\bra{X}{Y} = \frac{\bd}{\bd t}\left( \frac{\bd}{\bd s} e^{tX}Ye^{-tX}\right)\bigg\vert_{t = 0} $$
+We then note that $e^{tX} \in G$ for all $t$ and since $H$ is normal in $G$, this gives us that the product is an element of $H$ for all $s$ and for all $t$. Therefore, $\bra{X}{Y} \in \mathfrak{h}$ for all $Y \in \mathfrak{h}$ and $X \in \mathfrak{g}$
+\item If $G$ is connected, then every matrix lies inside the identity component $G_0$. Therefore, every matrix $X \in G$ can be expressed as 
+$$\prod_{i = 1}^n e^{X_i}$$
+for $X_i \in \g$.  The same holds for $H$ as well. We also have the identity
+$$e^{\ad_X} = \Ad_{e^X} $$
+Therefore, we have that for $X \in \g$ and $Y \in \mathfrak{h}$
+$$e^X Y e^{-X} = \left(\sum_{j = 1}^\infty \frac{\ad_X^j(Y)}{j!}  \right) $$
+Since $\mathfrak{h}$ is an ideal, we have that every term of the sum is an element of $\mathfrak{h}$, so $e^XYe^{-X} \in \mathfrak{h}$. Then using the identity $e^{ABA\inv} = Ae^BA\inv$, we have that 
+$$e^Xe^Ye^{-X} = e^{e^{\ad_X}(Y)} $$
+which is an element of $H$ since the term in the exponent in the right hand side is in $\mathfrak{h}$. The rest follows from the first identity concerning the form of matrices in $G$ and $H$.
+\end{enumerate}
+\end{proof}
+
+\setcounter{thm}{12}
+
+\begin{exer}
+Let $G$ be a matrix Lie group and $\g$ its Lie algebra. Show that for any $g \in G$, the map $\Ad_g: \g \to \g$ is a Lie algebra automorphism.
+\end{exer}
+
+\begin{proof}[Solution]
+It is clear from the bilinearity of matrix multiplication that $\Ad_g$ is a linear map $\g \to \g$. Therefore, to show that $\Ad_g$ is a Lie algebra homomorphism, all we need to show is 
+$$\Ad_g(\bra{X}{Y}) = \bra{\Ad_g(X)}{\Ad_g(y)}$$
+We then compute
+\begin{align*}
+\bra{\Ad_g(X)}{\Ad_g(Y)} &= \bra{gXg\inv}{gYg\inv} \\
+&= gXg\inv gYg\inv - gYg\inv gXg\inv \\
+&= gXYg\inv - gYXg\inv \\
+&= g(XY - YX) g\inv \\
+&= \Ad_g(\bra{X}{Y})
+\end{align*}
+So $\Ad_g$ is a Lie algebra homomorphism. To show it is an automorphism, we just need to show that it is injective, since we are mapping from $\g$ to itself. Let $X \in \ker \Ad_g$. Then $gXg\inv = 0$. Left multiplying by $g\inv$ and right multiplying by $g$ then gives us that $X = 0$. We conclude that $\Ad_A$ is a Lie algebra automorphism.
+\end{proof}
+
+\setcounter{thm}{16}
+
+\begin{exer}
+Suppose $G$ is a connected matrix Lie group with Lie algebra $\g$. Show that $A$ is in the center of $G$ if and only if $\Ad_A(X) = X$ for all $X \in \g$.                                                                                                                         
+\end{exer}
+
+\begin{proof}[Solution]
+For the forward direction, let $A \in Z(G)$ and $X \in \g$. Then let $\bra{X}{A}$ denote the commutator of $X$ and $A$. We note that saying $\Ad_A(X) = X$ for all $X \in \g$ is equivalent to saying that $\bra{X}{A} = 0$. We know that 
+$$\bra{X}{A} = \frac{\bd}{\bd t}\left(e^{tX}Ae^{-tX} \right) \bigg\vert_{t = 0}$$
+Since $X \in \g$, we have that $e^{\pm tX} \in G$, and since $A \in Z(G)$, we have that 
+$$\bra{X}{A} = \frac{\bd}{\bd t}\left( Ae^{tX}e^{-tX} \right) \bigg\vert_{t = 0}= \frac{\bd}{\bd t} A\bigg\vert_{t = 0} = 0 $$
+Therefore, $A$ commutes with every $X \in \g$, so $\Ad_A(X) = X$.
+
+Conversely, given that $\Ad_A(X) = X$ for all $X \in \g$ and that $G$ is connected, we note that for any $X \in \g$, 
+$$Ae^XA\inv = e^{AXA\inv} = e^X $$
+Then since $G$ is connected, every $g \in G$ can be written as a finite product of  $e^{X_i}$, so we conclude that $A \in Z(G)$. 
+\end{proof}
+
+\section{Representation Theory}
+
+First, some preliminary notation. For a finite dimensional vector space $V$, let $\GL(V) = \Aut(V)$. We note that if $n = \dim V$, we have that after fixing a basis, we can construct an explicit isomorphism $\GL_n(\C) \to \GL(V)$. Then $\GL(V)$ is a Lie group as well, with Lie algebra $\gl(V) = \End(V)$ where the Lie bracket is given by the commutator. We will often use the two notions for $\GL(V)$ and $\gl(V)$ interchangeably. 
+\begin{defn}
+For a matrix Lie group $G$, a \textbf{representation} of $G$ is a Lie group homomorphism $\Pi: G\to\GL(V)$ for some complex vector space $V$. This is defined analogously for $\R$-vector spaces.
+\end{defn}
+
+\begin{defn}
+Given a Lie algebra $\g$ and a complex vector space $V$, a \textbf{representation} of $\g$ is a Lie algebra homomorphism $\pi: \g \to \End(V)$
+\end{defn}
+
+Injective representations are said to be \textbf{faithful}. Much like how group actions of a group $G$ on a finite set $S$ are in bijective correspondence with group actions of $G$ on $S$, we have that a representation of $G$ is ``the same" as an assignment of a linear operator $V \to V$. In this way, we often let $\Pi_g$ or $\pi_g$ denote the linear operator given by $g$ by the representations $\Pi$ and $\pi$ respectively. In many cases, we will just describe the action of a group element $g$ on a vector $v$ as $g\cdot v$ or $\Pi_g(v)$.
+
+\begin{defn}
+Let $\Pi: G \to \GL(V)$ be a finite-dimension real/complex representation of a matrix Lie group $G$. A subspace $W \subset V$ is \textbf{G-invariant} if for all $w \in W$, we have $g \cdot w \in W$. In other words, the subspace is fixed by the group $G$. If $\Pi$ admits no nontrivial $G$-invariant subspaces, we say that $\Pi$ is \textbf{irreducible}.
+\end{defn}
+
+\begin{defn}
+For a matrix Lie group $G$, and $\Pi: G \to \GL(V)$ and $\Sigma: G\to \GL(W)$ be representations of $G$. A linear map $\varphi: V \to W$ is said to be \textbf{G-invariant} if $\varphi(g \cdot v) = g\cdot \varphi(v)$. The action on the left hand side is implicitly from $\Pi$ and the right hand side from $\Sigma$. Another way to say this is 
+$$\varphi(\Pi_gv) = \Sigma_g\varphi(v) $$
+In the case that $\varphi$ is an isomorphism of vector spaces, we say the representations $\Pi$ and $\Sigma$ are \textbf{isomorphic}. An easy way to say this is that $\varphi$ is $G$-invariant if the following diagram commutes for every $g \in G$
+$$\xymatrix{
+V \ar[d]_{\Pi_g}\ar[r]^\varphi & W \ar[d]^{\Sigma_g} \\
+V \ar[r]_\varphi & W
+} $$
+\end{defn}
+We also refer to $\varphi$ as an \textbf{intertwining map} of representations. As you'd expect, given a representation for a Lie group $G$, we get an induced representation for its Lie algebra $\g$ via differentiation.
+
+\begin{prop}
+Let $G$ be a a matrix Lie group with Lie algebra $\g$, and let $\Pi:G \to \GL_n(\C)$ be a representation. Then there exists a unique representation $\pi: \g \to \End(\R^n)$ such that 
+$$\Pi(e^X) = e^{\pi(X)} $$
+\end{prop}
+
+We've already encountered this idea, since the mapping $\Ad: G \to \GL(\g)$ induces the representation $\ad: \g \to \End(\g)$
+
+\begin{prop}
+Let $G$ be a connected matrix Lie group with Lie algebra $\g$
+\begin{enumerate}
+\item For a representation $\Pi$ with Lie algebra representation $\pi$, $\Pi$ is irreducible if and only if $\pi$ is
+\item Let $\Pi_1$ and $\Pi_2$ be two representations of $G$ with associated Lie algebra representatiosn $\pi_1$ and $\pi_2$ respectively. Then $\pi_1$ is isomorphic to $\pi_2$ if and only if $\Pi_1$ is isomorphic to $\Pi_2$.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item Given that $\Pi$ is irreducible, let $W$ be a $\g$-invariant subspace with respect to the representation $\pi$. Given any $g \in G$, since $G$ is connected, we know we can write $g$ as a product of 
+$$\prod_{i = 1}^n e^{X_i}$$
+ with $X \in \g$. Since $W$ is a $\g$-invariant subspace, we have that $X_i \cdot w \in W$ for all $X_i$. This implies that $W$ is also invariant $e^{X_i}$, since 
+ $$e^{X_i} = \sum_{j = 0}^\infty \frac{X_i^j}{j!} $$
+ and $W$ is invariant under each term of the sum. Then
+ \begin{align*}
+ \Pi(g) &= \Pi(e^{X_1}) \ldots \Pi(e^{X_n}) \\
+ &= e^{\pi(X_1)} \ldots e^{\pi(X_n)}
+ \end{align*}
+ This shows that $W$ is also $G$-invariant, but $\Pi$ is irreducible.  Therefore, $\pi$ is also irreducible.
+ 
+ Then suppose $\pi$ is irreducible. and $W$ is $G$-invariant. Then $W$ is invariant under $\Pi(e^{tX})$ for all $X \in \g$. Differentiating this then gives us that 
+ $$ \pi(X) = \frac{\bd}{\bd t}\Pi(e^{tX})\big\vert_{t=0}$$
+ Then since $\pi$ is irreducible, this implies that $\Pi$ is irreducible.
+\end{enumerate}
+\end{proof}
+
+\begin{prop}
+Let $\g$ be a real Lie algebra and $\g_\C$ its complexification. Then every finite dimensional complex representation $\pi: \g \to \End(V)$ has a unique extension to a complex-linear representation of $\g_\C$ given by the rule
+$$ \pi_\C(X + iY) = \pi(X) + i\pi(Y)$$
+\end{prop}
+
+Recall that a unitary matrix is a matrix $U$ such that $U^\dagger = U$. Alternatively, if we are talking about linear operators, where we might not have have fixed a basis, a linear operator $U$ on a Hermitian space $V$ is unitary if it preserves the Hermitian inner product $\langle \cdot, \cdot \rangle$, i.e.
+$$\langle v, w \rangle = \langle Uv, Uw \rangle $$
+for all $v,w \in V$.
+
+\begin{defn}
+A Lie group representation $\Pi: G \to \GL(V)$ is \textbf{unitary} if $\Pi(g)$ is unitary for all $g \in G$. A Lie algebra representation $\pi$ is \textbf{unitary} if for all $X \in \g$, we have $\pi(X)^\dagger = -\pi(X)$.
+\end{defn}
+
+As with vector spaces and other algebraic objects, we can create new representations from old ones
+
+\begin{defn}
+Given a finite set of representations $\{\Pi_i\}_{i =1}^n$ for a Lie group $G$, the \textbf{direct sum}, denoted
+$$\bigoplus_{i = 1}^n \Pi_i : G \to \GL\left(\bigoplus_{i=1}^n V_i\right)$$
+is given by the mapping
+$$g \mapsto \left( \Pi_1(g), \ldots, \Pi_n(g) \right) $$
+The direct sum of Lie algebra representations is similarly defined.
+\end{defn}
+
+Another way we combine vector spaces is by taking their tensor products. Given two vector spaces $V$ and $W$ with bases $\set{v_i}$ and $\set{w_j}$, we can define the tensor product $V \otimes W$ as the set of all formal linear combinations of symbols $v_i \otimes w_j$, where $\otimes: V \times W \to V \otimes W$ is bilinear, i.e.
+\begin{enumerate}
+\item $v\otimes(aw_1 + bw_2) = av\otimes w_1 + bv\otimes w_2$
+\item $(av_1 + bv_2) \otimes w = av_1\otimes w + bv_2\otimes w$
+\end{enumerate} 
+We note that in the case that $W = V$, that the tensor product of two vectors need not be commutative, i.e.
+$$v_i \otimes v_j \neq v_j \otimes v_i $$
+This definition is fine, but a better way to think of the vector space $V \otimes W$ is in a basis independent manner
+\begin{defn}
+Given two vector spaces $V, W$, the \textbf{tensor product} of $V$ and $W$ is a vector space denoted $V \otimes W$ equipped with a bilinear map $\psi: V \times W \to V \otimes W$ such that for any bilinear map $\varphi: V\times W \to U$, there exists a unique linear map $\tilde{\varphi}: V \otimes W \to U$ such that the following diagram commutes
+$$\xymatrix{
+V \times W  \ar[dr]_\varphi\ar[r]^\psi & V\otimes W \ar[d]^{\tilde{\varphi}}\\
+& U
+} $$
+\end{defn}
+We note that in the way we defined it above, the bilinear map $\psi$ is exactly the mapping 
+$$(v,w) \mapsto v \otimes w $$
+This gives us the \textbf{universal property} of the tensor product. Linear maps out of the space $V \otimes W$ are exactly bilinear maps  out of $V\times W$
+This property makes it easy to define linear operators on $V \otimes W$ in terms of linear operators on $V$ and $W$
+\begin{defn}
+Given linear operators $A: V\to V$ and $B: W\to W$, there exists a unique linear operator
+$$A\otimes B: V\otimes W \to V\otimes W $$
+such that 
+\begin{enumerate}
+\item $(A\otimes B)(v \otimes w) = Av\otimes Bw $
+\item Given linear operators $X,Y$ for $V$ and $W$ respectively, $AX\otimes BY = (A\otimes B)(X\otimes Y)$
+\end{enumerate}
+\end{defn}
+
+The tensor product gives us several ways to construct new representations. Suppose we have two groups $G,H$ with representations $\rho_G: G\to \GL(V)$ and $\rho_H: H \to \GL(W)$ respectively, we can construct the representation $\rho_G \otimes \rho_H: G\times H \to \GL(V\otimes W)$, where an element $(g,h) \in G\times H$ acts on a vector $v \otimes W$ by
+$$(g,h) \cdot v\otimes w = g\cdot v \otimes h \cdot w $$
+In other words, $\rho_G \otimes \rho H(g,h) = \rho_G(g) \otimes \rho_H(h)$.
+Then if we consider the associated Lie algebra representation, denoted $\pi_\g \otimes \pi_\mathfrak{h}$, we have that 
+$$(\pi_g \otimes \pi_\mathfrak{h})(X,Y) = \pi_\g(X)\otimes I + I\otimes \pi_\mathfrak{h}(Y) $$
+We define the tensor product of Lie algebra representations by this rule.
+
+This gives us a way to construct representations of product groups, but there's another way to use the tensor product. Given two representations $\Pi_1: G \to \GL(V)$ and $\Pi_2: G \to \GL(W)$, we can form a representation $\Pi_1 \otimes \Pi_2: G \to \GL(V\otimes W)$ where
+$$(\Pi_1\otimes \Pi_2)(g) = \Pi_1(g) \otimes \Pi_2(g) $$
+the associated Lie algebra representation is then
+$$(\pi_1\otimes \pi_2)(X) = \pi_1(X) \otimes I + I \otimes \pi_2(X) $$
+Unfortunately, we need to be clear here, since we don't know from inspection whether $\Pi_1 \otimes \Pi_2$ is a representation of $G$ or $G\times G$ unless we specify here.
+
+Recall that that the \emph{dual space} of a vector space $V$ is the vector space $V^*$ of all linear functions $V \to \C$. Given a basis $\set{e_i}$ for $V$, we get the corresponding dual basis $\set{e^i}$ for $V^*$, where 
+$$e^i(e_j) = \delta^i_j $$
+Given a linear map $A: V \to W$, we get the \emph{transpose map} $A^T: W^* \to V^*$ where for $\phi \in W^*$, we have
+$$A^T\phi(v) = \phi(Av) $$
+Given $A: V \to W$, $B: W \to U$, we have that $(A \circ B)^T = B^T \circ A^T$. This amounts to saying that the there is a contravariant functor between vector spaces and their duals.
+
+\begin{defn}
+Given a Lie group $G$ with a representation $\Pi$ acting on a finite dimensional vector space $V$, the \textbf{dual representation} of $\Pi$, denoted $\Pi^*$ is a Lie group homomorphism $\Pi^*: G \to V^*$ where
+$$\Pi^*(g) = \left( \Pi(g\inv)\right)^T $$
+\end{defn}
+
+\begin{defn}
+Given a Lie algebra representation $\pi: \g \to \End(V)$, the \textbf{dual representation} of $\pi$ is the Lie algebra homomorphism $\pi^*: \g \to \End(V^*)$ where
+$$\pi^*(X) = -\pi(X)^T $$
+\end{defn}
+Some authors refer to to the dual representation as the \emph{contragradient representation}
+
+If you already know about the representation theory of finite groups, you know that a lot of the subject is concerned with irreducible representations. In the finite group case, every representation $\rho:G \to \GL(V)$ is decomposable as a direct sum of the irreducible representations of $G$ on $V$. Unfortunately, the same doesn't hold for Lie groups or Lie algebras, since they are far from finite.
+\begin{defn}
+A finite dimensional representation of a Lie group or Lie algebra is is said to be \textbf{completely reducible} if it is isomorphic to a direct sum of irreducible representations.
+\end{defn}
+
+\begin{defn}
+A group or Lie algebra has the \textbf{complete reducibility property} if every finite dimneional representation is completely reducible.
+\end{defn}
+
+\begin{prop}
+Let $V$ be a completely reducible representation of a group or Lie algebra. Then
+\begin{enumerate}
+\item For every invariant subspace $U \subset V$, there exists another invariant subspace $W \subset V$ such that $V = U \oplus W$
+\item Every invariant subspace of $V$ is completely reducible
+\end{enumerate}
+\end{prop}
+
+\begin{prop}
+Let $G$ be a Lie group and $\Pi:G \to \GL(V)$ a finite dimensional unitary representation of $G$. Then $\Pi$ is completely reducible. Similarly, for a Lie algebra representation $\pi:\g \to \End(V)$ satisfying
+$$\pi(X)^\dagger= -\pi(X) $$
+we have that $\pi$ is completely reducible
+\end{prop}
+
+\begin{proof}
+We note that if $V$ admits no invariant subspaces we are done. Therefore, let $W \subset V$ be a proper nontrivial $G$-invariant subspace. We then claim that the orthogonal complement $W^\perp$ is also $G$-invariant. To see this, we note that since $\Pi$ is unitary, we have that for $g \in g$, $p \in W^\perp$, and $w\in W$, we have that 
+$$\langle g\cdot p, w\rangle = \langle p, w \rangle = 0 $$
+which implies that $g \cdot p \in W^\perp$. Therefore, $W^\perp$ is a $G$-invariant subspace.
+Then we proceed inductively on $W$ and $W^\perp$ to find our direct sum decomposition into invariant subspaces $P_i$, noting that the process will terminate since $V$ is finite dimensional. Then since these subspaces are invariant, $\Pi$ restricts to a representation $\Pi\vert_{P_i}: G \to \GL(P_i)$, so we have that $\Pi$ is completely reducible.
+
+Similarly, given such a Lie algebra representation $\pi: \g \to \End(V)$, we have that for a nontrival proper invariant subspace $W$, the orthogonal complement $W^\perp$ is invariant, since for $p \in W^\perp$, $X \in \g$, and $w \in W$, we have
+$$\langle\pi(X)p, w \rangle = \langle p, \pi(X)^\dagger w \rangle = - \langle p, \pi(X)w\rangle = 0 $$
+Since $W$ is an invariant subspace. We then proceed inductively as above.
+\end{proof}
+
+\begin{thm}
+If $G$ is a compact matrix Lie group, every finite dimensional representation of $G$ is completely reducible.
+\end{thm}
+
+This theorem is going to need us to develop a bit more machinery. If you know some representation theory already, you might recall that the proof that every representation of a finite group is decomposable as a direct sum of irreducible representations involved the process of averaging over the group. Unfortunately, this isn't possible anymore, since Lie groups aren't finite. As you'd expect, we replace the summation with an integral.
+
+A quick lemma
+\begin{lem}
+For a \emph{matrix} Lie group $G$, with Lie algebra $\g$, for $A \in G$, we have that 
+$$T_AG =\set{AX~|~ X \in \g}$$
+\end{lem}
+
+\begin{proof}
+Let $L_A: G\to G$ denote the left translation map $B \mapsto AB$. We note that $L_A$ is a diffeomorphism, since it is smooth with the smooth inverse given by the map $L_{A\inv}$. Then using the identification $\g \sim T_IG$, the differential $(dL_A)_I: \g \to T_AG$ is an isomorphism. We then note that $L_A$ is just the restriction of a linear map $\M_{nn}\to \M_{nn}$, so its derivative is given by $X \mapsto AX$.
+\end{proof}
+
+Then if $\dim G = k$, there exists a unique (up to a scalar) top-degree alternating form $\alpha_I: \g^k \to \R \in \bigwedge^k(\g)$. This, along with the left translation map, allows us to define a top-degree alternating form $\alpha_A: T_AG \to \R$ where
+$$\alpha_A(v_1, \ldots, v_k) = \alpha_I(A\inv v_1, \ldots, A\inv v_k) $$
+noting that each $v_i = AX_i$ for some $X_i \in \g$. This then yields a differential form $\alpha \in \Omega^K(G)$. Where 
+$$\alpha(A) = \alpha_A $$
+We can then use $\alpha$ to determine an orientation on $G$ by orienting the tangent space $T_AG$ by stating that a basis $\set{e_i, \ldots, e_k}$ is positive if and only if $\alpha_A(e_1, \ldots, e_k)$ is positive. We also have that for any smooth $\R$-valued function $f \in C^\infty(M)$, $f\alpha \in \Omega^k(G)$, which we can integrate over $G$, in which we use the standard notation for integration over manifolds
+$$\int_G f\alpha $$
+Noting that we defined the orientation on $G$ in terms of $\alpha$, we have that if $f(g) > 0$ for all $g \in G$, the integral
+$$\int_G f\alpha > 0 $$
+There is something very special with regards to the volume form $\alpha$ we defined. It is \emph{left invariant}. What does this mean? Recall that given smooth manifolds $M$ and $N$ with a smooth map $F:M\to N$ and a $n$-form $\omega \in \Omega^n(N)$, we have the \textbf{pullback} of $\omega$, denoted $F^*\omega$, where we define
+$$F^*\omega(p)(v_1, \ldots, v_k) = \omega(F(p))(dF_p(v_1), \ldots, dF_p(v_k))$$
+We know every Lie group $G$ admits a family of diffeomorphisms $L_g: G \to G$ defined by left multiplication by $g$ called \textbf{left translation}. For a $k$-dimensional Lie group $G$, a differential form $\omega \in \Omega^k(G)$ is said to be \textbf{left invariant} if for all $g\in G$, $L^*_g\omega = \omega$. We now come back to the question, why is the differential form $\alpha$ we defined earlier left invariant? By we constructed $\alpha$, if we consider the pullback $L_A^*\alpha$ for any $A \in G$, we have that 
+\begin{align*}
+L_A^*\alpha(B)(v_1, \ldots, v_k) &= \alpha(AB)(Av_1, \ldots Av_k)
+\end{align*}
+We note that each $v_i = BX_i$ for some $X_i \in \g$. This then gives us that 
+$$L_A^*\alpha(B)(v_1, \ldots, v_k) = \alpha(AB)(ABX_1, \ldots, ABX_k) = \alpha_I(X_1,\ldots X_k) = \alpha(B)(v_1, \ldots v_k) $$
+So $L^*_A\alpha = \alpha$, and $\alpha$ is left invariant. We also have that for a diffeomorphism $F: M \to N$, and a top degree form $\omega \in \Omega^k(N)$,
+$$\int_M F^*\omega = \int_N \omega $$
+From this, we have that 
+\begin{align*}
+\int_G f\alpha &= \int_G L_A^*f\alpha \\
+&= \int_G (f \circ L_A)L^*_A\alpha \\
+&= \int_G (f \circ L_A)\alpha
+\end{align*}
+So we've created a way of integrating functions that is left-invariant, that is, we can precompose any function $f \in \C^\infty(G)$ with any left translation $L_A$ without changing the value of the integral. With minor modifications, we can also define $\alpha$ to be right invariant, where we define
+$$\alpha(A)(v_1, \ldots, v_k) = \alpha_I(v_1A\inv, \ldots v_2A\inv) $$ 
+noting that $v_i = X_iA$ for some $X_i \in \g$ if we consider the differential of the right translation map $R_A$. With all that done, we can finally prove Theorem 4.18.
+\begin{proof}
+Let $\rho: G \to GL(V)$ be a representation, and $\alpha$ be a right invariant differential $k$-form as we defined earlier. Let $\langle \cdot, \cdot \rangle:V\times V \to \C$ be an arbitrary Hermitian inner product on $V$. Then we can define the inner product $\langle \cdot, \cdot \rangle_G: V\times V \to \C$ where
+$$\langle v, w \rangle_G = \int_G \langle g \cdot v, g \cdot w\rangle \alpha(g) $$
+The fact that this defines an inner product follows quickly from the fact that $\langle \cdot, \cdot \rangle$ is an inner product, and the linearity of integration. Compactness of $G$ is sufficient for this integral to be defined, since then $\alpha$ is compactly supported. We claim that $\langle \cdot, \cdot \rangle_G$ is a $G$-invariant inner product, i.e.
+$$\langle g\cdot v, g\cdot w \rangle_G = \langle v, w \rangle_G $$
+for all $g \in G$, $v,w \in V$. We compute
+\begin{align*}
+\langle g\cdot v, g \cdot w\rangle_G &= \int_G \langle hg\cdot v, hg \cdot w \rangle \alpha(h)
+\end{align*}
+From right invariance, we have that the right hand side is equal to
+$$\int_G \langle h\cdot v, h \cdot w \rangle\alpha(h) = \langle v, w ,\rangle_G $$
+Therefore, the representation $\rho$ is unitary with respect to the inner product $\langle \cdot, \cdot \rangle_G$, and since all unitary representations are completely reducible, we conclude that $\rho$ is completely reducible.
+\end{proof}
+
+Again, if you're familiar with the representation theory of finite groups, this should be pretty familiar.
+
+\begin{thm}[\textbf{Schur's Lemma}]\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item Let $V$ and $W$ be irreducible representations of a group/Lie algebra, and let $\varphi: V \to W$ be an intertwining map. Then $\varphi$ is either the $0$-map or an isomorphism
+\item Let $V$ be a complex representation of a group/Lie algebra. Then if $\varphi: V \to V$ is an intertwining map, $\varphi = \lambda I$ for some $\lambda \in \C$.
+\item Let $V$ and $W$ denote irreducible complex representations of a group/Lie algebra, and $\varphi_1,\varphi_2: V \to W$ be intertwining maps. Then $\varphi_1 = \lambda \varphi_2$ for some $\lambda \in \C$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}
+We'll prove the parts of the theorem in the group case. The Lie algebra case is near identical. 
+\begin{enumerate}
+\item If we consider $\ker \varphi$, then for any $g \in G$, $\varphi(g \cdot v) = g\cdot \varphi(v) = g \cdot 0 = 0$. Therefore, $\ker \varphi$ is a $G$-invariant subspace. Since $V$ is irreducible, this implies that $\ker \varphi$ is either $\set{0}$ or $V$. Therefore, we assume WLOG that $\varphi$ is injective, since otherwise it must be the $0$-map. Then to show that an injective intertwining map must also be surjective, consider $\im\varphi$. Given $w = \varphi(v) \in \im \varphi$, we have that $g\cdot w = \varphi(g \cdot v)$ so $g \cdot w \in \im \varphi$. Therefore, $\im \varphi$ is also $G$-invariant. Then since $\varphi$ is not the $0$-map, it must necessarily be all of $W$, so $\varphi$ is an isomorphism.
+\item Given an intertwining map $\varphi: V \to V$, we know that $\varphi$ admits some eigenvalue $\lambda \in \C$ with eigenvector $v$. Since $\varphi$ is an intertwining map, $\varphi$ commutes with the action of every $g \in G$. Therefore, given any $v$ in the eigenspace, we have that $g\cdot v$ is also in the eigenspace. Therefore, the eigenspace must either be $0$ of all of $V$ so $\varphi = \lambda I$
+\item If $\varphi_2$ is the $0$-map we are done. Therefore, we assume WLOG that $\varphi_2$ is an isomorphism. It is then clear that $\varphi_2\inv$ is an isomorphism of representations. Then $\varphi_2\inv \circ \varphi_1$ is an intertwining map $V \to V$. Therefore, we have that $\varphi_2\inv \circ \varphi_1$ is either $0$ or an isomorphism. We assume again WLOG that this is an isomorphism, which then implies that $\varphi_2 \circ \varphi_1 = \lambda I$, which then implies that $\varphi_2 = \lambda \varphi_1$ by linearity and the uniqueness of inverses.
+\end{enumerate}
+\end{proof}
+
+
+  
+
+\end{document}

@@ -1,0 +1,554 @@
+\documentclass[psamsfonts]{amsart}
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+%-------Packages---------
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{yfonts}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+\usepackage{pdfsync}
+\synctex=1
+%--------Theorem Environments--------
+%theoremstyle{plain} --- default
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+
+
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\emptyset}{\varnothing}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\p}{\mathbb{P}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{R}\mathbf{P}}
+\newcommand{\CP}{\mathbb{C}\mathbf{P}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathsf{GL}}
+\newcommand{\SL}{\mathsf{SL}}
+\newcommand{\SP}{\mathsf{SP}}
+\newcommand{\SO}{\mathsf{SO}}
+\newcommand{\SU}{\mathsf{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\ind}{\lambda \in \Lambda}
+\newcommand{\set}[1]{\left\lbrace#1 \right\rbrace}
+\newcommand{\imp}[2]{ \underline{ #1 \implies #2} }
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+
+\newcommand{\bd}{\partial}
+
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+
+
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\grap}{graph}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+
+
+
+
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+
+
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=black
+}
+
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+
+
+\setcounter{section}{0}
+\begin{document}
+\author{Jeffrey Jiang}
+\title{Representation Theory}
+\maketitle
+
+\section{Artin}
+\begin{defn}
+For a group $G$, a \textbf{matrix representation} of $G$ is a homomorphism $R: G\to \GL_n(\C)$. We say that $n$ is the \textbf{dimension} of the representation $R$. We say that $R$ is faithful if it is injective.
+\end{defn}
+
+We often denote the matrix $R(g)$ as $R_g$. In situations where the representation is clear from context, we often simply write the action of $R_g$ on a vector $v$ as $g \cdot v$. The notation is intentionally similar to that of permutation representations and group actions. Any representation $R$ induces a group action of $G$ on $\C^n$ where $G$ acts linearly on $\C^n$. Matrix representations are then in bijective correspondence with linear actions of $G$ on $\C^n$, just as group actions of $G$ on a finite set $X$ are in bijective correspondence with homomorphisms $G \to \text{Sym}(X)$.
+
+We usually want out representations to be basis independent.
+\begin{defn}
+A \textbf{representation} of a group $G$ on a finite-dimensional vector space $V$ is a homomorphism $\rho: G \to \GL(V) = \Aut(V)$
+\end{defn}
+We note that once we fix a basis for $V$, we can get a matrix representation $G \to \GL_n(\C)$ simply by mapping $g$ to the matrix representing $\rho_g$ in the basis we chose.
+
+\begin{defn}
+Given a representation $\rho: G \to \GL(V)$, the \textbf{character} of the representation is a function $\chi: G \to \C$ where 
+$$\chi(g) = \trace \rho_g $$
+\end{defn}
+
+Note that $\chi$ is constant on conjugacy classes, since conjugation by an element $g$ amounts to changing a basis specified by the operator $\rho_g$, and trace is basis independent. Another particular thing to note is that $\chi(e) = \dim V$, since $\rho$ being a homomorphism implies that $\rho(e) = \id_V$.
+
+\begin{defn}
+Given representations $\rho: G \to \GL(V)$ and $\rho': G\to \GL(W)$, a linear map $T: V \to W$ is an \textbf{intertwining map} if for all $g \in G$, we have that $T(g\cdot v) = g\cdot  T(v)$. In other works, the following diagram commutes for every $g \in G$.
+$$\xymatrix{
+V \ar[d]_g \ar[r]^T & W \ar[d]^g  \\
+V \ar[r]_T & W
+}
+$$
+such maps are also called \textbf{G-linear} or \textbf{G-invariant}. If $T$ is an isomorphism, we say it is an \textbf{isomorphism of representations}.
+\end{defn}
+
+One particular thing to note, given  an isomorphism of representations $T: V \to W$, if we fix a basis $\mathscr{B}$ for $V$, we know $T(\mathscr{B})$ is a basis for $W$. Then if we take the matrix representations with respect to $\mathscr{B}$ and $T(\mathscr{B})$, they will be the same.
+
+\begin{defn}
+Given a representation $\rho: G \to \GL(V)$, a vector $v \in V$ is \textbf{G-invariant} if for all $g \in G$, we have that
+$$g \cdot v = v $$
+\end{defn}
+
+Given an arbitrary vector $v \in V$, we can construct a $G$-invariant vector $\vec{v}$ through a process called \emph{averaging over the group}. To do this, let
+$$\vec{v} = \frac{1}{\abs{G}}\sum_{g \in G} g \cdot v $$
+If $v$ is already $G$-invariant to begin with, we have the factor of $\frac{1}{\abs{G}}$. To see why $\vec{v}$ is $G$-invariant, let $h \in G$. We want to show that $h \cdot\vec{v} = \vec{v}$. We compute
+$$h \cdot \vec{v} = \frac{1}{\abs{G}}\left(h \cdot \sum_{g \in G} g \cdot v\right)  = \frac{1}{\abs{G}} \sum_{g \in G}hg \cdot v$$
+We note that the last expression is equal to $\vec{v}$, since left multiplication by $h$ defines a bijection $G \to G$, so we are just summing over $G$ in a different order. Another thing to note is that $\vec{v}$ is not guaranteed to be nontrivial. We can very well have ended up with $\vec{v} = 0$, which is not particularly interesting.
+
+\begin{defn}
+Given a representation $\rho: G \to \GL(V)$, a subspace $W \subset V$ is \textbf{G-invariant} if for every $g\in G$, the subspace $g \cdot W = W$. We can then restrict $\rho\big\vert_W: G \to \GL(W)$ to obtain a representation of $G$ on $W$. 
+\end{defn}
+
+If we have a representation $\rho: G \to \GL(V)$ and $V = W_1 \oplus W_2$ for $G$-invariant subspaces $W_1$ and $W_2$, with restricted representations $\alpha: G \to \GL(W_1)$ and $\beta: G \to \GL(W_2)$, we say that $\rho$ decomposes into the direct sum
+$$\rho = \alpha \oplus \beta $$
+If we fix a bases $B_1$ and $B_2$ for $W_1$ and $W_2$ respectively, we can concatenate them into a basis $B = (B_1, B_2)$ for $V$. Then if we consider the matrix representation of $\rho_g$ in this basis, we have that 
+$$\rho_g = \begin{pmatrix}
+A_g & 0 \\
+0 & B_g
+\end{pmatrix} $$
+Where $A_g$ and $B_g$ are the matrices for $\alpha_g$ and $\beta_g$ in their respective bases $B_1$ and $B_2$.
+
+\begin{defn}
+Z representation $\rho: G \to \GL(V)$ is \textbf{irreducible} if the only $G$-invariant subspaces are $\set{0}$ and $V$.
+\end{defn}
+
+As we'll see soon, irreducible representations will end up being the basic building blocks of the representation theory of finite groups. To see this, we need to introduce another piece of structure- an inner product on $V$.
+
+\begin{defn}
+A bilinear form $\langle\cdot,\cdot \rangle: V\times V \to \C$ is \textbf{Hermitian} if it satisfies
+\begin{enumerate}
+\item $\langle cv, w \rangle = \overline{c}\langle v, w \rangle$
+\item $\langle v_1 + v_2, w \rangle = \langle v_1, w \rangle + \langle v_2, w \rangle$
+\item $\langle v, cw \rangle = c\langle v, w \rangle$
+\item $\langle v, w_1 + w_2 \rangle = \langle v, w_1 \rangle + \langle v, w_2 \rangle$
+\end{enumerate}
+in other words, $\langle \cdot,\cdot, \rangle$ is conjugate linear in the first term, and linear in the second term. A \textbf{Hermitian vector space} is a $\C$-vector space $V$ equipped with a positive definite Hermitian bilinear form as an inner product.
+\end{defn}
+
+\begin{defn}
+For a Hermitian vector space $V$, a linear operator $T: V\to V$ is \textbf{unitary} if it preserves the inner product. In other words, for all $v,w \in V$, we have
+$$\langle Tv, Tw \rangle = \langle v,w \rangle $$
+if we fix an \emph{orthonomal basis} with respect to the inner product $\langle \cdot, \cdot, \rangle$, the matrix representation of a unitary operator $A$ satisfies the condition $A\inv = A^\dagger$. 
+\end{defn}
+
+\begin{defn}
+A representation $\rho: G\to \GL(V)$ on a Hermitian space $V$ is \textbf{unitary} if $\rho_g$ is unitary for all $g \in G$.
+\end{defn}
+
+\begin{prop}
+For a unitary representation $\rho: G \to \GL(V)$, given a $G$-invariant subspace $W \subset V$, $W^\perp$ is also $G$-invariant, so $\rho = \rho\big\vert_W \oplus \rho\big\vert_{W^\perp}$.
+\end{prop}
+
+\begin{proof}
+Since $\rho$ is a unitary representation, we have that for $v \in W$ and $w \in W^\perp$ and $g \in G$
+$$\langle v, w \rangle = \langle g\cdot v, g \cdot w \rangle = 0$$
+Therefore $g \cdot W^\perp = W^\perp$, since they are the same dimension and we know that $W$ is $G$-invariant. Then we can restrict $\rho$ to this subspace, giving us our direct sum decomposition.
+\end{proof}
+
+\begin{cor}
+Every unitary representation is an orthogonal sum of irreducible representations
+\end{cor}
+
+\begin{proof}
+Start with a unitary representation $\rho: G \to \GL(V)$. If it admits no invariant subspaces we are done. Otherwise there exists a nontrivial proper invariant subspace $W$, so $V = W \oplus W^\perp$, and $\rho$ restricts to a representation on these subspaces. Therefore, we can continue this process on $W$ and $W^\perp$ to find the direct sum decomposition. Note that this process will always terminate since $V$ is finite dimensional.
+\end{proof}
+
+The simplicity of unitary representations becomes very helpful, as we will soon see
+
+\begin{defn}
+Given a representation $\rho: G \to \GL(V)$, a Hermitian form $\langle \cdot, \cdot, \rangle: V\times V \to \C$ is \textbf{G-invariant} if
+$$\langle g\cdot v, g\cdot w \rangle = \langle v,w \rangle $$
+For all $g\in G$ and for all $v,w \in V$.
+\end{defn}
+
+\begin{thm}
+Every representation $\rho: G\to \GL(V)$ admits a $G$-invariant inner product
+\end{thm}
+
+\begin{proof}
+Let $(\cdot, \cdot)$ be an arbitrary inner product on $V$. We construct a new inner product $\langle \cdot, \rangle_G$ on $V$ by averaging over the group, i.e.
+$$\langle v, w \rangle_G = \frac{1}{\abs{G}} \sum_{g \in G} (g\cdot v, g\cdot w) $$
+The fact that this is an inner product follows from the fact that $(\cdot, \cdot)$ is. To show that $\langle \cdot,\cdot \rangle_G$ is $G$-invariant, let $h \in G$. We then compute
+$$\langle h\cdot v, h\cdot w \rangle_G = \frac{1}{\abs{G}}\sum_{g\in G} (hg\cdot v, hg\cdot w) = \langle v,w\rangle_G $$
+So $\rho$ is unitary with respect to the inner product $\langle \cdot, \cdot \rangle_G$.
+\end{proof}
+
+\begin{cor}\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item \textbf{Maschke's Theorem} For a finite group $G$, every representation is an orthogonal sum of irreducible representations
+\item Given a representation $\rho: G \to \GL(V)$, there exists a basis of $V$ such that the matrix representation $R: G \to \GL_n(\C)$ is unitary
+\item Given a matrix representation $R: G \to \GL_n(\C)$, there exists a matrix $P \in \GL_n(\C)$ such that $P\inv R_g P$ is unitary
+\item Every finite subgroup of $\GL_n(\C)$ is conjugate to a subgroup of the unitary group $\mathsf{U}_n$
+\end{enumerate}
+\end{cor}
+
+\begin{proof}\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item By Theorem 1.14, every representation is unitary with respect to some Hermitian inner product. Then from Corollary 1.12, we have that this representation is a direct sum of irreducible representations that are orthogonal with respect to this inner product.
+\item Pick an orthonomal basis with respect to any $G$-invariant inner product. Then the induced matrix representation will be unitary.
+\item Pick a $G$-invariant inner product on $\C^n$ and let $P$ be the matrix consisting of an orthonomal basis with respect to this inner product. 
+\item The inclusion map of this finite subgroup is a representation. Then use (3).
+\end{enumerate}
+\end{proof}
+
+We now return to the discussion of characters. Recall that given a representation $\rho$, the character of $\rho$ is a function $\chi: G \to \C$ where $\chi(g) = \trace(\rho_g)$.
+
+\begin{prop}\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item For $g \in G$ where $o(g) = k$, the eigenvalues of $\rho_g$ are powers of the $k^{th}$ root of unity $\omega_k = e^{\frac{2\pi i}{k}}$. If $\dim \rho = d$, Then $\chi(g)$ is a sum of roots of unity.
+\item $\chi(g\inv) = \overline{\chi(g)}$
+\item For a direct sum representation $\rho_1 \oplus \rho_2$, the corresponding character is the sum $\chi_1 + \chi_2$
+\item Isomorphic representations have the same character.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item Let $v$ be an eigenvector of $\rho_g$ with eigenvalue $\lambda$. Since $\rho$ is a homomorphism, we have that 
+$$(\rho_g)^k(v) = \rho_{g^k}(v) = \lambda^k v $$
+We know $\rho_{g^k} = \id_V$, so $\lambda^k = 1$. Therefore, $\lambda$ is a $k^{th}$ root of unity. Then since the trace of $\rho_g$ is the sum of the eigenvalues (including multiplicity) and $\rho_g$ is invertible, we have that $\chi(g)$ is a sum of roots of unity.
+\item We know that the eigenvalues $\set{\lambda_k}$ of $\rho_g$ are roots of unity. Therefore, for every $k$, we have that $\lambda_k\inv = \overline{\lambda_k}$. Then since the trace of $\rho_g$ is the sum of the eigenvalues, it follows that $\chi(g\inv) = \overline{\chi(g)}$.
+\item Fix a basis for both representations, and consider the induced matrix representations $R_1$, $R_2$, and $R_1 \oplus R_2$. It is then clear to see that for every $g \in G$, we have that $\trace{R_1\oplus R_2 (g)} = \trace{R_1(g)} + \trace{R_2(g)}$
+\item Suppose we have two representations such that $\rho \sim \rho'$, where $\rho$ acts on the vector space $V$ and $\rho'$ acts on $V'$ with corresponding characters $\chi$ and $\chi'$. Then let $T: V \to V'$ denote the isomorphism of representations. Then if we fix a basis $\mathscr{B}$ for $V$, we have that $T(\mathscr{B})$ is a basis for $V'$. Then if we consider the matrix representations corresponding to these bases, they will be the same. Therefore, we have that $\chi = \chi'$.
+\end{enumerate}
+\end{proof}
+
+We will find that these characters will be elements of a vector space of ``class functions."
+\begin{defn}
+For two characters $\chi, \chi'$, there is a Hermitian ``inner product" $\langle \cdot, \cdot \rangle$ where
+$$\langle \chi, \chi' \rangle = \frac{1}{\abs{G}}\sum_{g \in G} \overline{\chi(g)}\chi'(g) $$
+\end{defn}
+
+Since characters are constant on the conjugacy classes of $G$, if we let $c_i$ denote the order of the $i^{th}$ conjugacy class, and let $g_i \in G$ denote a representative of the $i^{th}$ conjugacy class, then
+$$\langle \chi, \chi' \rangle = \frac{1}{\abs{G}}\sum_i c_i \overline{\chi(g_i)}\chi'(g_i) $$
+
+These characters will end up being very important, as they will end up being an orthonomal basis.
+\begin{prop}\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item The irreducible characters of a representation $\rho: G \to \GL(V)$ are orthonormal, i.e.
+$$\langle \chi_i, \chi_j \rangle = \begin{cases}
+1 & \rho_i \sim \rho_j \\
+0 & \text{otherwise}
+\end{cases} $$
+\item There are finitely many isomorphism classes of irreducible representations, equal to the number of conjugacy classes.
+\item Let $\rho_1 \ldots, \rho_r$ denote the isomorphism classes of irreducible representations of $G$ with corresponding characters $\chi_1 \ldots \chi_r$. Then $\dim \rho_i \big\vert \abs{G}$ and $\abs{G} = \sum_i (\dim \rho_i)^2$.
+\end{enumerate}
+\end{prop}
+
+We will postpone the proof for later \\
+
+\begin{rem*}
+For a representation $\rho: G\to \GL(V)$, let 
+$$n\rho = \bigoplus_{k = 1}^n \rho $$
+\end{rem*}
+
+Then from Maschke's Theorem, we have that for any representation $\rho$,
+$$\rho = \bigoplus_{i = 1}^r n_i\rho_i $$
+Where the $n_i \in \Z$ and the $\rho_i$ are irreducible representations of $G$. We note a corollary of the earlier proposition,
+\begin{cor}
+let $\rho_i \ldots \rho_r$ denote the irreducible representations of a finite group $G$ let $\rho: G \to \GL(V)$ be an arbitrary representation. Let $\chi$ and $\chi_i$ denote the characters for $\rho$ and $\rho_i$ respectively, and let $n_i = \langle \chi, \chi_i \rangle$. Then 
+\begin{enumerate}
+\item $\chi = n_1\chi_1 + \ldots + n_r\chi_r$
+\item $\rho = \bigoplus_{i = 1}^r n_i \rho_i$
+\end{enumerate}
+\end{cor}
+
+\begin{cor}
+For arbitrary characters $\chi, \chi'$, $\langle \chi, \chi' \rangle \in \Z$ and $\langle \chi, \chi \rangle = \sum_{i =1}^r n_i$
+\end{cor} 
+
+\begin{defn}
+A function $f: G\to \C$ is a \textbf{class function} if $f$ is constant on conjugacy classes, i.e.
+for all $g, h \in G$, $f(ghg\inv) = f(h)$
+\end{defn}
+
+It is fairly simple to see that the class functions on a group $G$ form a Hermitian vector space with dimension equal to the number of conjugacy classes of $G$, if we use the defined inner product for characters and adapt it for class functions. Note that the earlier proposition then implies that the irreducible characters form an orthonormal basis for the space of class functions of $G$.
+
+
+In the special case where $V$ is $1$-dimensional, $\rho_g$ is represented by a $1 \times 1$ matrix and $\chi(g)$ is the unique entry. A one dimensional character $\chi$ can then be interpreted as a homomorphism $\chi: G \to \GL_1(\C) = \C^\times$.
+
+\begin{thm}
+Let $G$ be a finite abelian group
+\begin{enumerate}
+\item Every irreducible character of $G$ is $1$-dimensional
+\item Every matrix representation of $G$ is diagonalizable
+\end{enumerate}
+\end{thm}
+
+\begin{proof}\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item We know that the irreducible characters of $G$ form a basis for the vector space of class functions. Since $G$ is abelian, we know that this vector space is $1$-dimensional, since there is only one conjugacy class of $G$. Therefore, $\chi(e) = 1$, so the corresponding irreducible representation must be $1$-dimensional
+\item We know that any matrix representation of $G$ is a direct sum of irreducible $1$-dimensional representations. If we pick a basis $\set{v_i}$ where $v_i$ is a nonzero vector in the $i^{th}$ irreducible representation, then this representation is necessarily diagonal in this basis.
+\end{enumerate}
+\end{proof}
+
+
+Let $S = \set{s_1 \ldots s_n}$ be a finite set. We can then identify $s_i$ with the standard basis vector $e_i \in \C^n$. Then given a group action of $G$ on $S$, we get a permutation representation $G \to S_n$, which we can convert to a matrix representation $R: G \to \GL_n(C)$ where $g \mapsto A_\sigma$ where $A_\sigma$ is the permutation matrix corresponding to permutation induced by the action of $g$, where $A_\sigma(e_i) = e_{\sigma(i)}$.
+
+\begin{lem}
+Let $S$ be a finite set, and let $\rho$ be a permutation representation corresponding to a group action of a finite group $G$ on $S$. Then for $g \in G$, $\chi(g)$ is equal to the number of elements of $S$ fixed by the action of $g$.
+\end{lem}
+
+\begin{proof}
+Let $R: G \to \GL_n(\C)$ be any matrix representation corresponding to $\rho$ by fixing a basis. Then $\chi(g) = \trace R(g) = \sum R(g)_{ii}$. We know that $R(g)$ is a permutation matrix, so 
+$$a_{ii} = \begin{cases}
+1 & s_i \text{ is fixed by } g \\
+0 & \text{otherwise}
+\end{cases} $$
+\end{proof}
+
+\begin{defn}
+The \textbf{regular reprsentation} $\rho^{reg}$ for a finite group $G$ is the permutation representation induced by the group action of $G$ on itself via left multiplication.
+\end{defn}
+
+Note that from the above lemma, we immediately obtain
+$$\chi^{reg}(g) = \begin{cases}
+\abs{G} & g = e \\
+0 & \text{otherwise}
+\end{cases} $$
+since $e$ is the only group element that fixes any elements by left multiplication. This makes computing inner products involving $\chi^{reg}$ very easy, since
+$$\langle \chi, \chi^{reg} \rangle = \frac{1}{\abs{G}}\sum_{g \in G} \overline{\chi(g)}\chi^{reg}(g) = \frac{1}{\abs{G}}\chi(e)\chi^{reg}(e) = \dim \chi $$
+
+Using Corollary 1.19, we see that
+\begin{cor}
+Let $\rho_1 \ldots \rho_r$ be the irreducible representations of a finite group $G$. Then
+\begin{enumerate}
+\item $\chi^{reg} = \sum_{i = 1}^r (\dim \chi_i)\chi_i$
+\item $\rho^{reg} = \bigoplus_{i = 1}^r (\dim \rho_i) \rho_i$
+\end{enumerate}
+\end{cor}
+
+Noting that $\dim \rho^{reg} = \abs{G}$, this gives us that 
+$$\dim \chi^{reg} = \abs{G} = \sum_{i=1}^r (\dim \chi_i)^2 $$
+proving 3) of Proposition 1.18.
+
+Recall that given representations of a group $G$ on vector spaces $V$ and $W$, a linear transformation $T: V \to W$ is $G$-invariant if it commutes with the action of every $g \in G$, i.e.
+$$T(g \cdot v) = g \cdot T(v) $$
+
+\begin{lem}
+Let $T: V \to W$ be a $G$-invariant linear transformation. Then $\ker T$ and $\im T$ are $G$-invariant subspaces of $V$ and $W$ respectively.
+\end{lem}
+
+\begin{proof}
+Let $v \in \ker T$. Then since $T$ is $G$-invariant, we know for all $g \in G$,
+$$T(g \cdot v) = g \cdot T(v) = g\cdot 0 = 0 $$
+Therefore, $g \cdot v \in \ker T$, so $\ker T$ is $G$-invariant. Then let $w \in \im T$. Therefore, $w = T(v)$ for some $v \in V$. Then using the fact that $T$ is $G$-invariant,
+$$g \cdot w = g \cdot T(v) = T(g \cdot v) $$
+which implies that $g \cdot w \in \im T$
+\end{proof}
+
+\begin{thm}[\textbf{Schur's Lemma}]\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item Let $\rho_V \rho_W$ be irreducible representations of $G$ on $V$ and $W$ respectively. Let $T: V \to W$ be a $G$-invariant linear transformation. Then $T = 0$ or $T$ is an isomorphism
+\item For an irreducible representation $\rho: G \to \GL(V)$ and a $G$-invariant linear operator $T: V \to V$, $T = \lambda I$ for some $\lambda \in \C$.
+\end{enumerate}
+\end{thm}
+
+\begin{proof}\ \\ \vspace{-\baselineskip}
+\begin{enumerate}
+\item We know $\ker T$ is $G$-invariant. Therefore $\ker T = \set{0}$ or $\ker T = V$. WLOG assume that $\ker T = \set{0}$. Then $T$ is injective. Since $\im T$ is $G$-invariant, $\im T$ is either $\set{0}$ or $W$. Therefore, $T$ is either $0$ or an isomorphism.
+\item Let $\lambda \in \C$ be an eigenvalue of $T$. We claim that $S = T - \lambda I$ is also $G$-invariant. To see this, we note that $\lambda I$ is clearly $G$-invariant. Then we compute
+$$(T - \lambda I)(g \cdot v) = T(g \cdot v) - \lambda I(g \cdot v) = g \cdot T(v) - g \cdot \lambda I (v) $$
+We know that $S$ is not an isomorphism, since any eigenvector with eigenvalue $\lambda$ will lie inside the kernel. Therefore, $S = 0$, which implies that $T = \lambda I$.
+\end{enumerate}
+\end{proof}
+
+We were able to manufacture $G$-invariant vectors an inner products by averaging over the group. It should not surprising that the same process works for $G$-invariant linear transformations.
+\begin{thm}
+Let $\rho: G \to \GL(V)$ and $\rho': G \to \GL(V')$ be representations of a finite group $G$, and let $T: V' \to V$ be an arbitrary linear transformation. Then we can create a $G$-invariant linear transformation $\tilde{T}$, where
+$$\tilde{T}(v) = \frac{1}{\abs{G}}\sum_{g \in G} g\inv \cdot T(g \cdot v) $$
+\end{thm}
+
+\begin{proof}
+Let $h \in G$ be arbitrary. to show $\tilde{T}$ is $G$-invariant, it is sufficient to show that 
+$$h\inv \tilde{T} h(v) = \tilde{T}(v) $$
+We compute
+\begin{align*}
+h\inv\tilde{T}h(v) &= h\inv \cdot \left( \sum_{g \in G} g\inv \cdot T(g \cdot h \cdot v) \right) \\
+&= \sum_{g \in G} h\inv g\inv \cdot T(gh \cdot v)\\
+&= \tilde{T}(v)
+\end{align*}
+\end{proof}
+
+\section{Dummit and Foote}
+
+\begin{defn}
+Let $R$ be a ring and $G$ a group. The \textbf{group ring} $RG$ is defined to be the set of all functions $G \to R$ where only finitely many elements are mapped to a nonzero element. This is equivalent to saying that $RG$ is the set of all finite formal sums of elements of $g$ with coefficients in $R$. We define addition on $RG$ ``component wise", where
+$$\left( \sum_{g \in G} a_g g \right) +  \left( \sum_{g \in G}b_g g \right) = \sum_{g \in G} (a_g + b_g) g $$
+We define the multiplication of two elements $(r_1g_1)(r_2g_2) = r_1r_2g_1g_2$ and extending linearly to the sums such that the distributive property holds.
+\end{defn}
+
+We note that $RG$ contains a ``copy" of $R$, using the identification $r \sim r e$, and $RG$ also contains a ``copy" of $G$ using the identification $g \sim 1g$\\
+
+In the case that $R = \F$ for some field $\F$, we note that the group ring $\F G$ is also a vector space over $\F$, with a basis given by the elements $\set{1g}_{g \in G}$. Since we are talking about the representation theory of finite groups, this means that $\F G$ is finite dimensional. This gives us a vector space structure that is compatible with the ring structure, so $\F G$ is also an $\F$-algebra. Because of this, we sometimes refer to $\F G$ as the \textbf{group algebra}.
+
+\begin{prop}
+Let $G$ be a finite group, and $V$ an $\F G$-module. Then $V$ is also a vector space over $\F$.
+\end{prop}
+
+\begin{proof}
+Let the addition for $V$ as a vector space be the same as the module addition. Noting that $\F G$ contains a copy of $F$ define scalar multiplication on $V$ by $\lambda v = (\lambda e)\cdot v$, where the RHS is the ring action of $\F G$ on $V$. The module axioms then guarantee that this is bilinear, so $V$ is a vector space over $\F$.
+\end{proof}
+
+This gives us yet another way to think of representations $\rho: G \to \GL(V)$. Just like how they are in bijective correspondence with linear group actions, they are also in bijective correspondence with $\F G$ modules.
+
+\begin{prop}
+Representations $\rho: G \to \GL(V)$ for a finite group $G$ are in bijective correspondence with $\F G$-modules.
+\end{prop}
+
+\begin{proof}
+First, let $\rho: G \to \GL(V)$ be a representation of $G$ on a $\F$-vector space $V$. We claim that we can endow $V$ with the structure of an $\F G$-module. Let the module addition be the same as the vector space addition. Then given an arbitrary element of $\F G$, we know that it is of the form $a^ig_i$ for $a^i \in \F$. Then define the action of $a^ig_i$ on a vector $v$ to be 
+$$a^ig_i \cdot v = a^i \rho_{g_i}(v) $$
+This satisfies the module axioms for the ring axioms due to the linearity of every $\rho_{g_i}$ and the fact that $\rho$ is a homomorphism.\\
+
+Conversely, let $V$ be an $\F G$-module. We note that $V$ is also an $\F$ vector space as proven above, with the elements $\set{1g}_{g \in G}$ forming a basis. We claim that there exists a unique representation $\rho: G \to \GL(V)$ corresponding to this module. Define the action of $g$ on a vector $v \in V$ by
+$$g \cdot v = 1g \cdot v $$
+where the right hand side is the ring action of $1g$ on $v$ given by the fact that $V$ is a $\F G$-module. It quickly follows from the module axioms for scalar multiplication that each $g$ acts linearly and that 
+$$g \cdot h \cdot v = gh \cdot v $$
+Having specified a linear group action of $G$ on $V$, this gives us a representation $\rho: G \to \GL(V)$.
+\end{proof}
+
+This gives as an alternative way to think of $G$-invariant subspaces.
+\begin{prop}
+Let $V$ be a $\F G$-module. Then the submodules of $V$ are exactly the $G$-invariant subspaces.
+\end{prop}
+
+\begin{proof}
+Let $W \subset V$ be a $G$-invariant subspace, i.e.
+$$\forall g \in G, g \cdot w \in W $$
+We then claim that $W$ is also a $\F G$-submodule. We clearly have that $W$ is closed under addition, since it is a subspace, so all we need to check is that the ring action of any arbitrary ring element $a^ig_i \in \F G$ also fixes $W$. We have that 
+$$a^ig_i \cdot w = a^i \rho_{\g_i}(w) $$
+which clearly lies inside of $W$ since $W$ is $G$-invariant. Therefore, $W$ also forms a $\F G$-submodule\\
+
+Conversely, suppose we have a $\F G$ submodule $W$, and let $\rho: G \to \GL(V)$ be the induced representation. We wish to show that $W$ is a $G$-invariant subspace. Let $w \in W$. Then for any $g \in G$, we know that $\rho_g(w) = 1g \cdot w \in W$, since $W$ is a submodule. Therefore, $W$ is also a $G$-invariant subspace.
+\end{proof}
+
+\begin{defn}
+Let $R$ be a ring and $M$ a nonzero $\R$-module
+\begin{enumerate}
+\item $M$ is \textbf{irreducible/simple} if the only submodules are $\set{0}$ and $M$
+\item $M$ is \textbf{indecomposable} if $M$ cannot be expressed as $M_1 \oplus M_2$ for any nontrivial submodules $M_1$ and $M_2$
+\item $M$ is \textbf{completely reducible} if it can be decomposed into a direct sum of irreducible submodules
+\item A submodule $N \subset M$ is a \textbf{constituent} of $M$ if there exists a submodule $\tilde{N}$ such that $M = N \oplus \tilde{N}$
+\end{enumerate}
+\end{defn}
+
+\end{document}
