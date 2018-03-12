@@ -223,5 +223,33 @@ For a Riemannian manifold $(M,g)$,  there is a unique inner product on each $\La
 $$\langle \omega^1 \wedge \ldots \wedge w^k, \eta^1 \wedge \ldots \wedge \eta^k = \det\left( \langle (\omega^i)^\sharp, (\eta^j)^\sharp \right) \rangle $$
 Where $\sharp$ is the index raising operator $\omega_i dx^i \mapsto g^{ij}\omega_j\frac{\partial}{\partial x^i}$.
 \end{prop}
+%
+\begin{proof}
+We define the inner product locally in terms of an orthonomal frame $E_i$, and show that it is independent of the choice of frame. Let $\varepsilon^i$  denote the coframe to  $E_i$. We first claim that the set of $\varepsilon^I$ where $I$  is a strictly increasing multi-index of length $k$ form an orthonormal basis. To see this, we compute 
+\begin{align*}
+\langle \varepsilon^I, \varepsilon^J \rangle &= \det\left( E_{i_k}, E_{j_\ell} \right) 
+\end{align*}
+We note that this is $1$ if and only if $I = J$, since then the matrix we are taking the determinant of is $\id_{\R^k}$, otherwise, $I$  contains some $i_k$ not in  $J$, which implies the $k^{th}$ row of the matrix is $0$, so the determinant is $0$. This then defines an inner product by extending linearly to arbitrary $k$-forms.
 
+To show that this is independent of our choice of frame, let  $B_i$ be another orthonormal frame with coframe $\beta^i$. Then we know that $B_i = A^j_iE_j$ with smooth functions $A^i_j$ forming an orthogonal matrix every point. We then compute
+\begin{align*}
+\langle \beta^I, \beta^J \rangle &= \det \langle B_{i_k}, B_{j_\ell} \rangle \\
+&= \det\langle A^j_{i_k}E_j, A^p_{j_\ell}E_p \rangle \\
+\end{align*}
+Noting that $A^j_{i_k}E_j$ is just the $i_k^{th}$ column of the matrix $A$, we have that this is equal to $\det \langle A_{i_k}, A_{j_\ell} \rangle$. Again, if $I = J$, this is just the identity matrix, but if $I \neq J$, there will be a row of zeroes in the matrix $\langle A_{i_k}, A_{j_\ell}$, so the determinant will be $0$. This shows that $\langle \cdot, \cdot \rangle$  is uniquely characterized. 
+\end{proof}
+We can then use this inner product to produce an important operator. Recall that given a function $f \in C^\infty(M)$, we can define the integral of $f$ over $M$ by integrating the $n$-form $fdV_g$, which is a bundle homomorphism $\Omega^0(M) \to \Omega^n(M)$. We can generalize this to arbitrary $k$ forms.
+\begin{prop}
+For every $k \in \set{0, \ldots  n}$, there exists a unique bundle homomorphism
+$$\star: \Omega^{k}(M) \to \Omega^{n-k}(M)$$
+such that for any $\omega, \eta  \in \Omega^k(M)$, we have that $\omega \wedge \star\eta = \langle \omega, \eta \rangle dV_g$ and $dV_g$ is the Riemannian volume form.
+\end{prop}
+\begin{proof}
+We first prove uniqueness. Let $\varepsilon^i$  be the coframe to an orthonomal basis $E_i$. Then for and increasing index set $I$ of length $k$, we have that $\star$ must satisify 
+$$\varepsilon \wedge \star \varepsilon^I = dV_g$$
+Therefore, we must have that $\star \varepsilon^I = \pm \varepsilon^J$, where $I \cup J = \set{1, \ldots n}$ and $J$ is an increasing index and the sign are chosen such that when we permute $I$ and $J$ to be in increasing order, the sign chosen for $\star \varepsilon^I$ cancel the ones that come from the permutation, since otherwise, $\varepsilon \wedge \star \varepsilon^I = 0$. This uniquely characterizes $\star$ on a basis, so it uniquely extends linearly to $\Omega^k(M)$.
+\end{proof}
+
+One observation we make is that $\star\star \varepsilon^I = (-1)^{k(n-k)}\varepsilon^I$ ,which can be verified by shuffling the wedge products and carefully tracking signs. This extends to all $k$-forms, so $\star \star\omega = (-1)^{k(n-k)}\omega$. Another observation is that this determines a bundle \emph{isomorphism} $\Omega^k(M) \to \Omega^{n-k}(M)$, since it maps an orthonormal basis to an orthonormal basis. The form $\star \omega$ is often referred to as the \ib{Hodge dual} to $\omega$.
+%
 \end{document}
