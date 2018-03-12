@@ -242,7 +242,7 @@ We can then use this inner product to produce an important operator. Recall that
 \begin{prop}
 For every $k \in \set{0, \ldots  n}$, there exists a unique bundle homomorphism
 $$\star: \Omega^{k}(M) \to \Omega^{n-k}(M)$$
-such that for any $\omega, \eta  \in \Omega^k(M)$, we have that $\omega \wedge \star\eta = \langle \omega, \eta \rangle dV_g$ and $dV_g$ is the Riemannian volume form.
+called the \ib{Hodge star operator} such that for any $\omega, \eta  \in \Omega^k(M)$, we have that $\omega \wedge \star\eta = \langle \omega, \eta \rangle dV_g$ where $dV_g$ is the Riemannian volume form. The $n-k$-form $\star \omega$ is often referred to as the \ib{Hodge dual} to $\omega$
 \end{prop}
 \begin{proof}
 We first prove uniqueness. Let $\varepsilon^i$  be the coframe to an orthonomal basis $E_i$. Then for and increasing index set $I$ of length $k$, we have that $\star$ must satisify 
@@ -250,6 +250,87 @@ $$\varepsilon \wedge \star \varepsilon^I = dV_g$$
 Therefore, we must have that $\star \varepsilon^I = \pm \varepsilon^J$, where $I \cup J = \set{1, \ldots n}$ and $J$ is an increasing index and the sign are chosen such that when we permute $I$ and $J$ to be in increasing order, the sign chosen for $\star \varepsilon^I$ cancel the ones that come from the permutation, since otherwise, $\varepsilon \wedge \star \varepsilon^I = 0$. This uniquely characterizes $\star$ on a basis, so it uniquely extends linearly to $\Omega^k(M)$.
 \end{proof}
 
-One observation we make is that $\star\star \varepsilon^I = (-1)^{k(n-k)}\varepsilon^I$ ,which can be verified by shuffling the wedge products and carefully tracking signs. This extends to all $k$-forms, so $\star \star\omega = (-1)^{k(n-k)}\omega$. Another observation is that this determines a bundle \emph{isomorphism} $\Omega^k(M) \to \Omega^{n-k}(M)$, since it maps an orthonormal basis to an orthonormal basis. The form $\star \omega$ is often referred to as the \ib{Hodge dual} to $\omega$.
+One observation we make is that $\star\star \varepsilon^I = (-1)^{k(n-k)}\varepsilon^I$ ,which can be verified by shuffling the wedge products and carefully tracking signs. This extends to all $k$-forms, so $\star \star\omega = (-1)^{k(n-k)}\omega$. Another observation is that this determines a bundle \emph{isomorphism} $\Omega^k(M) \to \Omega^{n-k}(M)$, since it maps an orthonormal basis to an orthonormal basis.
+\begin{exmp}
+In $\R^n$ with the standard coordinates $x^i$  and the standard metric tensor  $g_{ij} = \delta_{ij}$, we have that the $dx^i$ form an global orthonormal frame for $\R^n$. Given any $dx^i$, we have that 
+$$\star dx^i =  (-1)^{i-1} dx^1 \wedge \ldots \wedge \hat{dx^i} \wedge \ldots \wedge dx^n $$
+Where $\hat{dx^i}$ indicates that $dx^i$ is missing  from the wedge product. The sign comes from the fact that 
+$$dx^i \wedge dx^1 \wedge \ldots \wedge \hat{dx^i} \wedge \ldots \wedge dx^n = (-1)^{i-1} dx^1\wedge \ldots \wedge dx^n$$
+\end{exmp}
+%
+\begin{exmp}
+For $\R^5$,  consider $\star\star dx^1 \wedge dx^3$. We first compute
+$$\star dx^1 \wedge dx^3 = -dx^2 \wedge dx^4 \wedge dx^5 $$
+$$\star\star dx^1\wedge dx^3 = \star -dx^2 \wedge dx^4 \wedge dx^5 = dx^1 \wedge d^3$$
+\end{exmp}
+%
+Finally, we can use the Hodge star to define yet another operator
+\begin{defn}
+Let $(M,g)$ be a compact oriented Riemannian manifold. Then the \ib{codifferential} $\delta$ (also denoted in the literature by $d^*$) is a map
+\begin{align*}
+\delta: \Omega^k(M) &\to \Omega^{k-1}(M) \\
+\delta \omega &= (-1)^{n(k+1)+1}\star d \star \omega
+\end{align*}
+Where $\delta$ is  defined on $\Omega^0(M) = C^\infty(M)$ by  $\delta f = 0$ for all smooth functions $f$.
+\end{defn}
+%
+\begin{prop}
+The codifferential $\delta$ on  a Riemannian manifold $(M,g)$ without boundary satisfies the following properties:
+\begin{enumerate}
+\item $\delta^2 = 0$ 
+\item For $\omega,\eta \in \Omega^k(M)$, let 
+$$(\omega, \eta) = \int_M \langle \omega, \eta \rangle dV_g$$
+Then for $\omega \in \Omega^k(M)$ and $\eta \in \Omega^{k-1}(M)$, we have that 
+$$(\delta \omega, \eta) = (\omega, d\eta) $$
+where $d$ is the exterior derivative. In this way, we see that $\delta$  is the \ib{adjoint} of $d$ with respect to the inner product, justifying the name \ib{codifferential}.
+\end{enumerate}
+\end{prop}
+
+\begin{proof}
+\begin{enumerate}
+\item We have that
+\begin{align*}
+\delta^2 &= (-1)^{n(k+1)+1} \delta \star d \star \\
+&= (-1)^{n(k+1) + 1}(-1)^{nk + 1} \star d \star \star d \star
+\end{align*}
+We note that $\star\star = (-1)^{k(n-k)}\id_{\Omega^k(M)}$, so this simplifies to
+$$(-1)^p \star d d \star = 0 $$
+Since $d^2 = 0$.
+\item We first verify that $(\cdot, \cdot)$ determines  an inner product. We note that it is symmetric since $\langle  \cdot, \cdot \rangle$ is symmetric, and it is also bilinear since integration is linear and $\langle \cdot, \cdot \rangle$ is as well. All that remains is to show that it is positive definite. We note that it is positive since $\langle \omega, \omega \rangle$ is positive for all $\omega$, so 
+$$\int_M \langle\omega,\omega\rangle dV_g > 0$$
+. In addition, we have that $\langle \omega, \omega \rangle = 0$ if and only if $\omega = 0$, and $\int_M fdV_g = 0$ if and only  if $f = 0$. Therefore, $(\cdot,\cdot)$ is positive definite, so it defines an inner product on $\Omega^k(M)$.
+
+We note that by how we've define the $\star$ operator, the inner product is given  by the equivalent definition for $\xi, \alpha \in \Omega^k(M)$
+$$(\xi, \alpha) = \int_M \xi \wedge \star \alpha $$
+Therefore, we wish to  prove the equivalent statement that for $\omega \in \Omega^k(M)$ and $\eta
+\in \Omega^{k-1}(M)$
+$$\int_M  \delta\omega \wedge \star\eta = \int_M \omega \wedge \star d\eta $$
+Then using symmetry of the inner product, this is equivalent to the statement
+$$\int_M \eta \wedge \star\delta\omega = \int_M d\eta \wedge \star\omega $$
+We then compute
+\begin{align*}
+d\eta \wedge \star\omega - \eta \wedge \star\delta\omega &= d\eta \wedge\star\omega - (-1)^{n(k+1)+1}\eta \wedge \star\star d\star\omega \\
+&= d\eta \wedge \star\omega - (-1)^{n(k+1)+1}(-1)^{(n-k+1)(n-(n-k+1))}\eta \wedge d\star\omega \\
+&= d\eta \wedge \star\omega + (-1)^{-k^2 + 1}  \eta \wedge d\star\omega \\
+&= d\eta \wedge  \star\omega + (-1)^{k-1}\eta\wedge d\star\omega \\
+&= d(\eta \wedge \star\omega)
+\end{align*}
+Where we use the fact that $-k^2  + 1$ has the opposite parity of $k$, and that $d$ is an antiderivation on $\Omega(M)$
+Therefore, we have by Stokes' Theorem
+$$\int_M d\eta \wedge \star\omega - \eta \wedge \star d\omega = \int_M d(\eta \wedge\star\omega) = \int_{\partial M} \eta \wedge  \star\omega = 0 $$
+Which gives us that 
+$$ (\delta\omega, \eta)= (\omega,d\eta)$$
+\end{enumerate}
+\end{proof}
+Finally,  we have the necessary tools to define the fabled \ib{Laplace-de Rahm Operator} (Also known as the  \ib{Laplace-Beltrami Operator}.
+\begin{defn}
+On a oriented compact Riemannian manifold $(M,g)$, define the \ib{Laplace-de Rahm Operator}, denoted $\Delta$, as  the family of maps $\Omega^k(M) \to \Omega^k(M)$ such that 
+$$\Delta = \delta d + d\delta $$
+\begin{rem*}
+There is an alternate sign convention in which
+$$\Delta = d\delta + \delta d $$
+\end{rem*}
+\end{defn}
+
 %
 \end{document}
