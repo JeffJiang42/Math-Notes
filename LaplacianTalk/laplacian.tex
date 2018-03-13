@@ -198,7 +198,7 @@
 
 \begin{document}
 \author{Jeffrey Jiang}
-\title{The Laplace-de Rahm Operator on a Riemannian Manifold}
+\title{The Laplace-de Rham Operator on a Riemannian Manifold}
 \maketitle
 %
 \setcounter{section}{1}
@@ -213,7 +213,7 @@ In local coordinates $(x^i)$, we have that  for $f \in C^\infty(M)$  and $X \in 
 \dv X &= \frac{1}{\sqrt[•]{\det  g_{ij}}} \frac{\partial}{\partial x^i}\left((X^i \sqrt{\det g_{ij}}\right)
 \end{align*}
 Where $g_{ij}$ is the symmetric matrix given by $g_{ij} = \langle \partial_i ,\partial_j\rangle$ and $g^{ij}$ is the inverse of $g_{ij}$. This gives the coordinate formula for 
-$$\Delta f = \frac{1}{\sqrt{g_{ij}}} \frac{\partial}{\partial x^i}\left( g^{ij} \sqrt{\det g_{ij}}\frac{\partial f}{\partial x^j} \right)$$
+$$\Delta f = \frac{1}{\sqrt{\det g_{ij}}} \frac{\partial}{\partial x^i}\left( g^{ij} \sqrt{\det g_{ij}}\frac{\partial f}{\partial x^j} \right)$$
 Which using the standard metric $g_{ij} = \delta_{ij}$ on $\R^2$ recovers the standard Laplacian. However, we want to generalize $\Delta$ to arbitrary differential forms, which requires us to construct a  bit of machinery.
 
 To do this, we first note that the metric $g$ determines an inner product on each tangent space $T_pM$ where $\langle v, w \rangle = g_p(v,w)$. From this, we can construct an inner product on the alternating tensors $\Lambda^k(T_pM)$, which will give us a smoothly varying inner product on $\Omega^K(M)$. To  do this, we will use the fact that $g$ determines a bundle isomorphism $TM \to  T^*M$ via the mapping $(x,v) \mapsto (x, \langle v, \cdot \rangle )$.
@@ -238,6 +238,9 @@ To show that this is independent of our choice of frame, let  $B_i$ be another o
 \end{align*}
 Noting that $A^j_{i_k}E_j$ is just the $i_k^{th}$ column of the matrix $A$, we have that this is equal to $\det \langle A_{i_k}, A_{j_\ell} \rangle$. Again, if $I = J$, this is just the identity matrix, but if $I \neq J$, there will be a row of zeroes in the matrix $\langle A_{i_k}, A_{j_\ell}$, so the determinant will be $0$. This shows that $\langle \cdot, \cdot \rangle$  is uniquely characterized. 
 \end{proof}
+\begin{rem*}
+One observation is that the Riemannian volume form $dV_g$  is the unique $n$-form on $M$ with norm $1$.
+\end{rem*}
 We can then use this inner product to produce an important operator. Recall that given a function $f \in C^\infty(M)$, we can define the integral of $f$ over $M$ by integrating the $n$-form $fdV_g$, which is a bundle homomorphism $\Omega^0(M) \to \Omega^n(M)$. We can generalize this to arbitrary $k$ forms.
 \begin{prop}
 For every $k \in \set{0, \ldots  n}$, there exists a unique bundle homomorphism
@@ -279,7 +282,7 @@ The codifferential $\delta$ on  a Riemannian manifold $(M,g)$ without boundary s
 \begin{enumerate}
 \item $\delta^2 = 0$ 
 \item For $\omega,\eta \in \Omega^k(M)$, let 
-$$(\omega, \eta) = \int_M \langle \omega, \eta \rangle dV_g$$
+$$(\omega, \eta) = \int_M \langle \omega, \eta \rangle ~dV_g$$
 Then for $\omega \in \Omega^k(M)$ and $\eta \in \Omega^{k-1}(M)$, we have that 
 $$(\delta \omega, \eta) = (\omega, d\eta) $$
 where $d$ is the exterior derivative. In this way, we see that $\delta$  is the \ib{adjoint} of $d$ with respect to the inner product, justifying the name \ib{codifferential}.
@@ -322,15 +325,46 @@ Which gives us that
 $$ (\delta\omega, \eta)= (\omega,d\eta)$$
 \end{enumerate}
 \end{proof}
-Finally,  we have the necessary tools to define the fabled \ib{Laplace-de Rahm Operator} (Also known as the  \ib{Laplace-Beltrami Operator}.
+Finally,  we have the necessary tools to define the fabled \ib{Laplace-de Rham Operator} (Also known as the  \ib{Laplace-Beltrami Operator}.
 \begin{defn}
-On a oriented compact Riemannian manifold $(M,g)$, define the \ib{Laplace-de Rahm Operator}, denoted $\Delta$, as  the family of maps $\Omega^k(M) \to \Omega^k(M)$ such that 
+On a oriented compact Riemannian manifold $(M,g)$, define the \ib{Laplace-de Rham Operator}, denoted $\Delta$, as  the family of maps $\Omega^k(M) \to \Omega^k(M)$ such that 
 $$\Delta = \delta d + d\delta $$
-\begin{rem*}
-There is an alternate sign convention in which
-$$\Delta = d\delta + \delta d $$
-\end{rem*}
+A $k$-form $\omega$ satsifying $\Delta\omega = 0$ is called \ib{harmonic}.
 \end{defn}
+
+\begin{prop}
+The Laplace-de Rahm operator agrees with (up to sign) to the Laplacian on $C^\infty(M)$
+\end{prop}
+%
+\begin{proof}
+We have that for $f \in C^\infty(M)$ (letting $\Delta$ denote the Laplace-de Rham operator)
+$$\Delta f  = d\delta f + \delta d f = \delta df$$
+Since we defined $\delta$ to be $0$ on $\Omega^0(M) = C^\infty(M)$.
+We then have that $\delta df = -\star d\star df$. We first compute $\star df$, which is the $n-1$-form satisfying 
+$$df \wedge \star df = \langle df, df \rangle ~dV_g $$. Noting that $df^\sharp = \grad f$, we compute
+\begin{align*}
+\langle \grad f, \grad f\rangle ~dV_g &= \frac{\partial f}{\partial x^i} dx^i \left( g^{jk}\frac{\partial f}{\partial j}\frac{\partial}{\partial x^k} \right)~dV_g \\
+&= g^{ij}\frac{\partial  f}{\partial x^i}\frac{\partial f}{\partial x^j} ~dV_g \\
+&= \sqrt{\det g}\left( g^{ij}\frac{\partial  f}{\partial x^i}\frac{\partial f}{\partial x^j} dx^1 \right)\wedge \ldots \wedge dx^n
+\end{align*}
+Therefore, we conclude that
+$$\star df = (-1)^{i-1}\sqrt{\det g} \left(g^{ij}\frac{\partial f}{\partial x^j} \right)dx^1 \wedge \ldots \hat{dx^i} \wedge \ldots \wedge dx^n $$
+\end{proof}
+We then compute $d\star df$ to be 
+\begin{align*}
+d\star df &= (-1)^{i-1} \frac{\partial}{\partial x^k}\left( g^{ij}\sqrt{\det g}\frac{\partial f}{\partial x^j} \right) dx^k \wedge dx^1 \wedge \ldots \wedge \hat{dx^i} \wedge \ldots \wedge dx^n \\
+&= \frac{\partial}{\partial x^i}\left( g^{ij}\sqrt{\det g}\frac{\partial f}{\partial x^j} \right) dx^1 \wedge \ldots \wedge dx^n \\
+&= \frac{1}{\sqrt{\det g}} \frac{\partial}{\partial x^i}\left( g^{ij}\sqrt{\det g}\frac{\partial f}{\partial x^j} \right) dV_g
+\end{align*}
+
+We then have that $\star d\star df$ must satsify $d\star f \wedge \star d\star df = \langle d\star f, d\star f \rangle~dV_g$. We then compute
+\begin{align*}
+\biggl\langle \frac{1}{\sqrt{\det g}} \frac{\partial}{\partial x^i}\left( g^{ij}\sqrt{\det g}\frac{\partial f}{\partial x^j} \right) dV_g, \frac{1}{\sqrt{\det g}} \frac{\partial}{\partial x^k}\left( g^{k\ell}\sqrt{\det g}\frac{\partial f}{\partial x^\ell} \right)~dV_g\biggr\rangle~dV_g  \\
+= \frac{1}{\det g}\frac{1}{\sqrt{\det g}} \frac{\partial}{\partial x^i}\left( g^{ij}\sqrt{\det g}\frac{\partial f}{\partial x^j} \right)    \frac{1}{\sqrt{\det g}} \frac{\partial}{\partial x^k}\left( g^{k\ell}\sqrt{\det g}\frac{\partial f}{\partial x^k} \right) ~dV_g
+\end{align*}
+Where we use the fact that $\langle dV_g, dV_g \rangle = 1$. Therefore, we conclude that 
+$$\delta df = -\star d\star f = -\frac{1}{\sqrt{\det g}} \frac{\partial}{\partial x^i}\left( g^{ij}\sqrt{\det g}\frac{\partial f}{\partial x^j} \right) $$
+Due to our choice of sign convention, this is unfortunately the negative of the the original Laplacian we had. Some sign conventions define $\Delta f = -\dv(\grad f)$ for this reason.
 
 %
 \end{document}
