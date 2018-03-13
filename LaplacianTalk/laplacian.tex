@@ -249,13 +249,13 @@ called the \ib{Hodge star operator} such that for any $\omega, \eta  \in \Omega^
 \end{prop}
 \begin{proof}
 We first prove uniqueness. Let $\varepsilon^i$  be the coframe to an orthonomal basis $E_i$. Then for and increasing index set $I$ of length $k$, we have that $\star$ must satisify 
-$$\varepsilon \wedge \star \varepsilon^I = dV_g$$
+$$\varepsilon^I \wedge \star \varepsilon^I = dV_g$$
 Therefore, we must have that $\star \varepsilon^I = \pm \varepsilon^J$, where $I \cup J = \set{1, \ldots n}$ and $J$ is an increasing index and the sign are chosen such that when we permute $I$ and $J$ to be in increasing order, the sign chosen for $\star \varepsilon^I$ cancel the ones that come from the permutation, since otherwise, $\varepsilon \wedge \star \varepsilon^I = 0$. This uniquely characterizes $\star$ on a basis, so it uniquely extends linearly to $\Omega^k(M)$.
 \end{proof}
 
 One observation we make is that $\star\star \varepsilon^I = (-1)^{k(n-k)}\varepsilon^I$ ,which can be verified by shuffling the wedge products and carefully tracking signs. This extends to all $k$-forms, so $\star \star\omega = (-1)^{k(n-k)}\omega$. Another observation is that this determines a bundle \emph{isomorphism} $\Omega^k(M) \to \Omega^{n-k}(M)$, since it maps an orthonormal basis to an orthonormal basis.
 \begin{exmp}
-In $\R^n$ with the standard coordinates $x^i$  and the standard metric tensor  $g_{ij} = \delta_{ij}$, we have that the $dx^i$ form an global orthonormal frame for $\R^n$. Given any $dx^i$, we have that 
+In $\R^n$ with the standard coordinates $x^i$  and the standard metric tensor  $g_{ij} = \delta_{ij}$, we have that the $dx^i$ form an global orthonormal coframe for $\R^n$. Given any $dx^i$, we have that 
 $$\star dx^i =  (-1)^{i-1} dx^1 \wedge \ldots \wedge \hat{dx^i} \wedge \ldots \wedge dx^n $$
 Where $\hat{dx^i}$ indicates that $dx^i$ is missing  from the wedge product. The sign comes from the fact that 
 $$dx^i \wedge dx^1 \wedge \ldots \wedge \hat{dx^i} \wedge \ldots \wedge dx^n = (-1)^{i-1} dx^1\wedge \ldots \wedge dx^n$$
@@ -264,7 +264,7 @@ $$dx^i \wedge dx^1 \wedge \ldots \wedge \hat{dx^i} \wedge \ldots \wedge dx^n = (
 \begin{exmp}
 For $\R^5$,  consider $\star\star dx^1 \wedge dx^3$. We first compute
 $$\star dx^1 \wedge dx^3 = -dx^2 \wedge dx^4 \wedge dx^5 $$
-$$\star\star dx^1\wedge dx^3 = \star -dx^2 \wedge dx^4 \wedge dx^5 = dx^1 \wedge d^3$$
+$$\star\star dx^1\wedge dx^3 = \star -dx^2 \wedge dx^4 \wedge dx^5 = dx^1 \wedge dx^3$$
 \end{exmp}
 %
 Finally, we can use the Hodge star to define yet another operator
@@ -324,7 +324,7 @@ $$ (\delta\omega, \eta)= (\omega,d\eta)$$
 \end{proof}
 Finally,  we have the necessary tools to define the fabled \ib{Laplace-de Rham Operator} (Also known as the  \ib{Laplace-Beltrami Operator}).
 \begin{defn}
-On a oriented compact Riemannian manifold $(M,g)$, define the \ib{Laplace-de Rham Operator}, denoted $\Delta$, as  the family of maps $\Omega^k(M) \to \Omega^k(M)$ such that 
+On a oriented compact Riemannian manifold $(M,g)$, define the \ib{Laplace-de Rham Operator}, denoted $\Delta$, as  the family of maps $\Omega^k(M) \to \Omega^k(M)$ satsifying
 $$\Delta = \delta d + d\delta $$
 A $k$-form $\omega$ satsifying $\Delta\omega = 0$ is called \ib{harmonic}, and the space of harmonic $k$-forms is denoted $\mathcal{H}^k(M)$
 \end{defn}
@@ -342,7 +342,7 @@ $$df \wedge \star df = \langle df, df \rangle ~dV_g $$. Noting that $df^\sharp =
 \begin{align*}
 \langle \grad f, \grad f\rangle ~dV_g &= \frac{\partial f}{\partial x^i} dx^i \left( g^{jk}\frac{\partial f}{\partial j}\frac{\partial}{\partial x^k} \right)~dV_g \\
 &= g^{ij}\frac{\partial  f}{\partial x^i}\frac{\partial f}{\partial x^j} ~dV_g \\
-&= \sqrt{\det g}\left( g^{ij}\frac{\partial  f}{\partial x^i}\frac{\partial f}{\partial x^j} dx^1 \right)\wedge \ldots \wedge dx^n
+&= \sqrt{\det g}\left( g^{ij}\frac{\partial  f}{\partial x^i}\frac{\partial f}{\partial x^j} \right)dx^1\wedge \ldots \wedge dx^n
 \end{align*}
 Therefore, we conclude that
 $$\star df = (-1)^{i-1}\sqrt{\det g} \left(g^{ij}\frac{\partial f}{\partial x^j} \right)dx^1 \wedge \ldots \hat{dx^i} \wedge \ldots \wedge dx^n $$
@@ -411,9 +411,9 @@ While we don't have all the tools to do it, we state important applications of t
 The space $\Omega^k(M)$ decomposes as the orthogonal sum
 $$\Omega^k(M) = \im \Delta \oplus \mathcal{H}^k(M) $$
 \end{thm}
-The proof usually involves some heavy functional analysis. We note that all the trouble here is to prove that $\im \Delta \subset (\ker\Delta)^\perp$. Since $\Delta$ is self adjoint, we can easily see that it's image is contained in the orthogonal complement of $\ker \Delta$. Let $\Delta \omega \in \im \Delta$ and $\Delta \eta = 0$. Then
+The proof usually involves some heavy functional analysis. We note that all the trouble here is to prove that $\im \Delta \supset (\ker\Delta)^\perp$. Since $\Delta$ is self adjoint, we can easily see that it's image is contained in the orthogonal complement of $\ker \Delta$. Let $\Delta \omega \in \im \Delta$ and $\Delta \eta = 0$. Then
 $$(\Delta\omega, \eta) = (\omega,\Delta\eta) = 0 $$
-Therefore, $\im\Delta \subset (\ker\Delta)^\perp$. In general, the image of a linear map is always so contained in the orthogonal complement of the kernel of its adjoint. For finite dimensional vector spaces, this is actually equality, but the space of differential forms is infinite dimensional, so there is additional work to be done. In particular, we will need two big facts.
+Therefore, $\im\Delta \subset (\ker\Delta)^\perp$. In general, the image of a linear map is always contained in the orthogonal complement of the kernel of its adjoint. For finite dimensional vector spaces, this is actually equality, but the space of differential forms is infinite dimensional, so there is additional work to be done. In particular, we will need two big facts.
 \begin{enumerate}
 \item $\im \Delta = d\delta(\Omega^k(M)) \oplus \delta d(\Omega^k(M))$
 \item $\im \Delta = (\ker\Delta)^\perp = \mathcal{H}^k(M)^\perp$
@@ -422,7 +422,7 @@ Therefore, $\im\Delta \subset (\ker\Delta)^\perp$. In general, the image of a li
 There is a canonical isomorphism $\mathcal{H}^k(M) \to H^k_{dR}(M)$
 \end{cor}
 \begin{proof}
-We have that $\Omega^k(M) = \im\Delta \oplus \mathcal{H}^k(M) = d\delta(\Omega^k(M)) \oplus \delta d(\Omega^k(M)) oplus \mathcal{H}^k(M)$ and that $\ker d = (\im \delta)^\perp = \mathcal{H}^k(X) \oplus d(\Omega^{k-1}(M))$ This gives us that $\ker d / d(\Omega^{k-1}(M)) \cong \mathcal{H}^k(M)$.
+We have that $\Omega^k(M) = \im\Delta \oplus \mathcal{H}^k(M) = d\delta(\Omega^k(M)) \oplus \delta d(\Omega^k(M)) \oplus \mathcal{H}^k(M)$ and that $\ker d = (\im \delta)^\perp = \mathcal{H}^k(X) \oplus d(\Omega^{k-1}(M))$ This gives us that $\ker d / d(\Omega^{k-1}(M)) \cong \mathcal{H}^k(M)$.
 \end{proof}
 Another theorem that we'll state without proof.
 \begin{thm}
