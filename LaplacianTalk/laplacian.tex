@@ -220,7 +220,7 @@ To do this, we first note that the metric $g$ determines an inner product on eac
 %
 \begin{prop}
 For a Riemannian manifold $(M,g)$,  there is a unique inner product on each $\Lambda^k(T_pM)$ characterized by the formula
-$$\langle \omega^1 \wedge \ldots \wedge w^k, \eta^1 \wedge \ldots \wedge \eta^k = \det\left( \langle (\omega^i)^\sharp, (\eta^j)^\sharp \right) \rangle $$
+$$\langle \omega^1 \wedge \ldots \wedge w^k, \eta^1 \wedge \ldots \wedge \eta^k = \det\left( \big\langle (\omega^i)^\sharp, (\eta^j)^\sharp \big\rangle \right)$$
 Where $\sharp$ is the index raising operator $\omega_i dx^i \mapsto g^{ij}\omega_j\frac{\partial}{\partial x^i}$.
 \end{prop}
 %
@@ -236,7 +236,7 @@ To show that this is independent of our choice of frame, let  $B_i$ be another o
 \langle \beta^I, \beta^J \rangle &= \det \langle B_{i_k}, B_{j_\ell} \rangle \\
 &= \det\langle A^j_{i_k}E_j, A^p_{j_\ell}E_p \rangle \\
 \end{align*}
-Noting that $A^j_{i_k}E_j$ is just the $i_k^{th}$ column of the matrix $A$, we have that this is equal to $\det \langle A_{i_k}, A_{j_\ell} \rangle$. Again, if $I = J$, this is just the identity matrix, but if $I \neq J$, there will be a row of zeroes in the matrix $\langle A_{i_k}, A_{j_\ell}$, so the determinant will be $0$. This shows that $\langle \cdot, \cdot \rangle$  is uniquely characterized. 
+Noting that $A^j_{i_k}E_j$ is just the $i_k^{th}$ column of the matrix $A$, we have that this is equal to $\det \langle A_{i_k}, A_{j_\ell} \rangle$. Again, if $I = J$, this is just the identity matrix, but if $I \neq J$, there will be a row of zeroes in the matrix $\langle A_{i_k}, A_{j_\ell}\rangle$, so the determinant will be $0$. This shows that $\langle \cdot, \cdot \rangle$  is uniquely characterized. 
 \end{proof}
 \begin{rem*}
 One observation is that the Riemannian volume form $dV_g$  is the unique $n$-form on $M$ with norm $1$.
