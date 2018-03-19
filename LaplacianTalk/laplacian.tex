@@ -210,7 +210,7 @@ $$\Delta = \dv(\grad f) $$
 In local coordinates $(x^i)$, we have that  for $f \in C^\infty(M)$  and $X \in \mathfrak{X}(M)$
 \begin{align*}
 \grad f &= g^{ij}\frac{\partial f}{\partial x^i}\frac{\partial }{\partial x^j} \\[6pt]
-\dv X &= \frac{1}{\sqrt[•]{\det  g_{ij}}} \frac{\partial}{\partial x^i}\left((X^i \sqrt{\det g_{ij}}\right)
+\dv X &= \frac{1}{\sqrt[•]{\det  g_{ij}}} \frac{\partial}{\partial x^i}\left(X^i \sqrt{\det g_{ij}}\right)
 \end{align*}
 Where $g_{ij}$ is the symmetric matrix given by $g_{ij} = \langle \partial_i ,\partial_j\rangle$ and $g^{ij}$ is the inverse of $g_{ij}$. This gives the coordinate formula for 
 $$\Delta f = \frac{1}{\sqrt{\det g_{ij}}} \frac{\partial}{\partial x^i}\left( g^{ij} \sqrt{\det g_{ij}}\frac{\partial f}{\partial x^j} \right)$$
@@ -220,7 +220,7 @@ To do this, we first note that the metric $g$ determines an inner product on eac
 %
 \begin{prop}
 For a Riemannian manifold $(M,g)$,  there is a unique inner product on each $\Lambda^k(T_pM)$ characterized by the formula
-$$\langle \omega^1 \wedge \ldots \wedge w^k, \eta^1 \wedge \ldots \wedge \eta^k = \det\left( \big\langle (\omega^i)^\sharp, (\eta^j)^\sharp \big\rangle \right)$$
+$$\langle \omega^1 \wedge \ldots \wedge w^k, \eta^1 \wedge \ldots \wedge \eta^k \rangle = \det\left( \big\langle (\omega^i)^\sharp, (\eta^j)^\sharp \big\rangle \right)$$
 Where $\sharp$ is the index raising operator $\omega_i dx^i \mapsto g^{ij}\omega_j\frac{\partial}{\partial x^i}$.
 \end{prop}
 %
@@ -255,7 +255,7 @@ Therefore, we must have that $\star \varepsilon^I = \pm \varepsilon^J$, where $I
 
 One observation we make is that $\star\star \varepsilon^I = (-1)^{k(n-k)}\varepsilon^I$ ,which can be verified by shuffling the wedge products and carefully tracking signs. This extends to all $k$-forms, so $\star \star\omega = (-1)^{k(n-k)}\omega$. Another observation is that this determines a bundle \emph{isomorphism} $\Omega^k(M) \to \Omega^{n-k}(M)$, since it maps an orthonormal basis to an orthonormal basis.
 \begin{exmp}
-In $\R^n$ with the standard coordinates $x^i$  and the standard metric tensor  $g_{ij} = \delta_{ij}$, we have that the $dx^i$ form an global orthonormal coframe for $\R^n$. Given any $dx^i$, we have that 
+In $\R^n$ with the standard coordinates $(x^i)$ and the standard metric tensor  $g_{ij} = \delta_{ij}$, we have that the $dx^i$ form an global orthonormal coframe for $\R^n$. Given any $dx^i$, we have that 
 $$\star dx^i =  (-1)^{i-1} dx^1 \wedge \ldots \wedge \hat{dx^i} \wedge \ldots \wedge dx^n $$
 Where $\hat{dx^i}$ indicates that $dx^i$ is missing  from the wedge product. The sign comes from the fact that 
 $$dx^i \wedge dx^1 \wedge \ldots \wedge \hat{dx^i} \wedge \ldots \wedge dx^n = (-1)^{i-1} dx^1\wedge \ldots \wedge dx^n$$
@@ -431,10 +431,12 @@ Another theorem that we'll state without proof.
 Every cohomology class of $H^k_{dR}(M)$ has a unique harmonic representative.
 \end{thm}
 \begin{cor}[\ib{Poincar\'e duality}]
-The pairing $\langle [\omega], [\eta]\rangle \mapsto \int_M \omega \wedge \star\eta$ is nondegenerate, giving an isomorphism $\mathcal{H}^k(M)\to(\mathcal{H}^{n-k}(M))^* \cong H_{n-k}(M, \R)$
+The pairing $\langle [\omega], [\eta]\rangle \mapsto \int_M \omega \wedge \star\eta$ is nondegenerate, giving an isomorphism $\mathcal{H}^{k}(M)\to(\mathcal{H}^{n-k}(M))^* \cong H_{n-k}(M, \R)$
 \end{cor}
 \begin{proof}
-Given a nonzero harmonic form $\omega \in \mathcal{H}^k(M)$, we have that $\Delta\star\omega = \star\Delta\omega = 0$. So $\star\omega$ is harmonic as well. Then $\int_M \omega\wedge\star\omega = \int_M|\omega|dV_g \neq 0$. Therefore, this pairing is nondegenerate, giving us a canonical isomorphism.
+Given a nonzero harmonic form $\omega \in \mathcal{H}^k(M)$, we have that $\Delta\star\omega = \star\Delta\omega = 0$. So $\star\omega$ is harmonic as well. Then 
+$$(\omega, \star\omega) = \int_M \omega\wedge\star\omega = \int_M|\omega|~dV_g \neq 0$$
+Therefore, the pairing is nondegenerate, giving us a canonical isomorphism $\mathcal{H}^k(M) \to \left(\mathcal{H}^{n-k}(M)\right)^*$ via the mapping $[\omega] \mapsto (\omega, \cdot)$
 \end{proof}
 %
 \end{document}
