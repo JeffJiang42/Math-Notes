@@ -197,7 +197,79 @@
 
 \begin{document}
 \author{Jeffrey Jiang}
-\title{Kh\"aler Manifolds: An Introduction}
+\title{Symplectic Geometry and Kh\"aler Manifolds: An Introduction}
+%
 \maketitle
+%
+\section*{Linear Algebra}
+%
+As typical when studying smooth manifolds, we first look at the linear algebra that will be non-linearized. To discuss Kh\"aler manifolds (and consequently, Kh\"aler vector spaces), we will need to assemble several mutually compatible structures -- an inner product, a symplectic form, and a complex structure. 
+%
+\begin{defn}
+An \ib{inner product space} is a vector space $V$ equipped with a bilinear map $g: V\times V \to V$ that is symmetric and positive definite. In the case that $V$ is a complex vector space, we replace the bilinear condition with the \ib{sesquilinear} condition -- conjugate linear in the first term, and linear in the second term. In this case, $g$ is often referred to as a \ib{hermitian inner product}.
+\end{defn}
+You're probably familiar with these, so we won't delve into them.
+%
+\begin{defn}
+A \ib{symplectic vector space} is a vector space $V$ equipped with a nondegenerate skew symmetric bilinear form $\omega : V \times V \to V$.
+\end{defn}
+%
+Nondegeneracy here means that if for some $v$, $\omega(v,w) = 0$ for all $w \in V$, then $v = 0$.  In other words, the form $\omega$ gives an isomorphism $V \to V^*$ via the mapping
+$$v \mapsto \omega(v,\cdot) $$
+We note that the positive definite condition on an inner product $g$ implies nondegeneracy, so that also defines an analogous isomorphism. An equivalent formulation of nondegeneracy for $\omega$ is that the wedge product $\omega \wedge \ldots \wedge \omega$ with itself $n/2$ times gives a nonzero volume form for $V$.
+\begin{exmp}
+$\R^{2n}$ with coordinates $(x_i,y_i)$ comes with a symplectic structure given by
+$$\tilde{\omega} = \sum_i dx^i \wedge dy^i  $$
+which can be expressed in coordinates by 
+$$\tilde{\omega}(v,w) = v^T \Omega ~w $$
+where 
+$$\Omega =  \begin{pmatrix}
+0 & \id_{\R^n} \\
+-\id_{\R^n} & 0
+\end{pmatrix} $$
+\end{exmp}
+In some sense, this is the \emph{only} symplectic vector space, which should be made clear very soon.
+\begin{thm}
+Every symplectic vector space $(V,\omega)$ admits a \ib{symplectic basis} $\set{e_i, f_i}$ where
+$$\omega(e_i,e_j) = 0 \qquad \omega(e_i,f_i) = \delta_{ij}$$
+\end{thm}
+%
+\begin{cor}
+Every symplectic vector space is \ib{symplectomorphic} to $(\R^{2n}, \tilde{\omega})$. That is, there exists a linear isomorphism $\varphi: (V,\omega) \to (\R^{2n},\tilde{\omega})$ where $\varphi^*\tilde{\omega} = \omega$.
+\end{cor}
+%
+\begin{proof}
+Let $\set{f_i,g_i}$ be a symplectic basis for $V$ on $\R^n$ and consider the map $\varphi: V \to \R^{2n}$ given by mapping $f_i \mapsto e_i$ and $g_i \mapsto e_{n + i}$
+\end{proof}
+%
+\begin{defn}
+A \ib{complex structure} on a vector space $V$ is an automorphism $J: V \to V$ such that $J^2 = -\id_V$
+\end{defn}
+%
+Given a complex structure $J$ and an $\R$-vector space $V$, we can make $V$ a $\C$-vector space by defining the action of $i \in \C$ by $i \cdot v = Jv$. We can then extend this to arbitrary complex numbers $\alpha + \beta i$ by $(\alpha + \beta i)\cdot v = \alpha v + \beta Jv$.
 
+If you know some linear algebra, you might know that there is another way to turn a $\R$-vector space into a complex one. 
+\begin{defn}
+Given an $\R$-vector space $V$, define its complexification $V_\C$ as $V \otimes_\R \C$.
+\end{defn}
+Note that adding a complex structure to a vector space is \emph{not} the same as complexifying it. If we find some $J \in GL(V)$ such that $J^2 = -\id_V$, we haven't changed the dimension of $V$, but complexifying $V$ doubles its dimension over $\R$. Despite this, the concepts are quite similar. If we have a vector space $V$ with complex structure $J$, then if we complexify $V$, then $J$ extends to a map $V_\C \to V_\C$, where $J(v + i w) = Jv + iJw$. This gives a decomposition
+$$V_\C = V^+ \oplus V^- $$
+where $V^+ = \set{v + iJv ~:~v \in V}$ and $V^- = \set{v - iJv ~:~ v \in V}$, and we get an isomorphism of $\C$-vector spaces $V \to V^\pm$ where $v \mapsto v \pm iJv$, using the fact that $J^2v = -v$.
+
+Now that we have defined all of these, we would like to define when these structures are compatible, and see what results
+%
+\begin{defn}
+A complex structure $J$ is \ib{compatible} with a symplectic form $\omega$ if $\omega(Jv,Jw) = \omega(v,w)$.
+\end{defn}
+%
+An analogous definition is used for an inner product $g$.
+%
+\begin{thm}
+Given a vector space $V$ with complex structure $J$, given a $J$-compatible inner product $g$, we obtain a symplectic form $\omega$ where $\omega(v,w) = g(Jv,w)$. Likewise, given a $J$-compatible symplectic form $\omega$, we obtain an inner product $g$ where $g(v,w) = \omega(Jv,w)$. Symplectic forms/inner products obtained in this manner are said to be \ib{compatible} with the other.
+\end{thm}
+%
+\begin{defn}
+A vector space $V$ is \ib{K\"ahler} if it has compatible structures $J,g,\omega$.
+\end{defn}
+%
 \end{document}
