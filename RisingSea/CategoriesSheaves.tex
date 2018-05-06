@@ -201,9 +201,35 @@
 \maketitle
 
 These are some notes + exercises I've compiled working through the first $2$ chapters of Ravi Vikhil's \emph{The Rising Sea}, with the main purpose being to gain some familiarity and comfort with categories and sheaves.	
-
+%
 \section{Category Theory}
+%
+\begin{defn}
+A \ib{category} $\mathscr{C}$ is a collection\footnote{Loosely speaking; there's some set-theoretic issues here, but it's not that important for us} of \ib{objects}, denoted $\mathsf{Ob}(\mathscr{C})$ and a collection\footnote{Again, ignoring set-theoretic problems} \ib{morphisms} $\hom(A,B)$\footnote{Vikhil uses $\mathsf{Mor}$, but we'll use the more standard notation of $\hom$} for every pair of objects $A,B \in \mathsf{Ob}(\mathscr{C})$ satisfying the following axioms:
+\begin{enumerate}
+\item Given morphisms $f: A \to B$ and $g: B \to C$, there is a unique map $g \circ f: A \to C$ that makes the following diagram commute
+$$\xymatrix{
+A \ar@/_1pc/[rr]_{g \circ f}\ar[r]^f & B \ar[r]^g & C
+}$$
+\item For every object $A \in \mathsf{Ob}(\mathscr{C})$, there exists an \ib{identity morphism} $\id_A \in \hom(A,A)$ such that for any morphisms $f: A \to B$ and $g: C \to A$, we have that $\id_A \circ f = f$ and $g \circ \id_A = g$
+\end{enumerate}
+A morphism $f: A \to B$ is an \ib{isomorphism} is there exists a morphism $g: B \to A$ such that $f \circ g = \id_B$ and $g \circ f = \id_A$. We then call $g$ the \ib{inverse} to $f$. Isomorphisms $A \to A$ are called \ib{automorphisms} of $A$.
+\end{defn}
+%
+\begin{exmp}
+The category of sets, often denoted $\mathsf{Set}$ has sets as its objects, and maps of sets as its morphisms.
+\end{exmp}
+%
+\begin{exmp}
+Vector spaces over a field $\F$ also form a category, denoted $\mathsf{Vec}_\F$, where the objects are $\F$-vector spaces, and the objects are $\F$-linear maps.
+\end{exmp}
+%
+\begin{exer}
+Let $A$ be an object of a category $\mathscr{C}$. Show that the automorphisms of $\hom(A,A)$ form a group, called the \ib{Automorphism group} of $A$.
+\end{exer}
+%
+\begin{proof}
 
-
+\end{proof}
 
 \end{document}
