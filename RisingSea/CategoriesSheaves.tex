@@ -299,4 +299,54 @@ We also compute
 So we have given a natural isomorphism $\mathcal{D} \circ \mathcal{D} \to \id$
 \end{proof}
 %
+It's also somewhat easy in this language why there is no natural isomorphism from a vector space to its dual. When you saw it, there was most likely some hand-waving about how the choice of a basis made the isomorphism unnatural, so we can make this rigorous now.
+%
+\begin{prop}
+There exists no natural isomorphism from the dual functor $\mathcal{D}$ to the identity functor $\id$
+\end{prop}
+%
+\begin{proof}
+%
+Suppose such a natural isomorphism existed, and assigned each vector space an isomorphism $\varphi_V: V \to \V^*$ such that the following diagram commutes for any linear map $A: V \to W$.
+$$\xymatrix{
+V \ar[d]_{\varphi_V}\ar[r]^A & W \ar[d]^{\varphi_W} \\
+V & W \ar[l]^{A^*}
+} $$
+If we let $A$ be the zero map, we have that $A^* \circ \varphi_W \circ A = 0$, so it cannot be $\varphi_V$.
+\end{proof}
+%
+One product from category theory that ends up being extremely useful is the notion of a \ib{universal property}. One example you may have seen before is the universal property of a product-- Given two objects $A,B$ in some category $\mathscr{C}$, their product, denoted $A \times B \in \mathsf{Ob}(\mathscr{C})$ is (up to unique isomorphism) the unique object with maps $\pi_A: A\times B \to A$ and $\pi_B : A \times B \to B$ such that given any pair of maps $f: P \to A$ and $g: P \to B$ factor uniquely through $A \times B$, i.e. there exists a unique map $f \times g: P \to A\times B$ such that the following diagram commutes
+$$\xymatrix{
+P \ar[dr]_{f \times g} \ar[d]_g \ar[r]^f & A \\
+B & A \times B \ar[l]^{\pi_B} \ar[u]^{\pi_A}
+}$$
+Some other useful objects defined by universal properties
+%
+\begin{defn}
+An \ib{initial object}  $I$ in a category $\mathscr{C}$ if there exists exactly one map $I \to A$ for every $A \in \mathsf{Ob}(\mathscr{C})$. A \ib{final object} is an object $F$ in which there exactly one map $A \to F$ for every object $A$. An object $Z$ is a \ib{zero object} if it is both an initial and final object.
+\end{defn}
+%
+\begin{exer}
+Show any two initial objects are uniquely isomorphic. Show any two final objects are uniquely isomorphic
+\end{exer}
+%
+\begin{proof}
+Let $A,B$ be initial objects. We note that the definition of an initial object implies that the only map $A \to A$ and $B \to B$ must be $\id_A$ and $\id_B$ respectively. Therefore, the unique maps $A \to B$ and $B \to A$ must compose to identity, so they are isomorphisms.
+
+The same proof applies to final objects. For final objects the unique maps $A \to A$ and $B \to B$ are necessarily the identity maps, and the unique maps $A \to B$ and $B \to A$ must compose to identity.
+\end{proof}
+For concreteness, we should determine what these some of objects are
+\begin{exer}
+What are the initial/final objects in $\mathsf{Set},\mathsf{Ring}$\footnote{Since this book is for algebraic geometry, all rings are commutative and unital. Ring maps are required to map $1 \mapsto 1$} and $\mathsf{Top}$?
+\end{exer}
+%
+\begin{proof}[Solution]\enumbreak
+\begin{enumerate}
+\item The initial object for $\mathsf{Set}$ is the empty set. Given any set $S$, we have a unique map $\emptyset \to S$ (the empty map). The final object is the single point set $*$. Given any set $S$, there exists only a single map to $*$, namely the map that takes all of $S$ to the point. We note that the empty set cannot be a final object, since we cannot map a nonempty set to an empty set.
+\item The initial object in $\mathsf{Ring}$ is the integers $\Z$. Given any commutative unital ring $R$ (which from now on we'll just say ring), the unique map $\Z \to R$ is entirely determined by the map $1 \mapsto 1$ since $1$ generates $\Z$ as an abelian group. The final object is the zero ring $0 = 1$, where the unique map $R \to 0$ is the map that sends everything to $0$.
+\item The initial and final objects for $\mathsf{Top}$ are the same as for $\mathsf{Set}$. We note that the empty set and a single point set have unique topologies, so we do not need to specify a topology.
+\end{enumerate}
+\end{proof}
+One reason that universal properties are nice is that they give an extremely helpful way in proving that some object is the one we desire -- by showing it satisfies the universal property. Given an arbitrary set $P$, how can I conclude that it is the product $A \times B$? We can look for an explicit isomorphism, which can be difficult, or we can simply show that it satisfies the same universal property as the product.
+%
 \end{document}
