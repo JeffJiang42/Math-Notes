@@ -347,6 +347,30 @@ What are the initial/final objects in $\mathsf{Set},\mathsf{Ring}$\footnote{Sinc
 \item The initial and final objects for $\mathsf{Top}$ are the same as for $\mathsf{Set}$. We note that the empty set and a single point set have unique topologies, so we do not need to specify a topology.
 \end{enumerate}
 \end{proof}
-One reason that universal properties are nice is that they give an extremely helpful way in proving that some object is the one we desire -- by showing it satisfies the universal property. Given an arbitrary set $P$, how can I conclude that it is the product $A \times B$? We can look for an explicit isomorphism, which can be difficult, or we can simply show that it satisfies the same universal property as the product.
+One reason that universal properties are nice is that they give an extremely helpful way in proving that some object is the one we desire -- by showing it satisfies the universal property. Given an arbitrary set $P$, how can I conclude that it is the product $A \times B$? We can look for an explicit isomorphism, which can be difficult, or we can simply show that it satisfies the same universal property as the product. Another good example of a universal property comes from an important concept in algebraic geometry -- the localization of a ring.
+\begin{exmp}[\ib{Localization of a ring}]
+Given a ring $R$ and a multiplicative subset $S \subset R$ (a set closed under multiplication that contains $1$). We can then define the ring $S\inv R$ to be the set of formal fractions $\set{r/s ~:~ r \in R, s \in S}$ modulo the equivalence relation $\sim$ where $r/s \sim p/q$ if and only if there exists $t \in S$ such that $t(qr - sp) = 0$\footnote{This might look strange if you compare it to the fractions you know in $\Q$, but special care needs to be taken in the case that $R$ contains zero divisors}. Addition and multiplication of fractions is exactly the same as in $\Q$, namely $r/s + p/q = (rq + ps)/pq$ and $r/s \cdot p/q = rp/sq$. We then have a canonical map $R \to S\inv R$ where $r \mapsto r/1$
+\end{exmp}
+%
+\begin{exer}
+Show the canonical map $R \to S\inv R$ is injective if and only if $S$ contains no zero divisors.
+\end{exer}
+%
+\begin{proof}
+Suppose there exists two distinct elements $p,q$ that map to the same element, i.e. $p/1 \sim q/1$. This means that there exists some $s \in S$ such that $s(p-q) = 0$, which is true if and only if $s$ is a zero divisor for the nonzero element $p-q$.
+\end{proof}
+%
+\begin{exer}
+Show that $S\inv R$ satisfies the following universal property: $S\inv R$ is initial among $R$-algebras $A$ where every element of $S$ is mapped to a invertible element. In other words any map $R \to A$ in which every element is mapped to an invertible element factors uniquely through the map $R \to S\inv R$.
+\end{exer}
+%
+\begin{proof}
+Let $\varphi : R \to A$ be such a map where every element of $S$ maps to an invertible element. The we want to find a map $\tilde{\varphi}: S\inv R \to A$ such that the following diagram commutes
+$$\xymatrix{
+R \ar[d]_{\iota}\ar[r]^{\varphi} & A \\
+S\inv R \ar[ur]_{\tilde{\varphi}}
+}$$
+where $\iota : R \to S\inv R$ is the canonical map. We note that in order for the diagram to commute, we must necessarily have that $\tilde{\varphi}(r/1) = \varphi(r)$ for every $r \in R$. Therefore, the only possible mapping for $\tilde{\varphi}$ must be $\tilde{\varphi}(r/s) = \varphi(r) / \varphi(s)$, which is possible since $\varphi(s)$ is invertible, so we have found our unique map.
+\end{proof}
 %
 \end{document}
