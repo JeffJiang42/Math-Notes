@@ -267,10 +267,36 @@ $$\xymatrix{
 }$$
 a \ib{natural isomorphism} is when all the given morphisms $m_A$ are isomorphisms.
 \end{defn}
-This gives a rigorous definition for the words ``canonical" and ``natural" that get thrown around a bit too often. The prototypical example for this idea is the natural isomorphism from a finite dimensional vector space to its double dual.
 %
 \begin{exmp}
-
+A trivial example of a natural transformation between $\mathcal{F} \to \mathcal{G}$ assigns the zero map $z:\mathcal{F}(A) \to \mathcal{G}(A)$ for every object $A$. Such a zero map only exists in some categories, such as $\mathsf{Vec}_k$ and $\mathsf{Grp}$.
 \end{exmp}
+This gives a rigorous definition for the words ``canonical" and ``natural" that get thrown around a bit too often. The prototypical example for this idea is the natural isomorphism from a finite dimensional vector space to its double dual.
+%
+\begin{exer}
+Let $\mathcal{D}: \mathsf{Vec}_k \to \mathsf{Vec}_k$ be the functor that maps each $k$-vector space $V$ to its dual space $V^*$ of linear functions $V \to k$ and maps a linear map $A: V \to W$ to its pullback (sometimes called the transpose) $A^*: W^* \to V^*$. Show that the double dual functor $\mathcal{D} \circ \mathcal{D}$ is naturally isomorphic to the identity functor $\id$.
+\end{exer}
+%
+\begin{proof}
+For a vector $v$ in a vector space $V$, define the map $\xi_v: V^* \to k$ by $\xi_v(\omega) = \omega(v)$. The let $\Xi_V: V \to V^{**}$ be the map that sends $v \mapsto \xi_v$. We claim that the morphisms $\Xi_V$ define a natural isomorphism from $\mathcal{D} \circ \mathcal{D}$ to $\id$. We first show that $\Xi_V$ defines an isomorphism. Since $V$ and $V^{**}$ are the same dimension, it suffices to check that $\Xi_V$ has trivial kernel. Suppose $v \mapsto \xi_v = 0$. Then $\omega(v) = 0$ for all $\omega \in V^*$, which is only true when $v = 0$. Therefore, $\Xi_V$ is an isomorphism for every $V$. Showing that the $\Xi_V$ define a natural isomorphism now amounts to showing that the following diagram commutes
+$$\xymatrix{
+V \ar[r]^A \ar[d]_{\Xi_V} & W \ar[d]^{\Xi_W} \\
+V^{**} \ar[r]_{A^{**}} & W^{**}
+}$$
+which amounts to showing that $\Xi_W \circ A = A^{**} \circ \Xi_V$. Let $v \in V$ and $\omega \in W^*$. Then we compute
+\begin{align*}
+(\Xi_W \circ A)(v)(\omega) &= \Xi_W(Av)(\omega) \\
+&= \xi_{Av}(\omega) \\
+&= \omega(Av)
+\end{align*}
+We also compute
+\begin{align*}
+(A^{**} \circ \Xi_V)(v)(\omega) &= A^{**}\xi_v(\omega) \\
+&= \xi_v(A^{*}\omega) \\
+&= A^{*}\omega(v) \\
+&= \omega(Av)
+\end{align*}
+So we have given a natural isomorphism $\mathcal{D} \circ \mathcal{D} \to \id$
+\end{proof}
 %
 \end{document}
