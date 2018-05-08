@@ -225,11 +225,52 @@ Vector spaces over a field $\F$ also form a category, denoted $\mathsf{Vec}_\F$,
 \end{exmp}
 %
 \begin{exer}
-Let $A$ be an object of a category $\mathscr{C}$. Show that the automorphisms of $\hom(A,A)$ form a group, called the \ib{Automorphism group} of $A$.
+Let $A$ be an object of a category $\mathscr{C}$. Show that the automorphisms of $\hom(A,A)$ form a group, called the \ib{Automorphism group} of $A$. Show that two isomorphisc objects in $\mathscr{C}$ have isomorphic automorphism groups.
 \end{exer}
 %
 \begin{proof}
+Verifying that $\Aut(A)$ is a group is mainly an exercise in definition chasing. Associativity comes from the category axioms, the identity element is the identity morphism, and inverses exist by the definition of the automorphism group. 
 
+For the second part, let $A,B \in \mathsf{Ob}(\mathscr{C})$ be isomorphic, with $f: A \to B$ an isomorphism. We then define a map $f^*: \Aut(B) \to \Aut(A)$ where $f^*\sigma = f\inv \circ \sigma \circ f$. This is clearly a group homomorphism, and is an isomorphism with inverse given by $(f\inv)^*$.
 \end{proof}
+%
+Now that we have categories, the natural thing to study are maps of categories.
+%
+\begin{defn}
+A (covariant)\ib{functor} $\mathcal{F}$ from a category $\mathscr{C}$ to another category $\mathscr{D}$ assigns each object $A \in \mathsf{Ob}(\mathscr{C})$ an object $\mathcal{F}(A) \in \mathsf{Ob}(\mathscr{D})$ and to each map $f:A \to B$ in $\mathscr{C}$ a map $\mathcal{F}(f) : \mathcal{F}(A) \to \mathcal{F}(B)$ such that $\mathcal{F}$ respects composition, i.e.
+$$\mathcal{F}(f \circ g) = \mathcal{F}(f) \circ \mathcal{F}(g) $$
+a \ib{contravariant functor} can be defined similarly, except it reverses the arrows, i.e. $\mathcal{F}(f)$ is now a map $B \to A$, rather than $A \to B$.
+\end{defn}
+%
+\begin{exmp}
+For mathematical objects that are just sets with extra structure (e.g. vector spaces, groups, rings, etc), the \ib{forgetful functor} is the functor that takes each object to its underlying set, and each map to itself (thought of as a map of sets). Categories that admit a forgetful functor into $\mathsf{Set}$ are called \ib{concrete categories}.
+\end{exmp}
+%
+\begin{exmp}[\ib{The functor of points}]
+For a category $\mathscr{C}$, fix an object $A \in \mathsf{Ob}(\mathscr{C})$. We use this to define the functor $\mathcal{F}_A: \mathscr{C} \to \mathsf{Set}$, where for $B \in \mathsf{Ob}(\mathscr{C})$, we let $\mathcal{F}(B) = \hom(A,B)$ and for $f: B \to C$, we let $\mathcal{F}_A(f): \hom(A,B) \to \hom(A,C)$ be the map where $\mathcal{F}_A(f)(g) = f \circ g$.
+\end{exmp}
+Like functions, we can compose functors $\mathcal{F}: \mathscr{A} \to \mathscr{B}$ and $\mathcal{G}:  \mathscr{B} \to \mathscr{C}$ to obtain $\mathcal{G} \circ \mathcal{F}: \mathscr{A} \to \mathscr{C}$, where for $A \in \mathsf{Ob}(\mathscr{A})$, we have that $\mathcal{G} \circ \mathcal{F}(A) = \mathcal{G}(\mathcal{F}(A))$, and the same thing for morphisms in $\mathscr{A}$. Also like functions, we have notions of injectivity and surjectivity.
+%
+\begin{defn}
+A covariant functor $\mathcal{F}: \mathscr{C} \to \mathscr{D}$ is \ib{faithful} if the induced map $\hom_{\mathscr{C}}(A,B) \to \hom_{\mathscr{D}}(\mathcal{F}(A),\mathcal{F}(B))$ is injective and \ib{full} if it surjective.
+\end{defn}
+%
+\begin{exmp}
+The forgetful functor $\mathsf{Vec}_k \to \mathsf{Set}$ is not full, since there are more maps of sets than there are maps of vector spaces, since an element of $\hom_{\mathsf{Set}}(V,W)$ need not be linear. However, the ``inclusion" functor $i: \mathsf{Ab} \to \mathsf{Grp}$ from abelian groups into groups is full. Given two abelian groups $G$ and $H$, we clearly have that $\hom_{\mathsf{Ab}}(G,H) = \hom_{\mathsf{Grp}}(G,H)$, so we have that $i$ is a faithful functor as well.
+\end{exmp}
+Functors in a lot of ways act just like functions, but there's some more things we can do with them. For example, it some sense, we can have maps between functors.
+\begin{defn}
+Given covariant functors $\mathcal{F},\mathcal{G}: \mathscr{A} \to \mathscr{B}$, a \ib{natural transformation} $\mathcal{F} \to \mathcal{G}$ assigns each object $A \in \mathsf{Ob}(\mathscr{A})$ a morphism $m_A : \mathcal{F}(A) \to \mathcal{G}(A)$, such that for every morphism $f: A \to B$ in $\mathscr{A}$, the following diagram commutes
+$$\xymatrix{
+\mathcal{F}(A) \ar[r]^{\mathcal{F}(f)} \ar[d]_{m_A} & \mathcal{F}(B) \ar[d]^{m_B} \\
+\mathcal{G}(A) \ar[r]_{\mathcal{G}(f)} & \mathcal{G}(B)
+}$$
+a \ib{natural isomorphism} is when all the given morphisms $m_A$ are isomorphisms.
+\end{defn}
+This gives a rigorous definition for the words ``canonical" and ``natural" that get thrown around a bit too often. The prototypical example for this idea is the natural isomorphism from a finite dimensional vector space to its double dual.
+%
+\begin{exmp}
 
+\end{exmp}
+%
 \end{document}
