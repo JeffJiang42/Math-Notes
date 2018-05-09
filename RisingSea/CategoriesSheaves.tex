@@ -372,5 +372,38 @@ S\inv R \ar[ur]_{\tilde{\varphi}}
 }$$
 where $\iota : R \to S\inv R$ is the canonical map. We note that in order for the diagram to commute, we must necessarily have that $\tilde{\varphi}(r/1) = \varphi(r)$ for every $r \in R$. Therefore, the only possible mapping for $\tilde{\varphi}$ must be $\tilde{\varphi}(r/s) = \varphi(r) / \varphi(s)$, which is possible since $\varphi(s)$ is invertible, so we have found our unique map.
 \end{proof}
+You can localization for $R$-modules $M$ as well. Let's define it in terms of a universal property this time. Let $S\inv M$ be the $R$-module equipped with the map $\varphi : M \to S\inv M$ where any map $f: M \to N$ such that scalar multiplication $M_s: N \to N$ is an isomorphism factors through $S\inv M$ as a unique map $\tilde{f}: S\inv M \to N$, i.e. the following diagram commutes
+$$\xymatrix{
+M \ar[d]_{\varphi}\ar[r]^f & N \\
+S\inv M \ar[ur]_{\tilde{f}}
+}$$
+%
+\begin{exer}
+Prove that the localization $(S\inv M, \varphi)$ exists.
+\end{exer}
+%
+\begin{proof}
+Define the localization $S\inv M$ similarly to $S\inv R$ as the set
+$$\set{\frac{m}{s} ~:~ m \in M s \in S} / \sim $$
+modulo the relation $\sim$ where $m/s \sim n/p$ if there exists $t \in S$ such that $t(mp - ns) = 0$, and let $\varphi$ be the map $m \mapsto m / 1$. We claim that this satisfies the universal property given above. Let $f: M \to N$ be a map of modules where $S$ acts on $N$ by isomorphisms. Then define $\tilde{f}: S\inv M \to N$ by $\tilde{f}(m/s) = 1/s \cdot f(m)$, where $1/s$ is the inverse to the multiplication map $m_s: R \to R$, which is defined since scalar multiplication by $s$ defines an isomorphism $N \to N$. It is clear that the diagram commutes, so the set and map we gave satisfies the universal property.
+\end{proof}
+%
+Another example is the tensor product $\otimes$, where given $R$-modules $M$ and $N$, we can form $M \otimes_R N$ as the set of sums formal symbols $m \otimes n$ where $m \in M$ and $n \in N$ where $\otimes$ is bilinear, i.e. $(am_1 + bm_2) \otimes n = am_1 \otimes + bm_2 \otimes n$ and $m \otimes (an_1 + bn_2) = am\otimes n_1 + bm\otimes n_2$.
+%
+\begin{exer}
+Show that $Z/10\Z \otimes_\Z Z/12\Z \cong Z/2\Z$.
+\end{exer}
+%
+\begin{proof}
+Let $[a]_{10}$ denote the equivalence class of $a \in Z$ in $\Z/10\Z$ and define $[a]_{12}$ similarly. Then define the map $\varphi: \Z/10\Z \otimes_\Z \Z/12\Z \to \Z/2\Z$ by $[a]_{10} \otimes [b]_{12} \mapsto [ab]_2$ and extending linearly to sums. This is clearly surjective and $\Z$-linear, so to show that $\varphi$ is an isomorphism, we show that the kernel is trivial. To show this, it suffices to check elements of the form $[a]_{10} \otimes [b]_{12}$. Suppose we have $[a]_{10} \otimes [b]_{12} \mapsto 0$. Noting that $[a]_{10} = a[1]_{10}$, and the same for $[b]_{12}$. Therefore, we have that $[a]_{10} \otimes [b]_{12} = ab([1]_{10} \otimes [1]_{12})$. Therefore in order for $\varphi([a]_{10} \otimes [b]_{12}) = 0$, we must have $ab = 0$, since $[1]_{10} \otimes [1]_{12} \mapsto [1]_2$. Therefore, $[a]_{10} \otimes [b]_{12} = 0$, so the kernel is trivial.
+\end{proof}
+%
+\begin{exer}
+Fix an $R$-module $N$. Define a functor $\mathcal{N}: \mathsf{Mod}_R \to \mathsf{Mod}_R$ by $\mathcal{N}(M) = M \otimes_R N$, and for any map $\varphi : A \to B$, let $\mathcal{N}(\varphi) A\otimes_R N \to B\otimes_R N$ be the map defined by $\mathcal{N}(\varphi)(a \otimes n) = \varphi(a) \otimes n$. Show that $\mathcal{N}$ is indeed a covariant functor, and that it is \ib{right-exact}, i.e. if we are given a short exact sequence of $R$-modules
+$$0 \to A \to B \to C \to 0 $$
+the corresponding sequence
+$$0 \to A \otimes_R N \to B \otimes_R N \to C \otimes_R N $$
+is also exact.
+\end{exer}
 %
 \end{document}
