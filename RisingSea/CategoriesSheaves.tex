@@ -237,7 +237,7 @@ For the second part, let $A,B \in \mathsf{Ob}(\mathscr{C})$ be isomorphic, with 
 Now that we have categories, the natural thing to study are maps of categories.
 %
 \begin{defn}
-A (covariant)\ib{functor} $\mathcal{F}$ from a category $\mathscr{C}$ to another category $\mathscr{D}$ assigns each object $A \in \mathsf{Ob}(\mathscr{C})$ an object $\mathcal{F}(A) \in \mathsf{Ob}(\mathscr{D})$ and to each map $f:A \to B$ in $\mathscr{C}$ a map $\mathcal{F}(f) : \mathcal{F}(A) \to \mathcal{F}(B)$ such that $\mathcal{F}$ respects composition, i.e.
+A (covariant) \ib{functor} $\mathcal{F}$ from a category $\mathscr{C}$ to another category $\mathscr{D}$ assigns each object $A \in \mathsf{Ob}(\mathscr{C})$ an object $\mathcal{F}(A) \in \mathsf{Ob}(\mathscr{D})$ and to each map $f:A \to B$ in $\mathscr{C}$ a map $\mathcal{F}(f) : \mathcal{F}(A) \to \mathcal{F}(B)$ such that $\mathcal{F}$ respects composition, i.e.
 $$\mathcal{F}(f \circ g) = \mathcal{F}(f) \circ \mathcal{F}(g) $$
 a \ib{contravariant functor} can be defined similarly, except it reverses the arrows, i.e. $\mathcal{F}(f)$ is now a map $B \to A$, rather than $A \to B$.
 \end{defn}
@@ -399,11 +399,40 @@ Let $[a]_{10}$ denote the equivalence class of $a \in Z$ in $\Z/10\Z$ and define
 \end{proof}
 %
 \begin{exer}
-Fix an $R$-module $N$. Define a functor $\mathcal{N}: \mathsf{Mod}_R \to \mathsf{Mod}_R$ by $\mathcal{N}(M) = M \otimes_R N$, and for any map $\varphi : A \to B$, let $\mathcal{N}(\varphi) A\otimes_R N \to B\otimes_R N$ be the map defined by $\mathcal{N}(\varphi)(a \otimes n) = \varphi(a) \otimes n$. Show that $\mathcal{N}$ is indeed a covariant functor, and that it is \ib{right-exact}, i.e. if we are given a short exact sequence of $R$-modules
+Fix an $R$-module $N$. Define a functor $\mathcal{N}: \mathsf{Mod}_R \to \mathsf{Mod}_R$ by $\mathcal{N}(M) = M \otimes_R N$, and for any map $\varphi : A \to B$, let $\mathcal{N}(\varphi) : A\otimes_R N \to B\otimes_R N$ be the map defined by $\mathcal{N}(\varphi)(a \otimes n) = \varphi(a) \otimes n$. Show that $\mathcal{N}$ is indeed a covariant functor, and that it is \ib{right-exact}, i.e. if we are given a short exact sequence of $R$-modules
 $$0 \to A \to B \to C \to 0 $$
 the corresponding sequence
 $$0 \to A \otimes_R N \to B \otimes_R N \to C \otimes_R N $$
 is also exact.
+\end{exer}
+%
+\begin{proof}
+To show that $\mathcal{N}$ defines a functor, all we need to show is that it respects composition. Let $\varphi: A \to B$ and $\psi: B \to C$. Then we need to show that $\mathcal{N}(\psi \circ \varphi) = \mathcal{N}(\psi) \circ \mathcal{N}(\varphi)$. To show this, it suffices to show that they agree on elements of the form $a \otimes n$. We compute
+$$ \mathcal{N}(\psi \circ \varphi)(a \otimes n) = (\psi \circ \varphi)(a) \otimes n = \mathcal{N}(\psi \circ \varphi)(a \otimes n) $$
+so $\mathcal{N}$ is a functor.
+
+We now show that $\mathcal{N}$ is right exact. Let 
+$$\xymatrix{
+0 \ar[r] & A \ar[r]^\varphi & B \ar[r]^\psi & C \ar[r] & 0
+}$$
+be exact, i.e. $\ker\psi = \im\varphi$, $\varphi$ is injective, and $\varphi$ is surjective. We want to show that 
+$$\xymatrix{
+0 \ar[r] & A \otimes_R N \ar[r]^{\mathcal{N}(\varphi)} & B \otimes_R N \ar[r]^{\mathcal{N}(\psi)} & C \otimes_R N \ar[r] & 0
+}$$
+Is also exact, i.e. $\mathcal{N}(\varphi)$ is injective, $\ker\mathcal{N}(\psi) = \im\mathcal{N}(\varphi)$, and $\mathcal{N}(\psi)$ is surjective. We note that if $\mathcal{N}(\varphi)(a \otimes n) = 0$, then this means that $\varphi(a) \otimes n = 0$, which means either $\varphi(a) = 0$ or $n = 0$. Since $\varphi$ is injective, this implies that either $a$ or $n$ is $0$, so $a \otimes n = 0$. Therefore, $\mathcal{N}(\varphi)$ is also injective. Next, we want to show that $\mathcal{N}(\varphi)$ surjects onto $\ker\mathcal{N}(\psi)$. To do this, we first characterize the elements in $\ker\mathcal{N}(\psi)$. Suppose $\mathcal{N}(\psi)(b \otimes n) = \psi(b) \otimes n = 0$. Then we must have that either $\psi(b) = 0$ or $n = 0$. Therefore, the kernel of $\mathcal{N}(\psi)$ is exactly $\ker\psi \otimes_R N$. We note that the image of $\mathcal{N}(\varphi)$ is exactly $\im\varphi \otimes N$, and since the original sequence is exact, this gives us that $\im\mathcal{N}(\varphi) = \ker\mathcal{N}(\psi)$. Finally, we must show that $\mathcal{N}(\psi)$ is surjective.  We note that the image of $\mathcal{N}(\psi)$ is exactly $\im\psi \otimes_R N = C \otimes_R N$ since $\psi$ was surjective. Therefore, the sequence is exact.
+\end{proof}
+The characterization we gave for the tensor product $A \otimes B$, while not wrong, is pretty inelegant, and obfuscates the real reason we like tensor products. It is much better to define the tensor product in terms of the universal property it satisfies. In this case, given $R$-modules $A,B$, the tensor product $A \otimes B$ is an $R$-module equipped with a bilinear map $\varphi: A\times B \to A \otimes B$  such that for any bilinear map $\psi: A \times B \to C$, it factors uniquely as a linear map $A \otimes B$, i.e. the following diagram commutes
+$$\xymatrix{
+A\times B \ar[r]^\psi \ar[d]_{\varphi} & C \\
+A \otimes B \ar[ur]
+}$$  
+So the tensor product is another $R$-module in which linear maps are equivalent to bilinear maps out of $A \times B$. The construction we gave above equivalent, with the map $\varphi$ being given by the mapping $(a,b) \mapsto a \otimes b$.
+%
+\begin{exer}\enumbreak
+\begin{enumerate}
+\item Let $M$ be an $A$ module, and let $\varphi : A \to B$ be a ring homomorphism. GIve $B \otimes_A M$ the structure of a $B$-module. Show that this defines a functor $\mathsf{Mod}_A \to \mathsf{Mod}_B$.
+\item Furthermore, if we are given another ring homomorphism $\rho : A \to C$, show that we can endow $B \otimes_A C$ the structure of a ring.
+\end{enumerate}
 \end{exer}
 %
 \end{document}
