@@ -200,7 +200,7 @@
 \title{The Rising Sea: Categories and Sheaves}
 \maketitle
 
-These are some notes + exercises I've compiled working through the first $2$ chapters of Ravi Vikhil's \emph{The Rising Sea}, with the main purpose being to gain some familiarity and comfort with categories and sheaves.	
+These are some notes + exercises I've compiled working through the first $2$ chapters of Ravi Vakil's \emph{The Rising Sea}, with the main purpose being to gain some familiarity and comfort with categories and sheaves.	
 %
 \section{Category Theory}
 %
@@ -434,5 +434,13 @@ So the tensor product is another $R$-module in which linear maps are equivalent 
 \item Furthermore, if we are given another ring homomorphism $\rho : A \to C$, show that we can endow $B \otimes_A C$ the structure of a ring.
 \end{enumerate}
 \end{exer}
+%
+\begin{proof}\enumbreak
+\begin{enumerate}
+\item We note that the homomorphism $\varphi: A \to B$ gives $B$ the structure of an $A$-module where the scalar multiplication is given by $a \cdot b = \varphi(a)b$, so it makes sense to construct $B \otimes_A M$. To make $B \otimes_A M$ a $B$-module, we just need to specify a scalar multiplication by $B$. Let $b \otimes m \in B \otimes_A M$, and let $\lambda \in B$. Let 
+$$\lambda \cdot b \otimes m = \lambda b \otimes m$$
+and extending linearly to sums.
+\end{enumerate}
+\end{proof}
 %
 \end{document}
