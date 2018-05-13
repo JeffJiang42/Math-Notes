@@ -439,8 +439,41 @@ So the tensor product is another $R$-module in which linear maps are equivalent 
 \begin{enumerate}
 \item We note that the homomorphism $\varphi: A \to B$ gives $B$ the structure of an $A$-module where the scalar multiplication is given by $a \cdot b = \varphi(a)b$, so it makes sense to construct $B \otimes_A M$. To make $B \otimes_A M$ a $B$-module, we just need to specify a scalar multiplication by $B$. Let $b \otimes m \in B \otimes_A M$, and let $\lambda \in B$. Let 
 $$\lambda \cdot b \otimes m = \lambda b \otimes m$$
-and extending linearly to sums.
+and extending linearly to sums. By definition this distributes over the addition of $B \otimes_A M$ as an $A$-module, so this makes it a $B$-module as well. We note by the previous exercise, tensoring with a fixed $A$-module (in this case $B$), defines an functor.
+\begin{rem*}
+This process is commonly referred to as \ib{extension of scalars}, especially when the map $\varphi$ is like an inclusion, e.h. $\R \hookrightarrow \C$. In that case, this process takes a real vector space and complexifies it into a complex vector space.
+\end{rem*}
+\item Let addition on $B \otimes_A C$ be the standard addition as $A$-modules. Then we define multiplication as 
+$$(b_1\otimes c_1)(b_2 \otimes c_2) = b_1b_2 \otimes  c_1c_2$$
+and extending linearly to sums, which covers distributivity. In addition, multiplication is commutative since $B$ and $C$ are commutative, so this forms a ring.
 \end{enumerate}
 \end{proof}
+%
+\begin{exer}
+Let $S$ be a multiplicative subset of $A$, and let $M$ be an $A$-modules. Describe a natural isomorphism $(S\inv A) \otimes_A M \cong S\inv M$.
+\end{exer}
+%
+\begin{proof}
+We already have that the assignment $M \mapsto (S\inv A) \otimes_A M$ defines a functor, and it is simple to check that the assignment $M \mapsto S\inv M$ also defines a functor, so we are looking for isomorphisms $\varphi_M : (S\inv A)\otimes_A M \to S\inv M$ such that the following diagram commutes for any $A$-module homomorphism $\psi : M \to  N$
+$$\xymatrix{
+(S\inv A) \otimes_A M \ar[d]_{\varphi_M }\ar[r]^{\tilde{\psi}} & (S\inv A) \otimes_A  N \ar[d]^{\varphi_N} \\
+S\inv M \ar[r]^{\bar{\psi}} & S\inv N
+}$$
+Where $\tilde{\psi}$ denotes the map where $r/s \otimes m \mapsto r/s \otimes \psi(m)$ and $\bar{\psi}$ denotes the map where $m/s \mapsto \psi(m)/s$. Define $\varphi_M (S\inv A) \otimes_A \to S\inv M$ by
+$$\frac{r}{s} \otimes m \mapsto \frac{rm}{s} $$
+we note that the kernel is trivial, since $rm/s = 0$ if and only if $r = 0$ or $m = 0$. In addition, the map is surjective, since we have that $1/s \otimes m \mapsto m/s$, so this defines an isomorphism. Finally, to show that the diagram commutes, we want to show that $\varphi_N \circ \tilde{\psi} = \bar{\psi} \circ \varphi_M$. We compute
+\begin{align*}
+(\varphi_N \circ \tilde{\psi})(r/s \otimes m) &= \varphi_N(r/s \otimes \psi(m)) \\
+&= r\psi(m)/s \\
+(\bar{\psi} \circ \varphi_M)(r/s \otimes m) &= \tilde{psi}(rm/s) \\
+&=  \psi(rm) /s \\
+&= r\psi(m)/s
+\end{align*}
+So the diagram commutes, and we have specified a natural isomorphism.
+\end{proof}
+%
+\begin{exmp}[\ib{Fibered products}]
+
+\end{exmp}
 %
 \end{document}
