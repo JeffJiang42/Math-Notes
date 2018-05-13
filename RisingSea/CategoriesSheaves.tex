@@ -221,7 +221,7 @@ The category of sets, often denoted $\mathsf{Set}$ has sets as its objects, and 
 \end{exmp}
 %
 \begin{exmp}
-Vector spaces over a field $\F$ also form a category, denoted $\mathsf{Vec}_\F$, where the objects are $\F$-vector spaces, and the objects are $\F$-linear maps.
+Vector spaces over a field $\F$ also form a category, denoted $\mathsf{Vec}_\F$, where the objects are $\F$-vector spaces, and the morphisms are $\F$-linear maps.
 \end{exmp}
 %
 \begin{exer}
@@ -473,7 +473,43 @@ So the diagram commutes, and we have specified a natural isomorphism.
 \end{proof}
 %
 \begin{exmp}[\ib{Fibered products}]
-
+In any category, suppose we have morphisms $\alpha : X \to Z$ and $\beta : Y \to Z$. The \ib{fibered product} is another object, denoted $X \times_Z Y$ equipped with maps $\pi_X : X \times_Z \to X$ and $\pi_Y: X \times_Z Y \to Y$ such that $\alpha \circ \pi_X = \beta \circ \pi_Y$, and for any object $W$ with maps $W \to X$ and $W \to Y$ whose compositions with $\alpha$ and $\beta$ agree, there exists a unique map $W \to X \times_Z Y$. This is summarized by the following commutative diagram
+$$\xymatrix{
+W \ar[rr]\ar[dd] \ar@{-->}[dr] & &Y \ar[dd]_{\beta}\\
+& X \times_Z Y \ar[dl]_{\pi_X} \ar[ur]^{\pi_Y} \\
+X \ar[rr]_{\alpha} & & Z
+}$$
+In many cases where the maps $\alpha$ and $\beta$ are clear, they are omitted, and we refer to the fibered product as just $X \times_Z Y$. The commutative square
+$$\xymatrix{
+X \times_Z Y \ar[d]_{\pi_Y} \ar[r]^{\pi_X} & X \ar[d]^\alpha \\
+Y \ar[r]_\beta & Z
+}$$
+is often refereed to a Cartesian diagram/square.
 \end{exmp}
+%
+\begin{exer}
+Show that in the category $\mathsf{Set}$, the fibered product is given by 
+$$X \times_Z Y = \set{(x,y) \in X \times Y ~:~ \alpha(x) = \beta(y)} $$
+\end{exer}
+%
+\begin{proof}
+It suffices to show that this satisfies the universal property described above. Suppose we are given a set $W$ with maps $f: W \to X$ and $g: W \to Y$ such that $\alpha \circ f = \beta \circ g$. Then we have a map $\varphi: W \to X\times_Z Y$ where $\varphi(w) = (f(w),g(w))$, which lands in $X \times_Z Y \subset X \times Y$ by the definition, and visibly makes the diagram above commute.
+\end{proof}
+%
+\begin{exer}
+Let $X$ be a topological space, and show that the fibered product always exsits in the category of open sets of $X$ by describing what it is
+\end{exer}
+%
+\begin{proof}
+We recall that the category of open sets is the category where the objects are open sets of $X$, with a unique arrow existing between open sets $U$ and $V$ if $U \subset V$. Then let $A,B,C$ be open sets of $X$, where we have arrows $A \to C$ and $B \to C$, which in more standard language means that $A \subset C$ and $B \subset C$. Then for any $W$ such that $W \subset A$ and $W \subset B$, there must exist an arrow $W \to A \times_C B$ so $W \subset A \times_C B$, and we have that $A \times_C B \subset A$ and $A \times_C B \subset B$. Therefore, $A \times_C B = A \cap B$
+\end{proof}
+%
+\begin{exer}
+Let $Z$ denote the final object in a category. Assuming a relevant fibered products exist, show that for any objects $X,Y$, the fibered product $X \times_Z Y$ is uniquely isomorphic to the product $X \times Y$.
+\end{exer}
+%
+\begin{proof}
+
+\end{proof}
 %
 \end{document}
