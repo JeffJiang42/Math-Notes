@@ -509,7 +509,20 @@ Let $Z$ denote the final object in a category. Assuming a relevant fibered produ
 \end{exer}
 %
 \begin{proof}
-
+We note that since there only exists a single map $X \to Z$ and $Y \to Z$, we don't need to specify the maps. Let $X \times Y$ be the product (in the categorical sense). Then by the universal property, we have maps $\pi_X$ and $\pi_Y$ such that for any object $P$ with maps $f: P \to X$ and $g: P \to Y$, we get a map $f \times g: P \to X \times Y$. We note that these maps also satisfy the condition for a map to exists from $P \to X \times_Z Y$. We then know that there exists a unique map $X \times Y \to Z$, since $Z$ is a final object. Then since all maps to $Z$ must compose to the unique map to $Z$, we have that $X \times Y$ satisfies the universal property, so it must be the fibered product as well.
+\end{proof}
+%
+\begin{exer}
+Show that if the two squares in the following diagrame are commutative, then the outer rectangle is commutative as well
+$$\xymatrix{
+U \ar[d]\ar[r] & V \ar[d] \\
+W \ar[d] \ar[r] & X \ar[d] \\
+Y  \ar[r] & Z
+}$$
+\end{exer}
+%
+\begin{proof}
+Showing that the outer rectangle commutes equates to proving that the composition $U \to W \to Y \to Z$ is the same as $U \to V \to X \to Z$. From the commutativity of the upper square, we have that $U \to W \to X \to Z$ is the same as $U \to V \to X \to Z$. Then from commutativity of the lower square, we have that $W \to X \to Z$ is the same as $W \to Y \to Z$, so $U \to V \to X \to Z$ is the same as $U \to W \to Y \to Z$, proving commutativity of the upper square.
 \end{proof}
 %
 \end{document}
