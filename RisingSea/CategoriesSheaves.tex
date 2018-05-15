@@ -247,7 +247,7 @@ For mathematical objects that are just sets with extra structure (e.g. vector sp
 \end{exmp}
 %
 \begin{exmp}[\ib{The functor of points}]
-For a category $\mathscr{C}$, fix an object $A \in \mathsf{Ob}(\mathscr{C})$. We use this to define the functor $\mathcal{F}_A: \mathscr{C} \to \mathsf{Set}$, where for $B \in \mathsf{Ob}(\mathscr{C})$, we let $\mathcal{F}(B) = \hom(A,B)$ and for $f: B \to C$, we let $\mathcal{F}_A(f): \hom(A,B) \to \hom(A,C)$ be the map where $\mathcal{F}_A(f)(g) = f \circ g$.
+For a category $\mathscr{C}$, fix an object $A \in \mathsf{Ob}(\mathscr{C})$. We use this to define the functor $\mathcal{F}_A: \mathscr{C} \to \mathsf{Set}$, where for $B \in \mathsf{Ob}(\mathscr{C})$, we let $\mathcal{F}(B) = \hom(B,A)$ and for $f: B \to C$, we let $\mathcal{F}_A(f): \hom(C,A) \to \hom(B,A)$ be the map where $\mathcal{F}_A(f)(g) = g \circ f$.
 \end{exmp}
 Like functions, we can compose functors $\mathcal{F}: \mathscr{A} \to \mathscr{B}$ and $\mathcal{G}:  \mathscr{B} \to \mathscr{C}$ to obtain $\mathcal{G} \circ \mathcal{F}: \mathscr{A} \to \mathscr{C}$, where for $A \in \mathsf{Ob}(\mathscr{A})$, we have that $\mathcal{G} \circ \mathcal{F}(A) = \mathcal{G}(\mathcal{F}(A))$, and the same thing for morphisms in $\mathscr{A}$. Also like functions, we have notions of injectivity and surjectivity.
 %
@@ -513,7 +513,7 @@ We note that since there only exists a single map $X \to Z$ and $Y \to Z$, we do
 \end{proof}
 %
 \begin{exer}
-Show that if the two squares in the following diagrame are commutative, then the outer rectangle is commutative as well
+Show that if the two squares in the following diagrams are commutative, then the outer rectangle is commutative as well
 $$\xymatrix{
 U \ar[d]\ar[r] & V \ar[d] \\
 W \ar[d] \ar[r] & X \ar[d] \\
@@ -522,7 +522,40 @@ Y  \ar[r] & Z
 \end{exer}
 %
 \begin{proof}
-Showing that the outer rectangle commutes equates to proving that the composition $U \to W \to Y \to Z$ is the same as $U \to V \to X \to Z$. From the commutativity of the upper square, we have that $U \to W \to X \to Z$ is the same as $U \to V \to X \to Z$. Then from commutativity of the lower square, we have that $W \to X \to Z$ is the same as $W \to Y \to Z$, so $U \to V \to X \to Z$ is the same as $U \to W \to Y \to Z$, proving commutativity of the upper square.
+Showing that the outer rectangle commutes equates to proving that the composition $U \to W \to Y \to Z$ is the same as $U \to V \to X \to Z$. From the commutativity of the upper square, we have that $U \to W \to X \to Z$ is the same as $U \to V \to X \to Z$. Then from commutativity of the lower square, we have that $W \to X \to Z$ is the same as $W \to Y \to Z$, so $U \to V \to X \to Z$ is the same as $U \to W \to Y \to Z$, proving commutativity of the outer rectangle.
+\end{proof}
+%
+\begin{exer}
+Given morphisms $X_1 \to Y$, $X_2 \to Y$, and $Y \to Z$, show there is a natural map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$, assuming these fibered products exist.
+\end{exer}
+%
+\begin{proof}
+By composing the maps $X_i \to Y \to Z$, we get two maps with which we can construct the fibered product $X _1\times_Z X_2$. We then note that the projection maps $X_1 \times_Z \times X_2 \to X_i$ satisfy the condition that their composition with the maps $X_i \to Y \to Z$ are the same, so we get a map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$.
+\end{proof}
+\begin{exer}[\ib{The magic diagram}]
+Given maps $X_i \to Y$ and $Y \to Z$, show that the following diagram commutes, assuming all relevant fibered products exist
+$$\xymatrix{
+X_1 \times_Y X_2 \ar[d] \ar[r] & X_1 \times_Z X_2 \ar[d] \\
+Y \ar[r] & Y \times_Z Y
+}$$
+\end{exer}
+%
+\begin{proof}
+We first do some bookkeeping to figure out what each map is. The map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$ is the map discussed in the exercise above. The map $X_1 \times_Y \to Y$ is either $\alpha \circ \pi_{X_1}$ or $\beta \circ \pi_{X_2}$, which are the same by the definition of the fibered product, where $\alpha$ and $\beta$ are the maps $X_i \to Y$, and the map $Y \to Y \times_Z Y$ is the one obtained by factoring the identity map $\id_Y$ through the fibered product.
+
+Then to prove that the diagram commutes, we appeal to the previous exercise, by providing two squares that commute. Consider the diagram
+$$\xymatrix{
+X_1 \times_Y X_2 \ar[r] \ar[d] & X_1 \times_Z X_2 \ar[d] \\
+X_1 \ar[d] \ar[r] & X_1 \ar[d] \\
+Y \ar[r] & Y \times_Z Y
+}$$
+Where the middle map $X_1 \to X_1$ is the identity map. Then we want to show both of the squares commute. For the upper square, we note that the map $X \times_Y X_2 \to X_1 \times_Z X_2$ is the one obtained by factoring the projection maps $X_1 \times_Z X_2 \to X_i$, which gives the following commutative diagram
+$$\xymatrix{
+X_1 \times_Y X_2  \ar[dr] \ar[drr] \ar[ddr]\\
+& X_1 \times_Z X_2 \ar[r] \ar[d] & X_2 \ar[d]\\
+& X_1 \ar[r] & Y
+}$$ 
+which gives us commutativity of the upper square. For the lower square, we note that the identity map on $Y$ gives us a map $Y \to Y \times_Z Y$, and that the map $X_1 \to Y$ trivially commutes with the identity map, so it gives us a map $X_1 \to Y \times_Z Y$, so mapping $X_1 \to Y \to Y\times_Z Y$ is the same as going straight $X_1 \to Y \times_Z Y$.
 \end{proof}
 %
 \end{document}
