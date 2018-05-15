@@ -557,5 +557,40 @@ X_1 \times_Y X_2  \ar[dr] \ar[drr] \ar[ddr]\\
 }$$ 
 which gives us commutativity of the upper square. For the lower square, we note that the identity map on $Y$ gives us a map $Y \to Y \times_Z Y$, and that the map $X_1 \to Y$ trivially commutes with the identity map, so it gives us a map $X_1 \to Y \times_Z Y$, so mapping $X_1 \to Y \to Y\times_Z Y$ is the same as going straight $X_1 \to Y \times_Z Y$.
 \end{proof}
+A lot of constructions of objects in category theory come from taking the universal property of another object, and flipping all of the arrows to get a ``dual" object. To reflect this, we usually take the old object and slap ``co-" to the front\footnote{What is coffee? It's ffee with all the arrows reversed!}.
+\begin{defn}
+Define the \ib{coproduct} by taking the universal property for the product and flipping all of the arrows. That is, given two objects $X,Y$, the coproduct, denoted $X \coprod Y$, is another object equipped with maps $X \to X \coprod Y$ and $Y \to X \coprod Y$ such that for any object $C$ with maps $X \to C$ and $Y \to C$, there exists a unique map $X \coprod Y \to C$ such that the following diagram commutes
+$$\xymatrix{
+C \\
+& X \coprod Y \ar[ul] & Y \ar[l] \ar[ull] \\
+& X \ar[u] \ar[uul]
+}$$
+\end{defn}
+%
+\begin{defn}
+Let $X,Y,Z$ be objects, and we are given maps $Z \to X$ and $Z \to Y$, then the fibered coproduct $X \coprod_Z Y$ is an object equipped with maps $X \to X \coprod_Z Y$ and $Y \to X \coprod_Z Y$ such that given another object $W$ with maps $X \to W$ and $Y \to W$ such that their compositions $Z \to W$ agree, the map factors through to a map $X \coprod_Z Y \to W$, such that the following diagram commutes
+$$\xymatrix{
+Z \ar[d] \ar[r] & Y \ar[d] \ar[ddr]\\
+X \ar[r] \ar[drr] & X \coprod_Z Y  \ar[dr]\\ 
+& & W
+}$$
+\end{defn}
+%
+\begin{exer}
+Show that the disjoint union is the coproduct in $\mathsf{Set}$.
+\end{exer}
+%
+\begin{proof}
+Let $X$ and $Y$ be sets, and let $X \sqcup Y$ be the disjoint union, which is equipped with the inclusion maps $X \hookrightarrow X \sqcup Y$ and $Y \hookrightarrow X \sqcup Y$. Then given any maps $f: X \to Z$ and $g: Y \to Z$, we get a map $X \sqcup Y \to Z$ given by $f$ and $g$ on the disjoint components $X$ and $Y$, showing that the disjoint union satisfies the universal property.
+\end{proof}
+%
+\begin{exer}
+Suppose we have ring homomorphisms $A \to B$ and $A \to C$ (giving $B$ and $C$ the structure of $A$-modules). From a previous exercise. $B \otimes_A C$ has a ring structure. Show that there is a ring homomorphism $B \to B \otimes_A C$ defined by $b \mapsto b \otimes 1$ (which also exists for $C$). Show this gives a fibered coproduct in $\mathsf{Ring}$, i.e. the diagram
+$$\xymatrix{
+B \otimes_A C & C \ar[l] \\
+B \ar[u] & A \ar[l] \ar[u]
+}$$
+satisfies the universal property of a fibered coproduct.
+\end{exer}
 %
 \end{document}
