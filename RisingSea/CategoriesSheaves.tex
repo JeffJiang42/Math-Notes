@@ -530,7 +530,7 @@ Given morphisms $X_1 \to Y$, $X_2 \to Y$, and $Y \to Z$, show there is a natural
 \end{exer}
 %
 \begin{proof}
-By composing the maps $X_i \to Y \to Z$, we get two maps with which we can construct the fibered product $X _1\times_Z X_2$. We then note that the projection maps $X_1 \times_Z \times X_2 \to X_i$ satisfy the condition that their composition with the maps $X_i \to Y \to Z$ are the same, so we get a map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$.
+By composing the maps $X_i \to Y \to Z$, we get two maps with which we can construct the fibered product $X _1\times_Z X_2$. We then note that the projection maps $X_1 \times_Y \times X_2 \to X_i$ satisfy the condition that their composition with the maps $X_i \to Y \to Z$ are the same, so we get a map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$.
 \end{proof}
 \begin{exer}[\ib{The magic diagram}]
 Given maps $X_i \to Y$ and $Y \to Z$, show that the following diagram commutes, assuming all relevant fibered products exist
@@ -592,5 +592,38 @@ B \ar[u] & A \ar[l] \ar[u]
 }$$
 satisfies the universal property of a fibered coproduct.
 \end{exer}
+%
+\begin{proof}
+We first verify that the mapping $b \mapsto b \otimes 1$ is a ring homomorphism. By the bilinearity of $\otimes$, we get that $(b_1 + b_2) \otimes 1 = b_1 \otimes 1 + b_2 \otimes 1$, and that $rb \otimes 1 = r(b \otimes 1$, so this is a ring homomorphism. The same proof goes for the map $C \to B \otimes_A C$. 
+
+Then let $R$ be another ring with ring homomorphisms $\varphi: B \to R$ and $\psi: C \to R$ such that the compositions with the maps $A \to B$ and $A \to C$ respectively give the same map $A \to W$. Then we get a map $B \otimes_A C \to R$, which is uniquely defined by $b \otimes c \mapsto \varphi(b)\psi(c)$ and extending linearly to sums, so $B \otimes_A C$ is the fibered coproduct in the category of rings.
+\end{proof}
+There is also a generalization we have for injective and surjective maps, which are monomorphisms and epimorphisms.
+%
+\begin{defn}
+A morphisms $\pi : X \to Y$ is a monomorphism, if given two maps $f,g : Z \to X$ satisfying $\pi \circ f = \pi \circ g$, then $f = g$.
+\end{defn}
+%
+You should think of this as an injective map, but note that monomorphisms don't necessarily have to be injective.
+%
+\begin{exer}
+Show the composition of two monomorphisms is a monomorphism.
+\end{exer}
+%
+\begin{proof}
+Let $\varphi: X \to Y$ and $\psi : Y \to Z$ be monomorphisms, and let $f,g: A \to X$ satisfying 
+$$\psi \circ \varphi \circ f = \psi \circ \varphi \circ g$$
+Since $\psi$ is a monomorphism, we conlcude that $\varphi \circ f = \varphi \circ g$, and since $\varphi$ is a monomorphism, we conclude that $f = g$. Therefore, we have that $\psi \circ \varphi$ is a monomorphism as well.
+\end{proof}
+%
+\begin{exer}
+Prove a morphism $\pi : X \to Y$ is a monomorphism if and only if the fibered product $X \times_Y X$ exists, and the induced morphism $X \to X \times_Y X$ is an isomorphism
+\end{exer}
+%
+\begin{proof}
+We note that if we show that the map $X \to X \times_Y X$ is an isomorphism, we have shown existence, since $X$ certainly exists as an object. Therefore, we can assume that the fibered product exsits, and comes equipped with a map $p: X \times_Y X \to X$. In addition, we have that the identity map on $X$ induces a morphism $\iota: X \to X \times_Y X$. We claim that these two maps are inverses. We have that $\pi \circ \id_X = \pi \circ p \circ \iota$, from the universal property of the fibered product, so we conclude that $\id_X = p \circ \iota$. We now want to show that $\iota \circ p= \id_{X \times_Y X}$. We note that $p \circ \iota \circ p = \iota \circ p$ using the fact that $\pi$ is a monomorphism like we did earlier, so $\iota \circ p$ must be identity.
+
+Conversely, suppose we are given that the map $\iota : X \to X \times_Y X$ is an isomorphism. Then any map $Z \to X$ induces a map $Z \to X \times_Y X$. Then suppose we are given two maps $f,g: Z \to X$ such that $\pi \circ f = \pi \circ g$. Then we have that they induce the same map $Z \to X \times_Y X$, which when composing with the isomorphism $p = \iota\inv$, gives us that $f = g$, so $\pi$ is a monomorphism.
+\end{proof}
 %
 \end{document}
