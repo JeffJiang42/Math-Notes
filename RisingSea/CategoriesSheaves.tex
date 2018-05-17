@@ -641,5 +641,25 @@ Y \ar[r] & Y \times_Z Y
 From a previous exercise, since $Y \to Z$ is a monomorphism, the bottom map is an isomorphism.
 \fi
 \end{proof}
+As alluded to in the previous proof, Yoneda's lemma is an important tool in category theory, and establishes the categorical mindset where understanding an \emph{object} is the same as understanding \emph{maps involving that object}. If we have a map $f: B \to C$, we get a map $\hom(C,A) \to \hom(B,A)$ given by $g \mapsto g \circ f$, giving a contravariant functor (\ib{the functor of points}). If we consider $\hom(A,B)$ and $\hom(A,C)$, we get a similar functor, which is covariant. Yoneda's lemma tells us that these functors are both sufficient to specify $A$ up to unique isomorphism.
+%
+\begin{exer}[\ib{Yoneda's Lemma}]
+Let $A$ and $A'$ be objects in $\mathscr{C}$. Suppose we are given a family of maps
+$$i_C : \hom(C,A) \to \hom(C,A') $$
+such that given any $f: C \to B$, the following diagram commutes
+$$\xymatrix{
+\hom(C,A) \ar[r]^{i_C} \ar[d]  & \hom(C,A') \ar[d] \\
+\hom(B,A) \ar[r]_{i_B} & \hom(B,A')
+}$$
+where the vertical maps are given by precomposition with $f$.
+\begin{enumerate}
+\item Show that there is a unique map $g: A \to A'$ such that $i_C$ is given by $u \mapsto g \circ u$
+\item Show that if all the $i_C$ are bijections, the $g$ is an isomorphism
+\end{enumerate}
+\end{exer}
+%
+\begin{proof}
+
+\end{proof}
 %
 \end{document}
