@@ -541,7 +541,7 @@ Y \ar[r] & Y \times_Z Y
 \end{exer}
 %
 \begin{proof}
-We first do some bookkeeping to figure out what each map is. The map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$ is the map discussed in the exercise above. The map $X_1 \times_Y \to Y$ is either $\alpha \circ \pi_{X_1}$ or $\beta \circ \pi_{X_2}$, which are the same by the definition of the fibered product, where $\alpha$ and $\beta$ are the maps $X_i \to Y$, and the map $Y \to Y \times_Z Y$ is the one obtained by factoring the identity map $\id_Y$ through the fibered product.
+We first do some bookkeeping to figure out what each map is. The map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$ is the map discussed in the exercise above. The map $X_1 \times_Y X_2 \to Y$ is either $\alpha \circ \pi_{X_1}$ or $\beta \circ \pi_{X_2}$, which are the same by the definition of the fibered product, where $\alpha$ and $\beta$ are the maps $X_i \to Y$, the map $X_1 \times_A \to X_2 \to Y \times_Z Y$ is the one induced by the composition of the projection maps with $\alpha$ and  $\beta$, and the map $Y \to Y \times_Z Y$ is the one obtained by factoring the identity map $\id_Y$ through the fibered product.
 
 Then to prove that the diagram commutes, we appeal to the previous exercise, by providing two squares that commute. Consider the diagram
 $$\xymatrix{
@@ -594,7 +594,7 @@ satisfies the universal property of a fibered coproduct.
 \end{exer}
 %
 \begin{proof}
-We first verify that the mapping $b \mapsto b \otimes 1$ is a ring homomorphism. By the bilinearity of $\otimes$, we get that $(b_1 + b_2) \otimes 1 = b_1 \otimes 1 + b_2 \otimes 1$, and that $rb \otimes 1 = r(b \otimes 1$, so this is a ring homomorphism. The same proof goes for the map $C \to B \otimes_A C$. 
+We first verify that the mapping $b \mapsto b \otimes 1$ is a ring homomorphism. By the bilinearity of $\otimes$, we get that $(b_1 + b_2) \otimes 1 = b_1 \otimes 1 + b_2 \otimes 1$, and that $rb \otimes 1 = r(b \otimes 1)$, so this is a ring homomorphism. The same proof goes for the map $C \to B \otimes_A C$. 
 
 Then let $R$ be another ring with ring homomorphisms $\varphi: B \to R$ and $\psi: C \to R$ such that the compositions with the maps $A \to B$ and $A \to C$ respectively give the same map $A \to W$. Then we get a map $B \otimes_A C \to R$, which is uniquely defined by $b \otimes c \mapsto \varphi(b)\psi(c)$ and extending linearly to sums, so $B \otimes_A C$ is the fibered coproduct in the category of rings.
 \end{proof}
@@ -624,6 +624,22 @@ Prove a morphism $\pi : X \to Y$ is a monomorphism if and only if the fibered pr
 We note that if we show that the map $X \to X \times_Y X$ is an isomorphism, we have shown existence, since $X$ certainly exists as an object. Therefore, we can assume that the fibered product exsits, and comes equipped with a map $p: X \times_Y X \to X$. In addition, we have that the identity map on $X$ induces a morphism $\iota: X \to X \times_Y X$. We claim that these two maps are inverses. We have that $\pi \circ \id_X = \pi \circ p \circ \iota$, from the universal property of the fibered product, so we conclude that $\id_X = p \circ \iota$. We now want to show that $\iota \circ p= \id_{X \times_Y X}$. We note that $p \circ \iota \circ p = \iota \circ p$ using the fact that $\pi$ is a monomorphism like we did earlier, so $\iota \circ p$ must be identity.
 
 Conversely, suppose we are given that the map $\iota : X \to X \times_Y X$ is an isomorphism. Then any map $Z \to X$ induces a map $Z \to X \times_Y X$. Then suppose we are given two maps $f,g: Z \to X$ such that $\pi \circ f = \pi \circ g$. Then we have that they induce the same map $Z \to X \times_Y X$, which when composing with the isomorphism $p = \iota\inv$, gives us that $f = g$, so $\pi$ is a monomorphism.
+\end{proof}
+%
+\begin{exer}
+Show that if $Y \to Z$ is a monomorphism, then the induced map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$ is an isomorphism. 
+\end{exer}
+%
+\begin{proof}[\ib{Yikes}]
+As per the hint, there are two ways to prove this. For the first way, let $V$ be any object. We want to give a bijection $\hom(V,X_1 \times_Y X_2) \to \hom(V, X_1 \times_Y X_2)$. By the universal property, we know that giving a map $V \to X_1 \times_Y X_2$ is the same as giving maps $V \to X_i$ such that their compositions with the maps $X_i \to Y$ agree, and likewise for maps $V \to X_1 \times_Z X_2$. We have that the maps that define the fibered product  $X_1 \times_Y X_2$ are the compositions of the maps to $Y$ with the map $Y \to Z$, so we have that any map $V \to X_i$ that satisfies the conditions for $Y$ will also satisfy the conditions for $Z$,  so we have that the map $\hom(V, X_1 \times_Y X_2) \to \hom(V, X_1 \times_Z X_2)$ given by composing with the map $Y \to Z$ is surjective. In addition, since $Y \to Z$ is a monomorphism, if two maps $V \to X_i$ composed with  $\alpha$ or $\beta$ agree on the compositions with $Y \to Z$, they induce the same map to $X_1 \times_Y X_2$, so this map is injective, so we get a natural bijection $\hom(V, X_1 \times_Y X_2) \to \hom(V, X_1 \times_Z X_2)$. We then note that the map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$ is induced by the projection maps $X_1 \times_Y X_2 \to X_i$, and by how we constructed the bijection, we have that the bijection $\hom(V, X_1 \times_Y X_2) \to \hom(V,X_1 \times_Z X_2)$ is given by post-composing with our map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$, reading a little further to Yoneda's lemma tells us that it must be an isomorphism.
+\iffalse
+Alternatively, we can use the magic diagram, which tells us that the following diagram commutes
+$$\xymatrix{
+X_1 \times_Y X_2  \ar[d] \ar[r]  & X_1 \times_Z X_2 \ar[d] \\
+Y \ar[r] & Y \times_Z Y
+}$$
+From a previous exercise, since $Y \to Z$ is a monomorphism, the bottom map is an isomorphism.
+\fi
 \end{proof}
 %
 \end{document}
