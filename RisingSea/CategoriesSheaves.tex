@@ -630,16 +630,22 @@ Conversely, suppose we are given that the map $\iota : X \to X \times_Y X$ is an
 Show that if $Y \to Z$ is a monomorphism, then the induced map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$ is an isomorphism. 
 \end{exer}
 %
-\begin{proof}[\ib{Yikes}]
-As per the hint, there are two ways to prove this. For the first way, let $V$ be any object. We want to give a bijection $\hom(V,X_1 \times_Y X_2) \to \hom(V, X_1 \times_Y X_2)$. By the universal property, we know that giving a map $V \to X_1 \times_Y X_2$ is the same as giving maps $V \to X_i$ such that their compositions with the maps $X_i \to Y$ agree, and likewise for maps $V \to X_1 \times_Z X_2$. We have that the maps that define the fibered product  $X_1 \times_Y X_2$ are the compositions of the maps to $Y$ with the map $Y \to Z$, so we have that any map $V \to X_i$ that satisfies the conditions for $Y$ will also satisfy the conditions for $Z$,  so we have that the map $\hom(V, X_1 \times_Y X_2) \to \hom(V, X_1 \times_Z X_2)$ given by composing with the map $Y \to Z$ is surjective. In addition, since $Y \to Z$ is a monomorphism, if two maps $V \to X_i$ composed with  $\alpha$ or $\beta$ agree on the compositions with $Y \to Z$, they induce the same map to $X_1 \times_Y X_2$, so this map is injective, so we get a natural bijection $\hom(V, X_1 \times_Y X_2) \to \hom(V, X_1 \times_Z X_2)$. We then note that the map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$ is induced by the projection maps $X_1 \times_Y X_2 \to X_i$, and by how we constructed the bijection, we have that the bijection $\hom(V, X_1 \times_Y X_2) \to \hom(V,X_1 \times_Z X_2)$ is given by post-composing with our map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$, reading a little further to Yoneda's lemma tells us that it must be an isomorphism.
+\begin{proof}
+As per the hint, there are two ways to prove this. For the first way, let $V$ be any object. We want to give a bijection $\hom(V,X_1 \times_Y X_2) \to \hom(V, X_1 \times_Y X_2)$. By the universal property, we know that giving a map $V \to X_1 \times_Y X_2$ is the same as giving maps $V \to X_i$ such that their compositions with the maps $X_i \to Y$ agree, and likewise for maps $V \to X_1 \times_Z X_2$. We have that the maps that define the fibered product  $X_1 \times_Y X_2$ are the compositions of the maps to $Y$ with the map $Y \to Z$, so we have that any map $V \to X_i$ that satisfies the conditions for $Y$ will also satisfy the conditions for $Z$,  so we have that the map $\hom(V, X_1 \times_Y X_2) \to \hom(V, X_1 \times_Z X_2)$ given by composing with the map $Y \to Z$ is surjective. In addition, since $Y \to Z$ is a monomorphism, if two maps $V \to X_i$ composed with  $\alpha$ or $\beta$ agree on the compositions with $Y \to Z$, they induce the same map to $X_1 \times_Y X_2$, so this map is injective, so we get a natural bijection $\hom(V, X_1 \times_Y X_2) \to \hom(V, X_1 \times_Z X_2)$. We then note that the map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$ is induced by the projection maps $X_1 \times_Y X_2 \to X_i$, and by how we constructed the bijection, we have that the bijection $\hom(V, X_1 \times_Y X_2) \to \hom(V,X_1 \times_Z X_2)$ is given by post-composing with our map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$, reading a little further to Yoneda's lemma tells us that it must be an isomorphism. If we don't want to use Yoneda's lemma, there is a bit more work to do with the universal property. We note that since $X_1 \times_Y X_2$ and $X_1 \times_Z X_2$ satisfy the same universal property, there exists a unique map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$ such that precomposing the projection maps $X_1 \times_Z X_2 \to X_i$ with this map gives us the projection maps $X_1\times_Y X_2 \to X_i$, i.e. the following diagram commutes
+$$\xymatrix{
+X_1 \times_Y X_2  \ar@{-->}[dr] \ar[d] \ar[r] & X_2 \\
+X_1 & X_1\times_Z X_2 \ar[u] \ar[l]
+}$$
+We note that the map we have given satisfies this property, so it is exactly this isomorphism
 \iffalse
 Alternatively, we can use the magic diagram, which tells us that the following diagram commutes
 $$\xymatrix{
-X_1 \times_Y X_2  \ar[d] \ar[r]  & X_1 \times_Z X_2 \ar[d] \\
-Y \ar[r] & Y \times_Z Y
+X_1 \times_Y X_2  \ar[d]_\gamma \ar[r]^{\varphi}  & X_1 \times_Z X_2 \ar[d]^\delta \\
+Y \ar[r]_\psi & Y \times_Z Y
 }$$
-From a previous exercise, since $Y \to Z$ is a monomorphism, the bottom map is an isomorphism.
+From a previous exercise, since $Y \to Z$ is a monomorphism, the bottom map is an isomorphism. We claim that this implies that the top map is an isomorphism. To show this, we use a similar strategy of showing that $X_1 \times_Z X_2$ satisfies the same universal property as $X_1 \times_Y X_2$. Since $\psi$ is an isomorphism,
 \fi
+
 \end{proof}
 As alluded to in the previous proof, Yoneda's lemma is an important tool in category theory, and establishes the categorical mindset where understanding an \emph{object} is the same as understanding \emph{maps involving that object}. If we have a map $f: B \to C$, we get a map $\hom(C,A) \to \hom(B,A)$ given by $g \mapsto g \circ f$, giving a contravariant functor (\ib{the functor of points}). If we consider $\hom(A,B)$ and $\hom(A,C)$, we get a similar functor, which is covariant. Yoneda's lemma tells us that these functors are both sufficient to specify $A$ up to unique isomorphism.
 %
@@ -658,8 +664,14 @@ where the vertical maps are given by precomposition with $f$.
 \end{enumerate}
 \end{exer}
 %
-\begin{proof}
-
+\begin{proof} \enumbreak
+\begin{enumerate}
+\item Let $C = A$, in which case we have the map $i_A : \hom(A,A) \to \hom(A,A')$. We claim that the map $g :  A \to A'$ we are looking for is $i_A(\id_A)$. We note that the following diagram commutes
+$$\xymatrix{
+\hom(A,A) \ar[d] \ar[r]^{i_A} & \hom(A,A') \ar[d] \\
+\hom(A,A) \ar[r]_{i_A} & \hom(A,A')
+}$$
+\end{enumerate}
 \end{proof}
 %
 \end{document}
