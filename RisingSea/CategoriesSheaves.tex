@@ -668,10 +668,17 @@ where the vertical maps are given by precomposition with $f$.
 \begin{enumerate}
 \item Let $C = A$, in which case we have the map $i_A : \hom(A,A) \to \hom(A,A')$. We claim that the map $g :  A \to A'$ we are looking for is $i_A(\id_A)$. We first show that composition with $g = i_A(\id_A)$ satsifies the conditions we desire, i.e. that the following diagram commutes for any map $f: B \to C$
 $$\xymatrix{
-\hom(C,A) \ar[d] \ar[r]^{i_A} & \hom(C,A') \ar[d] \\
-\hom(B,A) \ar[r]_{i_A} & \hom(B,A')
+\hom(C,A) \ar[d] \ar[r]^{i_C} & \hom(C,A') \ar[d] \\
+\hom(B,A) \ar[r]_{i_B} & \hom(B,A')
 }$$
-Chasing the diagram reveals that the diagram commutes, since any map $\varphi \in \hom(C,A)$ gets mapped to $i_A(\id_A) \circ \varphi \circ f \in \hom(B,A')$. We now want to show that this map is unique.
+Chasing the diagram reveals that the diagram commutes, since any map $\varphi \in \hom(C,A)$ gets mapped to $i_A(\id_A) \circ \varphi \circ f \in \hom(B,A')$. We now want to show that the maps $i_C$ are given by composition with $i_A(\id_A)$. We next note that using the above diagram with $C = B$, the fact that it commutes, is equivalent to the fact that $i_C(g \circ f) = i_C(g) \circ f$ for $g,f \in \hom(C,C)$. Letting $C = A$, we find that $i_A(\id_A \circ f)  = i_A(f) = i_A(\id_A) \circ f$, so $i_A$ is certainly given by composition with $i_A(\id_A)$. Then for any morphism $f: A \to C$, we have that  the diagram commutes
+$$\xymatrix{
+\hom(C,A) \ar[d] \ar[r]^{i_C} & \hom(C,A') \ar[d] \\
+\hom(A,A) \ar[r]_{i_A} & \hom(A,A')
+}$$
+which gives us that for any $\varphi \in \hom(C,A)$ that
+$$i_A(\varphi \circ f) = i_A(\id_A) \circ \varphi \circ f = i_C(\varphi) \circ f $$
+which implies that $i_C(\varphi) = i_A(\id_A) \circ \varphi$
 \end{enumerate}
 
 \end{proof}
