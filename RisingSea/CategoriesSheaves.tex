@@ -706,7 +706,7 @@ A functor $\mathscr{I} \to \mathscr{C}$ is equivalent to giving such a commuting
 Given a functor $\mathscr{I} \to \mathscr{C}$, the \ib{limit} of the diagram is another object $\lim\limits_{\leftarrow_\mathscr{I}} A_i \in \mathsf{Ob}(\mathscr{C})$, equipped with maps $f_j : \lim\limits_{\leftarrow_{\mathscr{I}}} A_i \to A_j$ for each $j \in \mathsf{Ob}(\mathscr{I})$ such that given any morphism $m: j \to k$, the following diagram commutes
 $$\begin{tikzcd}
 \lim\limits_{\leftarrow_{\mathscr{I}}}A_i \arrow[d,"f_j"'] \arrow[dr, "f_k"] \\
-A_j \arrow[r, "F(m)"]  & A_k
+A_j \arrow[r, "F(m)"']  & A_k
 \end{tikzcd}$$
 In addition, these maps $f_j$ are final with respect to this property, which means that if we have another object $W$ with maps $g_i \to A_i$ that commute with morphisms $j \to k$, we get a unique morphism $g: W \to \lim\limits_{\leftarrow_{\mathscr{I}}}$ such that $g_i = f_i \circ g$
 \end{defn}
@@ -724,7 +724,35 @@ $$\begin{tikzcd}
 & A \arrow[d]\\
 B \arrow[r] & C
 \end{tikzcd}$$
+Then the limit is exactly the fibered product $A \times_C B$. \\
+
+To see why, we note that the limit (which we will denote $L$ for convenience) is an object $L$ equipped with $3$ maps, one to each of $A,B$, and $C$. Since the only morphisms are $A \to C$ and $A \to B$, the compatibility condition translates to the maps $A,B \to C$ agreeing with the map $L \to C$. We note that this is exactly the fact that the maps $A \to B$ and $B \to C$ being the same (since this defines the map $A \times_C B \to C$), and the fact that this object is final (sometimes called universal), translates to the fact that any other object with this property (maps to $A$ and $B$ agreeing with the map to $C$, factors through the fibered product.
 \end{exmp}
-Then the limit is exactly the fibered product $A \times_C B$. To see why, we note that the limit (which we will denote $L$ for convenience) is an object $L$ equipped with $3$ maps, one to each of $A,B$, and $C$. Since the only morphisms are $A \to C$ and $A \to B$, the compatibility condition translates to the maps $A,B \to C$ agreeing with the map $L \to C$. We note that this is exactly the fact that the maps $A \to B$ and $B \to C$ being the same (since this defines the map $A \times_C B \to C$), and the fact that this object is final (sometimes called universal), translates to the fact that any other object with this property (maps to $A$ and $B$ agreeing with the map to $C$, factors through the fibered product.
+Perhaps slightly simpler
+\begin{exmp}
+Let $\mathscr{I}$ be the uninteresting diagram 
+$$\xymatrix{
+\bullet & \bullet
+}$$
+Then the limit is the product. \\
+
+This one is easier to see. Let the functor $\mathscr{I} \to \mathscr{C}$ be given by the diagram
+$$\xymatrix{
+A & B
+} $$
+Then the limit $L$, is an object with maps $L \to A$ and $L \to B$ such that any object $W$ with maps $W \to A$ and $W \to B$ factors through $L$, which is exactly the product! In more generality, if the category $\mathscr{I}$ is just a set of objects where there are no identity morphisms, we get the product $\prod_i A_i$. \\
+\end{exmp}
+%
+One important fact is that when your category is sufficiently concrete (it looks like $\mathsf{Set})$ and has all products, the limit will always exist (which implies that there are limits that don't exist).
+%
+\begin{exer}
+Show that in $\mathsf{Set}$, we have 
+$$L = \set{(a_i) \in \prod_{i \in \mathscr{I}} A_i ~\colon~ F(m)(a_j) = a_k \text{ for } m \in \hom(j,k)}$$
+with the projection maps $L \to A_i$ is the limit.
+\end{exer}
+%
+\begin{proof}
+
+\end{proof}
 %
 \end{document}
