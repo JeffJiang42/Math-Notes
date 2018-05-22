@@ -5,6 +5,7 @@
 \usepackage[h margin=1 in, v margin=1 in]{geometry}
 \usepackage{amssymb,amsfonts}
 \usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
 \usepackage{enumerate}
 \usepackage{mathrsfs}
 \usepackage{amsthm}
@@ -679,8 +680,26 @@ $$\xymatrix{
 which gives us that for any $\varphi \in \hom(C,A)$ that
 $$i_A(\varphi \circ f) = i_A(\id_A) \circ \varphi \circ f = i_C(\varphi) \circ f $$
 which implies that $i_C(\varphi) = i_A(\id_A) \circ \varphi$
+\item In the case that all the $i_C$ are bijections, we note that we can repeat  the same argument to conclude that  the $i_C\inv$ are given by composition by the map $i_A\inv(\id_{A'})$, which necessarily must be the inverse to $i_A(\id_A)$, so it is an isomorphism.
 \end{enumerate}
-
 \end{proof}
+A similar proof works for the contravariant version. Yoneda's lemma is actually a bit more techinical than this (which involves the functor category and natural transformations), but the essence of what it means is what we just proved.
+
+The next big topic we want to cover is the concept of limits and colimits (no, not analysis).
+%
+\begin{defn}[\ib{Techinical definition because of set theoretic issues}]
+A category $\mathscr{C}$ is \ib{small} if the collection of all objects/morphisms is a set
+\end{defn}
+%
+\begin{defn}
+Let $\mathscr{I}$ be a small category, and $\mathscr{C}$ any category. Then any functor $F : \mathscr{I} \to \mathscr{C}$ is called a \ib{diagram indexed by} $\mathscr{I}$.
+\end{defn}
+In most cases, the indexing category $\mathscr{I}$ will be a partially ordered set. For example, if we let $\mathscr{I}$ be the category
+$$\begin{tikzcd}
+  \bullet \arrow[r] \arrow[d] & \bullet \arrow[d] \\
+  \bullet \arrow[r] & \bullet
+  \end{tikzcd}
+$$
+A functor $\mathscr{I} \to \mathscr{C}$ is equivalent to giving a commuting square in $\mathscr{C}$. 
 %
 \end{document}
