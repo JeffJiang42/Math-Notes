@@ -700,6 +700,31 @@ $$\begin{tikzcd}
   \bullet \arrow[r] & \bullet
   \end{tikzcd}
 $$
-A functor $\mathscr{I} \to \mathscr{C}$ is equivalent to giving a commuting square in $\mathscr{C}$. 
+A functor $\mathscr{I} \to \mathscr{C}$ is equivalent to giving such a commuting square in $\mathscr{C}$. For notations sake, we will let $A_i = F(i)$ for $i \in \mathsf{Ob}(\mathscr{I})$
+%
+\begin{defn}
+Given a functor $\mathscr{I} \to \mathscr{C}$, the \ib{limit} of the diagram is another object $\lim\limits_{\leftarrow_\mathscr{I}} A_i \in \mathsf{Ob}(\mathscr{C})$, equipped with maps $f_j : \lim\limits_{\leftarrow_{\mathscr{I}}} A_i \to A_j$ for each $j \in \mathsf{Ob}(\mathscr{I})$ such that given any morphism $m: j \to k$, the following diagram commutes
+$$\begin{tikzcd}
+\lim\limits_{\leftarrow_{\mathscr{I}}}A_i \arrow[d,"f_j"'] \arrow[dr, "f_k"] \\
+A_j \arrow[r, "F(m)"]  & A_k
+\end{tikzcd}$$
+In addition, these maps $f_j$ are final with respect to this property, which means that if we have another object $W$ with maps $g_i \to A_i$ that commute with morphisms $j \to k$, we get a unique morphism $g: W \to \lim\limits_{\leftarrow_{\mathscr{I}}}$ such that $g_i = f_i \circ g$
+\end{defn}
+%
+Vakil gives the following as examples, but it's good to work through them to process what's really going on.
+%
+\begin{exmp}
+Suppose $\mathscr{I}$ is the diagram 
+$$\begin{tikzcd}
+& \bullet \arrow[d] \\
+\bullet \arrow[r] & \bullet
+\end{tikzcd}$$
+Then the limit is the fibered product. More precisely, suppose the functor is given by the following diagram
+$$\begin{tikzcd}
+& A \arrow[d]\\
+B \arrow[r] & C
+\end{tikzcd}$$
+\end{exmp}
+Then the limit is exactly the fibered product $A \times_C B$. To see why, we note that the limit (which we will denote $L$ for convenience) is an object $L$ equipped with $3$ maps, one to each of $A,B$, and $C$. Since the only morphisms are $A \to C$ and $A \to B$, the compatibility condition translates to the maps $A,B \to C$ agreeing with the map $L \to C$. We note that this is exactly the fact that the maps $A \to B$ and $B \to C$ being the same (since this defines the map $A \times_C B \to C$), and the fact that this object is final (sometimes called universal), translates to the fact that any other object with this property (maps to $A$ and $B$ agreeing with the map to $C$, factors through the fibered product.
 %
 \end{document}
