@@ -740,19 +740,53 @@ This one is easier to see. Let the functor $\mathscr{I} \to \mathscr{C}$ be give
 $$\xymatrix{
 A & B
 } $$
-Then the limit $L$, is an object with maps $L \to A$ and $L \to B$ such that any object $W$ with maps $W \to A$ and $W \to B$ factors through $L$, which is exactly the product! In more generality, if the category $\mathscr{I}$ is just a set of objects where there are no identity morphisms, we get the product $\prod_i A_i$. \\
+Then the limit $L$ is an object with maps $L \to A$ and $L \to B$ such that any object $W$ with maps $W \to A$ and $W \to B$ factors through $L$, which is exactly the product! In more generality, if the category $\mathscr{I}$ is just a set of objects where there are no identity morphisms, we get the product $\prod_i A_i$. \\
 \end{exmp}
 %
-One important fact is that when your category is sufficiently concrete (it looks like $\mathsf{Set})$ and has all products, the limit will always exist (which implies that there are limits that don't exist).
+One important fact is that when your category is sufficiently concrete (it looks like $\mathsf{Set})$ and has all products, the limit will always exist (which implies that there are limits that don't exist). In this case, most concrete categories (sets with extra structure) have all of their limits.
 %
 \begin{exer}
 Show that in $\mathsf{Set}$, we have 
 $$L = \set{(a_i) \in \prod_{i \in \mathscr{I}} A_i ~\colon~ F(m)(a_j) = a_k \text{ for } m \in \hom(j,k)}$$
-with the projection maps $L \to A_i$ is the limit.
+with the projection maps $\pi_i: L \to A_i$ is the limit.
 \end{exer}
 %
 \begin{proof}
-
+We first verify that the set $L$ satisfies all the conditions we want, and then we show it is universal/final. Recall that for any two $j,k \in \mathscr{I}$ (technically $\mathsf{Ob}(\mathscr{I})$, but I hope you can forgive the abuse of notation), with a morphism $m : j \to k$, we want the following diagram to commute
+$$\begin{tikzcd}
+L \arrow[d, "\pi_j"'] \arrow[dr, "\pi_k"] \\
+A_j \arrow[r, "F(m)"'] & A_k
+\end{tikzcd}$$
+we note that we defined this set exactly to make this diagram commute, since the only tuples in the set are the ones that are ``matched" by a morphism $F(m)$. To show this is final, we want to show any other object $W$ with maps $\psi_i : W \to A_i$ with the same property is equipped with a map to $W$. Again, we note that by the definition, $L$ must contain every set that makes the diagram commute for all morphisms $m$, since otherwise there will have to be some tuple $(c_i) \in \prod_{i \in \mathscr{I}} A_i$ where for some $m \in \hom(j,k)$, $F(m)(a_j) \neq a_k$, in which case that morphism $m$ will fail to make the diagram commute. This proves that any other set with such maps comes equipped with a natural inclusion into $L$.
 \end{proof}
+%
+Like with every other concept we've discovered, we can slap ``co" in front of the word ``limit," and what do we obtain? The object you get by flipping all of the arrows\footnote{Something something cotheorems, something something ffee}. More explicitly,
+%
+\begin{defn}[\ib{Flip ALL the arrows}]
+Given a functor $F : \mathscr{I} \to \mathscr{C}$, the \ib{colimit} $\lim\limits_{\to_\mathscr{I}}A_i$ is an object equipped with maps $f_i : A_i \to \lim\limits_{\to_\mathscr{I}}A_i$ such that for any morphism $m : j \to k$, the following diagram commutes\footnote{Yes, I didn't flip the $F(m)$ arrow, but it's symmetric\ldots}
+$$\begin{tikzcd}
+\lim\limits_{\to_\mathscr{I}} A_i \\
+A_j \arrow[u, "f_j"]\arrow[r, "F(m)"'] & A_k \arrow[ul, "f_k"']
+\end{tikzcd}$$
+And the colimit is universal in the sense that it is initial with respect to all objects with this property. In other words, if we have another object $W$ satisfying the same conditions with the commuting triangle, we get a unique map $\lim\limits_{\to_{\mathscr{I}}}A_i \to W$.
+\end{defn}
+Again, we'll work through the examples to get a better grip on what's actually going on.
+\begin{exmp}
+Suppose we have the diagram
+$$\Z \to 5\inv\Z \to 5^{-2}\Z \to 5^{-3}\Z \to \cdots$$
+where $5^{-i}$ denotes all rational numbers with a denominator $5^i$, and all the horizontal maps are given by multiplication by $5/5$ (i.e. inclusion). We claim that the colimit of this diagram is the set $5^{-\infty}\Z$, the set of all rational numbers with denominators a power of $5$. \\
+
+Why is this? We for each $i$, we get a natural map $5^{-i}\Z \hookrightarrow 5^{-\infty}\Z$, which is just inclusion. Then since all of the maps in the diagram are the inclusions $5^{-i}\Z \to 5^{-(i+1)}\Z$, the only diagrams we need to consider are
+$$\begin{tikzcd}
+5^{-\infty}\Z \\
+5^{-i}\Z \arrow[u] \arrow[r] & 5^{-(i + 1)}\Z \arrow[ul]
+\end{tikzcd}$$
+\end{exmp}
+which obviously commutes. To prove it is universal, let $W$ be an object such that for every $i$, we have
+$$\begin{tikzcd}
+W \\
+5^{-i}\Z \arrow[u] \arrow[r] & 5^{-(i + 1)}\Z \arrow[ul]
+\end{tikzcd}$$
+Then we must have that $r/5^{i}$ maps to the same place as $5r/5^{i+1}$, therefore, we can map $r/5^i$ and $5r/5^{-(i+1})$ into $5^{-\infty}\Z$ first, and provide a well defined map into $W$, where the equivalence class of fractions $5^jr/5^{j+i} \sim r/5^i$ are all mapped to the same place.
 %
 \end{document}
