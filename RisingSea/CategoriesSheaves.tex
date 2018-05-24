@@ -789,4 +789,25 @@ W \\
 \end{tikzcd}$$
 Then we must have that $r/5^{i}$ maps to the same place as $5r/5^{i+1}$, therefore, we can map $r/5^i$ and $5r/5^{-(i+1})$ into $5^{-\infty}\Z$ first, and provide a well defined map into $W$, where the equivalence class of fractions $5^jr/5^{j+i} \sim r/5^i$ are all mapped to the same place.
 %
+\begin{exer} \enumbreak
+\begin{enumerate}
+\item Interpret the meaning of the statement $\Q = \lim\limits_\to \frac{1}{n}\Z$
+\item Interpret the meaning of the union of subsets of a given set as a colimit. Dually, interpret the intersection as a limit
+\end{enumerate}
+\end{exer}
+%
+\begin{proof}
+\begin{enumerate}
+\item We first set up the diagram we want to find the colimit of. Let $\frac{1}{n}\Z$ denote the set of rational numbers with $n$ as the denominator. Then let there be a morphism $\frac{1}{n}\Z \to \frac{1}{m}\Z$ if $m$ is a multiple of $n$, where the map is given by inclusion (multiplication by $r/r$, where $m = rn$). We claim that $\Q$ equipped with the natural inclusions $\frac{1}{n}\Z \hookrightarrow \Q$ is the colimit of this diagram. We first note that the diagram
+$$\begin{tikzcd}
+\Q \\
+\frac{1}{n}\Z \arrow[r] \arrow[u] & \frac{1}{rn}\Z \arrow[ul]
+\end{tikzcd}$$
+commutes, since each map is essentially inclusion, so we need to check universality, Let $W$ be another object with such maps $\frac{1}{n}\Z \to W$ such that the diagram above commutes. Then we know that $k/n$ maps to the same element as $rk/rn$, so we can first map to the equivalence class of fractions $[k/n] \in \Q$ before mapping to $W$. Therefore $\Q$ is initial.
+\item We first clarify that the set we are working in is the category of subsets of a fixed set $S$, where there exists a morphism $A \to B$ if and only if $A \subset B$. The diagram we are concerned with are the subsets $A_i$ we are taking the union of, along with their corresponding morphisms to each other. We claim that their union, equipped with the 	``subset morphisms" $A_i \to \cup_i A_i$ is the colimit. we note that all the the subsets are subsets of the union, so these maps $A_i \to \cup_i A_i$ exist, and the diagram clearly will commute. For any other subset $K$ with such maps from $A_i \to K$, we must have that for all $i$, $A_i \subset K$, so we must have $\cup_i A_i \subset K$, which corresponds to a unique morphism $\cup_i A_i \to K$, proving that it is universal.
+
+The proof for the intersection is much the same with the arrows reversed, except we note that this implies that any object with maps to all of the $A_i$ must be contained in all of the $A_i$, which must factor through the intersection. 
+\end{enumerate}
+\end{proof}
+%
 \end{document}
