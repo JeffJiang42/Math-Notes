@@ -836,7 +836,7 @@ A_i \arrow[dr, "f"'] & & A_j  \arrow[dl, "g"'] \arrow[dr, "f'"]& & A_k \arrow[dl
 & & A_\ell \arrow[d] & & \\
 & & A'_\ell & &
 \end{tikzcd}$$
-Then since $f(a_i) = g(a_j)$ and $f'(a_j) = f'(a_k)$, and the maps $A_j \to A_n \to A_\ell \to A'_\ell$ and $A_j \to A_m \to A_\ell \to A'_e\ll$ are the same, we have that the compositions $A_i \to A'_ell$ and $A_k \to A'_\ell$ map $a_i$ and $a_k$ to the same place, so we can finally conclude that $(a_i,i) \sim (a_k,k)$.
+Then since $f(a_i) = g(a_j)$ and $f'(a_j) = f'(a_k)$, and the maps $A_j \to A_n \to A_\ell \to A'_\ell$ and $A_j \to A_m \to A_\ell \to A'_\ell$ are the same, we have that the compositions $A_i \to A'_\ell$ and $A_k \to A'_\ell$ map $a_i$ and $a_k$ to the same place, so we can finally conclude that $(a_i,i) \sim (a_k,k)$.
 
 We now verify that $C$ defines the colimit of the diagram indexed by $\mathscr{I}$, where the maps $A_i \to C$ are given by the mappings $a_i \mapsto [a_i]$, where $[a_i] \in C$ denotes the equivalence class of $a_i$. We first want to show that for any morphism $m: j \to k$, the following diagram commutes 
 $$\begin{tikzcd}
@@ -844,5 +844,6 @@ C \\
 A_j \arrow[u] \arrow[r,"F(m)"'] & A_k \arrow[ul]
 \end{tikzcd}$$
 \end{proof}
+which amounts to showing that for any $a_j \in A_j$, we have that $[F(m)(a_j) ] = [a_j]$, so we want to produce maps $f : A_j \to A_\ell$ and $g: A_k \to A_\ell$ with $f(a_j) = (g \circ F(m))(a_j)$. Again, since $\mathscr{I}$ is filtered, we can find some object $z$ in $\mathscr{I}$ such that we have maps $A_j \to A_z$ and $A_k \to A_z$, which gives us two maps $A_j \to A_z$, namely $A_j \to A_z$ and $A_j \to A_k \to A_z$. Then $\mathscr{I}$ being filtered gives us another map $A_z \to A_\ell$ such that the two different compositions $A_j \to A_\ell$ are equal. In particular, this implies that $F(m)(a_j)$ must be equal to the image of the map $A_j \to A_\ell$, so we conclude that they define the same equivalence class in $C$. We now want to show that $C$ is initial. Suppose $W$ is another object that makes the above diagram commute (replacing $C$ with $W$). This implies that for every morphism $m : j \to k$, we have that $a_j$ and $F(m)(a_j)$ map to the same element in $C$. We note that the above argument we made implies that $[a_j] = [F(m)(a_j)]$, so we get a map $C \to W$ by mapping $[a_j]$ to its image under the map $A_j \to C$, which is well defined by the fact that the diagram commutes.
 %
 \end{document}
