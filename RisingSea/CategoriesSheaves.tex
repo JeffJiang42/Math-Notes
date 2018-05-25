@@ -805,9 +805,44 @@ $$\begin{tikzcd}
 \end{tikzcd}$$
 commutes, since each map is essentially inclusion, so we need to check universality, Let $W$ be another object with such maps $\frac{1}{n}\Z \to W$ such that the diagram above commutes. Then we know that $k/n$ maps to the same element as $rk/rn$, so we can first map to the equivalence class of fractions $[k/n] \in \Q$ before mapping to $W$. Therefore $\Q$ is initial.
 \item We first clarify that the set we are working in is the category of subsets of a fixed set $S$, where there exists a morphism $A \to B$ if and only if $A \subset B$. The diagram we are concerned with are the subsets $A_i$ we are taking the union of, along with their corresponding morphisms to each other. We claim that their union, equipped with the 	``subset morphisms" $A_i \to \cup_i A_i$ is the colimit. we note that all the the subsets are subsets of the union, so these maps $A_i \to \cup_i A_i$ exist, and the diagram clearly will commute. For any other subset $K$ with such maps from $A_i \to K$, we must have that for all $i$, $A_i \subset K$, so we must have $\cup_i A_i \subset K$, which corresponds to a unique morphism $\cup_i A_i \to K$, proving that it is universal.
+\end{enumerate}
+\end{proof}
 
 The proof for the intersection is much the same with the arrows reversed, except we note that this implies that any object with maps to all of the $A_i$ must be contained in all of the $A_i$, which must factor through the intersection. 
+
+Note that in $\mathsf{Set}$, all limits exist, but we need some additional assumptions for colimits to exist in $\mathsf{Set}$.
+%
+\begin{defn}
+A category $\mathscr{I}$ is \ib{filtered} if 
+\begin{enumerate}
+\item For any pair of objects $x,y$, there exists an object $z$ that has arrows $x \to z$ and $y \to z$.
+\item For any pair of maps $u,v : x \to y$, there exists another map $w: y \to z$ such that $w \circ u = w \circ v$.
 \end{enumerate}
+\end{defn}
+%
+\begin{exer}
+Let $\mathscr{I}$ be a filtered category. Show that any diagram indexed by $\mathscr{I}$ has a colimit, which is given by the set
+$$C = \set{(a_i,i) \in \coprod_{i \in \mathscr{I}}A_i} \bigg/ \sim $$
+where $\sim$ is the equivalence relation given by
+$$(a_i,i) \sim (a_j,j) \iff \text{ there exist } f: A_i \to A_k \text{ and } g: A_j \to A_k \text{ in the digram where } f(a_i) = g(a_j)$$
+\end{exer}
+%
+\begin{proof}
+We first verify that $\sim$ actually defines an equivalence relation. For reflexivity, we note that $(a_i, i) \sim (a_i,i)$, where we can let the maps $f,g : A_i \to A_i$ be the identity map. For symmetry, suppose $(a_i, i) \sim (a_j, j)$, with maps $f : A_i \to A_k$ and $g : A_j \to A_k$ where $f(a_i) = g(a_j)$. Then renaming $f$ to $g$ and $g$ to $f$, we find that $(a_j,j) \sim (a_i,i)$. Finally, for transitivity, suppose $(a_i,i) \sim (a_j,j)$ and $(a_j,j) \sim (a_k,k)$. We want to show that $(a_i,i) \sim (a_k,k)$. Let $f : A_i \to A_n$ and $g : A_j \to A_n$ and $f' : A_j \to A_m$ and $g' : A_k \to A_m$ be the maps described in the definition of $\sim$. Since $\mathscr{I}$ is filtered, we know that we can find some $A_\ell
+$ with maps $A_n \to A_\ell$ and $A_m \to A_\ell$, which gives us the following (noncommutative) diagram of maps. Composing these maps with $g$ and $f'$, this gives two maps $A_j \to A_\ell$, which guarantees the existence of a map $A_\ell \to A'_\ell$ whose compositions with the two maps $A_j \to A_\ell$ are the same.
+$$\begin{tikzcd}
+A_i \arrow[dr, "f"'] & & A_j  \arrow[dl, "g"'] \arrow[dr, "f'"]& & A_k \arrow[dl, "g'"] \\
+& A_n \arrow[dr] & & A_m \arrow[dl] \\
+& & A_\ell \arrow[d] & & \\
+& & A'_\ell & &
+\end{tikzcd}$$
+Then since $f(a_i) = g(a_j)$ and $f'(a_j) = f'(a_k)$, and the maps $A_j \to A_n \to A_\ell \to A'_\ell$ and $A_j \to A_m \to A_\ell \to A'_e\ll$ are the same, we have that the compositions $A_i \to A'_ell$ and $A_k \to A'_\ell$ map $a_i$ and $a_k$ to the same place, so we can finally conclude that $(a_i,i) \sim (a_k,k)$.
+
+We now verify that $C$ defines the colimit of the diagram indexed by $\mathscr{I}$, where the maps $A_i \to C$ are given by the mappings $a_i \mapsto [a_i]$, where $[a_i] \in C$ denotes the equivalence class of $a_i$. We first want to show that for any morphism $m: j \to k$, the following diagram commutes 
+$$\begin{tikzcd}
+C \\
+A_j \arrow[u] \arrow[r,"F(m)"'] & A_k \arrow[ul]
+\end{tikzcd}$$
 \end{proof}
 %
 \end{document}
