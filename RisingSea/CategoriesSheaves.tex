@@ -829,7 +829,7 @@ $$(a_i,i) \sim (a_j,j) \iff \text{ there exist } f: A_i \to A_k \text{ and } g: 
 %
 \begin{proof}
 We first verify that $\sim$ actually defines an equivalence relation. For reflexivity, we note that $(a_i, i) \sim (a_i,i)$, where we can let the maps $f,g : A_i \to A_i$ be the identity map. For symmetry, suppose $(a_i, i) \sim (a_j, j)$, with maps $f : A_i \to A_k$ and $g : A_j \to A_k$ where $f(a_i) = g(a_j)$. Then renaming $f$ to $g$ and $g$ to $f$, we find that $(a_j,j) \sim (a_i,i)$. Finally, for transitivity, suppose $(a_i,i) \sim (a_j,j)$ and $(a_j,j) \sim (a_k,k)$. We want to show that $(a_i,i) \sim (a_k,k)$. Let $f : A_i \to A_n$ and $g : A_j \to A_n$ and $f' : A_j \to A_m$ and $g' : A_k \to A_m$ be the maps described in the definition of $\sim$. Since $\mathscr{I}$ is filtered, we know that we can find some $A_\ell
-$ with maps $A_n \to A_\ell$ and $A_m \to A_\ell$, which gives us the following (noncommutative) diagram of maps. Composing these maps with $g$ and $f'$, this gives two maps $A_j \to A_\ell$, which guarantees the existence of a map $A_\ell \to A'_\ell$ whose compositions with the two maps $A_j \to A_\ell$ are the same.
+$ with maps $A_n \to A_\ell$ and $A_m \to A_\ell$. Composing these maps with $g$ and $f'$, this gives two maps $A_j \to A_\ell$, which guarantees the existence of a map $A_\ell \to A'_\ell$ whose compositions with the two maps $A_j \to A_\ell$ are the same, leaving us with the following (noncommutative) diagram of maps.
 $$\begin{tikzcd}
 A_i \arrow[dr, "f"'] & & A_j  \arrow[dl, "g"'] \arrow[dr, "f'"]& & A_k \arrow[dl, "g'"] \\
 & A_n \arrow[dr] & & A_m \arrow[dl] \\
@@ -843,7 +843,12 @@ $$\begin{tikzcd}
 C \\
 A_j \arrow[u] \arrow[r,"F(m)"'] & A_k \arrow[ul]
 \end{tikzcd}$$
-\end{proof}
 which amounts to showing that for any $a_j \in A_j$, we have that $[F(m)(a_j) ] = [a_j]$, so we want to produce maps $f : A_j \to A_\ell$ and $g: A_k \to A_\ell$ with $f(a_j) = (g \circ F(m))(a_j)$. Again, since $\mathscr{I}$ is filtered, we can find some object $z$ in $\mathscr{I}$ such that we have maps $A_j \to A_z$ and $A_k \to A_z$, which gives us two maps $A_j \to A_z$, namely $A_j \to A_z$ and $A_j \to A_k \to A_z$. Then $\mathscr{I}$ being filtered gives us another map $A_z \to A_\ell$ such that the two different compositions $A_j \to A_\ell$ are equal. In particular, this implies that $F(m)(a_j)$ must be equal to the image of the map $A_j \to A_\ell$, so we conclude that they define the same equivalence class in $C$. We now want to show that $C$ is initial. Suppose $W$ is another object that makes the above diagram commute (replacing $C$ with $W$). This implies that for every morphism $m : j \to k$, we have that $a_j$ and $F(m)(a_j)$ map to the same element in $C$. We note that the above argument we made implies that $[a_j] = [F(m)(a_j)]$, so we get a map $C \to W$ by mapping $[a_j]$ to its image under the map $A_j \to C$, which is well defined by the fact that the diagram commutes.
+\end{proof}
+In fact, the construction we gave above works for many concrete algebraic categories. For our examples, we'll use $\mathsf{Mod}_R$. Given a diagram of $R$-modules $M_i$, the colimit $\lim\limits_\to M_i$ is given by the same underlying set as above, but we'll need to define addition and scalar multiplication to give it the structure of an $R$-module. For addition. let $m_i \in M_i$ and $m_j \in M_j$. Since we are assume the diagram is indexed by a filtered category, we know we have morphism $u: i \to k$ and $v : j \to k$, so we can define $m_i + m_j = F(u)(m_i) + F(v)(m_j) \in M_k$. We say that some element $m = 0$ if there is some $u$ with $u(m) = 0$. Finally, scalar multplication is define in the normal way.
+%
+\begin{exer}
+Verify that the construction above defines an $R$-module by showing that the addition and scarlar multiplication are well defined.
+\end{exer}
 %
 \end{document}
