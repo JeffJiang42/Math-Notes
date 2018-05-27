@@ -845,14 +845,26 @@ A_j \arrow[u] \arrow[r,"F(m)"'] & A_k \arrow[ul]
 \end{tikzcd}$$
 which amounts to showing that for any $a_j \in A_j$, we have that $[F(m)(a_j) ] = [a_j]$, so we want to produce maps $f : A_j \to A_\ell$ and $g: A_k \to A_\ell$ with $f(a_j) = (g \circ F(m))(a_j)$. Again, since $\mathscr{I}$ is filtered, we can find some object $z$ in $\mathscr{I}$ such that we have maps $A_j \to A_z$ and $A_k \to A_z$, which gives us two maps $A_j \to A_z$, namely $A_j \to A_z$ and $A_j \to A_k \to A_z$. Then $\mathscr{I}$ being filtered gives us another map $A_z \to A_\ell$ such that the two different compositions $A_j \to A_\ell$ are equal. In particular, this implies that $F(m)(a_j)$ must be equal to the image of the map $A_j \to A_\ell$, so we conclude that they define the same equivalence class in $C$. We now want to show that $C$ is initial. Suppose $W$ is another object that makes the above diagram commute (replacing $C$ with $W$). This implies that for every morphism $m : j \to k$, we have that $a_j$ and $F(m)(a_j)$ map to the same element in $C$. We note that the above argument we made implies that $[a_j] = [F(m)(a_j)]$, so we get a map $C \to W$ by mapping $[a_j]$ to its image under the map $A_j \to C$, which is well defined by the fact that the diagram commutes.
 \end{proof}
-In fact, the construction we gave above works for many concrete algebraic categories. For our examples, we'll use $\mathsf{Mod}_R$. Given a diagram of $R$-modules $M_i$, the colimit $\lim\limits_\to M_i$ is given by the same underlying set as above, but we'll need to define addition and scalar multiplication to give it the structure of an $R$-module. For addition. let $m_i \in M_i$ and $m_j \in M_j$. Since we are assume the diagram is indexed by a filtered category, we know we have morphism $u: i \to k$ and $v : j \to k$, so we can define $m_i + m_j = F(u)(m_i) + F(v)(m_j) \in M_k$. We say that some element $m = 0$ if there is some $u$ with $u(m) = 0$. Finally, scalar multplication is define in the normal way.
+In fact, the construction we gave above works for many concrete algebraic categories. For our examples, we'll use $\mathsf{Mod}_R$. Given a diagram of $R$-modules $M_i$, the colimit $\lim\limits_\to M_i$ is given by the same underlying set as above, but we'll need to define addition and scalar multiplication to give it the structure of an $R$-module. For addition. let $m_i \in M_i$ and $m_j \in M_j$. Since we are assume the diagram is indexed by a filtered category, we know we have morphism $u: i \to k$ and $v : j \to k$, so we can define $m_i + m_j = F(u)(m_i) + F(v)(m_j) \in M_k$. We say that some element $m = 0$ if there is some $u$ with $u(m) = 0$. Finally, scalar multplication is defined in the normal way.
 %
 \begin{exer}
-Interpret the localization of an integral domain as a colimit over a filtered set. Let $S$ be a multiplicative set and interpret $S\inv R$ as $\lim\limits_\to \frac{1}{s}R$ where the limit is over all $s \in S$ and we are working in the cateogry of $R$-modules
+Interpret the localization of an integral domain as a colimit over a filtered set. Let $S$ be a multiplicative set and interpret $S\inv R$ as $\lim\limits_\to \frac{1}{s}R$ where the limit is over all $s \in S$ and we are working in the category of $R$-modules.
 \end{exer}
 %
 \begin{proof}
-
+As before, let $\frac{1}{s}R$ be the $R$-module of the set of fractions $r/s$, where $s$ is a fixed element of $S$> Like before, we define our diagram to have a morphism $\frac{1}{s}R \to \frac{1}{t}R$ if $t = ps$ for some $p \in R$, (i.e. $t$ is a multiple of $s$), and the map is given my $r/s \mapsto pr/ps$, which is visibly an $R$-module homomorphism. We then claim that we have given a filtered diagram and that $S\inv R$ is the colimit. To show that it is a filtered diagram, we note that for any $s,t \in S$, we have that $\frac{1}{s}R$ and $\frac{1}{t}R$ both have maps to $\frac{1}{st}R$. In addition, w note that our diagram has at most one map $\frac{1}{s}R \to \frac{1}{t}R$, so the second condition of a filtered diagram is vacuously true. We then want to show that the localization $S\inv R$ is the colimit of this diagram, which is now essentially the same proof as we gave for $\Q = \lim\limits\to \frac{1}{n}\Z$.
 \end{proof}
+
+We now move on to adjoints.
+\begin{defn}
+Let $\mathcal{F}: \mathscr{A} \to \mathscr{B}$ and $\mathcal{G}: \mathscr{B} \to \mathscr{A}$ be covariant functors. We say that $\mathcal{F}$ and $\mathcal{G}$ are \ib{adjoint} if there exists a natural bijection
+$$\tau_{AB} : \hom_{\mathscr{B}}(F(A),B) \to \hom_{\mathscr{A}}(A, \mathcal{G}(B)) $$
+In this case, we say that $(\mathcal{F},\mathcal{G})$ form an \ib{adjoint pair}, with $\mathcal{F}$ being the \ib{left adjoint} to $\mathcal{G}$ and $\mathcal{G}$ being the \ib{right adjoint} to $\mathcal{F}$. Naturality of the bijection amounts to saying that given any morphism $f : A \to C$, the following diagram commutes
+$$\begin{tikzcd}
+\hom_\mathscr{B}(F(C),B) \arrow[d,"\tau_{CB}"']\arrow[r,"F(f)^*"] & \hom_\mathscr{B}(F(A),B) \arrow[d, "\tau_{AB}"] \\
+\hom_\mathscr{A}(C,G(B)) \arrow[r, "f^*"] & \hom_\mathscr{A}(A,G(B))
+\end{tikzcd}$$
+where $F(f)^*$ and $f^*$ are the maps determined by composition with $F(f)$ and $f$ respectively.
+\end{defn}
 %
 \end{document}
