@@ -864,7 +864,19 @@ $$\begin{tikzcd}
 \hom_\mathscr{B}(F(C),B) \arrow[d,"\tau_{CB}"']\arrow[r,"F(f)^*"] & \hom_\mathscr{B}(F(A),B) \arrow[d, "\tau_{AB}"] \\
 \hom_\mathscr{A}(C,G(B)) \arrow[r, "f^*"] & \hom_\mathscr{A}(A,G(B))
 \end{tikzcd}$$
-where $F(f)^*$ and $f^*$ are the maps determined by composition with $F(f)$ and $f$ respectively.
+where $F(f)^*$ and $f^*$ are the maps determined by composition with $F(f)$ and $f$ respectively. For a morphism $g: B \to D$, we want a similar diagram to commute.
 \end{defn}
+%
+\begin{exer}
+Draw the diagram we want to commute given $g: B \to D$.
+\end{exer}
+%
+\begin{proof}
+$$\begin{tikzcd}
+\hom_\mathscr{B}(\mathcal{F}(A),B) \arrow[d,"\tau_{AB}"'] \arrow[r,"g_*"] & \hom_\mathscr{B}(F(A),D) \arrow[d,"\tau_{AD}"] \\
+\hom_\mathscr{A}(A,\mathcal{G}(B)) \arrow[r,"\mathcal{G}(g)_*"'] & \hom_\mathscr{A}(A,\mathcal{G}(D))
+\end{tikzcd}$$
+where $g_*$ and $\mathcal{G}(g)_*$ are the maps induced by post-composition with $g$ and $\mathcal{G}(g)$  respectively.
+\end{proof}
 %
 \end{document}
