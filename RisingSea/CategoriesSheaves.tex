@@ -862,7 +862,7 @@ $$\tau_{AB} : \hom_{\mathscr{B}}(F(A),B) \to \hom_{\mathscr{A}}(A, \mathcal{G}(B
 In this case, we say that $(\mathcal{F},\mathcal{G})$ form an \ib{adjoint pair}, with $\mathcal{F}$ being the \ib{left adjoint} to $\mathcal{G}$ and $\mathcal{G}$ being the \ib{right adjoint} to $\mathcal{F}$. Naturality of the bijection amounts to saying that given any morphism $f : A \to C$, the following diagram commutes
 $$\begin{tikzcd}
 \hom_\mathscr{B}(F(C),B) \arrow[d,"\tau_{CB}"']\arrow[r,"F(f)^*"] & \hom_\mathscr{B}(F(A),B) \arrow[d, "\tau_{AB}"] \\
-\hom_\mathscr{A}(C,G(B)) \arrow[r, "f^*"] & \hom_\mathscr{A}(A,G(B))
+\hom_\mathscr{A}(C,G(B)) \arrow[r, "f^*"'] & \hom_\mathscr{A}(A,G(B))
 \end{tikzcd}$$
 where $F(f)^*$ and $f^*$ are the maps determined by composition with $F(f)$ and $f$ respectively. For a morphism $g: B \to D$, we want a similar diagram to commute.
 \end{defn}
@@ -878,5 +878,40 @@ $$\begin{tikzcd}
 \end{tikzcd}$$
 where $g_*$ and $\mathcal{G}(g)_*$ are the maps induced by post-composition with $g$ and $\mathcal{G}(g)$  respectively.
 \end{proof}
+%
+\begin{exer}
+Show that the map $\tau_{AB}$ as defined above has the following properties
+\begin{enumerate}
+\item For each object $A$, there exists a map $\eta_A: A \to (\mathcal{G} \circ \mathcal{F})(A)$ such that for any $\varphi : \mathcal{F}(A) \to  B$, the map $\tau_{AB}(g)$ is given by the composition $\mathcal{G}(\varphi) \circ \eta_A$.
+\item Similarly, for each object $B$, there exists a map $\varepsilon_B : (\mathcal{F} \circ \mathcal{G})(B) \to B$ such that for any $f : A \to \mathcal{G}(B)$, the map $\tau\inv_{AB}(f)$ is given by the composition $\varepsilon_B \circ \mathcal{F}(f)$. 
+\end{enumerate}
+\end{exer}
+%
+\begin{proof}\enumbreak
+\begin{enumerate}
+\item Consider the map $\tau_{A\mathcal{F}(A)} : \hom_\mathscr{B}(\mathcal{F}(A), \mathcal{F}(A)) \to \hom_\mathscr{A}(A, (\mathcal{G} \circ \mathcal{F})(A))$. We claim the map $\eta_A : A \to (\mathcal{G \circ F})(A)$ is given by $\eta_A = \tau_{A\mathcal{F}(A)}(\id_{\mathcal{F}(A)})$. To see this, consider the diagram we constructed for the previous exercise, where $B = D$, so $g : B \to B$. This gives  us the diagram
+$$\begin{tikzcd}
+\hom_\mathscr{B}(\mathcal{F}(A),B) \arrow[d, "\tau_{AB}"'] \arrow[r,"g_*"] & \hom_\mathscr{B}(F(A),B) \arrow[d, "\tau_{AB}"]\\
+\hom_\mathscr{A}(A,\mathcal{G}(B))  \arrow[r, "\mathcal{G}(g)_*"'] & \hom_\mathscr{A}(A,\mathcal{G}(B)
+\end{tikzcd}$$
+The fact that this diagram commutes amount to saying for $\varphi : \mathcal{F}(A) \to B$, we have that 
+$$\tau_{AB}(g\circ \varphi) = \mathcal{G}(g) \circ \tau_{AB}(\varphi) $$
+In particular, we note that $g \circ \varphi$ is also a map $F(A) \to B$, and that $\varphi = \varphi \circ \id_{\mathcal{F}(A)}$, so this gives us that 
+$$\tau_{AB}(g \circ \varphi \circ \id_{\mathcal{F}(A)}) = \mathcal{G}(g \circ \varphi) \circ \tau_{AB}(\id_{\mathcal{F}(A)}) $$
+Taking $g = \id_B$ then gives us the identity we desire.
+\item This proof is near identical to the above proof, where we instead use the diagram
+$$\begin{tikzcd}
+\hom_\mathscr{B}(F(A),B) \arrow[d,"\tau_{AB}"']\arrow[r,"F(f)^*"] & \hom_\mathscr{B}(F(A),B) \arrow[d, "\tau_{AB}"] \\
+\hom_\mathscr{A}(A,G(B)) \arrow[r, "f^*"'] & \hom_\mathscr{A}(A,G(B))
+\end{tikzcd}$$
+and $\varepsilon_B$ is given by $\tau_{\mathcal{G}(B)B}(\id_{\mathcal{G}(B)})$
+\end{enumerate}
+\end{proof}
+%
+Two of the functors we've already met form and adjoint pair!
+%
+\begin{exer}
+Let $M,N,P$ be $A$-modules. Give a bijection $\hom(M \otimes_A N, P) \to \hom(M,\hom(N,P))$
+\end{exer}
 %
 \end{document}
