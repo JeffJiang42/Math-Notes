@@ -914,4 +914,41 @@ Two of the functors we've already met form and adjoint pair!
 Let $M,N,P$ be $A$-modules. Give a bijection $\hom(M \otimes_A N, P) \to \hom(M,\hom(N,P))$
 \end{exer}
 %
+\begin{proof}
+By the universal property of the tensor product, we have that an element $\varphi \in \hom(M \otimes_A N, P)$ is equivalent to a bilinear map $M \times N \to P$, which by abuse of notation, we will also denote $\varphi$. Then given this bilinear map $\varphi$, for a fixed $m$, we can define a map $N \to P$ by $n \mapsto \varphi(m,n)$. We claim that this defines a bijection. For surjectivity, let $\psi : M \to \hom(N,P)$. Then we can define $\tilde{\psi} : M \times N \to P$ by $\tilde{\psi}(m,n) = \psi(m)(n)$. We claim that this map $\tilde{\psi}$ is bilinear, so it is an element of $\hom(M \otimes_A N, P)$. Fix $n \in N$, and let $a,b \in A$ and $m,s \in M$. We compute
+\begin{align*}
+\tilde{\psi}(am + bs, n) = \psi(am + bs)(n) = a\psi(m)(n) + b\psi(s)(n)
+\end{align*}
+by linearity of $\psi$.
+Letting  $a,b \in A$ again, fixing $m \in M$ and letting $n,t \in N$ be arbitrary, we compute
+\begin{align*}
+\tilde{\psi}(m, an + bt) = \psi(m)(an + bt) = a\psi(m)(n) + b\psi(m)(t)
+\end{align*}
+since $\psi(m)$ is linear. Therefore, $\tilde{\psi}$ is bilinear, and it is clear that $\tilde{\psi}(m, \cdot) = \psi$, so $\psi$ is in the image of the map we described, giving surjectivity. For injectivity, let $\rho,\eta : M\times N \to P$, where $\rho(m,\cdot) = \eta(m, \cdot)$ for all $m \in M$. This implies that $\rho(m,n) = \eta(m,n)$ for all $m \in M$ and $n \in N$, so $\rho = \eta$, giving injectivity, and showing that our map is a bijection.
+\end{proof}
+%
+\begin{exer}
+Fix an  $A$-module $N$. Then let $\mathcal{N}$ be the functor that maps an $A$-module $M$ to $M \otimes_A N$ and a map $\varphi : M \to P$ to the map $\varphi \otimes \id_N(m \otimes n) = \varphi(m) \otimes n$. Then let $\mathcal{H}$ be the covariant functor of points, that maps $M \mapsto \hom(N,M)$, and a map $\varphi : M \to P$ to the map $\varphi_*: \hom(N,M) \to \hom(N,P)$ given by $\varphi_*f = \varphi \circ f$. Show that $\mathcal{N}$ and $\mathcal{H}$ define adjoint functors.
+\end{exer}
+%
+\begin{proof}
+The previous exercises gives the bijection $\tau_{MP} : \hom(\mathcal{N}(M),P) \to \hom(M,\mathcal{H}(P))$. We then want to show that this bijection is natural in the sense that it makes the following diagram commute for every map $f : M \to X$
+$$\begin{tikzcd}
+\hom(X \otimes_A N, B) \arrow[d, "\tau_{XB}"'] \arrow[r, "(f\otimes \id_N)^*"] & \hom(M \otimes_A N, B) \arrow[d,"\tau_{MB}"] \\
+\hom(X, \hom(N,B)) \arrow[r, "f^*"'] & \hom(M, \hom(N,B))
+\end{tikzcd}$$
+We also want to show it for the other diagram, but the proof will be near identical, so we only do it for this one. let $\varphi \in \hom(X \otimes_A N, B)$. We compute
+\begin{align*}
+(\tau_{MB} \circ (f \otimes \id_N)^*)(\varphi)(m)(n) &= \tau_{MB}(\varphi \circ f \otimes \id_N)(m)(n) \\
+&= (\varphi \circ f \otimes \id_N)(m,n) \\
+&= \varphi(f(m) \otimes n)
+\end{align*}
+Going the other way, we compute
+\begin{align*}
+(f^* \circ \tau_{XB})(\varphi)(m)(n) &= (\tau_{XB}(\varphi) \circ f)(m)(n) \\
+&= \varphi(f(m) \otimes n)
+\end{align*}
+In both cases, we use the universal property of the tensor product the fact that $\varphi$ is bilinear to interpret $\varphi(x,n)$ as $\varphi(x \otimes n)$, depending on the interpretation of $\varphi$ as a bilinear map out of $X \times N$ or a linear map out of $X \otimes_A N$.
+\end{proof}
+%
 \end{document}
