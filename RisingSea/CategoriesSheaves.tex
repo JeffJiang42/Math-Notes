@@ -969,11 +969,41 @@ Going the other way, we compute
 \end{proof}
 %
 \begin{exer}
-Given a ring homomorphism $B \to A$, any $A$-modules becomes a $B$ module, which givrs us a functor $\mathsf{Mod}_A \to \mathsf{Mod}_B$. Show that this functor is right adjoint to the functor that maps a $B$-module $M$ to $M \otimes_B A$.
+Given a ring homomorphism $B \to A$, any $A$-modules becomes a $B$ module, which gives us a functor $\mathsf{Mod}_A \to \mathsf{Mod}_B$. Show that this functor is right adjoint to the functor that maps a $B$-module $M$ to $M \otimes_B A$.
 \end{exer}
 %
 \begin{proof}
-
+We want to give a bijection $\hom_A(N \otimes_B A, M) \to \hom_B(N, M_B)$, where $M_B$ is the $A$-module $M$ interpreted as a $B$ module via the homomorphism $B \to A$. Where $N$ is an arbitrary $B$-module. Using the universal property of the tensor product, we can identity an element of $\hom_A(N \otimes_B A, M)$ as a $B$-bilinear map $N \times A \to M$. Then we claim that the bijection given by the mapping $\varphi \mapsto \tilde{\varphi}$ where $\tilde{\varphi}(n) = \varphi(n \otimes 1)$ is the one we desire. We want to show that two diagrams commute. For the first one let $f: M \to X$, and $N$ an arbitrary $A$-module. We then want the following diagram to commute
+$$\begin{tikzcd}
+\hom_A(X \otimes_B A,N) \arrow[d, "\tau_{XN}"'] \arrow[r, "(f \otimes \id_A)^*"] & \hom_A(M \otimes_B A, N) \arrow[d, "\tau_{MN}"] \\
+\hom_B(X, N_B) \arrow[r, "f^*"'] & \hom_B(M,N_B)
+\end{tikzcd}$$
+Where the map $f$ on the bottom is the pullback induced by interpreting $f$ as a $B$-module homomorphism and the vertical maps are the bijections we described above. Let $\varphi \in \hom_A(X \otimes_B A, N)$. We then compute
+\begin{align*}
+(\tau_{MN} \circ (f\otimes\id_A)^*)(\varphi)(m) &= \tau_{MN}(\varphi \circ f \otimes\id_A)(m) \\
+&= (\varphi \circ f\otimes\id_A)(m \otimes 1) \\
+&= \varphi(f(m) \otimes 1)
+\end{align*}
+Going the other way, we compute
+\begin{align*}
+(f^* \circ \tau_{XN}(\varphi))(m) &= (\tau_{XN}(\varphi) \circ f)(m) \\
+&= \varphi(f(m) \otimes 1)
+\end{align*}
+Given a map $g: N \to D$, we want the following diagram to commute as well.
+$$\begin{tikzcd}
+\hom_B(M \otimes_B A, N) \arrow[d, "\tau_{MN}"'] \arrow[r, "g_*"] & \hom_B(M \otimes_B A, D) \arrow[d, "\tau_{MD}"] \\
+\hom_A(M, N_B) \arrow[r, "g_*"'] & \hom_A(M, D_B)
+\end{tikzcd}$$
+where again, the bottom map interprets $g$ as a $B$-module homomorphism. Let $\varphi \in \hom_B(M \otimes_B A,N)$. We then compute
+\begin{align*}
+(\tau_{MD} \circ g_*)(\varphi)(m) &= (g \circ \tau_{MD}(\varphi)(m) \\
+&= g(\varphi(m \otimes 1))
+\end{align*}
+Going the other way, we have
+\begin{align*}
+(g_* \circ \tau_{MN})(\varphi)(m) &= (g \circ \tau_{MN}(\varphi)(m) \\
+&= g(\varphi(m \otimes 1)
+\end{align*}
 \end{proof}
 %
 \end{document}
