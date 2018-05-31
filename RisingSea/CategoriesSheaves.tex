@@ -937,7 +937,7 @@ $$\begin{tikzcd}
 \hom(X \otimes_A N, B) \arrow[d, "\tau_{XB}"'] \arrow[r, "(f\otimes \id_N)^*"] & \hom(M \otimes_A N, B) \arrow[d,"\tau_{MB}"] \\
 \hom(X, \hom(N,B)) \arrow[r, "f^*"'] & \hom(M, \hom(N,B))
 \end{tikzcd}$$
-We also want to show it for the other diagram, but the proof will be near identical, so we only do it for this one. let $\varphi \in \hom(X \otimes_A N, B)$. We compute
+Let $\varphi \in \hom(X \otimes_A N, B)$. We compute
 \begin{align*}
 (\tau_{MB} \circ (f \otimes \id_N)^*)(\varphi)(m)(n) &= \tau_{MB}(\varphi \circ f \otimes \id_N)(m)(n) \\
 &= (\varphi \circ f \otimes \id_N)(m,n) \\
@@ -949,6 +949,31 @@ Going the other way, we compute
 &= \varphi(f(m) \otimes n)
 \end{align*}
 In both cases, we use the universal property of the tensor product the fact that $\varphi$ is bilinear to interpret $\varphi(x,n)$ as $\varphi(x \otimes n)$, depending on the interpretation of $\varphi$ as a bilinear map out of $X \times N$ or a linear map out of $X \otimes_A N$.
+
+We also want to show the other diagram commutes, i.e. given $g : B \to D$
+$$\begin{tikzcd}
+\hom(M \otimes_A N, B) \arrow[d,"\tau_{MB}"']\arrow[r, "g_*"] & \hom(M \otimes_A N,  D) \arrow[d,"\tau_{MD}"] \\
+\hom(M, \hom(N,B)) \arrow[r, "(g_*)_*"'] & \hom(M, \hom(N,D))
+\end{tikzcd}$$
+Given $\varphi : M \otimes_A N \to B$, we compute
+\begin{align*}
+(\tau_{MD} \circ g_*)(\varphi)(m)(n) &= \tau_{MD}(g \circ \varphi)(m)(n) \\
+&= (g \circ \varphi)(m \otimes n)
+\end{align*}
+Going the other way, we compute
+\begin{align*}
+((g_*)_* \circ \tau_{MB})(\varphi)(m)(n) &= (g_* \circ \tau_{MB}(\varphi))(m)(n) \\
+&= (g \circ \tau_{MB}(\varphi)(m))(n) \\
+&= (g \circ \varphi)(m \otimes n)
+\end{align*}
+\end{proof}
+%
+\begin{exer}
+Given a ring homomorphism $B \to A$, any $A$-modules becomes a $B$ module, which givrs us a functor $\mathsf{Mod}_A \to \mathsf{Mod}_B$. Show that this functor is right adjoint to the functor that maps a $B$-module $M$ to $M \otimes_B A$.
+\end{exer}
+%
+\begin{proof}
+
 \end{proof}
 %
 \end{document}
