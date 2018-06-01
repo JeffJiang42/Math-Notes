@@ -1005,5 +1005,42 @@ Going the other way, we have
 &= g(\varphi(m \otimes 1)
 \end{align*}
 \end{proof}
+Another example of adjoints is the groupification of an abelian semigroup, and the forgetful functor from abelian groups to abelian semigroups, but we'll move on the the next section now. 
+%
+\begin{defn}
+A category $\mathscr{C}$ is $\ib{additive}$ if
+\begin{enumerate}
+\item For any pair of objects $A,B$, we have that $\hom(A,B)$ is an abelian group under an operation we call addition, such that composition distributes over addition, i.e.
+$$\varphi( \psi + \rho) = \varphi \circ \psi + \varphi \circ \rho $$
+and 
+$$(\psi + \rho) \circ \varphi = \psi \circ \varphi + \rho \circ \varphi $$
+\item $\mathscr{C}$ has a zero object.
+\item $\mathscr{C}$ contains all pairwise products $A \times B$, and by induction, all finite products.
+\end{enumerate}
+\end{defn}
+%
+The fact that additive categories have a zero object gives us some things from algebra we like a lot -- kernels and cokernels.
+%
+\begin{defn}
+Let $\mathscr{C}$ be a category with a zero object, denoted $0$. Given a map $f: B \to C$, the \ib{kernel} of $f$ is another object $A$ with a map $i : A \to B$ such that $f \circ i$ is the zero map $B \to 0$. This is summarized by the commuting diagram
+$$\begin{tikzcd}
+0 \arrow[d] \arrow[dr] \arrow[drr]\\
+A \arrow[rr, "0"' , bend right=50]\arrow[r,"i"'] & B \arrow[r,"f"'] & C
+\end{tikzcd}$$
+which can also be identified as the limit of the diagram
+$$\begin{tikzcd}
+& 0 \arrow[d] \\
+B \arrow[r,"f"'] & C
+\end{tikzcd}$$
+\end{defn}
+%
+As you expect, the cokernel comes from flipping all of the arrows
+\begin{defn}
+Given a category $\mathscr{C}$ with a zero object $0$, given a map $f: B \to C$ the \ib{cokernel} is another object $A$ with a maps $p : C \to A$ such that $f \circ p = 0$, which is summarized by the commuting  diagram
+$$\begin{tikzcd}
+0 \\
+B \arrow[u] \arrow[r, "f"'] & C \arrow[ul] \arrow[r, "p"'] & A \arrow[ull]
+\end{tikzcd}$$
+\end{defn}
 %
 \end{document}
