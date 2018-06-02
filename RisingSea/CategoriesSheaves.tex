@@ -145,6 +145,7 @@
 \DeclareMathOperator{\im}{Im}
 \DeclareMathOperator{\grap}{graph}
 \DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\inter}{Int}
 \DeclareMathOperator{\sign}{sign}
@@ -1042,5 +1043,33 @@ $$\begin{tikzcd}
 B \arrow[u] \arrow[r, "f"'] & C \arrow[ul] \arrow[r, "p"'] & A \arrow[ull]
 \end{tikzcd}$$
 \end{defn}
+If the map $i: A \to B$ specified in the definition of the kernel is a monomorphism, we say that $A$ is a \ib{subobject} of $B$. Likewise, if the map $p: C \to A$ is an epimorphism, we say that $A$ is a \ib{quotient object} of $B$.
+%
+\begin{defn}
+An \ib{abelian category} is an additive category such that 
+\begin{enumerate}
+\item For any map $f$, $\ker f$ and $\coker f$ exist.
+\item Every monomorphism is the kernel of its cokernel.
+\item Every epimoprhism is the cokernel of its kernel.
+\end{enumerate}
+The last two conditions can be stated more clearly. For (2), let $\varphi : A \to B$ be a monomorphism. We want to have that the composition $A \to B \to \coker f$ to satisfy the properties of the kernel for $\coker f$, and a similar statement for (3).
+\end{defn}
+%
+\begin{defn}
+Given a map $f$, the \ib{image} of $f$, denote $\im f$ is $\ker(\coker f)$
+\end{defn}
+
+We're now going discuss some (co)homology. We're going to assume that we're always working in an abelian category (just thing modules over a ring).
+\begin{defn}
+A sequence
+$$\begin{tikzcd}
+\cdots \arrow[r,] & A \arrow[r,"f"] & B \arrow[r,"g"] & C \arrow[r] & \cdots
+\end{tikzcd}$$
+is a \ib{complex} at $B$ $g \circ f = 0$ and is \ib{exact} at $B$  if $\ker g = \im f$, i.e. $g$ has a kernel that is a cokernel of $f$.
+\end{defn}
+%
+\begin{exer}
+Exactness at $B$ implies the sequence is a complex at $B$.
+\end{exer}
 %
 \end{document}
