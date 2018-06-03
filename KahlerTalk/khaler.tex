@@ -197,13 +197,13 @@
 
 \begin{document}
 \author{Jeffrey Jiang}
-\title{Symplectic Geometry and Kh\"aler Manifolds: An Introduction}
+\title{Symplectic Geometry and K\"ahler Manifolds: An Introduction}
 %
 \maketitle
 %
 \section*{Linear Algebra}
 %
-As typical when studying smooth manifolds, we first look at the linear algebra that will be non-linearized. To discuss Kh\"aler manifolds (and consequently, Kh\"aler vector spaces), we will need to assemble several mutually compatible structures -- an inner product, a symplectic form, and a complex structure. 
+As typical when studying smooth manifolds, we first look at the linear algebra that will be non-linearized. To discuss K\"alher manifolds (and consequently, K\"ahler vector spaces), we will need to assemble several mutually compatible structures -- an inner product, a symplectic form, and a complex structure. 
 %
 \begin{defn}
 An \ib{inner product space} is a vector space $V$ equipped with a bilinear map $g: V\times V \to V$ that is symmetric and positive definite. In the case that $V$ is a complex vector space, we replace the bilinear condition with the \ib{sesquilinear} condition -- conjugate linear in the first term, and linear in the second term. In this case, $g$ is often referred to as a \ib{hermitian inner product}.
@@ -248,6 +248,9 @@ A \ib{complex structure} on a vector space $V$ is an automorphism $J: V \to V$ s
 %
 Given a complex structure $J$ and an $\R$-vector space $V$, we can make $V$ a $\C$-vector space by defining the action of $i \in \C$ by $i \cdot v = Jv$. We can then extend this to arbitrary complex numbers $\alpha + \beta i$ by $(\alpha + \beta i)\cdot v = \alpha v + \beta Jv$.
 
+\begin{rem*}
+Might want to skip this part -- not enough time.
+\end{rem*}
 If you know some linear algebra, you might know that there is another way to turn a $\R$-vector space into a complex one. 
 \begin{defn}
 Given an $\R$-vector space $V$, define its complexification $V_\C$ as $V \otimes_\R \C$.
@@ -281,13 +284,13 @@ One final way to obtain these compatible structures is to start with a Hermitian
 With the linear algebra set up, we can move on to talking about the manifolds. We'll first translate the linear algebraic concepts to ones on a manifold.
 %
 \begin{defn}
-A \ib{Riemannian metric} on a smooth manifold $M$ is a smoothly symmetric positive definite $2$-tensor field $g: M \to \mathcal{T}^2(M)$.
+A \ib{Riemannian metric} on a smooth manifold $M$ is a smooth symmetric positive definite $2$-tensor field $g: M \to \mathcal{T}^2(M)$.
 \end{defn}
 Smooth here mean one of several equivalent things:
 \begin{enumerate}
 \item The component functions of the matrix $g_{ij} = \langle \partial_i, \partial_j \rangle$ are smooth in any chart.
 \item $g$ is a smooth map from $M$ into the tensor bundle $\mathcal{T}^2(M)$.
-\item For any vector fields $X,Y \in \mathcal{X}(M)$, the function given by $g(X,Y)$ is smooth.
+\item For any vector fields $X,Y \in \mathfrak{X}(M)$, the function given by $g(X,Y)$ is smooth.
 \end{enumerate}
 We note that a Riemannian metric on a manifold is analogous to an inner product on a vector space -- it a smooth assignment of an inner product to each tangent space $T_pM$. Also, we have that $g_p$ being an inner product on $T_pM$ implies that it is nondegenerate, so $g$ induces an isomorphism $TM \to T^*M$.
 \begin{defn}
@@ -310,12 +313,12 @@ The only sphere that admits a symplectic structure is $S^2$
 %
 \begin{proof}
 We can give $S^2$ a symplectic structure with a choice of volume form, which is closed and skew symmetric. Then let $n \in 2\Z$ with $n \neq 2$. We claim that there exists no symplectic structure on $S^n$. We know that $H^2_{dR}(M) = 0$, so every $2$-form is exact. This tells us that the $n/2$-fold wedge of $\omega$ with itself is also exact, so it is equal to $d\beta$ for some $\beta$. Then by Stokes' Theorem
-$$\int_{S^n} \omega^{n/2} = \int_{S^n} d\beta = 0 $$
+$$\int_{S^n} \omega^{n/2} = \int_{S^n} d\beta = = \int_\emptyset \beta = 0 $$
 so $\omega^{n/2}$ is not a volume form.
 \end{proof}
 %
 \begin{defn}
-An \ib{almost complex structure} on a smooth manifold is smoothly varying $J$ where at each $p \in M$, $J_p^2: T_pM \to T_pM$ is equal to $\id_{T_pM}$
+An \ib{almost complex structure} on a smooth manifold is smoothly varying $J$ where at each $p \in M$, $J_p^2: T_pM \to T_pM$ is equal to $-\id_{T_pM}$
 \end{defn}
 Since the endomorphism is acting on a different vector space at each point, what does smooth mean? We have a canonical isomorphism $V^* \otimes V \to \End(V)$, so we identify $J$ as a smoothly varying $(1,1)$ tensor field, and ask that the map to the tensor bundle $J: M \to \mathcal{T}^1_1(M)$ is smooth.
 %
@@ -323,7 +326,11 @@ Since the endomorphism is acting on a different vector space at each point, what
 A \ib{complex manifold} is a smooth manifold with an atlas of charts $\varphi: U \to \C^n$ where the transition maps $\varphi \circ \psi\inv : \psi(U) \cap \varphi(V) \to \C^n$ are holomorphic.
 \end{defn}
 %
-As it turns out, an almost complex structure isn't quite enough for our needs -- it will need to satisfy some integrability condition. If you know about the Frobenius theorem regarding when vector fields determine a subbundle of the tangent bundle, this is the same concept.
+As it turns out, an almost complex structure isn't quite enough for our needs -- it will need to satisfy some integrability condition. If you know about the Frobenius theorem regarding when vector fields determine a subbundle of the tangent bundle, this is the same concept. Recall that an complex structure on a vector space $V$ induces a decomposition of the complexification
+$$V_\C = V^+ \oplus V^- $$
+Then given a manifold $M$ with complex structure $J$, we can talk about the complexified tangent bundle, which has fibers $T_pM_\C$. Then $J$ gives us an analogous decomposition of each fiber as
+$$T_pM_\C = T_pM^+ \oplus T_pM^- $$
+which then gives us two smoothly varying subspaces of $T_pM_\C$. Then the integrability condition translates to these distributions being integrable, i.e closed under Lie bracket. If such a condition is satisfied, then we can endow $M$ with a complex structure.
 %
 \begin{defn}
 A \ib{K\"ahler manifold} is a complex manifold $M$ with a Riemannian metric $g$ and symplectic form $\omega$ such that at each $T_pM$, $g_p$ and $\omega_p$ are compatible with the complex structure given by multiplication by $i$, i.e.

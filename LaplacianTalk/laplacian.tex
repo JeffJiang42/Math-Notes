@@ -201,7 +201,35 @@
 \title{The Laplace-de Rham Operator on a Riemannian Manifold}
 \maketitle
 %
+\section*{Preliminaries}
+\begin{enumerate}
+\item Explain Einstein summation convention
+\item Define vector bundle (intuition mostly)
+\item Define frame
+\item Define orientation (intuition mostly -- equivalence with existence of a top degree form)
+\end{enumerate}
+I'm going to assume some knowledge of smooth manifolds and differential forms, and establish a few of the pieces of Riemannian geometry that we will need. 
+
+\begin{defn}
+A \ib{Riemannian manifold} $(M,g)$ is a smooth manifold $M$ with a smooth symmetric positive definite $2$-tensor field $g$ called the \ib{metric tensor}. 
+\end{defn}
+To be more concrete, if we evaluate the metric tensor $g$ at a point $p$, we have that $g_p$ is an inner product on $T_pM$. In local coordinates $(x^i)$, the metric tensor is given by the coordinate formula
+$$g_{ij} dx^idx^j $$
+for some smoothly varying symmetric matrix $g_{ij}$. For example, the matrix for the standard Riemannian metric on $\R^n$ in standard coordinates is just the identity matrix $\delta_{ij}$.
+
+The Riemannian metric gives us some additional tools to play with. For example, if you have an inner product space $V$, you get an isomorphism $V \to V^*$ where $v \mapsto \langle v, \cdot \rangle$. So given a Riemannian metric, we get an isomorphism $T_pM \to T^*_pM$ by the same process, namely if $v \in T_pM$, we can map $v\to g_p(v,\cdot)$. This gives us isomorphisms between the tangent and cotangent bundle, called the \ib{musical isomorphisms} $\flat: TM \to T^*M$ and $\sharp:T^*M \to TM$, which are commonly referred to as lowering and raising indices respectively. In addition, the metric gives you a notion of length and angle, so we can now talk about orthonormality.
+
+On an orientable smooth manifold $M$, the differential forms we integrate over $M$ are the top-degree forms. However, there is no distinguished choice of volume form. On a Riemannian manifold, we do have such a distinguished volume form $dV_g$, called the \ib{Riemannian volume form}, which is uniquely characterized by the property that it evaluates to $1$ on every orthonormal basis. We can characterize this locally by taking an orthonormal frame $E_i$, and letting 
+$$dV_g = \varepsilon^i \wedge \ldots \wedge \varepsilon^n $$
+where $\varepsilon^i$ is the coframe dual to $E_i$.
+
+Finally, a Riemannian volume form will let us recover concepts from vector calculus. Given a smooth function $f \in C^\infty(M)$, we can obtain a $1$ form $df$ by differentiating. Then we can use $\sharp$ to lower the index to obtain a vector field, giving us the gradient, which is given locally by the formula
+$$\grad f = g^{ij} \frac{\partial f}{\partial x^i} \frac{\partial}{\partial x^j} $$
+Where $g^{ij}$ is the inverse to the matrix $g_{ij}$. Plugging in $g^{ij} = \delta_{ij}$, we obtain the standard gradient we're familiar with.
+%
 \setcounter{section}{1}
+\setcounter{thm}{0}
+\section*{Generalizing the Laplacian}
 %
 In $\R^2$, we know about the standard Laplace operator on $C^\infty(\R^2)$
 $$\Delta = \frac{\partial^2}{\partial x^2} + \frac{\partial^2 }{\partial y^2}$$
@@ -353,7 +381,7 @@ d\star df &= (-1)^{i-1} \frac{\partial}{\partial x^k}\left( g^{ij}\sqrt{\det g}\
 &= \frac{1}{\sqrt{\det g}} \frac{\partial}{\partial x^i}\left( g^{ij}\sqrt{\det g}\frac{\partial f}{\partial x^j} \right) dV_g
 \end{align*}
 
-We then have that $\star d\star df$ must satsify $d\star f \wedge \star d\star df = \langle d\star f, d\star f \rangle~dV_g$. We then compute
+We then have that $\star d\star df$ must satisfy $d\star f \wedge \star d\star df = \langle d\star f, d\star f \rangle~dV_g$. We then compute
 \begin{align*}
 \biggl\langle \frac{1}{\sqrt{\det g}} \frac{\partial}{\partial x^i}\left( g^{ij}\sqrt{\det g}\frac{\partial f}{\partial x^j} \right) dV_g, \frac{1}{\sqrt{\det g}} \frac{\partial}{\partial x^k}\left( g^{k\ell}\sqrt{\det g}\frac{\partial f}{\partial x^\ell} \right)~dV_g\biggr\rangle~dV_g  \\
 = \frac{1}{\sqrt{\det g}} \frac{\partial}{\partial x^i}\left( g^{ij}\sqrt{\det g}\frac{\partial f}{\partial x^j} \right)    \frac{1}{\sqrt{\det g}} \frac{\partial}{\partial x^k}\left( g^{k\ell}\sqrt{\det g}\frac{\partial f}{\partial x^k} \right) ~dV_g
