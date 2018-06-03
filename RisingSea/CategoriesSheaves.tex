@@ -1091,7 +1091,7 @@ Given a complex
 $$\begin{tikzcd}
 \cdots \arrow[r] & A \arrow[r, "f"] & B \arrow[r, "g"] & C \arrow[r] & \cdots
 \end{tikzcd}$$
-The \ib{homology} $H$ at $B$ is $H = \ker g / \im f$, i.e. there exists a monomoprhism $i \im f \to \ker g$ and $H = \coker i$. In the case that the objects we're working with are sets (e.g. abelian groups, modules), elements of $\im f$ are \ib{cycles} and elements of $\ker g$ are \ib{boundaries}.
+The \ib{homology} $H$ at $B$ is $H = \ker g / \im f$, i.e. there exists a monomorphism $i : \im f \to \ker g$ and $H = \coker i$. In the case that the objects we're working with are sets (e.g. abelian groups, modules), elements of $\im f$ are \ib{cycles} and elements of $\ker g$ are \ib{boundaries}.
 \end{defn}
 %
 In most cases, we'll index the objects in our sequence, and depending on whether are indices are decreasing or increasing from left to right, we'll say the homology or cohomology of the sequence respectively. We'll also use the notation
@@ -1126,6 +1126,25 @@ $$ A^\bullet = \begin{tikzcd}
 \end{tikzcd}$$
 Let $h^i(A^\bullet) = \dim H^i(A^\bullet)$. Show
 $$\sum (-1)^i h^i(A^\bullet) = \sum (-1)^i \dim A^i $$
+\end{exer}
+%
+\begin{proof}
+From the rank-nullity theorem, we know that $\dim A^i = \dim \im d^i  + \dim \ker d^i$. This gives us that 
+$$ h^i(A^\bullet) = \dim \ker d^{i+1} / \im d^i = (\dim A^{i+1} - \dim \im d^{i+1}) - (\dim A^i - \dim\ker d^i) $$
+Then when we consider the alternating sum
+$$ \sum (-1)^i h^i(A^\bullet) = \sum (-1)^i  ((\dim A^{i+1} - \dim \im d^{i+1}) - (\dim A^i - \dim\ker d^i)) $$
+We note that the term of $(-1)^i$ makes the $\dim \im d^{i +1}$ be the same sign as the $\dim \ker d^{i+1}$ term, and that the first maps are injective and surjective respectively, so using this with rank-nullity again we can simplify this sum to
+$$ \sum (-1)^i h^i(A^\bullet) = \sum (-1)^i (\dim A^{i+1} + \dim A^i - \dim A^i) = \sum (-1)^i \dim A^{i+1}$$
+We then note that $\sum(-1)^i \dim A^{i+1} = \sum(-1)^i \dim A^i$, since the only term we skipped was $A^0 = 0$, which has dimension $0$.
+\end{proof}
+%
+\begin{exer}
+Let $\mathsf{Com}$ be the category of complexes of modules and the morphisms $A^\bullet \to B^\bullet$ are commuting diagrams
+$$\begin{tikzcd}
+\cdots \arrow[r] & A^{i-1} \arrow[d] \arrow[r, "f^i"] & A^i \arrow[d] \arrow[r, "f^i"] & A^{i+1} \arrow[d] \arrow[r, "f^{i+1}"] & \cdots \\
+\cdots \arrow[r] & B^{i-1} \arrow[r, "g^i"] & B^i \arrow[r, "g^i"] & B^{i+1} \arrow[r, "g^{i+1}"] & \cdots
+\end{tikzcd}$$
+Show that $\mathsf{Com}$ is an abelian category.
 \end{exer}
 %
 \begin{proof}
