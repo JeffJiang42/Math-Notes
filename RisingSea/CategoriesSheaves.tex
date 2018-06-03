@@ -1072,4 +1072,26 @@ is a \ib{complex} at $B$ $g \circ f = 0$ and is \ib{exact} at $B$  if $\ker g = 
 Exactness at $B$ implies the sequence is a complex at $B$.
 \end{exer}
 %
+\begin{proof}
+We know that the map $f: A \to B$ factors uniquely as a map $\tilde{f}: A \to \im f$, giving us the diagram
+$$\begin{tikzcd}
+A \arrow[dr, "\tilde{f}"']\arrow[r, "f"] & B \\
+& \im f \ar[u]
+\end{tikzcd}$$
+Where the vertical arrow is the natural map $\ker (\coker f)$ induced by the map $B \to \coker f$. Combining this with the diagram for the kernel of $g$, and substituting $\im f$ with $\ker g$ (since they are equal), we get the commuting diagram
+$$\begin{tikzcd}
+A \arrow[dr, "\tilde{f}"']\arrow[r, "f"] & B \arrow[r, "g"] & C \\
+& \ker g \ar[u] & 0 \arrow[l] \arrow[ul] \arrow[u]
+\end{tikzcd}$$
+showing that $g \circ f = 0$.
+\end{proof}
+%
+\begin{defn}
+Given a complex
+$$\begin{tikzcd}
+\cdots \arrow[r] & A \arrow[r, "f"] & B \arrow[r, "g"] & C \arrow[r] & \cdots
+\end{tikzcd}$$
+The \ib{homology} $H$ at $B$ is $H = \ker g / \im f$, i.e. there exists a monomoprhism $i \im f \to \ker g$ and $H = \coker i$. In the case that the objects we're working with are sets (e.g. abelian groups, modules), elements of $\im f$ are \ib{cycles} and elements of $\ker g$ are \ib{boundaries}.
+\end{defn}
+%
 \end{document}
