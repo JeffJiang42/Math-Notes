@@ -202,7 +202,7 @@
 \title{The Rising Sea: Categories and Sheaves}
 \maketitle
 
-These are some notes + exercises I've compiled working through the first $2$ chapters of Ravi Vakil's \emph{The Rising Sea}, with the main purpose being to gain some familiarity and comfort with categories and sheaves.	
+These are some notes + exercises I've compiled working through the first $2$ chapters of Ravi Vakil's \emph{The Rising Sea}, with the main purpose being to gain some familiarity and comfort with categories and sheaves.
 %
 \section{Category Theory}
 %
@@ -231,7 +231,7 @@ Let $A$ be an object of a category $\mathscr{C}$. Show that the automorphisms of
 \end{exer}
 %
 \begin{proof}
-Verifying that $\Aut(A)$ is a group is mainly an exercise in definition chasing. Associativity comes from the category axioms, the identity element is the identity morphism, and inverses exist by the definition of the automorphism group. 
+Verifying that $\Aut(A)$ is a group is mainly an exercise in definition chasing. Associativity comes from the category axioms, the identity element is the identity morphism, and inverses exist by the definition of the automorphism group.
 
 For the second part, let $A,B \in \mathsf{Ob}(\mathscr{C})$ be isomorphic, with $f: A \to B$ an isomorphism. We then define a map $f^*: \Aut(B) \to \Aut(A)$ where $f^*\sigma = f\inv \circ \sigma \circ f$. This is clearly a group homomorphism, and is an isomorphism with inverse given by $(f\inv)^*$.
 \end{proof}
@@ -413,11 +413,11 @@ To show that $\mathcal{N}$ defines a functor, all we need to show is that it res
 $$ \mathcal{N}(\psi \circ \varphi)(a \otimes n) = (\psi \circ \varphi)(a) \otimes n = \mathcal{N}(\psi \circ \varphi)(a \otimes n) $$
 so $\mathcal{N}$ is a functor.
 
-We now show that $\mathcal{N}$ is right exact. Let 
+We now show that $\mathcal{N}$ is right exact. Let
 $$\xymatrix{
 0 \ar[r] & A \ar[r]^\varphi & B \ar[r]^\psi & C \ar[r] & 0
 }$$
-be exact, i.e. $\ker\psi = \im\varphi$, $\varphi$ is injective, and $\varphi$ is surjective. We want to show that 
+be exact, i.e. $\ker\psi = \im\varphi$, $\varphi$ is injective, and $\varphi$ is surjective. We want to show that
 $$\xymatrix{
 0 \ar[r] & A \otimes_R N \ar[r]^{\mathcal{N}(\varphi)} & B \otimes_R N \ar[r]^{\mathcal{N}(\psi)} & C \otimes_R N \ar[r] & 0
 }$$
@@ -427,7 +427,7 @@ The characterization we gave for the tensor product $A \otimes B$, while not wro
 $$\xymatrix{
 A\times B \ar[r]^\psi \ar[d]_{\varphi} & C \\
 A \otimes B \ar[ur]
-}$$  
+}$$
 So the tensor product is another $R$-module in which linear maps are equivalent to bilinear maps out of $A \times B$. The construction we gave above equivalent, with the map $\varphi$ being given by the mapping $(a,b) \mapsto a \otimes b$.
 %
 \begin{exer}\enumbreak
@@ -439,13 +439,13 @@ So the tensor product is another $R$-module in which linear maps are equivalent 
 %
 \begin{proof}\enumbreak
 \begin{enumerate}
-\item We note that the homomorphism $\varphi: A \to B$ gives $B$ the structure of an $A$-module where the scalar multiplication is given by $a \cdot b = \varphi(a)b$, so it makes sense to construct $B \otimes_A M$. To make $B \otimes_A M$ a $B$-module, we just need to specify a scalar multiplication by $B$. Let $b \otimes m \in B \otimes_A M$, and let $\lambda \in B$. Let 
+\item We note that the homomorphism $\varphi: A \to B$ gives $B$ the structure of an $A$-module where the scalar multiplication is given by $a \cdot b = \varphi(a)b$, so it makes sense to construct $B \otimes_A M$. To make $B \otimes_A M$ a $B$-module, we just need to specify a scalar multiplication by $B$. Let $b \otimes m \in B \otimes_A M$, and let $\lambda \in B$. Let
 $$\lambda \cdot b \otimes m = \lambda b \otimes m$$
 and extending linearly to sums. By definition this distributes over the addition of $B \otimes_A M$ as an $A$-module, so this makes it a $B$-module as well. We note by the previous exercise, tensoring with a fixed $A$-module (in this case $B$), defines an functor.
 \begin{rem*}
 This process is commonly referred to as \ib{extension of scalars}, especially when the map $\varphi$ is like an inclusion, e.h. $\R \hookrightarrow \C$. In that case, this process takes a real vector space and complexifies it into a complex vector space.
 \end{rem*}
-\item Let addition on $B \otimes_A C$ be the standard addition as $A$-modules. Then we define multiplication as 
+\item Let addition on $B \otimes_A C$ be the standard addition as $A$-modules. Then we define multiplication as
 $$(b_1\otimes c_1)(b_2 \otimes c_2) = b_1b_2 \otimes  c_1c_2$$
 and extending linearly to sums, which covers distributivity. In addition, multiplication is commutative since $B$ and $C$ are commutative, so this forms a ring.
 \end{enumerate}
@@ -490,7 +490,7 @@ is often refereed to a Cartesian diagram/square.
 \end{exmp}
 %
 \begin{exer}
-Show that in the category $\mathsf{Set}$, the fibered product is given by 
+Show that in the category $\mathsf{Set}$, the fibered product is given by
 $$X \times_Z Y = \set{(x,y) \in X \times Y ~:~ \alpha(x) = \beta(y)} $$
 \end{exer}
 %
@@ -556,7 +556,7 @@ $$\xymatrix{
 X_1 \times_Y X_2  \ar[dr] \ar[drr] \ar[ddr]\\
 & X_1 \times_Z X_2 \ar[r] \ar[d] & X_2 \ar[d]\\
 & X_1 \ar[r] & Y
-}$$ 
+}$$
 which gives us commutativity of the upper square. For the lower square, we note that the identity map on $Y$ gives us a map $Y \to Y \times_Z Y$, and that the map $X_1 \to Y$ trivially commutes with the identity map, so it gives us a map $X_1 \to Y \times_Z Y$, so mapping $X_1 \to Y \to Y\times_Z Y$ is the same as going straight $X_1 \to Y \times_Z Y$.
 \end{proof}
 A lot of constructions of objects in category theory come from taking the universal property of another object, and flipping all of the arrows to get a ``dual" object. To reflect this, we usually take the old object and slap ``co-" to the front\footnote{What is coffee? It's ffee with all the arrows reversed!}.
@@ -573,7 +573,7 @@ C \\
 Let $X,Y,Z$ be objects, and we are given maps $Z \to X$ and $Z \to Y$, then the fibered coproduct $X \coprod_Z Y$ is an object equipped with maps $X \to X \coprod_Z Y$ and $Y \to X \coprod_Z Y$ such that given another object $W$ with maps $X \to W$ and $Y \to W$ such that their compositions $Z \to W$ agree, the map factors through to a map $X \coprod_Z Y \to W$, such that the following diagram commutes
 $$\xymatrix{
 Z \ar[d] \ar[r] & Y \ar[d] \ar[ddr]\\
-X \ar[r] \ar[drr] & X \coprod_Z Y  \ar[dr]\\ 
+X \ar[r] \ar[drr] & X \coprod_Z Y  \ar[dr]\\
 & & W
 }$$
 \end{defn}
@@ -596,7 +596,7 @@ satisfies the universal property of a fibered coproduct.
 \end{exer}
 %
 \begin{proof}
-We first verify that the mapping $b \mapsto b \otimes 1$ is a ring homomorphism. By the bilinearity of $\otimes$, we get that $(b_1 + b_2) \otimes 1 = b_1 \otimes 1 + b_2 \otimes 1$, and that $rb \otimes 1 = r(b \otimes 1)$, so this is a ring homomorphism. The same proof goes for the map $C \to B \otimes_A C$. 
+We first verify that the mapping $b \mapsto b \otimes 1$ is a ring homomorphism. By the bilinearity of $\otimes$, we get that $(b_1 + b_2) \otimes 1 = b_1 \otimes 1 + b_2 \otimes 1$, and that $rb \otimes 1 = r(b \otimes 1)$, so this is a ring homomorphism. The same proof goes for the map $C \to B \otimes_A C$.
 
 Then let $R$ be another ring with ring homomorphisms $\varphi: B \to R$ and $\psi: C \to R$ such that the compositions with the maps $A \to B$ and $A \to C$ respectively give the same map $A \to W$. Then we get a map $B \otimes_A C \to R$, which is uniquely defined by $b \otimes c \mapsto \varphi(b)\psi(c)$ and extending linearly to sums, so $B \otimes_A C$ is the fibered coproduct in the category of rings.
 \end{proof}
@@ -613,7 +613,7 @@ Show the composition of two monomorphisms is a monomorphism.
 \end{exer}
 %
 \begin{proof}
-Let $\varphi: X \to Y$ and $\psi : Y \to Z$ be monomorphisms, and let $f,g: A \to X$ satisfying 
+Let $\varphi: X \to Y$ and $\psi : Y \to Z$ be monomorphisms, and let $f,g: A \to X$ satisfying
 $$\psi \circ \varphi \circ f = \psi \circ \varphi \circ g$$
 Since $\psi$ is a monomorphism, we conlcude that $\varphi \circ f = \varphi \circ g$, and since $\varphi$ is a monomorphism, we conclude that $f = g$. Therefore, we have that $\psi \circ \varphi$ is a monomorphism as well.
 \end{proof}
@@ -629,7 +629,7 @@ Conversely, suppose we are given that the map $\iota : X \to X \times_Y X$ is an
 \end{proof}
 %
 \begin{exer}
-Show that if $Y \to Z$ is a monomorphism, then the induced map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$ is an isomorphism. 
+Show that if $Y \to Z$ is a monomorphism, then the induced map $X_1 \times_Y X_2 \to X_1 \times_Z X_2$ is an isomorphism.
 \end{exer}
 %
 \begin{proof}
@@ -715,7 +715,7 @@ In addition, these maps $f_j$ are final with respect to this property, which mea
 Vakil gives the following as examples, but it's good to work through them to process what's really going on.
 %
 \begin{exmp}
-Suppose $\mathscr{I}$ is the diagram 
+Suppose $\mathscr{I}$ is the diagram
 $$\begin{tikzcd}
 & \bullet \arrow[d] \\
 \bullet \arrow[r] & \bullet
@@ -731,7 +731,7 @@ To see why, we note that the limit (which we will denote $L$ for convenience) is
 \end{exmp}
 Perhaps slightly simpler
 \begin{exmp}
-Let $\mathscr{I}$ be the uninteresting diagram 
+Let $\mathscr{I}$ be the uninteresting diagram
 $$\xymatrix{
 \bullet & \bullet
 }$$
@@ -747,7 +747,7 @@ Then the limit $L$ is an object with maps $L \to A$ and $L \to B$ such that any 
 One important fact is that when your category is sufficiently concrete (it looks like $\mathsf{Set})$ and has all products, the limit will always exist (which implies that there are limits that don't exist). In this case, most concrete categories (sets with extra structure) have all of their limits.
 %
 \begin{exer}
-Show that in $\mathsf{Set}$, we have 
+Show that in $\mathsf{Set}$, we have
 $$L = \set{(a_i) \in \prod_{i \in \mathscr{I}} A_i ~\colon~ F(m)(a_j) = a_k \text{ for } m \in \hom(j,k)}$$
 with the projection maps $\pi_i: L \to A_i$ is the limit.
 \end{exer}
@@ -809,12 +809,12 @@ commutes, since each map is essentially inclusion, so we need to check universal
 \end{enumerate}
 \end{proof}
 
-The proof for the intersection is much the same with the arrows reversed, except we note that this implies that any object with maps to all of the $A_i$ must be contained in all of the $A_i$, which must factor through the intersection. 
+The proof for the intersection is much the same with the arrows reversed, except we note that this implies that any object with maps to all of the $A_i$ must be contained in all of the $A_i$, which must factor through the intersection.
 
 Note that in $\mathsf{Set}$, all limits exist, but we need some additional assumptions for colimits to exist in $\mathsf{Set}$.
 %
 \begin{defn}
-A category $\mathscr{I}$ is \ib{filtered} if 
+A category $\mathscr{I}$ is \ib{filtered} if
 \begin{enumerate}
 \item For any pair of objects $x,y$, there exists an object $z$ that has arrows $x \to z$ and $y \to z$.
 \item For any pair of maps $u,v : x \to y$, there exists another map $w: y \to z$ such that $w \circ u = w \circ v$.
@@ -839,7 +839,7 @@ A_i \arrow[dr, "f"'] & & A_j  \arrow[dl, "g"'] \arrow[dr, "f'"]& & A_k \arrow[dl
 \end{tikzcd}$$
 Then since $f(a_i) = g(a_j)$ and $f'(a_j) = f'(a_k)$, and the maps $A_j \to A_n \to A_\ell \to A'_\ell$ and $A_j \to A_m \to A_\ell \to A'_\ell$ are the same, we have that the compositions $A_i \to A'_\ell$ and $A_k \to A'_\ell$ map $a_i$ and $a_k$ to the same place, so we can finally conclude that $(a_i,i) \sim (a_k,k)$.
 
-We now verify that $C$ defines the colimit of the diagram indexed by $\mathscr{I}$, where the maps $A_i \to C$ are given by the mappings $a_i \mapsto [a_i]$, where $[a_i] \in C$ denotes the equivalence class of $a_i$. We first want to show that for any morphism $m: j \to k$, the following diagram commutes 
+We now verify that $C$ defines the colimit of the diagram indexed by $\mathscr{I}$, where the maps $A_i \to C$ are given by the mappings $a_i \mapsto [a_i]$, where $[a_i] \in C$ denotes the equivalence class of $a_i$. We first want to show that for any morphism $m: j \to k$, the following diagram commutes
 $$\begin{tikzcd}
 C \\
 A_j \arrow[u] \arrow[r,"F(m)"'] & A_k \arrow[ul]
@@ -884,7 +884,7 @@ where $g_*$ and $\mathcal{G}(g)_*$ are the maps induced by post-composition with
 Show that the map $\tau_{AB}$ as defined above has the following properties
 \begin{enumerate}
 \item For each object $A$, there exists a map $\eta_A: A \to (\mathcal{G} \circ \mathcal{F})(A)$ such that for any $\varphi : \mathcal{F}(A) \to  B$, the map $\tau_{AB}(g)$ is given by the composition $\mathcal{G}(\varphi) \circ \eta_A$.
-\item Similarly, for each object $B$, there exists a map $\varepsilon_B : (\mathcal{F} \circ \mathcal{G})(B) \to B$ such that for any $f : A \to \mathcal{G}(B)$, the map $\tau\inv_{AB}(f)$ is given by the composition $\varepsilon_B \circ \mathcal{F}(f)$. 
+\item Similarly, for each object $B$, there exists a map $\varepsilon_B : (\mathcal{F} \circ \mathcal{G})(B) \to B$ such that for any $f : A \to \mathcal{G}(B)$, the map $\tau\inv_{AB}(f)$ is given by the composition $\varepsilon_B \circ \mathcal{F}(f)$.
 \end{enumerate}
 \end{exer}
 %
@@ -895,9 +895,9 @@ $$\begin{tikzcd}
 \hom_\mathscr{B}(\mathcal{F}(A),B) \arrow[d, "\tau_{AB}"'] \arrow[r,"g_*"] & \hom_\mathscr{B}(F(A),B) \arrow[d, "\tau_{AB}"]\\
 \hom_\mathscr{A}(A,\mathcal{G}(B))  \arrow[r, "\mathcal{G}(g)_*"'] & \hom_\mathscr{A}(A,\mathcal{G}(B)
 \end{tikzcd}$$
-The fact that this diagram commutes amount to saying for $\varphi : \mathcal{F}(A) \to B$, we have that 
+The fact that this diagram commutes amount to saying for $\varphi : \mathcal{F}(A) \to B$, we have that
 $$\tau_{AB}(g\circ \varphi) = \mathcal{G}(g) \circ \tau_{AB}(\varphi) $$
-In particular, we note that $g \circ \varphi$ is also a map $F(A) \to B$, and that $\varphi = \varphi \circ \id_{\mathcal{F}(A)}$, so this gives us that 
+In particular, we note that $g \circ \varphi$ is also a map $F(A) \to B$, and that $\varphi = \varphi \circ \id_{\mathcal{F}(A)}$, so this gives us that
 $$\tau_{AB}(g \circ \varphi \circ \id_{\mathcal{F}(A)}) = \mathcal{G}(g \circ \varphi) \circ \tau_{AB}(\id_{\mathcal{F}(A)}) $$
 Taking $g = \id_B$ then gives us the identity we desire.
 \item This proof is near identical to the above proof, where we instead use the diagram
@@ -1006,14 +1006,14 @@ Going the other way, we have
 &= g(\varphi(m \otimes 1)
 \end{align*}
 \end{proof}
-Another example of adjoints is the groupification of an abelian semigroup, and the forgetful functor from abelian groups to abelian semigroups, but we'll move on the the next section now. 
+Another example of adjoints is the groupification of an abelian semigroup, and the forgetful functor from abelian groups to abelian semigroups, but we'll move on the the next section now.
 %
 \begin{defn}
 A category $\mathscr{C}$ is $\ib{additive}$ if
 \begin{enumerate}
 \item For any pair of objects $A,B$, we have that $\hom(A,B)$ is an abelian group under an operation we call addition, such that composition distributes over addition, i.e.
 $$\varphi( \psi + \rho) = \varphi \circ \psi + \varphi \circ \rho $$
-and 
+and
 $$(\psi + \rho) \circ \varphi = \psi \circ \varphi + \rho \circ \varphi $$
 \item $\mathscr{C}$ has a zero object.
 \item $\mathscr{C}$ contains all pairwise products $A \times B$, and by induction, all finite products.
@@ -1046,7 +1046,7 @@ B \arrow[u] \arrow[r, "f"'] & C \arrow[ul] \arrow[r, "p"'] & A \arrow[ull]
 If the map $i: A \to B$ specified in the definition of the kernel is a monomorphism, we say that $A$ is a \ib{subobject} of $B$. Likewise, if the map $p: C \to A$ is an epimorphism, we say that $A$ is a \ib{quotient object} of $B$.
 %
 \begin{defn}
-An \ib{abelian category} is an additive category such that 
+An \ib{abelian category} is an additive category such that
 \begin{enumerate}
 \item For any map $f$, $\ker f$ and $\coker f$ exist.
 \item Every monomorphism is the kernel of its cokernel.
@@ -1093,5 +1093,43 @@ $$\begin{tikzcd}
 \end{tikzcd}$$
 The \ib{homology} $H$ at $B$ is $H = \ker g / \im f$, i.e. there exists a monomoprhism $i \im f \to \ker g$ and $H = \coker i$. In the case that the objects we're working with are sets (e.g. abelian groups, modules), elements of $\im f$ are \ib{cycles} and elements of $\ker g$ are \ib{boundaries}.
 \end{defn}
+%
+In most cases, we'll index the objects in our sequence, and depending on whether are indices are decreasing or increasing from left to right, we'll say the homology or cohomology of the sequence respectively. We'll also use the notation
+$$A^\bullet = \begin{tikzcd}
+\cdots \arrow[r] & A^{i-1} \arrow[r, "f^{i-1}"] & A^i \arrow[r, "f^i"] & A^{i+1} \arrow[r, "f^{i+1}"] & \cdots
+\end{tikzcd}$$
+$$A_\bullet = \begin{tikzcd}
+\cdots \arrow[r] & A_{i+1} \arrow[r, "f_{i+1}"] & A_i \arrow[r, "f_i"] & A_{i-1} \arrow[r, "f_{i-1}"] & \cdots
+\end{tikzcd}$$
+\begin{rem*}
+For most of the remaining discussion on homology, we'll be working in the category of modules over a ring. That being said, most of the statements will transfer over to arbitrary abelian categories.
+\end{rem*}
+%
+\begin{exer}
+Describe exact sequences
+$$\begin{tikzcd}
+0 \arrow[r] & \im f^i \arrow[r] & A^{i+1} \arrow[r] & \coker f^i \arrow[r] & 0
+\end{tikzcd}$$
+$$\begin{tikzcd}
+0 \arrow[r] & H^i(A^\bullet) \arrow[r] & \coker f^{i-1} \arrow[r] & \im f^i \arrow[r] & 0
+\end{tikzcd}$$
+\end{exer}
+%
+\begin{proof}
+For the first sequence, the first nonzero map is the natural inclusion $\im f^i \hookrightarrow A^{i+1}$ and the second map is the quotient map $A^{i+1} \to \coker f^i = A^{i+1} / \im f^i$. For the second sequence, we have that $H^i(A^\bullet) = \ker f^i / \im f^{i-1}$, which has a natural inclusion into $\coker f^{i-1} = A^i / \im f^{i-1}$. In addition, since $\im f^{i-1} \subset \ker f^i$. we have that the map $f^i : A^i \to A^{i+1}$ factors through the quotient $\coker f^{i-1}$ to a surjective map $\coker f^{i-1} \to \im f^i$.
+\end{proof}
+%
+\begin{exer}
+Suppose we are given a complex of finite dimensional vector spaces
+$$ A^\bullet = \begin{tikzcd}
+0 \arrow[r, "d^0"] & A^1 \arrow[r, "d^1"] & \cdots \arrow[r, "d^{n-1}"] & A^n \arrow[r, "d^n"] & 0
+\end{tikzcd}$$
+Let $h^i(A^\bullet) = \dim H^i(A^\bullet)$. Show
+$$\sum (-1)^i h^i(A^\bullet) = \sum (-1)^i \dim A^i $$
+\end{exer}
+%
+\begin{proof}
+
+\end{proof}
 %
 \end{document}
