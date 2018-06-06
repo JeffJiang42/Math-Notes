@@ -1156,5 +1156,32 @@ To show it is an abelian category, it will be useful to establish what kernels a
 \begin{exer}
 Let $\varphi : A^\bullet \to B^\bullet$. Show that this induces a map $H^i(A^\bullet) \to H^i(B^\bullet)$, which defines a functor $\mathsf{Com} \to \mathscr{C}$.
 \end{exer}
+\begin{proof}
+We note that the condition that
+$$\begin{tikzcd}
+\cdots \arrow[r, "f^{i-2}"] & A^{i-1} \arrow[d, "\varphi^{i-1}"] \arrow[r, "f^{i-1}"] & A^i \arrow[d, "\varphi^{i}"] \arrow[r, "f^i"] & A^{i+1} \arrow[d, "\varphi^{i+1}"] \arrow[r, "f^{i+1}"] & \cdots \\
+\cdots \arrow[r, "g^{i-2}"'] & B^{i-1} \arrow[r, "g^{i-1}"'] & B^i \arrow[r, "g^i"'] & B^{i+1} \arrow[r, "g^{i+1}"'] & \cdots 
+\end{tikzcd}$$
+commutes implies that $\varphi^i(\ker f^i) \subset \ker g^i$ and $\varphi^i(\im f^{i-1}) \subset \im g^{i-1}$. Therefore, we can define the map $\tilde{\varphi}^i : H^i(A^\bullet) \to H^i(B^\bullet)$ by $\varphi(a + \im f^{i-1}) = \varphi(a) + \im g^{i-1}$, which is well defined since $\varphi(a + \im f^{i-1}) = \varphi(a) + \varphi(\im f^{i-1}) \subset \varphi(a) + \im g^{i-1}$, and since $\varphi(a) \in \ker g^i$, so it descends to a well-defined map on homology. It is also clear from the defnition that it is functorial, since composing two chain maps results in a pointwise composition for each $i$, which then descends to homology the same way (via composition).
+\end{proof}
+%
+A fundamental concept in homology (though we won't prove it now), is that if you see a short exact sequence of complexes, you get a long exact sequence of homology. This is particularly useful in finding the homology groups of new spaces.
+%
+\begin{thm}
+Given a short exact sequence of complexes
+$$\begin{tikzcd}
+0^\bullet \arrow[d]& & \cdots \arrow[r] & 0 \arrow[d] \arrow[r] & 0 \arrow[d] \arrow[r] & 0 \arrow[d] \arrow[r] & \cdots \\
+A^\bullet \arrow[d] & & \cdots \arrow[r] & A \arrow[d] \arrow[r] & A \arrow[d] \arrow[r] & A \arrow[d] \arrow[r] & \cdots \\
+B^\bullet \arrow[d] & & \cdots \arrow[r] & B \arrow[d] \arrow[r] & B \arrow[d] \arrow[r] & B \arrow[d] \arrow[r] & \cdots \\
+C^\bullet \arrow[d] & & \cdots \arrow[r] & C \arrow[d] \arrow[r] & C \arrow[d] \arrow[r] & C \arrow[d]\arrow[r] \arrow[d] & \cdots \\
+0^\bullet & & \cdots \arrow[r] & 0 \arrow[r] & 0 \arrow[r] & 0 \arrow[r] & \cdots
+\end{tikzcd}$$
+Gives us a long exact sequence in homology
+$$\begin{tikzcd}
+& \cdots \ar[r] & H^{i-1}(C^\bullet) \ar[ddll] \\\\
+H^i(A^\bullet) \ar[r] & H^i(B^\bullet) \ar[r] & H^i(C^\bullet) \ar[ddll] \\\\
+H^{i+1}(A^\bullet) \ar[r] & \cdots
+\end{tikzcd}$$
+\end{thm}
 %
 \end{document}
