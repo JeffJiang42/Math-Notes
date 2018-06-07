@@ -1184,4 +1184,37 @@ H^{i+1}(A^\bullet) \ar[r] & \cdots
 \end{tikzcd}$$
 \end{thm}
 %
+\begin{defn}
+A covariant additive functor $F$ is \ib{right exact} if given an exact sequence
+$$A \to A' \to A'' \to 0 $$
+we have that 
+$$F(A) \to F(A') \to F(A'') \to 0 $$
+is exact
+$F$ is \ib{left exact} if the exact sequence
+$$0 \to A \to A' \to A'' $$
+implies that 
+$$0 \to F(A) \to F(A') \to F(A'') $$
+is exact. If $F$ is contravariant, then left-exactness means that
+$$A \to A' \to A'' \to 0 $$
+being exact implies
+$$0 \to F(A'') \to F(A') \to F(A)$$
+is exact. Right exactness for contravaraint functors is defined similarly. We say a functor (covariant or contravariant) is \ib{exact} if it is both right and left exact.
+\end{defn}
+%
+\begin{exer}
+Let $F: \mathscr{A} \to \mathscr{B}$ be a covariant functor of abelian categories, and let $C^\bullet$ be a complex in $\mathscr{A}$.
+\begin{enumerate}
+\item ($F$ right exact yields $FH^\bullet \to H^\bullet F$) If $F$ is right exact, describe natural morphisms 
+$$F(H^i(C^\bullet)) \to H^i(F(C^\bullet))$$
+where $F(C^\bullet)$ denotes the complex
+$$\cdots \to F(C^{i-1}) \to F(C^i) \to F(C^{i+1}) \to \cdots $$
+\item ($F$ left exact yields $H^\bullet F \to FH^\bullet$) If $F$ is left exact, describe natural morphisms
+$$H^i(F(C^\bullet)) \to F(H^i(C^\bullet)) $$
+\item ($F$ exact yields $H^\bullet F \leftrightarrow FH^\bullet$) If $F$ is exact, show that the two maps above are isomorphisms.
+\end{enumerate}
+\end{exer}
+\begin{proof}
+
+\end{proof}
+%
 \end{document}
