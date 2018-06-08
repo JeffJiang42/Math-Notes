@@ -1214,7 +1214,50 @@ $$H^i(F(C^\bullet)) \to F(H^i(C^\bullet)) $$
 \end{enumerate}
 \end{exer}
 \begin{proof}
-
+Let $d^i : C^i \to C^{i+1}$ be the maps of the complex $C^\bullet$.
+\begin{enumerate}
+\item We know for any complex, we have that
+$$\begin{tikzcd}
+C^i \ar[r,"d^i"] & C^{i+1} \ar[r] & \coker d^i \ar[r] & 0
+\end{tikzcd}$$
+is exact. Right-exactness of $F$ then implies that applying $F$ to each part of the sequence is also exact, and we also know that 
+$$\begin{tikzcd}
+F(C^i) \ar[r, "F(d^i)"] & F(C^{i+1}) \ar[r] & \coker F(d^i) \ar[r] & 0
+\end{tikzcd}$$
+is exact. Exactness then gives that both $F(\coker d^i)$ and $\coker F(d^i)$ are isomorphic to $F(C^{i+1}) / \im F(d^i)$, so they are isomorphic. From before, (and applying $F$), we get the exact sequence
+$$\begin{tikzcd}
+F(\im d^i) \ar[r] & F(C^{i+1}) \ar[r] & F(\coker d^i) \ar[r] & 0
+\end{tikzcd}$$
+which means that the map $F(\im d^i) \to F(C^{i+1})$ is an epimorphism onto $\ker( F(C^{i+1}) \to F(\coker d^i)) = \im F(d^i)$.
+Again from a previous exercise (and applying $F$), we get an exact sequence
+$$\begin{tikzcd}
+F(H^i(C^\bullet)) \ar[r] & F(\coker d^{i-1}) \ar[r] & F(\im d^i) \ar[r] & 0
+\end{tikzcd}$$
+Which means that $F(H^i(C^\bullet))$ maps to the kernel of $\tilde{d}^i : \coker F(d^{i-1}) \to F(\im d^i)$, which is just the map $F(d^i)$ factored through the quotient, which exactly $F(\ker d^i) / F(\im d^{i-1}) = H^i(F(C^\bullet))$.
+\item If $F$ is left exact, we apply $F$ to an exact sequence we had before to obtain the exact sequence
+$$\begin{tikzcd}
+0 \ar[r] & F(\ker d^i) \ar[r] & F( C^i) \ar[r, "F(d^i)"] & F(\im d^i)
+\end{tikzcd}$$
+We also already know that the sequence
+$$\begin{tikzcd}
+0 \ar[r] & \ker F(d^i) \ar[r] & F(C^i) \ar[r, "F(d^i)"] & \im F(d^i)
+\end{tikzcd}$$
+is exact, giving an isomorphism $F(\ker d^i) \to \ker F(d^i)$. From before, we then get an exact sequence
+$$\begin{tikzcd}
+0 \ar[r] & F(\im d^{i-1}) \ar[r] & F(\ker d^i) \ar[r] & F(H^i(C^\bullet))
+\end{tikzcd}$$
+which implies that $F(\im d^{i-1}) \to \ker( F(\ker d^i) \to F(H^i(C^\bullet)))$ is a monomorphism, giving us a map $F(\ker d^i) / F(\im d^{i-1}) \cong H^i(F(C^\bullet)) \to F(H^i(C^\bullet))$.
+\item If $F$ is both right and left exact, with left exactness, we get that 
+$$\begin{tikzcd}
+0 \ar[r] & F(\im d^{i-1}) \ar[r] & F(\ker d^i) \ar[r] & F(H^i(C^\bullet)) \ar[r] & 0
+\end{tikzcd}$$
+is exact, so we get a natural isomorphism $F(\ker d^i) / F(\im d^{i-1}) \cong H^i(F(C^\bullet)) \to F(H^i(C^\bullet))$, which is exactly the map from (2). From right exactness, we get the exact sequence
+$$\begin{tikzcd}
+0 \ar[r] & F(H^i(C^\bullet)) \ar[r] & F(\coker d^{i-1}) \ar[r] & F(\im d^i) \ar[r] & 0
+\end{tikzcd}$$
+which now gives an isomorphism $F(H^i(C^\bullet)) \to \ker (F(\coker d^{i-1}) \to F(\im d^i)) \cong H^i(F(C^\bullet))$ 
+Therefore both maps are isomorphisms.
+\end{enumerate}
 \end{proof}
 %
 \end{document}
