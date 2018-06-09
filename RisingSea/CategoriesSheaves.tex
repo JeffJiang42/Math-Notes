@@ -88,6 +88,7 @@
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \renewcommand{\hom}{\mathsf{Hom}}
 \renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathscr{O}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\ib}[1]{\textbf{\textit{#1}}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -1259,5 +1260,15 @@ which now gives an isomorphism $F(H^i(C^\bullet)) \to \ker (F(\coker d^{i-1}) \t
 Therefore both maps are isomorphisms.
 \end{enumerate}
 \end{proof}
+%
+At this point, we'll skip ahead to sheaves
+%
+\section*{Sheaves}
+%
+The central idea behind sheaves are that they assign ``gluable" data to the open sets of a topological space that behave like functions do. The motivating example here is the sheaf of differentiable functions. For example, if we have a manifold $X$, the sheaf of differentiable function on $X$ will contain all the data of differentiable functions $U \to \R$ for all open sets $U \subset X$. We denote the set of functions $U \to \R$ as $\O(U)$. Note that $\O(U)$ is more than just a set, it comes with natural ring operations, namely pointwise addition and multiplication. In addition, functions can be restricted. If we have open sets $V \subset U$, we get a map $r_{UV}: \O(U) \to \O(V)$ given by $r_{UV}(f) = f\big\vert_V$. Note that all the $r_{UV}$ are ring homomorphisms. In addition, if we also have $W \subset V \subset U$, we have that restricting down to $W$ from $U$ is the same as restricting from $U$ to $V$ first, and then restricting to $W$ afterwards. In other words, the following diagram commutes
+$$\begin{tikzcd}
+\O(U) \ar[r, "r_{UV}"] \ar[rr, bend right=20, "r_{UW}"'] & \O(V) \ar[r, "r_{VW}"]& \O(W)
+\end{tikzcd}$$
+Another property of functions that we want to capture is a criterion for when they are the same. In this case, suppose we have two functions $f,g \in \O(U)$, and we have an open cover $\set{U_\alpha}$ of $U$. Then suppose $f$ and $g$ agree on the open cover, i.e. $r_{UU_\alpha}(f) = r_{UU_\alpha}(g)$ for all the $U_\alpha$ in the cover. Then we know $f = g$. Finally, if we have a function $f_\alpha \in \O(U_\alpha)$ such that they agree on overlaps, i.e. $r_{U_\alpha U_\alpha \cap U_\beta}(f_\alpha) = r_{U_\beta U_\alpha \cap U_\beta}(f_\beta)$, we obtain a new function that agrees with all the $f_\alpha$. In other words, we get a $f \in \O(U)$ satisfying $r_{UU_\alpha}(f) = f_\alpha$ for all $\alpha$.
 %
 \end{document}
