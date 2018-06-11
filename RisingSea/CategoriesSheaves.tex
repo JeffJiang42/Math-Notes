@@ -1270,5 +1270,39 @@ $$\begin{tikzcd}
 \O(U) \ar[r, "r_{UV}"] \ar[rr, bend right=20, "r_{UW}"'] & \O(V) \ar[r, "r_{VW}"]& \O(W)
 \end{tikzcd}$$
 Another property of functions that we want to capture is a criterion for when they are the same. In this case, suppose we have two functions $f,g \in \O(U)$, and we have an open cover $\set{U_\alpha}$ of $U$. Then suppose $f$ and $g$ agree on the open cover, i.e. $r_{UU_\alpha}(f) = r_{UU_\alpha}(g)$ for all the $U_\alpha$ in the cover. Then we know $f = g$. Finally, if we have a function $f_\alpha \in \O(U_\alpha)$ such that they agree on overlaps, i.e. $r_{U_\alpha U_\alpha \cap U_\beta}(f_\alpha) = r_{U_\beta U_\alpha \cap U_\beta}(f_\beta)$, we obtain a new function that agrees with all the $f_\alpha$. In other words, we get a $f \in \O(U)$ satisfying $r_{UU_\alpha}(f) = f_\alpha$ for all $\alpha$.
+
+Finally, with differentiable functions, we can talk about something called \ib{germs}. Intuitively, the germ is an infinitesimal piece of a differentiable function, like a germ sprouting out of a seed. Germs are equivalence classes of the form $(f,U)$ with $f : U \to \R$, where $(f,U) \sim (g V)$ if there exists some open set $W$ with $W \subset U$ and $W \subset V$ such that $r_{UW}(f) = r_{UV}(g)$. So germs are literally equivalence classes of functions that agree on some open subset. We let $\O_p$ denote the set of all germs based on open sets containing the point $p$, and call it the \ib{stalk} at $p$. Much like $\O(U)$, $\O_p$ is a ring under the same operations. It is easy to see that this is well defined on equivalence classes. In addition, for every $p \in U$, we get a map $\O(U) \to \O_p$ by sending the function to its germ.
+
+Another property of $\O_p$ is that it is a \emph{local ring}, i.e. it has a single maximal ideal, all the germs vanish at $p$, denoted $\mathfrak{m}_p$. It is clear that this is an ideal, since the sum of functions that are $0$ at $p$ is another function vanishing at $p$, and the product of any function with one that vanishes at $p$ also vanishes at $p$. To show it is maximal, we prove its quotient $\O_p / \mathfrak{m}_p$ is a field.
+$$\begin{tikzcd}
+0 \ar[r] & \mathfrak{m}_p \ar[r] & \O_p \ar[r] & \R \ar[r] & 0
+\end{tikzcd}$$
+where the map $\O_p \to \R$ is given by evaluation at $p$.
+\begin{exer}
+Prove $\O_p$ is a local ring, with unique maximal ideal $\mathfrak{m}_p$.
+\end{exer}
+%
+\begin{proof}
+We note the evaluation map $\O_P \to \R$ is a homomorphism, so now we only need to verify that it is surjective with kernel $\mathfrak{m}_p$. It is clearly surjective, since given any real number $\lambda$, there is a function with value $\lambda$ at $p$, namely the constant function $\lambda$. We then note that the kernel of this map is exactly $\mathfrak{m}_p$ by definition, so $\mathfrak{m}_p$ is maximal.
+
+To show that it is local, we first claim that every element in $\O_p - \mathfrak{m}_p$ is a unit. To show this, let $(f,U)$, where $f(p) \neq 0$.  Then since $f$ is continuous, then we know that it is not $0$ in a neighborhood of $p$, so there exists another function $(g,V)$ with $V \subset U$ such that $f(x)g(x) = 1$ for all $x \in V$. Therefore, the germ of $g$ is the multiplicative inverse to the germ of $f$, so the germ of $f$ is a unit. Therefore, every non-trivial ideal of $\O_p$ must be contained in $\mathfrak{m}_p$, since otherwise it would contain a unit, which proves that $\mathfrak{m}_p$ is the only maximal ideal of $\O_p$.
+\end{proof}
+%
+We now define a sheaf with more formality. In this case, we'll be defining it as a sheaf of sets, but you can just as easily replace $\mathsf{Set}$ with $\mathsf{Ab}$,$\mathsf{Grp}$, or $\mathsf{Ring}$.
+%
+\begin{defn}
+A \ib{presheaf} $\mathscr{F}$  on a topological space $X$ consists of 
+\begin{enumerate}
+\item The assignment to each open set $U \subset X$ a set (or group, or ring, etc) $\mathscr{F}(U)$\footnote{Other notation used for $\mathscr{F}(U)$ is $\Gamma(U,\mathscr{F})$ and $H^0(U,\mathscr{F})$}. We often refer to the elements of $\mathscr{F}(U)$ as \ib{sections} of $U$.
+\item For every inclusion $V \subset U$, a map (or group/ring homomorphism, etc) $r_{UV} : \mathscr{F}(U) \to \mathscr{F}(V)$ such that $r_{UU} = \id_{\mathscr{F}(U)}$ and for $W \subset V \subset U$, the following diagram commutes
+$$\begin{tikzcd}
+\mathscr{F}(U) \ar[r, "r_{UV}"] \ar[rr, bend right=20, "r_{UW}"'] & \mathscr{F}(V) \ar[r, "r_{VW}"]& \mathscr{F}(W)
+\end{tikzcd}$$
+\end{enumerate}
+\end{defn}
+You might notice that this is exactly the data of a contravariant functor from the category of open sets of $X$ (as a poset) to $\mathsf{Set}$, which an equivalent definition.
+\begin{defn}
+
+\end{defn}
 %
 \end{document}
