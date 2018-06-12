@@ -1283,7 +1283,7 @@ Prove $\O_p$ is a local ring, with unique maximal ideal $\mathfrak{m}_p$.
 \end{exer}
 %
 \begin{proof}
-We note the evaluation map $\O_P \to \R$ is a homomorphism, so now we only need to verify that it is surjective with kernel $\mathfrak{m}_p$. It is clearly surjective, since given any real number $\lambda$, there is a function with value $\lambda$ at $p$, namely the constant function $\lambda$. We then note that the kernel of this map is exactly $\mathfrak{m}_p$ by definition, so $\mathfrak{m}_p$ is maximal.
+We note the evaluation map $\O_p \to \R$ is a homomorphism, so now we only need to verify that it is surjective with kernel $\mathfrak{m}_p$. It is clearly surjective, since given any real number $\lambda$, there is a function with value $\lambda$ at $p$, namely the constant function $\lambda$. We then note that the kernel of this map is exactly $\mathfrak{m}_p$ by definition, so $\mathfrak{m}_p$ is maximal.
 
 To show that it is local, we first claim that every element in $\O_p - \mathfrak{m}_p$ is a unit. To show this, let $(f,U)$, where $f(p) \neq 0$.  Then since $f$ is continuous, then we know that it is not $0$ in a neighborhood of $p$, so there exists another function $(g,V)$ with $V \subset U$ such that $f(x)g(x) = 1$ for all $x \in V$. Therefore, the germ of $g$ is the multiplicative inverse to the germ of $f$, so the germ of $f$ is a unit. Therefore, every non-trivial ideal of $\O_p$ must be contained in $\mathfrak{m}_p$, since otherwise it would contain a unit, which proves that $\mathfrak{m}_p$ is the only maximal ideal of $\O_p$.
 \end{proof}
@@ -1301,8 +1301,54 @@ $$\begin{tikzcd}
 \end{enumerate}
 \end{defn}
 You might notice that this is exactly the data of a contravariant functor from the category of open sets of $X$ (as a poset) to $\mathsf{Set}$, which an equivalent definition.
+%
 \begin{defn}
-
+Given a presheaf $\mathscr{F}$ over a space $X$, define the \ib{stalk} of $\mathscr{F}$ at the point $p \in X$, denoted $\mathscr{F}_p$, to be the set
+$$\mathscr{F}_p = \set{(f,U) ~:~ U \subset X \text{ open, } f \in \mathscr{F}(U)} \big/ \sim $$
+where $\sim$ is defined such that $(f,U) \sim (g,V)$ if and only if there exists some $W \subset U,V$ such that $r_{UW}(f) = r_{VW}(g)$. Elements of the stalk $\mathscr{F}_p$ are called \ib{germs} at $p$.
 \end{defn}
+%
+Now that we've defined a presheaf, we can define a bona fide sheaf.
+\begin{defn}
+A presheaf $\mathscr{F}$ is a \ib{sheaf} if it satisfies these additional axioms.
+\begin{enumerate}
+\item If $\set{U_\alpha}$ is an open cover of $U$, and $f,g \in \mathscr{F}(U)$ satisfy $r_{UU_\alpha}(g) = r_{UU\alpha}(g)$ for all $\alpha$, then $f = g$.
+\item Given an open cover $\set{U_\alpha}$ of $U$, and we have elements $f_\alpha \in \mathscr{F}(U_\alpha)$ satisfying $r_{U_\alpha U_\alpha \cap U_\beta}(f_\alpha) = r_{U_\beta U_\alpha \cap U_\beta}$ for all pairs $\alpha,\beta$, then there exists an element $f \in \mathscr{F}(U)$ such that $r_{UU_\alpha}(f) = f_\alpha$ for all $\alpha$.
+\end{enumerate}
+Stalks and germs of sheaves remain unchanged from their definitions for presheaves.
+\end{defn}
+%
+\begin{exer}
+Interpret the additional axioms for a sheaf as $\mathscr{F}(\cup_\alpha U_\alpha)$ being a limit.
+\end{exer}
+%
+\begin{proof}
+We claim that $\mathscr{U} = \mathscr{F}(\cup_\alpha U_\alpha)$ is the limit of the diagram of $\mathscr{F}(U_\alpha)$, where the morphisms are the restriction maps $r_{U_\alpha U_\beta}$. We note that $\mathscr{F}(U)$ comes equipped with restriction maps to all the $U_\alpha$. The axioms of a presheaf give us that the diagram
+$$\begin{tikzcd}
+\mathscr{F}(U) \ar[d, "r_{UU\alpha}"'] \ar[dr, "r_{UU_\beta}"] \\
+\mathscr{F}(U_\alpha) \ar[r, "r_{U_\alpha U_\beta}"'] & \mathscr{F}(U_\beta)
+\end{tikzcd}$$
+commutes. For universality, we note that any open set with restriction maps to all the $\mathscr{F}(U_\alpha)$ must contain their union $U$, so it comes with a unique restriction map to $\mathscr{F}(U)$. We note that the identity map satisfies this condition for $\mathscr{F}(U)$, so it must be this unique map, which gives us the first axiom, as the unique map $\mathscr{F}(U) \to \mathscr{F}(U)$ making the diagram commute is the identity map. In addition, ``concatenating" diagrams like the one above with open sets $U_\alpha$ and their intersections, we can use the fact that the entire diagram commutes to conclude the existence of some $f \in F(U)$ that restricts to all of the proper elements in $\mathscr{F}(U_\alpha)$, giving gluability.
+\end{proof}
+Given a sheaf $\mathscr{F}$ over a space $X$, there is an obvious way to obtain a sheaf on an open subset $U \subset X$.
+\begin{exmp}
+Given an open subset $U \subset X$ and a sheaf $\mathscr{F}$ over $X$, the restriction $\mathscr{F}\big\vert_U$ is defined to be $\mathscr{F}\big\vert_U(V) = \mathscr{F}(V)$ for all open subsets $V \subset U$.
+\end{exmp}
+\begin{exmp}[\ib{The Skyscraper Sheaf}]
+Fix a topological space $X$, a point $p \in X$, and a set $S$. Let $i : \set{p} \to X$ denote the inclusion map. Then define the sheaf $(i_p)_*$ to be 
+$$(i_p)_*(U) = \begin{cases}
+S & p \in U \\
+\set{e} & p \notin U
+\end{cases}$$
+where $\set{e}$ is the one point set with single element $e$. For the restriction maps, we note that if $p \in U$ and $p \in V$, it is impossible for $V \subset U$ or $U \subset V$, so we can define 
+$$r_{UV} = \begin{cases} 
+\id_S & p \in U \\
+\id_{\set{e}} & p \notin U
+\end{cases}$$
+\end{exmp}
+%
+\begin{exmp}
+If we fix a set $S$ and a space $X$, we can define the \ib{constant presheaf} $\underline{S}_{\text{pre}}$ by $\underline{S}_{\text{pre}}(U) = S$ for all open sets $U$, where the restriction maps $r_{UV} = \id_S$. Note that this need not be a sheaf. For example, if we have that $S$ has at least $2$ distinct elements (say $a$ and $b$), and $U \cap V = \emptyset$. Then we have $a \in \underline{S}_{\text{pre}}(U)$ and $b \in \underline{S}_{\text{pre}}(V)$, and since their intersection is empty, they trivially satisfy the gluing axiom for a sheaf, but there is no element $e$ in $S$ such that $\id_S(e) = a$ and $\id_S(e) = b$, so this cannot be a sheaf.
+\end{exmp}
 %
 \end{document}
