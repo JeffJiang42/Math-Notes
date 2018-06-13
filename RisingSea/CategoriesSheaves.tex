@@ -1348,7 +1348,37 @@ $$r_{UV} = \begin{cases}
 \end{exmp}
 %
 \begin{exmp}
-If we fix a set $S$ and a space $X$, we can define the \ib{constant presheaf} $\underline{S}_{\text{pre}}$ by $\underline{S}_{\text{pre}}(U) = S$ for all open sets $U$, where the restriction maps $r_{UV} = \id_S$. Note that this need not be a sheaf. For example, if we have that $S$ has at least $2$ distinct elements (say $a$ and $b$), and $U \cap V = \emptyset$. Then we have $a \in \underline{S}_{\text{pre}}(U)$ and $b \in \underline{S}_{\text{pre}}(V)$, and since their intersection is empty, they trivially satisfy the gluing axiom for a sheaf, but there is no element $e$ in $S$ such that $\id_S(e) = a$ and $\id_S(e) = b$, so this cannot be a sheaf.
+If we fix a set $S$ and a space $X$, we can define the \ib{constant presheaf} $\underline{S}_{\text{pre}}$ by $\underline{S}_{\text{pre}}(U) = S$ for all open sets $U$, where the restriction maps $r_{UV} = \id_S$. Note that this need not be a sheaf. For example, if we have that $S$ has at least $2$ distinct elements (say $a$ and $b$), and $U \cap V = \emptyset$. Then we have $a \in \underline{S}_{\text{pre}}(U)$ and $b \in \underline{S}_{\text{pre}}(V)$, and since their intersection is empty, they trivially satisfy the gluing axiom for a sheaf, but there is no element $e \in S$ such that $\id_S(e) = a$ and $\id_S(e) = b$, so this cannot be a sheaf.
 \end{exmp}
+While the constant presheaf in general cannot be a sheaf, there is a similar construction that is 
+\begin{exer}
+Given a set $S$ and a space $X$, define the \ib{constant sheaf} $\underline{S}$ on $X$ by letting $\underline{S}(U)$ be the set of all locally constant functions $f: U \to S$, i.e. for any point $p \in U$, there exists a neighborhood of $p$ such that $f$ is constant, and where the restriction maps are just the restriction of functions.
+\end{exer}
+%
+\begin{proof}
+It's clear that the restriction maps satisfy the conditions for a presheaf, so we just need to verify the sheaf axioms. For the gluing axiom, let $U$ be an open set and $\set{U_\alpha}$ be an open cover. Then suppose $f,g \in \underline{S}(U)$ restrict to the same function on each of the $U_\alpha$. In the case that $U$ is connected, then $f$ and $g$ must be constant maps, since maps that are locally constant on a connected space are constant, so $f = g$. In the case that $U$ is disconnected, then $f$ and $g$ must be constant on the connected components of $U$, which then must agree, so $f = g$ again, giving us the first condition for a sheaf. For the second condition, Suppose we have a collection $\set{U_\alpha}$ and locally constant functions $f_\alpha U_\alpha \to S$ for each set such that they agree on intersections. We note that if any two sets $U_\alpha$ and $U_\beta$ have a nontrivial intersection, then they must be part of the same connected component of the union of the $U_\alpha$, in which case both $f_\alpha$ and $f_\beta$ must both be constant maps to the same set. This argument then shows that $f_\alpha$ and $f_\beta$ must take on the same value if they are defined on the same connected component of the union of the $U_\alpha$. Otherwise, if $f_\alpha$ and $f_\beta$ are defined on different components of the union of the $U_\alpha$, then the function that is $f_\alpha$ on $U_\alpha$ and $f_\beta$ on $U_\beta$ is still locally constant, since $U_\alpha$ and $U_\beta$ are on different connected components.
+\end{proof}
+%
+\begin{exer}
+Show that the sheaf of continuous functions $X \to Y$ for a fixed topological space $Y$ indeed forms a sheaf.
+\end{exer}
+%
+\begin{proof}
+Again, it is clear that the restriction of functions satisfies the conditions for a presheaf, and the first sheaf axiom follows from the fact that two functions that have the same value on every point are the same. The gluing axiom for a sheaf follows from the gluing lemma for continuous maps.
+\end{proof}
+%
+\begin{exer} \enumbreak
+\begin{enumerate}
+\item Let $\mu : Y \to X$ be a continuous map. Show that sections of $\mu$ (i.e. continuous maps $f : U \to Y$ satisfying $\mu \circ f = \id_U$) form a sheaf of sets over $X$. 
+\item Let $Y$ be a topological group. Show that continuous maps $U \to Y$ form a sheaf of groups
+\end{enumerate}
+\end{exer}
+%
+\begin{proof} \enumbreak
+\begin{enumerate}
+\item Again, the restrictions maps visibly satisfy the conditions for a presheaf, since the restriction of a section is still a section. For the first sheaf axiom, this is again just a property of functions -- if they have the same value on every point, they are the same function. The second gluing axiom the follows from gluing lemma for continuous maps, and it is clear that the glued map is a section, since it is a section on each of the elements of a cover, an consequently, a section on their union.
+\item We first show that the set $\mathscr{F}(U)$ of all continuous maps $U \to Y$ is a group. Given two maps $g,h \in \mathscr{F}(U)$, define their product $gh : U \to Y$ to be the map where $gh(p) = g(p)h(p)$. Then the identity is the constant map $U \to \set{e}$ (where $e$ is the identity element of $Y$), and the inverse of a map $g$ is the map $g\inv(p) = g(p)\inv$. Again, it is clear that all the restriction maps are homomorphisms, and that they satisfy the conditions for a presheaf. The first sheaf axiom is again easy, being a property of functions, and the second axiom is again just the gluing lemma.
+\end{enumerate}
+\end{proof}
 %
 \end{document}
