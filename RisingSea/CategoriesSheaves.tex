@@ -1381,4 +1381,20 @@ Again, it is clear that the restriction of functions satisfies the conditions fo
 \end{enumerate}
 \end{proof}
 %
+\begin{exer}[\ib{The pushforward sheaf}]
+Let $\pi : X \to Y$ be a continuous map, and $\mathscr{F}$ a presheaf over $X$. Then define $\pi_*\mathscr{F}$ as a presheaf over $Y$ by $\pi_*\mathscr{F}(V) = \mathscr{F}(\pi\inv(V))$. Show 
+\begin{enumerate}
+\item $\pi_*\mathscr{F}$ is a presheaf.
+\item If $\mathscr{F}$ is a sheaf, then $\pi_*\mathscr{F}$ is as well.
+\end{enumerate}
+\end{exer}
+%
+\begin{proof} \enumbreak
+\begin{enumerate}
+\item We now that if $W \subset V$, then we have that $\pi\inv(W) \subset \pi\inv(V)$, so we can use the same restriction maps from $\mathscr{F}(\pi\inv(V)) \to \mathscr{F}(\pi\inv(W))$. Since it satisfies the conditions for a presheaf over $X$, it is clear that these properties carry over to $\pi_*\mathscr{F}$, so it is indeed a presheaf.
+\item In the case where $\mathscr{F}$ is a sheaf, let $\set{U_\alpha}$ be an open cover of $U \subset Y$. Then we have that $\pi\inv(U_\alpha)$ is an open cover of $\pi\inv(U)$. Then if $f,g \in \pi_*\mathscr{F}(U) = \mathscr{F}(\pi\inv(U))$ restrict to the same elements of $\pi_*\mathscr{F}(U) = \mathscr{F}(\pi\inv(U_\alpha))$, then the identity axiom on $\mathscr{F}$ (since it is a sheaf), tells us that $f = g$.
+\item We again use the fact that $\set{\pi\inv(U_\alpha)}$ is an open cover of $\pi\inv(U)$ (using the same notation as the previous part), so it all the restrictions agree on intersections, then we can glue since $\mathscr{F}$ is a sheaf, which gives us gluability of $\pi_*\mathscr{F}$.
+\end{enumerate}
+\end{proof}
+%
 \end{document}
