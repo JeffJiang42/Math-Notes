@@ -1397,4 +1397,22 @@ Let $\pi : X \to Y$ be a continuous map, and $\mathscr{F}$ a presheaf over $X$. 
 \end{enumerate}
 \end{proof}
 %
+\begin{exer}
+Let $\pi : X \to Y$ be a continuous map and $\mathscr{F}$ a sheaf over $X$. Let $q = \pi(p)$ for some $p \in X$. Give a natural morphism of stalks $\pi_*\mathscr{F}_q \to \mathscr{F}_p $
+\end{exer}
+%
+\begin{proof}
+Let $(f,V)$ be a representative of a germ in $\pi_*\mathscr{F}(V)$. We note that $f$ is an element of $\mathscr{F}(\pi\inv(V))$, so we can consider its germ in the stalk $\mathscr{F}_p$, which gives us the map we desire, provided we show it is independent of representative. If given another $(g,W)$ such that $(g,W) \sim (f,V)$. Then considering $g$ and $f$ as sections of $\mathscr{F}$, we know that they restrict to the same element for some subset $\pi\inv(U)$ with $U \subset V$ and $U \subset W$. Since $\pi\inv(U)$ is open, since $\pi$ is continuous, this show that $(f,\pi\inv(V)) \sim (f,\pi\inv(W))$, so they have the same germ in $\mathscr{F}_p$.
+\end{proof}
+%
+In the case we have a sheaf of rings over a space $X$, we often denote it as $\mathscr{O}_X$, and say that $(X, \mathscr{O}_X)$ is a \ib{ringed space}. We then say that $\mathscr{O}_X$ is the \ib{structure sheaf} of $X$, and elements of $\mathscr{O}_X(U)$ are called \ib{functions}. The restriction of the sheaf to an open subset $U$ we'll denote as $\mathscr{O}_U$, and the stalk at a point $p$ wil lbe denoted $\mathscr{O}_{X,p}$. 
+\begin{defn}
+Given a ringed space $(X,\mathscr{O}_X)$, an $\mathscr{O}_X$-\ib{module} is a sheaf $\mathscr{F}$ of abelian groups, (where we denote the restriction maps as $\rho_{UV}$) where $\mathscr{F}(U)$ is an $\mathscr{O}_X(U)$-module such that for $V \subset U$
+$$\begin{tikzcd}
+\mathscr{O}_X(U) \times \mathscr{F}(U) \ar[d, "r_{UV} \times \rho_{UV}"']\ar[r] & \mathscr{F}(U) \ar[d, "\rho_U"] \\
+\mathscr{O}_X(V) \times \mathscr{F}(V) \ar[r] & \mathscr{F}(V)
+\end{tikzcd}$$
+commu
+\end{defn}
+%
 \end{document}
