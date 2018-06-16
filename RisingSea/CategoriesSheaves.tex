@@ -1405,14 +1405,37 @@ Let $\pi : X \to Y$ be a continuous map and $\mathscr{F}$ a sheaf over $X$. Let 
 Let $(f,V)$ be a representative of a germ in $\pi_*\mathscr{F}(V)$. We note that $f$ is an element of $\mathscr{F}(\pi\inv(V))$, so we can consider its germ in the stalk $\mathscr{F}_p$, which gives us the map we desire, provided we show it is independent of representative. If given another $(g,W)$ such that $(g,W) \sim (f,V)$. Then considering $g$ and $f$ as sections of $\mathscr{F}$, we know that they restrict to the same element for some subset $\pi\inv(U)$ with $U \subset V$ and $U \subset W$. Since $\pi\inv(U)$ is open, since $\pi$ is continuous, this show that $(f,\pi\inv(V)) \sim (f,\pi\inv(W))$, so they have the same germ in $\mathscr{F}_p$.
 \end{proof}
 %
-In the case we have a sheaf of rings over a space $X$, we often denote it as $\mathscr{O}_X$, and say that $(X, \mathscr{O}_X)$ is a \ib{ringed space}. We then say that $\mathscr{O}_X$ is the \ib{structure sheaf} of $X$, and elements of $\mathscr{O}_X(U)$ are called \ib{functions}. The restriction of the sheaf to an open subset $U$ we'll denote as $\mathscr{O}_U$, and the stalk at a point $p$ wil lbe denoted $\mathscr{O}_{X,p}$. 
+In the case we have a sheaf of rings over a space $X$, we often denote it as $\mathscr{O}_X$, and say that $(X, \mathscr{O}_X)$ is a \ib{ringed space}. We then say that $\mathscr{O}_X$ is the \ib{structure sheaf} of $X$, and elements of $\mathscr{O}_X(U)$ are called \ib{functions}. The restriction of the sheaf to an open subset $U$ we'll denote as $\mathscr{O}_U$, and the stalk at a point $p$ wil lbe denoted $\mathscr{O}_{X,p}$.
+% 
 \begin{defn}
 Given a ringed space $(X,\mathscr{O}_X)$, an $\mathscr{O}_X$-\ib{module} is a sheaf $\mathscr{F}$ of abelian groups, (where we denote the restriction maps as $\rho_{UV}$) where $\mathscr{F}(U)$ is an $\mathscr{O}_X(U)$-module such that for $V \subset U$
 $$\begin{tikzcd}
 \mathscr{O}_X(U) \times \mathscr{F}(U) \ar[d, "r_{UV} \times \rho_{UV}"']\ar[r] & \mathscr{F}(U) \ar[d, "\rho_U"] \\
 \mathscr{O}_X(V) \times \mathscr{F}(V) \ar[r] & \mathscr{F}(V)
 \end{tikzcd}$$
-commu
+commutes where the horizontal maps are scalar multiplication.
 \end{defn}
+%
+\begin{exer}
+Let $(X,\mathscr{O}_X)$ be a ringed space, and $\mathscr{F}$ an $\mathscr{O}_X$-module. Give the stalk $\mathscr{F}_p$ the structure of an $\mathscr{O}_{X,p}$-module.
+\end{exer}
+%
+\begin{proof}
+We note that since the stalk is a colimit, it comes with a natural ring structure. Likewise $\mathscr{F}_p$ comes with the natural structure of an abelian group. We then note that the condition that the restriction maps behave nicely with scalar multiplication gives us exactly that the using representatives to compute scalar multiplication $\mathscr{O}_{X,p} \times \mathscr{F}_p \to \mathscr{F}_p$ is well defined, and consequently, satisfies the scalar multiplication axioms, since $\mathscr{F}$ is an $\mathscr{O}_X$-module. 
+\end{proof}
+%
+As with any mathematical object, we want to be able to discuss maps of presheaves and sheaves.
+%
+\begin{defn}
+Let $\mathscr{F}$ and $\mathscr{G}$ be (pre)sheaves over $X$ with restriction maps $r_{UV}$ and $\rho_{UV}$ respectively. Then a \ib{morphism of (pre)sheaves} $\varphi : \mathscr{F} \to \mathscr{G}$ is the assignment to every open set $U$ a map $\varphi(U) : \mathscr{F}(U) \to \mathscr{G}(U)$. Such that for any restriction maps $r_{UV}$ and $\rho_{UV}$, the following diagram commutes
+$$\begin{tikzcd}
+\mathscr{F}(U) \ar[d, "r_{UV}"']\ar[r, "\varphi(U)"] & \mathscr{G}(U) \ar[d, "\rho_{UV}"] \\
+\mathscr{F}(V) \ar[r, "\varphi(V)"'] & \mathscr{G}(V)
+\end{tikzcd}$$
+\end{defn}
+%
+\begin{exer}
+Let $\varphi : \mathscr{F} \to \mathscr{G}$ be a map a sheaves. For a fixed point $p \in X$, give a morphism $\mathscr{F}_p \to \mathscr{G}_p$.
+\end{exer}
 %
 \end{document}
