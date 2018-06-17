@@ -1438,4 +1438,18 @@ $$\begin{tikzcd}
 Let $\varphi : \mathscr{F} \to \mathscr{G}$ be a map a sheaves. For a fixed point $p \in X$, give a morphism $\mathscr{F}_p \to \mathscr{G}_p$.
 \end{exer}
 %
+\begin{proof}
+Define the map $\varphi_p : \mathscr{F}_p \to \mathscr{G}_p$ where for a representative $(f,U)$ of a germ $[f,U]$, we have $\varphi_p[f,U] = [\varphi(U)(f),U]$. We note that if $(f',U') \sim (f,U)$, we know there exists some $V \subset U$ such that $r_{U'V}(f') = r_{UV}(f)$. Then the fact that the diagram we have above commutes implies that $\varphi(V)(r_{U'V}(f')) = \rho_{U'V}(\varphi(U')(f'))$. This then gives us that 
+$$\varphi(V)(r_{U'V}(f') = \varphi(V)(r_{UV}(f)) = \rho_{U'V}(\varphi(U')(f')) $$
+We then note that the diagram commuting also vies us that $\varphi(V)(r_{UV}(f)) = \rho_{UV}((\varphi(U)(f))$, giving us that $\varphi(U)(f)$ and $\varphi(U')(f')$ restrict to the same element, so they have the same germ, so our map is well defined.
+\end{proof}
+%
+\begin{exer}
+Let $\pi : X \to Y$ be any continuous map. Show that the pushforward is a a functor $\pi_* : \mathsf{Set}_X \to \mathsf{Set}_Y$, where $\mathsf{Set}_X$ denotes the category of sheaves of sets over $X$.
+\end{exer}
+%
+\begin{proof}
+
+\end{proof}
+%
 \end{document}
