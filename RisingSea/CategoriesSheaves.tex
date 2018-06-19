@@ -22,6 +22,7 @@
 \usepackage{graphicx}
 \usepackage{pdfsync}
 \usepackage{mathdots}
+\usepackage{calligra}
 %
 \usepackage{tgpagella}
 \usepackage[T1]{fontenc}
@@ -162,6 +163,7 @@
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\dv}{div}
 \DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
 \newcommand*\myhrulefill{%
    \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
 \newcommand\niceending[1]{%
@@ -1449,7 +1451,23 @@ Let $\pi : X \to Y$ be any continuous map. Show that the pushforward is a a func
 \end{exer}
 %
 \begin{proof}
+We first describe the action of the functor on maps $\mathscr{F} \to \mathscr{G}$, where $\mathscr{F},\mathscr{G}$ are sheaves over $X$. Let $\varphi : \mathscr{F} \to \mathscr{G}$. Then define $\pi_*\varphi : \pi_*\mathscr{F} \to \pi_*\mathscr{G}$ by $\pi_*\varphi(U)(x) = \varphi(\pi\inv(U))(x)$. To show that this defines a functor, let $\varphi$ be the identity map, where $\varphi(U) = \id_{\mathscr{F}(U)}$. Then $\pi_*\varphi(V) = \varphi(\pi\inv(V)) = \id_{\pi\inv(V)} = \id_{\pi_*\mathscr{F}(V)}$. The final thing we must show is that $\pi_*$ respects composition. Suppose we have $\varphi : \mathscr{F} \to \mathscr{G}$ and $\psi : \mathscr{G} \to \mathscr{H}$. We compute that 
+$$\pi_*(\psi \circ \varphi)(V) = (\psi \circ \varphi)(\pi\inv(V)) = \psi(\pi\inv(V)) \circ \varphi(\pi\inv(V))$$
+Likewise, we compute
+$$(\pi_*\psi \circ \pi_*\varphi)(V) = \pi_*\psi(V) \circ \pi_*\varphi(V) = \psi(\pi\inv(V)) circ \varphi(\pi\inv(V)) $$
+So we have that $\pi_*$ defines a covariant functor.
+\end{proof}
+%
+\begin{exer}[\ib{Sheaf Hom}]
+Let $\mathscr{F}$ and $\mathscr{G}$ be sheaves over $X$. Define $\sheafhom(\mathscr{F},\mathscr{G})$ by 
+$$\sheafhom(\mathscr{F},\mathscr{G})(U) = \hom(\mathscr{F}\vert_U, \mathscr{G}\vert_U)$$
+Show that this is a sheaf of sets over $X$.
+\end{exer}
+%
+\begin{proof}
+We first describe the restriction maps. Define $r_{UV} : \hom(\mathscr{F}\vert_U, \mathscr{G}\vert_U) \to \hom(\mathscr{F}\vert_V, \mathscr{G}\vert_V)$ where sheaf morphism $\varphi : \mathscr{F}\vert_U \to \mathscr{G}\vert_U$  is ``restricted," i.e. for any open subset $W \subset V$, $r_{UV}(\varphi)(W)$ is just $\varphi(V)$. It is clear from the definition that restriction to $W \subset V \subset U$ is the same as restricting first to $V$ and then to $W$. We now need to show the identity and gluing axioms for a sheaf. Let $\set{U_\alpha}$ be an open cover of $U$, and suppose $r_{UU_\alpha}(f) = r_{UU\alpha}(g)$ for a pair of morphisms $f,g : \mathscr{F}\vert_U \to \mathscr{G}\vert_U$. Then this means for any open subset $W_\alpha \subset U_\alpha$, we have that $f(W_\alpha) = g(W_\alpha)$.
 
+$f_\alpha \in \hom(\mathscr{F}\vert_{U_\alpha}, \mathscr{G}\vert_{U_\alpha})$.
 \end{proof}
 %
 \end{document}
