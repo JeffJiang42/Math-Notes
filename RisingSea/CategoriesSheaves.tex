@@ -1465,9 +1465,22 @@ Show that this is a sheaf of sets over $X$.
 \end{exer}
 %
 \begin{proof}
-We first describe the restriction maps. Define $r_{UV} : \hom(\mathscr{F}\vert_U, \mathscr{G}\vert_U) \to \hom(\mathscr{F}\vert_V, \mathscr{G}\vert_V)$ where sheaf morphism $\varphi : \mathscr{F}\vert_U \to \mathscr{G}\vert_U$  is ``restricted," i.e. for any open subset $W \subset V$, $r_{UV}(\varphi)(W)$ is just $\varphi(V)$. It is clear from the definition that restriction to $W \subset V \subset U$ is the same as restricting first to $V$ and then to $W$. We now need to show the identity and gluing axioms for a sheaf. Let $\set{U_\alpha}$ be an open cover of $U$, and suppose $r_{UU_\alpha}(f) = r_{UU\alpha}(g)$ for a pair of morphisms $f,g : \mathscr{F}\vert_U \to \mathscr{G}\vert_U$. Then this means for any open subset $W_\alpha \subset U_\alpha$, we have that $f(W_\alpha) = g(W_\alpha)$.
+We first describe the restriction maps. Define $r_{UV} : \hom(\mathscr{F}\vert_U, \mathscr{G}\vert_U) \to \hom(\mathscr{F}\vert_V, \mathscr{G}\vert_V)$ where sheaf morphism $\varphi : \mathscr{F}\vert_U \to \mathscr{G}\vert_U$  is ``restricted," i.e. for any open subset $W \subset V$, $r_{UV}(\varphi)(W)$ is just $\varphi(V)$. It is clear from the definition that restriction to $W \subset V \subset U$ is the same as restricting first to $V$ and then to $W$. We now need to show the identity and gluing axioms for a sheaf. Let $\set{U_\alpha}$ be an open cover of $U$, and suppose $r_{UU_\alpha}(f) = r_{UU\alpha}(g)$ for a pair of morphisms $f,g : \mathscr{F}\vert_U \to \mathscr{G}\vert_U$. Then this means for any open subset $W_\alpha \subset U_\alpha$, we have that $f(W_\alpha) = g(W_\alpha)$. We want to show that for every open subset $V \subset U$, we have that $f(V) = g(V)$. We note that the fact that $f$ and $g$ are sheaf morphisms implies that they are compatible with restriction, i.e. the following diagrams commute for any $U_\alpha$ and $V \subset U$.
+$$\begin{tikzcd}
+\mathscr{F}(V) \ar[d, "r_{VV\cap U_\alpha}"']\ar[r, "f(V)"] & \mathscr{G}(V) \ar[d, "r_{VV\cap U_\alpha}"] \\
+\mathscr{F}(V \cap U_\alpha) \ar[r, "f(V \cap U_\alpha)"'] & \mathscr{G}(V \cap U_\alpha)
+\end{tikzcd}$$
+$$\begin{tikzcd}
+\mathscr{F}(V) \ar[d, "r_{VV\cap U_\alpha}"']\ar[r, "g(V)"] & \mathscr{G}(V) \ar[d, "r_{VV\cap U_\alpha}"] \\
+\mathscr{F}(V \cap U_\alpha) \ar[r, "g(V \cap U_\alpha)"'] & \mathscr{G}(V \cap U_\alpha)
+\end{tikzcd}$$
+The let $p \in \mathscr{F}\vert_U(V) = \mathscr{F}(V)$. Then since the top diagram commutes, we have that 
+$$f(V\cap U_\alpha)(r_{VV\cap U_\alpha}(p)) = r_{VV\cap U_\alpha}(f(V\cap U_\alpha)(p)) $$
+We note that we know that $V \subset U$, so $p \in U$, and we also know that restriction $U \to V \to V \cap U_\alpha$ is the same as restricting $U \to V \cap U_\alpha$. Therefore, we have that
+$$r_{VV\cap U_\alpha}(f(V \cap U_\alpha)(p)) = r_{UV \cap U_\alpha}(f(V\cap U_\alpha)(p)) = r_{UV \cap U_\alpha}(g(V \cap U_\alpha)(p)) $$
+since $f = g$ on all open subsets of $U_\alpha$. Therefore, since $f(V \cap U_\alpha)(p)$ and $g(V \cap U_\alpha)(p)$ restrict to the same element on an open cover of $V$, (since the $U_\alpha$ cover $U \supset V$, we have that $g$ and $f$ must be the same.
 
-$f_\alpha \in \hom(\mathscr{F}\vert_{U_\alpha}, \mathscr{G}\vert_{U_\alpha})$.
+The last thing to show is the gluing axiom. Let $\set{U_\alpha}$ again be an open cover of $U$, and suppose we are given a sheaf morphism $f_\alpha$ for every $U_\alpha$, such that the $f_\alpha$ agree on intersections (i.e. restrict to the same morphism on intersections), then we want to produce a sheaf morphism $f : \mathscr{F}\vert_U \to \mathscr{F}\vert_U$ such that $r_{UU\alpha}(f) = f_\alpha$ for every $\alpha$.
 \end{proof}
 %
 \end{document}
