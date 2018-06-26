@@ -1480,7 +1480,41 @@ We note that we know that $V \subset U$, so $p \in U$, and we also know that res
 $$r_{VV\cap U_\alpha}(f(V \cap U_\alpha)(p)) = r_{UV \cap U_\alpha}(f(V\cap U_\alpha)(p)) = r_{UV \cap U_\alpha}(g(V \cap U_\alpha)(p)) $$
 since $f = g$ on all open subsets of $U_\alpha$. Therefore, since $f(V \cap U_\alpha)(p)$ and $g(V \cap U_\alpha)(p)$ restrict to the same element on an open cover of $V$, (since the $U_\alpha$ cover $U \supset V$, we have that $g$ and $f$ must be the same.
 
-The last thing to show is the gluing axiom. Let $\set{U_\alpha}$ again be an open cover of $U$, and suppose we are given a sheaf morphism $f_\alpha$ for every $U_\alpha$, such that the $f_\alpha$ agree on intersections (i.e. restrict to the same morphism on intersections), then we want to produce a sheaf morphism $f : \mathscr{F}\vert_U \to \mathscr{F}\vert_U$ such that $r_{UU\alpha}(f) = f_\alpha$ for every $\alpha$.
+The last thing to show is the gluing axiom. Let $\set{U_\alpha}$ again be an open cover of $U$, and suppose we are given a sheaf morphism $f_\alpha$ for every $U_\alpha$, such that the $f_\alpha$ agree on intersections (i.e. restrict to the same morphism on intersections), then we want to produce a sheaf morphism $f : \mathscr{F}\vert_U \to \mathscr{F}\vert_U$ such that $r_{UU\alpha}(f) = f_\alpha$ for every $\alpha$. To produce such an $f$, we need to provide functions $f(V) : \mathscr{F}(V) \to \mathscr{G}(V)$ for every open subset $V \subset U$. Let $V \subset U$ be any open subset. We note that $\set{U_\alpha \cap V}$ is an open cover of $V$, so we can define $f(V)$ by $f(V)(p) = f_\alpha(V \cap U_\alpha)(p)$ where $p \in U_\alpha$. We note that this is well defined, since if $p \in U_\alpha \cap U_\beta$, then we know that $f_\alpha(V \cap U_\alpha \cap U_\beta) = f_\beta(V \cap U_\alpha \cap U_\beta)$ by assumption. In addition, this also plays nicely with the restriction maps (i.e. you can map first, then restrict, or restrict first, then map), since all the $f_\alpha$ are sheaf morphisms.
+\end{proof}
+%
+\begin{exer}
+Show that $\sheafhom$ does not commute with taking stalks, i.e. $\sheafhom(\mathscr{F}, \mathscr{G})_p$ is not isomorphic to $\hom(\mathscr{F}_p, \mathscr{G}_p)$ by providing a counter example. However, it is true that there exists a map in one direction. Determine this map.
+\end{exer}
+%
+\begin{proof}
+We first provide the natural map, which we claim is a map $\sheafhom(\mathscr{F},\mathscr{G})_p \to \hom(\mathscr{F}_p , \mathscr{G}_p)$. Let $[\varphi, V] \in \sheafhom(\mathscr{F},\mathscr{G})_p$. Then define $\tilde{\varphi} : \mathscr{F}_p \to \mathscr{G}_p$ by
+$$\tilde{\varphi}[\sigma, U] = [\varphi(V \cap U)(r_{UU\cap V}(\sigma)), V \cap U]$$
+where $[\sigma, U] \in \mathscr{F}_p$. We note that $\varphi(V \cap U)$ exists, since $V$ and $U$ both contain $p$, so their intersection is nontrivial. To show that this is well defined, we must verify that this is independent of representative of $[\varphi , V]$ and of $[\sigma , U]$. To show the latter, let $(s,W) \sim (\sigma, U)$. Then we know there exists an open set $A$ such that $r_{WA}(s) = r_{UA}(\sigma)$. Because $\varphi$ is a sheaf morphism, it commutes with restriction, and since $\mathscr{F}$ is a sheaf, we can restrict from $W \to V \cap W \to V \cap A$ is the same as restricting to $W \to V \cap A$, which is also the same as restricting $W \to A \to V \cap A$. This can be summarized with the following commutative diagram
+$$\begin{tikzcd}
+\mathscr{F}(W) \ar[d, "r_{WA}"] \ar[dr, "r_{WV\cap A}"]\ar[r, "r_{WV \cap W}"] & \mathscr{F}(V \cap W) \ar[d, "r_{V \cap W V \cap A}"]\ar[r, "\varphi(V \cap W)"] & \mathscr{G}(V \cap W) \ar[d, "r_{V \cap W V \cap A}"] \\
+\mathscr{F}(A) \ar[r, "r_{AV\cap A}"'] & \mathscr{F}(V \cap A) \ar[r, "\varphi(V\cap A)"'] & \mathscr{G}(V \cap A)
+\end{tikzcd}$$
+and we get the same diagram when we replace $W$ with $U$. We note that the right half of the diagram gives us that $r_{WV \cap W}(s)$ and $r_{U V \cap U}(\sigma)$ are the same, since they restrict to the same element in $\mathscr{F}(A)$. Therefore, they are clearly mapped to the same element under $\varphi(V \cap A) \circ r_{A V \cap A}$. Then since the right half commutes, we have that $\varphi(V \cap W)(s)$ restricts to the same element of $\mathscr{G}(V \cap A)$ as $\varphi(V \cap U)(\sigma)$. Therefore, we have that $\tilde{\varphi}$ is well defined on the equivalence classes $[\sigma, U]$. We next need to show that this is independent of representative $[\varphi , V]$.
+
+Let $(\psi, W) \sim (\varphi, V)$, i.e. there exists some $A \subset W$ and $A \subset V$ such that $\psi(S) = \varphi(S)$ for every open subset $S \subset A$. Then again using the fact that $\varphi$ is a sheaf morphism, and the fact that restriction commutes, we get the diagram
+$$\begin{tikzcd}
+\mathscr{F}(U) \ar[d, "r_{UA}"] \ar[r, "r_{V \cap U}"] & \mathscr{F}(V \cap U) \ar[d, "r_{V\cap U V \cap A}"'] \ar[r, "\varphi(\varphi \cap U)"] &  \mathscr{G}(V \cap U) \ar[d, "r_{V\cap U V \cap A}"]\\
+\mathscr{F}(A) \ar[dr, "r_{AV\cap U \cap U}"']& \mathscr{F}(V \cap A) \ar[d, "r_{V \cap A V\cap A \cap U}"]\ar[r, "\varphi(V\cap A)"] & \mathscr{G}(V  \cap A) \ar[d, "r_{V \cap A V \cap A \cap U}"]\\
+& \mathscr{F}(V \cap A \cap U) \ar[r, "\varphi(V \cap A \cap U)"']& \mathscr{G}(V \cap A \cap U)
+\end{tikzcd}$$
+\end{proof}
+%
+\begin{exer} \enumbreak
+\begin{enumerate}
+\item Let $\mathscr{F}$ be a sheaf over $X$. Show that $\sheafhom(\underline{\set{p}},\mathscr{F}) \cong \F$, where $\underline{\set{p}}$ denotes the constant sheaf over $X$ for the one point set $\set{p}$.
+\item If $\mathscr{F}$ is a sheaf of abelian groups over $X$, show that $\sheafhom(\underline{\Z}, \mathscr{F}) \cong \mathscr{F}$.
+\item If $\mathscr{F}$ is an $\mathscr{O}_X$ module, show that $\sheafhom(\mathscr{O}_X, \mathscr{F}) \cong \mathscr{F}$.
+\end{enumerate}
+\end{exer}
+%
+\begin{proof}
+
 \end{proof}
 %
 \end{document}
