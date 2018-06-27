@@ -1499,10 +1499,13 @@ and we get the same diagram when we replace $W$ with $U$. We note that the right
 
 Let $(\psi, W) \sim (\varphi, V)$, i.e. there exists some $A \subset W$ and $A \subset V$ such that $\psi(S) = \varphi(S)$ for every open subset $S \subset A$. Then again using the fact that $\varphi$ is a sheaf morphism, and the fact that restriction commutes, we get the diagram
 $$\begin{tikzcd}
-\mathscr{F}(U) \ar[d, "r_{UA}"] \ar[r, "r_{V \cap U}"] & \mathscr{F}(V \cap U) \ar[d, "r_{V\cap U V \cap A}"'] \ar[r, "\varphi(\varphi \cap U)"] &  \mathscr{G}(V \cap U) \ar[d, "r_{V\cap U V \cap A}"]\\
-\mathscr{F}(A) \ar[dr, "r_{AV\cap U \cap U}"']& \mathscr{F}(V \cap A) \ar[d, "r_{V \cap A V\cap A \cap U}"]\ar[r, "\varphi(V\cap A)"] & \mathscr{G}(V  \cap A) \ar[d, "r_{V \cap A V \cap A \cap U}"]\\
-& \mathscr{F}(V \cap A \cap U) \ar[r, "\varphi(V \cap A \cap U)"']& \mathscr{G}(V \cap A \cap U)
+\mathscr{F}(U) \ar[d, "r_{UA}"] \ar[r, "r_{V \cap U}"] & \mathscr{F}(V \cap U) \ar[d, "r_{V\cap U V \cap A}"'] \ar[r, "\varphi(V\cap U)"] &  \mathscr{G}(V \cap U) \ar[d, "r_{V\cap U V \cap A}"]\\
+\mathscr{F}(A) \ar[dr, "r_{AV\cap U \cap U}"']& \mathscr{F}(V \cap A) \ar[d, "r_{V \cap A V\cap W \cap A \cap U}"]\ar[r, "\varphi(V\cap A)"] & \mathscr{G}(V  \cap A) \ar[d, "r_{V \cap A V \cap A \cap U}"]\\
+& \mathscr{F}(V \cap W \cap A \cap U) \ar[r, "\varphi(V \cap W \cap A \cap U)"']& \mathscr{G}(V \cap W \cap A \cap U)
 \end{tikzcd}$$
+Again, we can replace $V$ with $W$ and $\varphi$  with $\psi$ to get the same diagram. Then since the diagram commutes, we have that going across the top edge of the diagram is the same as going down the bottom edge. Noting that $V \cap A \cap U \subset A$, we know that $\varphi(V \cap A \cap U) = \psi(V \cap W \cap A \cap U)$, which gives us that $\varphi(V \cap W \cap A \cap U) = \psi(V \cap W \cap A \cap U)$, so we get the their images in $\mathscr{G}(V \cap U)$ and $\mathscr{G}(W \cap U)$  respectively restrict to the same element of $\mathscr{G}(V \cap W \cap A \cap U)$, so they have the same germ, which shows that the map we defined indeed gives a map of stalks.
+
+However, it is not the case that $\sheafhom(\mathscr{F}, \mathscr{G})_p \cong \hom(\mathscr{F}_p, \mathscr{G}_p)$. For the counterexample.
 \end{proof}
 %
 \begin{exer} \enumbreak
