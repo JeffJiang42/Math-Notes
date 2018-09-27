@@ -321,7 +321,7 @@ Then given $a,b \in A$, we compute
 \end{align*}
 So as $b \to a$, we have that $\norm{M_{a-b}} \to 0$ as well, so this mapping is continuous. Therefore, the mapping $a \mapsto \det M_a$ is then continuous, which makes the group of units $A^\times$ an open set, being the preimage of the open set $\R - \set{0}$.
 
-One thing to note is that the proof that $a \mapsto M_a$ is continuous works with any norm such that $\norm{ab} \leq c \norm{a}\norm{b}$ for any constant $c$. Therefore, we have a small lemma regarding finite dimensional algebras with an inner product.
+One thing to note is that the argument we use to show that $a \mapsto M_a$ is continuous works with any norm such that $\norm{ab} \leq c \norm{a}\norm{b}$ for any constant $c$. Therefore, we have a small lemma regarding finite dimensional algebras with an inner product.
 %
 \begin{lem*}
 Let $A$ be an $n$-dimensional algebra with inner product $\langle \cdot,\cdot\rangle$, and let $\norm{\cdot}$ denote the norm induced by the inner product $\norm{x}^2 = \langle x, x \rangle$. Then for all $xy \in A$, we have 
@@ -343,7 +343,22 @@ Then let $x = a^ie_i$ and $y = b^je_j$. We then compute
 \end{proof}
 Because of this, we have that for the Clifford algebras $A^\pm_n$, the mapping from algebra elements to linear maps on the algebra is continuous, regardless of our choice of inner product. We can then use this to define a nicer norm on the Clifford algebras. First fix an arbitrary inner product and denote the induced norm $\norm{\cdot}_1$. Then define 
 $$\norm{a} = \sup_{v \in A^{\pm}_n}\frac{\norm{av}_1}{\norm{v}_1} $$
-which gives us a submultiplicative norm, so the group of units is an open subset.
+which gives us a submultiplicative norm, so the group of units is an open subset. 
+
+We now want to prove that $G$ is a topological group. To do this, it suffices to show that multiplication and inversion are continuous on $A^\pm_n$. For multiplication, fix $c,d \in A$, and suppose we have $a,b \in A$ such that
+$$\norm{a - c} < \varepsilon \qquad \norm{b -d } < \varepsilon $$
+for small $\varepsilon > 0$. Then we have 
+\begin{align*}
+\norm{ab - cd} &= \norm{ab - ad + ad - cd} \\
+&= \norm{a(b-d) + (a-c)d} \\
+&\leq \norm{a(b-d)} + \norm{(a-c)d} \\
+&\leq \norm{a}\norm{b-d} + \norm{a-c}\norm{d} \\
+&\leq (\norm{a} + \norm{d})\varepsilon \\
+& \leq (\norm{a - c + c} + \norm{d})\varepsilon \\
+&\leq (\norm{a - c} + \norm{c} + \norm{d})\varepsilon \\
+&\leq (\varepsilon + \norm{c} + \norm{d})\varepsilon
+\end{align*}
+so multiplication is continuous at $(c,d)$. For inversion,
 %
 \begin{exer}
 An algebra $A$ is called a \ib{matrix algebra} if there exists an isomorphism $A \cong \End(V)$ for some vector space $V$. Which $A^\pm_n$ are matrix algebras?
@@ -372,6 +387,8 @@ $$\begin{tikzcd}
 V \arrow[hookrightarrow]{d} \arrow[hookrightarrow]{dr}{ j} \\
 \Cliff(V,b) \arrow[dashed]{r} & A
 \end{tikzcd}$$
-We claim that this characterizes the Clifford algebra up to unique isomorphism. Let $A$ be another algebra with map $j: V\hookrightarrow A$ satisfying the same property we gave above. From the universal property of $\Cliff(V,b)$, we get a unique map $\Cliff(V,b) \to A$. Likewise, the inclusion $V \hookrightarrow \Cliff(V,b)$ gives us a unique map $A \to \Cliff(V,b)$. We claim that these two maps are inverses.
+We claim that this characterizes the Clifford algebra up to unique isomorphism. Let $A$ be another algebra with map $j: V\hookrightarrow A$ satisfying the same property we gave above. From the universal property of $\Cliff(V,b)$, we get a unique map $\Cliff(V,b) \to A$. Likewise, the inclusion $V \hookrightarrow \Cliff(V,b)$ gives us a unique map $A \to \Cliff(V,b)$. We claim that these two maps are inverses. We note that both maps are given by $v \mapsto j(v)$ $j(v) \mapsto v$ and extending to products and sums, so we have that they are inverses.
+
+We now want to verify that the construction $\mathcal{T}(V) / (v^2 - b(v,v))$ satisfies this universal property, i.e. the Clifford algebra exists. Given an algebra $A$ with a map $j : V \hookrightarrow A$ satisfying $j(v)^2 - b(v,v) = 0$, define the map $\mathcal{T}(V) \to A$ by $v \mapsto j(v)$ and extending linearly and to products. Then the ideal $(v^2 - b(v,v))$ lies in the kernel of this map, so the map factors through uniquely through $\mathcal{T}(V) / (v^2 - b(v,v))$, so it satisfies the property we laid out.
 %
 \end{document}
