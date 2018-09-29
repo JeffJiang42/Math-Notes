@@ -424,6 +424,15 @@ The quaternions $\mathbb{H}$ are not an endomorphism algebra because they are a 
 For an algebra $A$, an $A$-module $M$ is indecomposable if it can be expressed as the direct sum
 $M = M_1 \oplus M_2$ of submodules $M_1$ and $M_2$. Any algebra acts on itself via left multiplication, which we will call the left regular representation. Is the left regular representation of a Clifford algebra indecomposable?
 \end{exer}
+%
+\begin{quest}
+How many irreducible representations are there for any given Clifford algebra $\Cliff(V,b)$. How many indecomposable ones?
+\end{quest}
+%
+\begin{quest}
+Does Schur's lemma hold for Clifford modules? Does Maschke's theorem hold?
+\end{quest}
+%
 Clearly, an irreducible module is indecomposable, so this raises the question -- is the left regular representation for a Clifford algebra irreducible?
 %
 \begin{exer}
@@ -450,8 +459,34 @@ V \arrow[d, "\iota"'] \arrow[dr, "j"]\\
 \Cliff(V,b) \arrow[r] & A
 \end{tikzcd}$$
 \begin{enumerate}
-\item Consider the map $j : V \to \mathcal{T}(V) / (v^2 - 2b(v,v))$ induced by the inclusion map $V \hookrightarrow \mathcal{T}(V)$.  We note that this map is injective, and satisfies the relation we need to get a map $\varphi : \Cliff(V,b) \to \mathcal{T}(V) / (v^2 - 2b(v,v)$ such that $j = \varphi \circ i$. Therefore, $i$ must be injective.
-\item 
+\item Consider the map $j : V \to \mathcal{T}(V) / (v^2 - 2b(v,v))$ induced by the inclusion map $V \hookrightarrow \mathcal{T}(V)$.  We note that this map is injective, and satisfies the relation we need to get a map $\varphi : \Cliff(V,b) \to \mathcal{T}(V) / (v^2 - 2b(v,v)$ such that $j = \varphi \circ \iota$. Therefore, $\iota$ must be injective.
+\item For uniqueness, suppose $(A, j)$ is another algebra satisfying the universal property of the Clifford algebra. Then we claim that there is a unique isomorphism $\Cliff(V,b) \to A$ such that 
+$$\begin{tikzcd}
+V \arrow[d, "\iota"'] \arrow[dr, "j"]\\
+\Cliff(V,b) \arrow[r] & A
+\end{tikzcd}$$
+From the universal property of $\Cliff(V,b)$, we get a unique map $\varphi : \Cliff(V,b) \to A$, and since $A$ satisfies the universal property, the map $\iota$ gives us a unique map $\psi : A \to \Cliff(V,b)$. We claim that these maps are inverses (and consequently, isomorphisms). We note that $\psi \circ \varphi : \Cliff(V,b) \to \Cliff(V,b)$ satisfies $(\psi \circ \varphi)(\iota(v)) = \iota(v)$. so it must be the unique map that makes
+$$\begin{tikzcd}
+V \arrow[d, "\iota"'] \arrow[dr, "\iota"]\\
+\Cliff(V,b) \arrow[r] & \Cliff(V,b)
+\end{tikzcd}$$
+commute. We note that the identity map on $\Cliff(V,b)$ satisfies this property, so by uniqueness, we must have $\psi \circ \varphi = \id$. Repeating the argument with $j$ and $A$, we conclude that $\varphi \circ psi = \id$, so they are inverses.
+\item To obtain the grading, we want to show that the assignment $(V,b) \to \Cliff(V,b)$ is functorial. Given vector spaces $V,W$ with symmetric bilinear forms $b_V, b_W$ respectively, and a linear map $T : V \to W$ satisfying $b_W(Tv_1, Tv_2) = b_V(v_1, v_2)$ (i.e. $T^*b_W = b_V$). Then we claim we get an induced algebra homomorphism $T_* : \Cliff(V,b_V) \to \Cliff(W, b_W)$  such that
+$$\begin{tikzcd}
+(V, b_V) \arrow[r, "T"] \arrow[d, "\iota_V"']& (W, b_W) \arrow[d, "\iota_W"] \\
+\Cliff(V, b_V) \arrow[r, "T_*"'] & \Cliff(W, b_W)
+\end{tikzcd}$$
+commutes. We note that the data of a map $\Cliff(V,b_V) \to \Cliff(W, b_W)$ is equivalent to the data of a linear map $j : V \to \Cliff(W, b_W)$ satisfying $j(v)^2 = 2b_V(v,v)$. In this case, let $j = \iota_W \circ T$. We note that $(\iota_W \circ T) (v)^2 = 2b_W(Tv, Tv)$. Then since we have that $T^*b_W = b_V$, we have that this is equal to $2b_V(v,v)$, so we do indeed get an induced map $T_*: \Cliff(V,b_V) \to \Cliff(W, b_W)$, which is uniquely defined by the rule
+$$T_* (\iota_V(v)) = \iota_W(Tv) $$
+We claim that this is functorial, i.e. given $T: (V, b_V) \to (W,b_W)$ and $L : (W, b_W) \to (X, b_X)$, we have that $(L \circ T)_* = L_* \circ T_*$. This follows from looking at the diagram
+$$\begin{tikzcd} 
+V \arrow[d, "\iota_V"']\arrow[r, "T"] & W \arrow[d, "\iota_W"] \arrow[r, "L"] & X \arrow[d, "\iota_X"]\\
+\Cliff(V, b_V) \arrow[r, "T_*"'] & \Cliff(W, b_W) \arrow[r, "L_*"'] & \Cliff(X, b_x)
+\end{tikzcd}$$
+With that out of the way, we can use the functoriality to obtain the $\Z/2\Z$ grading. Let $(V,b)$ be a vector space $V$ with symmetric bilinear form $b$, and consider the map $-\id_V$, where $v \mapsto -v$. Then we note that 
+$$(-\id_V^*b)(v,w) = b(-v,-w) = b(v,w)$$
+ so it induces an algebra map $\varphi : \Cliff(V,b) \to \Cliff(V,b)$ which is defined by the property that $\varphi(\iota(v)) = -\iota(v)$. Then let the even subspace of $\Cliff(V,b)$ be the subspace spanned by elements $a$ such that $\varphi(a) = a$, and let the odd subspace of $\Cliff(V,b)$ be the one spanned by elements $a$ such that $\varphi(a) = -a$.
+ \item This is answered by the functoriality of $(V,b) \mapsto \Cliff(V,b)$. We get maps between Clifford algebras when we have linear maps that pullback the bilinear forms.
 \end{enumerate}
 %
 \begin{exer}
