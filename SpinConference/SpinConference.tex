@@ -429,6 +429,11 @@ Clearly, an irreducible module is indecomposable, so this raises the question --
 \begin{exer}
 Given an $A$-module $M$ and a $B$-modules $N$, how would you realize $M \otimes N$ as a $A \otimes B$ module? What if $A$ and $B$ were superalgebras?
 \end{exer}
+We have that a module $V$ over an algebra $R$ is equivalent to giving an algebra homomorphism $R \to \End(V)$. Therefore, we have algebra homomorphisms $\varphi : A \to \End(M)$ and $\psi : B \to \End(N)$. Then we can use these maps to define a map $A \times B \to \End(M) \otimes \End(N)$ where $(a,b) \mapsto \varphi(a) \otimes \psi(v)$, which descends to the tensor product. Composing with the canonical isomorphism $\End(M) \otimes \End(N) \to \End(M \otimes N)$ then gives us the $A \otimes B$-module structure we desire on $M \otimes N$.
+
+More explicitly, this more or less does what you expect, where the action of an element $a \otimes b$ is given by
+$$(a\otimes b) \cdot (m \otimes n) = am \otimes bn $$
+and extending linearly to sums of algebra elements.
 %
 \begin{exer}
 Using only the universal property of the Clifford algebra,
@@ -439,6 +444,15 @@ Using only the universal property of the Clifford algebra,
 \item How do you get maps between Clifford algebras?
 \end{enumerate}
 \end{exer}
+We first state a refined version of the universal property of $\Cliff(V,b)$. For a vector space $V$ with symmetric bilinear form $b : V \times V \to \R$, the \ib{Clifford algebra} is the data of a unital associative algebra $\Cliff(V,b)$ and a map $\iota : V \to \Cliff(V,b)$ such that for any algebra $A$ with a linear map $j : V \to A$ satisfying $j(v)^2 = 2b(v,v)$, we get a unique algebra homomorphism $\Cliff(V,b) \to A$ such that the following diagram commutes 
+$$\begin{tikzcd}
+V \arrow[d, "\iota"'] \arrow[dr, "j"]\\
+\Cliff(V,b) \arrow[r] & A
+\end{tikzcd}$$
+\begin{enumerate}
+\item Consider the map $j : V \to \mathcal{T}(V) / (v^2 - 2b(v,v))$ induced by the inclusion map $V \hookrightarrow \mathcal{T}(V)$.  We note that this map is injective, and satisfies the relation we need to get a map $\varphi : \Cliff(V,b) \to \mathcal{T}(V) / (v^2 - 2b(v,v)$ such that $j = \varphi \circ i$. Therefore, $i$ must be injective.
+\item 
+\end{enumerate}
 %
 \begin{exer}
 Give a canonical isomorphism $\End(V) \otimes \End(W) \to \End(V \otimes W)$ in the case of regular vector spaces and super vector spaces.
@@ -469,6 +483,6 @@ We then note that the grading for $V$ and $W$ gives natural gradings for $\End(V
 \end{align*}
 Therefore, in the case of $V$ and $W$ being super vector spaces, we want the isomorphism we construct 
 $$\End(V) \otimes \End(W) \to \End(V \otimes W)$$
-to respect this extra structure. The underlying vector space will be the same, but we should verify that the map we gave above respects the grading, or if we need to use the tensor product for super algebras, which can flip some signs.
+to respect this extra structure, which it does.
 %
 \end{document}
