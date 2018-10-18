@@ -672,6 +672,50 @@ $$\varphi : C_{p,q} \otimes C_{p,q}^\text{op} \to \End(C_{p,q}) $$
 \begin{exer}
 Continue thinking about properties of $\Spin(p,q)$ and $\Pin(p,q)$. Continuing on last week, identify what low dimensional Lie groups they're be isomorphic to. Are they compact? Connected? What is $\pi_0(\Pin(p,q))$?
 \end{exer}
+We first begin by identifying the orthgonal $O(p,q)$ for $\R^{p|q}$ and its Lie algebra. Let $B$ denote the bilinear form for $\R^{p,q}$, and let $M$ denote its matrix in the standard basis, i.e. the diagonal matrix with $p$ ones the the diagonal and $q$ negative ones. Then we have that $B(v,w) = v^TMw$, where $v$ and $w$ are written in the standard coordinates. Then we have that 
+$$O(p,q) = \set{A \in GL(p+q,\R) ~|~ v^TMw = v^TA^TMAw ~ \text{for all } v,w \in \R^{p,q}} $$
+We note that in particular, this is equivalent to 
+$$O(p,q) = \set{A \in GL(p+q, \R) ~:~ A^TMA = M} $$
+Since $M$ will have determinant $\pm 1$, this implies that $(\det A)^2 = \pm 1$ for all $A \in O(p,q)$, so it will again have $2$ components. To compute the Lie algebra $\mathfrak{o}(p,q)$, we let $\varphi : GL(p+q, \R) \to M_{p + q}$ by $\varphi(X) = X^TMX$, which will be a constant rank map (since it is equivariant with respect to appropriate group actions by multiplication), so the kernel $\ker d\varphi_I$ will be the Lie algebra $\mathfrak{o}(p,q)$. To compute the differential, we prove $\varphi$ with curves based at $I$, and compute for $X \in M_{p+q}\R$
+\begin{align*}
+\varphi(tX + I) &= (tX + I)^T M (tX + I) \\
+&= t^2X^TMX + t(MX + X^TM) + M
+\end{align*}
+which has linear term $MX + X^TM$, so $d\varphi_I(X) = MA + A^TM$. Therefore, we get that 
+$$\mathfrak{o}(p,q) = \set{X \in M_{p+1}\R ~:~ MX = -X^TM} $$
+an easy application on this identity shows that $\mathfrak{o}(p,q)$ is closed under the commutator bracket, so we get that $\mathfrak{o}(p,q)$ is a Lie algebra, as expected. In order to find out more about $\Pin(p,q)$ and $\Spin(p,q)$, we want to embed $\mathfrak{o}(p,q) = \mathfrak{so}(p,q)$ into $C_{p,q}$ with the commutator bracket (since we suspect that this is the Lie algebra for the group of units $C_{p,q}^\times$), and see what happens with the exponential map. 
+
+To do this, we're going to assume some things we haven't fully proven yet, namely that $\Pin(p,q)$ and $\Spin(p,q)$ are smooth submanifolds of $C_{p,q}$, so we can compute the compute the differential of the map
+\begin{align*}
+\varphi : \Pin(p,q) &\to O(p,q) \\
+\varphi(a)(v) &= ava^T
+\end{align*}
+where $a^T$ is the map that reverses the order of products, extended linearly to the entire algebra. We want to compute $d\varphi_1$. To do this, we have that 
+\begin{align*}
+\varphi(ta + 1)(v) &= (ta + 1)v(ta^T + 1) \\
+&= t^2ava + tav + tva^T + v
+\end{align*}
+which has linear term $av + va^T$. So $d\varphi_1(A) = X$ where $\varphi_X = Xv+  vX^T$. We know that since this maps onto $\mathfrak{o}(p,q)$ that in particular this requires $Xv + vX^T \in \R^{p|q}$ for all $v \in \R^{P|q}$. We also note that that dimension of $\mathfrak{o}(p,q)$ is $n(n-1)/2 = \binom{n}{2}$, so we're looking for a certain number of linearly independent algebra elements satisfying this relation. We note that the set $\set{e_ie_j}$ of pairwise products works (and is the right number), since 
+$$e_ie_jv + ve_je_i = 4B(e_j,v)e_i \in V$$
+So we expect this to span the Lie algebra of $\Pin(p,q)$. From another piece of guess work, we want to formally exponentiate these elements, i.e. 
+$$e^a = \sum_{i = 0}^\infty \frac{a^n}{n!} $$
+If we look at the elements $e_ie_j$, there are a few cases to consider. In the case that $e_i^2 = e_j^2$, we have that $(e_ie_j)^2 = e_ie_je_ie_j = -e_i^2e_j^2 = -1$. In that case, we first note that 
+\begin{align*}
+(e_ie_j)^2  &= -1 \\
+(e_ie_j)^3 &= -e_ie_j \\
+(e_ie_j)^4 &= -(e_ie_j)^2 = 1 \\
+(e_ie_j)^6 &= e_ie_j
+\end{align*}
+Then rearranging the terms in the sum, we get 
+$$e^{te_ie_j} = \left(\sum_{k = 1}^\infty \frac{(-1)^{k+1}t}{2k !} \right) + \left(\sum_{k = 1}^\infty \frac{(-1)^{k+1}te_ie_j}{(2k-1)!} \right) = \cos t + (\sin t) e_ie_j$$
+In the case that $e_i^2 \neq e_j^2$, we have that $(e_ie_j)^2 = 1$, which gives us
+\begin{align*}
+(e_ie_j)^2 &= 1 \\
+(e_ie_j)^3 &= e_ie_j
+\end{align*}
+So the series becomes
+$$e^{te_ie_j} = \left( \sum_{k=1}^\infty \frac{t}{2k !} \right)  + \left( \sum_{k = 1}^\infty \frac{te_ie_j}{(2k - 1)!}\right) = \cosh t + (\sin th)e_ie_j$$
+which are some very nice formulas indeed!
 %
 \begin{exer}
 Continue thinking about past problems. Construct the table of Clifford algebras, continue progress on identifying matrix algebras, determining which Clifford algebras are simple, etc.
