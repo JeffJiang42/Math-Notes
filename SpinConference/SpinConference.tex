@@ -648,7 +648,7 @@ Another fun thing to think about, can you construct Clifford algebras over $R$-m
 \end{rem*}
 %
 \begin{exer}
-We've proven that $C_{p,q}^{\text{op}} \cong C_{q,p}$. Then note that $C_{p,q} \otimes C_{q,q} \cong C_{p + q, p + q}$, which is a matrix algebra, which will be isomorphic to $\End((\R^{1|1})^{\otimes n})$. However, this isomorphism is not very natural, since it will implicitly need a choice of basis. Is there a more natural vector space that $C_{p,q} \otimes C^\text{op}_{p,q}$ acts on?
+We've proven that $C_{p,q}^{\text{op}} \cong C_{q,p}$. Then note that $C_{p,q} \otimes C_{q,p} \cong C_{p + q, p + q}$, which is a matrix algebra, which will be isomorphic to $\End((\R^{1|1})^{\otimes n})$. However, this isomorphism is not very natural, since it will implicitly need a choice of basis. Is there a more natural vector space that $C_{p,q} \otimes C^\text{op}_{p,q}$ acts on?
 \end{exer}
 We have that the dimension of $C_{p+q, p+q}$ is $2^{2(p+q)}$, so we need the vector space to be $2^{p+q}$ dimensional. In addition, since we know that the even and odd subspaces need to have the same dimension. Conveniently, $C_{p,q}$ satisfies both of these properties. In addition, both $C_{p,q}$ and $C_{p,q}^\text{op}$ have natural actions on $C_{p,q}$ (namely multiplication), so all the evidence points us to try to find a map $\varphi: C_{p,q} \otimes C_{p,q}^\text{op} \to \End(C_{P,q})$ (where $\End$ denotes the space of linear maps, not the space of algebra endomorphisms. Define $\varphi$ on homogeneous elements of $C_{p,q} \otimes C_{p,q}^\text{op}$ by its action on homogeneous elements of $C_{p,q}$ (i.e even and odd elements) 
 $$\varphi(a \otimes b)(v) = (-1)^{|b||v|} a(b*v)$$
@@ -749,12 +749,30 @@ Given an algebra $A$ and an irreducible $A$-module $U$, for any $u,u' \in U$, th
 We have that $A \cdot u$ is a submodule of $U$ that is nonzero, so it must be all of $U$. Therefore, we must have some $\alpha \in A$ such that $\alpha \cdot u = u'$.
 \end{proof}
 By fixing a basis for $V$, we get isomorphisms $U \otimes V \cong U \otimes \R^n$ and $A \otimes \End(V) \cong A \otimes M_n\R$. Then given an arbitrary elements $u^i \otimes e_i$ and $(u^i)' \otimes e_i$ (where the $e_i$ are the standard basis vectors for $\R^n$), Then let $\alpha_i \in A$ where $\alpha^i \cdot u^i = (u^i)'$ and let $E_{ii}$ denote the matrix with only a $1$ in the $(i,i)$ entry and zeroes elsewhere. Then $\alpha^i \otimes E_{ii} \cdot u^i \otimes e_i = (u^i)' \otimes e_i$, so $U \otimes V$ is simple, since the algebra action is transitive.
+
+In the other direction, we want to show that given a simple $A \otimes \End(V)$-module $W$, it is isomorphic to a tensor product $U \otimes V$ for some irreducible $A$-module $U$. We know we have isomorphisms $A \cong A \otimes \id$ and $\End(V) \cong 1_A \otimes \End(V)$, which makes $W$ simultaneously an $A$-module as well as an $\End(V)$-module. Then by restricting to smaller and smaller subspaces if necessary, we can find a simple $A$-submodule $U \subset W$. Then we can endow an $\End(V)$-module structure on $\hom_A(U,W)$ where for $F \in \hom_A(U,W)$, the action of $M \in \End(V)$ on $F$ is given by
+$$ (M \cdot F)(u) = (1_A \otimes M) \cdot F(u) $$
+We then get a module homomorphism (as $A \otimes \hom_A(U, W)$-modules) given by evaluation
+\begin{align*}
+\varepsilon : U \otimes \hom_A(U,W) &\to W \\
+u \otimes F \mapsto F(u)
+\end{align*}
+Then since $W$ is a simple module and the image is nonzero, the map $\varepsilon$ is necessarily surjective. In addition, we can (by shrinking until we find it) find a simple $\End(V)$-submodule $S \subset \hom_A(U,W)$, which will be isomorphic to $V$. Therefore, we have that $U \otimes S \subset U \otimes \hom_A(U,W)$ is a simple $A \otimes \End(V)$-module. We then observer that for any nonzero $\varphi \in \hom_A(U,W)$, the image $\varepsilon (U \otimes \spn{\varphi})$ is a nonzero subspace of $W$, so the restriction of $\varepsilon$ to the submodule $U \otimes S$ is a nonzero map, which must be surjective since $W$ is simple. Then since $U \otimes S$ is simple, it's also injective, so $U \otimes S \cong W$, so $W$ is isomorphic to the tensor product of $U$ with the standard representation $V$. Consequently, all the simple $A \otimes \End(V)$-modules are exactly tensor products of simple $A$-modules with the standard representation $V$.
+
+With appropriate choices of sign, as well as the choice of basis being a homogeneous one, (i.e. a basis for the even subspace concatenated with a basis for the odd subspace) the proof mostly carries over for modules over superalgebras.
+
+To summarize, the results we have are
+\begin{enumerate}
+\item The only irreducible representations (simple modules) of the algebra $\End(V)$ are isomorphic to $V$ with the standard action.
+\item For any algebra $A$, the simple $A \otimes \End(V)$-modules are exactly tensor products of simple $A$-modules with $V$.
+\end{enumerate}
+We then want to use the results to answer the question in the affirmative -- if $A \otimes \End(V) \cong \End(W)$, then $A$ itself is an endomorphism algebra. We know that since the only simple $\End(W)$-module is $W$, we can decompose $W$ as a tensor product $U \otimes V$, where $V$ is the standard representation for $\End(V)$ and $U$ is a simple $A$-module, and $A$ acts on $U \otimes V$ as $A \otimes \id$. The module structure is induced by an algebra homomorphism $A \otimes \End(V) \to \End(U) \otimes \End(V)$, and since $A$ acts as $A \otimes \id$, we have that this gives us an algebra map $A \to \End(U)$. Since this is nonzero, and $\End(U)$ is simple, this map is necessarily surjective, and then comparing the dimensions using the isomorphism $A \otimes \End(V) \cong \End(W) \cong \End(U) \otimes \End(V)$, we have that this map must also be injective, so $A \cong \End(U)$.
 %
 \begin{exer}
 The next few problems requires some knowledge of complex Clifford algebras. Construct and explore them.
 \end{exer}
 %
-We note that there can't be a distinction $C_{p,q}$ when the ground field is $\C$, since if something squares to $-1$, we can multiply it by $i$ to make it square to $1$. Therefore, we only need to consider the Clifford algebra $C_n$, which is generated by $\C^n$ with the standard Hermitian bilinear form. We note that the first few explicit isomorphisms we constructed earlier all satisfy the Clifford relation, and will certainly satisfy that relation if we extend the field of scalars to $\C$, so this gives us that $C_n \cong C_{n,0} \otimes C \cong C_{0,n} \otimes \C$.
+We note that there can't be a distinction $C_{p,q}$ when the ground field is $\C$, since if something squares to $-1$, we can multiply it by $i$ to make it square to $1$. Therefore, we only need to consider the Clifford algebra $C_n$, which is generated by $\C^n$ with the standard Hermitian bilinear form. We note that the first few explicit isomorphisms we constructed earlier all satisfy the Clifford relation, and will certainly satisfy that relation if we extend the field of scalars to $\C$, so this gives us that $C_n \cong C_{n,0} \otimes C \cong C_{0,n} \otimes \C$. 
 %
 \begin{exer}
 Isomorphism classes of left $A$-modules, denoted $[ _A \mathsf{Mod} ]$ form a commutative monoid under direct sum. In the case of $C_{p,q}$, what monoid is this isomorphic to? First try this with complex Clifford algebras
