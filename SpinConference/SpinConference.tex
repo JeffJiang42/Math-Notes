@@ -816,11 +816,35 @@ We now now that $C_{0,8} \cong \End(\R^{8|8})$. Play around a little with this, 
 \end{exer}
 %
 \begin{exer}
-A \ib{linear category} is a category $\mathscr{C}$ such that each Hom-set $\hom_{\mathscr{C}}(A,B)$ has the structure of a vector space and composition is a bilinear map. Recognize $ _{\End(V)}\mathsf{Mod}$ as some other linear category.
+A \ib{linear category} is a category $\mathscr{C}$ such that each Hom-set $\hom_{\mathscr{C}}(A,B)$ has the structure of a vector space and composition is a bilinear map. Recognize the category $ _{\End(V)}\mathsf{Mod}$ as some other linear category.
 \end{exer}
+We'll need a lemma 
+\begin{lem*}
+In the category of vector spaces, the coproduct is direct sum, which coincides with the product in the finite case.
+\end{lem*}
+\begin{proof}
+\TODO
+\end{proof}
+We now make several claims about the structure of the category $ _{\End(V)}\mathsf{Mod}$. Using the fact that we know that all (finite dimensional) $\End(V)$-modules are direct sums of the standard representation $V$.
+%
+\begin{conj}
+In the category $ _{\End(V)}\mathsf{Mod}$, we have that as vector spaces,
+$$\hom_{\End(V)}(V^{\oplus n}, V^{\oplus m}) \cong \R^{nm} $$
+\end{conj}
+%
+\begin{proof}
+Using the universal property of the coproduct, we have that any linear map $\varphi : V^{\oplus n} \to V^{\oplus m}$ is equivalent to giving $n$ linear maps $\varphi_i : V \to V^{\oplus m}$, where
+$$\varphi(v_1, \ldots v_n) = \varphi_1(v_1) + \ldots + \varphi_n(v_n) $$
+Then using the universal property of the product, we have that the data of any such map $\varphi_i : V \to V^{\oplus m}$ is equivalent to giving $m$ linear maps $\varphi_i^j : V \to V$, where
+$$\varphi_i(v) = (\varphi_i^1(v), \ldots , \varphi_i^m(v)) $$
+Then the fact that $\varphi$ is an $\End(V)$-module homomorphism implies that given any $M \in \End(V)$, we have that $\varphi(Mv) = M\varphi(V)$. Then since we know that the action of $M$ on $V^{\oplus n}$ and $V^{\oplus m}$ is just the standard action on each component, this condition implies that for all $i,j$, we have 
+$$\varphi^j_i(Mv) = M \varphi_i^j(v)$$
+so all the $\varphi^j_i$ commute with every $M$ in $\End(V)$. In particular, this implies that they are all scalar matrices, since $\End(V)$ is central. Therefore, the data of an $\End(V)$-module homomorphism is equivalent to the choice of $nm$ scalars, so $\hom_{End(V)}(V^{\oplus n}, V^{\oplus m}) \cong \R^{nm}$ as vector spaces.
+\end{proof}
+This motivates us to suggest that the category $\mathscr{C}$ that we are looking for is the subcategory of $\mathsf{Vect}_\R$ where the objects are the vector spaces $\R^n$ and the maps are linear maps $\R^n \to \R^m$ (i.e. matrices). We claim the assignment $\mathcal{F} : _{\End(V)}\mathsf{Mod} \to \mathscr{C}$ where $\mathcal{F}(V^{\oplus n}) = \R^n$ and $\mathscr{F}(\varphi)$ is the matrix $\varphi_i^j$ of scalars (as specified above) corresponding to $\varphi$ defines a functor.
 %
 \begin{exer}
-Let $V$ be a $4$-dimensional $\C$-vector space, and $\omega \in \bigwedge^4 V^*$ a volume form (i.e. $\omega \neq 0$). Then we have the group $\Aut(V,\omega)$ of linear automorphisms of $V$ preserving $\omega$, which is equivalent to the induced maps on $\bigwedge^4V^*$ being identity. Identify this group
+Let $V$ be a $4$-dimensional $\C$-vector space, and $\omega \in \bigwedge^4 V^*$ a volume form (i.e. $\omega \neq 0$). Then we have the group $\Aut(V,\omega)$ of linear automorphisms of $V$ preserving $\omega$, which is equivalent to the induced maps on $\bigwedge^4V^*$ being identity. Identify this group.
 \end{exer}
 %
 \begin{exer}
@@ -830,7 +854,7 @@ where the first map is the mapping $(\alpha,\beta) \mapsto \alpha \wedge \beta$.
 \end{exer}
 %
 \begin{exer}
-Again building on the previous questions, we can consider $\Aut(V, \omega, \langle, \cdot,\cdot \rangle)$ is a subgroup of $\Aut(V, \omega)$. In addition, a map $T \in \Aut(V)$ induces a map $T_* \in \Aut*\bigwedge^2V)$, which gives a map $\Aut(V) \to \Aut(\bigwedge^2V)$. Identify the images of all the subgroups. 
+Again building on the previous questions, we can consider $\Aut(V, \omega, \langle, \cdot,\cdot \rangle)$ is a subgroup of $\Aut(V, \omega)$. In addition, a map $T \in \Aut(V)$ induces a map $T_* \in \Aut(\bigwedge^2V)$, which gives a map $\Aut(V) \to \Aut(\bigwedge^2V)$. Identify the images of all the subgroups. 
 \end{exer}
 %
 \end{document}
