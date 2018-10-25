@@ -783,13 +783,54 @@ Isomorphism classes of left $A$-modules, denoted $[ _A \mathsf{Mod} ]$ form a co
 We can answer this in the case that $C_{p.q}$ is a matrix algebra. First, we make a claim regarding the structure of all modules over an endomorphism algebra.
 %
 \begin{thm}
-Given an $\End(V)$-module $M$, we can decompose $M$ as 
+Given a finite dimensional $\End(V)$-module $M$, we can decompose $M$ as 
 $$M \cong \bigoplus_{i=1}^n V $$
 where $V$ is the standard representation of $\End(V)$.
 \end{thm}
 %
+\begin{proof}
+Let $M$ be an arbitrary (finite-dimensional) $\End(V)$-module $M$, and fix a basis for $V$, giving an isomorphism $\End(V) \cong M_n\R$. Again, let $E_{ii}$ denote the matrices with a $1$ in the $(i,i)$ entry and zero elsewhere.
+\end{proof}
+%
 \begin{exer}
 Given an algebra map $\varphi: A \to B$, this induces a map $[ _B \mathsf{Mod}]$, where given any left $B$-module $M$, we can derive an $A$-module structure by $a \cdot m = \varphi(a) \cdot m$. In particular, we have an inclusion $C_{p,q} \hookrightarrow C_{p,q+1}$, which will give us a pullback map $[ _{C_{p,q+1}}\mathsf{Mod} ] \to [ _{C_{p,q}}\mathsf{Mod}]$. We can compute the cokernel of this map, which tells us the degree to which $C_{p,q}$-modules fail to extend $C_{p,q+1}$-modules. Again, first try this for complex Clifford Algebras.
+\end{exer}
+%
+\setcounter{thm}{0}
+%
+\setcounter{section}{9}
+%
+\section*{Week 9}
+%
+\begin{exer}
+We proved that all simple $A \otimes \End(V)$-modules are tensor products of simple $A$-modules with $V$. Prove a more general version -- simple $A \otimes B$-modules are exactly tensor products of simple $A$-modules with simple $B$-modules.
+\end{exer}
+%
+\begin{exer}
+Prove the following identity for extension of scalars for an algebra $A$ over a field $\F$.
+$$\End_A(A \otimes_\F V) \cong A \otimes \End_\F(V) $$
+\end{exer}
+%
+\begin{exer}
+We now now that $C_{0,8} \cong \End(\R^{8|8})$. Play around a little with this, perhaps by finding the matrices that represent the standard basis elements.
+\end{exer}
+%
+\begin{exer}
+A \ib{linear category} is a category $\mathscr{C}$ such that each Hom-set $\hom_{\mathscr{C}}(A,B)$ has the structure of a vector space and composition is a bilinear map. Recognize $ _{\End(V)}\mathsf{Mod}$ as some other linear category.
+\end{exer}
+%
+\begin{exer}
+Let $V$ be a $4$-dimensional $\C$-vector space, and $\omega \in \bigwedge^4 V^*$ a volume form (i.e. $\omega \neq 0$). Then we have the group $\Aut(V,\omega)$ of linear automorphisms of $V$ preserving $\omega$, which is equivalent to the induced maps on $\bigwedge^4V^*$ being identity. Identify this group
+\end{exer}
+%
+\begin{exer}
+Building upon the previous question, we can endow $V$ with the additional structure of a Hermitian inner product $\langle \cdot, \cdot \rangle$. First, identify the dual pairing of $\bigwedge^4 V$ with $\bigwedge^4V^*$. Then the volume form $\omega$ will induce a bilinear map
+$$B : \bigwedge^2V \times \bigwedge^2V \to \bigwedge^4V \to \C $$
+where the first map is the mapping $(\alpha,\beta) \mapsto \alpha \wedge \beta$. Show that $B$ is symmetric and nondegenerate.
+\end{exer}
+%
+\begin{exer}
+Again building on the previous questions, we can consider $\Aut(V, \omega, \langle, \cdot,\cdot \rangle)$ is a subgroup of $\Aut(V, \omega)$. In addition, a map $T \in \Aut(V)$ induces a map $T_* \in \Aut*\bigwedge^2V)$, which gives a map $\Aut(V) \to \Aut(\bigwedge^2V)$. Identify the images of all the subgroups. 
 \end{exer}
 %
 \end{document}
