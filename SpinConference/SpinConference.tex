@@ -10,6 +10,7 @@
 \usepackage{mathrsfs}
 \usepackage{amsthm}
 \usepackage{mathpazo}
+\usepackage{eulervm}
 \usepackage{yfonts}
 \usepackage{enumitem}
 \usepackage{mathrsfs}
@@ -839,22 +840,29 @@ Then using the universal property of the product, we have that the data of any s
 $$\varphi_i(v) = (\varphi_i^1(v), \ldots , \varphi_i^m(v)) $$
 Then the fact that $\varphi$ is an $\End(V)$-module homomorphism implies that given any $M \in \End(V)$, we have that $\varphi(Mv) = M\varphi(V)$. Then since we know that the action of $M$ on $V^{\oplus n}$ and $V^{\oplus m}$ is just the standard action on each component, this condition implies that for all $i,j$, we have 
 $$\varphi^j_i(Mv) = M \varphi_i^j(v)$$
-so all the $\varphi^j_i$ commute with every $M$ in $\End(V)$. In particular, this implies that they are all scalar matrices, since $\End(V)$ is central. Therefore, the data of an $\End(V)$-module homomorphism is equivalent to the choice of $nm$ scalars, so $\hom_{End(V)}(V^{\oplus n}, V^{\oplus m}) \cong \R^{nm}$ as vector spaces.
+so all the $\varphi^j_i$ commute with every $M$ in $\End(V)$. In particular, this implies that they are all scalar matrices, since $\End(V)$ is central. Therefore, the data of an $\End(V)$-module homomorphism is equivalent to the choice of $nm$ scalars, so $\hom_{\End(V)}(V^{\oplus n}, V^{\oplus m}) \cong \R^{nm}$ as vector spaces.
 \end{proof}
 This motivates us to suggest that the category $\mathscr{C}$ that we are looking for is the subcategory of $\mathsf{Vect}_\R$ where the objects are the vector spaces $\R^n$ and the maps are linear maps $\R^n \to \R^m$ (i.e. matrices). We claim the assignment $\mathcal{F} : _{\End(V)}\mathsf{Mod} \to \mathscr{C}$ where $\mathcal{F}(V^{\oplus n}) = \R^n$ and $\mathscr{F}(\varphi)$ is the matrix $\varphi_i^j$ of scalars (as specified above) corresponding to $\varphi$ defines a functor.
 %
 \begin{exer}
 Let $V$ be a $4$-dimensional $\C$-vector space, and $\omega \in \bigwedge^4 V^*$ a volume form (i.e. $\omega \neq 0$). Then we have the group $\Aut(V,\omega)$ of linear automorphisms of $V$ preserving $\omega$, which is equivalent to the induced maps on $\bigwedge^4V^*$ being identity. Identify this group.
 \end{exer}
+We recall that any linear map $T : V \to V$ induces a linear map $T^* : \bigwedge^4V^* \to \bigwedge^4V^*$ by pullback, where
+$$T^*\eta(v_1,v_2,v_3,v_4) = \eta(Tv_1,Tv_2,Tv_3,Tv_4) $$
+for any $\eta \in \bigwedge^4V^*$. We also note that $\bigwedge^4V^*$ is $1$ dimensional, since $V$ is $4$ dimensional, so $\bigwedge^4V^*$ is spanned by $\omega$, so every element is a scalar multiple of $\omega$. Then the unique scalar $\lambda$ where $T^*\omega = \lambda \omega$ must be $1$ for $T$ to preserve $\omega$. More explicitly, if we fix a basis $v_1, \ldots v_4$ such that $\omega(v_1,v_2,v_3,v_4) = 1$, we get a isomorphism $(V,\omega) \to (\R^n \det)$, where $\det$ denotes the standard volume form on $\R^n$. Then the condition that $T$ preserves $\omega$ is equivalent to the matrix representation of $T$ to have determinant $1$, so $\Aut(V, \omega) \cong SL_4(\C)$.
 %
 \begin{exer}
-Building upon the previous question, we can endow $V$ with the additional structure of a Hermitian inner product $\langle \cdot, \cdot \rangle$. First, identify the dual pairing of $\bigwedge^4 V$ with $\bigwedge^4V^*$. Then the volume form $\omega$ will induce a bilinear map
+First, identify the dual pairing of $\bigwedge^4 V$ with $\bigwedge^4V^*$. Then the volume form $\omega$ will induce a bilinear map
 $$B : \bigwedge^2V \times \bigwedge^2V \to \bigwedge^4V \to \C $$
 where the first map is the mapping $(\alpha,\beta) \mapsto \alpha \wedge \beta$. Show that $B$ is symmetric and nondegenerate.
 \end{exer}
 %
+We note the since $V$ is $4$-dimensional, $\bigwedge^4 V$ is $4$-dimensional, and consists of scalar multiples of 
+$$\eta = v_1 \wedge v_2 \wedge v_3 \wedge v_4$$
+for a basis $\set{v_i}$ for $V$. Therefore, for $\alpha,\beta \in \bigwedge^2V$ we have that $\alpha \wedge \beta = \lambda \eta$. We can say that this is just $\alpha \wedge \beta = \lambda v_1 \wedge v_2 \wedge v_3 \wedge v_4$, and then let $B(\alpha, \beta) = \omega(\lambda v_1, v_2, v_3, v_4)$. Then since $\omega$ is multilinear, this is independent 
+%
 \begin{exer}
-Again building on the previous questions, we can consider $\Aut(V, \omega, \langle, \cdot,\cdot \rangle)$ is a subgroup of $\Aut(V, \omega)$. In addition, a map $T \in \Aut(V)$ induces a map $T_* \in \Aut(\bigwedge^2V)$, which gives a map $\Aut(V) \to \Aut(\bigwedge^2V)$. Identify the images of all the subgroups. 
+Building upon the previous question, we can endow $V$ with the additional structure of a Hermitian inner product $\langle \cdot, \cdot \rangle$. We can then consider $\Aut(V, \omega, \langle \cdot,\cdot \rangle)$ is a subgroup of $\Aut(V, \omega)$. In addition, a map $T \in \Aut(V)$ induces a map $T_* \in \Aut(\bigwedge^2V)$, which gives a map $\Aut(V) \to \Aut(\bigwedge^2V)$. Identify the images of all the subgroups. 
 \end{exer}
 %
 \end{document}
