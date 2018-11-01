@@ -74,7 +74,7 @@
 \newtheorem{notns}[thm]{Notations}
 \newtheorem{addm}[thm]{Addendum}
 \newtheorem{exer}[thm]{Exercise}
-\newtheorem*{TODO}{\ib{TODO}}
+\newtheorem{TODO}{\ib{TODO}}
 %
 \theoremstyle{remark}
 \newtheorem{rem}[thm]{Remark}
@@ -866,10 +866,28 @@ for a basis $\set{v_i}$ for $V$. Therefore, for $\alpha,\beta \in \bigwedge^2V$ 
 \begin{exer}
 Building upon the previous question, we can endow $V$ with the additional structure of a Hermitian inner product $\langle \cdot, \cdot \rangle$. We can then consider $\Aut(V, \omega, \langle \cdot,\cdot \rangle)$ is a subgroup of $\Aut(V, \omega)$. In addition, a map $T \in \Aut(V)$ induces a map $T_* \in \Aut(\bigwedge^2V)$, which gives a map $\Aut(V) \to \Aut(\bigwedge^2V)$. Identify the images of all the subgroups. 
 \end{exer}
-One thing to note here is that if a linear map $T : V \to V$ preserves $\omega$, then the induced map $T_* \bigwedge^2V \to \bigwedge^2V$ determined by $T_*(v \wedge w) = Tv \wedge Tw$ must necessarily preserve $B$. To see this, we note that after fixing a basis $v_1 \ldots v_4$ for $V$ such that $\omega(v_1, v_2, v_3, v_4) = 1$, this also gives us a basis for $\bigwedge^4V$, which we can use to compute the value of $B(\alpha,\beta)$ in coordinates. Then by checking on the basis for $\bigwedge^2V$ given by pairwise wedges $v_i \wedge v_j$, we have that 
+One thing to note here is that if a linear map $T : V \to V$ preserves $\omega$, then the induced map $T_* : \bigwedge^2V \to \bigwedge^2V$ determined by $T_*(v \wedge w) = Tv \wedge Tw$ must necessarily preserve $B$. To see this, we note that after fixing a basis $v_1 \ldots v_4$ for $V$ such that $\omega(v_1, v_2, v_3, v_4) = 1$, this also gives us a basis for $\bigwedge^4V$, which we can use to compute the value of $B(\alpha,\beta)$ in coordinates. Then by checking on the basis for $\bigwedge^2V$ given by pairwise wedges $v_i \wedge v_j$, we have that 
 $$T_*(v_i \wedge v_j) \wedge T_*(v_k \wedge v_\ell) = Tv_i \wedge Tv_j \wedge Tv_k \wedge Tv_\ell $$
 which is just the determinant of $T$ multiplied by the wedge $v_i \wedge v_j \wedge v_k \wedge v_\ell$. Then since the determinant of $T$ is $1$ with respect to this basis, we have that 
-$$\omega(Tv_i, Tv_j, Tv_k, Tv_\ell) = \det T \omega (v_1, v_2, v_3, v_3) = \omega(v_12,v_2,v_3,v_4)$$
-So $T_*$ preserves $B$, giving us a homomorphism $\Aut(V, \omega) \to \Aut(\bigwedge^2V, B)$.
+$$\omega(Tv_i, Tv_j, Tv_k, Tv_\ell) = \det T \omega (v_1, v_2, v_3, v_3) = \omega(v_1,v_2,v_3,v_4)$$
+So $T_*$ preserves $B$, giving us a homomorphism $\Aut(V, \omega) \to \Aut(\bigwedge^2V, B)$. We then want to compute the kernel. We certainly have that $\id$ and $-\id$ are in the kernel, and we claim that this is all of the kernel. Suppose $T \in \Aut(\omega)$ is in the kernel, i.e. $T_* = \id$. This implies that for all $v,w \in V$ we have that 
+$$Tv \wedge Tw = v \wedge w $$
+If we fix a basis $\set{e_i}$ for $V$, we have that $Te_i = v^ke_k$, so in particular, we must have that $Te_i \wedge Te_j = e_i \wedge e_j$. 
+% Show that T_* = \id \iff T = \pm \id
+\begin{TODO}
+Show that $T_* = \id \iff T = \pm \id$
+\end{TODO}
+
+We can then add the additional structure of a Hermitian inner product $\langle \cdot,\cdot \rangle : V \times V \to \C$. This induces an inner product on $\bigwedge^2V$, which by abuse of notation we also refer as $\langle \cdot,\cdot \rangle$, which is uniquely determined by 
+$$\langle v_i \wedge v_j, v_k \wedge v_l \rangle = \det \begin{pmatrix}
+\langle v_i, v_k \rangle & \langle v_i v_\ell \rangle \\
+\langle v_j v_k \rangle & \langle v_j, v_\ell \rangle
+\end{pmatrix} $$
+%
+\begin{TODO}
+Show the induced inner product on $\bigwedge^2V$ is indeed an inner product
+\end{TODO}
+We note that if a linear map $T : V \to V$ preserves the inner product on $V$, then $T_*$ clearly must preserve the induced inner product on $\bigwedge^2 V$. In addition, if $T$ preserves $\omega$, it must preserve $B$ as well. We then note that after fixing an appropriate basis, we have that $\Aut(V,\omega, \langle \cdot,\cdot \rangle)$ is isomorphic to $SL_4(\C) \cap U(4) = SU_4(\C)$, and that the subgroup of linear maps $\bigwedge^2 V \to \bigwedge^2V$ that preserve $B$ and $\langle \cdot,\cdot \rangle$ is isomorphic to $SO_6\C) \cap U(6)$. We note that for a matrix $A$ to be in $SO_6(\C)$, we must have that $A^T = A\inv$, where $T$ is just the transpose, without any complex conjugation. The condition that $A \in U(6)$ then gives us hat $A^\dagger = A\inv$, where $\dagger$ denotes the conjugate transpose. Therefore, we must have that $A^T = A^\dagger = A\inv$. Therefore, all the elements of $A$ must be real so $A^T$ and $A^\dagger$ coincide, which gives us that $A \in SO(6, \R)$, so we now get a homomorphism $SU_4 \to SO_6(\R)$. We again get that kernel must be $\pm \id$, giving us the two fold covering $SU_4 \to SO_6(\R)$.
+%
 %
 \end{document}
