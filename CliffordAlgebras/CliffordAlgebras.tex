@@ -1,0 +1,142 @@
+\documentclass{article}
+
+% Expand margins
+\addtolength{\oddsidemargin}{-.75in}
+\addtolength{\evensidemargin}{-.75in}
+\addtolength{\textwidth}{1.5in}
+\addtolength{\topmargin}{-.75in}
+\addtolength{\textheight}{1.5in}
+\linespread{1}
+
+% Packages
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{comment}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{parskip} % automatically removes paragraph indents
+\usepackage{tabu} % allows for creation of tables inside math mode
+\usepackage{thmtools}
+\usepackage{tikz}
+\usepackage{tikz-cd}
+
+\usetikzlibrary{matrix, calc, arrows}
+
+% Blackboard bold
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+
+% New theorems
+\newtheorem{definition}{Definition}[subsection]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem*{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}[subsection]
+\newtheorem{lemma}{Lemma}[subsection]
+\newtheorem*{remark}{Remark}
+
+\newcommand{\Partialx}{\frac{\partial }{\partial x}}
+\newcommand{\Partialy}{\frac{\partial }{\partial y}}
+
+\DeclareMathOperator{\GL}{GL}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\id}{id}
+
+\begin{document}
+%
+An important group in mathematics is the \textbf{orthogonal group}, which describes the linear transformations $\R^n \to \R^n$ that preserve the standard inner product, where given $v,w \in \R^n$, with components $v^i$ and $v^i$ with respect to the standard basis $\{e_i\}$ we have that
+$$\langle v,w \rangle  = \sum_i v^iw^i $$
+The inner product induces a norm, where $|v| = \langle v,v \rangle$, which introduces a notion of length in $\R^n$. In addition, we now have a notion of the angle between two vectors, where given two vectors $v,w \in \R^n$, we can define the angle $\theta$ between them to be
+$$\theta = \arccos\left( \frac{|\langle v,w \rangle|}{|v| |w|} \right) $$
+Then since the orthogonal group $O_n$ preserves the inner product, it also preserves this sense of angle and length. Using the induced norm, this makes $\R^n$ a metric spaces, where the distance function $d : \R^n \times \R^n \to \R$ is given by $d(v,w) = |v - w|$. Then the orthogonal group is the group of isometries of this metric space. This group plays a large role in physics, since many of the linear transformations we want to observe in the natural world preserve our perceptions of angle and length. For intuition, try thinking about what kind of shape these groups would have. In one dimension, we don't have too much to work with, since any linear map preserving the absolute value must be multiplication by $\pm 1$. Therefore, we find that $O_1 = \{1, -1\}$. In two dimensions, we have that things get a little more interesting. We note that if an orthogonal transformation $A \in O_2$ preserve length and angle, then it must necessarily preserve the unit circle $S^1 \subset \R^2$. We then see that any such transformation is (almost) uniquely determined by the angle in which it rotates a single vector, as well as whether it flips the orientation of $\R^2$. By orientation, we can say in a heuristic sense that it is a choice of clockwise or counterclockwise. A rotation by some angle $\theta$ preserves orientation, but a reflection, say across the $y$-axis, flips the orientation. From our description, we now see that $O_2$ should look like two disjoint circles, one circle for all the rotations, and another separate circle of rotations following a reflection. We call the orientation preserving component $SO_2$, which you can think of as the group of rotations. These two components are the orientation preserving and orientation reversing components. An important thing to observe here is that these components themselves form a group, which is denoted $\pi_0(O_2)$. This is seen by observing that the composition of two orientation reversing transformations preserves orientation, which matches our intuition that an even number of reflections preserves orientation. Therefore, we have that $\pi_0(O_2) \cong \Z / 2\Z$. Going back a bit, why did I say that the transformation is \emph{almost} uniquely determined by the angle? The reason is that a rotation by angle $\theta$ is the same as a rotation by an angle $2\pi - \theta$, so $SO_2$ might not be parameterized by a circle as we might have thought! In this low dimensional case, it happens that it is still isomorphic to a circle (why?), but this will not generalize to higher dimensions. In fact, this exact observation gives us that $SO_3$ is not $S^2$ as you might expect, but $\mathbb{RP}^3$! It's a good mental exercise to figure out what happens here, and why it differs from what happens with $O_2$. To see this, you might want the think of $\mathbb{RP}^3$ as the unit sphere $S^3 \subset \R^4$ where we identify antipodal points $x \sim -x$. Can you see why this is the right picture? If not, don't worry, after some work we will have a more rigorous explanation.
+
+So tinkering around with the orthogonal group in low dimensions already gave us two key observations:
+\begin{enumerate}
+\item The composition of an even number of orientation reversing maps is orientation preserving, i.e. $\pi_0(O_n) \cong \Z/2\Z$.
+\item Using spheres to describe orthogonal transformations has redundancies, namely the antipodal points. Somehow $v$ and $-v$ encode the same data for an orthogonal transformation.
+\end{enumerate}
+Before constructing the Clifford algebra, we need one final puzzle piece.
+\begin{definition}
+A \textbf{hyperplane} in $\R^n$ is a $(n-1)$ dimensional subspace $P \subset \R^n$.
+\end{definition}
+If we have an inner product (like we do in $\R^n$), a hyperplane $P$ is determined by a line, namely its orthogonal complement $P^\perp$. Note that in the case that we don't have an inner product, there is no way to distinguish such a line, since any line complementary to $P$ is equally good as a choice. In addition, since we have a notion of length, a line is uniquely determined by a vector, namely the unique vector $v \in P$ with norm $1$. Again, without the inner product, we have no way to choose such a distinguished vector. Therefore, we have that any hyperplane in an inner product space is uniquely determined by a single unit vector, it's unit normal. But wait! There's a problem in what I just said! There isn't a unique vector with norm $1$ in $P$, since $-v$ is just as good. Notice how this is one of the key points we observed about the orthogonal group, which suggests that there is some deeper relation. Then given a hyperplane $P \subset \R^n$, we can also define a map $R_P : \R^n \to \R^n$ that reflects $\R^n$ about $P$ (e.g. reflection about a line in $\R^2$ or reflection about a plane in $\R^3$). If we let $v$ be one of the two unit normal vectors, we have that $R_P$ is given by the formula
+$$R_P(w) = w -2\langle w, v \rangle v $$
+How do we interpret the formula? A hyperplane reflection should not change the components of a vector that lie in $P$, it should only flip the component orthogonal to $P$, which is exactly what subtraction $\langle w,v \rangle v$ from $w$ does. The final piece of the puzzle is then the following theorem
+\begin{theorem}[\textbf{Cartan-Dieudonn\'e}]
+Any orthogonal transformation $A \in O_n$ can be written as a composition of $\leq n$ hyperplane reflections
+\end{theorem}
+\begin{proof}
+We prove this by induction on $n$. In the case of $1$ this is easy, since the only hyperplane in $\R^1$ is the zero vector. The only elements of $O_1$ are $\pm \id$. We say that $\id$ is a conposition of $0$ hyperplane reflections, and $-\id$ is the composition of $1$ hyperplane reflection, namely itself.
+
+We now assume this for $n-1$ and prove it for $n$. Fix an arbitrary orthogonal map $A \in O_n$ and a nonzero vector $v \in \R^n$. We want to find a hyperplane reflection $R : \R^n \to \R^n$ such that $RAv = v$ (the reason will soon be apparent). To do this, let $R$ be the hyperplane reflection about the plane bisection $v$ and $Av$. More explicitly, this can be given by the formula
+$$Rw = w - 2\frac{\langle Av - v, v \rangle}{\langle Av -v, Av - v\rangle}v$$
+Then we have that $RA$ an orthogonal transformation that fixes $v$, since 
+\begin{align*}
+Rv &= v - \frac{2 \langle Av - v, v \rangle}{\langle Av -v, Av -v \rangle} v \\
+&= v - \frac{2\langle Av, v \rangle - 2\langle v, v \rangle}{\langle Av, Av \rangle - 2\langle Av, v \rangle + \langle v,v \rangle}v \\
+&= v - \frac{2\langle Av,v \rangle - 2 \langle v,v \rangle}{2 \langle Av,v \rangle - 2 \langle v,v \rangle}v \\
+&= v - (-1)(Av -v) \\
+&= Av
+\end{align*}
+So $R$ must  interchange $v$ and $Av$, since $R^2 = \id$. Then since $R$ is orthogonal, fixing $v$ is equivalent to fixing its orthogonal complement $v^\perp$, so $R$ restricts to an orthogonal transformation on the $(n-1)$ dimensional subspace $v^\perp$. By the inductive hypothesis, this is a composistion of $\leq n-1$ hyperplane reflections in $v^\perp$, which can be extended to hyperplane reflections in all of $\R^n$ by appending the vector $v$ to a basis for each hyperplane and taking the corresponding reflection, so $RA$ is a composition of $\leq n-1$ hyperplane reflections. Then composing with $R$ again (since $R^2 = \id$) gives us that $R^2A = A$, so $A$ is also a composition of at most $n$ hyperplane reflections.
+\end{proof}
+
+We have now set the stage for the construction of the Clifford algebra.
+\begin{definition}
+The \textbf{Clifford algebra} for $\R^n$ and the standard inner product $\langle \cdot,\cdot \rangle$ is a unital associative algebra $\mathrm{Cliff}(n)$ generated by $\R^n$ subject to the relations
+\begin{enumerate}
+\item $v^2 = -1$ if $|v| = 1$
+\item $vw = -wv$ if $\langle v,w \rangle = 0$.
+\end{enumerate}
+\end{definition}
+By generated by $\R^n$, we mean that an element of $\mathrm{Cliff}(n)$ can be written as a formal sum of products of vectors in $\R^n$, which can then be reduced by the relations specified above. Therefore, the standard basis $\{e_i\}$ of $\R^n$ is a generating set for $\mathrm{Cliff}(n)$, and generates the basis 
+$$B = \{e_{i_1} \ldots e_{i_k} ~:~ 0 \leq k \leq n, 1 \leq i_1, \ldots i_k \leq n\} $$
+so a basis is just the set of all products of basis vectors with increasing indices, and we interpret the product of $0$ vectors to be the multiplicative identity $1$. For example, a basis for $\mathrm{Cliff}(3)$ as a vector space is 
+$$B = \{e_1, e_2, e_3, e_1e_2, e_1e_3, e_2e_3, e_1e_2e_3\} $$
+From this characterization, we see that $\mathrm{Cliff}(n)$ is $2^n$ dimensional as a vector space. We also note that $\mathrm{Cliff}(n)$ contains a copy of $\R^n$, namely the span of the $e_i$. With regards to the relations, what motivated this definition? We want to let a unit vector $v \in \R^n \subset \mathrm{Cliff}(n)$ to represent a hyperplane reflection about the plane perpendicular to $v$. In particular, since hyperplane reflections square to identity, we want the same to be true here (but with an added sign). The reasoning for the sign is just a convention, many others also use the convention that $v^2 = 1$, which is just as good. For our purposes, it makes some formulas slightly more convenient given our previous observations. The reasoning for the second relation is that hyperplane reflections about planes determined by orthogonal vectors commute. Try messing around with some of these reflections in $2$ or $3$ dimensions. the sign appears because of our first relation (and will also be necessary if we chose $v^2 = 1$).
+
+We now derive helpful a formula we can immediately obtain from the relations.
+\begin{lemma}
+Let $v,w \in \R^n \subset \mathrm{Cliff}(n)$ where $\langle v,w \rangle = 0$. Then
+$$vw + wv = -2 \langle v, w \rangle = -2\langle v,w \rangle $$
+\end{lemma}
+\begin{proof}
+Let $v = \sum_i v^ie_i$ and $w = \sum_j w^je_j$. Then we compute
+\begin{align*}
+vw + wv &= \sum_i \sum_j v^iw^j e_ie_j + v^iw^je_je_i \\
+&= \sum_i\sum_j v^iw^j(e_ie_j + e_je_i) 
+\end{align*}
+We then note that since $\langle e_i, e_j \rangle$ is $0$ unless $i = j$ and is $1$ if $i = j$, that this sum collapses to 
+$$\sum_i v^iw^i(e_i^2 + e_i^2) = -2\sum_iv^iw^i  = -2\langle v,w \rangle$$
+using the relation that $e_i^2 = -1$.
+\end{proof}
+An additional observation is that $\mathrm{Cliff}(n)$ comes with an \emph{involution}, a linear map $T : \mathrm{Cliff}(n) \to \mathrm{Cliff}(n)$ such that $T^2 - \id$. This map is uniquely determined by reversing the order of products of basis vectors, i.e. $T(e_1e_2) = e_2e_1$, and extending linearly to the rest of $\mathrm{Cliff}(n)$. For an arbitrary $g \in \mathrm{Cliff(n)}$, we denote $T(g) = g^T$. The similarity to the notation from matrix transposition is not a coincidence!
+
+We're quickly approaching the punchline, but we need to extract one more thing out of the Clifford algebra. We can take the invertible elements of $\mathrm{Cliff}(n)$ to form the multiplicative group $\mathrm{Cliff}(n)^\times$, and then take the subgroup $G \subset \mathrm{Cliff}(n)$ generated by the unit vectors. Identifying $\R^n$ as a subspace of $\mathrm{Cliff}(n)$, this gives a (somewhat) natural action of $G$ on $\R^n$, where for $g \in G$ and $w \in \R^n$ we let 
+$$g\cdot w = gwg^T $$
+though we still need to check that this is indeed a group action. In fact, we have no reason to believe as of yet that $gwg^T$ even needs to lie in $\R^n$, e.g. why can't $gwg^T = e_1e_2 \notin \R^n$ for some $g$ and $w$? To verify that this indeed defines an action, it suffices to check on the generating set of unit vectors. Let $v \in \R^n$ with $|v| = 1$ we note that since the product is length $1$, we have that $v^T = v$. Then using the relation we derived earlier, we compute
+\begin{align*}
+vwv &= (-2 \langle v,w \rangle - wv)v \\
+&= -2\langle v,w \rangle v -wv^2 \\
+&= w - 2\langle v,w \rangle v
+\end{align*}
+Which is exactly \emph{hyperplane reflection} about the hyperplane perpendicular to $v$! This not only gives us that we have a group action on our hands, but it also tells us that the generating set acts exactly as the generating set for $O_n$, so we have a group homomorphism $\varphi : G \to O_n$, and by the Cartan-Dieudonn\'e theorem, this is surjective. Some work can show that the kernel of this map is $\pm 1$, which both act by identity, so this map is $2$ to $1$. In fact, we can see that $(-v)w(-v) = vwv$, which is exactly the fact that hyperplane reflection about $v^\perp$ and $-v^\perp$ are exactly the same. However, in our larger group $G$, we are able to distinguish between $v$ and $-v$. In addition, we have that any $g \in G$ that is a product of an even number of unit vectors, the the map determined by $g$ will be orientation preserving, since it will be an even number of hyperplane reflections. What did we just discover? We discovered the group $G = \mathrm{Pin}(n)$, and the subgroup generated by even products is $\mathrm{Spin}(n)$, which are the double covers of $O_n$ and $SO_n$ respectively. Thus in one fell swoop, we've addressed two of our earlier observations with the orthogonal group and encoded it in a new mathematical object -- the Clifford algebra. Because of this very geometric interpretation of how multiplication behaves, some call the Clifford algebra Clifford's geometric algebra, as multiplication in $\mathrm{Cliff}(n)$ seems to encode the geometry of $\R^n$.
+
+It's a useful exercise to explore exactly what these Clifford algebras are in terms we are already familiar with. For example, $\mathrm{Cliff}(1) = \C$, and $\mathrm{2} = \mathbb{H}$, where $\mathbb{H}$ is the quaternions. If you're familiar with computer graphics, you might recall the rotations are often more compactly represented as quaternions, where the action of a quaternion $q \in \mathbb{H}$ on $\R^3$ is given by $v \mapsto qv\bar{q}$, where $\bar{q}$ is the conjugate of $q$. The fact that this formula looks just like what we derived should come as no surprise, we've just described the same thing! This gives us that $\mathrm{Spin}(3)$ is just the unit quaternions (since they are closed under multiplication), which is diffeomorphic to the $3$ sphere $S^3$. Then the $2$ to $1$ map onto $SO_3$ is just the quotient by antipodal points, giving us that $SO_3 \cong \mathbb{RP}^3$.
+
+Along with the geometric insights, there's a very beautiful theory about the algebras themselves, without having to look at $\mathrm{Pin}$ and $\mathrm{Spin}$. If we replace the inner product $\langle \cdot,\cdot \rangle$ with an arbitrary symmetric bilinear form $b : \R^ \times \R^n \to \R$ we can repeat the same construction to give $\mathrm{Cliff}(\R^n ,b)$. It's a theorem that a nondegenerate symmetic bilinear form is uniquely determined by its signature -- the number of $1$'s and $-1$'s on the diagonal of its matrix after diagonalizing, so we get an infinite family of algebras $\mathrm{Cliff}(p,q)$, where $p$ denoes the number of $1$'s and $q$ the number of $-1$'s. The wonderful thing here is that these algebras behave very nicely under tensor product, as in the tensor product of two Clifford algebras produces another Clifford algebra. Indeed, after some work, it turns out that after we know $\mathrm{Cliff}(0,n)$ and $\mathrm{Cliff}(n,0)$ for $0 \leq n \leq 8$, we have the necessary information to identify \emph{all} Clifford algebras, in something called \textbf{Bott periodicity}. With that, I leave you with the abstract definition of a Clifford algebra, which is the usual context in which one first sees it. Can you see why this abstract definition corresponds to our own?
+\begin{definition}
+Given a vector space $V$ and a symmetric bilinear form $b : V \times V \to \R$, the \textbf{Clifford algebra} is the data of a unital associative algebra $\mathrm{Cliff}(V,b)$ along with a linear map $\iota : V \to \mathrm{Cliff}(V,b)$ such that for an linear map $\varphi : V \to A$ of $V$ into another unital associative algebra $A$ satisfying 
+$$\varphi(v) = b(v,v) $$
+then this factors through $\mathrm{Cliff}(V,b)$ to give a unique map $\tilde{\varphi} : \mathrm{Cliff}(V,b) \to A$ such that 
+$$\begin{tikzcd} 
+V \ar[d, "\iota"'] \ar[dr, "\varphi"] \\
+\mathrm{Cliff}(V,b) \ar[r, "\tilde{\varphi}"', dashed] & A
+\end{tikzcd}$$
+\end{definition}
+%
+\end{document}
