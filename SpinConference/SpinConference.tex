@@ -608,7 +608,7 @@ If we have an ideal $I$ of a superalgebra $A$, what conditions do we need to put
 \end{exer}
 We note that the grading of a vector space $V = V^0 \oplus V^1$ is equivalent to the existence of an operator $\varepsilon : V \to V$ such that $\varepsilon\vert_{V^0} = \id_{V^0}$ and $\varepsilon\vert_{V^1} = -\id_{V^1}$. Given any such operator, we recover the decomposition as the $\pm 1$ eigenspaces. In the case of a superalgebra, we want the grading operator to respect the other algebra structure, i.e. if we have $A$ graded as $A = A^0 \oplus A^1$, we want
 $$A^iA^j = A^{i + j \text{ mod } 2} $$
-This translates to $\varepsilon$ being a map of algebras, rather than just a linear map, i.e. $\varepsilon(ab) = \varepsilon(a)\varepsilon(b)$. Therefore, if we want $A/I$ to have a grading compatible with the multiplication, we want $\varepsilon$ to descend to a map $\tilde{varepsilon} : A/I \to A/I$, i.e.
+This translates to $\varepsilon$ being a map of algebras, rather than just a linear map, i.e. $\varepsilon(ab) = \varepsilon(a)\varepsilon(b)$. Therefore, if we want $A/I$ to have a grading compatible with the multiplication, we want $\varepsilon$ to descend to a map on the quotient $\tilde{\varepsilon} : A/I \to A/I$, i.e.
 $$\begin{tikzcd} 
 A \ar[d] \ar[r, "\varepsilon"] & A \ar[d] \\
 A /I \ar[r, "\tilde{\varepsilon}"'] & A/I
@@ -791,6 +791,7 @@ where $V$ is the standard representation of $\End(V)$.
 %
 \begin{proof}
 Let $M$ be an arbitrary (finite-dimensional) $\End(V)$-module $M$, and fix a basis for $V$, giving an isomorphism $\End(V) \cong M_n\R$. Again, let $E_{ii}$ denote the matrices with a $1$ in the $(i,i)$ entry and zero elsewhere.
+\TODO
 \end{proof}
 %
 \begin{exer}
@@ -932,9 +933,9 @@ Where we use the skew-symmetry $\omega_{ij} = - \omega_{ji}$. Then when using th
 Expanding out these products and using skew-symmetry of $\omega_{ij}$, we find that this is exactly the square of the coefficient of $\mu$, so this gives us that $\omega \wedge \omega$ is a volume form iff $\omega$ is nondegenerate.
 %
 \begin{exer}
-Following on the previous question, we now have a subgroup $\Aut(V, \omega) \subset \Aut(V, \mu)$. From before, we've gotten maps $\Aut(V, \mu) \to \Aut(\bigwedge^2V, B)$, where $B$ is the bilinear from we got from $\omega$. Identify the subgroup $G$ that is the image of $\Aut(V, \omega)$ under this map. After fixing a basis, identify $G$ as a matrix group.
+Following on the previous question, we now have a subgroup $\Aut(V, \omega) \subset \Aut(V, \mu)$. From before, we have maps $\Aut(V, \mu) \to \Aut(\bigwedge^2V, B)$, where $B$ is the bilinear from we got from $\mu$. Identify the subgroup $G$ that is the image of $\Aut(V, \omega)$ under this map. After fixing a basis, identify $G$ as a matrix group.
 \end{exer}
-We have that $\omega$ induces a bilinear form $\tilde{\omega}$ on $\bigwedge^2V$ (just like the Hermitian form last week), where we define on a basis $e_i$ 
+We have that $\omega$ induces a bilinear form $\tilde{\omega}$ on $\bigwedge^2V$ (just like the Hermitian form last week), where we define on a basis $v_i$ 
 $$\tilde{\omega}(v_i \wedge v_j, v_k) \wedge v_\ell = \det\begin{pmatrix}
 \omega(v_i,v_k) & \omega(v_i,v_\ell) \\
 \omega(v_j,v_k) & \omega(v_k, v_\ell)
@@ -944,14 +945,79 @@ However, this has the unexpected property of being symmetric, rather than skew s
 \tilde{\omega}(v_k \wedge v_\ell, v_i \wedge v_j) &= \det\begin{pmatrix}
 \omega(v_k, v_i) & \omega(v_k, v_j) \\
 \omega(v_\ell, v_i) & \omega(v_\ell, v_j)
-\end{pmatrix} \\
+\end{pmatrix} \\[5pt]
 &= \det\begin{pmatrix}
 -\omega(v_i, v_k) & -\omega(v_j, v_k) \\
 -\omega(v_i, v_\ell) & -\omega(v_j, v_\ell)
-\end{pmatrix}
+\end{pmatrix} \\[5pt]
 &= \tilde{\omega}(v_i \wedge v_j, v_k \wedge v_\ell)
 \end{align*}
-where the last equality comes from observing that we are taking the determinant of the negative transpose, and since multiplying an even number of rows by $-1$ scales the determinant by $(1)^4$ from the multilinearity of $\det$. In addition, a linear map $T \in \Aut(V,\omega)$ certainly satisfies that $T_* \in \Aut(\bigwedge^2V, \tilde{\omega}, B)$, so we need it to simultaneously preserve two bilinear forms.
+where the last equality comes from observing that we are taking the determinant of the negative transpose, and since multiplying an even number of rows by $-1$ scales the determinant by $(1)^4$ from the multilinearity of $\det$. In addition, a linear map $T \in \Aut(V,\omega)$ certainly satisfies that $T_* \in \Aut(\bigwedge^2V, \tilde{\omega}, B)$, so we need it to simultaneously preserve two bilinear forms. We recall that the formula for $B$ is given by
+$$B(\alpha, \beta) = \langle \mu, \alpha \wedge \beta  \rangle $$
+where $\langle \cdot,\cdot \rangle$ denotes the dual pairing of $\bigwedge^4 V^*$ and $\bigwedge^4V$. Fix a basis $\set{e_1, e_2, e_3, e_4}$ for $V$ such that 
+\begin{align*}
+\omega(e_1,e_2) &= 0 \\
+\omega(e_1, e_3) &= 1 \\
+\omega (e_1, e_4) &= 0 \\
+\omega(e_2, e_3) &= 0 \\
+\omega(e_2, e_4) &= 1
+\end{align*}
+i.e. a symplectic basis for $V$. We note that this implies that $\mu(e_1, e_2, e_3, e_4) = 1$. Then fix an ordered basis
+$$(e_1 \wedge e_2, e_3 \wedge e_4, e_1 \wedge e_3, e_2 \wedge e_4, e_1 \wedge e_4, e_2 \wedge e_3) $$
+for $\bigwedge^2V$. Then in this ordered basis, we have that $B$ is given by the matrix
+$$B = \begin{pmatrix}
+0 & 1 & 0 & 0 & 0 & 0 \\
+1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 0 & -1 & 0 & 0 \\
+0 & 0 & -1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 1 & 0
+\end{pmatrix} $$
+When we compute the matrix for $\tilde{\omega}$, we get that 
+$$\tilde{\omega} = \begin{pmatrix}
+0 & 1 & 0 & 0 & 0 & 1 \\
+1 & 0 & 0 & 0 & 0 & 0  \\
+0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 \\
+0 & 0 & 0 & 0 & 1 & 0
+\end{pmatrix} $$
+In block form, we have that 
+\begin{align*}
+B &= \begin{pmatrix}
+\sigma_x & 0 & 0 \\
+0 & -\sigma_x & 0 \\
+0 & 0 & \sigma_x
+\end{pmatrix} \\[5pt]
+\tilde{\omega} &= \begin{pmatrix}
+\sigma_x & 0 & 0 \\
+0 & \id & 0 \\
+0 & 0 & \sigma_x
+\end{pmatrix}
+\end{align*}
+Where $\sigma_x$ is the Pauli matrix
+$$ \sigma_x = \begin{pmatrix}
+0 & 1 \\
+1 & 0
+\end{pmatrix} $$
+We note that these two matrices commute, so they are simultaneously diagonalizable, which yields
+\begin{align*}
+B &= \begin{pmatrix}
+-1 & 0 & 0 & 0 & 0 & 0 \\
+0 & -1 & 0 & 0 & 0 & 0 \\
+0 & 0 & -1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1
+\end{pmatrix} \\[5pt]
+\tilde{\omega} &= \begin{pmatrix}
+-1 & 0 & 0 & 0 & 0 & 0 \\
+0 & -1 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1
+\end{pmatrix}
+\end{align*}
 %
 \begin{exer}
 Again expanding on the previous problem, there are several things to consider
