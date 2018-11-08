@@ -97,6 +97,7 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
+\renewcommand{\H}{\mathbb{H}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\F}{\mathbb{F}}
@@ -1018,6 +1019,9 @@ B &= \begin{pmatrix}
 0 & 0 & 0 & 0 & 0 & 1
 \end{pmatrix}
 \end{align*}
+By reordering bases and multiplying two of them by $i$, we get that $\tilde{\omega}$ will be given by the identity matrix, and $B$ will be given by the diagonal matrix with a negative $1$ in the top left entry and $1$'s down the rest of the diagonal. Then a matrix $A$ preserving $\tilde{\omega}$ in this basis must satisfy $A^T = A\inv$, and preserving $B$ in this basis is equivalent to the condition
+$$A^TBA = B \iff BA = AB $$
+Then in order to commute, the bottom right $5 \times 5$ matrix must be an orthogonal transformation, and the first row and column must be zero. Therefore, we have found a double cover $Sp_4(\C) \to SO_5(\C)$.
 %
 \begin{exer}
 Again expanding on the previous problem, there are several things to consider
@@ -1027,9 +1031,43 @@ Again expanding on the previous problem, there are several things to consider
 \item What if we had done all of this in an $\R$-vector space rather than over $\C$?
 \end{enumerate}
 \end{exer}
+We have that after fixing a basis that $\Aut(V, \omega, \langle \cdot, \cdot \rangle)$ is isomorphic to the compact symplectic group $Sp(4) = Sp_4(\C) \cap U_4$. Then from before, the image of any linear map in $\Aut(V, \omega, \langle \cdot,\cdot \rangle)$ must preserve the bilinear form $B$ induced by $\mu = 1/2 \omega \wedge \omega$, the bilinear form $\tilde{\omega}$ induced by $\omega$, and the Hermitian inner product $\langle, \cdot, \cdot \rangle$ induced by the the one on $V$. This gives the double cover $Sp(4) \to SO_5(\R)$.
 %
 \begin{exer}
-With $V$ as above, we can also endow $V$ with additional structure by giving the data of an antilinear map $J : V \to V$ where $J^2 = \id_V$. In particular, $J$ fixes some subspace of $V$, and we can consider maps $T : V \to V$ that fix this subspace. Identify this group. Another choice is an antilinear map $J : V \to V$ where $J^2 = \id_V$. This gives us a quaternionic structure on $V$, and we can ask for maps that preserve this quaternionic structure. Find this group.
+With $V$ as above, we can also endow $V$ with additional structure by giving the data of an antilinear map $J : V \to V$ where $J^2 = \id_V$. In particular, $J$ fixes some subspace of $V$, and we can consider maps $T : V \to V$ that fix this subspace. Identify this group. Another choice is an antilinear map $J : V \to V$ where $J^2 = -\id_V$. This gives us a quaternionic structure on $V$, and we can ask for maps that preserve this quaternionic structure. Find this group.
+\end{exer}
+We first show what we can deduce from $J$ being antilinear and $J^2 = \id_V$. Let $S_+$ and $S_-$ denote the $\pm 1$ eigenspaces of $J$ respectively, which will give a direct sum decomposition $V = S_+ \oplus S_-$ as a real vector space. We note that $V$ also comes with another real linear map $m_i : V \to V$ which is multiplication as $i$. Then fix some $v \in S_+$, i.e. $J(v) = v$. Then $J(iv) = -iJ(v) = -iv$, so $m_i(v) \in S_-$. Likewise, given $w \in S_-$, we have that $J(iw) = -iJ(w) = iw$, so $m_i(w) \ in S_+$. Therefore, we have that $m_i$ restricts to an isomorphism $S_+ \to S_-$, since its inverse is given by multiplication by $-i$, and gives the identification $V \cong S_+ \oplus S_- \cong S_+ \oplus iS_+$, giving an identification of $V$ with the standard ``real structure" on $\C^n$, where $\C^n \cong \R^n \oplus i\R^n$.
+
+Then suppose $J^2 = -\id_V$, and let $m_i$ again denote multiplication by $i$. We note that the fact that $J$ is antilinear implies that $m_i$ and $J$ anticommute. Therefore we can endow a left $\H$-module structure where the quaternion $i$ acts by $m_i$, $j$ acts by $J$, and $k$ acts by $j \circ m_i$, giving us an algebra homomorphism $\H \to \End(V)$. In particular, this gives a (real) representation of the quaternion group 
+$$Q_8 = \set{\pm 1, \pm i, \pm j, \pm k}$$
+and we can define a $Q_8$-invariant inner product by averaging over the group. To do this, fix an arbitrary inner product $\langle \cdot,\cdot \rangle$ on $V$ as a real vector space, and define
+$$\langle v, w \rangle_\H = \frac{1}{8}\sum_{g \in Q_8} \langle gv, gw \rangle $$
+We then see that $m_i$ and $J$ are orthogonal transformations with respect to $\langle \cdot,\cdot \rangle_\H$, since by construction we have that 
+$$\langle iv,iw \rangle_\H = \langle Jv, Jw \rangle_\H = \langle v,w \rangle $$
+So by fixing an appropriate $\R$-basis for $V$, we find that $J\inv = J^T$, so $J^T = J^3$ since $J^2 = \id_V$.
+We can then ask for maps in $\Aut(V)$ that commute with the action of $i$ and $j$ (and consequently $k$). Commuting with $i$ just amounts to being complex linear. Commuting with $j$ is then equivalent to commuting with the antilinear map $J$.
+%
+\setcounter{section}{11}
+%
+\setcounter{thm}{0}
+%
+\section*{Week 11}
+%
+\begin{exer}
+Determine explicitly the components of $SO(3,3)$, i.e. give a homomorphism $SO(3,3) \to \pi_0(SO(3,3))$.
+\end{exer}
+%
+\begin{exer}
+Go back to the mixed signature forms (specifically the $(3,1)$ case) and revisit the real structure problems from last week, and identify the real structures imposed on $\bigwedge^2 V$ by the antilinear map $J \overline{V} \to V$ in both cases.
+\end{exer}
+%
+\begin{exer}
+Generalize the theorem regarding nondegeneracy of the sympletic form $\omega$. Given a vector space $V$ with skew $2$-form $\omega$, show that $\omega$ is nondegenerate if and only if $\omega^n \neq 0$, where $\omega^n$ denoted then $n$-fold wedge product. To show this, a helpful lemma would be to show that given any skew form, there exists a basis $\set{e_i}$ such that $\omega$ has the form
+$$\omega = e^1 \wedge e^2 + e^3 \wedge e^4 + \ldots  + e^k \wedge e^{k+1}$$
+\end{exer}
+%
+\begin{exer}
+Let $V = V_1 \oplus V_2$ where the $V_i$ are $2$-dimensional vector spaces, equipped with volume forms $\mu_i$. Then let $\mu = \mu_1 \wedge \mu_2$. Explore the structure this imposes on $\bigwedge^2V$. How is the bilinear form $B$ on $\bigwedge^2V$ induced by $\mu$ written in terms of the $\mu_i$?
 \end{exer}
 %
 \end{document}
