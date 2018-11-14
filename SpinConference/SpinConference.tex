@@ -1058,8 +1058,21 @@ Determine explicitly the components of $SO(3,3)$, i.e. give a homomorphism $SO(3
 \end{exer}
 %
 \begin{exer}
-Go back to the mixed signature forms (specifically the $(3,1)$ case) and revisit the real structure problems from last week, and identify the real structures imposed on $\bigwedge^2 V$ by the antilinear map $J \overline{V} \to V$ in both cases.
+Go back to the mixed signature forms (specifically the $(3,1)$ case) and revisit the real structure problems from last week, and identify the real structures imposed on $\bigwedge^2 V$ by the antilinear map $J : \overline{V} \to V$ in both cases.
 \end{exer}
+Given the antilinear map $J$ such that $J^2 = -\id_V$, we first assume that we can find a basis $\set{e_i}$ such that 
+\begin{align*}
+&J(e_1) = e_3 && J(e_3) = -e_1 \\
+&J(e_2) = e_4 && J(e_4) = -e_2
+\end{align*}
+We then observe the induced map $J_*$ on $\bigwedge^2V$, where we compute
+\begin{align*}
+& J_*(e_1 \wedge e_2) = e_3 \wedge e_4 && J_*(e_1 \wedge e_3) = e_1 \wedge e_3 &&& J_*(e_1 \wedge e_4) = e_2 \wedge e_3 \\
+&J_*(e_2 \wedge e_3) = e_1 \wedge e_4 &&J_*(e_2 \wedge e_4) = e_2 \wedge e_4 &&&J_*(e_3 \wedge e_4) = e_1 \wedge e_2
+\end{align*}
+Therefore, we get that the vectors 
+$$e_1 \wedge e_3 \qquad e_2 \wedge e_4 \qquad e_1 \wedge e_2 + e_3 \wedge e_4 \qquad i(e_1 \wedge e_2 - e_3 \wedge e_4) \qquad e_1 \wedge e_4 + e_2 \wedge e_3 \qquad i(e_1 \wedge e_4 - e_2 \wedge e_3)$$
+are fixed by $J_*$, which gives us a real structure on $\bigwedge^2V$. Then if we have a volume form $\mu$ on $V$, and let $B$ denote the induced bilinear form, we compute the matrix for $B$ in this basis is
 %
 \begin{exer}
 Generalize the theorem regarding nondegeneracy of the sympletic form $\omega$. Given a vector space $V$ with skew $2$-form $\omega$, show that $\omega$ is nondegenerate if and only if $\omega^n \neq 0$, where $\omega^n$ denoted then $n$-fold wedge product. To show this, a helpful lemma would be to show that given any skew form, there exists a basis $\set{e_i}$ such that $\omega$ has the form
@@ -1069,5 +1082,13 @@ $$\omega = e^1 \wedge e^2 + e^3 \wedge e^4 + \ldots  + e^k \wedge e^{k+1}$$
 \begin{exer}
 Let $V = V_1 \oplus V_2$ where the $V_i$ are $2$-dimensional vector spaces, equipped with volume forms $\mu_i$. Then let $\mu = \mu_1 \wedge \mu_2$. Explore the structure this imposes on $\bigwedge^2V$. How is the bilinear form $B$ on $\bigwedge^2V$ induced by $\mu$ written in terms of the $\mu_i$?
 \end{exer}
+Fix bases $\set{e_1,e_2}$ and $\set{f_1,f_2}$ for $V_1$ and $V_2$ respectively, so that $\mu_1 = e^1 \wedge e^2$ and $\mu_2 = f^1 \wedge f^2$. Then suppose we have an linear map $A \in \Aut(V, \mu)$ that preserved the subspace decomposition, i.e. $A\vert_{V_i} \subset V_i$ in addition to preserving $\mu_1$ and $\mu_2$. Then $A$ must be in block diagonal form
+$$A = \begin{pmatrix}
+C & 0 \\
+0 & D
+\end{pmatrix} $$
+where $C,D \in SL_2(\C)$. We then note that the direct sum decomposition $V = V_1 \oplus V_2$ gives a direct sum decomposition
+$$\bigwedge^2V = \bigwedge^2V_1 \oplus \bigwedge^2V_2 \oplus \spn \set{e_1 \wedge f_1, e_1 \wedge f_2, e_2 \wedge f_1, e_2 \wedge f_2} $$
+Then if we look at the induced map $A_* : \bigwedge^2 V \to \bigwedge^2V$, we then must have that it preserves this direct sum decomposition. If we look at the restriction of $A_*$ to $\bigwedge^2V_i$, it must act by identity, since $A$ preserves $\mu_1$ and $\mu_2$. In addition, we know that $A_*$ preserves the bilinear form $B : \bigwedge^2V \times \bigwedge^2V \to \C$ induced by the volume form $\mu$, so it must act on the last component of the decomposition by orthogonal transformations. Therefore, the image of the group under the homomorphism $A \mapsto A_*$ is isomorphic to $SO_4(\C)$, giving us the double cover $SL_2(\C) \times SL_2(\C) \to SO_4(\C)$.
 %
 \end{document}
