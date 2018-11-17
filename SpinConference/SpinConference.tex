@@ -114,6 +114,8 @@
 \newcommand{\SU}{\mathsf{SU}}
 \newcommand{\gl}{\mathfrak{gl}}
 \newcommand{\g}{\mathfrak{g}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\Pin}{\mathrm{Pin}}
 \newcommand{\inv}{^{-1}}
 \newcommand{\bra}[2]{ \left[ #1, #2 \right] }
 \newcommand{\ind}{\lambda \in \Lambda}
@@ -167,8 +169,6 @@
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\dv}{div}
 \DeclareMathOperator{\grad}{grad}
-\DeclareMathOperator{\Pin}{Pin}
-\DeclareMathOperator{\Spin}{Spin}
 \DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
 \newcommand*\myhrulefill{%
    \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
@@ -1072,7 +1072,7 @@ We then observe the induced map $J_*$ on $\bigwedge^2V$, where we compute
 \end{align*}
 Therefore, we get that the vectors 
 $$e_1 \wedge e_3 \qquad e_2 \wedge e_4 \qquad e_1 \wedge e_2 + e_3 \wedge e_4 \qquad i(e_1 \wedge e_2 - e_3 \wedge e_4) \qquad e_1 \wedge e_4 + e_2 \wedge e_3 \qquad i(e_1 \wedge e_4 - e_2 \wedge e_3)$$
-are fixed by $J_*$, which gives us a real structure on $\bigwedge^2V$. Then if we have a volume form $\mu$ on $V$, and let $B$ denote the induced bilinear form, we compute the matrix for $B$ in this basis is
+are fixed by $J_*$, which gives us a real structure on $\bigwedge^2V$. Then if we have a volume form $\mu$ on $V$, and let $B$ denote the induced bilinear form, we compute the matrix for $B$ in this basis.
 %
 \begin{exer}
 Generalize the theorem regarding nondegeneracy of the sympletic form $\omega$. Given a vector space $V$ with skew $2$-form $\omega$, show that $\omega$ is nondegenerate if and only if $\omega^n \neq 0$, where $\omega^n$ denoted then $n$-fold wedge product. To show this, a helpful lemma would be to show that given any skew form, there exists a basis $\set{e_i}$ such that $\omega$ has the form
@@ -1090,5 +1090,38 @@ C & 0 \\
 where $C,D \in SL_2(\C)$. We then note that the direct sum decomposition $V = V_1 \oplus V_2$ gives a direct sum decomposition
 $$\bigwedge^2V = \bigwedge^2V_1 \oplus \bigwedge^2V_2 \oplus \spn \set{e_1 \wedge f_1, e_1 \wedge f_2, e_2 \wedge f_1, e_2 \wedge f_2} $$
 Then if we look at the induced map $A_* : \bigwedge^2 V \to \bigwedge^2V$, we then must have that it preserves this direct sum decomposition. If we look at the restriction of $A_*$ to $\bigwedge^2V_i$, it must act by identity, since $A$ preserves $\mu_1$ and $\mu_2$. In addition, we know that $A_*$ preserves the bilinear form $B : \bigwedge^2V \times \bigwedge^2V \to \C$ induced by the volume form $\mu$, so it must act on the last component of the decomposition by orthogonal transformations. Therefore, the image of the group under the homomorphism $A \mapsto A_*$ is isomorphic to $SO_4(\C)$, giving us the double cover $SL_2(\C) \times SL_2(\C) \to SO_4(\C)$.
+%
+\setcounter{section}{12}
+\setcounter{thm}{0}
+%
+\section*{Week 12}
+%
+\begin{exer}
+We have identified most of the low dimensional compact spin groups, and their Lorentzian counterparts. Complete this picture by finding $\Spin(1,2)$, $\Spin(1,3)$ and $\Spin(1,4)$.
+\end{exer}
+We know for outside (physics that is beyond me) reasons that $\Spin(1,3) \cong SL_2(\C)$, but haven't been able to find it -- until now! Suppose $V$ has a direct sum decompostion $V = W \oplus \overline{W}$, where $\overline{W}$ denotes the conjugate vector space of $W$. This gives us an antilinear involution $J$ on $\bigwedge^2V$, where $J(v \wedge w) = \bar{v} \wedge \bar{w}$, where $\bar{v}$ denotes the vector in $\overline{W}$ corresponding to $W$. Then in the direct sum decomposition
+$$\bigwedge^2 V \cong \bigwedge^2W \oplus \bigwedge^2 \overline{W} \oplus W \otimes \overline{W} $$
+where the last factor is canonically isomorphic to the subspace of ``mixed wedges."
+%
+\begin{exer}
+Oh Euclidean space $\mathbb{E}^n$ with coordinates $x^i$, we have a second-order differential operator 
+$$\Delta = -\frac{\partial^2}{\partial(x^i)^2} $$
+where the negative sign is the convention we use to give it nonnegative eigenvalues, and to make it agree with the Laplace-Beltrami operator. A differential operator $D$ is called a \ib{Dirac operator} if $D^2 = \Delta$. Think about what this might be in the cases of $\mathbb{E}^n$ and $S^1$.
+\end{exer}
+%
+\begin{exer}
+Let $V$ be a finite dimensional vector space and $A$ an affine space over $V$. Then we get the short exact sequence
+$$\begin{tikzcd}
+0 \ar[r] & V \ar[r] & \Aut(A) \ar[r] & GL(V) \ar[r] & 1
+\end{tikzcd}$$
+Describe the map $\Aut(A) \to GL(V)$. Experiment in coordinates, and try to find a coordinate independent description.
+\end{exer}
+%
+\begin{exer}
+If we add an inner product $\langle \cdot,\cdot \rangle$ to $V$, we get a Euclidean structure on $A$, giving us the short exact sequence
+$$ \begin{tikzcd}
+0 & \ar[r] V \ar[r] & \mathrm{Euc}_n \ar[r] & O_n \ar[r] & 1 
+\end{tikzcd}$$
+\end{exer}
 %
 \end{document}
