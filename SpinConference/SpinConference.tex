@@ -1099,14 +1099,18 @@ Then if we look at the induced map $A_* : \bigwedge^2 V \to \bigwedge^2V$, we th
 \begin{exer}
 We have identified most of the low dimensional compact spin groups, and their Lorentzian counterparts. Complete this picture by finding $\Spin(1,2)$, $\Spin(1,3)$ and $\Spin(1,4)$.
 \end{exer}
-We know for outside (physics that is beyond me) reasons that $\Spin(1,3) \cong SL_2(\C)$, but haven't been able to find it -- until now! Suppose $V$ has a direct sum decompostion $V = W \oplus \overline{W}$, where $\overline{W}$ denotes the conjugate vector space of $W$. This gives us an antilinear involution $J$ on $\bigwedge^2V$, where $J(v \wedge w) = \bar{v} \wedge \bar{w}$, where $\bar{v}$ denotes the vector in $\overline{W}$ corresponding to $W$. Then in the direct sum decomposition
+We know for outside (physics that is beyond me) reasons that $\Spin(1,3) \cong SL_2(\C)$, but haven't been able to find it -- until now! Suppose $V$ has a direct sum decompostion $V = W \oplus \overline{W}$, where $\overline{W}$ denotes the conjugate vector space of $W$, and a volume form $\mu$ on $W$. This gives us an antilinear involution $J$ on $\bigwedge^2V$, where $J(v \wedge w) = \bar{v} \wedge \bar{w}$, where $\bar{v}$ denotes the vector in $\overline{W}$ corresponding to $W$. Then in the direct sum decomposition
 $$\bigwedge^2 V \cong \bigwedge^2W \oplus \bigwedge^2 \overline{W} \oplus W \otimes \overline{W} $$
-where the last factor is canonically isomorphic to the subspace of ``mixed wedges."
+where the last factor is canonically isomorphic to the subspace of ``mixed wedges." We then note that $J$ preserves $W \otimes \overline{W}$, so we can restrict it to this subspace. If we fix a basis $\set{e_1, e_2, \overline{e_1}, \overline{e_2}}$ where $\mu(e_1,e_2) = 1$, we can use it to construct a basis for $W \otimes \overline{W}$ (abusing notation where we identify $v \otimes w$ with $v \wedge w$)
+$$\set{ie_1 \wedge \overline{e_1}, ie_2 \wedge \overline{e_2}, \frac{i}{\sqrt{2}}(e_1 \wedge \overline{e_2} + e_2 \wedge \overline{e_1}), \frac{1}{\sqrt{2}}(e_1 \wedge \overline{e_2} - e_2 \wedge \overline{e_1}) } $$
+we find that the induced bilinear form $B$ restricted to this subspace has signature $(1,3)$, giving us the double cover $SL_2(\C) \to SO(3,1)$.
+
+In a similar way, when we instead have $V$ be real, and decomposing as $V = W \oplus W$, alongside a volume form $\mu$ on $W$, We can look at maps that act the same on both factors, giving us an injection $SL_2(\R) \hookrightarrow SL_2(\R) \times SL_2(\R)$. Then again looking in the factor $W \otimes W$, we have a $3$-dimensional subspace that gets mapped into itself, namely $\mathrm{Sym}^2(W)$. Observing the induced bilinear form on a basis of $\mathrm{Sym}^2(W)$ then gives a double cover $SL_2(\R) \to SO(1,2)$.
 %
 \begin{exer}
 Oh Euclidean space $\mathbb{E}^n$ with coordinates $x^i$, we have a second-order differential operator 
 $$\Delta = -\frac{\partial^2}{\partial(x^i)^2} $$
-where the negative sign is the convention we use to give it nonnegative eigenvalues, and to make it agree with the Laplace-Beltrami operator. A differential operator $D$ is called a \ib{Dirac operator} if $D^2 = \Delta$. Think about what this might be in the cases of $\mathbb{E}^n$ and $S^1$.
+where the negative sign is the convention we use to give it nonnegative eigenvalues, and to make it agree with the Laplace-Beltrami operator. A differential operator $D$ is called a \ib{Dirac operator} if $D^2 = \Delta$. Think about what this might be in the cases of $\mathbb{E}^n$ and $S^1$, both in the case where the functions are into $\C$ and into $\R$.
 \end{exer}
 %
 \begin{exer}
@@ -1120,8 +1124,12 @@ Describe the map $\Aut(A) \to GL(V)$. Experiment in coordinates, and try to find
 \begin{exer}
 If we add an inner product $\langle \cdot,\cdot \rangle$ to $V$, we get a Euclidean structure on $A$, giving us the short exact sequence
 $$ \begin{tikzcd}
-0 & \ar[r] V \ar[r] & \mathrm{Euc}_n \ar[r] & O_n \ar[r] & 1 
+0 \ar[r] & \ar[r] V \ar[r] & \mathrm{Euc}_n \ar[r] & O_n \ar[r] & 1 
 \end{tikzcd}$$
+\end{exer}
+%
+\begin{exer}
+Given a geometric stucture on a vector space, how do we transfer it onto a manifold? In most cases, (e.g. some bilinear form) we simply impose the same structure on each tangent space. In a more general setting, a geometric structure on a manifold for a Lie group $G$ is induced by a homomorphism $\rho : G \to GL(V)$. Make sense of this.
 \end{exer}
 %
 \end{document}
