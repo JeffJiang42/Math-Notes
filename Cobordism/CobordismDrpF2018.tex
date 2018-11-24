@@ -202,7 +202,87 @@
 
 \begin{document}
 \author{Jeffrey Jiang}
-\title{Cobordism DRP Exercises}
+\title{The Pontryagin-Thom Theorem}
 \maketitle
+\setcounter{section}{1}
+\section*{A Quick and Dirty Treatment of Bordism}
+%
+\begin{defn}
+Two closed (compact boundaryless) smooth manifolds $X_1$ and $X_2$ are said to be \ib{bordant} if there exists a compact smooth manifold  $Y$ with $\bd Y = X_1 \coprod X_2$. We also require there to be a collar neighborhood about each component of $\bd Y$ diffeomorphic to $X_i \times (0,1]$.
+\end{defn}
+%
+\begin{exmp}\enumbreak
+\begin{enumerate}
+\item The pair of pants is a bordism $S^1 \coprod S^1 \to S^1$.
+\item Given a smooth manifold $X$, if there exists a smooth manifold $Y$ with $\bd Y = X$, we say that this is a bordism $X \to \emptyset$. We note that the empty set is vacuously a manifold of any dimension. In particular, $X \coprod X$ is bordant to the empty set, since $[0.1] \times X$ has boundary $X \coprod X$.
+\end{enumerate}
+\end{exmp}
+%
+\begin{thm}
+Bordism forms an equivalence relation
+\end{thm}
+%
+\begin{proof}
+This is best done with pictures. The relation is reflexive, since $[0,1] \times X$ can also be interpreted as a bordism $X \to X$. For symmetry, given a bordism $Y$ from $X_1 \to X_2$, the dual bordism $Y^\vee$ is just ``$Y$ turned around." Finally, for transitivity, given a bordism $Y$ from $X_1 \to X_2$ and a bordism $Z$ from $X_2 \to X_3$, we can get a bordism $X_1 \to X_3$ by gluing $Y$ with $Z$ along the boundary components diffeomorphic to $X_2$. There's a little fussing with collar neighborhoods to ensure the result is a smooth manifold, that we're hand waving away, but we'll skim over those details.
+\end{proof}
+In fact, bordism classes of $n$-manifolds forms an abelian group, denoted $\Omega_n$, where the group operation is $\coprod$, and the identity element is $\emptyset$. The observation that $X \coprod X = \emptyset$ gives us that all elements are order $2$. There's a lot of interesting theory in studying this group. In fact, ithe direct sum of all bordism groups is a $\Z$-graded ring, with multiplication given by the cartesian product. In addition, you can add tangential structures to your manifolds, e.g. orientations or spin structures, and ask for bordisms to preserve this tangential structures, giving us a large family of bordism groups. 
+%
+\setcounter{section}{2}
+%
+\setcounter{thm}{0}
+%
+\section*{Framed Bordism}
+%
+Let $M$ be a smooth manifold of dimension $n$, and $Y \subset M$ a submanifold of codimension $q$, i.e. $\dim Y = n - q$. Then the tangent bundle $TY$ is naturally a subbundle of the ambient tangent bundle $TM\vert_Y$ over $Y$. The normal bundle of $Y$ in $M$, denoted $NY$, is the vector bundle over $Y$ with each fiber being the quotient space $T_pM / T_pY$. This gives us the short exact sequence
+$$\begin{tikzcd}
+0 \ar[r] & TY \ar[r] & TM\vert_Y \ar[r] & NY \ar[r] & 0
+\end{tikzcd}$$
+You can think of $NY$ as the vector bundle of normal vectors pointing outward from $Y$. For example, if we consider $S^1 \subset \R^2$, we have that the tangent space $T_pS^1 \cong p^\perp$. Therefore, a framing for $S^1$ is just the assignment $p \mapsto p$, since $p$ spans the orthogonal complement of $T_pS^1$, giving a global frame for $NS^1$.
+%
+\begin{defn}
+A \ib{framing} of a codimension $q$ submanifold $Y \subset M$ is an isomorphism $NY \to R^q \times Y$. A \ib{framed submanifold} of a manifold $M$ is the data of a submanifold $Y \subset M$ and a framing $NY \to R^q \times Y$. We note that the isomorphism $NY \to R^q \times Y$ is equivalent data to a global frame (basis of sections) for $NY$, hence the name.
+\end{defn}
+%
+\begin{defn}
+Let $X_0$ and $X_1$ be framed codimension $q$ submanifolds of $M$. Then $X_1$ and $X_2$ are \ib{framed bordant} if there exists a framed submanifold $Y \subset [0,1] \times M$ such that
+\begin{enumerate}
+\item $Y \cap \set{i} \times M = \set{i} \times X_i$ for $i = 0,1$.
+\item The framings at $Y \cap \set{i}$ agree with the framings of $X_i$.
+\end{enumerate}
+We denote the framed cobordism group of codimension $q$ as $\Omega^{\text{fr}}_{m-q}(M)$. 
+\end{defn}
+There's a little subtlety by what we mean by ``the framings agree." By this, we note that the boundary of $[0,1] \times M$ contains two copies of $M$ at the boundary, $\bd([0,1] \times M) = \set{0} \times M \coprod \set{1} \times M$, and the inclusion $M \hookrightarrow \set{i} \times M$ gives us an isomorphism of vector bundles $TM \cong T(\set{i} \times M) \subset T([0,1] \times M)$. Likewise, we get a isomorphism of normal bundles $NX_i \cong N(\set{i} \times Y)$, where the normal bundle of $\set{i} \times Y$ is taken inside of $\set{i} \times M$. Hence a framing of $\set{i} \times X_i$ is equivalent to a framing of $X_i$, and we ask for the framings to agree with the framing for $Y$. A trivial, but easy to visualize example is to take $S^1 \subset \R^2$, with the framing we gave earlier. Then the cylinder $[0,1] \times S^1 \subset [0,1] \times \R^2$ is a framed bordism $S^1 \to S^1$, where the framing is given by our previous framing at each $\set{t} \times S^1$.
 
+In particular, there is one easy way to obtain a huge family of framed submanifolds. Let $M$ be an $m$ dimensional manifold, and $N$ an $n$ dimensional manifold with $n \leq m$. Then by Sards theorem, for any map $f : M \to N$, the set of critical points of $f$ forms a set of measure $0$. In other words, for almost any point $p \in N$, we have that $df_x : T_xM \to T_pN$ is a surjective map, giving us that $f\inv(p)$ is a submanifold of $M$ of codimension $n$. The tangent space $T_xf\inv(p)$ is naturally identified with the kernel of $df_x$, so $df_x$ factors through the quotient $T_xM / T_xf\inv(p)$, giving an isomorphism $T_xM / T_xf\inv(p) \to T_pN$. Therefore, fixing a basis for $T_pN$ gives us an isomorphism $T_xM / T_xf\inv(p) \to \R^n \times f\inv(p)$, which is the definition of a framing for $f\inv(p)$.
+%
+\setcounter{section}{3}
+%
+\setcounter{thm}{0}
+%
+\section*{The Pontryagin-Thom Theorem}
+%
+We now consider the special case where we have $M$ mapping into a sphere $S^q$. Let $[M, S^q]$ denote the set of all homotopy classes of maps $M \to S^q$. Fix a framed submanifold $Y \subset M$. Then it admits a \ib{tubular neighborhood}, which is the data of an open set $U \subset M$ containing $Y$ equipped with a submersion $U \to Y$, and a diffeomorphism $NY \to U$ such that 
+$$\begin{tikzcd} 
+NY \ar[rr] \ar[dr] && U \ar[dl] \\
+& Y
+\end{tikzcd}$$
+commutes. You can think of $U$ as a ``fattened up" version of $Y$, and the submersion $U \to Y$ squishes $U$ onto $Y$. Then the framing for $Y$ gives us an isomorphism $NY \to \R^q \times Y$, and then taking the inverse diffeomorphism $U \to NY$, we obtain a map $U \to NY \to \R^q \times Y \to \R^q$, where the last map is projection. We denote the map as $h : U \to \R^q$.  Intuitively, the map $h(p)$ is the length of the shortest vector from $p$ to $Y$. Then by fixing a cutoff function $\rho$, we define the \ib{Pontryagin-Thom collapse map} of $Y$, $f_Y : M \to S^q$ by
+$$f_Y(p) = \begin{cases} 
+\frac{h(p)}{\rho(\abs{h(p)})} & p \in U \\
+\infty & p \in M - U
+\end{cases}$$
+Where we identify $S^q$ as the one point compactification $\R^q \cup \set{\infty}$ via stereographic projection. Intuitively, the map collapses $Y$ to a point, (namely $0$), and smoothly stretches out $U$ onto the sphere before collapsing the rest of $M$ onto the point at infinity.
+%
+\begin{thm}
+Let $\varphi : [M,S^q] \to \Omega^{\text{fr}}_{n - q}$ be the map taking $[f]$ to the preimage $f\inv(p)$ of a regular value, and let $\psi : \Omega^{\text{fr}}_{n-q} \to [M, S^q]$ be the map taking the bordism class $[Y]$ to the homotopy class of the collapse map $f_Y$. Then $\varphi$ and $\psi$ are inverse maps.
+\end{thm}
+\begin{proof}
+We first need to show that $\varphi$ and $\psi$ are well-defined on equivalence classes. For $\varphi$, suppose we have two maps $f_0$ and $f_1$ that are homotopic via $F : M \times [0,1] \to S^q$. In the case that $p$ is not a regular value of $f_0$ or $f_1$, we can perturb either slightly to obtain a homotopic map that is. We can also perturb $F$ to obtain a map $F'$ that it is transverse to $\set{p}$ and such that it agrees with $F$ in a small neighborhood of $\set{0,1} \times M$, so $F'_0 = f_0$ and $F'_1 = f_1$. Then $F^{'-1}(p)$ is a submanifold of $M \times [0,1]$, and by construction, it is a framed bordism $f_0\inv(p) \to f_1\inv(p)$. In addition, it is independent of our choice of $p$, since we can compose with a rotation on $S^q$ that takes any point to our regular value.
+
+To show that $\psi$ is well defined, we need to show that for submanifolds $Y_0$ and $Y_1$, that the collapse maps $f_{Y_0}$ and $f_{Y_1}$ are homotopic. In addition, we would need to show that it is independent of our choice of cutoff function and tubular neighborhood, but we'll hand wave those details away for now. Let $X \subset [0,1] \times M$ be a bordism $Y_0 \to Y_1$. Then taking a tubular neighborhood $U$ of $X$ gives us a collapse map $f_X : [0,1] \times M \to S^q$. We then note that this is a homotopy from $f_{Y_0}$ to $f_{Y_1}$, so $\psi$ is well-defined as well.
+
+We note that $\varphi \circ \psi$ is identity, since given a framed submanifold $Y$, we have that $0$ is a regular value of $f_Y$ with preimage $Y$ by construction. For the other direction, given $f_0$, this determines a submanifold $f_0\inv(p)$, which in turn defines a collapse map for $f_1 = f_0\inv(p)$,. We need to show that this collapse map is homotopic to $f_0$. As it turns out, our construction gives us that $df_0\vert_Y = df_1\vert_Y$, which is enough to deduce that $f_0 \simeq f_1$, after some fiddling.
+\end{proof}
+The theorem gives us a remarkable dictionary from bordism to algebraic topology. In the case that $M = S^n$, we have that the maps are actually group isomorphisms between the bordism groups and the higher homotopy groups! In addition, by the Whitney embedding theorem, we actually can embed any manifold into $R^N$ for sufficiently large $N$, and consequencely, via stereographic projection, into $S^N$. Therefore, understanding the higher homotopy groups of spheres is in a sense equivalent to understanding framed bordism!
+%
 \end{document}
