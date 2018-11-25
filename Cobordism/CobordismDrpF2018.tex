@@ -214,7 +214,7 @@ Two closed (compact boundaryless) smooth manifolds $X_1$ and $X_2$ are said to b
 \begin{exmp}\enumbreak
 \begin{enumerate}
 \item The pair of pants is a bordism $S^1 \coprod S^1 \to S^1$.
-\item Given a smooth manifold $X$, if there exists a smooth manifold $Y$ with $\bd Y = X$, we say that this is a bordism $X \to \emptyset$. We note that the empty set is vacuously a manifold of any dimension. In particular, $X \coprod X$ is bordant to the empty set, since $[0.1] \times X$ has boundary $X \coprod X$.
+\item Given a smooth manifold $X$, if there exists a smooth manifold $Y$ with $\bd Y = X$, we say that this is a bordism $X \to \emptyset$. We note that the empty set is vacuously a manifold of any dimension. In particular, $X \coprod X$ is bordant to the empty set, since $[0,1] \times X$ has boundary $X \coprod X$.
 \end{enumerate}
 \end{exmp}
 %
@@ -237,11 +237,12 @@ Let $M$ be a smooth manifold of dimension $n$, and $Y \subset M$ a submanifold o
 $$\begin{tikzcd}
 0 \ar[r] & TY \ar[r] & TM\vert_Y \ar[r] & NY \ar[r] & 0
 \end{tikzcd}$$
-You can think of $NY$ as the vector bundle of normal vectors pointing outward from $Y$. For example, if we consider $S^1 \subset \R^2$, we have that the tangent space $T_pS^1 \cong p^\perp$. Therefore, a framing for $S^1$ is just the assignment $p \mapsto p$, since $p$ spans the orthogonal complement of $T_pS^1$, giving a global frame for $NS^1$.
+You can think of $NY$ as the vector bundle of normal vectors pointing outward from $Y$. 
 %
 \begin{defn}
 A \ib{framing} of a codimension $q$ submanifold $Y \subset M$ is an isomorphism $NY \to R^q \times Y$. A \ib{framed submanifold} of a manifold $M$ is the data of a submanifold $Y \subset M$ and a framing $NY \to R^q \times Y$. We note that the isomorphism $NY \to R^q \times Y$ is equivalent data to a global frame (basis of sections) for $NY$, hence the name.
 \end{defn}
+For example, if we consider $S^1 \subset \R^2$, we have that the tangent space $T_pS^1 \cong p^\perp$. Therefore, an example of a framing for $S^1$ is just the assignment $p \mapsto p$, since $p$ spans the orthogonal complement of $T_pS^1$, giving a global frame for $NS^1$.
 %
 \begin{defn}
 Let $X_0$ and $X_1$ be framed codimension $q$ submanifolds of $M$. Then $X_1$ and $X_2$ are \ib{framed bordant} if there exists a framed submanifold $Y \subset [0,1] \times M$ such that
@@ -281,8 +282,8 @@ We first need to show that $\varphi$ and $\psi$ are well-defined on equivalence 
 
 To show that $\psi$ is well defined, we need to show that for submanifolds $Y_0$ and $Y_1$, that the collapse maps $f_{Y_0}$ and $f_{Y_1}$ are homotopic. In addition, we would need to show that it is independent of our choice of cutoff function and tubular neighborhood, but we'll hand wave those details away for now. Let $X \subset [0,1] \times M$ be a bordism $Y_0 \to Y_1$. Then taking a tubular neighborhood $U$ of $X$ gives us a collapse map $f_X : [0,1] \times M \to S^q$. We then note that this is a homotopy from $f_{Y_0}$ to $f_{Y_1}$, so $\psi$ is well-defined as well.
 
-We note that $\varphi \circ \psi$ is identity, since given a framed submanifold $Y$, we have that $0$ is a regular value of $f_Y$ with preimage $Y$ by construction. For the other direction, given $f_0$, this determines a submanifold $f_0\inv(p)$, which in turn defines a collapse map for $f_1 = f_0\inv(p)$,. We need to show that this collapse map is homotopic to $f_0$. As it turns out, our construction gives us that $df_0\vert_Y = df_1\vert_Y$, which is enough to deduce that $f_0 \simeq f_1$, after some fiddling.
+We note that $\varphi \circ \psi$ is identity, since given a framed submanifold $Y$, we have that $0$ is a regular value of $f_Y$ with preimage $Y$ by construction. For the other direction, given $f_0$, this determines a submanifold $f_0\inv(p)$, which in turn defines a collapse map $f_1$ for $f_0\inv(p)$,. We need to show that this collapse map is homotopic to $f_0$. As it turns out, our construction gives us that $df_0\vert_Y = df_1\vert_Y$, which is enough to deduce that $f_0 \simeq f_1$, after some fiddling.
 \end{proof}
-The theorem gives us a remarkable dictionary from bordism to algebraic topology. In the case that $M = S^n$, we have that the maps are actually group isomorphisms between the bordism groups and the higher homotopy groups! In addition, by the Whitney embedding theorem, we actually can embed any manifold into $R^N$ for sufficiently large $N$, and consequencely, via stereographic projection, into $S^N$. Therefore, understanding the higher homotopy groups of spheres is in a sense equivalent to understanding framed bordism!
+The theorem gives us a remarkable dictionary from bordism to algebraic topology. In the case that $M = S^n$, we have that the maps are actually group isomorphisms between the bordism groups and the higher homotopy groups! In addition, by the Whitney embedding theorem, we actually can embed any manifold into $\R^N$ for sufficiently large $N$, and consequently, via stereographic projection, into $S^N$. Therefore, understanding the higher homotopy groups of spheres is in a sense equivalent to understanding framed bordism!
 %
 \end{document}
