@@ -96,6 +96,7 @@
 \newcommand{\ib}[1]{\textbf{\textit{#1}}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
+\newcommand{\E}{\mathbb{E}}
 \newcommand{\N}{\mathbb{N}}
 \renewcommand{\H}{\mathbb{H}}
 \newcommand{\C}{\mathbb{C}}
@@ -1112,6 +1113,11 @@ Oh Euclidean space $\mathbb{E}^n$ with coordinates $x^i$, we have a second-order
 $$\Delta = -\frac{\partial^2}{\partial(x^i)^2} $$
 where the negative sign is the convention we use to give it nonnegative eigenvalues, and to make it agree with the Laplace-Beltrami operator. A differential operator $D$ is called a \ib{Dirac operator} if $D^2 = \Delta$. Think about what this might be in the cases of $\mathbb{E}^n$ and $S^1$, both in the case where the functions are into $\C$ and into $\R$.
 \end{exer}
+On $\E^1$, we have a candidate for functions into $\E^1 \to C$ where $D = i\partial_x$. In two dimensions, to get a first order operator squaring to the Laplacian $-\partial_x^2 - \partial_y^2$, we require
+$$(a\partial_x + b\partial_y)^2 = a^2\partial_x^2 + ab\partial_x\partial_y + ba\partial_x\partial_y + b^2\partial_y $$
+where we use the fact that mixed partials commute. We then note that we require $a^2 = -1$ and $b^2 = -1$, but taking coefficients in $\C$ is insufficient, since we would have a notrivial mixed term. In the case that $ab = -ba$, we would have the mixed terms cancel, which motivates us to use the Clifford algebra $\Cliff(0,n)$ as coefficients, since the operator $D = e_1\partial_x + e_2\partial_y$ does in fact square to $\Delta$. In general, the operator $D = \sum_i e_i\partial_i$ is a differential operator on $\E^n$ that squares to $\Delta$, but it now a mapping $\Gamma(\Cliff(0,n) \times \E^n ) \to \Cliff(0,n)$, where $\Gamma(\Cliff(0,n) \times \E^n )$ denotes sections of this bundle, and functions on $\E^n$ are identified with sections that land in scalar portion of $\Cliff(0,n)$. 
+
+There's some speculation that a similar construction can be done on a parallelizable Riemannian manifold $(M,g)$ with global orthonormal frames, and maybe the Levi-Cevita connection $\nabla$. In general, there's some speculation about constructing some Clifford bundle in order to get such an operator $D$.
 %
 \begin{exer}
 Let $V$ be a finite dimensional vector space and $A$ an affine space over $V$. Then we get the short exact sequence
