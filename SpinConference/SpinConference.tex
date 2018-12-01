@@ -1138,4 +1138,23 @@ $$ \begin{tikzcd}
 Given a geometric stucture on a vector space, how do we transfer it onto a manifold? In most cases, (e.g. some bilinear form) we simply impose the same structure on each tangent space. In a more general setting, a geometric structure on a manifold for a Lie group $G$ is induced by a homomorphism $\rho : G \to GL(V)$. Make sense of this.
 \end{exer}
 %
+\section*{Week 13}
+%
+\begin{exer}
+Last week, we defined a Dirac operator on $\E^n$ by $D = \sum_i e_i\partial_i$. Is this characterization basis independent? If so, what's a basis independent characterization of $D$?
+\end{exer}
+%
+\begin{exer}
+We have that a Dirac operator $D$ acts on $C^\infty(\E^n, \Cliff(0,2))$, giving a linear map $C^\infty(\E^n, \Cliff(0,2)) \to C^\infty(\E^n, \Cliff(0,2))$. In particular, it is an odd operator, and has the form 
+$$\begin{pmatrix}
+0 & D_1 \\
+D_2 & 0
+\end{pmatrix}$$
+for first order differential operators $D_1$ and $D_2$. Identify these operators. Try this in other (low) dimensions as well.
+\end{exer}
+%
+\begin{exer}
+In particular, $D$ is an homomorphism $C^\infty(\E^n, \Cliff(0,2)) \to C^\infty(\E^n, \Cliff(0,2))$, where we treat them as right $C^\infty(\E^n, \Cliff(0,2))$-modules. On $S^1$, we can find the spectrum of the Laplacian $\Delta = D^2$, which gives us eigenspaces corresponding to right submodules. Identify these eigenspaces (they are finite dimensional), and determine the action of $D$ restricted to these eigenspaces.
+\end{exer}
+%
 \end{document}
