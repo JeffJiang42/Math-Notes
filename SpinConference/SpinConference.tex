@@ -1140,6 +1140,10 @@ Given a geometric stucture on a vector space, how do we transfer it onto a manif
 %
 \section*{Week 13}
 %
+\setcounter{thm}{0}
+%
+\setcounter{section}{13}
+%
 \begin{exer}
 Last week, we defined a Dirac operator on $\E^n$ by $D = \sum_i e_i\partial_i$. Is this characterization basis independent? If so, what's a basis independent characterization of $D$?
 \end{exer}
@@ -1152,9 +1156,49 @@ D_2 & 0
 \end{pmatrix}$$
 for first order differential operators $D_1$ and $D_2$. Identify these operators. Try this in other (low) dimensions as well.
 \end{exer}
+We note that any function $f : \E^n \to \Cliff(0,2)$ is uniquely expressed in the form $f(x,y) = f_0(x,y) + e_1e_2f_{12}(x,y) + e_1f_1(x,y) + e_2f_2(x,y)$, or in the coordinates determined the ordered basis $(1, e_1e_2, e_1, e_2)$ as $f = (f_0,f_{12},f_1,f_2)$. In this basis, we compute the action of $D$ on a function $f$ as 
+$$ Df = \begin{pmatrix}
+0 & 0 & -\partial_x & -\partial_y \\
+0 & 0 & -\partial_y & \partial x \\
+\partial_x & \partial_y & 0 & 0 \\
+\partial_y & -\partial_x & 0 & 0
+\end{pmatrix}\begin{pmatrix}
+f_0 \\
+f_{12} \\
+f_1 \\
+f_2
+\end{pmatrix}$$
+We note the off diagonal blocks are negatives of each other. In $3$-dimensions, the same phenomenon happens, and we have that the lower block $D_2$ is of the form
+$$ D_2 = \begin{pmatrix}
+\partial_x & \partial_y & \partial_z & 0 \\
+\partial_y & -\partial_x & 0 & \partial_z \\
+\partial_z & 0 & -\partial_x & -\partial_y \\
+0 & \partial_z & -\partial_y & \partial_x
+\end{pmatrix}$$
 %
 \begin{exer}
-In particular, $D$ is an homomorphism $C^\infty(\E^n, \Cliff(0,2)) \to C^\infty(\E^n, \Cliff(0,2))$, where we treat them as right $C^\infty(\E^n, \Cliff(0,2))$-modules. On $S^1$, we can find the spectrum of the Laplacian $\Delta = D^2$, which gives us eigenspaces corresponding to right submodules. Identify these eigenspaces (they are finite dimensional), and determine the action of $D$ restricted to these eigenspaces.
+In particular, $D$ is an homomorphism $C^\infty(\E^n, \Cliff(0,2)) \to C^\infty(\E^n, \Cliff(0,2))$, where we treat them as right $C^\infty(\E^n, \Cliff(0,2))$-modules, since right multiplication commutes with derivative operators and left multiplication. Let $R_{12}$ denote the map given by right multiplication by $e_1e_2$. What submodule does this fix? How does $D$ act on this submodule?
 \end{exer}
+%
+\begin{exer}
+On $S^1$, we can find the spectrum of the Laplacian $\Delta = D^2$ acting on $C^\infty(S^1, \Cliff(0,1)$, which gives us eigenspaces. Identify these eigenspaces (they are finite dimensional), and determine the action of $D$ restricted to these eigenspaces.
+\end{exer}
+This isn't too interesting in the real case, so we'll do this for $D$ acting o $C^\infty(S^1, \Cliff(0,1) \otimes \C)$, which is the complex Clifford algebra. Let $A = \Cliff(0,1) \otimes \C$, which has an ordered $\C$-basis consisting of $(1,e_1)$. In this basis, $D = e_1 \partial_x$ has the form
+$$D = \begin{pmatrix}
+0 & -\partial_x \\
+\partial_x & 0
+\end{pmatrix} $$
+and the Laplacian on $C^\infty(S^1, A)$ (identified with periodic functions $\R \to A$), has eigenfunctions $\cos(kx)$, $\sin(kx)$, $e_1\cos(kx)$, and  $e_1\sin(kx)$ all with eigenvalue $k \in \Z$, and form a basis for the $k$-eigenspace of $\Delta$. We then note that the action of $D$ on these functions is given by
+\begin{align*}
+&D\cos(kx) = -ke_1\sin(kx) &&D\sin(kx) = ke_1\cos(kx) \\
+&De_1\cos(kx) = k\sin(kx) &&De_1\sin(kx) = -k\cos(kx)
+\end{align*}
+We can then compute the spectrum of $D$ on each of these subspaces, giving us the eigenfunctions
+\begin{align*}
+D(\cos(kx) + e_1\sin(kx)) &= -k(\cos(kx) + e_1\sin(kx)) \\
+D(\cos(kx) - e_1\sin(kx)) &= k(\cos(kx) - e_1\sin(kx)) \\
+D(\sin(kx) + e_1\cos(kx) &= k(\sin(kx) + e_1\cos(kx)) \\
+D(\sin(kx) - e_1\cos(kx) &= -k(\sin(kx) - e_1\cos(kx))
+\end{align*}
 %
 \end{document}
