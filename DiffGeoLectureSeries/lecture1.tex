@@ -1,7 +1,12 @@
 \section{Introduction to Manifolds}
 %
 \begin{defn}
-A \ib{topological manifold} is a Hausdorff space $X$ such there exists a countable open cover $\set{U_\alpha}$ of $X$, along with homeomorphisms $\varphi_\alpha : U_\alpha \to V_\alpha$, where $V_\alpha$ is an open subset of $\R^n$.
+A \ib{topological manifold} is a Hausdorff space $X$ such there exists a countable open cover $\set{U_\alpha}$
+of $X$, along with homeomorphisms $\varphi_\alpha : U_\alpha \to V_\alpha$, where $V_\alpha$ is an open subset 
+of $\R^n$. Given a chart $(U, \varphi)$, we can write $\varphi$ in terms of its component functions 
+$$\varphi(p) = (x^1(p), \ldots, x^n(p)) $$
+The functions $x^i$ are called \ib{local coordinates} on $U$.
+
 \end{defn}
 %
 In this way, we see that a manifold is a topological space that is locally topologically indistinguishable from
@@ -31,3 +36,20 @@ differ from $\R^n$.
 		$S^n = \set{p \in \R^{n+1} ~:~ \norm{p} = 1}$
 	\end{enumerate}
 \end{exer}
+%
+One of the main appeals of Euclidean space is that we have a lot of tools at our disposal, like linear algebra
+and calculus. We would like to generalize these notions to manifolds. One of the wonderful properties of 
+manifolds is that they locally look like $\R^n$, so we can use the charts to translate concepts we know in 
+$\R^n$ to concepts on the manifold. 
+%
+\begin{defn}
+	A map $F : U \to V$ where $U \subset \R^n$ and $V \subset \R^m$ is \ib{smooth} if all of its 
+	component functions are infinitely differentiable, i.e. the partial derivatives of all orders 
+	exist and are continuous.
+\end{defn}
+%
+Note that smoothness is a local condition -- to know a function is smooth at a point, it suffices to check 
+in a small neighborhood. Now that we know what it means for a function on $\R^n$ to be smooth, how do we 
+translate this to a manifold $X$? Given a map $F : X \to \R^m$, what does it mean for $F$ to be smooth? Our 
+first guess is to use our charts. Given 
+
