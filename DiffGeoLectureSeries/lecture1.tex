@@ -2,27 +2,26 @@
 %
 \begin{defn}
 A \ib{topological manifold} is a Hausdorff space $X$ such there exists a countable open cover $\set{U_\alpha}$
-of $X$, along with homeomorphisms $\varphi_\alpha : U_\alpha \to V_\alpha$, where $V_\alpha$ is an open subset 
-of $\R^n$. Given a chart $(U, \varphi)$, we can write $\varphi$ in terms of its component functions 
+of $X$, along with homeomorphisms $\varphi_\alpha : U_\alpha \to V_\alpha$, where $V_\alpha$ is an open subset
+of $\R^n$. Given a chart $(U, \varphi)$, we can write $\varphi$ in terms of its component functions
 $$\varphi(p) = (x^1(p), \ldots, x^n(p)) $$
 The functions $x^i$ are called \ib{local coordinates} on $U$.
-
 \end{defn}
 %
 In this way, we see that a manifold is a topological space that is locally topologically indistinguishable from
-Euclidean space. Both modifiers are important here -- there could be global and geometric properties that 
+Euclidean space. Both modifiers are important here -- there could be global and geometric properties that
 differ from $\R^n$.
 %
-\begin{exmp}\enumbreak 
+\begin{exmp}\enumbreak
 	\begin{enumerate}
 		\item $\R^n$ is a topological manifold -- it admits a global chart $(\R^n, \id_{\R^n})$.
 		\item The $2$-sphere $S^2 = \set{(x,y,z) \in \R^3 ~:~ x^2 + y^2 + z^2 = 1}$ is a topological
-		manifold. If we let $N$ and $S$ denote the North and South poles repsectively, then we can 
+		manifold. If we let $N$ and $S$ denote the North and South poles repsectively, then we can
 		construct charts using \ib{stereographic projection}. Stereographic projection from the North
 		pole is a map $\varphi_N : S^2 - \set{N} \to \R^n$, where given a point $p \in S^2 - \set{N}$,
-		we take the line cotaining both $N$ and $p$, which intersects the $z = 0 $ plane at one point 
-		$q$. We then define $\varphi_N(p) = q$. Stereographic projection $\varphi_S$ from the South 
-		pole is defined in an analogous manner. An explicit formula for $\varphi_N$ is 
+		we take the line cotaining both $N$ and $p$, which intersects the $z = 0 $ plane at one point
+		$q$. We then define $\varphi_N(p) = q$. Stereographic projection $\varphi_S$ from the South
+		pole is defined in an analogous manner. An explicit formula for $\varphi_N$ is
 		$$\varphi_N(x,y,z) = \left(\frac{x}{1 - z}, \frac{x}{1 - z} \right) $$
 	\end{enumerate}
 \end{exmp}
@@ -30,26 +29,102 @@ differ from $\R^n$.
 \begin{exer}\enumbreak
 	\begin{enumerate}
 		\item $S^2$ does not admit a global chart. Why?
-		\item Give an inverse map $\R^n \to \S^n - {N}$ for stereographic projection from the 
+		\item Give an inverse map $\R^n \to \S^n - {N}$ for stereographic projection from the
 			North Pole
-		\item Generalize stereographic projection to the $n$-sphere 
+		\item Generalize stereographic projection to the $n$-sphere
 		$S^n = \set{p \in \R^{n+1} ~:~ \norm{p} = 1}$
 	\end{enumerate}
 \end{exer}
 %
 One of the main appeals of Euclidean space is that we have a lot of tools at our disposal, like linear algebra
-and calculus. We would like to generalize these notions to manifolds. One of the wonderful properties of 
-manifolds is that they locally look like $\R^n$, so we can use the charts to translate concepts we know in 
-$\R^n$ to concepts on the manifold. 
+and calculus. We would like to generalize these notions to manifolds. One of the wonderful properties of
+manifolds is that they locally look like $\R^n$, so we can use the charts to translate concepts we know in
+$\R^n$ to concepts on the manifold.
+%
+We know what it means for a function on $\R^n$ to be smooth, how do we
+translate this to a manifold $X$? Given a map $F : X \to \R^m$, what does it mean for $F$ to be smooth? Our
+first guess is to use our charts. Given a map $F: X \to \R^m$, we want
+to say that it is smooth if for every $p \in X$, there exists a chart
+$(U_p, \varphi_p)$ such that the composition
+$F \circ \varphi_p\inv : U_p \to \R^m$ is smooth. The intuition here
+is correct, there there are some technicalities that need to be addressed.
+ Namely, suppose $p \in X$ lies in the domain of two charts
+ $(U_1, \varphi_1)$, and $(U_2, \varphi_2)$. Then what if
+ $F \circ \varphi_1\inv$ was smooth, but $F \circ \varphi_2\inv$ wasn't?
+ This suggests that we need a compatibility condition for our charts
+ if we want a notion of smoothness. We say two charts $(U_1, \varphi_1)$
+ and $(U_2, \varphi_2)$ are \ib{smoothly compatible} if both
+ $\varphi_1 \circ \varphi_2\inv$ and $\varphi_2 \circ \varphi_1\inv$ are
+ smooth maps.
+ \begin{defn}
+	 A collection $\mathcal{A} = \set{(U_\alpha, \varphi_\alpha)}$ of
+	 smoothly compatible charts such that the $U_\alpha$ cover $X$ is called
+	 an \ib{atlas}. An atlas is \ib{maximal} if it is not property contained in any other atlas.
+ \end{defn}
 %
 \begin{defn}
-	A map $F : U \to V$ where $U \subset \R^n$ and $V \subset \R^m$ is \ib{smooth} if all of its 
-	component functions are infinitely differentiable, i.e. the partial derivatives of all orders 
-	exist and are continuous.
+	A \ib{smooth manifold} is a topological manifold $X$ equipped with a maximal atlast $\mathcal{A}$.
 \end{defn}
 %
-Note that smoothness is a local condition -- to know a function is smooth at a point, it suffices to check 
-in a small neighborhood. Now that we know what it means for a function on $\R^n$ to be smooth, how do we 
-translate this to a manifold $X$? Given a map $F : X \to \R^m$, what does it mean for $F$ to be smooth? Our 
-first guess is to use our charts. Given 
+Now if we have a smooth manifold $X$, we have a notion of smooth maps
+$X \to \R^n$
+%
+\begin{defn}
+	A map $F : X \to \R^k$ is \ib{smooth} if for every chart
+	$(U_\alpha, \varphi_\alpha$), we have that $F \circ \varphi_\alpha\inv$ is
+	smooth in the Euclidean sense. We call $F \circ \varphi_\alpha\inv$ a local
+	\ib{coordinate representation} of the map $F$.
+\end{defn}
+%
+We also know what if means for maps between manifolds to be smooth.
+%
+\begin{defn}
+	A map $F : X \to Y$ of smooth manifolds is $\ib{smooth}$ if for every $p$,
+	there exists charts $(U, \varphi)$ and $(V, \psi)$ of $p$ and $F(p)$
+	respectively, such that (after appropriate shrinking of $U$ and $V$), we
+	have that $\psi \circ F \circ \varphi\inv$ is smooth in the Euclidean sense.
+\end{defn}
+%
+For convenience, we will make the a distinction between the words map
+and function, which is also common in the literature. A \emph{map} will denote
+an arbitrary mapping $X \to Y$, where $X$ and $Y$ can denote any kind of set.
+A \emph{function} on a space $X$ is a mapping $X \to \R$. We let $C^\infty(X)$
+denote the vector space of functions of $X$, which forms a commutative ring
+under pointwise multiplication and addition.\\
 
+This is nice, but we've excluded a huge class of spaces. For example, the
+unit interval isn't a manifold, since there exist no charts about the
+endpoints satisfying our definition (why?). To include the spaces, we
+need another definition. Let $\mathbb{H}^n$ denote
+\ib{Euclidean half space}, where
+$$\mathbb{H}^n = \set{(x^1, \ldots x^n) \in \R^n ~:~ x^n \geq 0} $$
+%
+\begin{defn}
+	A \ib{manifold with boundary} is a Hausdorff space $X$ such that there
+	exists a countable cover by charts $(U_\alpha, \varphi_\alpha)$ where
+	the $\varphi_\alpha$ are homeomorphisms to open sets in $\mathbb{H}^n$.
+	Given a point $p \in X$, we say that $p$ is in the \ib{boundary} of
+	$X$ if there exists a chart $(U, \varphi)$ containing $p$ such that
+	$\varphi(p) = (x^1, \ldots, x^n)$, and $x^n = 0$. We say that $p$ is in
+	the \ib{interior} of $X$ if no such chart exists. We denote the boundary
+	and interior of $X$ as $\bd X$ and $\inter X$ respectively.
+\end{defn}
+%
+Under this definition, $\mathbb{H}^n$ is a smooth manifold with boundary,
+with a global chart given by $(\mathbb{H}^n, \id_{\mathbb{H}^n})$, and
+$\bd \mathbb{H}^n = \set{(x^1, \ldots x^n) \in \mathbb{H}^n ~:~ x^n = 0}$
+%
+\begin{exer}
+	Let $X$ be a smooth $n$-manifold with boundary
+	\begin{enumerate}
+		\item Show that $\bd X$ is
+		well defined. Namely, show that if we have a point $p \in X$ such that
+		there exists a chart $(U, \varphi)$ where $\varphi_1(p) \in \bd
+		\mathbb{H}^n$, show that any other chart $(U', \varphi')$ for $p$ must
+		also have $\varphi'(p) \in \bd \mathbb{H^n}$. (Hint: Use the inverse
+		function theorem to show there exists no diffeomorphism from an open set
+		in $\R^n$ to an open set in $\R^{n-1}$)
+		\item Prove that $\bd X$ is a smooth $(n-1)$-manifold without boundary
+	\end{enumerate}
+\end{exer}
+%
