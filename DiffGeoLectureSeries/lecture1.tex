@@ -1,3 +1,4 @@
+%
 \section{Introduction to Manifolds}
 %
 \begin{defn}
@@ -133,26 +134,28 @@ $\bd \mathbb{H}^n = \set{(x^1, \ldots x^n) \in \mathbb{H}^n ~:~ x^n = 0}$
 Recall from multivariable calculus that the derivative is the best linear
 approximation to a map. Because of this, we need to introduce some sort
 of linear structure on our smooth manifold in order to make sense of
-derivatives of maps between manifolds. \\
+derivatives of maps between manifolds. In the case where our manifold $M$
+is embedded in $\R^n$, this is easy, since we can take a chart
+$(U, \varphi)$, and treat is as a map $\R^k \to \R^n$. Then
+the image of derivative $d\varphi\inv_p : \R^k \to \R^n$ is the best
+linear approximation to our manifold $M$ at the point $p \in M \subset
+\R^n$. This is nice, but is not an intrinsic definition, since it relies
+on our  manifold lying in some ambient Euclidean space. While this is
+always possible thanks to the Whitney Embedding theorem, there's a more
+natural way to talk about tangent vectors to an abstract manifold, that
+need not be embedded in $\R^n$. \\
 
-In the case where our manifold $M$ is embedded in $\R^n$, this is easy, since we can take a chart $(U, \varphi)$, and treat is as a map $\R^k \to \R^n$. Then
-the image of derivative $d\varphi\inv_p : \R^k \to \R^n$ is the best linear
-approximation to our manifold $M$ at the point $p \in M \subset \R^n$. This
-is nice, but is not an intrinsic definition, since it relies on our manifold
-lying in some ambient Euclidean space. While this is always possible thanks
-to the Whitney Embedding theorem, there's a more natural way to talk about
-tangent vectors to an abstract manifold, that need not be embedded in $\R^n$.\\
-
-We'll provide some motivation in the Euclidean case first. We naturally think
-of tangent vectors at a point $p \in \R^n$ as another copy of $\R^n$
-based at $p$. However, there is a different way to think about tangent vectors.
-Let $e_i$ denote the standard basis for $\R^n$, and let $v \in \R^n$. Then
-there exists a linear differential operator $D_v$ on $\C^\infty(\R^n)$ that
-takes a function $f: \R^n \to \R$, and takes its directional derivative in the
-direction of $v$. If we write $v = v^ie_i$, then
+We'll provide some motivation in the Euclidean case first. We naturally
+think of tangent vectors at a point $p \in \R^n$ as another copy of $\R^n$
+based at $p$. However, there is a different way to think about tangent
+vectors. Let $e_i$ denote the standard basis for $\R^n$, and let $v \in
+\R^n$. Then there exists a linear differential operator $D_v$ on
+$\C^\infty(\R^n)$ that takes a function $f: \R^n \to \R$, and takes its
+directional derivative in the direction of $v$. If we write $v = v^ie_i$,
+then
 $$D_v\vert_p = v^i\frac{\partial}{\partial x^i}\vert_p $$
-We also note that $D_v$ satisfies to product rule (also referred to as the Leibniz
-rule), i.e. for $f,g \in C^\infty(\R^n)$, we have that
+We also note that $D_v$ satisfies to product rule (also referred to as
+the Leibniz rule), i.e. for $f,g \in C^\infty(\R^n)$, we have that
 $$D_v\vert_p(fg) = f(p)D_vg + g(p)D_vf$$
 \begin{defn}
 	A linear map $D : C^\infty(\R^n) \to \R$ satisfying the product rule at $p \in \R^n$,
@@ -295,3 +298,79 @@ like a product manifold, but globally there may be some twisting. In
 addition, each fiber $\pi\inv(p)$ has the structure of a real vector
 space. These are defining features of a geometric object called a
 \ib{vector bundle}, which are a central object in differential geometry.
+%
+\section{A Short Introduction to Vector Bundles}
+%
+\begin{defn}
+Let $M$ be a smooth manifold. Then a \ib{vector bundle} over $M$ is
+anothe smooth manifold $E$ equipped with a smooth map $\pi : E \to M$
+satisfying the following properties.
+\begin{enumerate}
+	\item $\pi$ is surjective
+	\item Each fiber $\pi\inv(p)$ has the structure of a real vector space.
+	\item For every $p \in M$, there exists a neighborhood $U$ of $p$ and
+	a diffeomorphism $\Phi : \pi\inv(U) \to U \times \R^k$ such that we get
+	the commutative diagram
+	$$\begin{tikzcd}
+	\pi\inv(U) \ar[dr, "\pi"'] \ar[rr, "\Phi"] &&
+	U \times \R^k \ar[dl, "p"] \\
+	& U
+	\end{tikzcd}$$
+	where $p$ denotes the standard projection $U \times \R^k \to U$. The
+	map $\Phi$ is called a \ib{local trivialization}.
+\end{enumerate}
+The dimension $k$ of each fiber $\pi\inv(p)$ is called the \ib{rank} of
+the vector bundle. We may just call $E$ the vector bundle, and the fiber
+$\pi\inv(p)$ as $E_p$ where the map $\pi$ is implicit.
+\end{defn}
+%
+\begin{exmp} \enumbreak
+	\begin{enumerate}
+		\item Given any manifold $M$ and a vector space $V$, the product
+		$M \times V$ equppied with the projection $M \times V \to M$ is a
+		vector bundle, called the \ib{trivial bundle}.
+		\item The tangent bundle $TM$ of a smooth $n$-manifold $M$ is a
+		vector bundle of rank $n$.
+		\item Consider $\RP^n$, the space of lines in $\R^{n+1}$. A point
+		in $\RP^n$ is a $1$-dimensional subspace of $\R^{n+1}$, so we can
+		construct the vector bundle $E$ where the fiber over a point
+		$\ell \in \RP^n$ is the the $1$-dimensional subspace $\ell$.
+		This is called the \ib{tautological bundle} over $\RP^n$, and
+		exists over more general spaces called \ib{Grassmannians}.
+	\end{enumerate}
+\end{exmp}
+%
+\begin{exer}
+	Let $M$ and $N$ be smooth manifolds, $\pi : E \to N$ a vector bundle,
+	and $F : M \to N$ a smooth map. Let
+	$$F^*E = \set{(p, v) ~:~ p \in M, ~v \in \pi\inv(f(p))} $$
+	Show that $F^*E$ is a vector bundle over $M$, called the
+	\ib{pullback bundle}.
+\end{exer}
+%
+\begin{defn}
+Let $E \to M$ be a vector bundle. Then a \ib{local section} of $E$ is
+a right inverse $\sigma U \to E$ for some open subset $U \subset M$, i.e.
+$\pi \circ \sigma = \id_U$. In the case that $U = M$, we call $\sigma$ a
+\ib{global section}.
+\end{defn}
+%
+For a vector bundle $E \to M$, there is a canonical global section called
+the \ib{zero section}, which is the map $p \mapsto (p, 0)$. where $0$
+denotes the $0$ vector in $E_p$. A lot of the concepts in differential
+geometry can be expressed in terms of vector bundles and their sections,
+especially when it comes to vector and tensor fields on manifolds.
+%
+\begin{exer}
+	Prove that $TS^2$ is not isomorphic to a trivial bundle, i.e. there
+	exists no diffeomorphism $TS^2 \to S^2 \times \R^2$ such that the
+	diagram
+	$$\begin{tikzcd}
+	TS^2 \ar[dr]\ar[rr] && S^2 \times \R^2 \ar[dl]\\
+	& S^2
+	\end{tikzcd}$$
+	commutes. (Hint : Use the Hairy Ball Theorem, which states that
+	there does not exist an everywhere nonzero vector field on $S^2$.
+	What would triviality of $TS^2$ imply about vector fields on $S^2$?)
+\end{exer}
+%
