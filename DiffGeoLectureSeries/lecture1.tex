@@ -29,7 +29,7 @@ differ from $\R^n$.
 \begin{exer}\enumbreak
 	\begin{enumerate}
 		\item $S^2$ does not admit a global chart. Why?
-		\item Give an inverse map $\R^n \to \S^n - {N}$ for stereographic projection from the
+		\item Give an inverse map $\R^n \to \S^n - \set{N}$ for stereographic projection from the
 			North Pole
 		\item Generalize stereographic projection to the $n$-sphere
 		$S^n = \set{p \in \R^{n+1} ~:~ \norm{p} = 1}$
@@ -123,8 +123,147 @@ $\bd \mathbb{H}^n = \set{(x^1, \ldots x^n) \in \mathbb{H}^n ~:~ x^n = 0}$
 		\mathbb{H}^n$, show that any other chart $(U', \varphi')$ for $p$ must
 		also have $\varphi'(p) \in \bd \mathbb{H^n}$. (Hint: Use the inverse
 		function theorem to show there exists no diffeomorphism from an open set
-		in $\R^n$ to an open set in $\R^{n-1}$)
-		\item Prove that $\bd X$ is a smooth $(n-1)$-manifold without boundary
+		in $\R^n$ to an open set in $\R^{n-1}$.)
+		\item Prove that $\bd X$ is a smooth $(n-1)$-manifold without boundary.
 	\end{enumerate}
 \end{exer}
 %
+\section{Tangent Spaces and the Tangent Bundle}
+%
+Recall from multivariable calculus that the derivative is the best linear
+approximation to a map. Because of this, we need to introduce some sort
+of linear structure on our smooth manifold in order to make sense of
+derivatives of maps between manifolds. \\
+
+In the case where our manifold $M$ is embedded in $\R^n$, this is easy, since we can take a chart $(U, \varphi)$, and treat is as a map $\R^k \to \R^n$. Then
+the image of derivative $d\varphi\inv_p : \R^k \to \R^n$ is the best linear
+approximation to our manifold $M$ at the point $p \in M \subset \R^n$. This
+is nice, but is not an intrinsic definition, since it relies on our manifold
+lying in some ambient Euclidean space. While this is always possible thanks
+to the Whitney Embedding theorem, there's a more natural way to talk about
+tangent vectors to an abstract manifold, that need not be embedded in $\R^n$.\\
+
+We'll provide some motivation in the Euclidean case first. We naturally think
+of tangent vectors at a point $p \in \R^n$ as another copy of $\R^n$
+based at $p$. However, there is a different way to think about tangent vectors.
+Let $e_i$ denote the standard basis for $\R^n$, and let $v \in \R^n$. Then
+there exists a linear differential operator $D_v$ on $\C^\infty(\R^n)$ that
+takes a function $f: \R^n \to \R$, and takes its directional derivative in the
+direction of $v$. If we write $v = v^ie_i$, then
+$$D_v\vert_p = v^i\frac{\partial}{\partial x^i}\vert_p $$
+We also note that $D_v$ satisfies to product rule (also referred to as the Leibniz
+rule), i.e. for $f,g \in C^\infty(\R^n)$, we have that
+$$D_v\vert_p(fg) = f(p)D_vg + g(p)D_vf$$
+\begin{defn}
+	A linear map $D : C^\infty(\R^n) \to \R$ satisfying the product rule at $p \in \R^n$,
+	i.e.
+	$$D(fg) = f(p)Dg + g(p)Df$$
+	is called a \ib{derivation at p}
+\end{defn}
+%
+\begin{thm}
+	There is a bijection
+	$$\set{\text{Derivations at } p} \leftrightarrow
+	\set{\text{tangent vectors based at } p}  $$
+	given by the mapping $v \mapsto D_v$
+\end{thm}
+%
+This theorem tells us that thinking about derivations is equivalent to thinking
+of tangent vectors based at a point $p$. In addition, this definition gives
+more structure to our original idea of tangent vectors, since derivations act
+on smooth functions, rather than just being some arrow. This definition also
+generalizes nicely to abstract manifolds, since the only real tools we have
+as of now are notions of smoothness.
+%
+\begin{defn}
+	Let $M$ be a smooth manifold and $p \in M$. Then the \ib{tangent space} at
+	$p$, denoted $T_pM$, is the vector space of derivations at $p$.
+\end{defn}
+%
+Then given a smooth map of manifolds $F: M \to N$, we want the derivative of $F$
+at $p$ to be a linear map $dF_p : T_pM \to T_{f(p)}N$. Given some derivation
+$v \in T_pM$, how should $dF_p(v)$ act on some function $g \in C^\infty(N)$?
+We don't have too much at our disposal, so the only reasonable choice here is
+to have
+$$dF_p(v)g = v(g \circ F) $$
+The derivative is also referred to as the \ib{pushforward}, and some choose
+to denote it as $F_*$.\\
+
+Now that we have an abstract definition of tangent spaces, we'd like to see how
+these objects behave in local coordinates. Let $M$ be a smooth $n$-manifold,
+and let $(U,\varphi)$ be a chart for $p$ with $\varphi = (x^1 ,\ldots x^n)$.
+Then the \ib{coordinate vectors} at $p$ for the chart $(U, \varphi)$ are the
+derivations $\partial/\partial x^i\vert_p$. The action of the coordinate
+vectors is given by
+$$\frac{\partial}{\partial x^i}f =
+\frac{\partial (f \circ \varphi\inv)}{\partial x^i}\bigg\vert_{\varphi(p)} $$
+So the coordinate vectors are literally the partial derivative operations on
+the coordinate representation of a function, justifying the notation. We often
+abbreviate them as just $\partial_i$ when the choice of coordinates are clear.
+%
+\begin{thm}
+	The coordinate vectors $\partial/ \partial x^i \vert_p$ form a basis
+	for $T_pM$.
+\end{thm}
+%
+The following exercise should help you build intuition about the derivative,
+since it will resemble something you might already know. In addition, it's
+a good exercise to make sure you understand the definition of vectors as
+derivations and the derivative.
+%
+\begin{exer}
+Let $M$ and $N$ be smooth manifolds, and let $F : M \to N$ be a smooth map.
+Fix $p \in M$ and charts $(U, \varphi)$ and $(V, \psi)$ for $p$ and $F(p)$
+respectively. Show that $dF_p$ is given in local coordinates by the Jacobian
+matrix of $\psi \circ F \circ \varphi\inv$. (Hint: To do this, observe
+the action of $dF_p(\partial /\partial x^i\vert_p)$ on an arbitrary smooth
+function $f \in C^\infty(N)$).
+\end{exer}
+%
+Local coordinates provide an excellent tool for giving concrete descriptions
+of functions and objects of a manifold, but working in coordinates has a few
+nuances. If we define some quantity (a function, tensor, etc.) using local
+coordinates, we need to ensure that our definition still works under a change
+of coordinates. Otherwise, the quantity we attempted to define is not
+well-defined at all! Because of this, it's in our best interest to understand
+how tangent vectors behave under coordinate transformation. \\
+
+Let $(U, \varphi)$ and $(V, \psi)$ be two charts about a point $p \in M$, with
+$\varphi = (x^1, \ldots x^n)$ and $\psi = (y^1, \ldots, y^n)$.
+We want to express $\partial/\partial x^i\vert_p$ in terms of the
+$\partial/\partial y^i\vert_p$. To do this, we want to compute the image of
+$\partial / \partial x^i$ under the derivative $d(\psi \circ \varphi\inv)_p$.
+The computation yields
+$$\frac{\partial}{\partial x^i}\bigg\vert_p =
+\frac{\partial y^j}{\partial x^i}(\psi(p)) \frac{\partial}{\partial y^j}\bigg\vert_p$$
+which looks just like the chain rule from multivariable calculus. Likewise,
+for an arbitrary vector $v = v^i \partial / \partial x^i$, it's componenets
+$\tilde{v}^i$ in the coordinate system given by the $y^i$ is
+$$\tilde{v}^j = v^i\frac{\partial y^j}{\partial x^i}(\psi(p)) $$
+%
+It's important to note that each point $p \in M$ gets its own tangent
+space -- there's no natural identification between tangent spaces, and
+no way to transport information between then (at least not yet!).
+However, we can construct a new object using the technology we have
+now -- the tangent bundle.
+\begin{defn}
+	Let $M$ be a smooth manifold. Then the \ib{tangent bundle} of $M$ is
+	the set
+	$$TM = \coprod_{p \in M} T_pM = \set{(p,v) ~:~ p \in M, v \in T_pM} $$
+	The tangent bundle comes equipped with a natural map $\pi : TM \to M$
+	given by $\pi(p,v) = p$ called the \ib{projection}.
+\end{defn}
+%
+We only said set in the definition, but there's more structure here. As
+you might expect, $TM$ is a smooth manifold.
+%
+\begin{thm}
+	The tangent bundle $TM$ is a smooth manifold, and has a natural smooth
+	structure such that the projection $\pi : TM \to M$ is smooth.
+\end{thm}
+%
+\begin{proof}
+For a point $p \in M$, fix a chart $(U, \varphi)$. We then use this to
+construct what will be chart for $\pi\inv(U)$, and we will use these
+charts to define the topology.
+\end{proof}
