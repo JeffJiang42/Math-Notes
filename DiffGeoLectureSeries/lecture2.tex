@@ -1,0 +1,38 @@
+%
+\section{Multilinear Algebra}
+%
+Tensors fields will play an important role in thr study of manifolds, so
+it's important to see the linear model first. In this way. we can see how
+to transport knowledge of the linear case to the nonlinear case of
+manifolds. As it turns out, tensors are the proper way the think about
+integration on a manifold, which is one of their many uses. \\
+%
+The central idea of tensors is \emph{multilinearity}. Let $V_1 \ldots V_n$
+be vector spaces. Then a function $F : V_1 \times \cdots \times V_n \to
+\R$ is \ib{multilinear} if it is linear in each term with the other terms
+fixed, i.e.
+$$F(v_1, \ldots \lambda v_i + \mu v_i', \ldots, v_n) =
+\lambda F(v_1, \ldots v_i, \ldots v_n) +
+\mu F(v_1 \ldots, v_i', \ldots, v_n)$$
+%
+\begin{defn}
+Let $V_1 \cdots V_k$ be finite dimensional vector spaces. Then the
+\ib{tensor product} of $V_1 \cdots V_k$ is a vector space, denoted
+$V_1 \otimes \cdots \otimes V_k$ equipped with a multilinear map
+$V_1 \times \cdots \times V_k \to V \otimes \cdots \otimes V_k$ satisfying
+the follwing \ib{universal property} : Given a multilinear map
+$\varphi : V_1 \times \cdots \times V_k \to W$ for any vector space $W$,
+there exists a unique map
+$\tilde{\varphi} : V_1 \otimes \cdots \otimes V_k$ such that the following
+diagram
+$$\begin{tikzcd}
+V_1 \times \cdots \times V_k \ar[dr, "\varphi"] \ar[d] \\
+V_1 \otimes \cdots \otimes V_k \ar[r, "\tilde{\varphi}"'] & W
+\end{tikzcd}$$
+commutes.
+\end{defn}
+%
+\begin{defn}
+Let $V$ be a finite dimensional vector space. Then the \ib{dual space} $V^*$ of $V$ is the vector space of linear maps $V \to \R$.
+\end{defn}
+%
