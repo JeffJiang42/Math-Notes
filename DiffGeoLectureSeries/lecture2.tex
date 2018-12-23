@@ -7,10 +7,12 @@ to transport knowledge of the linear case to the nonlinear case of
 manifolds. As it turns out, tensors are the proper way the think about
 integration on a manifold, which is one of their many uses. \\
 %
-The central idea of tensors is \emph{multilinearity}. Let $V_1 \ldots V_n$
-be vector spaces. Then a function $F : V_1 \times \cdots \times V_n \to
-\R$ is \ib{multilinear} if it is linear in each term with the other terms
-fixed, i.e.
+Recall that the \ib{dual space} $V^*$ of a vector space $V$ is the vector space
+of linear maps $V \to \R$. Dual spaces will be the building blocks of
+multilinear functions The central idea of tensors is \emph{multilinearity}.
+Let $V_1 \ldots V_n$ be vector spaces. Then a function
+$F : V_1 \times \cdots \times V_n \to \R$ is \ib{multilinear} if it is linear
+in each term with the other terms fixed, i.e.
 $$F(v_1, \ldots \lambda v_i + \mu v_i', \ldots, v_n) =
 \lambda F(v_1, \ldots v_i, \ldots v_n) +
 \mu F(v_1 \ldots, v_i', \ldots, v_n)$$
@@ -22,7 +24,7 @@ $V_1 \otimes \cdots \otimes V_k$ equipped with a multilinear map
 $V_1 \times \cdots \times V_k \to V \otimes \cdots \otimes V_k$ satisfying
 the follwing \ib{universal property} : Given a multilinear map
 $\varphi : V_1 \times \cdots \times V_k \to W$ for any vector space $W$,
-there exists a unique map
+there exists a unique linear map
 $\tilde{\varphi} : V_1 \otimes \cdots \otimes V_k$ such that the following
 diagram
 $$\begin{tikzcd}
@@ -32,7 +34,62 @@ V_1 \otimes \cdots \otimes V_k \ar[r, "\tilde{\varphi}"'] & W
 commutes.
 \end{defn}
 %
+We've given the universal property, but we haven't guaranteed that such
+a vector space exists.
+%
+\begin{thm}
+Let $V_1, \ldots V_k$ be finite dimensional vector spaces, and let
+$F(V_1, \ldots, V_k)$ denote the \ib{free vector space} on
+$V_1, \ldots V_k$, i.e. formal linear combinations of $k$-tuples
+$(v_1,\ldots,v_k)$ with $v_i \in V_i$. Then let $R$ denote the subspace
+spanned by elements of the form
+\begin{align*}
+&(v_1, \ldots \lambda v_i, \ldots v_k) -
+\lambda (v_1, \ldots v_i, \ldots v_k)\\
+&(v_1, \ldots, v_i + v_i', \ldots v_k) - (v_1, \ldots v_i, \ldots v_k)
+- (v_1, \ldots v_i', \ldots v_k)
+\end{align*}
+Let $v_1 \otimes \cdots \otimes v_k$ denote the image of $(v_1, \ldots v_k)$
+under the quotient projection. Then the vector space $F(V_1, \ldots V_k) / R$,
+equipped with the map $V_1 \times \cdots V_k \to F(V_1, \ldots V_k) / R$ given
+by $(v_1, \ldots, v_k) \mapsto v_1 \otimes \cdots \otimes v_k$ satisfies the
+universal property of the tensor product.
+\end{thm}
+%
+The reason we are about tensor products, is that it gives us the tools to
+describe multilinear maps.
+%
+\begin{thm}
+Let $L(V_1, \ldots, V_k)$ denote the space of multilinear maps
+$V_1 \times \cdots \times V_k \to \R$. Then there is a canonical isomorphism
+$V_1^* \otimes \cdots \otimes V_k^* \cong L(V_1 \ldots, V_k)$
+\end{thm}
+%
+\begin{proof}
+We define $\varphi : V_1 \otimes \cdots \otimes V_k \to L(V_1, \ldots, V_k)$ by
+specifying it's action on the spanning set of elements of the form
+$v^1 \otimes \cdots \otimes v^k$ and extending linearly to linear combinations.
+$$\varphi(v^1 \otimes \cdots \otimes v^k)(w_1, \ldots w_k) =
+\prod_i v^i(w_i)$$
+\end{proof}
+%
+\begin{exer}
+Prove the map $\varphi$ is an isomorphism.
+\end{exer}
+%
 \begin{defn}
-Let $V$ be a finite dimensional vector space. Then the \ib{dual space} $V^*$ of $V$ is the vector space of linear maps $V \to \R$.
+A \ib{covariant} $k$-tensor on a vector space $V$ is an element of
+$\underbrace{V^* \otimes \ldots \otimes V^*}_{k \text{ times}}$. A
+\ib{contravariant} $k$ tensor is an element of $\underbrace{V \otimes \ldots \otimes V}_{k \text{ times}}$. A $(k,\ell)$-tensor is an element of
+$\underbrace{V^* \otimes \ldots \otimes V^*}_{k \text{ times}} \otimes
+\underbrace{V \otimes \ldots \otimes V}_{\ell \text{ times}}$. We denote the
+vector space of covariant, contravariant, and mixed tensors as $T^k(V)$,
+$T_k(V)$, and $T^k_\ell(V)$ respectively.
 \end{defn}
+%
+The central idea behind integration is \emph{volume}. If you think about your
+calculus classes (especially vector calculus), you recall that the things
+you integrate tend to be infinitesimal areas or volumes, and you might have
+thought of the formal symbols $dA$ and $dx~dy$ as symbols representing
+tiny squares or parallelograms.
 %

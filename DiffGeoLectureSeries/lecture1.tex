@@ -23,7 +23,7 @@ differ from $\R^n$.
 		we take the line cotaining both $N$ and $p$, which intersects the $z = 0 $ plane at one point
 		$q$. We then define $\varphi_N(p) = q$. Stereographic projection $\varphi_S$ from the South
 		pole is defined in an analogous manner. An explicit formula for $\varphi_N$ is
-		$$\varphi_N(x,y,z) = \left(\frac{x}{1 - z}, \frac{x}{1 - z} \right) $$
+		$$\varphi_N(x,y,z) = \left(\frac{x}{1 - z}, \frac{y}{1 - z} \right) $$
 	\end{enumerate}
 \end{exmp}
 %
@@ -153,7 +153,7 @@ vectors. Let $e_i$ denote the standard basis for $\R^n$, and let $v \in
 $\C^\infty(\R^n)$ that takes a function $f: \R^n \to \R$, and takes its
 directional derivative in the direction of $v$. If we write $v = v^ie_i$,
 then
-$$D_v\vert_p = v^i\frac{\partial}{\partial x^i}\vert_p $$
+$$D_v\vert_p = v^i\frac{\partial}{\partial x^i}\bigg\vert_p $$
 We also note that $D_v$ satisfies to product rule (also referred to as
 the Leibniz rule), i.e. for $f,g \in C^\infty(\R^n)$, we have that
 $$D_v\vert_p(fg) = f(p)D_vg + g(p)D_vf$$
@@ -302,8 +302,8 @@ space. These are defining features of a geometric object called a
 \section{A Short Introduction to Vector Bundles}
 %
 \begin{defn}
-Let $M$ be a smooth manifold. Then a \ib{vector bundle} over $M$ is
-anothe smooth manifold $E$ equipped with a smooth map $\pi : E \to M$
+Let $M$ be a smooth manifold. A \ib{vector bundle} over $M$ is
+another smooth manifold $E$ equipped with a smooth map $\pi : E \to M$
 satisfying the following properties.
 \begin{enumerate}
 	\item $\pi$ is surjective
@@ -327,8 +327,8 @@ $\pi\inv(p)$ as $E_p$ where the map $\pi$ is implicit.
 \begin{exmp} \enumbreak
 	\begin{enumerate}
 		\item Given any manifold $M$ and a vector space $V$, the product
-		$M \times V$ equppied with the projection $M \times V \to M$ is a
-		vector bundle, called the \ib{trivial bundle}.
+		manifold $M \times V$ equppied with the projection $M \times V \to M$
+		is a vector bundle, called the \ib{trivial bundle}.
 		\item The tangent bundle $TM$ of a smooth $n$-manifold $M$ is a
 		vector bundle of rank $n$.
 		\item Consider $\RP^n$, the space of lines in $\R^{n+1}$. A point
