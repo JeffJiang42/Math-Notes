@@ -87,9 +87,38 @@ vector space of covariant, contravariant, and mixed tensors as $T^k(V)$,
 $T_k(V)$, and $T^k_\ell(V)$ respectively.
 \end{defn}
 %
+For the most part, we will be focused on covaraint tensors, though
+contravariant and mixed tensors do show up as well in differential geometry.
+An important property of covariant tensors is that they \emph{pull back}
+(which admittedly makes their name quite confusing -- the name is a relic
+from older times). What we mean by that is that given vector spaces $V$ and
+$W$, a linear map $\varphi : V \to W$ induces a map
+$\varphi^* : T^k(W) \to T^k(V)$, where a $k$-tensor $\omega$ is mapped
+to the tensor $\varphi^*\omega$ defined by
+$$\varphi^*\omega(v_1, \ldots, v_k) = \omega(\varphi(v_1), \ldots \varphi(v_k))$$
+%
+%TODO do all the cotangent space stuff here, as well as tensor bundles/fields?
+%
 The central idea behind integration is \emph{volume}. If you think about your
 calculus classes (especially vector calculus), you recall that the things
 you integrate tend to be infinitesimal areas or volumes, and you might have
 thought of the formal symbols $dA$ and $dx~dy$ as symbols representing
-tiny squares or parallelograms.
+tiny squares or parallelograms. Therefore, it's in our best interest to
+understand a general framework for volume. You've probablty encountered
+the determinant of a matrix before, and you might have seen that it computes
+the volume of the parallelopiped spanned by the columns of the matrix. This
+will be the prototypical ``volume function" we will work with. There are
+several properties of determinants that make them ideal ``volume functions,"
+and there are some properties we should keep in
+ind.  \\
+
+Firstly, the determinant is multilinear, much like how the volumes of
+parelleopipieds change when we add or scale vectors. Secondly, the determinant
+evaluates to $0$ on any linearly dependent set of vectors, which should be
+intuitive, since we are missing a dimension for our parallelopiped. A
+consequence of this is that the determinant is \emph{alternating} -- it
+switches sign if we swap two columns of the matrix. This hints that we
+should really be thinking about \emph{signed} volume. Therefore, the class
+of volume functions we're looking for should be multiliear alternating
+tensors on the vector space.
 %
