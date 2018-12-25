@@ -98,19 +98,134 @@ to the tensor $\varphi^*\omega$ defined by
 $$\varphi^*\omega(v_1, \ldots, v_k) = \omega(\varphi(v_1), \ldots \varphi(v_k))$$
 %
 %TODO do all the cotangent space stuff here, as well as tensor bundles/fields?
+\section{Cotangent Spaces and Covectors}
+%
+Now that we've defined tensors on vector spaces, we want to transport this
+concept fo the nonlinear case of manifolds.
+\begin{defn}
+Let $M$ be a smooth manifold, and $p \in M$. Then the \ib{cotangent space} at
+$p$ is the dual space to $T_pM$, and is denoted $T^*_pM$. The
+\ib{cotangent bundle} is the vector bundle $T^*M = \coprod_{p \in M}T_p^*M$.
+\end{defn}
+%
+\begin{defn}
+A \ib{covector field} is a global section of $T^*M$, i.e. for every $p \in M$,
+we assign it a covector $\omega_p \in T_p^*M$. We denote the vector space of
+covector fields as $\mathfrak{X}^*(M)$. Given a covector field $\omega$, we
+often denote it's value at $p \in M$ as $\omega_p$.
+\end{defn}
+%
+In particular, there's an easy way to obtain covector fields. Given a smooth
+function $f \in C^\infty(M)$, define the \ib{differential} of $f$, denoted $df$,
+to be the covector field $df_p(v) = vf$, where $c \in T_pM$. We note that this
+is the same notation for the derivative, but in the case for a smooth
+real-valued function, the two definitions essentially coincide. In coordinates,
+we have that, from the definition, $df(\partial_i) = \partial_i f$, so
+the components of $df$ in terms of the dual basis $\xi^i$ to the $\partial_i$
+are the functions $\partial_i f$. In particular, we can compute the
+differentials for the coordinate functions $x^i$. We have that
+$$dx^j = \partial_i x^j \xi^j = \delta^j_i \xi^i = \xi^j $$
+Therefore, the differentials $dx^i$ are the dual basis to the $\partial_i$.
+We can then write the coordinate formula for $df$ in a more suggestive notation
+$df = \partial_i f dx^i$, which looks like a gradient. \\
+
+As with tangent vectors, we would like to know how the covectors $dx^i$
+transform under a change of coordinates. Let $(y^1, \ldots y^n)$ denote another
+set of coordinate functions, and let $\omega = \omega_i dx^i$ be some covector.
+Then using the transformation law for the tangent vectors
+$\partial/ \partial x^i$, we compute
+$$\omega_i = \omega\left( \frac{\partial}{\partial x^i} \right)  =
+\omega\left( \frac{\partial y^j}{\partial x^i}\frac{\partial}{\partial y^j} \right)
+= \frac{\partial y^j}{\partial x^i}\tilde{\omega}^j$$
+where $\tilde{\omega}^j$ denotes the component functions of $\omega$ with respect
+to the basis $dy^i$. \\
+
+As it turns out, covector fields are the natural things to integrate along
+curves, and will form the basis for the discussion on integration on manifolds.
+The main reason for this is that covector fields pull back, which means that
+they play nicely with coordinate charts.
+%
+\begin{defn}
+Let $F : M \to N$ be a smooth map of manifolds, and
+$\omega \in \mathfrak{X}^*(N)$. Define the \ib{pullback} of $\omega$ along $F$
+to be the covector field $F^*\omega \in \mathfrak{X}^*(M)$ defined by
+$(F^*\omega)_p = dF_p^*\omega_p$, i.e. the point-wise pullback
+$$dF_p^*\omega_p(v) = \omega_{F(p)}(dF_p(v)) $$
+for $v \in T_pM$.
+\end{defn}
+%
+Note that this is defined for \emph{any} smooth map $M \to N$, not just for
+diffeomorphisms like in the case of vector fields.
+%
+\begin{exmp}[Computing pullbacks]
+Computing pullbacks of covector fields when the domain and codomain are Euclidean
+space is relatively easy, and agrees with the calculus idea of $u$-substitution.
+For example, let $F : \R^2 \to \R^2$ where $F(s,t) = (st, e^t)$ and
+$\omega = x dy - ydx$ (Exercise 11.8 in Lee). Then to compute the pullback $F^*\omega$,
+we substitute $st$ for $x$ and $e^t$ for $y$, i.e.
+\begin{align*}
+F^*\omega &= st d(e^t) - e^td(st) \\
+&= st(e^t dt) - e^t(tds + sdt) \\
+&= (ste^t - se^t)dt - te^t ds
+\end{align*}
+\end{exmp}
+%
+\begin{defn}
+Let $M$ be a smooth manifold. Then a \ib{smooth curve} is a smooth map
+$\gamma : [0,1] \to M$.
+\end{defn}
+%
+The key point here is that integration on the interval $[0,1]$ makes sense to
+us, so given a covector field $\omega$, we want to define its integral in
+terms of what we already know. Let $\omega$ be a covector field on $[0,1]$,
+with global coordinate $t$. Then we know $\omega = f dt$ for some smooth
+function $f$, and we can define the integral to be our usual notion of
+integration
+$$\int_{[0,1]} \omega = \int_0^1 fdt $$
+%
+\begin{defn}
+Let $\gamma : [0,1] \to M$ be a smooth curve, and $\omega \in \mathfrak{X}^*(M)$.
+Define the \ib{integral} of $\omega$ along $\gamma$ to be
+$$\int_\gamma \omega = \int_{[0,1]}\gamma^*\omega $$
+\end{defn}
+%
+\begin{exmp}[Exercise 11-14 in Lee]
+Let $\omega$ be the covector field on $\R^3$ defined by
+$$\omega = -\frac{4z}{(x^2 + 1)} dx + \frac{2y}{y^2 + 1}dy + \frac{2x}{^2 + 1} dz $$
+and let $S$ denote the line segment from $(0,0,0)$ to $(1,1,1)$. To compute
+the line integral $\int_S \omega$, we parameterize $S$ with $\gamma(t) = (t,t,t)$,
+and compute the pullback to be
+\begin{align*}
+\gamma^*\omega = -\frac{4t}{(t^2 + 1)} dt + \frac{2t}{t^2 + 1}dt + \frac{2t}{^2 + 1} dt \\
+= \left( \frac{4t}{t^2 + 1} - \frac{4t}{(t^2 + 1)^2} \right) dt
+\end{align*}
+which gives us that
+$$\int_S \omega = \int_0^1 \left( \frac{4t}{t^2 + 1} - \frac{4t}{(t^2 + 1)^2} \right) dt$$
+\end{exmp}
+%
+\begin{exer}
+Define the covector field $\omega$ on $\R^2 - \set{0}$ by
+$$\omega = \frac{x dy - ydx}{x^2 + y^2} $$
+compute the integral of $\omega$ along the unit circle. (Note that the integral
+along the unit circle is the same as the integral along the unit circle
+missing a point, which can be parameterized with the curve
+$\gamma(t) = (\cos t, \sin t))$
+\end{exer}
+%
+\section{Differential Forms and Integration on Manifolds}
 %
 The central idea behind integration is \emph{volume}. If you think about your
 calculus classes (especially vector calculus), you recall that the things
 you integrate tend to be infinitesimal areas or volumes, and you might have
 thought of the formal symbols $dA$ and $dx~dy$ as symbols representing
-tiny squares or parallelograms. Therefore, it's in our best interest to
+tiny squares or parallelogram, and you probably think of $dt$ as an
+infinitesimal line segment. Therefore, it's in our best interest to
 understand a general framework for volume. You've probablty encountered
 the determinant of a matrix before, and you might have seen that it computes
 the volume of the parallelopiped spanned by the columns of the matrix. This
 will be the prototypical ``volume function" we will work with. There are
 several properties of determinants that make them ideal ``volume functions,"
-and there are some properties we should keep in
-ind.  \\
+and there are some properties we should keep in mind.  \\
 
 Firstly, the determinant is multilinear, much like how the volumes of
 parelleopipieds change when we add or scale vectors. Secondly, the determinant
@@ -121,4 +236,31 @@ switches sign if we swap two columns of the matrix. This hints that we
 should really be thinking about \emph{signed} volume. Therefore, the class
 of volume functions we're looking for should be multiliear alternating
 tensors on the vector space.
+%
+\begin{defn}
+A tensor $\omega \in T^k(V)$ is \ib{alternating} if it changs sign whenever
+two arguments are interchaged, i.e. for vectors $v_1, \ldots v_k$, we have that
+for all distinct $i,j$,
+$$\omega(v_1,\ldots, v_i, \ldots v_j, \ldots v_k) = -\omega(v_1, \ldots v_j, \ldots v_i, \ldots v_k) $$
+Another way to define this is using the sign of a permutation. Given an permutation
+$\sigma \in S_k$, the \ib{signature} of $\sigma$ is the number of transpositions
+needed to generated $\sigma$, and is denoted $\sgn \sigma$. Then let $(-1)^\sigma$
+denoted $(-1)^{\sgn\sigma}$. An equivalent defintion for $\omega$ to be alternating
+is that
+$$\omega(v_1, \ldots v_k) = (-1)^\sigma\omega(v_{\sigma(1)}, \ldots, v_{\sigma(k)}) $$
+We denote the space of all alternating covariant $k$-tensors as $\Lambda^k(V^*)$.
+\end{defn}
+%
+You can take for granted that for an $n$-dimensional vector space $V$, we have
+$\dim \Lambda^k(V^*) = \binom{n}{k}$.
+%
+One wonderful fact about the alternating tensors is that the form an algebra under
+a product called the \ib{wedge product}. There's a few gory details to work out,
+which I will defer to Lee. We're mainly concerened with their properties, which
+you can take as axioms. If you want to read more into the construction of the
+wedge product, chapter 14 in Lee should have everything you need.
+%
+\begin{defn}
+Let $\omega \in \Lambda^k(V^*)$ and $\eta \in \Lambda^\ell(V^*)$.
+\end{defn}
 %
