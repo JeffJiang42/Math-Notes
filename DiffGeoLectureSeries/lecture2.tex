@@ -251,16 +251,73 @@ $$\omega(v_1, \ldots v_k) = (-1)^\sigma\omega(v_{\sigma(1)}, \ldots, v_{\sigma(k
 We denote the space of all alternating covariant $k$-tensors as $\Lambda^k(V^*)$.
 \end{defn}
 %
-You can take for granted that for an $n$-dimensional vector space $V$, we have
-$\dim \Lambda^k(V^*) = \binom{n}{k}$.
-%
 One wonderful fact about the alternating tensors is that the form an algebra under
-a product called the \ib{wedge product}. There's a few gory details to work out,
-which I will defer to Lee. We're mainly concerened with their properties, which
-you can take as axioms. If you want to read more into the construction of the
-wedge product, chapter 14 in Lee should have everything you need.
+a product called the \ib{wedge product}, and is denoted $\wedge$.
+There's a few gory details to work out, which I will defer to Lee. We're mainly
+concerened with their properties, which you can take as axioms.
+If you want to read more into the construction of the wedge product,
+chapter 14 in Lee should have everything you need.
+%
+We'll first lay out the rules for the wedge product.
+\begin{enumerate}
+  \item The wedge product $\wedge$ is bilinear, i.e.
+  $$\omega \wedge (\eta + \xi) = \omega \wedge \eta + \omega \wedge \xi $$
+  \item The wedge product is associative, i.e. $\omega \wedge (\eta \wedge \xi)
+  = (\omega \wedge \eta) \wedge \xi)$.
+  \item For $\omega \in \Lambda^k(V^*)$
+  and $\eta \in \Lambda^\ell(V^*)$, we have that
+  $\omega \wedge \eta \in \Lambda^{k + \ell}(V^*)$
+  \item The wedge product is anticommutative, (sometimew called supercommutative
+  if you are familiar with superalgebras) i.e. for $\omega \in \Lambda^k(V^*)$
+  and $\eta \in \Lambda^\ell(V^*)$, we have that
+  $\omega \wedge \eta = (-1)^{k\ell}\eta \wedge \omega$. In particular,
+  note that for $k = \ell = 1$, this implies that $\omega \wedge \omega = 0$.
+\end{enumerate}
+%
+Under this product, the vector space $\bigoplus_{k} \Lambda^k(V)$ forms an
+algebra over $\R$, called the \ib{exterior algebra}. In particular, this algebra
+is $\Z$-graded (if you know what that means).
+
+The next thing we need to know is that given a $k$-form $\omega$ and
+an $\ell$-form $\eta$, how does $\omega \wedge \eta$ act? We start in the simple
+case. Let $\omega$ and $\eta$ both be $1$-forms, i.e. covectors. Then
+$$(\omega \wedge \eta)(v_1,v_2) = \omega(v_1)\eta(v_2) - \omega(v_2)\eta(v_1)
+= \det\begin{pmatrix}
+  \omega(v_1) & \omega(v_2) \\
+  \eta(v_1) & \eta(v_2)
+\end{pmatrix}$$
+In particular, given collection $\set{\omega^i}$ of covectors, their $k$-fold
+wedge product acts on $k$-vectors by
+$$\omega^1 \wedge \ldots \wedge \omega^k(v_1, \ldots ,v_k) = \det \omega^i(v_j)$$
+If we fix a basis $\set{e_i}$ for $V$ and let $\set{\varepsilon^i}$ denote the
+dual basis, then you can take for a fact that the set
+$$\set{\varepsilon^{i_1} \wedge \ldots \wedge \varepsilon^{i_k}~:~
+1 \leq i_1 < i_2 \ldots < i_k \leq \dim V} $$
+is a basis for $\Lambda^k(V)$, which implies in particular that the dimension is
+$\binom{\dim V}{k}$.
+%
+\begin{exer}
+Show that if a set $\omega^1 \ldots \omega^k$ of covectors is linearly dependent,
+then $\omega^1 \wedge \ldots \wedge \omega^k = 0$.
+\end{exer}
+%
+We now move to the world of manifolds. First, we make a quick remark regarding
+vector bundles. We have a lot of tools for constructing new vector spaces from
+old (e.g. direct sum, tensor product, exterior algebra), and most of these
+constructions carry over to vector bundles, where we do the linear algebraic
+operations fiberwise. For example, for vector bundles $E \to M$ and $F \to M$,
+we can form the \ib{Whitney sum} $E \oplus F$ by taking the fiberwise direct sum,
+i.e. $(E \oplus F)_p = E_p \oplus F_p$. There's some care that the fiberwise
+operations occur smoothly, which is made rigorous with the notion of a
+\ib{smooth functor}. For more details, you can check out Exercise 10-8 in Lee.
+For now, just assume that taking the exterior powers $\Lambda^k(V)$ forms
+a smooth functor, so we can in particular do this to the cotangent bundle
+of a manifold $M$, giving us vector bundles
+$\Lambda^k(T^*M) = \coprod_{p \in M} \Lambda^k(T^*_pM)$ with the obvious
+projections.
 %
 \begin{defn}
-Let $\omega \in \Lambda^k(V^*)$ and $\eta \in \Lambda^\ell(V^*)$.
+A section of $\Lambda^k(T^*M)$ is a \ib{differential} $k$-form. The space
+of $k$-forms is denoted $\Omega^k(M)$.
 \end{defn}
 %
