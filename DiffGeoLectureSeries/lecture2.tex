@@ -317,7 +317,30 @@ $\Lambda^k(T^*M) = \coprod_{p \in M} \Lambda^k(T^*_pM)$ with the obvious
 projections.
 %
 \begin{defn}
-A section of $\Lambda^k(T^*M)$ is a \ib{differential} $k$-form. The space
-of $k$-forms is denoted $\Omega^k(M)$.
+A section of $\Lambda^k(T^*M)$ is a \ib{differential} $k$\ib{-form}. The space
+of $k$-forms is denoted $\Omega^k(M)$. The wedge product $\omega \wedge \eta$
+for for $\omega \in \Omega^k(M)$ and $\eta \in \Omega^\ell(M)$ is the $k+\ell$
+form where $(\omega \wedge \eta)_p = \omega_p \wedge \eta_p$. Note that for local
+coordinates $(x^i)$, any $k$-form can be written locally in the form
+$\omega = \sum_I \omega_I dx^{i_1} \wedge \ldots \wedge dx^{i_k}$, where the
+sums is over all increasing sequences $I = (i_1, \ldots i_k)$ with
+$1 \leq i_1 < \ldots < i_k \leq \dim M$.
 \end{defn}
+%
+Like how covector fields ($1$-forms) were integrated over curves, $k$-forms
+are objects meant to be integrated over $k$-dimensional submanifolds. Like
+with $1-$forms, we mainly do this via pullback, so it's important to know
+how to do the computations.
+%
+\begin{prop}
+  Let $ F: M \to N$ be a smooth map.
+  \begin{enumerate}
+    \item $F^* : \Omega^k(N) \to \Omega^k(M)$ is linear
+    \item $F^*$ commutes with the wedge product, i.e.
+    $$F^*(\omega \wedge \eta) = F^*\omega \wedge F^*\eta $$
+    \item Summing over all increasing sequences of numbers $1 \leq i_1 < \ldots i_k \leq \dim M$
+    $$F^* \sum_I \omega_I dy^{i_1} \wedge \ldots \wedge dy^{i_k} =
+    \sum_I (\omega_I \circ F) d(y^{i_1} \circ F) \wedge \ldots \wedge d(y^{i_k}\circ F)$$
+  \end{enumerate}
+\end{prop}
 %
