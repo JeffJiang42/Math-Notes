@@ -325,7 +325,8 @@ coordinates $(x^i)$, any $k$-form can be written locally in the form
 $\omega = \sum_I \omega_I dx^{i_1} \wedge \ldots \wedge dx^{i_k}$, where the
 sums is over all increasing sequences $I = (i_1, \ldots i_k)$ with
 $1 \leq i_1 < \ldots < i_k \leq \dim M$. In the case that $\omega$ is a
-$\dim M$-form, we call it a \ib{top degree form}.
+$\dim M$-form, we call it a \ib{top degree form}. In addition, we let
+$\Omega^0(M) = C^\infty(M)$.
 \end{defn}
 %
 Like how covector fields ($1$-forms) were integrated over curves, $k$-forms
@@ -345,18 +346,23 @@ how to do the computations.
   \end{enumerate}
 \end{prop}
 %
-Using this, there's a simple way to express the pullback ofa top degree form.
+Using this, there's a simple way to express the pullback of a top degree form.
 Let $F: M \to N$, for smooth $n$-manifolds $M$ and $N$.
 with coordinates $(x^i)$ for $M$ and $(y^i)$ for $N$. Then
 let $\omega = u dy^1 \wedge \cdots \wedge xy^n$ be a top degree form for $N$
 for some smooth functions $u : N \to \R$. Then
 $$F^*\omega = (u \circ F)(\det DF)dx^1 \wedge \ldots  dx^n$$
-where $DF$ is the jacobian of the coordinate representation of $F$.
+where $DF$ is the Jacobian of the coordinate representation of $F$.
 This should look familiar, it's the change of coordinates formula in
 multivariable calculus! This means that differential forms transform in
-exactly the right manny for integration, as they encapsulate how parallelopipeds
+exactly the right manner for integration, as they encapsulate how parallelopipeds
 transform by the determinant of the derivative.
+%
 %TODO Exterior derivative + Stokes Theorem + relationship with grad/curl
 %Some integral computations?
-
+\section{The Exterior Derivative}
+%
+There's an operation on differential forms called the \ib{exterior derivative},
+which is a family of linear maps $\Omega^k(M) \to \Omega^{k+1}(M)$. By abuse of
+notation we call all of them $d$. We've already seen one of these maps.
 %
