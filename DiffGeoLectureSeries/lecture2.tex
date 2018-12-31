@@ -212,7 +212,7 @@ missing a point, which can be parameterized with the curve
 $\gamma(t) = (\cos t, \sin t))$
 \end{exer}
 %
-\section{Differential Forms}
+\section{Differential Forms and the Exterior Derivative}
 %
 The central idea behind integration is \emph{volume}. If you think about your
 calculus classes (especially vector calculus), you recall that the things
@@ -360,9 +360,93 @@ transform by the determinant of the derivative.
 %
 %TODO Exterior derivative + Stokes Theorem + relationship with grad/curl
 %Some integral computations?
-\section{The Exterior Derivative}
 %
 There's an operation on differential forms called the \ib{exterior derivative},
 which is a family of linear maps $\Omega^k(M) \to \Omega^{k+1}(M)$. By abuse of
-notation we call all of them $d$. We've already seen one of these maps.
+notation we call all of them $d$. We've already seen one of these maps, namely
+the differential $df$ of a function. We hope to generalize this to arbitrary
+differential forms. This is best done in coordinates. \\
+
+\begin{defn}
+Let $\omega \in \Omega^k(M)$. Then in coordinates $(x^i)$, we can write
+$$\omega = \sum_I \omega_I dx^{i_1} \wedge \cdots \wedge dx^{i_k}$$
+summing over all increasing index sequences $I$. Then the \ib{exterior derivative}
+of $\omega$, denoted $d\omega$ is the $(k+1)$ form given by
+$$d\omega = \sum_I \frac{\partial \omega_I}{\partial x^i}dx^i \wedge
+dx^{i_1} \wedge \cdots \wedge dx^{i_k} $$
+\end{defn}
+%
+\begin{exer}
+Let $x,y,z$ denote the standard coordinates on $\R^3$. Explicitly compute
+the action $d$ on $\Omega^0(\R^3)$, $\Omega^1(\R^3)$, and $\Omega^3(\R^3)$.
+In addition, try computing $d \circ d$. Does the exterior derivative
+look like something you remember from vector calculus?
+(Hint: You know how $d$ acts on $\Omega^0(\R^3)$. Then use the fact that
+any $1$-form can be written globally as $f_1 dx + f_2dy + f_3 dz$, and
+that any $2$-form can be written as $f_1 dx \wedge dy + f_2 dy \wedge dz +
+f_3 dx \wedge dz$).
+\end{exer}
+%
+A key observation to make regarding $d$ is that it is natural, in the sense
+that it commutes with pullback, i.e. $F^*(d\omega) = d(F^*\omega)$. Another
+observation is that $d \circ d = 0$, so (if you know the terminology)
+this gives rise to a chain complex
+$$\Omega^1(M) \xrightarrow{d} \Omega^{2}(M) \xrightarrow{d} \cdots
+\Omega^{n-1}(M) \xrightarrow{d} \Omega^n(M) \to 0$$
+called the \ib{de Rham Complex} of $M$. We say that a $k$-form $\omega$ is \ib{closed}
+if $d\omega = 0$, and we say it is \ib{exact} if there exists a $(k-1)$ form $\eta$
+such that $d\eta = \omega$.
+%
+\section{Integration on Manifolds}
+%
+As a quick remark, most of the discussion here relies on our manifld being
+oriented. Essentially this involves a consistent assignment of ``handedness"
+to our manifold. For now, just assume all the manifolds are oriented. \\
+
+As per usual, we start in the Euclidean case, which is particularly nice. Let
+$U \subset \R^n$ be open (there are less stringent conditions we can make on $U$,
+but it's not necssary for our purposes). Then let $\omega$ be an $n$-form, which
+can be written as $\omega = f dx^1 \wedge \cdots \wedge dx^n$ for some smooth
+function $f$. Then define the integral of $\omega$ over $U$ as
+$$\int_U \omega = \int_U f dx^1 \cdots dx^n $$
+where the right hand integral is the one we are familar with. This amounts
+to saying that integrating $\omega$ simply forgets all the wedge symbols. Recall
+the change of variable formula for $\R^n$ involves the determinant of the Jacobian
+and that the pullback formula for a $n$-form $\omega$ has this built in. This
+tells us that this integral is defined in a coordinate independent way. Namely,
+if we had a diffeomorphism $F : U \to V$, and an $n$-form $\omega$ defined on $V$,
+then $\int_V \omega = \int_U F^*\omega$ (assuming the diffeomorphism
+is orientation preserving). \\
+
+We now want to transfer this notion of integration to an abitrary manifold $M$.
+The first observation is that if an $n$-form $\omega$ is supported in some coordinate chart
+$(U,\varphi)$, which means that $\omega = 0$ outside of $U$, then this is easy,
+since we can define $\int_M \omega = \int_{\varphi(U)} (\varphi\inv)^*\omega$.
+In the general case, you need something called a \ib{partition of unity} subordinate
+to an open cover of $M$ by coordinate charts, but we will not dive into the details. \\
+
+The big theorem here involves integration on manifolds with boundary. It is a
+vast generalization of the fundamental theorem of calculus, and also encapsulates
+some of the key theorems in vector calculus, like Green's Theorem and the Divergence
+Theorem.
+%
+\begin{thm} [\ib{Stokes' Theorem}]
+Let $M$ be a smooth $n$-manifold with boundary, and $\omega \in \Omega^{n-1}(M)$.
+Then
+$$\int_{\bd M} \omega = \int_M d\omega$$
+\end{thm}
+%
+This is an extremely important computational tool. In particular, note that if $M$
+is a manifold without boundary, then the integral of any exact form $\omega = d\eta$
+over $M$ is $0$, since
+$$\int_M \omega = \int_\emptyset \eta = 0 $$
+%
+\begin{exer}
+Consider the torus $\mathbb{T} \cong S^1 \times S^1 \subset \R^4$, where
+$$\mathbb{T} = \set{(w,x,y,z) ~:~ w^2 + x^2 = 1, ~ y^2 + z^2 = 1} $$
+Compute the integral of $\omega = xyz dw \wedge dy$ over $\mathbb{T}$.(Hint:
+parameterize $\mathbb{T}$ with the map $\gamma \times \gamma$, where
+$\gamma : [0,2\pi) \to S^1$ is the map $\theta \mapsto (\cos\theta,\sin\theta)$
+this misses a circle on the torus, but it is measure $0$, so you can ignore it.)
+\end{exer}
 %
