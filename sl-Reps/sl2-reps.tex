@@ -1,0 +1,343 @@
+\documentclass[psamsfonts]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{yfonts}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+%
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathscr{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathsf{GL}}
+\newcommand{\SL}{\mathsf{SL}}
+\newcommand{\SP}{\mathsf{SP}}
+\newcommand{\SO}{\mathsf{SO}}
+\newcommand{\SU}{\mathsf{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Representations of $\mathfrak{sl}_2(\C)$}
+%
+\setcounter{section}{1}
+%
+\maketitle
+%
+The representation theory of the Lie algebra $\sl_2(\C)$ is extremely important
+in the representation theory of semisimple Lie algebras, and consequently, it
+is also important in the representation theory of Lie algebras. It has an explicit
+and relatively simple description of all the irreducible representations, which
+we will lay out here.\\
+
+The \ib{special linear group} $SL_n(\C)$ is the group of complex $n \times n$
+matrices with determinant $1$. By differentiating the determinant map at the
+identity, we get that it's Lie algebra, denoted $\sl_n(\C)$ is the space
+of complex $n \times n$ matrices with trace 0, equipped with the commutator
+bracket. It admits a basis given by the matrices
+\[
+H = \begin{pmatrix}
+1 & 0 \\
+0 & -1
+\end{pmatrix} \qquad X = \begin{pmatrix}
+0 & 1 \\
+0 & 0
+\end{pmatrix} \qquad Y = \begin{pmatrix}
+0 & 0 \\
+1 & 0
+\end{pmatrix}
+\]
+It's easy to verify that these satisfy the commutation relations
+\[
+[H,X] - 2X \qquad [H,Y] = -2Y \qquad [X,Y] = H
+\]
+As it turns out, this basis will make the analysis of irreducible representations
+quite simple. Let $V$ be a irreducible representation of $\sl_2(\C)$. From the
+semisimplity of $\sl_2(\C)$, we have that the representation preserves the Jordan
+decomposition, and since $H$ is diagonalizable, it's action on $V$ will also be
+diagonalizable, giving us a direct sum decomposition $V = \oplus_\lambda V_\lambda$
+of eigenspaces $V_\lambda$ of $H$. Let $v \in V_\lambda$ be an eigenvector of $H$
+with eigenvalue $\lambda$. To analyze the action of $X$ on $v$, we note a few
+helpful identities
+%
+\begin{align*}
+HX &= XH + HX - XH = XH + [H,X]\\
+HY &= YH + HY - YH = YH - [H,Y]
+\end{align*}
+%
+This then gives us the identities
+%
+\begin{align*}
+HXv &= XHv + [H,X]v = \lambda Xv + 2Xv = (\lambda + 2)Xv \\
+HYv &= YHv + [H,Y]v = \lambda Yv - 2Yv = (\lambda - 2)Yv
+\end{align*}
+%
+So the action of $X$ raises the eigenvalue by $2$, while the action of $Y$ lowers
+the eigenvalue by $2$. Furthermore, all the eigenvalues must differ by some
+multiple of $2$. If we fix an eigenvalue $\lambda$, then the subspace
+\[
+\bigoplus_{k \in \Z}V_{\lambda + 2k}
+\]
+is fixed by the actions of $H$, $X$, and $Y$, so it is invariant under the action
+of $\sl_2(\C)$. Then by irreducibility of $V$, this must be the whole space.
+Since $V$ is finite dimensional, there exists some maximal eigenvalue $n$ of $V$.
+Let $v \in V_n$. Since $V_{n+2} = 0$, $Xv = 0$, so we now want to observe the action
+of $Y$ on $v$. We claim that the set
+\[
+S = \set{Y^mv ~:~ m \in \Z^{\geq 0}}
+\]
+spans all of $V$. Due to the irreducibility of $V$, it suffices to show that
+the span of these vectors is fixed by the action of $H$, $X$, and $Y$. It is
+clearly fixed by $Y$, and since all elements of $S$ are eigenvectors of $H$, it
+is clear that the subspace is preserved by $H$ as well. The final thing to
+check is the action of $X$. We know $Xv = 0$, and for $XY$, we compute
+%
+\begin{align*}
+XYv &= YXv - [Y,X]v \\
+&= 0 - (-Hv) \\
+&= nv
+\end{align*}
+%
+\begin{prop}
+\[
+XY^mv = m(n-m+1)Y^{m-1}v
+\]
+\end{prop}
+%
+\begin{proof}
+We do this by induction. The base case $m = 1$ is verified above. Then assuming
+the proposition for $m$, we wish to verify the identity for $Y^{m+1}$. We compute
+\begin{align*}
+XY^{m+1}v &= [X,Y](Y^mv) + YX(Y^mv) \\
+&= HY^mv + Y(XY^m v) \\
+&= (n-2m)Y^mv + Y(m(n-m+1)Y^{m-1}v) \\
+&= ((n-2m)+ (m(n-m+1)))Y^mv \\
+\end{align*}
+Expanding out the coefficient and the expression $(m+1)(n-(m+1)+1)$ then verifies
+this identity.
+\end{proof}
+%
+Therefore $X$ fixes this subspace, showing that the span of $S$ must be all of $V$.
+We also note that this gives a basis of eigenvectors for $V$, with each eigenvector
+$Y^mv$ having a different eigenvalue, which implies that it spans the eigenspace
+with eigenvalue $n - 2m$. Finally, we note that since $V$ is finite dimensional,
+there must exist some smallest integer $m$ such that $Y^mv = 0$. Then from our
+proposition above, we get
+\[
+0 = Y^mv = m(n - m + 1)Y^{m-1}v \implies m(n-m+1) = 0 \implies n-m+1 = 0
+\]
+so $n$ is a nonnegative integer, and the fact that $n-m+1$ implies that the
+eigenvalues of $H$ must be symmetric about $0$, and the dimension of $V$ must
+be $n+1$. Since the representation is determined by this maximal eigenvalue $n$,
+we let $V^n$ denote the irreducible representation in which the maximal eigenvalue
+of $H$ is $n$.
+
+Consider the standard representation of $\sl_2(\C)$, where the matrices
+act on $\C^2$ in the standard way. Then the standard basis vectors $e_1$ and $e_2$
+are eigenvectors of $H$ with eigenvalues $1$ and $-1$ respectively. We then note
+that $Xe_1 = Ye_2 = 0$, and $Xe_2 = e_1$ and $Ye_1 = e_2$, so their action of
+$\C^2$ satisfies the exact same relations as the irreducible representation $V^1$.
+we can then take the symmetric power $\Sym^2\C^2$, which has basis
+$\set{e_1^2, e_1e_2, e_2^2}$. Using the standard rules for symmetric powers
+of a Lie algebra representation, we compute
+\begin{align*}
+H(e_1^2) &= e_1He_1 + (He_1) e_1 = 2e_1^2 \\
+H(e_1e_2) &= e_1He_2 + (He_1) e_2 = -e_1e_2 + e_1e_2 = 0 \\
+H(e_2^2) &= e_2He_2 + (He_2) e_2 = -e_2^2 - e_2^2 = -2e_2^2
+\end{align*}
+Therefore, $\Sym^2\C^2$ is the irreducible representation $V^2$. As it turns
+out, the symmetric powers of the standard representation on $\C^2$ form the
+complete set of irreducible representations of $\sl_2(\C)$. The symmetric power
+$\Sym^n\C^2$ has basis $\set{e_1^{n-k}e_2^k ~:~ 0 \leq k \leq n}$. We compute
+the action of $H$ on these vectors to be
+\[
+H(e_1^{n-k}e_2^k) =
+\]
+%
+\end{document}
