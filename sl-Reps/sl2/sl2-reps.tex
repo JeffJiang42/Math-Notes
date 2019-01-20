@@ -204,19 +204,19 @@
 %
 \author{Jeffrey Jiang}
 %
-\title{Representations of $\mathfrak{sl}_2(\C)$}
+\title{Representations of $\sl_2\C$}
 %
 \setcounter{section}{1}
 %
 \maketitle
 %
-The representation theory of the Lie algebra $\sl_2(\C)$ is extremely important
+The representation theory of the Lie algebra $\sl_2\C$ is extremely important
 in the representation theory of semisimple Lie algebras, and consequently, it
 is also important in the representation theory of Lie algebras. It has an explicit
 and relatively simple description of all the irreducible representations, which
 we will lay out here.\\
 
-The \ib{special linear group} $SL_n(\C)$ is the group of complex $n \times n$
+The \ib{special linear group} $SL_n\C$ is the group of complex $n \times n$
 matrices with determinant $1$. By differentiating the determinant map at the
 identity, we get that it's Lie algebra, denoted $\sl_n(\C)$ is the space
 of complex $n \times n$ matrices with trace 0, equipped with the commutator
@@ -238,8 +238,8 @@ It's easy to verify that these satisfy the commutation relations
 [H,X] - 2X \qquad [H,Y] = -2Y \qquad [X,Y] = H
 \]
 As it turns out, this basis will make the analysis of irreducible representations
-quite simple. Let $V$ be a irreducible representation of $\sl_2(\C)$. From the
-semisimplity of $\sl_2(\C)$, we have that the representation preserves the Jordan
+quite simple. Let $V$ be a irreducible representation of $\sl_2\C$. From the
+semisimplity of $\sl_2\C$, we have that the representation preserves the Jordan
 decomposition, and since $H$ is diagonalizable, it's action on $V$ will also be
 diagonalizable, giving us a direct sum decomposition $V = \oplus_\lambda V_\lambda$
 of eigenspaces $V_\lambda$ of $H$. Let $v \in V_\lambda$ be an eigenvector of $H$
@@ -265,7 +265,7 @@ multiple of $2$. If we fix an eigenvalue $\lambda$, then the subspace
 \bigoplus_{k \in \Z}V_{\lambda + 2k}
 \]
 is fixed by the actions of $H$, $X$, and $Y$, so it is invariant under the action
-of $\sl_2(\C)$. Then by irreducibility of $V$, this must be the whole space.
+of $\sl_2\C$. Then by irreducibility of $V$, this must be the whole space.
 Since $V$ is finite dimensional, there exists some maximal eigenvalue $n$ of $V$.
 Let $v \in V_n$. Since $V_{n+2} = 0$, $Xv = 0$, so we now want to observe the action
 of $Y$ on $v$. We claim that the set
@@ -318,7 +318,7 @@ be $n+1$. Since the representation is determined by this maximal eigenvalue $n$,
 we let $V^n$ denote the irreducible representation in which the maximal eigenvalue
 of $H$ is $n$.
 
-Consider the standard representation of $\sl_2(\C)$, where the matrices
+Consider the standard representation of $\sl_2\C$, where the matrices
 act on $\C^2$ in the standard way. Then the standard basis vectors $e_1$ and $e_2$
 are eigenvectors of $H$ with eigenvalues $1$ and $-1$ respectively. We then note
 that $Xe_1 = Ye_2 = 0$, and $Xe_2 = e_1$ and $Ye_1 = e_2$, so their action of
@@ -333,11 +333,18 @@ H(e_2^2) &= e_2He_2 + (He_2) e_2 = -e_2^2 - e_2^2 = -2e_2^2
 \end{align*}
 Therefore, $\Sym^2\C^2$ is the irreducible representation $V^2$. As it turns
 out, the symmetric powers of the standard representation on $\C^2$ form the
-complete set of irreducible representations of $\sl_2(\C)$. The symmetric power
-$\Sym^n\C^2$ has basis $\set{e_1^{n-k}e_2^k ~:~ 0 \leq k \leq n}$. We compute
-the action of $H$ on these vectors to be
-\[
-H(e_1^{n-k}e_2^k) =
-\]
+complete set of irreducible representations of $\sl_2\C$. The symmetric power
+$\Sym^n\C^2$ has basis $\set{e_1^{n-k}e_2^k ~:~ 0 \leq k \leq n}$. A computation
+of the action of $H$ on these vectors to be
+%
+\begin{align*}
+H(e_1^{n-k}e_2^k) &= e_1^{n-k}H(e_2^k) + H(e_1^{n-k})e_2^k \\
+&= -k e_1^{n-k}e_2^k + (n-k)e_1^{n-k}e_2^k \\
+&= (n-2k)e_1^{n-k}e_2^k
+\end{align*}
+%
+Giving us that the representation is the irreducible representation $V^n$.
+This tells us that all the irreducible representations of $\sl_2\C$ are given by
+symmetric powers of the standard representation of $\sl_2\C$ acting on $\C^2$.
 %
 \end{document}
