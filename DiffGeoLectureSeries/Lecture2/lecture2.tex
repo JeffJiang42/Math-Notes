@@ -318,4 +318,78 @@ to $X$, we see that it must be define by
 \]
 which is well defined since $F$ is invertible.
 %
+The set of vector fields $\mathfrak{X}(M)$ already carries a great deal of
+rich algebraic structure. It is a vector space, a $C^\infty(M)$ module, and
+the space of derivations on $C^\infty(M)$. It also has another kind of
+algebraic structure, that of a \emph{Lie algebra}.
+%
+\begin{defn}
+The \ib{Lie bracket} of vector fields is the bilinear map
+\[
+[\cdot,\cdot] : \mathfrak{X}(M) \times \mathfrak{X}(M) \to \mathfrak{X}(M)
+\]
+where given $X,Y \in \mathfrak{X}(M)$, the vector field $[X,Y]$ is defined by
+\[
+[X,Y]f = XYf - YXf
+\]
+\end{defn}
+%
+There's a little to unpack with the defintion, namely, what do the terms
+$XYf$ and $YXf$ actually mean? Recall that vector fields eat functions and
+produce new ones, so $Yf$ is some smooth function. Therefore, we can feed this
+function into $X$ to get another function. Doing this in the opposite order
+gives us $YXf$ and their difference is the action of the Lie bracket of $X$
+and $Y$. If we have local coordinates $x^i$, then the vector fields $X$
+and $Y$ have the coordinate formulas
+\[
+X = X^i \frac{\partial}{\partial x^i} \qquad Y = Y^i \frac{\partial }{\partial x^i}
+\]
+Then the Lie bracket has the coordinate representation
+\[
+[X,Y] = \left( X^i\frac{\partial Y^j}{\partial x^i} - Y^i\frac{\partial X^j}{\partial x^i}
+\right) \frac{\partial}{\partial x^j} = \left( XY^j - YX^j \right)
+\frac{\partial}{\partial x^j}
+\]
+One thing to note is that the coordinate vector fields satisfy
+$[\partial_i,\partial_j] = 0$, since all the component functions are constant.
+In some sense, this is the defining feature of the coordinate vector fields.
+%
+\begin{thm}
+The Lie bracket is natural in the following sense. Let $F : M \to N$
+be a smooth map, $X_1, X_2 \in \mathfrak{X}(M)$ and $Y_1,Y_2 \in mathfrak{X}(N)$
+such that $Y_1$ is $F$-related to $X_1$ and $Y_2$ is $F$-related to $X_2$. Then
+$[Y_1,Y_2]$ is $F$-related to $[X_1,F_2]$. In the case that $F$ is a diffeomorphism,
+this says that $[\cdot,\cdot]$ commutes with pushforward, i.e.
+\[
+F_*[X,Y] = [F_*X,F_*Y]
+\]
+\end{thm}
+%
+\section{Flows}
+%
+In $\R^n$, when we have a vector field $X$, we can ``integrate" the to produce
+curves. The intution here is that a vector field gives us infinitesimal directions
+of how to move (like a current in a stream). At a point $p$, the vector
+vector $X_p$ tells us which direction to move. After taking a small step, we
+arrive at a new point $q$, and then look at $X_q$ for the new direction to step
+in. This intuition shows us that integrating vector fields to curves is a
+matter of differential equations. We want a function $f$ such that
+when we differentiate it, we recover the vector field $X$. One important
+thing to note here is that solving differential equations is a \emph{local}
+condition. To integrate a vector field $X$ near $p$, we don't need
+to know the behavior of $X$ outside of some small neighborhood of $p$. Therefore,
+translating this to manifolds should go without a hitch. To find integral curves
+of $X \in \mathfrak{X}(M)$, we can pull the picture back to Eucldiean space
+with charts, and then the solutions back up the manifold after using our
+knowledge of differential equations in $\R^n$.
+%
+\begin{defn}
+Given a vector field $V \in \mathfrak{X}(M)$, a curve $\gamma : I \to M$
+is an \ib{integral curve} of $V$ if for all $t \in I$, we have
+\[
+\gamma'(t) = V_{\gamma(t)}
+\]
+We often call $V$ the \ib{velocity vector field} of $\gamma$.
+\end{defn}
+%
 \end{document}
