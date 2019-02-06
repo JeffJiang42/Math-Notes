@@ -4,6 +4,7 @@
 %
 \usepackage[h margin=1 in, v margin=1 in]{geometry}
 \usepackage{amssymb,amsfonts}
+\usepackage{rank-2-roots}
 \usepackage[all,arc]{xy}
 \usepackage{tikz-cd}
 \usepackage{enumerate}
@@ -87,6 +88,7 @@
 %
 %--------Macros--------
 \renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
 \renewcommand{\hom}{\mathsf{Hom}}
 \renewcommand{\emptyset}{\varnothing}
 \renewcommand{\O}{\mathscr{O}}
@@ -111,9 +113,9 @@
 \newcommand{\SU}{\mathsf{SU}}
 \newcommand{\gl}{\mathfrak{gl}}
 \newcommand{\g}{\mathfrak{g}}
+\newcommand{\h}{\mathfrak{h}}
 \newcommand{\inv}{^{-1}}
 \newcommand{\bra}[2]{ \left[ #1, #2 \right] }
-\newcommand{\ind}{\lambda \in \Lambda}
 \newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
@@ -145,7 +147,6 @@
 \end{picture}}
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\im}{Im}
-\DeclareMathOperator{\grap}{graph}
 \DeclareMathOperator{\codim}{codim}
 \DeclareMathOperator{\coker}{coker}
 \DeclareMathOperator{\supp}{supp}
@@ -163,6 +164,7 @@
 \DeclareMathOperator{\spn}{span}
 \DeclareMathOperator{\dv}{div}
 \DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
 \DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
 \newcommand*\myhrulefill{%
    \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
@@ -202,26 +204,91 @@
 
 \begin{document}
 %
-\author{Jeffrey Jiang and Hunter Stufflebeam}
+\author{Jeffrey Jiang}
 %
-\title{Differential Geometry Lecture Series}
+\title{Differential Geometry Preliminaries}
+%
+\setcounter{section}{-1}
 %
 \maketitle
 %
-These are notes for the spring 2019 differential geometry lecture series for
-the math club. The plan is for the course to give an introduction to math club
-members to the basics and terminology of smooth manifolds. A good reference for
-additional reading is John Lee's \emph{Introduction to Smooth Manifolds}, and
-these notes will follow that text somewhat closely. In terms of prerequisites,
-it would be good to have a background in point set topology, multivariable
-calculus, and linear algebra.
+\section{Preliminaries}
 %
-\tableofcontents
+These are some preliminary details regarding multivariable calculus. Don't
+worry if you're not 100\% familiar with them, but we will build upon these
+concepts when we study manifolds. Since the goal of differential geometry
+is to use calculus to study nonlinear spaces via linear approximation,
+it's good to have a foundation in calculus in the standard setting.\\
+
+Recall that given a differentiable function $F: \R^n \to \R^m$, where
+$F = (F^1, \ldots, F^m)$ for functions $F^i : \R^n \to \R$, its derivative
+is given by it's \ib{Jacobian matrix} $DF$, which is the matrix
+$$DF = \begin{pmatrix}
+\frac{\partial F^1}{\partial x^1} &
+\ldots & \frac{\partial F^1}{\partial x^n} \\
+\vdots & \vdots & \vdots \\
+\frac{\partial F^m}{\partial x^1} &
+\ldots & \frac{\partial F^m}{\partial x^n}
+\end{pmatrix} $$
+We denote the Jacobian evaluated at a point $p$ to be $DF_p$. Given maps
+$$\begin{tikzcd}
+\R^k \ar[r,"F"] & \R^n \ar[r, "G"] & \R^m
+\end{tikzcd}$$
+We have that $D(G \circ F)_p = DG_{F(p)} \circ DF_p$. This is the
+\ib{multivariable chain rule}. Concisely, ``the differential of the
+composition is the composition of the differentials."
 %
-\include{preliminaries}
+\begin{defn}
+	A map $F : U \to V$ where $U \subset \R^n$ and $V \subset \R^m$ is
+	\ib{smooth} if all of its component functions are infinitely
+	differentiable, i.e. the partial derivatives of all ordersexist and are
+	continuous.
+\end{defn}
 %
-\include{lecture1}
+Note that smoothness is a local condition -- to know a function is smooth
+at a point, it suffices to check in a small neighborhood. A function is
+smooth if and only if it is smooth at every point.
 %
-\include{lecture2}
+\begin{defn}
+	Let $U \subset \R^n$ and $V \subset \R^m$ be open subsets. A map
+	$F : U \to V$ is called a \ib{diffeomorphism} if $F$ is smooth,
+	bijective, and admits a smooth inverse $F\inv : V \to U$.
+\end{defn}
+%
+Note that a smooth bijection is not sufficient for a map to be a
+diffeomorphism. The map $f : \R \to \R$ given by $f(x) = x^3$ is a smooth
+bijection, but it's inverse $x \mapsto x^{1/3}$ is not smooth at $0$, so
+$f$ is not a diffeomorphism. Since smoothness is a local property, we
+also have the notion of a local diffeomorphism.
+%
+\begin{defn}
+	Let $U \subset \R^n$ and $V \subset \R^m$. A smooth function
+	$F : U \to V$ is a \ib{local diffeomorphism} if for every $p \in U$,
+	there exists an open neighborhood $U_p \subset U$ such that
+	$F\vert_{U_p}$ is a diffeomorphism onto its image.
+\end{defn}
+%
+It is clear that every diffeomorphism is a local diffeomorphism, but
+the converse is not true, since local diffeomorphisms can fail to be
+bijective. An example of such a map is the polar transformation
+$p : \R^2-\set{0} \to \R^2-\set{0}$ given by
+$p(r,\theta) = (r\cos\theta,r\sin\theta)$. An important theorem tells us
+that the Jacobian matrix captures all the local information we need.
+%
+\begin{thm}[\ib{The Inverse Function Theorem}]
+	Let $F : U \to V$ be smooth. Then $F$ is a local diffeomorphism at $p$ if
+	and only if $dF_p$ is an isomorphism.
+\end{thm}
+%
+Finally, there's a widespread convention in differential geometry
+regarding summations, called the \ib{Einstein summation convention}. We
+can compactly represent the summation $\sum_i v^ie_i$ as just $v^ie_i$.
+The rule is that if you see an upper index and a lower index, there is
+an implicit summation. For example, matrix multiplication in this
+notation is given by $(AB)^i_j = A^i_kB^k_j$. Where the upper index denotes
+the row, and the lower index denotes the column, and the implicit
+summation is over the dummy index $k$. This convention becomes
+useful when there are a lot of indices floating around, which is
+a common occurence in differential geometry.
 %
 \end{document}
