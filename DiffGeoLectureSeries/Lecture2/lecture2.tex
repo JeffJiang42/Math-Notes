@@ -211,5 +211,111 @@
 \setcounter{section}{0}
 %
 \maketitle
+%
+\section{Vector Fields}
+%
+Recall that given a smooth $n$ dimensional manifold $M$, we get the
+\ib{tangent bundle} $TM$, which is a $2n$ dimensional smooth manifold, equipped
+with a map $\pi : TM \to M$, where the fiber $\pi\inv(p)$ over a point $p \in M$
+is the tangent space $T_pM$. Also recall that a \ib{section} of a $\pi$
+is a map $\sigma : U \to TM$ such that $\pi \circ \sigma = \id_U$. If $U = M$,
+we call $\sigma$ a global section.
+%
+\begin{defn}
+A \ib{vector field} on a smooth manifold is a global section $X : M \to TM$.
+The set of vector fields on $M$ is denoted $\mathfrak{X}(M)$.
+\end{defn}
+%
+If you unwrap the definitions, we see that a section is exactly the data we
+want -- for every point $p \in M$, we are assigning to it a vector in $T_pM$.
+We will often denote the vector $X(p)$ at $p$ by $X_p$. \\
 
+If we fix a chart $U$ with coordinates $x^i$, we get the \ib{coordinate vector fields}
+$\partial / \partial x^i$, where
+\[
+\left( \frac{\partial}{\partial x^i} \right)_p = \frac{\partial}{\partial x^i}\bigg\vert_p
+\]
+Then given an arbitrary smooth vector field $X$, we have that $X_p$ is a linear
+combination of the coordinate vector fields. Smoothness of $X$ then tells us
+that we can write $X$ locally as
+\[
+X = X^i\frac{\partial}{\partial x^i}
+\]
+for smooth functions $X^i : U \to \R$. We also note that $\mathfrak{X}(M)$
+admits more structure than that of a set.
+%
+\begin{prop} \enumbreak
+\begin{enumerate}
+  \item Let $X,Y \in \mathfrak{X}(M)$. Then $fX + gY$ defined a smooth vector
+  field, for $f,g \in C^\infty(M)$.
+  \item $\mathfrak{X}(M)$ is a $C^\infty(M)$ module.
+\end{enumerate}
+\end{prop}
+%
+In more sheafy language, this tells us that the sheaf of vector fields on $M$ is a
+sheaf of modules over the sheaf of smooth functions.  In fact, we can say even
+more about the algebraic structure of vector fields. Given a chart $U$ with
+coordinates $x^i$, we know we can write any vector field as $X^i\partial_i$.
+This tells us that the $\partial_i$ form a basis for the local vector fields
+$\mathfrak{X}(U)$ as a $C^\infty(U)$ module, i.e. locally, the vector fields
+form a free module over $C^\infty(U)$. Note that this might not hold globally
+though.
+%
+\begin{defn}
+A \ib{local frame} for $M$ is an collection of smooth vector fields $E_i$ defined
+on an open set $U \subset M$ such that for each $p \in U$, we have that the
+$E_i\vert_p$ form a basis for $T_pM$. If $U = M$, we say that the $E_i$
+form a \ib{global frame}.
+\end{defn}
+%
+We've already seen a local frame, the coordinate vector fields $\partial_i$. \\
+
+Recall that a vector $v \in T_pM$ acts on functions $f \in C^\infty(M)$ -- it
+takes as an input a smooth function, and produces a real number. We see then
+that vector fields act on smooth functions as well, where we define the action
+pointwise to produce a new function. Explicity, given $X \in \mathfrak{X}(M)$
+and $f \in C^\infty(M)$, we have
+\[
+(Xf)(p) = X_pf
+\]
+In this way, we see that a vector field $X$ determines a linear map
+$C^\infty(M) \to C^\infty(M)$. In fact, it defines a \ib{derivation},
+i.e.
+\[
+X(fg) = fXg + gXf
+\]
+since each vector $X_p$ is a derivation at $p$.
+%
+\begin{prop}
+Vector fields on $M$ are in bijection with derivations $D: C^\infty(M) \to C^\infty(M)$,
+where the mapping is given by $X \mapsto D_X$ where $D_Xf = Xf$.
+\end{prop}
+%
+Given a vector field $X \in \mathfrak{X}(M)$ and a smooth map $F : M \to N$,
+we can apply the differential $dF_p$ pointwise to $X$, but the result may
+not be well defined. For example, if $F$ is not injective, there will
+exists at least two points $p,q$ such that $F(p) = F(q) = y$. Then if we want
+to use $F$ and $X$ to define a vector field on $Y$, we have a conundrum --
+what vector should we assign to $y$? Should it be $dF_p(X_p)$ or $dF_q(X_q)$?
+Therefore in order for $X$ to push forward to a vector field on $Y$, we must
+impose the condition on each fiber $F\inv(y)$ that for all $p \in F\inv(y)$,
+we have $dF_p(X_p)$ is the same.
+%
+\begin{defn}
+Given smooth manifolds $M$ and $N$, a smooth map $F: M \to N$, and vector
+fields $X \in \mathfrak{X}(M)$ and $Y \in \mathfrak{X}(N)$. We say that
+$X$ and $Y$ are \ib{$F$-related} if for all $q \in N$ and all $p \in F\inv(q)$,
+we have $dF_p(X_p) = Y_q$.
+\end{defn}
+%
+Given an arbitrary vector field $X$ and a smooth map $F: M \to N$, it's not true
+in general that an $F$-related vector field exists in $\mathfrak{X}(N)$, however,
+in the case that $F$ is a diffeomorphism, a unique $F$-related vector field
+exists, called the pushforward $F_*X$. In order for a vector field to be $F$-related
+to $X$, we see that it must be define by
+\[
+(F_*X)_p = dF_{F\inv(p)}(X_{F\inv(p)})
+\]
+which is well defined since $F$ is invertible.
+%
 \end{document}
