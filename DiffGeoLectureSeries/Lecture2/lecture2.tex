@@ -452,6 +452,114 @@ for time $t+s$. \\
 Given a global flow $\theta$, we have two different times to obtain a map. If we fix
 a point $p\in M$, we obtain the orbit map $\theta^{(p)} : \R \to M$ given
 by $t \mapsto \theta(t,p)$, and given a number $t \in \R$, we can
-define the map $\theta_t$ by $\theta_t(p) = \theta(t,p)$.
+define the map $\theta_t$ by $\theta_t(p) = \theta(t,p)$. Using this,
+we can define a vector field $V$ by
+\[
+V_p = \dot{\theta}^{(p)}(0)
+\]
+You would like to say that vector fields and flows are inverses to each other --
+Given a flow, we can define a vector field by differentiating integral curves,
+and given a vector field, we can integrate it into a flow. Unfortunately,
+this isn't exactly true. When we integrate a vector field it's not true
+that the flow is defined for all time. For a simple example, the vector
+field $\partial_x$ on$\R^2 - \set{0}$ is not complete, if we start flowing
+at a point $p$ on the negative $x$-axis, then we cannot flow past $(0,0)$. That
+being said, we won't concern ourselves too much about this, and assume that
+flows are global. \\
+
+The naturality of integral curves also tells us that flows are natural in the
+follwing sense
+%
+\begin{thm}[\ib{Naturality of Flows}]
+Let $F : M \to N$, and let $X \in \mathfrak{X}(M)$ and $Y \in \mathfrak{X}(N)$
+be $F$-related vector fields that generate global flows $\theta$ and $\eta$
+respectively. Then for every $t \in \R$,the following diagram commutes
+%
+\[\begin{tikzcd}
+M \ar[r, "F"] \ar[d, "\theta_t"']& N \ar[d, "\eta_t"]\\
+M \ar[r, "F"'] & N
+\end{tikzcd}\]
+%
+\end{thm}
+%
+This also tells us how flows transform under diffeomorphism.
+%
+\begin{cor}
+Let $F : M \to N$ be a diffeomorphism, and let $X \in \mathfrak{X}(M)$ with
+flow $\theta$. Then the flow of the pushforward $F_*X$ is
+$\eta_t = F \circ \theta_t \circ F\inv$.
+\end{cor}
+%
+Given two vector fields $V$ and $W$, we can ask how the vector field $W$ changes
+along the flow of $V$. This is the notion of a Lie derivative.
+%
+\begin{defn}
+Let $V,W \in \mathfrak{X}(M)$. Then the \ib{Lie derivative} of $W$ with respect
+to $V$ is another vector field denoted $\mathcal{L}_VW$, defined by
+\[
+\mathcal{L}_VW\vert_p = \frac{d}{dt}\bigg\vert_{t = 0}
+d(\theta_{-t})_{\theta_t(p)}(W_{\theta_t(p)})
+\]
+where $\theta$ denotes the flow of $W$.
+\end{defn}
+%
+Luckily, computing the Lie derivative is easy!
+%
+\begin{thm}
+\[
+\mathcal{L}_VW = [V,W]
+\]
+\end{thm}
+%
+We mentioned before that the fact that $[\partial_i, \partial_j] = 0$ is in some
+sense, the defining feature of the coordinate vector fields. It captures the
+idea that mixe partial derivates are the same, independent of the order of
+differentiation.
+%
+\begin{thm}
+Suppose we have a collection $\set{E_i}$ of vector fields that form a local
+frame for $U \subset M$ and $[E_i,E_j] = 0$ for all $i,j$. Then there exist
+functions $x^i : U \to \R$ such that $E_i = \partial_i$.
+\end{thm}
+%
+There's a higher dimensional analogue of vector fields and flows.
+%
+\begin{defn}
+A \ib{a distribution} $D$ is a rank $k$ subbundle of the tangent bundle $TM$, i.e.
+a smoothly varying family of $k$-dimensional subspaces of the tangent spaces.
+We denote the subspace over a point $p$ by $D_p$.
+\end{defn}
+%
+From the definition, we see that a vector field is a special case of a distribution --
+it is a rank $1$ distribution. With vector fields, we could integrate them into
+flows, giving a family of integral curves, i.e. $1$-dimensional submanifolds of
+$M$ whose tangent spaces are the span of the vector field. We can ask a similar
+question for general distributions.
+%
+\begin{defn}
+Let $D$ be a rank $k$ distribution. Then a submanifold $N \subset M$ is an
+\ib{integral manifold} of $D$ if for each point $p$, we have that $T_pN = D_p$.
+\end{defn}
+%
+However, unlike vector fields, integral manifolds need not exist, even in small
+neighborhoods. A distribution $D$ is said to be \ib{integrable} if
+integral manifolds exist. The obstructure here is something called
+\emph{involutivity}.
+%
+\begin{defn}
+A distribution $D$ is \ib{involutive} if for any vector fields $X,Y$ lying
+entirely in $D$ (i.e. $X_p \in D_p$ and $Y_p \in D_p$ for all $p$), we
+have that $[X,Y]$ lies entirely in $D$
+\end{defn}
+%
+The intuition here is that if a distribution has an integral manifold, the restriction
+of the distribution to the integral manifolds is isomorphic to the tangent
+bundle of the integral manifold, so vector fields should be closed
+under the bracket. A theorem of Frobenius then tells us that this is a necessary
+and sufficient condition.
+%
+\begin{thm}[\ib{The Frobenius Theorem}]
+A distribution $D$ is integrable if and only if it is involutive.
+\end{thm}
 %
 \end{document}
