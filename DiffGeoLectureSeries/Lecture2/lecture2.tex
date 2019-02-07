@@ -387,9 +387,71 @@ knowledge of differential equations in $\R^n$.
 Given a vector field $V \in \mathfrak{X}(M)$, a curve $\gamma : I \to M$
 is an \ib{integral curve} of $V$ if for all $t \in I$, we have
 \[
-\gamma'(t) = V_{\gamma(t)}
+\dot{\gamma}(t) = V_{\gamma(t)}
 \]
 We often call $V$ the \ib{velocity vector field} of $\gamma$.
 \end{defn}
+%
+If we write the vector field $V$ and the curve $\gamma$ in coordinates $x^i$,
+then $\dot{\gamma}(t) = V_{\gamma(t)}$ if and only if
+\[
+\dot{\gamma}^i \frac{\partial}{\partial x^i}\bigg\vert_{\gamma(t)} =
+V^i(\gamma(t)) \frac{\partial}{\partial x^i}\bigg\vert_{\gamma(t)}
+\]
+Therefore, finding such a $\gamma$ in these coordinates is equivalent to
+solving the system of differential equations $\dot{\gamma}^i(t) =
+V^i(\gamma^1(t), \ldots, \gamma^n(t))$.
+%
+From the theory of differential equations, we know this is possible in a
+small neighborhood of $p$.
+%
+\begin{thm}[\ib{Existence and Uniqueness Theorem for ODEs}]
+Let $U \subset \R^n$ be open, and let $V : U \to \R^n$ be a smooth function.
+This determines an initial value problem $\dot{\gamma}(t) =
+V^i(\gamma^1(t), \ldots, \gamma^n(t))$ with intial condition $\gamma(t_0) = c$
+for fixed constants $t_0 \in \R$ and $c \in U$. Then for any $t_0 \in \R$ and
+$x_0 \in U$, there exists some interval $J$ and a smaller neighborhood $V \subset U$
+of $x_0$ such that there exists a continuously differentiable solution
+$\gamma : J_0 \to U$ for any intial condition $\gamma(t_0) = c$ for $c \in V$.
+In addition, this solution is unique, and the map $\theta : J \times V \to U$
+defined by $\theta(t,x) = \gamma(t)$ where $\gamma$ is the unique solution with
+initial condition $\gamma(t_0) = x$ is smooth.
+\end{thm}
+%
+\begin{cor}
+Given smooth vector field $V \in \mathfrak{X}(M)$, for each point $p \in M$ there
+exists some $\varepsilon > 0$ and a smoooth curve
+$\gamma : (-\varepsilon, \varepsilon) \to M$ that is an integral curve of $V$
+starting at $p$.
+\end{cor}
+%
+As you can imagine, $F$-related vector fields generate ``$F$-related" flows.
+%
+\begin{prop}
+Given a smooth map $F: M \to N$, vector fields $X \in \mathfrak{X}(M)$ and
+$Y \in \mathfrak{X}(N)$ are $F$-related if an only if $F$ maps integral
+curves of $X$ to integral curves of $Y$, i.e. given an integral curve $\gamma$
+for $X$, $F \circ \gamma$ is an integral curve of $Y$.
+\end{prop}
+%
+\begin{defn}
+A \ib{global flow} on a manifold $M$ is a smooth map $\theta : \R \times M \to M$
+such that
+\begin{enumerate}
+  \item $\theta(t, \theta(s,p)) = \theta(t+s, p)$ \\
+  \item $\theta(0,p) = p$
+\end{enumerate}
+in other words, it is a group action of the additive group $\R$ on $M$.
+\end{defn}
+%
+The intuition here is that given a point $p$, we can take the integral curve $\gamma$
+starting at $p$ and flow for time $t$. Following this by following with the integral curve
+at $\gamma(t)$ for time $s$, this shoulds be the same as flowing along $\gamma$
+for time $t+s$. \\
+
+Given a global flow $\theta$, we have two different times to obtain a map. If we fix
+a point $p\in M$, we obtain the orbit map $\theta^{(p)} : \R \to M$ given
+by $t \mapsto \theta(t,p)$, and given a number $t \in \R$, we can
+define the map $\theta_t$ by $\theta_t(p) = \theta(t,p)$.
 %
 \end{document}
