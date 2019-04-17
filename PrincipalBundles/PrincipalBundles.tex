@@ -1,0 +1,39 @@
+\documentclass[abstract=on,twoside]{scrreprt}
+
+\usepackage[MyBox]{fancychap}
+\usepackage{utmathjournal}
+
+\begin{document}
+\chapter{Principal Bundles} % your article title goes here
+\thispagestyle{empty}
+\vspace{-2cm}
+\begin{flushright}
+	\textbf{Jeffrey Jiang}\\ % your name goes here
+	\texttt{jeffjiang@utexas.edu} % your email address goes here
+\end{flushright}
+
+\section*{Why Fiber Bundles?}
+
+Suppose we want to study some space $M$, which for our purposes is a smooth manifold.
+One way to study $M$ is to study functions $M \to F$ for some fixed target space $F$,
+e.g. a manifold , $\R$, or a vector space. This is a perfectly good method
+of studying $M$, but is sometimes not enough. More often then not, we want to
+study ``function" from $M$ into a vector space that varies over the base
+manifold $M$. For example, a vector field $X \in \mathfrak{X}(M)$ is not really
+a map $M \to \R^n$, it is an assignment to each $p \in M$ a vector in $T_pM$.
+In this way, we are led to the study of a smoothly parameterized family of
+vector spaces -- the tangent bundle $TM$. This leads us to define a fiber bundle.
+%
+\begin{definition}
+Let $M$ and $F$ be a smooth manifolds. A \textbf{\textit{fiber bundle}} over $M$ with
+model fiber $F$ is the data of a smooth manifold $E$ with a smooth surjective map
+$\pi : E \to M$ such that for each $p \in M$, there exists an open set $U$ and a
+diffeomorphism $\varphi : \pi^{-1}(U) \to U \times F$ such that
+\[\begin{tikzcd}
+\pi^{-1}(U) \ar[dr, "\pi"]\ar[rr, "\varphi"] && U \times F \ar[dl, "p_1"] \\
+& U
+\end{tikzcd}\]
+where $p_1 : U \times F \to U$ is projection onto the first factor.
+\end{definition}
+%
+\end{document}
