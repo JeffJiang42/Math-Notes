@@ -30,10 +30,63 @@ model fiber $F$ is the data of a smooth manifold $E$ with a smooth surjective ma
 $\pi : E \to M$ such that for each $p \in M$, there exists an open set $U$ and a
 diffeomorphism $\varphi : \pi^{-1}(U) \to U \times F$ such that
 \[\begin{tikzcd}
-\pi^{-1}(U) \ar[dr, "\pi"]\ar[rr, "\varphi"] && U \times F \ar[dl, "p_1"] \\
+\pi^{-1}(U) \ar[dr, "\pi"']\ar[rr, "\varphi"] && U \times F \ar[dl, "p_1"] \\
 & U
 \end{tikzcd}\]
-where $p_1 : U \times F \to U$ is projection onto the first factor.
+where $p_1 : U \times F \to U$ is projection onto the first factor. The map
+$\varphi : \pi^{-1} \to U \times F$ is called a \textbf{\textit{local trivialization}}.
+The space $E$ is called the \textbf{\textit{total space}}, while the manifold $M$
+is called the \textbf{\textit{base space}}. We often omit naming the map $\pi$
+and denote the fiber $\pi^{-1}(x)$ by $E_x$.
 \end{definition}
+%
+This definition captures the notion of a family of manifolds diffeomorphic to $F$ that
+are smoothly parameterized by the base space $M$. We also have a notion of a morphism
+between bundles.
+%
+\begin{definition}
+Let $\pi_E E \to M$ and $\pi_F : F \to M$ be fiber bundles with model fiber $X$. A
+\textbf{\textit{bundle homomorphism}} is the data of a smooth map $\varphi : E \to F$
+such that the diagram
+\[\begin{tikzcd}
+E \ar[dr, "\pi_E"']\ar[rr, "\varphi"] && F \ar[dl, "\pi_F"]\\
+& M
+\end{tikzcd}\]
+commutes.
+\end{definition}
+
+Our original motivation for thinking about fiber bundles was for a generalized notion of
+a function. To this end, we specify a special class of maps associated to a fiber
+bundle.
+%
+\begin{definition}
+Let $\pi : E \to M$ be a a fiber bundle with model fiber $F$.
+A \textbf{\textit{local section}} of $\pi : E \to M$ is a smooth map $\sigma : U \to E$
+such that $\pi \circ \sigma = \id_U$ for some open set $U \subset M$. If $U = M$, we
+call $\sigma $ a \textbf{\textit{global section}}. Equivalently, it is a smooth assignment
+to each $p \in U$ a point in the fiber $E_p$. We denote the space of sections over
+an open set $U$ as $\Gamma_U(E)$.
+\end{definition}
+%
+A section of $E \to M$ can be thought of as our desired generalization of a function.
+A map $M \to F$ is the same data as a section of the trivial bundle $M \times F \to M$.
+However, not every fiber bundle is trivial -- there can be a nontrivial ``twisting."
+An example of this is the M\"obius band. Can you see why this bundle over $S^1$ is not
+isomorphic to the trivial bundle $S^1 \times [0,1]$? \\
+
+We are especially interested in two special classes of fiber bundles that carry
+additional structure -- the fibers of a vector bundle carry the extra structure of a
+vector space, and the fibers of a principal bundle have the extra structure of a
+$G$-torsor for a Lie group $G$.
+%
+\begin{definition}
+A \textbf{\textit{vector bundle of rank}} $k$ is a fiber bundle $E \to M$ such that each
+fiber $E_x$ has the structure of a $k$-dimensional vector space (usually over $\R$ or
+$\C$). A \textbf{\textit{vector bundle homomorphism}} is a bundle homomorphism that
+restricts to a linear map on each fiber.
+\end{definition}
+%
+Vector bundles form a familiar family of fiber bundles, as tangent bundles,
+cotangent bundles, and their associated tensor bundles are all vector bundles.
 %
 \end{document}
