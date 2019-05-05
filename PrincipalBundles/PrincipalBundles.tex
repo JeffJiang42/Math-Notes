@@ -89,4 +89,203 @@ restricts to a linear map on each fiber.
 Vector bundles form a familiar family of fiber bundles, as tangent bundles,
 cotangent bundles, and their associated tensor bundles are all vector bundles.
 %
+\begin{definition}
+Let $G$ be a Lie group. a (left) \textbf{\textit{$G$-torsor}} is a smooth manifold $M$
+equipped with a smooth (left) $G$-action that is free in transitive i.e.
+\begin{enumerate}
+	\item For any $g \in G$ and $p \in M$, if $g\cdot p = p$, then $g = e$.
+	\item For any $p \in M$, the orbit $G \cdot p$ is all of $M$
+\end{enumerate}
+combined, these conditions give that for any fixed point $p$, there exists a unique
+group element $g \in G$ that takes $p$ to any other point of $M$. In other words,
+the map $g \mapsto g \cdot p$ is a diffeomorphism.
+\end{definition}
+%
+\begin{example}
+Let $V$ be a vector space. A \textbf{\textit{basis}} (also called a
+\textbf{\textit{frame}}) of $V$ is a linear isomorphism $\R^n \to V$, and the
+set of frames of $V$ is denoted $\\mathcal{B}(V)$. There is a
+natural right action of $GL_n\R$ on $\mathcal{B}(V)$ by precomposition, i.e.
+for $g \in GL_n\R$ and $b \in \mathcal{B}(V)$, we have $b \cdot g = b \circ g$.
+This action is free and transitive, which allows us to define a topology and
+smooth structure on $\mathcal{B}(V)$, giving it the structure of a
+right $GL_n\R$-torsor.
+\end{example}
+%
+$G$-torsors can be thought of as Lie groups without a fixed choice of identity element.
+Indeed, if we fix a point $p$ of a $G$-torsor $M$, this determines a unique Lie group
+structure on $M$ where $p$ is the identity element. This allows us to define
+a principal $G$-bundle. For example, there is no distinguished basis for a vector
+space $V$, which is reflected by the fact that $\mathcal{B}(V)$ is a torsor, rather
+than a group.
+%
+\begin{definition}
+A \textbf{\textit{principal $G$-bundle}} is a fiber bundle $\pi : P \to M$ with a
+smooth \emph{right} $G$-action such that every fiber $\pi^{-1}(x)$ is a $G$-torsor,
+and every point $p \in M$ in the base has a local trivialization
+$\pi^{-1}(U) \to U \times G$ that is $G$-equivariant, where the $G$-action on
+$U \times G$ is right multiplication on the second factor. The group $G$ is often
+called the \textbf{\textit{structure group}}.
+\end{definition}
+%
+\begin{example}[\textbf{\textit{Bundles of frames}}]
+Let $M$ be a smooth manifold, and $p \in M$. Let $\mathcal{B}_p$ denote the
+$GL_n\R$-torsor of frames of the tangent space $T_pM$, and let
+$\mathcal{B}(M)$ be the set
+\[
+\mathcal{B}(M) = \coprod_{p \in M} \mathcal{B}_p
+\]
+This set comes with a natural map $\pi : \mathcal{B}(M) \to M$ that maps a frame
+$b \in \mathcal{B}_p$ to $p$, so the fiber $\pi^{-1}(p)$ over any point is
+$\mathcal{B}_p$. Local coordinates $x^i$ on an open set $U \subset M$ induce bijections
+$\pi^{-1}(U) \to U \times GL_n\R$, where we map $b \in \mathcal{B}_p$ to
+$(p, A_b)$, where $A_b \in GL_n\R $ is the matrix where the $i^{th}$ column are the
+components of $b(e_i)$ with respect to the coordinate vectors $\partial_i$. This
+then induces a topology and smooth structure on $\mathcal{B}(M)$ such that
+the projection map $\pi : \mathcal{B}(M) \to M$ is smooth and the maps
+$\pi^{-1}(U) \to U \times GL_n\R$ are smooth local trivializations. \\
+
+This construction works for vector bundles as well. For a rank $k$ vector bundle
+$E \to M$, there is a principal $GL_n\R$-bundle $\mathcal{B}(E) \to M$, where the fiber
+over a point $p$ is the $GL_k\R$-torsor of frames for the fiber $E_x$.
+\end{example}
+%
+Heuristically, principal bundles can be thought of bundles of symmetries of some
+object, and in many cases, this object is a vector bundle, as we will soon see.
+%
+\section*{Groups Control the Geometry}
+%
+Given any geometric object $M$ (e.g. a vector space, manifold, fiber bundle), an
+extremely important question to as is -- "what are the symmetries of $M$?" More
+concretely, we would like to know the \emph{automorphisms} of $M$. Any quantity
+intrinsic to the object $M$ must be invariant under these automorphisms, sine
+we have no "preferred frame of reference" for the object $M$. In this way, we
+see that any geometric properties of $M$ are defined by the symmetry group $G$,
+and we say the group $G$ "controls" the geometry of $M$. For example, if we let
+$V$ be any finite dimensional vector space, the group of symmetries is the general
+linear group $GL(V)$ of invertible linear transformations. If we further fix an
+inner product $\langle\cdot,\cdot\rangle$ on $V$, we have a smaller class of
+symmetries -- the orthogonal group $O(V) \subset GL(V)$ of linear automorphisms
+preserving the inner product. Additional structure (e.g. orientation, symplectic
+form, complex structure) allows us to pick out subgroups  of automorphisms, which gives
+a more restrictive class of symmetries for our vector spaces, \\
+
+This proves to be a very fruitful philosophy for approaching geometry. Smooth manifolds
+are locally modeled on vector spaces, and given a structure on the linear world
+of vector spaces, we often get an analogous structure in the nonlinear world of
+manifolds. For example, a Riemannian metric $g$ on a manifold $M$ is the nonlinear
+analogue of an inner product on a vector space. Because of this, we would expect
+the orthogonal group $O_n$ to play an important role in the geometry of a Riemannaian
+manifold. The interaction of the group with the geometry comes in play through the
+language of principal bundles. Before we mentioned that principal bundles can be
+thought of as bundles of symmetries, which we make precise with the construction of
+a \textbf{\textit{associated bundle}}.
+%
+\begin{definition}
+Let $P \to M$ be a principal $G$-bundle, and $F$ a smooth manifold with a smooth
+left $G$-action. The \textbf{\textit{associated bundle}} is the bundle
+\[
+P \times_G F = P \times F / (p, f) \sim (p \cdot g, g^{-1} \cdot f)
+\]
+This is a fiber bundle over $M$ with model fiber $F$, and it is a good exercise to see
+why this is true by explicitly constructing the local trivializations in terms
+of local trivializations of $\mathcal{B}(M)$.
+\end{definition}
+%
+The construction is a bit obtuse, so we make a few observations to make sense of
+why we want to care about associated bundles.
+%
+\begin{example}[\textbf{\textit{The tangent bundle}}]
+Let $M$ be a smooth manifold. From $M$, we have a principal $GL_n$-bundle
+$\mathcal{B}(M) \to M$ of frames for $TM$. In addition, $GL_n\R$ admits a natural
+left action on $\R^n$ via matrix multiplication. The associated bundle
+$E = \mathcal{B}(M) \times_{GL_n\R} \R^n$ is isomorphic to the tangent bundle
+$TM$. To see this, we construct maps in both directions. \\
+
+Let $[b, v]$ denote an equivalence class in $E$, where $b \in \mathcal{B}_p$ is a
+frame for $T_pM$ and $v \in \R^n$. Then define $\varphi : E \to TM$ by
+$\varphi[b,v] = b(v)$. This is well defined, since
+\[
+\varphi[b\cdot g, g^{-1}\cdot v] = b \circ g(g^{-1}(v)) = b(v)
+\]
+In the other direction, let $(p,v) \in TM$, i.e. $p \in M$ and $v \in T_pM$. Fix
+a basis $b : \R^n \to T_pM$, and define $\psi : TM \to E$ by
+$\psi(p,v) = [b,b^{-1}(v)]$. It's an easy exercise to check that these two maps compose
+to identity in both directions.
+\end{example}
+%
+The above construction works in the setting of vector bundles as well. Given
+a rank $k$ vector bundle $E \to M$, we can construct the principal $GL_k\R$-bundle
+$\mathcal{B}(E)$, and the associated bundle $\mathcal{B}(E) \times_{GL_k\R} \R^k$ is
+isomorphic to the bundle $E$. \\
+
+This construction shows why we might care about associated bundles -- the quotient by
+relation we specified exactly gives the correct transformation law for tangent
+vectors. You may have heard the joke that physicists define a vector as ``something
+that transforms like a vector." A more precise joke here would perhaps be ``a tangent
+vector is something that transforms like a tangent vector." What do we mean by this?
+Physically, the only ``real" quantities are those invariant under a change of reference
+frame. In terms our example, we see that a tangent vector $v \in T_pM$ is
+\emph{not} just an $n$-tuple of numbers, it's the collection of all coordinate
+representations of $v$ with respect to any basis of $T_pM$, which is exactly what
+the associated bundle construction captures. We can see this another way. Fix
+an element $b \in \mathcal{B}_p \subset \mathcal{B}(M)$. This then determines an
+isomorphism of $\R^n$ to the fiber of the associated bundle
+$\mathcal{B}(M) \times_{GL_n\R} \R^n$ by $v \mapsto [b,v]$, this exactly what happens
+when we fix a basis for $T_pM$! In this way, we see that fixing the first component
+in the equivalence class of an element of an associated bundle is essentially a
+choice of basis or reference frame, and doing the computations with the equivalence
+classes themselves is in essense, working in a coordinate-free manner. \\
+%TODO REDUCTION OF STRUCTURE GROUP
+
+We now address how fixing additional structures on our manifold $M$ changes this
+picture. The best example here is that of a Riemannian metric $g$ on $M$, which gives
+us a notion of an \textbf{\textit{orthonormal frame}} of the tangent space $T_pM$,
+which is a linear \emph{isometry} $b : (\R^n,\langle\cdot,\cdot\rangle) \to (T_pM,g_p)$
+where $\langle\cdot,\cdot\rangle$ is the standard inner product on $\R^n$, and
+$g_p$ is the Riemannian metric evaluated at the point $p$. We then construct the
+\textbf{\textit{orthonormal frame bundle}} $\mathcal{B}_O(M)$ in the same way we
+constructed the frame bundle $\mathcal{B}(M)$, which is a principal $O_n$-bundle,
+which reflects that we now have a more restrictive view on symmmetry -- our
+automorphisms now take values in $O_n$ instead of $GL_n\R$.
+%
+\begin{definition}
+Let $M$ be a smooth manifold, and $\mathcal{B}(M)$ its $GL_n\R$-bundle of frames.
+Let $G$ be a Lie group, and $\rho : G \to GL_n\R$ be a homomorphism. Then a
+\textbf{\textit{reduction of structure group}} to $G$ is the data of a principal
+$G$-bundle $Q \to M$ equipped with a $G$-equivariant map $Q \to \mathcal{B}(M)$, where
+$G$ acts on the left of $\mathcal{B}(M)$ by $g \cdot b = b \circ \rho(g)^{-1}$.
+\end{definition}
+%
+In the case we illustrated above with a Riemannian metric $g$, the homomorphism
+$\rho$ is just the inclusion $O_n \hookrightarrow GL_n\R$, the bundle $Q$ is
+$\mathcal{B}_O(M)$, and the $O_n$-equivariant map is the inclusion
+$\mathcal{B}_O(M) \hookrightarrow \mathcal{B}(M)$. However, the homomorphism $\rho$
+does \emph{not} need to be injective, which makes the name a bit a misnomer -- the
+group does not need to be a subgroup of $GL_n\R$. For example, when working with
+the Spin group $\mathrm{Spin}_n$, the map $\rho$ is often the double cover
+$\mathrm{Spin}_n \to SO_n$.
+
+Our construction of the tangent bundle as an associated bundle can also be generalized
+to other tensor bundles built out of the tangent bundle (e.g. $\mathcal{T}^k_\ell(M)$,
+$T^*M$, $\Lambda^k(T^*M)$, etc), by using the induced representations of the
+stucture group $G$ on tensor products, the dual representation, and the induced
+representations on exterior powers respectively. From this, we see that the associated
+bundle construction is the bridge between the theory of principal bundles and vector
+bundles with representation theory, and reductions of structure group allows us to
+import our linear model geometries (e.g. an inner product space, a vector space with
+a complex structure $I$, an oriented vector space, etc.) to the nonlinear world of
+manifolds by asking for a reduction of structure group to the appropriate group. For
+example, an orientation is equivalent to a reduction of structure group to
+$GL_n^+\R = \{A \in GL_n\R ~:~ \det A > 0\}$, and an almost complex structure on a
+$2n$-dimensional manifold is equivalent  to a reduction of structure group from
+$GL_{2n}\R$ to $GL_n\C$.
+%
+\section*{References}
+%
+Most of the content of this article came from many discussions with Professor Dan
+Freed. If you want to learn more, I heavily recommend finding some time to talk to
+him. A good reference for the theory of principal bundles can be found in Kobayashi
+and Nomizu's books \emph{Foundations of Differential Geometry}.
+%
 \end{document}
