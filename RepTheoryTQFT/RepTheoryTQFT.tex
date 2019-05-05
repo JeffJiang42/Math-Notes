@@ -1,0 +1,446 @@
+\documentclass[psamsfonts, 11pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{yfonts}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[2]{%
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathscr{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathsf{GL}}
+\newcommand{\SL}{\mathsf{SL}}
+\newcommand{\SP}{\mathsf{SP}}
+\newcommand{\SO}{\mathsf{SO}}
+\newcommand{\SU}{\mathsf{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Representation Theory and Topological Quantum Field Theories}
+%
+\maketitle
+%
+\section{Bordism and TQFTs}
+%
+\begin{defn}
+Let $X$ and $Y$ be $n$-dimensional closed manifolds (i.e. compact and without boundary).
+A \ib{bordism} from $X$ to $Y$ is an $n+1$ dimensional manifold $M$ such that
+the boundary is diffeomorphic to the disjoint union $X \coprod Y$. The
+\ib{Bordism category} $\Bord_n$ is the category where the objects are closed
+$n$-dimensional manifolds, and the morphisms are bordisms between them.
+\end{defn}
+%
+\begin{figure}[ht]
+  \centering
+  \incfig{bordism}{0.20}
+  \caption{An example of a bordism $S^1 \coprod S^1 \to S^1$.}
+\end{figure}
+%
+We make a distinction between the \emph{incoming} and \emph{outgoing} manifolds.
+In the bordism drawn above, we think of the two circles as the incoming manifolds,
+and single circle as the outgoing manifold. One way to think of a bordism is
+the time evolution of the incoming manifold to the outgoing one (think of the
+figure above extending outwards from the two circles and growing towards the
+single circle over some fixed amount of time). \\
+
+The category of bordisms comes with a natural product -- the disjoint union $\coprod$,
+where given two $n$-manifolds $X$ and $Y$, we obtain a new $n$-manifold $X \coprod Y$.
+This operation is \emph{symmetric}, i.e. there is a natural isomorphism
+$X \coprod Y \to Y \coprod X$, and gives the set of objects the structure of a
+commutative monoid. We say that $(\Bord_n, \coprod)$ is a \ib{symmetric monoidal
+category}. Another important example of a symmetric monoidal category is the
+category $\mathsf{Vect}_\F$ of finite dimensional $\F$-vector spaces, where the
+operation is the tensor product $\otimes$.
+%
+\begin{defn}
+An $n+1$-dimensional \ib{topological quantum field theory (TQFT)} is a symmetric
+monoidal functor $Z : (\Bord_n, \coprod) \to (\mathsf{Vect}_\C, \otimes)$, i.e. a
+functor $\Bord_n \to \mathsf{Vect}_\C$ satisfying:
+\begin{enumerate}
+  \item $Z(\emptyset) = \C$
+  \item $Z(X \coprod Y) = Z(X) \otimes Z(Y)$
+\end{enumerate}
+\end{defn}
+%
+Note that the conditions on $Z$ essentially state that it is a homomorphism of symmetric
+monoidal categories, hence the name. Note that the empty set is vacuously a manifold of
+\emph{any} dimension. While this sounds silly at first, it ends up being very important,
+as it is the unit element under the disjoint union. In addition, we can interpret a
+closed manifold $M$ as a bordism $\emptyset \to \emptyset$. Applying $Z$ to $M$,
+we get a linear map $\C \to \C$, which is just multiplication by a complex number
+$\lambda$. The number is called the \ib{partition function} of $M$. \\
+
+While the definition might seem somewhat abstract, it is very grounded in physical
+motivation. The incoming manifold of a bordism can be thought of as a space or system at
+an initial time, and the outgoing manifold can be thought of as the end state after
+undergoing the time evolution specified by the bordism. The functor
+$Z$ then assigns to the initial and final states a state space. The fact
+that the state space of a disjoint union is the tensor product of the state spaces
+also matches the physical model.
+%
+\section{Dijkgraaf-Witten Theory With Finite Gauge Group}
+%
+We now define a specific TQFT, which is a toy model developed by Dijkgraaf and Witten.
+Fix a finite group $G$. For a fixed manifold $M$, let $\Bun_G(M)$ denote the
+category of principal $G$-bundles over $M$. Any morphism $P \to Q$ of principal
+$G$-bundles is an isomorphism, so this category is a \ib{groupoid}. For any given
+groupoid $\mathcal{G}$, we let $\pi_0(\mathcal{G})$ denote the set of isomorphism
+classes of objects in $\mathcal{G}$. Given a basepoint
+$x \in M$, we let $\Bun_G(M)$ denote the category of pointed $G$-bundles over $M$,
+which are pairs $(P,p)$ where $P \to M$ is a principal $G$-bundle, and $p\in P$ is
+an element of the fiber $P_x$ over $x$.
+%
+\begin{prop}
+There is a bijective correspondence
+\[
+\hom(\pi_1(M, x), G) \longleftrightarrow \Bun_G(M, x)
+\]
+\end{prop}
+%
+\begin{proof}
+Given a pointed bundle $(P,p) \to (M,x)$, we obtain a map $\varphi : \pi_1(M,x) \to G$
+as follows: For a homotopy class of a loop $\sigma : I \to M$ based at $x$, we
+can lift $\sigma$ to a path $\tilde{\sigma}$ on $P$ starting at $p$. Then the endpoint
+$\tilde{\sigma}(1)$ is an element of the fiber $P_x$, so it can be uniquely written
+as $p \cdot g$ for some $g \in G$. Then defining $\varphi(\sigma) = g$ gives the
+desired homomorphism (though one should check that this construction is well defined
+on homotopy classes) called the \ib{holonomy} of the bundle. This map is also
+called the \ib{monodromy}. In the other direction, given a homomorphism
+$\varphi : \pi_1(M,x) \to G$, we want to construct a pointed bundle
+$(P,p) \to (M, x)$ with holonomy $\varphi$. The manifold $M$ admits a universal
+cover $(\widetilde{M}, \tilde{x})$, which is a principal $\pi_1(M, x)$-bundle over $M$.
+The homomorphism $\varphi$ induces a left action of $\pi_1(M, x)$ on $G$, so we
+construct the associated bundle
+\[
+P = \widetilde{M} \times_{\pi_1(M, x)} G
+\]
+where we choose the basepoint of $P$ to be $p = [\tilde{x}, e]$. It is easy to
+verify that the holonomy of this bundle is $\varphi$, and it is also easy to verify
+that the holonomy of this bundle is indeed $\varphi$, giving us the desired bijection.
+\end{proof}
+%
+The group $G$ acts on the category $\Bun_G(M,x)$ by permuting basepoints. Given
+a pointed bundle $(P, p) \to (M, x)$ and a group element $g \in G$, the action of
+$g$ on $(P,p)$ is the bundle $(P, p \cdot g)$. In addition, $g$ acts on maps
+$(P,p) \to (Q,q)$ by precomposition. Taking the quotient by this group action,
+we obtain the groupoid $\Bun_G(M)$, since quotienting by the group action amounts
+to forgetting the basepoint. It is also useful to see the group action from
+the perspective of homomorphisms $\varphi : \pi_1(M, x) \to G$, which we can determine
+by studying how the holonomy of a bundle changes when we permute its basepoint.
+Let $\varphi$ be the holonomy of a bundle $(P,p) \to (M, x)$, and let $\gamma : I \to M$
+be a loop based at $x$. Then let $\widetilde{\gamma}$ denote its lift to a loop
+based at $p$. By the uniqueness of path lifting, the lift of $\gamma$ to the
+a loop based at $p\cdot g$ is the loop
+$\widetilde{\gamma}_g(t) = \widetilde{\gamma(t)} \cdot g$. We the compute
+%
+\begin{align*}
+\widetilde{\gamma}_g(1) &= \widetilde{\gamma}(1) \cdot g \\
+&= p \cdot \varphi[\gamma] \cdot g \\
+&= p \cdot g \cdot g\inv \cdot \varphi[\gamma] \cdot g
+\end{align*}
+%
+So the holonomy $\varphi$ transforms under the group action by conjugation,
+i.e. the holonomy $\varphi_g$ of $(P, p\cdot g) \to (M, x)$ is
+$g\inv \cdot \varphi \cdot g$. \\
+
+We now have the necessary tools to define the TQFT. Given a closed $n$-manifold $M$,
+define $Z(M) = \C_G(M)$, where $\C_G(M)$ denotes the vector space generated by complex
+valued functions on $\pi_0(\Bun_G(M))$. Then given a bordism $X$
+between manifolds $M$, and $N$, we need to produce a map $Z(X) : \C_G(M) \to \C_G(N)$.
+We do so as follows. We have inclusions $M \hookrightarrow X$ and $N \hookrightarrow X$
+of $M$ and $N$ into $\partial X$, giving us the diagram
+\[\begin{tikzcd}
+& X \\
+M\ar[ur] && N\ar[ul]
+\end{tikzcd}\]
+the inclusion maps induce maps $\Bun_G(X) \to \Bun_G(M)$ and $\Bun_G(X)\to \Bun(Y)$
+by pullback (also called restriction), where we map a bundle $P \to X$ to the
+pullback bundle $P\vert_M$ and $P\vert_N$ respectively, where we identify $M$
+and $N$ with the images under the inclusion into $X$, giving the diagram
+\[\begin{tikzcd}
+& \Bun_G(X) \ar[dl]\ar[dr] \\
+\Bun_G(M) && \Bun_G(N)
+\end{tikzcd}\]
+Then given a function $f \in \C_G(M)$ on principal bundles over $M$, we need to
+produce a function $Z(X)(f) \in \C_G(N)$. To do so, we need to define one more
+object. Let $Q \to N$ be a principal bundle over $N$. We then construct a
+groupoid $\mathcal{G}_Q$, where the objects are pairs $(P, \varphi)$, where
+$P \to X$ is a principal bundle, and $\varphi$ is an isomorphism $P\vert_N \to Q$,
+and the morphisms from $(P, \varphi) \to (P', \varphi')$ are bundle morphisms
+$\psi : P \to P'$ such that the diagram
+\[\begin{tikzcd}
+P\vert_N \ar[dr, "\varphi"']\ar[rr, "\psi"] && P'\vert_N \ar[dl, "\varphi'"]\\
+& Q
+\end{tikzcd}\]
+commutes, where we pullback the map $\psi$ using the inclusion map $N \hookrightarrow X$.
+We now construct the linear map $Z(X) : \C_G(M) \to \C_G(N)$. Let $f \in \C_G(M)$,
+Then define $Z(X)(f) \in \C_G(N)$ by
+\[
+Z(X)(f)(Q) = \sum_{(P,\varphi) \in \pi_0(\mathcal{G}_Q)}
+\frac{f(P\vert_M)}{|\Aut(P,\varphi)|}
+\]
+While a bit opaque, you can think of this as a sort of categorified Fourier transform.
+Given a function over $M$, we pull it back to a function over $X$, convolve with
+some sort of kernel (where we sum instead of integrate because everything is finite), and
+then push down to $N$. Such push-pull constructions arise often as a sort of generalized
+Fourier transform.
+%
+\section{Dijkgraaf-Witten Theory in Two Dimensions}
+%
+We now restrict our attention to the $2$-dimensional version of the TQFT $Z$
+we constructed above. First, we recall some of the details of the classification of
+$2d$-TQFTs, which are in bijection with \ib{commutative Frobenius algebras}. It is well
+known that the only connected closed $1$-manifold is the circle $S^1$, up to
+diffeomorphism. Therefore, all the objects in the category $\Bord_n$ (again, up to
+diffeomorphism) are just disjoint unions of a finite number of circles. Using the fact
+that $Z(M \coprod N) = Z(M) \otimes Z(N)$, this means we can interpret the morphisms
+in $\Bord_n$ as operations on $Z(S^1)$, which will form the underlying vector space
+of our commuative Frobenius algebra. To classify the algebra, it suffice to know the
+following list of bordisms and the operations they induce on $Z(S^1)$
+\begin{enumerate}
+  \item The \ib{pair of pants} $P$ is a bordism $S^1 \coprod S^1 \to S^1$. Applying
+  the functor $Z$, we get a \ib{multiplication}
+  $Z(P) : Z(S^1) \otimes Z(S^1) \to Z(S^1)$.
+  \begin{figure}[ht]
+      \centering
+      \incfig{pair_of_pants}{0.15}
+      \caption{A pair of pants}
+  \end{figure}
+  \item We can flip the pair of pants around to get a bordism $S^1 \to S^1 \coprod S^1$,
+  which then induces a map $Z(S^1) \to Z(S^1) \otimes Z(S^1)$ called
+  \ib{comultiplication}.
+  \begin{figure}[ht]
+      \centering
+      \incfig{flipped_pair_of_pants}{0.15}
+      \caption{The pair of pants, flipped around}
+  \end{figure}
+  \item The \ib{cap} $C$ is a bordism $S^1 \to \emptyset$. Applying the functor $Z$, we
+  get a linear map $Z(C) : Z(S^1) \to Z(\emptyset) = \C$, called the \ib{trace}.
+  \begin{figure}[ht]
+      \centering
+      \incfig{cap}{0.15}
+      \caption{A cap}
+  \end{figure}
+  \item By flipping the cap around, we get a bordism $\emptyset \to \S^1$, called
+  the \ib{cocap}, which gives us a map $\C \to Z(S^1)$. The identity element then
+  determines the identity of $Z(S^1)$ under the multiplication by the pair of pants.
+  \begin{figure}[ht]
+      \centering
+      \incfig{cocap}{0.15}
+      \caption{A cocap}
+  \end{figure}
+\end{enumerate}
+%
+The operations induced by the bordisms above are essentially the defining ingredients
+for a Frobenius algebra (along with some relations they satisfy, which we will
+not prove).
+\iffalse
+An example of a Frobenius algebra is the group algebra $\C[G]$ for a
+finite group $g$. The maps are as follows:
+\begin{enumerate}
+  \item The multiplication is the usual one in the group alebra.
+  \item the comultiplication is the map $g \mapsto g \otimes g$.
+  \item
+\end{enumerate}
+\fi
+%
+\end{document}
