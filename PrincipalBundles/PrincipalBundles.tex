@@ -104,7 +104,7 @@ the map $g \mapsto g \cdot p$ is a diffeomorphism.
 \begin{example}
 Let $V$ be a vector space. A \textbf{\textit{basis}} (also called a
 \textbf{\textit{frame}}) of $V$ is a linear isomorphism $\R^n \to V$, and the
-set of frames of $V$ is denoted $\\mathcal{B}(V)$. There is a
+set of frames of $V$ is denoted $\mathcal{B}(V)$. There is a
 natural right action of $GL_n\R$ on $\mathcal{B}(V)$ by precomposition, i.e.
 for $g \in GL_n\R$ and $b \in \mathcal{B}(V)$, we have $b \cdot g = b \circ g$.
 This action is free and transitive, which allows us to define a topology and
@@ -114,10 +114,10 @@ right $GL_n\R$-torsor.
 %
 $G$-torsors can be thought of as Lie groups without a fixed choice of identity element.
 Indeed, if we fix a point $p$ of a $G$-torsor $M$, this determines a unique Lie group
-structure on $M$ where $p$ is the identity element. This allows us to define
-a principal $G$-bundle. For example, there is no distinguished basis for a vector
+structure on $M$ where $p$ is the identity element via the diffeomorphism
+$g \mapsto g \cdot p$. For example, there is no distinguished basis for a vector
 space $V$, which is reflected by the fact that $\mathcal{B}(V)$ is a torsor, rather
-than a group.
+than a group. This then allows us to define a principal $G$-bundle.
 %
 \begin{definition}
 A \textbf{\textit{principal $G$-bundle}} is a fiber bundle $\pi : P \to M$ with a
@@ -156,19 +156,20 @@ object, and in many cases, this object is a vector bundle, as we will soon see.
 \section*{Groups Control the Geometry}
 %
 Given any geometric object $M$ (e.g. a vector space, manifold, fiber bundle), an
-extremely important question to as is -- "what are the symmetries of $M$?" More
+extremely important question to as is -- ``what are the symmetries of $M$?" More
 concretely, we would like to know the \emph{automorphisms} of $M$. Any quantity
 intrinsic to the object $M$ must be invariant under these automorphisms, sine
-we have no "preferred frame of reference" for the object $M$. In this way, we
+we have no ``preferred frame of reference" for the object $M$. In this way, we
 see that any geometric properties of $M$ are defined by the symmetry group $G$,
-and we say the group $G$ "controls" the geometry of $M$. For example, if we let
-$V$ be any finite dimensional vector space, the group of symmetries is the general
+and we say the group $G$ ``controls" the geometry of $M$. For example, given
+a finite dimensional vector space $V$, the group of symmetries is the general
 linear group $GL(V)$ of invertible linear transformations. If we further fix an
 inner product $\langle\cdot,\cdot\rangle$ on $V$, we have a smaller class of
 symmetries -- the orthogonal group $O(V) \subset GL(V)$ of linear automorphisms
 preserving the inner product. Additional structure (e.g. orientation, symplectic
 form, complex structure) allows us to pick out subgroups  of automorphisms, which gives
-a more restrictive class of symmetries for our vector spaces, \\
+a more restrictive class of symmetries of our vector space, and these subgroups
+define the geometry of the space. \\
 
 This proves to be a very fruitful philosophy for approaching geometry. Smooth manifolds
 are locally modeled on vector spaces, and given a structure on the linear world
@@ -217,10 +218,14 @@ to identity in both directions.
 The above construction works in the setting of vector bundles as well. Given
 a rank $k$ vector bundle $E \to M$, we can construct the principal $GL_k\R$-bundle
 $\mathcal{B}(E)$, and the associated bundle $\mathcal{B}(E) \times_{GL_k\R} \R^k$ is
-isomorphic to the bundle $E$. \\
+isomorphic to the bundle $E$, which tells us that the processes of taking frame bundles
+and constructing associated bundles are inverses to each other -- no information
+is lost in either direction, so we can work in whichever setting proves most
+convenient. \\
+%
 
-This construction shows why we might care about associated bundles -- the quotient by
-relation we specified exactly gives the correct transformation law for tangent
+This construction also shows why we might care about associated bundles -- the quotient
+by relation we specified exactly gives the correct transformation law for tangent
 vectors. You may have heard the joke that physicists define a vector as ``something
 that transforms like a vector." A more precise joke here would perhaps be ``a tangent
 vector is something that transforms like a tangent vector." What do we mean by this?
@@ -235,8 +240,42 @@ $\mathcal{B}(M) \times_{GL_n\R} \R^n$ by $v \mapsto [b,v]$, this exactly what ha
 when we fix a basis for $T_pM$! In this way, we see that fixing the first component
 in the equivalence class of an element of an associated bundle is essentially a
 choice of basis or reference frame, and doing the computations with the equivalence
-classes themselves is in essense, working in a coordinate-free manner. \\
-%TODO REDUCTION OF STRUCTURE GROUP
+classes themselves is in essense, working in a coordinate-free manner by working
+in all coordinate systems simultaneously.\\
+
+%TODO sections are equivalent to G-equivariant maps
+Another important property of the associated bundle construction is that we can
+interpret sections of any associated bundle in terms of maps on the principal bundle.
+%
+\begin{proposition}
+Let $P \to M$ be a principal $G$-bundle, and $F$ a manifold with a left $G$-action, and
+let $E = P \times_G F$ denote the corresponding associated bundle. Then there
+is a bijective correspondence
+\[
+\Gamma_M(E) \longleftrightarrow \{G\text{-equivariant maps } P \to F\}
+\]
+\end{proposition}
+%
+\begin{proof}
+We provide maps in both directions. First, let $\psi : M \to E$ be a section. We
+then define the corresponding $G$-equivariant map $\widetilde{\psi} : P \to F$.
+We know that for any $x \in M$, we have that $\psi(x) = [p, f]$ for $p \in P_x$.
+Then define $\widetilde{\psi}(p)$ to be the second factor of the unique representative
+of $[p,f]$ with $p$ as a first factor. By the definition of the associated bundle,
+this map is $G$-equivariant. \\
+
+In the other direction, let $\widetilde{\varphi} : P \to F$ be a $G$-equivariant map.
+We then construct its corresponding section $\varphi : M \to E$. For $x \in M$,
+let $\varphi(x) = [p,\tilde{\varphi}(p)]$ for any $p \in P_x$. The definition of
+the associated bundle ensures that this is well defined, and it is easy to see that
+the two maps we defined are inverses to each other.
+\end{proof}
+%TODO comment on working on bundle or on the base
+This is a specific example of a very general phenomenon -- we can either work on the
+base manifold $M$, or we can work $G$-equivariantly on the principal bundle $P \to M$
+and use the $G$-equivariance to descend to the base manifold. The idea of working
+$G$-equivariantly captures the idea in all coordinate systems at once. \\
+%
 
 We now address how fixing additional structures on our manifold $M$ changes this
 picture. The best example here is that of a Riemannian metric $g$ on $M$, which gives
@@ -264,7 +303,7 @@ $\mathcal{B}_O(M) \hookrightarrow \mathcal{B}(M)$. However, the homomorphism $\r
 does \emph{not} need to be injective, which makes the name a bit a misnomer -- the
 group does not need to be a subgroup of $GL_n\R$. For example, when working with
 the Spin group $\mathrm{Spin}_n$, the map $\rho$ is often the double cover
-$\mathrm{Spin}_n \to SO_n$.
+$\mathrm{Spin}_n \to SO_n$. \\
 
 Our construction of the tangent bundle as an associated bundle can also be generalized
 to other tensor bundles built out of the tangent bundle (e.g. $\mathcal{T}^k_\ell(M)$,
@@ -281,11 +320,184 @@ $GL_n^+\R = \{A \in GL_n\R ~:~ \det A > 0\}$, and an almost complex structure on
 $2n$-dimensional manifold is equivalent  to a reduction of structure group from
 $GL_{2n}\R$ to $GL_n\C$.
 %
+\section*{Connections}
+%
+Another vital piece of the theory of principal bundles is the theory of connections.
+Unfortunately, this discussion  will require some additional background. This section
+will assome some knowledge of algebraic topology (on the level over covering spaces),
+and a decent amount of comfort with differential geometry. \\
+
+We first motivate why we would care about connections. Suppose our group $G$ is finite.
+Then a principal $G$-bundle $P \to M$ is the same as a (possibly disconnected)
+$|G|$-fold cover of $M$ equipped with a free and transitive $G$ action. For example,
+double covers of $M$ are exactly principal $\Z/2\Z$-bundles over $M$. An extremely
+important property of covering spaces is the \textbf{\textit{path lifting property}}.
+Given a cover $P \to M$, a point $x \in M$, and a lift $p \in P_x$ of $x$, let
+$\gamma : I \to M$ be a path with $\gamma(0) = x$. Then there exists a unique
+path $\widetilde{\gamma} : I \to P$ such that $\widetilde{\gamma}(0) = p$, and
+$\pi \circ \widetilde{\gamma} = \gamma$. We call the path $\widetilde{\gamma}$ a
+\textbf{\textit{lift}} of $\gamma$. This makes use of the fact that there is a
+neighborhood about $p$ that is mapped diffeomorphically onto a neighborhood of $x$. \\
+
+We would also like a path lifting property for a general principal bundle
+$P \to M$, but our hopes are immediately dashed by a simple dimension count --
+the dimension of $P$ is $\dim G + \dim M$, so if $G$ is not discrete, we have
+no hope of lifting a path, since there will be no local diffeomorphisms we will be
+able to use to lift a path. To accomplish our goal of path lifting, we need
+additional data.
+%
+\begin{definition}
+Let $M$ a smooth manifold. A \textbf{\textit{rank $k$ distribution}} $H$ over $M$ is
+a vector subbundle $H \subset TM$, such that the fiber $H_x$ over any $x \in M$
+is a $k$-dimensional subspace of $T_xM$.
+\end{definition}
+%
+A distribution can be thought of as a higher dimensional analogue of a vector field,
+where instead of tangent vectors, we are asking for tangent $k$-planes. A
+principal bundle comes equipped with a natural distribution.
+%
+\begin{definition}
+Let $\pi : E \to M$ be a fiber bundle with model fiber $F$.
+Then the subbundle $\ker\pi_*$ is a distribution of rank $\dim F$ called the
+\textbf{\textit{vertical distribution}}.
+\end{definition}
+%
+Since a fiber bundle is locally modeled on a product $U \times F$, we can
+think of it locally as several copies of $F$ sitting over out manifold $M$. The
+vertical distribution consists of all the directions in the fiber. If you move in
+any of the directions of the vertical distribution, you stay in the same fiber
+you started with.
+
+In the special case that we are working with a principal bundle, an important fact is
+that the vertical distribution has a canonical identification with the product bundle
+$M \times \mathfrak{g}$ of $M$ with the Lie algebra $\mathfrak{g}$ of $G$.
+%
+\begin{proposition}
+Let $P \to M$ be a principal $G$-bundle with vertical distribution $V$. Then
+every fiber $V_p$ of the vertical distribution has a canonical identification with
+$\mathfrak{g}$.
+\end{proposition}
+%
+\begin{proof}
+Using the identification of $\mathfrak{g}$ with left-invariant vector fields on
+$G$, there is an \textbf{\textit{exponential map}} $\exp : \mathfrak{g} \to G$
+where for an element $X \in \mathfrak{g}$, we define $\exp(X) = \gamma_X(1)$, where
+$\gamma_X$ is the integral curve of the vector field $X$ with $\gamma_X(0) = e$. The
+exponential map maps a small line segment
+$\{tX ~:~ t \in (-\varepsilon, \varepsilon)\}$ to a curve
+$\gamma : (-\varepsilon,\varepsilon) \to G$, with $\gamma(0) = e$. Fix a point $p \in P$.
+Then any Lie algebra element $X \in \mathfrak{g}$ determines a tangent vector
+$\widehat{X} \in T_pP$ by the formula
+\[
+\widehat{X} = \frac{d}{dt}\bigg\vert_{t = 0}p \cdot \exp(tX)
+\]
+Since the group action preserves the fibers, $\widehat{X} \in V_p$, and it is a
+useful exercise to check that the mapping $X \mapsto \widehat{X}$ is an isomorphism
+$\mathfrak{g} \to V_p$.
+\end{proof}
+%
+There is an analogous identification for a vector bundle.
+%
+\begin{proposition}
+Let $\pi : E \to M$ be a vector bundle with vertical distribution $V$. Then for
+$e \in E$, there is a canonical identification of $V_e$ with $E_{\pi(e)}$, where
+the mapping is given by
+\[
+v \mapsto \frac{d}{dt}\bigg\vert_{t=0}e + tv
+\]
+\end{proposition}
+%
+\begin{definition}
+Let $\pi : E \to M$ be a fiber bundle with vertical distribution $V$.
+Then a \textbf{\textit{connection}} is a choice of
+\textbf{\textit{horizontal distribution}}, i.e. a distribution $H \subset TE$ such that
+for every $p \in P$, we have that $V_p \oplus H_p = T_pE$.
+\end{definition}
+%
+A connection on $E$ gives us distinguished ``manifold directions" which are
+complementary to the ``fiber directions" defined by the vertical distribution $V$.
+By the first isomorphism theorem, the differential
+$\pi_*\vert_{H_p} : H_p \to T_{\pi(p)}M$ is an isomorphism, which is the
+essential fact we will use to define path lifting on a fiber bundle. \\
+
+Specializing to principal bundles $P \to M$, one
+useful thing to note is that the choice of complementary subspace to $V_p$
+is equivalent data to the choice of a projection map $T_pP \to V_p$, with $H_p$ as
+the kernel. Using the identification of $V_p$ with $\mathfrak{g}$, this is
+equivalent to a surjective map $T_pP \to \mathfrak{g}$. Doing this fiberwise, we
+see that a connection $H$ is equivalent data to a $\mathfrak{g}$ valued $1$-form
+$\Theta \in \Omega^1_P(\mathfrak{g})$, i.e. a section of
+$\Lambda^1(P) \otimes \mathfrak{g}$, where we recover $H$ as the kernel of $\Theta$.
+In addition, since the projection map is identity on $V$, it is clear that
+for $X \in \mathfrak{g}$, we have that $\Theta(\widehat{X}) = X$. The form
+$\Theta$ is called the \textbf{\textit{connection form}}. An analogous construction
+can be made for a vector bundle $\pi: E \to M$ as well, giving a connection
+form $\omega \in \Omega_E^1(\pi^*E)$ valued in the pullback bundle $\pi^*E$. \\
+%
+
+We now return to the issue of path lifting. Given a fiber bundle $\pi : E \to M$
+equipped with a connction $H \subset TE$, we remarked earlier that
+$\pi_*\vert_{H_p} : H_p \to T_{\pi(p)}M$ is an isomorphism. This means that for
+any tangent vector $v \in T_{\pi(p)}$, there is a \emph{unique} vector
+$\tilde{v} \in H_p \subset T_pE$ such that $\pi_*(\tilde{v}) = v$. We call
+$\tilde{v}$ the \textbf{\textit{horizontal lift}} of the vector $v$. We
+now have all the ingredients in place for path lifting. \\
+
+Let $\pi : E \to M$ be a fiber bundle equipped with connection $H$, and let
+$\gamma : I \to M$ be a smooth path with $\gamma(0) = x$. For each time $t \in I$,
+we have a velocity vector $\gamma'(t) \in T_{\gamma(t)}M$. This determines a vector
+field $V$ on the fibers along the path $\gamma$, where the value of $V$ at any point
+$p \in P_{\gamma{t}}$ is the unique horizontal lift of $\gamma'(t)$ to $p$. By
+the theory of differential equations, we can integrate these vector fields to a flow
+on the fibers along the path, so fixing a point $p \in P_x$ determines a
+unique integral curve $\widetilde{\gamma} : I \to P$ starting at $p$, which satisfies
+$\pi \circ \widetilde{\gamma} = \gamma$, solving the path lifting problem. We
+can then use the lifted paths to define \textbf{\textit{parallel transport}} along
+a curve. Given a curve $\gamma I \to M$, we get a family of maps
+$\tau_t : E_{\gamma(0)} \to E_{\gamma}(t)$, where $\tau_t(f) = \gamma_f(t)$, where
+$\gamma_f$ is the unique lift of $\gamma$ to a path starting at $f \in E_{\gamma(0)}$.
+These maps are isomorphisms, since they have an inverses given by the parallel transport
+maps induced by the path $\gamma$ traversed backwards. The parallel transport
+maps give us a way to transport data between fibers along a curve, so a connection
+``connects" nearby fibers, justifying the name. Our usage of horizontal lifts of
+velocity vectors shows us why the connection was the missing data for path lifting.
+Since our group was not discrete, we did not have a distinguished ``manifold" direction
+to lift the path, which was exactly the problem that the horizontal distribution solved.
+In this way, we see that a recipe for path lifting is equivalent data for a connection,
+since any recipe for path lifting needs to specify a distinguished ``manifold" direction
+to connect nearby fibers.
+
+We now restrict our attention to principal bundles. An extremely important fact
+is that a connection on a principal $G$-bundle $P \to M$ induces a connection
+on \emph{any} associated bundle $P \times_G F$. There are several ways to see this.
+One way is through the horizontal distribution. Let $H \subset TP$ be the horizontal
+distribution on $P$. Then $T(P \times F)$ is canonically isomorphic to $TP \oplus TF$,
+so we get a distribution $H \times \{0\} \subset TP \oplus TF$. This is invariant
+under the $G$ action on $P \times F$, so it descends to the quotient $P \times_G F$,
+giving us a horizontal distribution on the associated bundle. Another way to
+see this is that the connection on $P$ gives us path lifting on any associated bundle.
+Fix a basepoint $x \in M$, and a basepoint $(p, f)$ in the fiber of $P \times_G F$
+over $x$. Then given a path $\gamma : I \to M$ based at $x$, we get a unique lift
+$\widetilde{\gamma} : I \to P$ to a curve in $p$. We then get a path
+$\widehat{\gamma} : I \to P \times_G F$ defined by
+$\widehat{\gamma}(t) = [\widetilde{\gamma}(t), f]$. This gives a useful intepretation
+of curves on fiber bundles with horizontal velocity vectors. Thinking of the
+principal bundle component as a sort of ``coordinate system," These curves
+are constant in the second component, and the connection on $P$ allows us to pick a
+distinguished path of frames. In the case of the tangent bundle, we can say
+even more. Given a path $\gamma : I \to M$ in $M$, the mapping
+$t \mapsto (\gamma(t), \gamma'(t))$ defines a curve in $TM$. Thinking of $TM$ as the
+associated bundle $\mathcal{B}(M) \times_{GL_n\R} \R^n$, what does it mean
+for this curve in $TM$ to be of the form $[\widetilde{\gamma}(t), v]$ for a fixed
+$v \in \R^n$? We can think of $v$ as the \emph{acceleration}. Therefore, asking for
+the curve in $TM$ to be horizontal is like asking for the curve $\gamma$ on $M$ to
+be \emph{constant accleration}, which is one definition of a geodesic.
+%TODO Covariant derivative.
 \section*{References}
 %
 Most of the content of this article came from many discussions with Professor Dan
 Freed. If you want to learn more, I heavily recommend finding some time to talk to
-him. A good reference for the theory of principal bundles can be found in Kobayashi
+him.  A good reference for the theory of principal bundles can be found in Kobayashi
 and Nomizu's books \emph{Foundations of Differential Geometry}.
 %
 \end{document}
