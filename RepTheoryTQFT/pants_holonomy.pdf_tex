@@ -1,6 +1,6 @@
 %% Creator: Inkscape inkscape 0.92.2, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
-%% Accompanies image file 'pair_of_pants.pdf' (pdf, eps, ps)
+%% Accompanies image file 'pants_holonomy.pdf' (pdf, eps, ps)
 %%
 %% To include the image in your LaTeX document, write
 %%   \input{<filename>.pdf_tex}
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{684.25182913bp}%
+    \setlength{\unitlength}{215.66787119bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,7 +48,10 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,1.01972489)%
-    \put(0,0){\includegraphics[width=\unitlength,page=1]{pair_of_pants.pdf}}%
+  \begin{picture}(1,0.94403063)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{pants_holonomy.pdf}}%
+    \put(0.18878263,0.46698794){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$g$}}}%
+    \put(0.67564222,0.46202){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$h$}}}%
+    \put(0.44214811,0.74022548){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$hg$}}}%
   \end{picture}%
 \endgroup%

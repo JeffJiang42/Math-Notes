@@ -29,6 +29,7 @@
 \usepackage{transparent}
 
 \newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
     \def\svgwidth{\columnwidth}
     \scalebox{#2}{\input{#1.pdf_tex}}
 }
@@ -285,7 +286,7 @@ category of principal $G$-bundles over $M$. Any morphism $P \to Q$ of principal
 $G$-bundles is an isomorphism, so this category is a \ib{groupoid}. For any given
 groupoid $\mathcal{G}$, we let $\pi_0(\mathcal{G})$ denote the set of isomorphism
 classes of objects in $\mathcal{G}$. Given a basepoint
-$x \in M$, we let $\Bun_G(M)$ denote the category of pointed $G$-bundles over $M$,
+$x \in M$, we let $\Bun_G(M,x)$ denote the category of pointed $G$-bundles over $M$,
 which are pairs $(P,p)$ where $P \to M$ is a principal $G$-bundle, and $p\in P$ is
 an element of the fiber $P_x$ over $x$.
 %
@@ -372,8 +373,9 @@ P\vert_N \ar[dr, "\varphi"']\ar[rr, "\psi"] && P'\vert_N \ar[dl, "\varphi'"]\\
 & Q
 \end{tikzcd}\]
 commutes, where we pullback the map $\psi$ using the inclusion map $N \hookrightarrow X$.
-We now construct the linear map $Z(X) : \C_G(M) \to \C_G(N)$. Let $f \in \C_G(M)$,
-Then define $Z(X)(f) \in \C_G(N)$ by
+We refer to $\mathcal{G}_Q$ as the \ib{groupoid preimage} of $Q$. We now construct the
+linear map $Z(X) : \C_G(M) \to \C_G(N)$. Let $f \in \C_G(M)$ by defining
+$Z(X)(f) \in \C_G(N)$ by
 \[
 Z(X)(f)(Q) = \sum_{(P,\varphi) \in \pi_0(\mathcal{G}_Q)}
 \frac{f(P\vert_M)}{|\Aut(P,\varphi)|}
@@ -394,7 +396,7 @@ diffeomorphism. Therefore, all the objects in the category $\Bord_n$ (again, up 
 diffeomorphism) are just disjoint unions of a finite number of circles. Using the fact
 that $Z(M \coprod N) = Z(M) \otimes Z(N)$, this means we can interpret the morphisms
 in $\Bord_n$ as operations on $Z(S^1)$, which will form the underlying vector space
-of our commuative Frobenius algebra. To classify the algebra, it suffice to know the
+of our commutative Frobenius algebra. To classify the algebra, it suffice to know the
 following list of bordisms and the operations they induce on $Z(S^1)$
 \begin{enumerate}
   \item The \ib{pair of pants} $P$ is a bordism $S^1 \coprod S^1 \to S^1$. Applying
@@ -413,36 +415,90 @@ following list of bordisms and the operations they induce on $Z(S^1)$
       \incfig{flipped_pair_of_pants}{0.15}
       \caption{The pair of pants, flipped around}
   \end{figure}
-  \item The \ib{cap} $C$ is a bordism $S^1 \to \emptyset$. Applying the functor $Z$, we
-  get a linear map $Z(C) : Z(S^1) \to Z(\emptyset) = \C$, called the \ib{trace}.
-  \begin{figure}[ht]
-      \centering
-      \incfig{cap}{0.15}
-      \caption{A cap}
-  \end{figure}
-  \item By flipping the cap around, we get a bordism $\emptyset \to \S^1$, called
-  the \ib{cocap}, which gives us a map $\C \to Z(S^1)$. The identity element then
-  determines the identity of $Z(S^1)$ under the multiplication by the pair of pants.
+  \item The \ib{cap} $C$ is a bordism $\emptyset \to S^1$. Applying the functor $Z$,
+  we get a linear map $\C \to Z(S^1)$. The image of $1$ is the identity element of
+  $Z(S^1)$ under the multiplication defined by the pair of pants.
   \begin{figure}[ht]
       \centering
       \incfig{cocap}{0.15}
+      \caption{A cap}
+  \end{figure}
+  \item By flipping the cap around, we get a bordism $S^1 \to \emptyset$, which
+  determines a map $Z(S^1) \to \C$ called the \ib{trace}.
+  \begin{figure}[ht]
+      \centering
+      \incfig{cap}{0.15}
       \caption{A cocap}
   \end{figure}
 \end{enumerate}
 %
 The operations induced by the bordisms above are essentially the defining ingredients
 for a Frobenius algebra (along with some relations they satisfy, which we will
-not prove).
+not prove). \\
 
+We now evaluate our TQFT on the circle. From before, we saw that pointed principal
+$G$-bundles are in bijection with group homomorphisms $\pi_1(S^1,x) \to G$. Since
+$\pi_1(S^1, x) \cong \Z$, this is entirely determined by the image of $1$, so we
+get that the objects of $\Bun_G(S^1, x)$ is in bijection with the elements of $G$.
+Since we are  considering functions from isomorphisms classes of principal bundles
+\emph{without basepoints}, we have that the objects of $\Bun_G(S^1)$ are in bijection
+with \emph{conjugacy classes} of $G$. Therefore, the vector space
+$Z(S^1)$ assigned to the circle by our TQFT is the complex vector space
+$\C[G]^G$ of class functions on $G$, which is the underlying vector space of our
+commutative Frobenius algebra. We then determine the linear maps determined
+by the bordisms specified above. \\
+
+We first do the cap $C$ , which determines a linear functional
+$Z(C) : Z(S^1) \to \C$. Let $f \in Z(S^1)$. To compute this map, we make two
+observations.
 %
-\iffalse
-An example of a Frobenius algebra is the group algebra $\C[G]$ for a
-finite group $g$. The maps are as follows:
 \begin{enumerate}
-  \item The multiplication is the usual one in the group alebra.
-  \item the comultiplication is the map $g \mapsto g \otimes g$.
-  \item
+  \item Topologically, $C$ is homeomorphic to the $2$-disk $D^2$, which is contractible.
+  Therefor, the only principal $G$-bundle over $C$ is the trivial bundle $C \times G$.
+  \item The only principal $G$-bundle over the empty set is the empty set, which
+  is vacuously a principal $G$-bundle.
 \end{enumerate}
-\fi
+%
+We the see that the groupoid preimage of $\emptyset$ is just the groupoid
+$\Bun_G(C)$, which consists of a single object representing $C \times G$, with
+$|G|$ automorphisms corresponding to multiplication by the group elements. Restriction
+of this trivial bundle to the boundary $S^1$ is then the trivial bundle $S^1 \times G$,
+which corresponds to the map $\Z \to G$ where $1 \mapsto e$. Therefore, evaluating
+the function $f$ on the trivial bundle is equivalent to evaluating its corresponding
+class function(which we also denote $f$) on the identity element $e$.
+Normalizing by the order of the group then gives us
+\[
+Z(C)(f) = \frac{f(e)}{|G|}
+\]
+
+We now compute the map determined by the cocap, which is a map $\C \to \C[G]^G$.
+Fix a number $\alpha \in \C$, and a principal bundle $Q$ over $S^1$. Again, the cocap
+is homeomorphic to $D^2$, which has a single principal bundle up to isomorphism with
+$|G|$ automorphisms. Then the groupoid preimage $\mathcal{G}_Q$ is the empty
+groupoid unless $Q$ is isomorphic to the trivial bundle $S^1 \times G$. Therefore,
+we have that the map associated to the cocap is given by $\alpha \mapsto f_\alpha$
+where
+\[
+f_\alpha(Q) = \begin{cases}
+\frac{\alpha}{|G|} & Q \cong S^1 \times G \\
+0 & \text{otherwise}
+\end{cases}
+\]
+which corresponds to the class function that is $\alpha/|G|$ on $e$ and $0$ on all
+other conjugacy classes. \\
+
+We now determine the multiplication induced by the pair of pants $M$. Topologically,
+the pair of pants is homeomorphic to a a twice punctured disk. Using the identification
+of principal bundles with their holonomy, this picture proves to be quite useful.
+The fundamental group $\pi_1(M,x)$ is isomorphic to the free group on $2$ elements,
+so a principal bundle over $M$ is equivalent data to a choice of two group elements
+of $G$, up to simultaneous conjugation. These correspond to the holonomies by traveling
+once around each of the inner circles, and the holonomy traveling around the outer
+circle is the product of the holonomies around the two inner circles
+\begin{figure}[ht]
+    \centering
+    \incfig{pants_holonomy}{.20}
+    \caption{Holonomies around the pair of pants.}
+\end{figure}
 %
 \end{document}
