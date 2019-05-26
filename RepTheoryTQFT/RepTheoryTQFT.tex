@@ -495,10 +495,120 @@ so a principal bundle over $M$ is equivalent data to a choice of two group eleme
 of $G$, up to simultaneous conjugation. These correspond to the holonomies by traveling
 once around each of the inner circles, and the holonomy traveling around the outer
 circle is the product of the holonomies around the two inner circles
+%
 \begin{figure}[ht]
     \centering
     \incfig{pants_holonomy}{.20}
     \caption{Holonomies around the pair of pants.}
 \end{figure}
+%
+We then compute the linear map determined by $M$, thought of as a bordism
+$S^1 \coprod S^1 \to S^1$. In our picture, the outer boundary of this disk corresponds
+to the single $S^1$ boundary component, and the two inner circles correspond to the
+$S^1 \coprod S^1$ boundary component. Let $Q$ be a principal bundle over $S^1$,
+with holonomy $k$. Then the groupoid preimage $\mathcal{G}_Q$ corresponds to
+pairs of elements $(g,h)$ such that $gh = k$, up to simultaneous conjugation.
+Then given functions $f_1,f_2 \in Z(S^1)$, evaluating these functions on this bundle
+corresponds to evaluating the corresponding class functions of $f_1$ on $g$ and $f_2$ on
+$h$, and taking their product. Putting it all together, we get that the multiplication
+map defined the the pair of pants $Z(M) : \C[G]^G \otimes \C[G]^G \to \C[G]$ maps
+$f_1 \otimes f_2 \mapsto f_1 * f_2$, where
+\[
+(f_1 * f_2)(k) = \sum_{gh = k} \frac{f_1(g)f_2(h)}{|\Aut(g,h)|}
+\]
+where $\Aut(g,h)$ denotes the automorphism group of $(g,h)$ in $\mathcal{G}_Q$, which
+correspond to pairs $(g,h)$ (up to simultaneous conjugation) whose product $gh$ is
+equal to $k$. The stabilizer of $(g,h)$ under the conjugation action
+$\ell \cdot (g,h) = (\ell g\ell\inv, \ell h\ell\inv)$ is the intersection
+$C(g) \cap C(h)$ of the centralizers of $g$ and $h$. The automorphism group of $k$
+the centralizer $C(k)$, so we get that
+\[
+|\Aut(g,h)| = \frac{|C(g) \cap C(h)|}{|C(k)|}
+\]
+%TODO justify this better
+which then gives us that the multiplication is
+\[
+(f_1 * f_2)(k) = \sum_{gh = k} \frac{|C(k)|}{|C(g) \cap C(h)|}f_1(g)f_2(h)
+\]
+There is a nice interpretation of this multiplication.
+%
+\begin{prop}
+There is an algebra isomorphism of $Z(S^1)$ with the center of the group algebra
+$\C[G]$ given by the mapping
+\[
+f \mapsto \sum_{g \in G} f(g)g
+\]
+\end{prop}
+%
+To show this, we first use a lemma.
+%
+\begin{lem}
+Let $C_1, \ldots, C_n$ denote the conjugacy classes of $G$. Then the elements
+\[
+b_i = \sum_{g \in C_i} g
+\]
+form a basis for $Z(\C[G])$.
+\end{lem}
+%
+\begin{proof}
+Since the conjugacy classes are disjoint, it is clear that the $b_i$ are linearly
+independent, so it suffices to show that they span. Let $\alpha \in Z(\C[G])$, which
+can be written as
+\[
+\alpha = \sum_{g \in G} \alpha_g g
+\]
+for $\alpha_g \in \C$. In addition, $\alpha \in Z(\C[G])$ is equivalent to
+$h\alpha = \alpha h$ for any  $h \in G$, which is then equivalent to
+$h\alpha h\inv = \alpha$ Expanding this out, we get that this condition
+is equivalent to
+\[
+\sum_{g \in G} \alpha_g hgh\inv = \sum_{g \in G}\alpha_g g
+\]
+We can then substitute $u = hgh\inv$, which gives us that $g = h\inv u h$, and the
+summation on the left hand side becomes
+\[
+\sum_{u \in G}\alpha_{h\inv uh} u
+\]
+renaming $u$ back to $g$, we have that the condition that $\alpha \in Z(\C[G])$ is
+given by the equation
+\[
+\sum_g \alpha_{h\inv gh}g = \sum_g \alpha_g g
+\]
+which is true if and only if we have the coefficients $\alpha_{h\inv gh}$ and $\alpha_g$
+are equal. It is clear that the elements $b_i$ we constructed satisfy the condition
+for their coefficients, so all the $b_i$ lie in $Z(\C[G])$, in addition, they span,
+since if $\sum_{g \in G} a_g g \in Z(\C[G])$, the coefficients are determined by the
+conjugacy classes of the elements, so we can just take the appropriate linear
+combinations of the $b_i$.
+\end{proof}
+%
+\begin{proof}[\ib{Proof of Proposition 3.1}]
+We know that a basis $\C[G]^G$ is given by the indicator functions $\chi_i$ for the
+conjugacy classes $C_i$. Under the mapping $f \mapsto \sum_{g \in G} f(g)g$, we have that
+$\chi_i \mapsto b_i$, where $b_i$ is the same as we defined above, so this is
+a linear isomorphism. We then check that this mapping is an algebra homomorphism
+(and therefore, an algebra isomorphism). It suffices to verify this on a basis, which
+we choose to be the indicator functions $\chi_i$. Given indicators $\chi_i$ and $\chi_j$
+for the conjugacy classes $C_i$ and $C_j$. Under the mapping $\C[G]^G \to Z(\C[G])$,
+the $\chi_i$ are mapped to the $b_i$, and we compute
+%
+\begin{align*}
+b_ib_j &= \left( \sum_{g \in C_i} g \right)\left( \sum_{h \in C_j} h \right) \\
+&= \sum_{g} \lambda_g g
+\end{align*}
+where $\lambda_g$ is the cardinality of the set
+\[
+\Lambda_g = \set{(h,k) \in C_i \times C_j ~:~ hk = g}
+\]
+To determine the value of the $\lambda_g$, we note that the centralizer $C(g)$ of $g$
+acts on $\Lambda_g$ by simultaneous conjugation, since for $\ell \in C(g)$ and
+$(h,k) \in \Lambda_g$, we have that
+\[
+(\ell h \ell\inv)(\ell k \ell \inv) = \ell hk \ell\inv = g
+\]
+In addition, it is clear that the stabilizer subgroup of an element $(h,k) \in \Lambda_g$
+is the intersection $C(h) \cap C(k) \subset C(g)$.
+%
+\end{proof}
 %
 \end{document}
