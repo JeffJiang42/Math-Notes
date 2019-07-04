@@ -7,10 +7,12 @@
 \chapter{Principal Bundles} % your article title goes here
 \thispagestyle{empty}
 \vspace{-2cm}
+%
 \begin{flushright}
 	\textbf{Jeffrey Jiang}\\ % your name goes here
 	\texttt{jeffjiang@utexas.edu} % your email address goes here
 \end{flushright}
+%
 
 \section*{Why Fiber Bundles?}
 
@@ -18,7 +20,7 @@ Suppose we want to study some space $M$, which for our purposes is a smooth mani
 One way to study $M$ is to study functions $M \to F$ for some fixed target space $F$,
 e.g. a manifold , $\R$, or a vector space. This is a perfectly good method
 of studying $M$, but is sometimes not enough. More often then not, we want to
-study ``function" from $M$ into a vector space that varies over the base
+study ``functions" from $M$ into a vector space that varies over the base
 manifold $M$. For example, a vector field $X \in \mathfrak{X}(M)$ is not really
 a map $M \to \R^n$, it is an assignment to each $p \in M$ a vector in $T_pM$.
 In this way, we are led to the study of a smoothly parameterized family of
@@ -453,7 +455,7 @@ on the fibers along the path, so fixing a point $p \in P_x$ determines a
 unique integral curve $\widetilde{\gamma} : I \to P$ starting at $p$, which satisfies
 $\pi \circ \widetilde{\gamma} = \gamma$, solving the path lifting problem. We
 can then use the lifted paths to define \textbf{\textit{parallel transport}} along
-a curve. Given a curve $\gamma I \to M$, we get a family of maps
+a curve. Given a curve $\gamma : I \to M$, we get a family of maps
 $\tau_t : E_{\gamma(0)} \to E_{\gamma}(t)$, where $\tau_t(f) = \gamma_f(t)$, where
 $\gamma_f$ is the unique lift of $\gamma$ to a path starting at $f \in E_{\gamma(0)}$.
 These maps are isomorphisms, since they have an inverses given by the parallel transport
@@ -492,7 +494,7 @@ for this curve in $TM$ to be of the form $[\widetilde{\gamma}(t), v]$ for a fixe
 $v \in \R^n$? We can think of $v$ as the \emph{acceleration}. Therefore, asking for
 the curve in $TM$ to be horizontal is like asking for the curve $\gamma$ on $M$ to
 be \emph{constant accleration}, which is one definition of a geodesic.
-%TODO Covariant derivative.
+%
 \section*{References}
 %
 Most of the content of this article came from many discussions with Professor Dan

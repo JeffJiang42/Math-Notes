@@ -1,0 +1,382 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{cite}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathscr{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathsf{GL}}
+\newcommand{\SL}{\mathsf{SL}}
+\newcommand{\SP}{\mathsf{SP}}
+\newcommand{\SO}{\mathsf{SO}}
+\newcommand{\SU}{\mathsf{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{A Quick Survey of Hodge Theory}
+%
+\maketitle
+%
+\tableofcontents
+%
+\section{Linear Algebra}
+%
+\begin{defn}
+Let $V$ be a finite dimensional $\R$-vector space. An \ib{almost complex structure} on
+$V$ is a linear map $J : V \to V$ satisfying $J^2 = \id_V$. An \ib{almost complex
+vector space} is tuple $(V,J)$, where $V$ is a finite dimensional $\R-$vector space
+equipped with an almost complex structure $J$.
+\end{defn}
+%
+The data of an almost complex structure $J$ is equivalent to giving $V$ the structure
+of a complex vector space, where we define $(a + bi)\cdot v = ab + bJv$. Because of this,
+we may call $J$ a \ib{complex structure}. We use the name \emph{almost} complex
+structure to emphasize the differences between the analogous constructions in the
+nonlinear world of manifolds. Note that since an almost complex structure is equivalent
+to a complex structure, this immediately implies that $V$ is even dimensional. \\
+
+One way to think about an almost complex structure is through the geometric
+interpretation of complex multiplication. If we regard $\C$ as a $2$-dimensional vector
+space over $\R$, multiplication by $i$ corresponds to a rotation by $\pi/2$ in the
+counterclockwise direction, and multiplication by $-i$ corresponds to a rotation by
+$\pi/2$ in the clockwise direction. From this we see that a choice of a square root
+of $-1$ comes with a choice of clockwise or counterclockwise. This implies that
+every complex vector space is canonically oriented as a real vector space. Given a
+$\C$-vector space $V$ with $\C$-basis $\set{z_1, \ldots, z_n}$, we have that the ordered
+basis $(z_1, iz_1, \ldots z_n, iz_n)$ defines a positively oriented basis for $V$ over
+$\R$.
+%
+\begin{defn}
+Let $V$ by any $\R$-vector space. The \ib{complexification} of $V$ is the complex
+vector space $V_\C = \C \otimes_\R V$. The complexification $V_\C$ is naturally a
+complex vector space, where for $\lambda \in \C$, the action of $\lambda$ on a
+homogeneous element $\mu \otimes v$ is given by
+\[
+\lambda \cdot (\mu \otimes v) = \lambda\mu \otimes v
+\]
+\end{defn}
+%
+The complexification is a different way of obtaining a complex vector space from a real
+one. The complexification $V_\C$ is a vector space of twice the dimension of $V$ as a
+vector space over $\R$. In addition, there is a natural inclusion
+$V \hookrightarrow V_\C$ given by $v \mapsto 1 \otimes v$. Complexification is an
+instance of \emph{extension of scalars} -- every element of $V_\C$ is of the form
+$av + biw$ where $a,b \in \R$, and $v,w \in V$. Therefore, we will denote the element
+$(a + bi) \otimes v \in V_\C$ by $av + biv$, and we have a direct sum decomposition
+$V_\C = V \oplus iV$.   Given a linear map $T : V \to W$ of $\R$-vector spaces, we can
+extend $T$ to a complexified map $T_\C : V_\C \to W_\C$, where
+$T_\C(av + biw) = aTv + biTv$. In other words, $T_\C = \id_\C \otimes T$. In this way,
+we see that complexification defines a covariant functor
+$\mathsf{Vect}_\R \to \mathsf{Vect}_\C$ from the category of $\R$-vector spaces to the
+category of $\C$-vector spaces. \\
+
+A natural question to ask is how an almost complex structure interacts with
+the process of complexification. Let $(V,J)$ be an almost complex vector space. Then the
+complexified map $J_\C : V_\C \to V_\C$ squares to $-1$, and admits eigenvalues
+$\pm i$. For example, consider $V = \C$. We then can then make the natural
+identification of $\C$ with the almost complex vector space $(\R^2, J)$, where $J$
+is given by the matrix
+\[
+J = \begin{pmatrix}
+0 & -1 \\
+1 & 0
+\end{pmatrix}
+\]
+using the ordered $\R$ basis $(1,i)$. Then $V_\C = \C \otimes_\R \C = \C^2$, and $J_\C$
+is given by the matrix
+\[
+J_\C = \begin{pmatrix}
+0 & -1 & 0 & 0 \\
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & -1 \\
+0 & 0 & 1 & 0
+\end{pmatrix}
+\]
+in the ordered $\R$ basis $(1, i, 1, i)$, where the first pair elements are elements of
+one copy of $\C^2$, and the second pair of elements are elements of a separate copy of
+$\C^2$, giving an $\R$ basis for $\C \cong \C \oplus \C$. The matrix $J_\C$
+clearly has eigenvalues $\pm i$, with the $i$-eigenspace being spanned by the
+vectors
+\[
+\begin{pmatrix}
+\frac{1}{2} \\[5pt]
+0 \\[5pt]
+\frac{1}{2} \\[5pt]
+0
+\end{pmatrix}, \begin{pmatrix}
+\frac{i}{2} \\[5pt]
+0 \\[5pt]
+-\frac{i}{2} \\[5pt]
+0
+\end{pmatrix}
+\]
+and the $-i$ eigenspace being the span of
+\[
+\begin{pmatrix}
+0 \\[5pt]
+\frac{1}{2} \\[5pt]
+0 \\[5pt]
+\frac{1}{2}
+\end{pmatrix}, \begin{pmatrix}
+0 \\[5pt]
+\frac{i}{2} \\[5pt]
+0 \\[5pt]
+-\frac{i}{2}
+\end{pmatrix}
+\]
+The case for general $V$ is similar, and amounts to fixing an $\R$ basis of the
+form $\set{v_1, Jv_1, \ldots v_n, Jv_n}$ for $(V,J)$. The decomposition of $V_\C$ into
+the $\pm i$-eigenspaces of $J_\C$ gives a direct sum decomposition
+\[
+V_\C = V^{1,0} \oplus V^{0,1}
+\]
+where $V^{1,0}$ denotes the $i$-eigenspace, and $V^{0,1}$ denotes the $-i$-eigenspace.
+Note that in the bases we chose above for $\C^2$, complex conjugation is given by the
+matrix
+\[
+\begin{pmatrix}
+0 & 1 & 0 & 0\\
+1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0
+\end{pmatrix}
+\]
+and determines an isomorphism of complex vector spaces
+$V^{1,0} \cong \overline{V^{0,1}}$ and vice versa. \\
+
+An almost complex structure $J$ on $V$ induces a dual map $J^* : V^* \to V^*$. By
+functoriality of taking dual spaces, $(J^*) ^2 = -\id_{V^*}$, giving $V^*$ the
+structure of an almost complex vector space via $J^*$. Explicitly, given a linear
+functional $\alpha \in V^*$, we have that the action of $J^*$ on $\alpha$ is given
+by
+\[
+(J^*\alpha)(v) = \alpha(Jv)
+\]
+for every $v \in V$. We then get an analogous decomposition of the complexified
+dual space$ V^*_\C = \hom_\R(V,\C)$ as
+\[
+V^*_\C = (V^*)^{1,0} \oplus (V^*)^{0,1}
+\]
+into the $\pm i$ eigenspaces of $J^*$, and have very natural interpretations in
+terms of $V$. The subspace $(V^*)^{1,0}$ consists of the $\alpha$ such that
+$\alpha(Jv) = i\alpha(v)$. We have a natural pairing $(V^*)^{1,0} \otimes V^{1,0} \to \C$
+given by
+\[
+\langle \alpha,v \rangle = \alpha(v)
+\]
+which is nondegenerate, establishing the two vector spaces as dual to each other (as
+complex vector spaces). A similar statement holds for $V^{0,1}$ and $(V^*)^{0,1}$,
+putting them in duality as well. Another perspective to take is that the condition
+that $\alpha(Jv) = i\alpha(v)$ is equivalent to $\alpha$ being \emph{complex linear}
+with respect to the complex structure $J$ on $V$ and $i$ on $\C$, giving us an
+isomorphism $(V^*)^{1,0} \cong \hom_\C(V,\C)$. Similarly, we have that
+$(V^*)^{0,1} \cong \hom_{\C}(V,\overline{\C})$
+%
+\section{Differential Forms}
+%
+\end{document}
