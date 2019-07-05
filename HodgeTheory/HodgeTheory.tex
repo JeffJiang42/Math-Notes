@@ -13,6 +13,7 @@
 %\usepackage{charter} %another font
 %\usepackage{eulervm} %Vakil font
 \usepackage{yfonts}
+\usepackage{mathtools}
 \usepackage{enumitem}
 \usepackage{mathrsfs}
 \usepackage{fourier-orns}
@@ -113,6 +114,7 @@
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
 \renewcommand{\S}{\mathbb{S}}
 \newcommand{\V}{\vec{v}}
 \newcommand{\RP}{\mathbb{RP}}
@@ -132,6 +134,7 @@
 \newcommand{\abs}[1]{\left\lvert#1\right\rvert}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 \newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
 \newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
 \let\oldexists\exists
 \renewcommand\exists{\oldexists~}
@@ -347,7 +350,10 @@ matrix
 \end{pmatrix}
 \]
 and determines an isomorphism of complex vector spaces
-$V^{1,0} \cong \overline{V^{0,1}}$ and vice versa. \\
+$V^{1,0} \cong \overline{V^{0,1}}$ and vice versa. In addition, complex conjugation
+picks out a distinguished subspace of $V_\C$ isomorphic to $V$ -- the $1$-eigenspace.
+Elements of this eigenspace are called \ib{real} (much like how the $\R^n$
+is left invariant under complex conjugation in $\C^n$). \\
 
 An almost complex structure $J$ on $V$ induces a dual map $J^* : V^* \to V^*$. By
 functoriality of taking dual spaces, $(J^*) ^2 = -\id_{V^*}$, giving $V^*$ the
@@ -375,8 +381,380 @@ putting them in duality as well. Another perspective to take is that the conditi
 that $\alpha(Jv) = i\alpha(v)$ is equivalent to $\alpha$ being \emph{complex linear}
 with respect to the complex structure $J$ on $V$ and $i$ on $\C$, giving us an
 isomorphism $(V^*)^{1,0} \cong \hom_\C(V,\C)$. Similarly, we have that
-$(V^*)^{0,1} \cong \hom_{\C}(V,\overline{\C})$
+$(V^*)^{0,1} \cong \hom_{\C}(V,\overline{\C})$.\\
+
+We the consider the effects of complexification on another linear algebraic construction
+--the exterior algebra. Given a finite dimensional $\R$-vector space $V$, we have that
+the exterior algebra $\Lambda^\bullet V$ has a natural $\Z$-grading
+\[
+\Lambda^\bullet V = \bigoplus_{k = 0}^n \Lambda^kV
+\]
+Upon complexification, we have a canonical isomorphism
+$(\Lambda^\bullet V)_\C \cong \Lambda^\bullet V_\C$, where the right hand side is the
+exterior algebra of $V_\C$ as a \emph{complex} vector space
+(i.e. $\Lambda^0 V_\C \cong \C$, not $\R$), and $\Lambda^\bullet V$ is canonically
+embedded in $\Lambda^\bullet V_\C$ as the subspace invariant under complex conjugation.
+Further assume that we have an almost complex structure $J : V \to V$. This gives a
+direct sum decomposition $V_\C = V^{1,0} \oplus V^{0,1}$, which then induces a
+decomposition
+\[
+\Lambda^kV_\C \cong \bigoplus_{p+q=k}\Lambda^pV^{1,0} \otimes_\C \Lambda^q V^{0,1}
+\]
+giving the complexified exterior algebra a bigrading via the subspaces
+\[
+\Lambda^{p,q}V \defeq \Lambda^p V^{1,0} \otimes_\C \Lambda^q V^{0,1}
+\]
+elements of $\Lambda^{p,q}$ are said to have \ib{bidegree} $(p,q)$. We now make several
+simple observations regarding the bigrading of $\Lambda^\bullet V_\C$, which stem from
+our observations regarding the decomposition $V_\C = V^{1,0} \oplus V^{0,1}$.
 %
-\section{Differential Forms}
+\begin{enumerate}
+  \item From the fact that $\overline{V^{1,0}} = V^{0,1}$, we get that
+  $\overline{\Lambda^{p,q}V} = \Lambda^{q,p}V$.
+  \item Given $\omega \in \Lambda^{p,q}V$ and $\eta \in \Lambda^{s,t}V$, we have that
+  $\omega \wedge \eta \in \Lambda^{p+s,q+t}V$.
+\end{enumerate}
+%
+\section{Complex Manifolds}
+%
+We now transfer our linear algebraic knowledge to complex manifolds. Let $U \subset \C$
+be an open subset, and $z = x + iy$ the usual coordinate function on $U$. Considered
+as a subset of $\R^2$, for any point $p \in U$, the tangent space $T_pU$ is spanned by
+the coordinate vectors $\partial_x\vert_p$ and $\partial_y\vert_p$. If we then
+complexify, the $\partial_x\vert_p$ and $\partial_y\vert_p$ also form a basis for
+$(T_pU)_\C$ as a \emph{complex} vector space. Consequently, we can also form a
+basis for $(T_pU)_\C$ with the vectors
+%
+\begin{align*}
+\frac{\partial}{\partial z}\bigg\vert_p &\defeq
+\frac{1}{2}\left(\frac{\partial}{\partial x} - i\frac{\partial}{\partial y}\right) \\
+\frac{\partial}{\partial\overline{z}}\bigg\vert_p &\defeq
+\frac{1}{2}\left( \frac{\partial}{\partial x} + i\frac{\partial}{\partial y}\right)
+\end{align*}
+%
+which we abbreviate as $\partial_z\vert_p$ and $\partial{\overline{z}}\vert_p$
+respectively. Doing this for all $p$, we obtain vector fields $\partial_z$ and
+$\partial_{\overline{z}}$ on all of $U$, where a function $f \in C^\infty(U, \C)$ is
+holomorphic if and only if $\partial_{\overline{z}}f = 0$. Functions $f$ annihilated by
+$\partial_z$ are \ib{antiholomorphic}, i.e. $\overline{f}$ is holomorphic. These
+vector fields give a framing for the complexified tangent bundle $TU_\C$, i.e. an
+isomorphism $TU_\C \to U \times \C^2$. \\
+
+We get a similar description of the complexified cotangent bundle $T^*U_\C$, which
+is framed by the covector fields
+%
+\begin{align*}
+dz = \frac{1}{2}\left(dx + idy\right) \\
+d\overline{z} = \frac{1}{2}\left( dx -idy\right)
+\end{align*}
+%
+which are easily verified to the duals of $\partial_z$ and $\partial_{\overline{z}}$
+respectively. For an open subset $U \subset \C^n$ with complex coordinates
+$z^i = x^i +iy^i$, we have analogous vector fields $\partial/\partial z^i$ and
+$\partial/\partial\overline{z}^i$ and covector fields $dz^i$ and $d\overline{z}^i$.
+%
+\begin{defn}
+An \ib{almost complex manifold} is the data of a smooth manifold $X$ and a smooth
+section $J \in \Gamma_X(\End(TX))$ such that $J^2 = -\id_{TX}$.
+\end{defn}
+%
+\begin{defn}
+A \ib{complex manifold} is a smooth manifold $X$ such that there is an open cover
+$\set{(U_\alpha, \varphi_\alpha)}$ of $X$ by charts $U_\alpha$ and diffeomorphisms
+$\varphi: U_\alpha \to V_\alpha$ to open sets $V_\alpha \subset \R^{2n} \cong \C^n$
+such that the transition maps $\varphi_\alpha \circ \varphi_\beta\inv$ are holomorphic.
+\end{defn}
+%
+\begin{defn}
+Let $X$ be a complex manifold. A complex valued function $f \in C^\infty(X,\C)$ is
+\ib{holomorphic} if for any holomorphic chart $(\varphi, U)$, we have that
+$f \circ \varphi\inv$ is holomorphic. The ring of holomorphic functions over $X$ is
+denoted $\O_X$.
+\end{defn}
+%
+Unlike the linear case, the notion of an almost complex manifold and a complex manifold
+are \emph{not} equivalent. Let $(X,J)$ be an almost complex manifold. For a point
+$x \in X$, we have that $J_x$ is an almost complex structure on the tangent space
+$T_xX$, which gives a decomposition of the complexified tangent space
+\[
+T_xX_\C = T_x^{1,0}X \oplus T_x^{0,1}X
+\]
+into the $\pm i$-eigenspaces of complexified $J_x$. Doing this over all points $x$,
+we get a decomposition of the complexified tangent bundle
+\[
+TX_\C = T^{1,0}X \oplus T^{0,1}X
+\]
+into the $\pm i$-eigenbundles of $J$.\\
+
+Suppose $X$ is a complex manifold. Then every tangent space $T_xX$ inherits an almost
+complex structure coming from multiplication by $i$ in $\C^n$, giving an almost complex
+structure $J$ on $X$. To show this explicitly, let $z^i = x^i + iy^i$ be local
+holomorphic coordinates for $X$. Then the coordinate functions
+$(x^1, y^1, \ldots x^n, y^n)$ form a coordinate system for $X$ as a \emph{real} manifold,
+and the action of $J$ in these coordinates is simply given by
+%
+\begin{align*}
+\frac{\partial}{\partial x^i} &\mapsto \frac{\partial}{\partial y^i} \\
+\frac{\partial}{\partial y^i} &\mapsto -\frac{\partial}{\partial x^i}
+\end{align*}
+%
+and the subbundle $T^{1,0}X \subset TX_\C$ is spanned by the $\partial/\partial z^i$,
+and $T^{0,1}X$ is spanned by the $\partial/\partial\overline{z}^i$. The composition
+\[\begin{tikzcd}
+TX \ar[r,hookrightarrow] & TX_\C \ar[r] & T^{1,0}X
+\end{tikzcd}\]
+consisting of the inclusion followed by projecting then defines an isomorphism of
+the real tangent bundle with $T^{1,0}X$, which is called the
+\ib{holomorphic tangent bundle}. Explicitly, this map is given in local coordinates by
+%
+\begin{align*}
+\frac{\partial}{\partial x^i} &=
+\frac{\partial}{\partial z^i} + \frac{\partial}{\partial\overline{z}^i}
+\mapsto \frac{\partial}{\partial z^i} \\
+\frac{\partial}{\partial y^i} &=
+i\frac{\partial}{\partial z^i} - i\frac{\partial}{\partial\overline{z}^i}
+\mapsto i\frac{\partial}{\partial z^i}
+\end{align*}
+%
+and the $\partial/\partial z^i$ along with the $i\partial/\partial z^i$ form a local
+frame for the holomorphic tangent bundle $T^{1,0}X$.\\
+
+Given an almost complex manifold $(X,J)$, a natural question to ask is whether or not
+$X$ admits the structure of a complex manifold where $J$ is multiplication by $i$.
+The answer to this question is a celebrated theorem of Newlander and Nirenberg
+%
+\begin{thm}[\ib{Newlander-Nirenberg}]
+An almost complex manifold $(X,J)$ is a complex manifold (where $J$ is multiplication by
+$i$) if and only if the subbundle $T^{1,0}X \subset TX_\C$ is integrable in the sense
+of Frobenius, i.e.
+\[
+[T^{1,0}X, T^{1,0}X] \subset T^{1,0}X
+\]
+via complex conjugation, this is equivalent to $T^{0,1}X$ being integrable.
+\end{thm}
+%
+Intuitively, the existence of local \emph{holomorphic} coordinates amounts to
+finding an integral submanifold for $T^{1,0}X$, since if $X$ was complex, $T^{1,0}X$
+would arise as the holomorphic tangent bundle of $X$.
+%
+\section{Cohomology of Complex Manifolds.}
+%
+Let $X$ be a complex manifold, and let $J$ denote the canonical almost complex structure
+on $X$. Applying our linear algebraic knowledge pointwise, we get a decomposition of
+the complexified cotangent bundle
+\[
+T^*X_\C = (T^*X)^{1,0} \oplus (T^*X)^{0,1}
+\]
+%
+which then gives a decomposition of the space $\Omega^k_X(\C)$ of complex valued
+differential $k$-forms as
+\[
+\Omega^k_X(\C) = \bigoplus_{p+q=k}\Omega^{p,q}_X(\C)
+\]
+where $\Omega^{p,q}_X(\C)$ denotes the space of $(p,q)$-forms, i.e. sections of
+$\Lambda^{p,q}T^*X$, and the direct sum is taken as modules over $C^\infty(X,\C)$.
+Let $d$ denote the de Rham differential $\Omega^k_X \to \Omega^{k+1}_X$ after
+complexifying it to obtain a map $\Omega^k_X(\C) \to \Omega^{k+1}_X(\C)$. In local
+holomorphic coordinates $\set{z^i}$, we have that the $dz^i$ form a basis for the space
+of smooth $(1,0)$-forms over the ring $C^\infty(M,\C)$, and the $d\overline{z}^i$ form a
+basis for the space of smooth $(0,1)$-forms. Therefore, given $f \in C^\infty(X,\C)$, we
+can uniquely write $df \in \Omega^1_X(\C)$ as
+\[
+df = \frac{\partial f}{\partial z^i}dz^i +
+\frac{\partial f}{\partial\overline{z}^i}d\overline{z}^i
+\]
+where we use Einstein summation notation. Given an arbitrary $(p,q)$ form $\alpha$, it
+has the local coordinate expression
+\[
+\alpha = \sum_{p,q} \alpha_{p,q} dz^{i_1} \wedge \ldots \wedge dz^{i_p} \wedge
+d\overline{z}^{i_1}\ldots \wedge d\overline{z}^{i_q}
+\]
+for smooth $\alpha_{p,q} \in C^\infty(X,\C)$. Then we have that
+%
+\begin{align*}
+d\alpha &= \left(\sum_{p,q}\frac{\partial\alpha_{p,q}}{\partial z^i} dz^i
+\wedge dz^{i_1} \wedge \ldots \wedge dz^{i_p} \wedge
+d\overline{z}^{i_1}\ldots \wedge d\overline{z}^{i_q}\right) \\[5pt]
+&+ \left(
+\sum_{p,q}\frac{\partial\alpha_{p,q}}{\partial \overline{z}^i} d\overline{z}^i
+\wedge dz^{i_1} \wedge \ldots \wedge dz^{i_p} \wedge
+d\overline{z}^{i_1}\ldots \wedge d\overline{z}^{i_q}
+\right)
+\end{align*}
+%
+which shows that $d\alpha$ is a $(p+1,q+1)$ form, i.e. $d$ is of bidegree $(1,1)$. This
+expression for $d\alpha$ allows us to decompose $d$ as a sum $d = \partial + \dbar$,
+where
+%
+\begin{align*}
+\partial\alpha &= \sum_{p,q}\frac{\partial\alpha_{p,q}}{\partial z^i} dz^i
+\wedge dz^{i_1} \wedge \ldots \wedge dz^{i_p} \wedge
+d\overline{z}^{i_1}\ldots \wedge d\overline{z}^{i_q} \\[5pt]
+\dbar\alpha &= \sum_{p,q}\frac{\partial\alpha_{p,q}}{\partial \overline{z}^i}
+d\overline{z}^i \wedge dz^{i_1} \wedge \ldots \wedge dz^{i_p} \wedge
+d\overline{z}^{i_1}\ldots \wedge d\overline{z}^{i_q}
+\end{align*}
+%
+from the definition, it is clear that $\partial$ is of bidegree $(1,0)$ and $\dbar$ is
+of bidegree $(0,1)$.
+%
+\begin{prop}\enumbreak
+\begin{enumerate}
+  \item $\partial^2 = 0$
+  \item $\dbar^2 = 0$
+  \item $\partial\dbar + \dbar\partial = 0$
+\end{enumerate}
+\end{prop}
+%
+\begin{proof}
+We know that $d = \partial + \dbar$ satisfies $d^2 = 0$. Therefore, we have that
+\[
+d^2 = (\partial +\dbar)^2 = \partial^2 + \partial\dbar + \dbar\partial + \dbar^2
+\]
+we then note that the bidegrees of all the components. We have:
+\begin{enumerate}
+  \item $\partial^2$ has bidegree $(2,0)$.
+  \item $\partial\dbar + \dbar\partial$ has bidegree $(1,1)$
+  \item $\dbar^2$ has bidegree $(0,2)$
+\end{enumerate}
+in order for $d^2$ to vanish, all the terms of different bidegrees must vanish, proving
+all three parts of the proposition.
+\end{proof}
+%
+The operators $\partial$ and $\dbar$ satisfy many of the same identities as $d$. Another
+helpful identity to note is that
+\[
+\partial\alpha = \overline{\dbar\overline{\alpha}}
+\]
+\begin{defn}
+Let $X$ be a complex manifold. A \ib{holomorphic vector bundle} over $X$ is a
+complex vector bundle $\pi : E \to X$ such that the total space $E$ is a complex manifold
+and the projection $\pi$ is a holomorphic map.
+\end{defn}
+%
+Note again that a holomorphic vector bundle is \emph{not} a complex vector bundle
+(for example, a complex vector bundle can be odd dimensional if the base space is
+odd dimensional). Instead, it is a complex bundle with extra structure. Let
+$\sigma : X \to E$ be a \emph{smooth} section. In a local holomorphic trivialization of
+$E$, we can write $\sigma$ as
+\[
+\sigma = (\sigma^1, \ldots, \sigma^k)
+\]
+for smooth complex-valued functions $\sigma^i$,  where $k$ is the rank of $E$ as a
+complex vector bundle. In this trivialization, we can apply the operator $\dbar$
+component-wise to get
+\[
+\dbar\sigma = (\dbar\sigma^1,\ldots,\dbar\sigma^k)
+\]
+and this local definition glues together to give a well defined operator
+$\dbar_E : \Omega^{0,0}_X(E) \to \Omega^{0,1}_X(E)$, where $\Omega^{p,q}_X(E)$ denotes
+the space of sections $\Gamma_X(T^{p,q}X \otimes_\C E)$. We then note that the
+holomorphic sections $X \to E$ are exactly those annihilated by $\dbar_E$. Since
+$\dbar_E$ is defined locally in terms of $\dbar$, we immediately see that
+$\dbar_E^2 = 0$, giving us the
+\ib{Dolbeault complex} of $E$.
+\[\begin{tikzcd}
+\Omega^{0,0}_X(E) \ar[r, "\dbar_E"] & \Omega^{0,1}_X(E) \ar[r, "\dbar_E"] &
+\cdots\cdots \ar[r, "\dbar_E"] & \Omega^{0,n}_X(E) \ar[r,"\dbar_E"] & 0
+\end{tikzcd}\]
+%
+The \ib{Dolbeault cohomology groups} of $E$ are the cohomology groups of the
+Dolbeault complex, and are denoted $H^p(X,E)$.
+%
+\section{K\"ahler Manifolds}
+%
+K\"ahler manifolds will form a special class of manifolds where Hodge theory
+will prove especially useful. Before diving into the world of K\"ahler manifolds,
+we do some prerequisite linear algebra, which is closely tied to Hermitian geometry.
+%
+\begin{defn}
+Let $V$ be a complex vector space. A \ib{Hermitian form} on $V$ is a bilinear map
+$h : \overline{V} \otimes_\C V \to \C$ satisfying $h(v,w) = \overline{h(w,v)}$.
+\end{defn}
+%
+Another way to define a Hermitian form is as a \ib{sesquilinear} form
+$h : V \otimes_\C V \to \C$, i.e. conjugate linear in the first term, and linear in the
+second term, along with the Hermitian symmetry condition $h(v,w) = \overline{h(v,w)}$.
+In a basis for $V$, a Hermitian form is given by a Hermitian matrix $H$, i.e.
+$H^\dagger = H$. \\
+
+Given a Hermitian form $h$ on a complex vector space $V$, we can decompose $h$ into
+its real and imaginary parts. Let $g = \mathfrak{Re}(h)$ and
+$\omega = \mathfrak{Im}(h)$, so we have $h = g + i\omega$.
+%
+\begin{prop}
+Let $h = g + i\omega$ be a hermitian form. Then we have
+\begin{enumerate}
+  \item $g$ is symmetric
+  \item $\omega$ is skew-symmetric
+\end{enumerate}
+\end{prop}
+%
+\begin{proof}\enumbreak
+\begin{enumerate}
+  \item Since $h$ is Hermitian, we have that $h(v,w) = \overline{h(w,v)}$, which have
+  the same real part. Therefore, $g(v,w) = g(w,v)$, so $g$ is symmetric
+  \item We again use the fact that $h(v,w) = \overline{h(w,v)}$. Since conjugation
+  reverses the sign on the imaginary component, we immediately get that
+  $\omega(v,w) = -\omega(w,v)$.
+\end{enumerate}
+\end{proof}
+%
+\begin{rem*}
+The decomposition of $h$ into its real and imaginary components is one way of seeing
+the useful identity
+\[
+U_n = O_{2n} \cap Sp_{2n} \cap GL_n\C
+\]
+where we regard all of the groups as subgroups of $GL_{2n}\R$. Any matrix preserving
+the standard Hermitian form on $\C^n$ must necessarily preserve both the real and
+imaginary components, so it must preserve the standard Euclidean inner product on
+$\R^{2n} \cong \C^n$ and the standard symplectic form on $\R^{2n} \cong \C$.
+\end{rem*}
+%
+Given a complex vector space $V$ equipped with a hermitian metric $h$, let $J$
+denote the natural almost complex structure induced by multiplication by $i$.
+Writing $h = g + i\omega$, we see that $\omega$ and $g$ are intimately related, i.e.
+\begin{enumerate}
+  \item $g(v,Iw) = \omega(v,w)$
+  \item $\omega(v,Iw) = g(v,w)$
+\end{enumerate}
+%
+both of which come from the fact that $h$ is compatible with $J$ in the sense that
+$h(Jv,Jw) = h(v,w)$. Finally, we note that $\omega$ can be naturally identified
+with a real element of $(V^*)^{1,1}$.
+%
+\begin{defn}
+Let $h$ be a Hermitian form, and $\omega = \mathfrak{Im}(h)$. Then $\omega$ is called
+the \ib{K\"ahler form} of $h$.
+\end{defn}
+%
+We now move back to the world of manifolds. Let $(X,J)$ be an almost complex manifold.
+The almost complex structure gives each tangent space $T_xX$ the structure of a complex
+vector space, so it makes sense to discuss a Hermitian form $h_x$ on $T_xX$.
+%
+\begin{defn}
+A \ib{K\"ahler manifold} is an almost complex manifold $(X,J)$ with a smoothly varying
+Hermitian metric (i.e. a positive definite Hermitian form) $h$ where $J$ is integrable
+and the K\"ahler form $\omega$ obtained from $h$ is closed.
+\end{defn}
+%
+From the decomposition $h = g + i\omega$, we see that a K\"ahler manifold is a
+melting pot of several compatible structures, namely the Riemannian metric $g$, the
+almost complex structure $J$, and the symplectic form $\omega$. \\
+
+From the basic definition, we can already make some surprisingly deep statements about
+K\"ahler manifolds.
+%
+\begin{lem}
+Let $X$ be a K\"ahler manifold with Hermitian form $h = g + i\omega$. Then the volume
+form of $X$ with respect to the Riemannian metric $g$ is $\omega^n/n!$, where
+$n = \dim_\C X$.
+\end{lem}
+%
+\begin{prop}
+Let $X$ be a K\"ahler manifold. Then all the even degree de Rham cohomology groups
+$H^{2n}_{dR}(X,\R)$ are nontrivial.
+\end{prop}
 %
 \end{document}
