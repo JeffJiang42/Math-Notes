@@ -115,6 +115,7 @@
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\M}{\mathcal{M}}
 \newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
 \renewcommand{\S}{\mathbb{S}}
 \newcommand{\V}{\vec{v}}
 \newcommand{\RP}{\mathbb{RP}}
@@ -746,15 +747,117 @@ almost complex structure $J$, and the symplectic form $\omega$. \\
 From the basic definition, we can already make some surprisingly deep statements about
 K\"ahler manifolds.
 %
-\begin{lem}
+\begin{prop}
 Let $X$ be a K\"ahler manifold with Hermitian form $h = g + i\omega$. Then the volume
 form of $X$ with respect to the Riemannian metric $g$ is $\omega^n/n!$, where
 $n = \dim_\C X$.
+\end{prop}
+%
+\begin{proof}
+It suffices to verify this pointwise for a fixed point $x \in X$.
+The Riemannian volume form $dV_g$ is uniquely characterized by the fact that
+$(dV_g)_x(e_1, \ldots, e_{2n}) = 1$ for an oriented orthonormal basis
+$\set{e_1, \ldots e_{2n}}$ for $T_xX$. Arrange local holomorphic coordinates
+$\set{z^i}$ about $x$ such that at $x$, the Hermitian form $h_x$ is given by the
+identity matrix, i.e.
+\[
+h_x\left(\frac{\partial}{\partial z^i}\bigg\vert_x,
+\frac{\partial}{\partial z^j}\bigg\vert_x\right) = \delta_{ij}
+\]
+Let $\partial_i$ denote $\partial/\partial z^i\vert_x$. We then have that
+$\set{\partial_1, i\partial_1, \ldots \partial_n, i\partial_n}$ is an oriented
+orthonormal $\R$-basis for $T_xX$ with respect to $g$, so it suffices to evaluate
+$\omega^n_x$ on this basis, and verify that it evaluates to $n!$. To do this, we
+use a lemma.
+%
+\begin{lem}
+In local holomorphic coordinates $\set{z^i}$, the K\"ahler form $\omega$ is given by
+\[
+\omega = \frac{i}{2}\sum_i H^i_j dz^i \wedge d\zbar^i
+\]
+where $H^i_j = h(\partial_i, \partial_j)$.
 \end{lem}
+%
+The proof is an easy consequence of $\omega$ being of type $(1,1)$ and the
+fact that it is the imaginary component of $h$. \\
+
+In the coordinates we specified above, we have that $H_x$ is the identity matrix,
+so the lemma gives us
+\[
+\omega_x = \frac{i}{2}\sum_i dz^i \wedge d\zbar^i
+\]
+we note that when we wedge $\omega_x$ with itself $n$ times, we continually pick
+up duplications of $dz^i$ and $d\zbar^i$, so the only one term survives, leaving us with
+\[
+\omega_x^n = \frac{i}{2}\left(dz^1 \wedge d\zbar^i \wedge \cdots \wedge
+dz^i \wedge d\zbar^i\right) = dx^1 \wedge dy^1 \wedge \cdots \wedge dx^n \wedge dy^n
+= \frac{dV_g}{n!}
+\]
+where $z^i = x^i + iy^i$. We use the convention that
+$v \wedge w = \mathrm{Alt}(v\otimes w)$ without the normalizing factor, which explains
+the extra term of $n!$.
+%
+\end{proof}
 %
 \begin{prop}
 Let $X$ be a K\"ahler manifold. Then all the even degree de Rham cohomology groups
 $H^{2n}_{dR}(X,\R)$ are nontrivial.
 \end{prop}
+%
+\begin{proof}
+The fact that $\omega^n = dV_g/n!$ implies that
+$\int_M \omega^n = \int_M dV_g = \mathrm{Vol}(M) > 0$, so by Stokes' theorem,
+$\omega^n$ cannot be exact. From this, we can also conclude that $\omega^k$ for any
+$k$ cannot be exact, for if $\omega^k = d\alpha$, then we would have that
+\[
+\omega^n = \omega^{n-k} \wedge d\alpha = d(\omega^{n-k} \wedge \alpha)
+\]
+Therefore, since $\omega$ is a degree $2$ form, we must have that all the even
+dimensional cohomology groups are nontrivial
+\end{proof}
+%
+This shows that the K\"ahler condition is quite rigid.
+%
+%TODO Maybe some comments on the Chern connection + interaction with Levi Civita?
+%
+\section{Laplacians and Harmonic Forms}
+%
+We start in the most general case, that of a Riemannian manifold $(X,g)$.
+%
+\begin{defn}
+Let $(X,g)$ be a Riemannian manifold. Then the vector bundles $\Lambda^kT^*M$
+inherit natural fiber metrics $(\cdot,\cdot)$, which are defined by the set
+\[
+\set{e_{i_1} \wedge \cdots \wedge e_{i_k} ~:~ 1 \leq i_1 < i_2 < \cdots < i_k}
+\]
+being an orthonormal basis for $\Lambda^kT^*_xM$ where $\set{e_i}$ is an orthonormal
+basis for $T^*_xM$. This then introduces an \ib{$L^2$ inner product}
+$(\cdot,\cdot)_{L^2}$ on the space $\Omega^k_M$ of differential $k$-forms, where we
+define
+\[
+(\alpha,\beta)_{L^2} = \int_M (\alpha,\beta)~dV_g
+\]
+where $(\alpha,\beta)$ denotes the smooth function $x \mapsto (\alpha_x, \beta_x)$.
+\end{defn}
+%
+\begin{defn}
+The \ib{Hodge star} operator, denoted $\star$ (though many choose to denote it $*$), is
+a bundle homomorphism $\star : \Lambda^kT^*M \to \Lambda^{n-k}T^*M$ defined by the
+property such that for any $\alpha,\beta \in \Lambda^kT^*M$
+\[
+\alpha \wedge \star\beta = (\alpha,\beta)~dV_g
+\]
+this property uniquely characterizes $\star$.
+\end{defn}
+%
+\begin{prop}
+$\star$ exists.
+\end{prop}
+%
+\begin{proof}
+The defining property uniquely characterizes $\star$, so it suffices to specify a
+local definition, which will then glue to a smooth bundle homomorphism. Let
+$\set{x^i}$ be a local coordinate system for $X$.
+\end{proof}
 %
 \end{document}
