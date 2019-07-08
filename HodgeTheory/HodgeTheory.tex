@@ -825,25 +825,25 @@ This shows that the K\"ahler condition is quite rigid.
 We start in the most general case, that of a Riemannian manifold $(X,g)$.
 %
 \begin{defn}
-Let $(X,g)$ be a Riemannian manifold. Then the vector bundles $\Lambda^kT^*M$
+Let $(X,g)$ be a Riemannian manifold. Then the vector bundles $\Lambda^kT^*X$
 inherit natural fiber metrics $(\cdot,\cdot)$, which are defined by the set
 \[
 \set{e_{i_1} \wedge \cdots \wedge e_{i_k} ~:~ 1 \leq i_1 < i_2 < \cdots < i_k}
 \]
-being an orthonormal basis for $\Lambda^kT^*_xM$ where $\set{e_i}$ is an orthonormal
-basis for $T^*_xM$. This then introduces an \ib{$L^2$ inner product}
-$(\cdot,\cdot)_{L^2}$ on the space $\Omega^k_M$ of differential $k$-forms, where we
+being an orthonormal basis for $\Lambda^kT^*_xX$ where $\set{e_i}$ is an orthonormal
+basis for $T^*_xX$. This then introduces an \ib{$L^2$ inner product}
+$(\cdot,\cdot)_{L^2}$ on the space $\Omega^k_X$ of differential $k$-forms, where we
 define
 \[
-(\alpha,\beta)_{L^2} = \int_M (\alpha,\beta)~dV_g
+(\alpha,\beta)_{L^2} = \int_X (\alpha,\beta)~dV_g
 \]
 where $(\alpha,\beta)$ denotes the smooth function $x \mapsto (\alpha_x, \beta_x)$.
 \end{defn}
 %
 \begin{defn}
 The \ib{Hodge star} operator, denoted $\star$ (though many choose to denote it $*$), is
-a bundle homomorphism $\star : \Lambda^kT^*M \to \Lambda^{n-k}T^*M$ defined by the
-property such that for any $\alpha,\beta \in \Lambda^kT^*M$
+a bundle homomorphism $\star : \Lambda^kT^*X \to \Lambda^{n-k}T^*X$ defined by the
+property such that for any $\alpha,\beta \in \Lambda^kT^*X$
 \[
 \alpha \wedge \star\beta = (\alpha,\beta)~dV_g
 \]
@@ -856,8 +856,60 @@ $\star$ exists.
 %
 \begin{proof}
 The defining property uniquely characterizes $\star$, so it suffices to specify a
-local definition, which will then glue to a smooth bundle homomorphism. Let
-$\set{x^i}$ be a local coordinate system for $X$.
+local definition, which will then glue to a smooth bundle homomorphism. Let $E_i$ be a
+local orthonormal frame for $T^*X$. Then we know that the set of $k$-fold wedge products
+of the $E_i$ with increasing indices forms a basis for each $\Lambda^KT^*_xX$. In
+addition, we know that $E_1 \wedge \cdots \wedge E_n = dV_g$. Putting this all together,
+We must have that for $E_I = E_{i_1} \wedge \cdots E_{i_k}$, $\star E_I = E_J$, with
+$J = \set{j_{i_1}, \ldots ,j_{i_{n-k}}}$ where the tuple
+$(i_1, \ldots i_k,j_1, \ldots j_k)$ is an even permutation of $(1, \ldots ,n)$. We have
+then specified $\star$ on an orthonormal basis.
+\end{proof}
+%
+One thing to note is that $\star$ is an isomorphism, since it maps orthonormal frames
+to orthonormal frames. It also satisfies the useful identity
+\[
+\star^2\alpha = (-1)^{k(n-k)}\alpha
+\]
+where $\alpha \in \Omega^k_X$. \\
+
+Complexification allows us to obtain analogous operations on complex valued
+forms on an almost complex manifold $(X,J)$, where we extend $g$ and its induced fiber
+metrics on the $\Lambda^kT^*X$ to a Hermitian metric $h$ on $TX_\C$ and fiber metrics
+on $\Lambda^KT^*X_\C$. Likewise, we complexify the Hodge star $\star$, which gives the
+identity
+\[
+(\alpha,\beta)~dV_g = \alpha \wedge \overline{\star\beta}
+\]
+We then get an analogous $L^2$ metric on complex valued forms, defined by
+\[
+(\alpha,\beta)_{L^2} = \int_X \alpha \wedge \overline{\star\beta} ~dV_g
+\]
+The Hodge star operators allows us to define formal adjoints to $d$, $\partial$, and
+$\dbar$ with respect to the $L^2$ metrics.
+%
+\begin{defn}
+Define the operators
+\begin{enumerate}
+  \item $d^*: \Omega_X^k \to \Omega_X^{k-1}$
+  \item $\partial^* : \Omega_X^{p,q}(\C) \to \Omega_X^{p-1,q}(\C)$
+  \item $\dbar^* : \Omega_X^{p,q}(\C) \to \Omega_X^{p,q-1}(\C)$
+\end{enumerate}
+by the formulas
+\begin{enumerate}
+  \item $d^* = (-1)^k\star\inv d\star$
+  \item $\partial^* = -\star\inv\partial\star$
+  \item $\dbar^* = -\star\inv\dbar\star$
+\end{enumerate}
+\end{defn}
+%
+\begin{prop}
+The operators $d^*$, $\partial^*$, and $\dbar^*$ are the adjoints to their respective
+operators with respect to the appropriate $L^2$ metrics.
+\end{prop}
+%
+\begin{proof}
+
 \end{proof}
 %
 \end{document}
