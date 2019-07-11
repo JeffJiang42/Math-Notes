@@ -822,7 +822,9 @@ This shows that the K\"ahler condition is quite rigid.
 %
 \section{Laplacians and Harmonic Forms}
 %
-We start in the most general case, that of a Riemannian manifold $(X,g)$.
+We start in the most general case, that of a compact Riemannian manifold $(X,g)$. For
+the remainder of these notes, all manifolds will be compact and boundaryless,
+unless denoted otherwise.
 %
 \begin{defn}
 Let $(X,g)$ be a Riemannian manifold. Then the vector bundles $\Lambda^kT^*X$
@@ -898,18 +900,81 @@ Define the operators
 by the formulas
 \begin{enumerate}
   \item $d^* = (-1)^k\star\inv d\star$
-  \item $\partial^* = -\star\inv\partial\star$
-  \item $\dbar^* = -\star\inv\dbar\star$
+  \item $\partial^* = -\star\\dbar\star$
+  \item $\dbar^* = -\star\\partial\star$
 \end{enumerate}
 \end{defn}
 %
 \begin{prop}
-The operators $d^*$, $\partial^*$, and $\dbar^*$ are the adjoints to their respective
-operators with respect to the appropriate $L^2$ metrics.
+The operators $d^*$, $\partial^*$, and $\dbar^*$ are formally adjoints to their
+respective operators with respect to the appropriate $L^2$ metrics, i.e.
+\begin{align*}
+(d\alpha,\beta)_{L^2} &= (\alpha, d^*\beta)_{L^2} \\
+(\partial\alpha,\beta)_{L^2} &= (\alpha,\partial^*\beta) \\
+(\dbar\alpha,\beta)_{L^2} &= (\alpha, \dbar^*\beta)
+\end{align*}
 \end{prop}
 %
 \begin{proof}
+We prove the case for $d$ and $\dbar^*$. The proof for $\partial^*$ is near identical
+to the one for $\dbar^*$. We know that the exterior derivative is an \ib{anti-derivation}
+i.e. it satisfies
+\[
+d(\alpha \wedge \beta) = d\alpha \wedge \beta + (-1)^{k}d\beta
+\]
+where $k = |\alpha|$ denotes the degree of $\alpha$. In particular, this implies that
+for a $k$-form $\alpha$ and a $k+1$-form $\beta$, we have that
+\[
+d(\alpha\wedge\star\beta) = d\alpha\wedge\star\beta + (-1)^k\alpha\wedge d\star\beta
+\]
+From Stokes' theorem, we have that
+\[
+\int_X d(\alpha\wedge\star\beta) = \int_{\partial X} \alpha\wedge\star\beta = 0
+\]
+since $\partial X = \emptyset$. Therefore, we have that
+\[
+\int_X d\alpha\wedge\star\beta = \int_X (-1)^{k+1}\alpha\wedge d\star\beta
+\]
+we further note that the left hand side is the definition of $(d\alpha,\beta)_{L^2}$.
+We also compute
+\begin{align*}
+(\alpha,d^*\beta)_{L^2} &= \int_X \alpha\wedge\star d^*\beta \\
+&= \int_X \alpha\wedge((-1)^{k+1}\star\star\inv d\star\beta) \\
+&= \int_X (-1)^{k+1}\alpha\wedge d\star\beta
+\end{align*}
+proving the desired equality.
 
+For $\dbar^*$, we have a similar proof. Let $\alpha$ be a complex $k$-form, and
+$\beta$ a complex $k+1$-form. Then we have
+\[
+(\dbar\alpha,\beta)_{L^2} = \int_X\alpha\wedge\overline{\star\beta}
+\]
+again, we have that
+\[
+\dbar(\alpha\wedge\overline{\star\beta}) = \dbar\alpha\wedge\overline{\star\beta}
++ (-1)^k\dbar(\overline{\star\beta})
+\]
+the integral of the left hand side over all of $X$ is $0$ as a consequence of Stokes'
+theorem, which gives us
+\[
+\int_X \dbar\alpha\wedge\overline{\star\beta} =
+\int_X(-1)^{k+1}\alpha\wedge\dbar(\overline{\star\beta}) =
+\int_X(-1)^{k+1}\alpha\wedge\overline{\partial\star\beta}
+\]
+The left hand side is $(\dbar\alpha,\beta)_{L^2}$. We claim (as was the case with $d^*$),
+that the right hand side is equal to $(\alpha,\dbar^*\beta)$. We compute
+\begin{align*}
+(\alpha,\dbar^*\beta)_{L^2} &= \int_X \alpha \wedge \overline{\star\partial^*\beta} \\
+&= \int_X\alpha \wedge \overline{\star(-\star\partial\star\beta)} \\
+&= -\int_X\alpha\wedge\overline{\star^2\partial\star\beta} \\
+&= (-1)^{k(n-k)+1}\int_X\alpha\wedge\overline{\partial\star\beta}
+\end{align*}
+We note that since $X$ is a complex manifold, $n$ is even, so this is equal to
+\[
+(-1)^{k^2+1}\int_X\alpha\wedge\overline{\partial\star\beta}
+= (-1)^{k+1}\int_X\alpha\wedge\overline{\partial\star\beta} = (\dbar\alpha,\beta)_{L^2}
+\]
+where we use the fact that $k$ and $k^2$ have the same parity.
 \end{proof}
 %
 \end{document}
