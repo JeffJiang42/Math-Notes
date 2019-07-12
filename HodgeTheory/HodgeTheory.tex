@@ -560,7 +560,7 @@ Out of all the $\Lambda^{p,q}T^*X$, there is a distinguished bundle.
 Let $X$ be a complex manifold of complex dimension $\dim_\C X = n$ (i.e. $\dim X = 2n)$.
 The \ib{canonical bundle} of $X$, denote $K_X$, is the complex vector bundle
 \[
-K_X = \Lambda^{0,n}T^*X
+K_X = \Lambda^{n,0}T^*X
 \]
 \end{defn}
 %
@@ -645,7 +645,7 @@ and the projection $\pi$ is a holomorphic map.
 \end{defn}
 %
 \begin{exmp}
-For a complex manifold $X$, the complex vector bundles $\Lambda^{0,q}T^*X$ are all
+For a complex manifold $X$, the complex vector bundles $\Lambda^{q,0}T^*X$ are all
 holomorphic vector bundles, which is easily seen using local trivializations defined
 by local holomorphic coordinates.
 \end{exmp}
@@ -1039,6 +1039,12 @@ as before, this inner product is related to $\star_E$ via the identity
 \[
 (\alpha,\beta)_{L^2} = \int_X\alpha\wedge\star_E\beta
 \]
+We first clarify the notation $\alpha\wedge\star_E\beta$. Given
+$\beta\in\Omega^{0,q}_X(E)$, we have that $\star_E\beta \in \Omega^{n,n-q}_X(E^*)$
+Wedging with $\alpha$ gives us a form in $\Omega^{n,n}_X(E \otimes E^*)$, and
+contracting $E$ with $E^*$ gives us an element of $\Omega_X^{n,n}$, which we can
+integrate over $X$. \\
+
 We then use $\star_E$ to define an adjoint to $\dbar_E$.
 %
 \begin{defn}
@@ -1052,8 +1058,6 @@ Define $\dbar_E^* : \Omega^{0,q}_X(E) \to \Omega^{0,q-1}_X(E)$ by
 $\dbar_E^*$ is the formal adjoint of $\dbar_E$ with respect to $(\cdot,\cdot)_{L^2}$.
 \end{prop}
 %
-\begin{proof}
-
-\end{proof}
+The proof is very similar to the ones we performed above.
 %
 \end{document}
