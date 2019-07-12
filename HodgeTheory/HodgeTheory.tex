@@ -554,6 +554,16 @@ differential $k$-forms as
 \]
 where $\Omega^{p,q}_X(\C)$ denotes the space of $(p,q)$-forms, i.e. sections of
 $\Lambda^{p,q}T^*X$, and the direct sum is taken as modules over $C^\infty(X,\C)$.
+Out of all the $\Lambda^{p,q}T^*X$, there is a distinguished bundle.
+%
+\begin{defn}
+Let $X$ be a complex manifold of complex dimension $\dim_\C X = n$ (i.e. $\dim X = 2n)$.
+The \ib{canonical bundle} of $X$, denote $K_X$, is the complex vector bundle
+\[
+K_X = \Lambda^{0,n}T^*X
+\]
+\end{defn}
+%
 Let $d$ denote the de Rham differential $\Omega^k_X \to \Omega^{k+1}_X$ after
 complexifying it to obtain a map $\Omega^k_X(\C) \to \Omega^{k+1}_X(\C)$. In local
 holomorphic coordinates $\set{z^i}$, we have that the $dz^i$ form a basis for the space
@@ -629,9 +639,16 @@ helpful identity to note is that
 \]
 \begin{defn}
 Let $X$ be a complex manifold. A \ib{holomorphic vector bundle} over $X$ is a
-complex vector bundle $\pi : E \to X$ such that the total space $E$ is a complex manifold
+complex vector bundle $\pi : E \to X$ such that the total space $E$ is a complex
+manifold
 and the projection $\pi$ is a holomorphic map.
 \end{defn}
+%
+\begin{exmp}
+For a complex manifold $X$, the complex vector bundles $\Lambda^{0,q}T^*X$ are all
+holomorphic vector bundles, which is easily seen using local trivializations defined
+by local holomorphic coordinates.
+\end{exmp}
 %
 Note again that a holomorphic vector bundle is \emph{not} a complex vector bundle
 (for example, a complex vector bundle can be odd dimensional if the base space is
@@ -660,7 +677,11 @@ $\dbar_E^2 = 0$, giving us the
 \end{tikzcd}\]
 %
 The \ib{Dolbeault cohomology groups} of $E$ are the cohomology groups of the
-Dolbeault complex, and are denoted $H^p(X,E)$.
+Dolbeault complex, and are denoted $H^p(X,E)$. In the case $E = \Lambda^{0,q}T^*X$,
+we have that $\dbar_E = \dbar$, and we denote these cohomology groups by
+\[
+H^{p,q}(X) = H^p(X,\Lambda^{0,q}T^*X)
+\]
 %
 \section{K\"ahler Manifolds}
 %
@@ -786,8 +807,9 @@ so the lemma gives us
 \[
 \omega_x = \frac{i}{2}\sum_i dz^i \wedge d\zbar^i
 \]
-we note that when we wedge $\omega_x$ with itself $n$ times, we continually pick
-up duplications of $dz^i$ and $d\zbar^i$, so the only one term survives, leaving us with
+we note that when we wedge $\omega_x$ with itself $n$ times, we constantly pick
+up duplicates of the $dz^i$ and $d\zbar^i$, so only one term survives, leaving us
+with
 \[
 \omega_x^n = \frac{i}{2}\left(dz^1 \wedge d\zbar^i \wedge \cdots \wedge
 dz^i \wedge d\zbar^i\right) = dx^1 \wedge dy^1 \wedge \cdots \wedge dx^n \wedge dy^n
@@ -975,6 +997,63 @@ We note that since $X$ is a complex manifold, $n$ is even, so this is equal to
 = (-1)^{k+1}\int_X\alpha\wedge\overline{\partial\star\beta} = (\dbar\alpha,\beta)_{L^2}
 \]
 where we use the fact that $k$ and $k^2$ have the same parity.
+\end{proof}
+%
+A similar story holds for the $\dbar$ operator on a holomorphic vector bundle
+$E \to X$. Suppose $\dim_\C X = n$, so $\dim X = 2n$, and let $E \to X$ be a
+holomorphic vector bundle equipped with a Hermitian metric. Let $\omega$ denote
+the K\"ahler form of $X$. Then $\omega^n \in \Omega^{n,n}_X$ determines a trivialization
+$\Lambda^{n,n}T^*X \to X \times\C$, which introduces a pairing
+\begin{align*}
+\Lambda^{0,q}T^*X \otimes \Lambda^{n,n-q}T^*X &\to \C \\
+\alpha\otimes\beta &\mapsto \lambda
+\end{align*}
+where $\lambda \in \C$ is the unique number where $\alpha\wedge\beta = \lambda\omega^n$.
+This pairing is nondegenerate, which establishes the duality
+\[
+\Lambda^{0,q}T^*X \cong (\Lambda^{n,n-q}T^*X)^*
+\]
+tensoring with the holomorphic vector bundle $E$, we get the duality
+\[
+\Lambda^{0,q}T^*X \otimes E \cong \Lambda^{n,n-q}T^*X \otimes E^*
+\]
+Furthermore, the Hermitian metrics on both $E$ and $X$ gives an antilinear isomorphism
+\[
+\Lambda^{0,q}T^*X \otimes E \to (\Lambda^{0,q}T^*X \otimes E)^*
+\]
+putting these together, we get an antilinear isomorphism
+\[
+\Lambda^{0,q}T^*X \otimes E \to (\Lambda^{0,q}T^*X \otimes E)^* \to \Lambda^{n,n-q}T^*X
+\]
+which we denote $\star_E$. As the notation suggestions, $\star_E$ is the analogue of
+the Hodge star operator. Let $\langle\cdot,\cdot\rangle$ denote the Hermitian metric
+on $E$. Then given $E$-valued forms $\alpha,\beta \in \Omega^{0,q}_X(E)$, we get
+a smooth function $X \to \C$ where $x\mapsto \langle\alpha_x,\beta_x\rangle$. The
+Hermitian metric on $X$ induces a Riemannian metric, which then gives a volume form
+$dV_g \in \Omega^{2n}_X$. This gives an $L_2$ metric $(\cdot,\cdot)_{L^2}$ on
+$\Omega^{0,q}_X(E)$ defined by
+\[
+(\alpha,\beta)_{L^2} = \int_X \langle\alpha,\beta\rangle~dV_g
+\]
+as before, this inner product is related to $\star_E$ via the identity
+\[
+(\alpha,\beta)_{L^2} = \int_X\alpha\wedge\star_E\beta
+\]
+We then use $\star_E$ to define an adjoint to $\dbar_E$.
+%
+\begin{defn}
+Define $\dbar_E^* : \Omega^{0,q}_X(E) \to \Omega^{0,q-1}_X(E)$ by
+\[
+(-1)^q\star_E\inv\dbar_{K_X\otimes E^*}\star_E
+\]
+\end{defn}
+%
+\begin{prop}
+$\dbar_E^*$ is the formal adjoint of $\dbar_E$ with respect to $(\cdot,\cdot)_{L^2}$.
+\end{prop}
+%
+\begin{proof}
+
 \end{proof}
 %
 \end{document}
