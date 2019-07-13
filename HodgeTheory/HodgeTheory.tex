@@ -1058,6 +1058,188 @@ Define $\dbar_E^* : \Omega^{0,q}_X(E) \to \Omega^{0,q-1}_X(E)$ by
 $\dbar_E^*$ is the formal adjoint of $\dbar_E$ with respect to $(\cdot,\cdot)_{L^2}$.
 \end{prop}
 %
-The proof is very similar to the ones we performed above.
+The proof is very similar to the ones we performed above. \\
+
+With these adjoint operators, we construct Laplacian operators.
+%
+\begin{defn}
+Define the Laplacians $\Delta$, $\Delta_\partial$, $\Delta_{\dbar}$, and
+$\Delta_E$ by
+\begin{align*}
+&\Delta = dd^* + d^*d \\
+&\Delta_\partial = \partial\partial^* + \partial^*\partial \\
+&\Delta_{\dbar} = \dbar\dbar^* + \dbar^*\dbar \\
+&\Delta_E = \dbar_E\dbar_E^* + \dbar_E^*\dbar_E
+\end{align*}
+Forms that are annihilated by their respective Laplacian operator are said to be
+\ib{harmonic}. The subspace of harmonic forms is denoted
+\begin{enumerate}
+  \item $\mathcal{H}^k(X)$ for $\Delta$.
+  \item $\mathcal{H}^{q,0}(X)$ for $\Delta_\partial$.
+  \item $\mathcal{H}^{0,q}(X)$ for $\Delta_{\dbar}$.
+  \item $\mathcal{H}^{0,q}(X,E)$ for $\Delta_E$.
+\end{enumerate}
+\end{defn}
+%
+We first prove some helpful properties of these Laplacian operators
+%
+\begin{prop}
+\[
+(\alpha,\Delta\beta)_{L^2} = (d\alpha,d\beta)_{L^2} + (d^*\alpha,d^*\beta)_{L^2}
+\]
+and the analogous statement for all the other Laplacians.
+\end{prop}
+%
+\begin{proof}
+We compute
+\begin{align*}
+(\alpha,\Delta\beta)_{L^2} &= (\alpha, dd^*\beta + d^*d\beta)_{L^2} \\
+&= (\alpha,dd^*\beta)_{L^2} + (\alpha,d^*d\beta)_{L^2} \\
+&= (d^*\alpha,d^*\beta) + (d\alpha,d\beta)
+\end{align*}
+where the last equality comes from the fact that $d$ and $d^*$ are adjoints. The
+proof is the same for all the other Laplacians.
+\end{proof}
+%
+\begin{prop}
+A $k$-form $\alpha$ is harmonic if and only if $d\alpha = d^*\alpha = 0$,
+and the analogous statements for $\partial$, $\dbar$, and $\dbar_E$.
+\end{prop}
+%
+\begin{proof}
+This is an immediate corollary of the previous proposition, along with the fact that
+$(\cdot,\cdot)_{L^2}$ is positive definite.
+\end{proof}
+%
+\begin{cor}
+The Laplacians are formally self-adjoint, i.e.
+\[
+(\Delta\alpha,\beta)_{L^2} = (\alpha,\Delta\beta)_{L^2}
+\]
+and a similar statement for the other Laplacians.
+\end{cor}
+%
+We will use the following properties of the Laplacian operators, but will not
+prove them.
+%TODO prove Laplacians are elliptic
+\begin{prop}\enumbreak
+\begin{enumerate}
+  \item The Laplacian operators defined above are elliptic.
+  \item For an elliptic differential operator $D : E \to F$ between vector bundles
+  equipped with fiber metrics of the same rank over a compact manifold $X$, the kernel
+  of $D$ is finite dimensional, the image of $D$ is closed and of finite codimension,
+  and there is an orthogonal decomposition
+  \[
+  \Gamma_X(E) = \ker D \oplus \mathrm{Im}~D^*
+  \]
+  where $D^* : F \to E$ is the adjoint of $D$ with respect to the $L^2$ metrics on
+  $E$ and $F$
+\end{enumerate}
+\end{prop}
+%
+\section{The Hodge Decomposition}
+%
+The Hodge decomposition is an immediate corollary of the above proposition and the
+fact that the Laplacian is self-adjoint.
+%
+\begin{cor}[\ib{The Hodge decomposition}]
+For a compact Riemannian manifold $(X,g)$, there is an orthogonal decomposition
+\[
+\Omega_X^k = \mathcal{H}^k(X) \oplus \mathrm{Im}~\Delta
+\]
+\end{cor}
+%
+\begin{cor}
+The canonical map $\mathcal{H}^k(X) \to H^k_{dR}(X)$ mapping a harmonic form $\alpha$
+to its de Rham cohomology class is an isomorphism
+\end{cor}
+%
+\begin{proof}
+Let $\beta \in \Omega^k_X$ be a closed form. By the Hodge decomposition, we can
+write
+\begin{align*}
+\beta &= \alpha + \Delta\eta \\
+&= \alpha + dd^*\eta + d^*d\eta
+\end{align*}
+with $\alpha \in \mathcal{H}^k(X)$ and some $\eta \in \Omega^k_X$. Since $\alpha$ is
+harmonic, we have that $d\alpha = 0$, and we also have that $ddd^*\eta = 0$ since
+$d^2 = 0$, so for $\beta$ to be closed, we must have $dd^*d\eta = 0$ as well.
+Therefore, $[\beta] = [\alpha]$, so the map $\alpha \mapsto [\alpha]$ is surjective.
+For injectivity, let $\alpha \in \mathcal{H}^k(X)$ with $[\alpha] = 0$, i.e. $\alpha$
+is exact. Since $\alpha$ is harmonic, we have that $d\alpha = d^*\alpha = 0$. Since the
+kernel of $d^*$ is orthogonal to the image of $d$ (which is a general fact about
+adjoint linear transformations), we conclude that $\alpha = 0$, so the map is injective,
+and therefore an isomorphism.
+\end{proof}
+%
+As expected, we have a similar situation for the $\Delta_E$-harmonic forms and
+the sheaf cohomology $H^q(X,E)$ for a holomorphic vector bundle $E$, which is naturally
+identified with the Dolbeault cohomology groups $H^{0,q}(X,E)$. A near identical proof
+gives us that the map $\mathcal{H}^{0,q}(X,E) \to H^q(X,E)$ is an isomorphism. \\
+
+The Hodge decomposition gives us easy proofs of various duality theorems.
+%
+\begin{thm}[\ib{Poincar\'e Duality}]
+For a compact manifold $X$, the pairing
+$H^k_{dR}(X) \otimes H^{n-k}_{dR}(X) \to \R$ defined by
+\[
+\langle[\alpha],[\beta]\rangle = \int_X \alpha \wedge \beta
+\]
+is nondegenerate, giving an isomorphism $H^k_{dR}(X) \cong (H^{n-k}_{dR}(X))^*$.
+\end{thm}
+%
+\begin{proof}
+Fix a Riemannian metric $g$ for $X$, which allows us to construct the Laplacian
+$\Delta$ and the spaces $\mathcal{H}^k(X)$, which are isomorphic to the de Rham
+cohomology groups $H^k_{dR}(X)$. We use a lemma, which is a result from a simple
+(but somewhat tedious) computation.
+\begin{lem}
+The Hodge star $\star$ commutes with $\Delta$.
+\end{lem}
+In particular, the lemma implies that if $\alpha \neq 0$ is harmonic, then $\star\alpha$
+is also a nonzero harmonic form. Therefore, it suffices to show that
+$\langle[\alpha],[\star\alpha]\rangle \neq 0$ for $\alpha \neq 0$. But
+\[
+\langle[\alpha],[\star\alpha]\rangle = \int_X \alpha\wedge\star\alpha
+= (\alpha,\alpha)_{L^2} \neq 0
+\]
+\end{proof}
+%
+A little extra work gets the holomorphic vector bundle analogue, which is
+\ib{Serre duality}. Given a holomorphic vector bundle $E \to X$, there is a natural
+pairing
+\[
+H^{q}(X,E) \otimes H^{n-q}(X,E^* \otimes K_X) \to H^q(X, K_X) \to \C
+\]
+where the first map contracts the $E$ and $E^*$ factors, and the second map
+is given by integration over $X$. Once we make the proper identification of this
+pairing with Dolbeault cohomology, we can use the same technique we used for proving
+Poincar\'e duality to prove that this pairing is nondegenerate. In Dolbeault cohomology,
+let $\alpha \in H^{0,q}(X,E)$ and $\beta \in H^{0,n-q}(X,E^*\otimes K_X)$. Then
+we can take the exterior product
+$\alpha\wedge\beta \in H^{0,n}(X,E\otimes E^*\otimes K_X)$, which is obtained by
+class of the product of two representatives. Contracting the $E$ and $E^*$ factors
+gives us an element of $H^{0,n}(X,K_X)$, which is canonically identified with
+$H^{2n}(X,\C) = H^{n,n}(X)$. Integration then gives the pairing.
+%
+\begin{thm}[\ib{Serre duality}]
+The pairing
+\[
+H^{q}(X,E) \otimes H^{n-q}(X,E^* \otimes K_X) \to \C
+\]
+defined above is nondegenerate.
+\end{thm}
+%
+\begin{proof}
+The proof is similar to the one of Poincar\'e duality. From the discussion above, we
+prove the pairing with Dolbeault cohomology. Fix Hermitian metrics on $E$ and $X$,
+giving us the operator $\Delta_E$ and the spaces $\mathcal{H}^{0,q}(X,E)$ of harmonic
+forms, which are isomorphic to the cohomology groups $H^{0,q}(X,E) = H^q(X,E)$. As
+before, we use (without proof) that $\star_E$ commutes with $\Delta_E$ to deduce
+that for $\alpha$ harmonic, $\star_E\alpha$ is also harmonic. Therefore, it again
+suffices to show that for $\alpha$ harmonic and nonzero, the pairing
+$\langle [\alpha],[\star\alpha]\rangle$ is nonzero. However, the pairing is just
+$(\alpha,\star\alpha)_{L^2}$, which is nonzero since $\alpha$ is.
+\end{proof}
 %
 \end{document}
