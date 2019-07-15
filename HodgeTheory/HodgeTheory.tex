@@ -222,7 +222,7 @@
 %
 \author{Jeffrey Jiang}
 %
-\title{A Quick Survey of Hodge Theory}
+\title{A (Not so) Quick Survey of Hodge Theory}
 %
 \maketitle
 %
@@ -838,7 +838,11 @@ Therefore, since $\omega$ is a degree $2$ form, we must have that all the even
 dimensional cohomology groups are nontrivial
 \end{proof}
 %
-This shows that the K\"ahler condition is quite rigid.
+This shows that the K\"ahler condition is quite rigid. A special property of K\"ahler
+manifolds that the Hermitian form $h$ is constant up to second order terms, which is
+an important ingredient in the K\"ahler identities. Because of this, many of of the
+local computations on K\"ahler manifolds reduce to computation on the standard
+Hermitian metric on $\C^n$.
 %
 %TODO Maybe some comments on the Chern connection + interaction with Levi Civita?
 %
@@ -922,8 +926,8 @@ Define the operators
 by the formulas
 \begin{enumerate}
   \item $d^* = (-1)^k\star\inv d\star$
-  \item $\partial^* = -\star\\dbar\star$
-  \item $\dbar^* = -\star\\partial\star$
+  \item $\partial^* = -\star\dbar\star$
+  \item $\dbar^* = -\star\partial\star$
 \end{enumerate}
 \end{defn}
 %
@@ -983,8 +987,8 @@ theorem, which gives us
 \int_X(-1)^{k+1}\alpha\wedge\dbar(\overline{\star\beta}) =
 \int_X(-1)^{k+1}\alpha\wedge\overline{\partial\star\beta}
 \]
-The left hand side is $(\dbar\alpha,\beta)_{L^2}$. We claim (as was the case with $d^*$),
-that the right hand side is equal to $(\alpha,\dbar^*\beta)$. We compute
+The left hand side is $(\dbar\alpha,\beta)_{L^2}$. We claim (as was the case with
+$d^*$), that the right hand side is equal to $(\alpha,\dbar^*\beta)$. We compute
 \begin{align*}
 (\alpha,\dbar^*\beta)_{L^2} &= \int_X \alpha \wedge \overline{\star\partial^*\beta} \\
 &= \int_X\alpha \wedge \overline{\star(-\star\partial\star\beta)} \\
@@ -1240,6 +1244,178 @@ that for $\alpha$ harmonic, $\star_E\alpha$ is also harmonic. Therefore, it agai
 suffices to show that for $\alpha$ harmonic and nonzero, the pairing
 $\langle [\alpha],[\star\alpha]\rangle$ is nonzero. However, the pairing is just
 $(\alpha,\star\alpha)_{L^2}$, which is nonzero since $\alpha$ is.
+\end{proof}
+%
+\section{Hodge Theory on K\"ahler Manifolds and the Leftschetz Decomposition}
+%
+We now restrict to the case where $X$ is a compact K\"ahler manifold.
+%
+\begin{defn}
+Let $X$ be a compact K\"ahler manifold with K\"ahler form $\omega \in \Omega^2_X(\C)$.
+Then define the \ib{Lefschetz operator} $L : \Omega^k_X(\C) \to \Omega^{k+2}_X(\C)$ by
+\[
+L\alpha = \omega \wedge \alpha
+\]
+Let $\Lambda : \Omega^k_X(\C) \to \Omega^{k-2}_X(\C)$ denote the adjoint to $L$ with
+respect to the metric on each fiber, i.e. for all $x \in X$ we have that
+\[
+\langle L_x\alpha_x,\beta_x\rangle_x = \langle\alpha_x,\Lambda_x\beta_x\rangle_x
+\]
+\end{defn}
+%
+\begin{prop}
+\[
+\Lambda = \star\inv L\star = (-1)^k\star L\star
+\]
+\end{prop}
+%
+\begin{proof}
+Let $dV_g$ be the volume form for the Riemannian metric induced by the Hermitian form
+on $X$. Then by definition, we have that
+\[
+\langle L\alpha,\beta\rangle~dV_g = \langle\alpha,\Lambda\beta\rangle~dV_g
+\]
+Expanding this out, we get
+\[
+\omega\wedge\alpha\wedge\star\beta = \alpha\wedge\star\Lambda\beta
+\]
+Then we have that
+\[
+\alpha\wedge\star\star\inv L\star\beta = \alpha\wedge L\star\beta
+=\alpha\wedge\omega\star\beta = \omega\wedge\alpha\wedge\star\beta
+\]
+where the last equality comes from the fact that $\omega$ is of even degree. Then
+by uniqueness of the adjoint, we conclude that $\Lambda$ is of the desired form.
+\end{proof}
+%
+The operator $\Lambda$ satisfies very important commutation relations with
+the operators $\partial$ and $\dbar$.
+%
+\begin{thm}[\ib{The K\"ahler Identities}]
+\[
+[\Lambda,\partial] = i\dbar^* \qquad [\Lambda,\dbar] = i\partial^*
+\]
+\end{thm}
+%
+\begin{proof}
+Since the Kahler metric is constant to second order, and the operators in question only
+use the metric to first order, it suffices to prove the K\"ahler identities for the
+standard Hermitian metric on $\C^n$. The two equalities are equivalent by passing to
+the complex conjugate, so it suffices to verify one of them, which we choose to
+be $[\Lambda, \dbar] = i\partial^*$. Since the Hodge star $\star$ and $\Lambda$ are
+both $0$-th order operators, and $\partial$ and $\dbar$ are first order, the operators
+$[\Lambda,\dbar]$ and $i\partial^*$ are both first order operators. Furthermore, both
+operators annihilate constant coefficient forms, so the $0^{th}$ order terms are
+trivial. Therefore, it suffices to verify the first order terms (i.e. the symbols).
+are the same. The symbol of $d$ is the map $\alpha \mapsto \varepsilon_\alpha$, where
+$\varepsilon_\alpha: \Omega^k_X(\C) \to \Omega^k_X(\C)$ is defined by
+$\varepsilon_\alpha(\beta) = \alpha\wedge\beta$. The decomposition
+$d = \partial + \dbar$ then gives us the symbol of $\dbar$ is the mapping
+$\alpha \mapsto \varepsilon_{\alpha^{0,1}}$, where $\alpha^{0,1}$ is the projection of
+$\alpha$ onto antiholomorphic component. Therefore, we may assume that $\alpha$ is type
+$(0,1)$. Then the symbol of $i\partial^* = -i\star\dbar\star$ is
+$-i\star\varepsilon_\alpha\star$. Since $\Lambda$ is order $0$, we are reduced
+to verifying the identity
+\[
+[\Lambda,\varepsilon_\alpha] = -i\star\varepsilon_\alpha\star
+\]
+by linearity, we can further assume that $\alpha$ is one of the basis elements
+$d\zbar^i$ for the standard coordinates $\set{z^i}$ for $\C^n$, furthermore, we may
+assume that $\alpha = d\zbar^1$. We then prove a series of lemmas.
+%
+\begin{lem}
+We have that
+\[
+\star\varepsilon_{d\zbar^1}\star = 2\iota_1
+\]
+where $\iota_1\beta = \beta(\partial/\partial z^1)$.
+\end{lem}
+%
+\begin{proof}
+We have that $d\zbar^1 = dx^1 - idy^1$, so we compute on those components separately.
+It also suffices to verify on the basis $dx^I \wedge dy^J$ for
+$I = \set{i_1,\ldots, i_p}$ and $J = \set{j_1,\ldots, j_q}$ where $p+q=k$. We note that
+if $1 \notin I$, then $\star(dx^I \wedge dy^J)$ will contain $dx^1$ as a factor,
+so it is annihilated by $\varepsilon_{dx^1}$. Otherwise, $\star(dx^I\wedge dy^J)$ will
+not contain a factor of $dx^1$, so after checking signs,
+$\star\inv\varepsilon_{dx^1}(dx^I\wedge dy^J)$ will be $dx^I \wedge dy^J$ except
+the factor of $dx^1$ is missing. Therefore, we have that
+\begin{align*}
+\star\varepsilon_{d\zbar^1}\star
+&= \star(\varepsilon_{dx^1} -i\varepsilon_{dy^1})\star  \\
+&= \iota_{dx^1} - i\iota_{dy^1} \\
+&= 2\iota_1
+\end{align*}
+\end{proof}
+%
+\begin{lem}
+\[
+L\circ\iota_1 = \iota_1\circ L - \frac{i}{2}\varepsilon_{d\zbar^1}
+\]
+\end{lem}
+%
+\begin{proof}
+Let $\eta \in \Omega^k_X(\C)$.Then we compute
+\begin{align*}
+(L\circ\iota_1)(\eta) &= (\omega\wedge\iota_1\eta) \\
+&= \frac{i}{2}\sum_i dz^i\wedge d\zbar^i \wedge\iota_1\eta
+\end{align*}
+on the other hand, we have
+\begin{align*}
+(\iota_1\circ L - \frac{i}{2}\varepsilon_{d\zbar^1})(\eta)
+&= \frac{i}{2}\left(\sum_i \iota_1(dz^i\wedge d\zbar^i\wedge\eta)
+- d\zbar^1\wedge\eta\right) \\
+&= \frac{i}{2}\left(\sum_i (\iota_1(dz^i\wedge d\zbar^i)\wedge\eta + dz^1\wedge
+d\zbar^i\wedge\iota_1\eta) - d\zbar^1\wedge\eta\right)
+\end{align*}
+where the computation on the second line comes from the identity
+\[
+\iota_1(\alpha \wedge \eta) = \iota_1(\alpha)\wedge\eta
++ (-1)^{|\alpha|} \alpha\wedge\iota_1\eta
+\]
+with $\alpha = dz^i\wedge d\zbar^i$. We note that the only $i$ for which
+ $\iota_1(dz^i\wedge d\zbar^i) \neq 0$ is when $i=1$,
+in which case
+\[
+\iota_1(dz^1\wedge d\zbar^1) = \frac{1}{2} d\zbar^1
+\]
+the equality then immediately follows.
+\end{proof}
+%
+\begin{lem}
+\[
+\star L\star\inv = \star\inv L\star
+\]
+\end{lem}
+%
+\begin{proof}
+Since the dimension of $X$ is even dimensional, we have that
+$\star\inv\beta = (-1)^{|\beta|}\star\beta$. Since $\omega$ is a two form, wedging
+with $\omega$ preserves the parity of the degree. The lemma immediately follows.
+\end{proof}
+%
+We then compute $[\Lambda,\varepsilon_{d\zbar^1}]$ to be
+\begin{align*}
+[\Lambda,\varepsilon_{d\zbar^1}]
+&= \Lambda\varepsilon_{d\zbar^1} - \varepsilon_{d\zbar^1}\Lambda \\
+&= \star\inv L\star\varepsilon_{d\zbar^1} - \varepsilon_{d\zbar^1}\star\inv L\star \\
+&= 2\star\inv L\circ\iota_1\star\inv - \varepsilon_{d\zbar^1}\star L\star
+\end{align*}
+where the last equality uses the fact that
+$\star\varepsilon_{d\zbar^1} = 2\iota_1\star\inv$ (an immediate consequence of Lemma
+7.4), and lemma 7.5. Applying Lemma 7.4. once more, we get
+\[
+2\star\inv L\circ\iota_1\star\inv - \varepsilon_{d\zbar^1}\star L\star
+= 2\star\inv L\circ\iota_1\star\inv - 2\star\inv\iota_1\circ L\star
+\]
+We then apply Lemma 7.5. to obtain
+\begin{align*}
+2\star\inv L\circ\iota_1\star\inv - 2\star\inv\iota_1\circ L\star
+= 2\star\inv\left(\iota_1\circ L - \frac{i}{2}\varepsilon_{d\zbar^1}\right)
+-2\star\inv\left(L \circ \iota_1 + \frac{i}{2}\varepsilon_{d\zbar^1}\right) \\
+&=
+\end{align*}
+%
 \end{proof}
 %
 \end{document}
