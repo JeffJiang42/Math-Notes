@@ -1293,7 +1293,7 @@ the operators $\partial$ and $\dbar$.
 %
 \begin{thm}[\ib{The K\"ahler Identities}]
 \[
-[\Lambda,\partial] = i\dbar^* \qquad [\Lambda,\dbar] = i\partial^*
+[\Lambda,\partial] = i\dbar^* \qquad [\Lambda,\dbar] = -i\partial^*
 \]
 \end{thm}
 %
@@ -1302,9 +1302,9 @@ Since the Kahler metric is constant to second order, and the operators in questi
 use the metric to first order, it suffices to prove the K\"ahler identities for the
 standard Hermitian metric on $\C^n$. The two equalities are equivalent by passing to
 the complex conjugate, so it suffices to verify one of them, which we choose to
-be $[\Lambda, \dbar] = i\partial^*$. Since the Hodge star $\star$ and $\Lambda$ are
+be $[\Lambda, \dbar] = -i\partial^*$. Since the Hodge star $\star$ and $\Lambda$ are
 both $0$-th order operators, and $\partial$ and $\dbar$ are first order, the operators
-$[\Lambda,\dbar]$ and $i\partial^*$ are both first order operators. Furthermore, both
+$[\Lambda,\dbar]$ and $-i\partial^*$ are both first order operators. Furthermore, both
 operators annihilate constant coefficient forms, so the $0^{th}$ order terms are
 trivial. Therefore, it suffices to verify the first order terms (i.e. the symbols).
 are the same. The symbol of $d$ is the map $\alpha \mapsto \varepsilon_\alpha$, where
@@ -1313,11 +1313,11 @@ $\varepsilon_\alpha(\beta) = \alpha\wedge\beta$. The decomposition
 $d = \partial + \dbar$ then gives us the symbol of $\dbar$ is the mapping
 $\alpha \mapsto \varepsilon_{\alpha^{0,1}}$, where $\alpha^{0,1}$ is the projection of
 $\alpha$ onto antiholomorphic component. Therefore, we may assume that $\alpha$ is type
-$(0,1)$. Then the symbol of $i\partial^* = -i\star\dbar\star$ is
-$-i\star\varepsilon_\alpha\star$. Since $\Lambda$ is order $0$, we are reduced
+$(0,1)$. Then the symbol of $-i\partial^* = i\star\dbar\star$ is
+$i\star\varepsilon_\alpha\star$. Since $\Lambda$ is order $0$, we are reduced
 to verifying the identity
 \[
-[\Lambda,\varepsilon_\alpha] = -i\star\varepsilon_\alpha\star
+[\Lambda,\varepsilon_\alpha] = i\star\varepsilon_\alpha\star
 \]
 by linearity, we can further assume that $\alpha$ is one of the basis elements
 $d\zbar^i$ for the standard coordinates $\set{z^i}$ for $\C^n$, furthermore, we may
@@ -1399,23 +1399,41 @@ We then compute $[\Lambda,\varepsilon_{d\zbar^1}]$ to be
 [\Lambda,\varepsilon_{d\zbar^1}]
 &= \Lambda\varepsilon_{d\zbar^1} - \varepsilon_{d\zbar^1}\Lambda \\
 &= \star\inv L\star\varepsilon_{d\zbar^1} - \varepsilon_{d\zbar^1}\star\inv L\star \\
-&= 2\star\inv L\circ\iota_1\star\inv - \varepsilon_{d\zbar^1}\star L\star
+&= 2\star\inv L\circ\iota_1\star\inv - \varepsilon_{d\zbar^1}\star L\star\inv
 \end{align*}
 where the last equality uses the fact that
 $\star\varepsilon_{d\zbar^1} = 2\iota_1\star\inv$ (an immediate consequence of Lemma
-7.4), and lemma 7.5. Applying Lemma 7.4. once more, we get
-\[
-2\star\inv L\circ\iota_1\star\inv - \varepsilon_{d\zbar^1}\star L\star
-= 2\star\inv L\circ\iota_1\star\inv - 2\star\inv\iota_1\circ L\star
-\]
-We then apply Lemma 7.5. to obtain
+7.4), and lemma 7.6. We then apply Lemma 7.5 to obtain
 \begin{align*}
-2\star\inv L\circ\iota_1\star\inv - 2\star\inv\iota_1\circ L\star
-= 2\star\inv\left(\iota_1\circ L - \frac{i}{2}\varepsilon_{d\zbar^1}\right)
--2\star\inv\left(L \circ \iota_1 + \frac{i}{2}\varepsilon_{d\zbar^1}\right) \\
-&=
+2\star\inv L\circ\iota_1\star\inv - \varepsilon_{d\zbar^1}\star L\star\inv
+&= 2\star\inv\left(\iota_1\circ L - \frac{i}{2}\varepsilon_{d\zbar^1}\right)\star\inv
+- 2\star\inv\iota_1\circ L\star\inv \\
+&= 2\star\inv\iota_1\circ L\star\inv - i\star\inv\varepsilon_{d\zbar^1}\star\inv
+- 2\star\inv\iota_1\circ L\star\inv \\
+&= -i\star\inv\varepsilon_{d\zbar^1}\star\inv
 \end{align*}
+a quick verification with signs shows that this is equal to
+$i\star\varepsilon_{d\zbar^1}\star$, which is what we wanted to show.
+\end{proof}
 %
+The K\"ahler identities establish an important relationship between the Laplacians
+$\Delta$, $\Delta_\partial$, and $\Delta_{\dbar}$.
+%
+\begin{thm}
+Let $X$ be a Kahler manifold. Then the Laplcians satisfy
+\[
+\Delta_\partial = \Delta_{\dbar} = \frac{1}{2}\Delta
+\]
+\end{thm}
+%
+\begin{proof}
+Using the decomposition $d = \partial + \dbar$ and the definition $\Delta = dd^* +d^*d$,
+we compute
+\begin{align*}
+\Delta &= (\partial + \dbar)(\partial^* + \dbar^*)
++ (\partial^* + \dbar^*)(\partial + \dbar) \\
+&= (\partial + \dbar)()
+\end{align*}
 \end{proof}
 %
 \end{document}
