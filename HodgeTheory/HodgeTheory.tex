@@ -1420,20 +1420,72 @@ The K\"ahler identities establish an important relationship between the Laplacia
 $\Delta$, $\Delta_\partial$, and $\Delta_{\dbar}$.
 %
 \begin{thm}
-Let $X$ be a Kahler manifold. Then the Laplcians satisfy
+Let $X$ be a K\"ahler manifold. Then the Laplacians satisfy
 \[
 \Delta_\partial = \Delta_{\dbar} = \frac{1}{2}\Delta
 \]
 \end{thm}
 %
 \begin{proof}
+We first prove a short lemma.
+\begin{lem}
+\[
+\partial^*\dbar = -\dbar\partial^*
+\]
+\end{lem}
+%
+\begin{proof}
+We compute
+\begin{align*}
+\partial^*\dbar &= -i[\Lambda,\dbar]\dbar \\
+&= (-i\Lambda\dbar + i\dbar\Lambda)\dbar \\
+&= -i\Lambda\dbar\dbar + i\dbar\Lambda\dbar \\
+&= i\dbar\Lambda\dbar
+\end{align*}
+On the other hand, we compute
+\begin{align*}
+-\dbar\partial^* &= -i\dbar[\Lambda,\dbar] \\
+&= -i\dbar\Lambda\dbar + i\dbar\dbar\Lambda \\
+&= -i\dbar\Lambda\dbar
+\end{align*}
+\end{proof}
 Using the decomposition $d = \partial + \dbar$ and the definition $\Delta = dd^* +d^*d$,
 we compute
 \begin{align*}
 \Delta &= (\partial + \dbar)(\partial^* + \dbar^*)
 + (\partial^* + \dbar^*)(\partial + \dbar) \\
-&= (\partial + \dbar)()
+&= (\partial + \dbar)(\partial^* - i[\Lambda,\partial])
++ (\partial^* -i[\Lambda,\partial])(\partial + \dbar) \\
+&= (\partial + \dbar)(\partial^* - i\Lambda\partial +i\partial\Lambda)
++ (\partial^* - i\Lambda\partial +i\partial\Lambda)(\partial + \dbar) \\
+&= \partial\partial^* + \dbar\partial^* -i\partial\Lambda\partial -i\dbar\Lambda\partial
++i\dbar\partial\Lambda + \partial^*\partial + \partial^*\dbar -i\Lambda\partial\dbar
++i\partial\Lambda\partial +i\partial\Lambda\dbar \\
+&= \partial\partial^* + \dbar\partial^* -i\dbar\Lambda\partial + i\dbar\partial\Lambda
++\partial^*\partial + \partial^*\dbar -i\Lambda\partial\dbar + i\partial\Lambda\dbar \\
+&= \partial\partial^* +\partial^*\partial -i\dbar\Lambda\partial
++ i\dbar\partial\Lambda -i\Lambda\partial\dbar + i\partial\Lambda\dbar \\
+&= \Delta_\partial + i\partial[\Lambda,\dbar] + i[\Lambda,\dbar]\partial \\
+&= \Delta_{\partial} + \partial\partial^* + \partial^*\partial \\
+&= 2\Delta_{\partial}
 \end{align*}
+the proof for $\Delta_{\dbar}$ is near identical.
 \end{proof}
+%
+\begin{cor}
+The Laplacian $\Delta$ preserves the bigrading on $\Omega_X^{\bullet,\bullet}$,
+i.e. for a $(p,q)$ form $\alpha$, $\Delta\alpha \in \Omega_X^{p,q}$.
+\end{cor}
+%
+\begin{cor}
+A complex $k$-form $\alpha \in \Omega^k_X(\C)$ is $\Delta$-harmonic if and only if
+its components $\alpha^{p,q} \in \Omega^{p,q}_X$ are all $\Delta$-harmonic.
+\end{cor}
+%
+\begin{cor}[\ib{Hodge decomposition for K\"ahler manifolds}]
+\[
+\mathcal{H}^k(X) = \bigoplus_{p+q=k}\mathcal{H}^{p,q}(X)
+\]
+\end{cor}
 %
 \end{document}
