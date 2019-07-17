@@ -1474,7 +1474,7 @@ the proof for $\Delta_{\dbar}$ is near identical.
 %
 \begin{cor}
 The Laplacian $\Delta$ preserves the bigrading on $\Omega_X^{\bullet,\bullet}$,
-i.e. for a $(p,q)$ form $\alpha$, $\Delta\alpha \in \Omega_X^{p,q}$.
+i.e. for a $(p,q)$ form $\alpha$, the form $\Delta\alpha \in \Omega_X^{p,q}$.
 \end{cor}
 %
 \begin{cor}
@@ -1487,5 +1487,91 @@ its components $\alpha^{p,q} \in \Omega^{p,q}_X$ are all $\Delta$-harmonic.
 \mathcal{H}^k(X) = \bigoplus_{p+q=k}\mathcal{H}^{p,q}(X)
 \]
 \end{cor}
+%
+We also get a decomposition of the cohomology $H^k(X,\C)$, but this isn't as immediate
+as one would think. The na\"ive idea is to use the isomorphism
+$\mathcal{H}^K(X) \to H^k(X,\C)$, and then obtain the decomposition
+\[
+H^k(X,\C) = \bigoplus_{p+q=k}H^{p,q}(X,\C)
+\]
+where $H^{p,q}(X,\C)$ is defined to be the image of $\mathcal{H}^{p,q}(X)$ under
+the natural map. However, the space of harmonic forms depends on the choice of Hermitian
+metric, so a priori there could be different decompositions depending on the metric.
+However, this is not the case.
+%
+\begin{thm}
+The decomposition
+\[
+H^k(X,\C) = \bigoplus_{p+q=k}H^{p,q}(X,\C)
+\]
+induced by the Hodge decomposition does not depend on the choice of metric.
+\end{thm}
+%
+\begin{proof}
+We let $K^{p,q} \subset H^k(X,\C)$ denote the space of cohomology classes that admit a
+representative of type $(p,q)$. Clearly, $K^{p,q}$ does not use the metric, so it
+we prove the inclusion $K^{p,q} \subset H^{p,q}(X,\C)$, we are done. Given a class
+$[\eta] \in K^{p,q}$, by the definition of $K^{p,q}$, we may assume $\eta$ is a
+closed form of type $(p,q)$. By the Hodge decomposition, we write
+$\eta = \alpha + \Delta\beta$, with $\alpha$ a harmonic form. By projecting onto
+$\Omega^{p,q}_X$, we have that $\eta = \alpha^{p,q} + \Delta\beta^{p,q}$, and
+$\alpha^{p,q}$ is still harmonic by Corollary 7.11. Expanding this out, we have
+$\eta = \alpha^{p,q} + dd^*\beta^{p,q} + d^*d\beta^{p,q}$. Then since $\eta$ is closed,
+we have that $d\eta = 0$. Since $d\alpha^{p,q} = 0$ and $ddd^*\beta^{p,q} = 0$, we
+must have that $dd^8d\beta^{p,q} = 0$, and by orthogonality of $\ker d$ with
+$\mathrm{Im}~d^*$, we have that $d^*d\beta^{p,q} = 0$. Therefore,
+$\eta = \alpha^{p,q} + dd^*\beta^{p,q}$, where $\alpha^{p,q}$ is a harmonic $(p,q)$
+form, which is in $H^{p,q}(X,\C)$ by definition. Therefore, $[\eta] = [\alpha^{p,q}]$,
+proving the inclusion.
+\end{proof}
+%
+Since $H^{p,q}(X,\C) = K^{p,q}$, we note that this implies
+$H^{p,q}(X,\C) = \overline{H^{q,p}(X,\C)}$, since we clearly
+have that $K^{p,q} = \overline{K^{q,p}}$.
+%
+\begin{thm}
+Let $X$ be a K\"ahler manifold. Then the odd dimensional cohomology groups
+$H^{2k+1}(X,\C)$ are even dimensional
+\end{thm}
+%
+\begin{proof}
+By the Hodge decomposition, we have
+\[
+H^{2k+1} = \bigoplus_{p+q=2k+1}H^{p,q}(X,\C)
+= \bigoplus_{i=0}^{2k+1}H^{i, 2k+1-i}(X,\C)
+= \bigoplus_{i=0}^kH^{i,2k+1-i} \oplus \overline{H^{i,2k+1-i}}
+\]
+and $\dim V = \dim\overline{V}$, this implies that $H^k(X,\C)$ is even dimensional.
+\end{proof}
+%
+We now prove an extremely useful result.
+%
+\begin{thm}[\ib{The $\partial\dbar$ lemma}]
+Let $X$ be a K\"ahler manifold, and $\eta$ a complex $k$-form that is $\partial$
+and $\dbar$-closed. Then if $\eta$ is $d$, $\partial$, or $\dbar$-exact, there exists
+a form $\xi$ such that $\eta = \partial\dbar\xi$.
+\end{thm}
+%
+\begin{proof}
+The proof for all three cases is much the same, so we do just the one where
+$\eta = \dbar\alpha$ is $\dbar$-exact. By the Hodge decomposition, we write
+$\alpha = \beta + \Delta\gamma$, with $\beta$ harmonic. Since
+$\Delta = 2\Delta_{\dbar}$, and $\beta$ is $\Delta_{\dbar}$-harmonic if and only
+if $\dbar\beta = \dbar^*\beta = 0$, we have that $\dbar\beta = 0$. Then
+using Lemma 7.8, we compute
+\begin{align*}
+\eta &= \dbar\alpha \\
+&= \dbar(\beta + \Delta\gamma) \\
+&= \dbar\beta + 2\dbar(\Delta_\partial\gamma) \\
+&= 0 + 2\dbar(\partial\partial^*\gamma + \partial^*\partial\gamma) \\
+&= 2\dbar\partial\partial^*\gamma - 2\partial^*\dbar\partial\gamma \\
+&= -2\partial\dbar\partial^*\gamma - 2\partial^*\dbar\partial\gamma
+\end{align*}
+Then since $\eta$ is $\partial$-closed, we have that $\partial^*\dbar\partial\gamma$
+must also be $\partial$-closed. By orthogonality of the image of $\partial^*$ with
+the kernel of $\partial$, we have that $\partial^*\dbar\partial\gamma = 0$,
+so $\eta = -2\partial\dbar\partial^*\gamma = 2\dbar\partial\partial^*\gamma$,
+so letting $\xi = \partial^*\gamma$, we are done.
+\end{proof}
 %
 \end{document}
