@@ -1246,7 +1246,7 @@ $\langle [\alpha],[\star\alpha]\rangle$ is nonzero. However, the pairing is just
 $(\alpha,\star\alpha)_{L^2}$, which is nonzero since $\alpha$ is.
 \end{proof}
 %
-\section{Hodge Theory on K\"ahler Manifolds and the Leftschetz Decomposition}
+\section{Hodge Theory on K\"ahler Manifolds}
 %
 We now restrict to the case where $X$ is a compact K\"ahler manifold.
 %
@@ -1539,7 +1539,7 @@ By the Hodge decomposition, we have
 \[
 H^{2k+1} = \bigoplus_{p+q=2k+1}H^{p,q}(X,\C)
 = \bigoplus_{i=0}^{2k+1}H^{i, 2k+1-i}(X,\C)
-= \bigoplus_{i=0}^kH^{i,2k+1-i} \oplus \overline{H^{i,2k+1-i}}
+= \bigoplus_{i=0}^kH^{i,2k+1-i}(X,\C) \oplus \overline{H^{i,2k+1-i}(X,\C)}
 \]
 and $\dim V = \dim\overline{V}$, this implies that $H^k(X,\C)$ is even dimensional.
 \end{proof}
@@ -1572,6 +1572,58 @@ must also be $\partial$-closed. By orthogonality of the image of $\partial^*$ wi
 the kernel of $\partial$, we have that $\partial^*\dbar\partial\gamma = 0$,
 so $\eta = -2\partial\dbar\partial^*\gamma = 2\dbar\partial\partial^*\gamma$,
 so letting $\xi = \partial^*\gamma$, we are done.
+\end{proof}
+%
+\section{The Lefschetz Decomposition}
+%
+A K\"ahler manifold $X$ with K\"ahler form $\omega$ admits another decomposition
+from the Lefschetz operators $L$ and $\Lambda$.
+%
+\begin{prop}
+Let $X$ be a K\"ahler manifold of complex dimension $n$. Then
+\[
+[L,\Lambda] = (k-n)\id_{\Omega^k_X}
+\]
+\end{prop}
+%
+\begin{proof}
+Since both $L$ and $\Lambda$ are order $0$, it suffices to verify this on
+$\Lambda^kT^*X$, so we may as well assume that $X = \C^n$ with the standard Hermitian
+form and Kahler metric $\omega$. Define
+\[
+A_i \defeq \frac{i}{2}\varepsilon_{dz^i\wedge d\zbar^i}
+\]
+so $L = \sum_i A_i$ and $\Lambda = \sum_i\star\inv A_i\star$. Recall that in the proof
+of the K\"ahler identities, we proved the result
+\[
+\star\varepsilon_{d\zbar^1}\star = 2\iota_1
+\]
+on $\C^n$, where
+\[
+\iota_1(\alpha)(v_1,\ldots v_{k-1})
+= \alpha\left(\frac{\partial}{\partial z^i}, v_1, \ldots v_{k-1} \right)
+\]
+we note that this is true for any $dz^i$. It then follows that
+$\star\inv\varepsilon_{d\zbar^i}\star = (-1)^{k+1}2\iota_i$. Similarly, we also have
+that $\star\inv\varepsilon_{dz^i}\star = (-1)^{k+1}2\iota_{\bar{i}}$ where
+\[
+\iota_{\bar{i}}(\alpha)(v_1,\ldots v_{k-1})
+= \alpha\left(\frac{\partial}{\partial \zbar^i}, v_1, \ldots v_{k-1} \right)
+\]
+From this, we conclude that
+\[
+\star\inv A_i\star = -2i\iota_{\partial_i \wedge \dbar_i}
+\]
+where $\partial_i \defeq \partial/\partial z^i$ and
+$\dbar_i \defeq \partial/\partial\zbar^i$. We then have
+\[
+[L,\Lambda] = \sum_{i,j} [A_i,\star\inv A_j\star]
+\]
+If $i \neq j$,then $A_i$ and $\star\inv A_j\star$ commute, so this reduces to
+\[
+[L,\Lambda]= \sum_i [A_i, \star\inv A_i\star] =
+\sum_i [\varepsilon_{dz^i\wedge d\zbar^i}, \iota_{\partial_i \wedge \dbar_i}]
+\]
 \end{proof}
 %
 \end{document}
