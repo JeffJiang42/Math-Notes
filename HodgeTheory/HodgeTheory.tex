@@ -1624,6 +1624,47 @@ If $i \neq j$,then $A_i$ and $\star\inv A_j\star$ commute, so this reduces to
 [L,\Lambda]= \sum_i [A_i, \star\inv A_i\star] =
 \sum_i [\varepsilon_{dz^i\wedge d\zbar^i}, \iota_{\partial_i \wedge \dbar_i}]
 \]
+to compute this, we make a small digression. Let
+$M = \set{i_1,\ldots, i_m} \subset \set{1,\ldots, n}$,
+and let $\omega_M \in \Omega^{2m}_X$ be the form
+\[
+\omega_M = dz^{i_1}\wedge d\zbar^{i_1} \wedge\cdots\wedge dz^{i_m}\wedge d\zbar^{i_m}
+\]
+any $k$ form can be written as a linear combinations of the forms
+\[
+\omega_{A,B,M} = dz^A \wedge d\zbar^B \wedge \omega_M
+\]
+where $A$, $B$, and $M$ are mutually disjoint, and $|A| + |B| + 2|M| = k$. Fix such
+sets $A$, $B$, and $M$. Let $J \subset \set{1,\ldots, n}$ be the complement of
+$A$, $B$, and $M$. We then make several observations:
+\begin{enumerate}
+  \item If $i \notin J$, then $dz^i\wedge d\zbar^i \wedge \omega_{A,B,M} = 0$.
+  \item If $i \notin M$, then $\iota_{\partial_i\wedge\dbar_i}(\omega_{A,B,M}) = 0$.
+  \item If $i \in J$, then
+  $\iota_{\partial_i\wedge\dbar_i}(dz^i\wedge d\zbar^i\wedge\omega_{A,B,M})
+  = \omega_{A,B,M}$.
+  \item If $i \in M$, then
+  $\varepsilon_{dz^i\wedge d\zbar^i}(\iota_{\partial_i\wedge\dbar_i})(\omega_{A,B,M})
+  = \omega_{A,B,M}$.
+\end{enumerate}
+From these observations, we get that
+\[
+[L,\Lambda](\omega_{A,B,M}) = (|M|-|J|)\omega_{A,B,M}
+\]
+we know that $|J| = n - |A| - |B| - |M|$. Therefore,
+\[
+|M| - |J| = (k - |A| - |B| - |M|) - (n - |A| - |B| - |M|) = (k-n)
+\]
+therefore,
+\[
+[L,\Lambda](\omega_{A,B,M}) = (k-n)\omega_{A,B,M}
+\]
+and since the $\omega_{A,B,M}$ span, this implies the desired result.
 \end{proof}
+%
+\begin{cor}
+Every tangent space $T_xX$ of a K\"aher manifold $X$ admits the structure of
+$\sl_2\C$-representation.
+\end{cor}
 %
 \end{document}
