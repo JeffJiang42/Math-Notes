@@ -1663,8 +1663,225 @@ and since the $\omega_{A,B,M}$ span, this implies the desired result.
 \end{proof}
 %
 \begin{cor}
-Every tangent space $T_xX$ of a K\"aher manifold $X$ admits the structure of
-$\sl_2\C$-representation.
+The exterior algebra of every cotangent space $T^*_xX$ of a K\"aher manifold $X$ admits
+the structure of $\sl_2\C$-representation.
 \end{cor}
+%
+\begin{proof}
+Let $V = T^*_xX$, and let $\Pi : \Lambda^\bullet V \to \Lambda^\bullet V$ be the map
+where $\Pi\vert_{\Lambda^kV} = (k-n)\id_{\Lambda^kV}$. We want to compute the
+commutation relations:
+\begin{enumerate}
+  \item $[\Pi,L]$
+  \item $[\Pi,\Lambda]$
+  \item $[L,\Lambda]$
+\end{enumerate}
+Let $\omega \in \Lambda^2V$ be the K\"ahler form. we compute, for
+$\eta \in \Lambda^kV$,
+\begin{align*}
+[\Pi, L]\eta &= \Pi(\omega \wedge \eta) - \omega \wedge \Pi\eta \\
+&= (k+2-n)\omega\wedge\eta - (k-n)\omega\wedge\eta \\
+&= 2\omega\wedge \eta \\
+&= 2L\eta
+\end{align*}
+next, we compute
+\begin{align*}
+[\Pi, \Lambda]\eta &= \Pi\Lambda\eta - \Lambda\Pi\eta \\
+&= (k-2-n)\Lambda\eta - (k-n)\Lambda\eta \\
+&= -2\Lambda\eta
+\end{align*}
+where we use the fact that $\Lambda$ decreases the degree of a form by $2$. The third
+commutation is what we just computed, giving us the commutation relations
+\begin{enumerate}
+  \item $[\Pi, L] = 2L$
+  \item $[\Pi,\Lambda] = -2\Lambda$
+  \item $[L,\Lambda] = \Pi$
+\end{enumerate}
+The Lie algebra $\sl_2\C$ admits a basis
+\[
+H = \begin{pmatrix}
+1 & 0 \\
+0 & -1
+\end{pmatrix} \qquad X = \begin{pmatrix}
+0 & 1 \\
+0 & 0
+\end{pmatrix} \qquad Y = \begin{pmatrix}
+0 & 0 \\
+1 & 0
+\end{pmatrix}
+\]
+which satisfy the commutation relations
+\[
+[H,Y] = 2Y \qquad [H,X] = -2X \qquad [X,Y] = H
+\]
+which are exactly the same relations as we found for $\Pi$, $L$, and $\Lambda$.
+Therefore, the mapping $H \mapsto \Pi$, $Y \mapsto L$, and $X \mapsto \Lambda$
+determines a Lie algebra homomorphism $\sl_2\C \to \End\Lambda^\bullet V$, which gives
+$\Lambda^\bullet V$ the structure of a $\sl_2\C$-representation. The standard picture
+of an $\sl_2\C$ representation is that of string of beads, representing eigenspaces
+of $H$, and with $X$ and $Y$ being raising and lowering operators, moving up and
+down the string. Applying this picture to $\Lambda^\bullet V$, we get
+\[\begin{tikzcd}
+\Lambda^{k-2}V \ar[r, bend left=30, "L"] & \Lambda^kV \ar[l, bend left=30, "\Lambda"]
+\ar[r, bend left=30, "L"]& \Lambda^{k+2}V \ar[l, bend left=30, "\Lambda"]
+\end{tikzcd}\]
+\end{proof}
+%
+\begin{defn}
+A $k$-form $\alpha \in \Omega_kX$ is \ib{primitive} if $L\alpha = 0$. The space of
+primitive $k$-forms is denoted $P^k$
+\end{defn}
+%
+\begin{thm}[\ib{The Lefschetz decomposition on forms}]
+There is an orthgonal direct sum decomposition
+\[
+\Omega^k_X = \bigoplus_{\ell \geq 0 } L^iP^{k-2i}
+\]
+\end{thm}
+%
+\begin{proof}
+Since $L$ is order $0$, it suffices to verify this fiberwise. Let $V = T^*_xX$.
+As we have just noted, $\Lambda^\bullet V$ is a finite dimensional
+$\sl_2\C$ -representation, so we use some facts from the representation theory of
+$\sl_2\C$. We use two main facts:
+\begin{enumerate}
+  \item Every finite dimensional $sl_2\C$ representation is a direct sum of irreducible
+  representations.
+  \item An $\sl_2\C$ representation $V$ is irreducible if and only if each eigenspace in
+  the decomposition of $V$ into the eigenspaces of $H$ (as illustrated above) is
+  $1$-dimensional.
+\end{enumerate}
+We first prove some lemmas.
+\begin{lem}
+Let $r \geq 1$. Then
+\[
+[L^r, \Lambda] = (r(k-n)+r(r-1))L^{r-1}
+\]
+\end{lem}
+%
+\begin{proof}
+Since the bundles are in question, it suffices to verify injectivity, which we do by
+induction. For the base case $r=1$, this is just the statement of proposition 8.1. Then
+assuming that the statement holds for $r-1$, we prove the lemma for $r$. We note that
+\begin{align*}
+[L^r,\Lambda] &= L^r\Lambda - \Lambda L^r \\
+&= L(L^{r-1}\Lambda) - \Lambda L^r \\
+&= L(L^{r-1}\Lambda - \Lambda L^{r-1}) + L\Lambda L^{r-1} - (\Lambda L)L^{r-1} \\
+&= L[L^{r-1}, \Lambda] + [L,\Lambda]L^{r-1}
+\end{align*}
+By assumption, we have that
+\[
+[L^{r-1},\Lambda] = ((r-1)(k-n) + (r-1)(r-2))L^{r-2}
+\]
+substituting this in, along with the formula from Proposition 8.1 into the above
+equation, we get
+\begin{align*}
+[L^r,\Lambda] &= L[L^{r-1}, \Lambda] + [L,\Lambda]L^{r-1} \\
+&= ((r-1)(k-n) + (r-1)(r-2))L^{r-1} + (k+2r-2 - n)L^{r-1} \\
+&= (r(k-n) + (r-1)(r-2) + 2r-2)L^{r-1} \\
+&= (r(k-n) + r^2 -3r + 2 + 2r -2)L^{r-1} \\
+&= (r(k-n) + r^2-r)L^{r-1} \\
+&= (r(k-n) + r(r-1))L^{r-1}
+\end{align*}
+\end{proof}
+%
+We then note that $\Lambda^\bullet V$ admits a primitive $\alpha$, since we can just
+pick a nonzero $\alpha$, and walk it down the chain by repeatedly applying $\Lambda$,
+which must eventually terminate by finite dimensionality of $\Lambda^\bullet V$. Simple
+calculations using the commutation relations of $\sl_2\C$ (equivalently, of
+$L$, $\Lambda$, and $\Pi$) gives that the span of $\set{v, Lv, L^2v, \ldots}$ defines a
+subrepresentation $S$ of $\Lambda^\bullet V$. Additionally, since the $\Lambda^k V$ are
+all eigenspaces for $\Pi$ with different eigenvalues, we have that for each $q$,
+$L^qv \in S$ spans a $1$-dimensional eigenspace for $\Pi$ restricted to $S$, so
+$S$ is an irreducible subrepresentation. We then claim that $S^\perp$ is also
+a subrepresentation. From the commutation relations we proved earlier, it suffices to
+prove that $S^\perp$ is invariant under $L$, $\Lambda$, and $\Pi$. Since the set
+$\set{v, Lv, L^2v, \ldots}$ forms a basis for $S$, it suffices to show that for
+$w \in S^\perp$,
+\begin{enumerate}
+  \item $\langle \Pi w, L^rv \rangle = 0$
+  \item $\langle Lw, L^rv \rangle = 0$
+  \item $\langle \Lambda w, L^rv \rangle = 0$
+\end{enumerate}
+The first is immediate, due to the fact that the $\Lambda^k V$ are eigenspaces for
+$\Pi$, and are all orthogonal.
+\end{proof}
+
+
+
+
+
+
+
+
+\iffalse
+We now prove another corollary of Proposition 8.1.
+%
+\begin{prop}
+The map $L^{n-k} : \Lambda^kT^*M \to \Lambda^{2n-k}T^*K$ is an isomorphism.
+\end{prop}
+%
+\begin{proof}
+We first prove some lemmas
+\begin{lem}
+Let $r \geq 1$. Then
+\[
+[L^r, \Lambda] = (r(k-n)+r(r-1))L^{r-1}
+\]
+\end{lem}
+%
+\begin{proof}
+Since the bundles are in question, it suffices to verify injectivity, which we do by
+induction. For the base case $r=1$, this is just the statement of proposition 8.1. Then
+assuming that the statement holds for $r-1$, we prove the lemma for $r$. We note that
+\begin{align*}
+[L^r,\Lambda] &= L^r\Lambda - \Lambda L^r \\
+&= L(L^{r-1}\Lambda) - \Lambda L^r \\
+&= L(L^{r-1}\Lambda - \Lambda L^{r-1}) + L\Lambda L^{r-1} - (\Lambda L)L^{r-1} \\
+&= L[L^{r-1}, \Lambda] + [L,\Lambda]L^{r-1}
+\end{align*}
+By assumption, we have that
+\[
+[L^{r-1},\Lambda] = ((r-1)(k-n) + (r-1)(r-2))L^{r-2}
+\]
+substituting this in, along with the formula from Proposition 8.1 into the above
+equation, we get
+\begin{align*}
+[L^r,\Lambda] &= L[L^{r-1}, \Lambda] + [L,\Lambda]L^{r-1} \\
+&= ((r-1)(k-n) + (r-1)(r-2))L^{r-1} + (k+2r-2 - n)L^{r-1} \\
+&= (r(k-n) + (r-1)(r-2) + 2r-2)L^{r-1} \\
+&= (r(k-n) + r^2 -3r + 2 + 2r -2)L^{r-1} \\
+&= (r(k-n) + r^2-r)L^{r-1} \\
+&= (r(k-n) + r(r-1))L^{r-1}
+\end{align*}
+\end{proof}
+%
+we the prove the proposition with a bit of $\sl_2\C$ representation theory. It
+suffices to prove that $L^{n-k}$ is an isomorphism fiberwise. Let $V = T^*_xX$.
+Since $\Lambda^\bullet V$ is finite dimensional, we know that there must exist a
+non-zero element $v \in \Lambda^\bullet V$ such that $\Lambda v = 0$. Indeed, if
+we start with a vector $w$, the sequence $\Lambda w, \Lambda^2 w, \ldots $ must
+terminate at some finite $n$, since all of the vectors are linearly independent,
+since they are eigenvectors of $\Pi$ of different eigenvalues. From $\sl_2\C$
+representation theory (or a somewhat quick calculuation), we have that the set
+$\set{v, Lv, L^2v, \ldots }$ spans a subrepresentation of $\Lambda^\bullet V$.
+In addition, in the decomposition of this subrepresentation  into eigenspaces of $\Pi$,
+it is clear that each eigenspace is $1$-dimensional (each one is spanned by $L^kv$),
+so it is an irreducible $\sl_2\C$ representation.
+With these lemmas in hand, we note that if $L^r$ annihilates
+$\alpha \in \Omega^k_X$, we have that
+\begin{align*}
+&L^r\Lambda\alpha = [L^r,\Lambda]\alpha - \Lambda L^2\alpha \\
+\implies &L^r\Lambda\alpha - [L^r,\Lambda]\alpha = 0
+\end{align*}
+and we compute, using our first lemma,
+\begin{align*}
+L^r\Lambda\alpha - [L^r,\Lambda]\alpha &= L^{r-1}(L\Lambda\alpha)
+- (r(k-n) + r(r-1))L^{r-1}\alpha\\
+&= L^{r-1}(L\Lambda - (r(k-n)+r(r-1))\id)\alpha
+\end{align*}
+
+\end{proof}
+\fi
 %
 \end{document}
