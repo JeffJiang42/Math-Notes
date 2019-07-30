@@ -1537,11 +1537,12 @@ $H^{2k+1}(X,\C)$ are even dimensional
 \begin{proof}
 By the Hodge decomposition, we have
 \[
-H^{2k+1} = \bigoplus_{p+q=2k+1}H^{p,q}(X,\C)
+H^{2k+1}(X,\C) = \bigoplus_{p+q=2k+1}H^{p,q}(X,\C)
 = \bigoplus_{i=0}^{2k+1}H^{i, 2k+1-i}(X,\C)
 = \bigoplus_{i=0}^kH^{i,2k+1-i}(X,\C) \oplus \overline{H^{i,2k+1-i}(X,\C)}
 \]
-and $\dim V = \dim\overline{V}$, this implies that $H^k(X,\C)$ is even dimensional.
+and since $\dim V = \dim\overline{V}$, this implies that $H^k(X,\C)$ is even
+dimensional.
 \end{proof}
 %
 We now prove an extremely useful result.
@@ -1925,7 +1926,7 @@ The Laplacian $\Delta$ commutes with $L$.
 \end{thm}
 %
 \begin{proof}
-From the K\"ahler identities, we have that
+We have that
 $\Delta = 2\Delta_{\partial } = 2(\partial\partial^* + \partial^*\partial)$. We then
 compute
 \begin{align*}
@@ -1934,7 +1935,7 @@ compute
 &= 2\partial\partial^* L - 2L\partial\partial^*
 + 2\partial^*\partial L - 2L\partial^*\partial \\
 \end{align*}
-we then need a simple computation
+we then need a simple computation.
 %
 \begin{lem}
 \[
@@ -1944,8 +1945,66 @@ we then need a simple computation
 \end{lem}
 %
 \begin{proof}
-
+We show the equivalent statement that
+\[
+2\partial^*L\partial - 2\partial^*\partial L
++ 2L\partial\partial^*  - 2\partial L\partial^* = 0
+\]
+we compute
+\begin{align*}
+2\partial^*L\partial - 2\partial^*\partial L
++ 2L\partial\partial^*  - 2\partial L\partial^* &= 2\partial^*[L,\partial]
++ 2[L, \partial]\partial^*
+\end{align*}
+we the note that $[L,\partial] = 0$, since $\omega$ is $\partial$-closed and of
+even degree, and using the fact that $\partial$ is an antiderivation of bidegree
+$(1,0)$. This proves the desired equality.
 \end{proof}
+%
+Using the lemma, we can rewrite our previous equality to obtain
+\begin{align*}
+[\Delta,L] &= 2\partial\partial^*L - 2\partial L\partial^* + 2\partial^*L\partial
+- 2L\partial^*\partial \\
+&= 2\partial[\partial^*, L] + 2[\partial^*, L]\partial
+\end{align*}
+From the K\"ahler identities, we have that $[\partial^*, L] = -i\dbar$, which
+anticommutes with $\partial$, giving us that $[\Delta, L] = 0$.
 \end{proof}
+%
+\begin{cor}
+Given a harmonic form $\alpha$, $L\alpha$ is also harmonic.
+\end{cor}
+%
+The Hodge Theorem then allows us pass to cohomology, using the identification
+$\mathcal{H}^k(X) \cong H^k_{dR}(X,\R)$.
+%
+\begin{thm}[\ib{Hard Lefschetz for cohomology}]
+The map $L^{n-k} : H^k_{dR}(X,\R) \to H^{2n-k}_{dR}(X,\R)$ is an isomorphism.
+\end{thm}
+%
+\begin{proof}
+Using the identification of the spaces of harmonic forms with the cohomology of $X$,
+we may identify the Lefschetz operator $L$ on cohomology with the Lefschetz operator
+on forms restricted to the harmonic forms. From the Hard Lefschetz Theorem on
+forms, we have that $L^{n-k} : \Lambda^kT^*X \to \Lambda^{2n-k}T^*X$ is isomorphism,
+so it defines an isomorphism $\Omega^k_X \to \Omega^{2n-k}_X$. Therefore, the
+restriction to $\mathcal{H}^k(X)$ is injective. By Poincar\'e duality, we know
+that $\mathcal{H}^k(X)$ and $\mathcal{H}^{2n-k}(X)$ are the same dimension, so
+$L^{n-k} : \mathcal{H}^k(X) \to \mathcal{H}^{2n-k}(X)$ is an injective map between
+vector spaces of the same dimension, i.e. an isomorphism.
+\end{proof}
+%
+Likewise, the Lefschetz decomposition also descends to the level of cohomology, and the
+proof is the same was it was for forms.
+%
+\begin{thm}[\ib{The Lefschetz decomposition on cohomology}]
+There is a direct sum decomposition
+\[
+H^k_{dR}(X,\R) = \bigoplus_{i \geq 0}L^iH^{k-2i}(X,\R)_{\mathrm{Prim}}
+\]
+where $H^{k-2i}(X,\R)_{\mathrm{Prim}}$ denotes the cohomology classes $[\alpha]$
+annihilated by $L^{n-k+2i+1}$ (which we recall is an equivalent formulation of
+primitive on the level of forms).
+\end{thm}
 %
 \end{document}
