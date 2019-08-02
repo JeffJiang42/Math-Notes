@@ -10,6 +10,8 @@
 \usepackage{mathrsfs}
 \usepackage{amsthm}
 \usepackage{mathpazo}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
 %\usepackage{charter} %another font
 %\usepackage{eulervm} %Vakil font
 \usepackage{yfonts}
@@ -19,7 +21,6 @@
 \usepackage{fourier-orns}
 \usepackage[all]{xy}
 \usepackage{hyperref}
-\usepackage{cite}
 \usepackage{url}
 \usepackage{mathtools}
 \usepackage{graphicx}
@@ -226,6 +227,11 @@
 %
 \maketitle
 %
+These are some notes I typed up reading through Voisin's text \emph{Hodge Theory
+and Complex Algebraic Geometry, I}, with some supplemental details coming Daniel
+Huybrechts' \emph{Complex Geometry}. The structure of the notes mostly follows Voisin,
+with some added details included for my own sake.
+%
 \tableofcontents
 %
 \section{Linear Algebra}
@@ -369,9 +375,10 @@ dual space$ V^*_\C = \hom_\R(V,\C)$ as
 \[
 V^*_\C = (V^*)^{1,0} \oplus (V^*)^{0,1}
 \]
-into the $\pm i$ eigenspaces of $J^*$, and have very natural interpretations in
+into the $\pm i$ eigenspaces of $J^*$, which have very natural interpretations in
 terms of $V$. The subspace $(V^*)^{1,0}$ consists of the $\alpha$ such that
-$\alpha(Jv) = i\alpha(v)$. We have a natural pairing $(V^*)^{1,0} \otimes V^{1,0} \to \C$
+$\alpha(Jv) = i\alpha(v)$. We have a natural pairing
+ $(V^*)^{1,0} \otimes V^{1,0} \to \C$
 given by
 \[
 \langle \alpha,v \rangle = \alpha(v)
@@ -1529,9 +1536,33 @@ Since $H^{p,q}(X,\C) = K^{p,q}$, we note that this implies
 $H^{p,q}(X,\C) = \overline{H^{q,p}(X,\C)}$, since we clearly
 have that $K^{p,q} = \overline{K^{q,p}}$.
 %
+\begin{defn}
+We let $h^{p,q}$ denote the dimension of $H^{p,q}(X,\C)$. The $h^{p,q}$ are called
+the \ib{Hodge numbers} of $X$.
+\end{defn}
+%
+The cohomology groups $H^{p,q}(X,\C)$ have a simple geometric interpretation -- they
+are the sheaf cohomology groups of a holomorphic vector bundle
+%
 \begin{thm}
-Let $X$ be a K\"ahler manifold. Then the odd dimensional cohomology groups
-$H^{2k+1}(X,\C)$ are even dimensional
+$H^{p,q}(X,\C)$ is isomorphic to $H^q(X,\Lambda^{p,0}T^*X)$.
+\end{thm}
+%
+\begin{proof}
+We earlier noted that for a holomorphic vector bundle $E \to X$ equipped with a
+Hermitian metric, we have $\mathcal{H}^{0,q}(X,E) \cong H^q(X,E)$. Specializing to
+the case $E = \Lambda^{p,0}T^*X$, we have that the $\dbar_E$ coincides with $\dbar$,
+so $\mathcal{H}^{0,q}(X, E) = \mathcal{H}^{0,q}(X,\Lambda^{p,0}T^*X)$ consists of the
+$\Delta_{\dbar}$-harmonic $q$-forms valued in $\Lambda^{p,0}T^*X$, i.e.
+$\Delta_{\dbar}$-harmonic $(p,q)$ forms on $X$. Then since $\Delta = 2\Delta_{\dbar}$,
+we have that these are exactly the $\Delta$-harmonic $(p,q)$-forms, which is the space
+$\mathcal{H}^{p,q}(X)$, which we know from Hodge theory to be isomorphic to
+$H^{p,q}(X,\C)$.
+\end{proof}
+%
+\begin{thm}
+Let $X$ be a K\"ahler manifold. Then the odd cohomology groups $H^{2k+1}(X,\C)$ are
+even dimensional.
 \end{thm}
 %
 \begin{proof}
@@ -1718,21 +1749,23 @@ which satisfy the commutation relations
 which are exactly the same relations as we found for $\Pi$, $L$, and $\Lambda$.
 Therefore, the mapping $H \mapsto \Pi$, $Y \mapsto L$, and $X \mapsto \Lambda$
 determines a Lie algebra homomorphism $\sl_2\C \to \End\Lambda^\bullet V$, which gives
-$\Lambda^\bullet V$ the structure of a $\sl_2\C$-representation. The standard picture
-of an $\sl_2\C$ representation is that of string of beads, representing eigenspaces
-of $H$, and with $X$ and $Y$ being raising and lowering operators, moving up and
-down the string. Applying this picture to $\Lambda^\bullet V$, we get
+$\Lambda^\bullet V$ the structure of a $\sl_2\C$-representation.
+\end{proof}
+%
+The standard picture of an $\sl_2\C$ representation is that of string of beads,
+representing eigenspaces of $H$, and with $X$ and $Y$ being raising and lowering
+operators, moving up and down the string by raising and lowering the eigenvalue.
+Applying this picture to $\Lambda^\bullet V$, we get
 \[\begin{tikzcd}
 \cdots \ar[r, bend left=30, "L"]& \Lambda^{k-2}V \ar[r, bend left=30, "L"]
 \ar[l, bend left=30, "\Lambda"] & \Lambda^kV \ar[l, bend left=30, "\Lambda"]
 \ar[r, bend left=30, "L"]& \Lambda^{k+2}V \ar[l, bend left=30, "\Lambda"]
 \ar[r, bend left=30, "L"]& \cdots \ar[l, bend left=30, "\Lambda"]
 \end{tikzcd}\]
-\end{proof}
 %
 \begin{defn}
-A $k$-form $\alpha \in \Omega_kX$ is \ib{primitive} if $L\alpha = 0$. The space of
-primitive $k$-forms is denoted $P^k$
+A $k$-form $\alpha \in \Omega^k_X$ is \ib{primitive} if $\Lambda\alpha = 0$. The space
+of primitive $k$-forms is denoted $P^k$
 \end{defn}
 %
 \begin{thm}[\ib{The Lefschetz decomposition on forms}]
@@ -2006,5 +2039,79 @@ where $H^{k-2i}(X,\R)_{\mathrm{Prim}}$ denotes the cohomology classes $[\alpha]$
 annihilated by $L^{n-k+2i+1}$ (which we recall is an equivalent formulation of
 primitive on the level of forms).
 \end{thm}
+%TODO observations about the cohomology of a Kahler manifold, e.g. Hodge numbers,
+%dimensions of cohomology groups as a consequence of Lefschetz decomposition.
+\section{The Cohomology of K\"ahler Manifolds}
+%
+
+With all of the facts we have collected, we can deduce a lot about the structure of
+the cohomology of a K\"ahler manifold $X$, which further reinforces the statement we
+made earlier that the K\"ahler condition is very restrictive. We collect some of
+our observations here. First, something we've already observed
+%
+\begin{thm*}
+For a K\"ahler manifold $X$, the odd Betti numbers $b_{2k+1}$ are all even.
+\end{thm*}
+%
+As a consequence of Hard Lefschetz and the Lefschetz decomposition, we also see that
+the Betti numbers of $X$ satisfy the relations
+\begin{align*}
+b_1 \leq b_3 \leq \cdots \\
+b_2 \leq b_4 \leq \cdots
+\end{align*}
+and so on, terminating when the $b_k$ exceeds $n$ at which point the dimension begins
+decreasing. \\
+
+For a K\"ahler manifold, we can further decompose the cohomology into the spaces
+$H^{p,q}(X,\C)$, which gives the Hodge numbers $h^{p,q}$ as a more refined version
+of the Betti numbers $b_k$. We observed earlier that
+\[
+\overline{H^{p,q}(X,\C)} \cong H^{q,p}(X,\C)
+\]
+which gives us $h^{p,q} = h^{q,p}$. We also have the Hodge star operator, which
+descends to cohomology by virtue of commuting with the Laplacian, which induces
+isomorphisms $H^{p,q}(X,\C) \to H^{n-p,n-q}(X,\C)$, where the fact that
+$\Delta = 2\Delta_\partial = 2\Delta_{\dbar}$ and the fact that $\star$ commutes with
+$\Delta$ to conclude that $\star$ acts on each component of the bidegree separately,
+which the tells us that $h^{p,q} = h^{n-p,n-q}$. Finally, we also make an observation
+using Serre duality. From before, we had that
+$H^{p,q}(X,\C) \cong H^q(X, \Lambda^{p,0}T^*X)$. By Serre duality, we have that
+\begin{align*}
+h^{p,q} &= \dim H^q(X,\Lambda^{p,0}T^*X) \\
+&= \dim H^{n-q}(X, \Lambda^{p,0}TX \otimes K_X) \\
+&= \dim H^{n-q}(X, \Lambda^{n+p,0}T^*X) \\
+&= h^{n+p,n-q}
+\end{align*}
+
+These observations can be seen as symmetries of the \ib{Hodge diamond} of $X$, where
+we arrange the Hodge numbers $h^{p,q}$ in a diamond
+\[\hspace*{-1.65cm}\begin{tikzcd}
+&&&& h^{0,0}\\
+&&& h^{1,0} & & h^{0,1}\\
+&& h^{2,0} & & h^{1,1} & & h^{0,2} \\
+&\iddots &  \vdots && \vdots && \vdots    & \ddots \\
+h^{n,0} & \vdots && \vdots & \vdots & \vdots && \vdots & h^{0,n} \\
+&\ddots & \vdots && \vdots && \vdots  & \iddots \\
+&& h^{n,n-2} & & h^{n-1,n-1} & & h^{n-1,n} \\
+&&& h^{n,n-1} & & h^{n-1,n} \\
+&&&& h^{n,n}
+\end{tikzcd}\]
+
+We then see that our observations about the Hodge numbers are encoded in symmetries
+of the Hodge diamond. Complex conjugation corresponds to  reflecting across the
+vertical line of symmetry, so $h^{p,q} = h^{q,p}$ implies that the diamond is
+symmetric across this line. The Hodge star gives us that $h^{p,q} = h^{n-p,n-q}$,
+which corresponds to a reflection across the horizontal line of symmetry of the Hodge
+diamond. Finally, Serre duality tells us that $h^{p,q} = h^{n+p,n-q}$, which
+corresponds to a rotation of the Hodge diamond by $180$ degrees. These symmetries of
+the Hodge diamond give another criterion for identifying complex
+manifolds that do not admit a K\"ahler structure -- if we find a complex manifold
+with a Hodge diamond that does not have the symmetries we listed above, then it cannot
+be K\"ahler.
+\newpage
+%
+\nocite{*}
+%
+\printbibliography
 %
 \end{document}
