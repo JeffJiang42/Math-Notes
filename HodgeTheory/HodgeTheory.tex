@@ -2108,6 +2108,102 @@ the Hodge diamond give another criterion for identifying complex
 manifolds that do not admit a K\"ahler structure -- if we find a complex manifold
 with a Hodge diamond that does not have the symmetries we listed above, then it cannot
 be K\"ahler.
+%
+\section{The Hodge Index Theorem}
+%
+The Hodge Index theorem concerns the signature of an intersection form on a
+K\"ahler manifold.
+%
+\begin{defn}
+For a compact K\"ahler manifold $X$ of complex dimension $n$, let $L$ be the Lefschetz
+operator on cohomology. Then for $k \leq n$, define the form $Q_k$ on $H^k(X,\R)$ by
+\[
+Q_k(\alpha,\beta) = \int_X \omega^{n-k}\wedge\alpha\wedge\beta
+\]
+\end{defn}
+%
+One thing to note is that if $k$ is even, then $\alpha$ and $\beta$ commute, so
+$Q_k$ is symmetric. Otherwise, they anticommute, in which case $Q_k$ is antisymmetric.
+%
+\begin{defn}
+Define the Hermitian forms $H_k : H^j(X,\C) \otimes \overline{H^j(X,\C)} \to \C$ by
+\[
+H_k(\alpha,\beta) = i^kQ_j(\alpha,\beta)
+\]
+\end{defn}
+%
+\begin{thm}
+The Lefschetz decomposition on cohomology
+\[
+H^k(X,\C) = \bigoplus_{r\geq 0} L^r H^{k-2r}(X,\C)_{\mathrm{Prim}}
+\]
+is orthogonal with respect to the Hermitian form $H_k$. On each primitive component
+$L^rH^{k-2r}(X,\C)_{\mathrm{Prim}}$ the form $H_k$ on $H^k(X,\C)$ induces the form
+$(-1)^rH_{k-2r}$\footnote{In Voisin, the statement is, ``the form $H_r$ on $H^k(X,\C)$
+induces\ldots," but appears to be a typo, as the computation will show}.
+\end{thm}
+%
+\begin{proof}
+Suppose $\alpha \in L^rH^{k-2r}(X,\C)$ and $\beta \in L^sH^{k-2s}(X,\C)$. We want to
+show that $H_k(\alpha,\beta) = 0$. Write $\alpha = L^r\alpha'$ and $\beta = L^s\beta'$
+with $\alpha'$ and $\beta'$ primitive, i.e. annihilated by $L^{n-k+2r+1}$ and
+$L^{n-k+2s+1}$ respectively. WLOG, we may assume that $r < s$. Therefore, we compute
+\begin{align*}
+H_k(\alpha,\beta) &= H_k(L^r\alpha',L^s\beta') \\
+&= i^kQ_k(L^r\alpha',\overline{L^s\beta'}) \\
+&= i^k\int_X \omega^{n-k}\wedge\omega^r
+\wedge\alpha'\wedge\overline{\omega^s\wedge\beta'} \\
+&= i^k\int_X \omega^{n-k+r+s} \wedge \alpha'\wedge\overline{\beta'} \\
+&= i^k\int_X L^{n-k+r+s}\alpha' \wedge \overline{\beta'}
+\end{align*}
+Then since $r < s$, we have $r+s > 2r$, and since $L^{n-k+2r+1}\alpha' = 0$, this
+implies that $L^{n-k+r+s}\alpha' = 0$. Therefore, $H_k(\alpha,\beta) = 0$, proving
+orthogonality. \\
+
+For the second statement, we see that for
+$L^r\alpha,L^r\beta \in L^rH^{k-2r}(X,\C)_{\mathrm{Prim}}$ we have
+\begin{align*}
+H_k(L^r\alpha,L^r\beta) &=
+i^k\int_X \omega^{n-k}\wedge\omega^r\wedge\alpha\wedge\overline{\omega^r\wedge\beta} \\
+&= i^k\int_X\omega^{n-k+2r}\wedge\alpha\wedge\overline{\beta} \\
+&= i^k Q_{k-2r}(\alpha,\overline{\beta}) \\
+\end{align*}
+For comparison, we have that
+\begin{align*}
+(-1)^rH_{k-2r}(\alpha,\beta) &= (-1)^ri^{k-2r}Q_{k-2r}(\alpha,\overline{\beta}) \\
+&= i^kQ_{k-2r}(\alpha,\overline{\beta})\\
+\end{align*}
+which shows the desired equality.
+\end{proof}
+%
+Another orthogonality result:
+%
+\begin{thm}
+The Hodge decomposition
+\[
+H^k(X,\C) = \bigoplus_{p+q=k} H^{p,q}(X,\C)
+\]
+is orthogonal with respect to the $H_k$.
+\end{thm}
+%
+\begin{proof}
+Let $(p,q) \neq (p',q')$ with $p+q = p'+ q' = k$, with $\alpha \in H^{p,q}(X,\C)$
+and $\beta \in H^{p',q'}(X,\C)$. Then $L^{n-k}\alpha\wedge\overline{\beta}$
+is of bidegree $(n-k+p+q',n-k+q+p')$. We note that this is of degree $2n$, but
+is not of type $(n,n)$, since $(p,q) \neq (p',q')$. But $H^{2n}(X,\C) = H^{n,n}(X,\C)$,
+since it is trivialized by the volume form $\omega^n$. Therefore, we must have
+that $L^{n-k}\alpha\wedge\beta = 0$, and consequently, $H_k(\alpha,\beta) = 0$.
+\end{proof}
+%
+For the next proposition, we first prove a lemma.
+%
+\begin{lem}
+Let $\alpha \in \Lambda^{p,q}T^*_xX$. be primitive, with $p+q=k$. Then
+\[
+\star\alpha = \frac{(-1)^{\frac{k(k+1)}{2}}i^{p-q}}{(n-k)!}L^{n-k}\alpha
+\]
+\end{lem}
+%
 \newpage
 %
 \nocite{*}
