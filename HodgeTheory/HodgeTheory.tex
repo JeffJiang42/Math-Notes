@@ -10,6 +10,7 @@
 \usepackage{mathrsfs}
 \usepackage{amsthm}
 \usepackage{mathpazo}
+\usepackage{float}
 \usepackage[backend=biber]{biblatex}
 \addbibresource{bibliography.bib}
 %\usepackage{charter} %another font
@@ -1662,10 +1663,13 @@ and let $\omega_M \in \Omega^{2m}_X$ be the form
 \[
 \omega_M = dz^{i_1}\wedge d\zbar^{i_1} \wedge\cdots\wedge dz^{i_m}\wedge d\zbar^{i_m}
 \]
-any $k$ form can be written as a linear combinations of the forms
+any $k$ form can be written as a linear combination of the forms
 \[
-\omega_{A,B,M} = dz^A \wedge d\zbar^B \wedge \omega_M
+\omega_{A,B,M} = \omega_M \wedge dz^A \wedge d\zbar^B
 \]
+\footnote{Voisin defines $\omega_{A,B,M}$ as $dz^Z \wedge d\zbar^B \wedge \omega_M$,
+but appears to use a strange convention with interior multiplication, so we reverse
+the definition to match ours}
 where $A$, $B$, and $M$ are mutually disjoint, and $|A| + |B| + 2|M| = k$. Fix such
 sets $A$, $B$, and $M$. Let $J \subset \set{1,\ldots, n}$ be the complement of
 $A$, $B$, and $M$. We then make several observations:
@@ -2085,6 +2089,10 @@ h^{p,q} &= \dim H^q(X,\Lambda^{p,0}T^*X) \\
 
 These observations can be seen as symmetries of the \ib{Hodge diamond} of $X$, where
 we arrange the Hodge numbers $h^{p,q}$ in a diamond
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{HodgeDiamond}
+\end{figure}
+\iffalse
 \[\hspace*{-1.65cm}\begin{tikzcd}
 &&&& h^{0,0}\\
 &&& h^{1,0} & & h^{0,1}\\
@@ -2096,7 +2104,7 @@ h^{n,0} & \vdots && \vdots & \vdots & \vdots && \vdots & h^{0,n} \\
 &&& h^{n,n-1} & & h^{n-1,n} \\
 &&&& h^{n,n}
 \end{tikzcd}\]
-
+\fi
 We then see that our observations about the Hodge numbers are encoded in symmetries
 of the Hodge diamond. Complex conjugation corresponds to  reflecting across the
 vertical line of symmetry, so $h^{p,q} = h^{q,p}$ implies that the diamond is
@@ -2195,7 +2203,7 @@ since it is trivialized by the volume form $\omega^n$. Therefore, we must have
 that $L^{n-k}\alpha\wedge\beta = 0$, and consequently, $H_k(\alpha,\beta) = 0$.
 \end{proof}
 %
-For the next proposition, we first prove a lemma.
+For the next proposition, we first use a lemma.
 %
 \begin{lem}
 Let $\alpha \in \Lambda^{p,q}T^*_xX$. be primitive, with $p+q=k$. Then
@@ -2203,6 +2211,152 @@ Let $\alpha \in \Lambda^{p,q}T^*_xX$. be primitive, with $p+q=k$. Then
 \star\alpha = \frac{(-1)^{\frac{k(k+1)}{2}}i^{p-q}}{(n-k)!}L^{n-k}\alpha
 \]
 \end{lem}
+%
+the proof is a somewhat tedious computation -- we will use this lemma without proof.
+%
+\begin{prop}
+The form
+\[
+(-1)^{\frac{k(k+1)}{2}}i^{p-q-k}H_k
+\]
+is positive definite on
+$H^{p,q}_{\mathrm{Prim}} \defeq H^k(X,\C)_{\mathrm{Prim}} \cap H^{p,q}(X,\C)$.
+\end{prop}
+%
+\begin{proof}
+We use the identification of $H^{p,q}(X,\C)$ with the space $\mathcal{H}^{p,q}(X)$ of
+harmonic forms, and $L$ with the Lefschetz operator on forms restricted to harmonic
+forms. Since $L$ commutes with complex conjugation, using Lemma 10.5, we have that for
+a harmonic form $\alpha \in \mathcal{H}^{p,q}(X)$,
+\[
+\star\overline{\alpha}
+= \frac{(-1)^{\frac{k(k+1)}{2}}i^{p-q}}{(n-k)!}L^{n-k}\overline{\alpha}
+\]
+Therefore, we have that
+\begin{align*}
+H_k(\alpha,\alpha) &= i^k\int_X L^{n-k}\alpha \wedge \overline{\alpha} \\
+&= i^k\int_X \alpha \wedge L^{n-k}\overline{\alpha} \\
+&= (n-k)!(-1)^{\frac{k(k+1)}{2}}i^{q-p+k} \int_X a\wedge\star\overline{\alpha} \\
+&= (n-k)!(-1)^{\frac{k(k+1)}{2}}i^{q-p+k} |\alpha|_{L^2}
+\end{align*}
+Therefore, we have that
+\begin{align*}
+(-1)^{\frac{k(k+1)}{2}}i^{p-q-k}H_k(\alpha,\alpha)
+&= (-1)^{\frac{k(k+1)}{2}}i^{p-q-k}(n-k)
+!(-1)^{\frac{k(k+1)}{2}}i^{q-p+k}|\alpha|_{L^2}\\
+&= (-1)^{k(k+1)}i^{0}(n-k)!\norm{\alpha}_{L^2} \\
+&= (n-k)!\norm{\alpha}_{L^2}
+\end{align*}
+which is clearly positive for $\alpha \neq 0$, so the form is positive definite.
+\end{proof}
+%
+We now prove the Hodge Index Theorem.
+%
+\begin{thm}[\ib{The Hodge Index Theorem}]
+For the intersection form
+\begin{align*}
+Q : H^n(X,\R) &\otimes H^n(X, \R) \to \R \\
+(\alpha,\beta) &\mapsto \int_X \alpha \wedge \beta
+\end{align*}
+on a compact K\"ahler manifold $X$ of even complex dimension $n$, the signature
+$\sigma(Q)$ is equal to
+\[
+\sigma(Q) = \sum_{a,b}(-1)^ah^{a,b}
+\]
+\end{thm}
+%
+\begin{proof}
+Given a basis for $H^n(X,\R)$, this defines a basis for $H^n(X,\C)$ as a complex
+vector space, and the intersection form $Q$ is represented by the same matrix as
+the Hermitian form
+\[
+H(\alpha,\beta) = \int_X \alpha \wedge \overline{\beta}
+\]
+so it suffices to compute the signature of $H$. The Lefschetz decomposition gives
+us a direct sum decomposition
+\[
+H^n(X,\C) = \bigoplus_{r\geq 0}L^rH^{n-2r}(X,\C)_{\mathrm{Prim}}
+\]
+which when combined with the Hodge decomposition, gives us
+\[
+H^n(X,\C) = \bigoplus_{r\geq 0, a+b+2r = n}L^rH^{a,b}(X,\C)_{\mathrm{Prim}}
+\]
+we then compute the signature on each component of the direct sum, and then sum them
+together. By Theorem 10.3, we have that the form $H_n = i^nH$ induces
+the form $(-1)^{a+b}H_{n-2(a+b)}$ on $L^rH^{a+b}(X, \C)_{\mathrm{Prim}}$.
+\end{proof}
+
+
+
+
+
+\iffalse
+\begin{proof}
+Fix holomorphic coordinates $z^1,\ldots z^n$ such that the Hermitian metric $h$ for
+$X$ at $x$ is given by $h_x = \sum_i dz^id\zbar^i$. We can then uniquely write the
+$\alpha$ in these coordinates as
+\[
+\alpha = \sum_{A,B,M}\gamma_{A,B,M} \omega_M \wedge dz^A\wedge dz^B
+\]
+where $\omega_M$ is the form
+\[
+\omega_M = dz^{i_1}\wedge d\zbar^{i_1}\wedge\cdots\wedge dz^{i_m}\wedge d\zbar^{i_m}
+\]
+as we defined in the proof of Proposition 8.1, and
+$A,B$ and $M$ are are disjoint subsets of $\set{1,\ldots,n}$ where
+$|A| + |B| + 2|M| = k$. Recall the identity
+\[
+\Lambda = -2i\sum_i \iota_{\partial_i \wedge \dbar_i}
+\]
+where
+\begin{align*}
+\partial_i &\defeq \frac{\partial}{\partial z^i} \\
+\dbar_i &\defeq \frac{\partial}{\partial \zbar^i}
+\end{align*}
+which comes from the computation in Proposition 8.1. Using this identity, we compute
+for fixed $A,B,M$
+\begin{align*}
+\Lambda(\omega_M \wedge dz^A\wedge d\zbar^B)
+&= -2i\sum_i \iota_{\partial_i\wedge\dbar_i}(\omega_M \wedge dz^A\wedge d\zbar^B)
+\end{align*}
+Noting that the term
+$\iota_{\partial_i\wedge\dbar_i}(\omega_M \wedge dz^A\wedge d\zbar^B)$ is nonzero
+only when $i \in M$, we obtain
+\[
+\Lambda(\omega_M \wedge dz^A\wedge d\zbar^B)
+= -2i\sum_{i\in M}\omega_{M - \set{i}}\wedge dz^A\wedge d\zbar^B
+\]
+Since $\alpha$ is primitive, we have that
+\begin{align*}
+0 = \Lambda\alpha
+&= \sum_{A.B,M}\gamma_{A,B,M}\Lambda(\omega_M\wedge dz^A\wedge d\zbar^B) \\
+&= -2i\sum_{A,B,M}\sum_{i \in M}
+\gamma_{A,B,M}\omega_{M - \set{i}}\wedge dz^A\wedge d\zbar^B
+\end{align*}
+Let $\alpha_{A,B} = \sum_M\gamma_{A,B,M}\omega_M\wedge dz^A\wedge d\zbar^B$, so
+$\alpha = \sum_{A,B}\alpha_{A,B}$. A slightly tricky verification reveals that
+$\Lambda\alpha_{A,B}$ must also vanish (the verification involves checking the
+$dz^i$ and $d\zbar^i$ contained in each term to show that they are distinct). Therefore,
+all the $\alpha_{A,B}$ are primitive, and verifying the identity on the $\alpha_{A,B}$
+verifies it on $\alpha$ by linearity. For slightly cleaner notation,
+rewrite $\alpha_{A,B}$ as
+$\alpha_{A,B} = \left(\sum_M \gamma_M\omega_M\right) \wedge dz^A\wedge d\zbar^B$.
+Then since $\Lambda\alpha_{A,B} = 0$, we have that for any subset
+$N \subset \set{1,\ldots, n}$ disjoint from $A \cup B$ of cardinality $|M| - 1$,
+\[
+\sum_{i \in \set{1,\ldots,n}-(A \cup B \cup N)} \gamma_{N\cup\set{i}} = 0
+\]
+we claim that this condition implies the following:
+\begin{claim}
+For any fixed $J \subset \set{1,\ldots n} - (A \cup B)$ such that
+$|J| = n - |A| - |B| - |M|$
+\[
+\sum_{N \subset J}\gamma_N = (-1)^{|M|}\gamma_{\set{1,\ldots,n}-(A\cup B\cup J)}
+\]
+where we sum over subsets $N$ where $|N| = |M|$.
+\end{claim}
+\end{proof}
+\fi
 %
 \newpage
 %
