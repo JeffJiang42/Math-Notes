@@ -1,15 +1,15 @@
 [0] Config.pm:343> INFO - This is Biber 2.5
 [0] Config.pm:346> INFO - Logfile is 'HodgeTheory.blg'
-[69] biber-darwin:290> INFO - === Wed Aug 14, 2019, 20:34:20
-[99] Biber.pm:351> INFO - Reading 'HodgeTheory.bcf'
-[220] Biber.pm:773> INFO - Using all citekeys in bib section 0
-[233] Biber.pm:3493> INFO - Processing section 0
-[264] Biber.pm:3657> INFO - Looking for bibtex format file 'bibliography.bib' for section 0
-[268] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
-[269] bibtex.pm:1048> INFO - Found BibTeX data source 'bibliography.bib'
-[292] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
-[292] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[292] Biber.pm:3306> INFO - Sorting list 'nty/global/' of type 'entry' with scheme 'nty' and locale 'en-US'
-[293] Biber.pm:3310> INFO - No sort tailoring available for locale 'en-US'
-[297] bbl.pm:526> INFO - Writing 'HodgeTheory.bbl' with encoding 'ascii'
-[298] bbl.pm:619> INFO - Output to HodgeTheory.bbl
+[50] biber-darwin:290> INFO - === Tue Oct  8, 2019, 15:44:59
+[69] Biber.pm:351> INFO - Reading 'HodgeTheory.bcf'
+[161] Biber.pm:773> INFO - Using all citekeys in bib section 0
+[177] Biber.pm:3493> INFO - Processing section 0
+[193] Biber.pm:3657> INFO - Looking for bibtex format file 'bibliography.bib' for section 0
+[196] bibtex.pm:1187> INFO - Decoding LaTeX character macros into UTF-8
+[196] bibtex.pm:1048> INFO - Found BibTeX data source 'bibliography.bib'
+[213] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[213] UCollate.pm:66> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[213] Biber.pm:3306> INFO - Sorting list 'nty/global/' of type 'entry' with scheme 'nty' and locale 'en-US'
+[213] Biber.pm:3310> INFO - No sort tailoring available for locale 'en-US'
+[216] bbl.pm:526> INFO - Writing 'HodgeTheory.bbl' with encoding 'ascii'
+[217] bbl.pm:619> INFO - Output to HodgeTheory.bbl

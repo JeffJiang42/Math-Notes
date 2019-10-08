@@ -219,7 +219,10 @@
 %--------Graphics--------
 %
 %\graphicspath{ {images/} }
-
+%
+%TODO  (1) Hodge-deRham SS and ddbar lemma
+%      (2) Remarks on the Chern Connection?
+%      (3) Discussion on elliptic operators (Laplcians are elliptic)
 \begin{document}
 %
 \author{Jeffrey Jiang}
@@ -568,7 +571,7 @@ Out of all the $\Lambda^{p,q}T^*X$, there is a distinguished bundle.
 Let $X$ be a complex manifold of complex dimension $\dim_\C X = n$ (i.e. $\dim X = 2n)$.
 The \ib{canonical bundle} of $X$, denote $K_X$, is the complex vector bundle
 \[
-K_X = \Lambda^{n,0}T^*X
+K_X = \Lambda^{n,0}T^*X_\C
 \]
 \end{defn}
 %
@@ -1606,6 +1609,7 @@ the kernel of $\partial$, we have that $\partial^*\dbar\partial\gamma = 0$,
 so $\eta = -2\partial\dbar\partial^*\gamma = 2\dbar\partial\partial^*\gamma$,
 so letting $\xi = \partial^*\gamma$, we are done.
 \end{proof}
+%TODO degeneration of spectral sequence
 %
 \section{The Lefschetz Decomposition}
 %
@@ -2043,8 +2047,7 @@ where $H^{k-2i}(X,\R)_{\mathrm{Prim}}$ denotes the cohomology classes $[\alpha]$
 annihilated by $L^{n-k+2i+1}$ (which we recall is an equivalent formulation of
 primitive on the level of forms).
 \end{thm}
-%TODO observations about the cohomology of a Kahler manifold, e.g. Hodge numbers,
-%dimensions of cohomology groups as a consequence of Lefschetz decomposition.
+%
 \section{The Cohomology of K\"ahler Manifolds}
 %
 
@@ -2079,14 +2082,27 @@ $\Delta = 2\Delta_\partial = 2\Delta_{\dbar}$ and the fact that $\star$ commutes
 $\Delta$ to conclude that $\star$ acts on each component of the bidegree separately,
 which the tells us that $h^{p,q} = h^{n-p,n-q}$. Finally, we also make an observation
 using Serre duality. From before, we had that
-$H^{p,q}(X,\C) \cong H^q(X, \Lambda^{p,0}T^*X)$. By Serre duality, we have that
+$H^{p,q}(X,\C) \cong H^q(X, \Lambda^{p,0}T^*X)$. We want to use Serre duality here,
+but before we do this, we make some observations. Consider the holomorphic
+vector bundle
+\[
+\Lambda^{p,0}TX \otimes K_X = \Lambda^{p,0}TX \otimes \Lambda^{n,0}T^*X
+\]
+We claim that this bundle is isomorphic to $\Lambda^{n-p,0}T^*X$. To see this,
+we have a pairing
+\[
+\Lambda^{p,0}TX \otimes \Lambda^{n-p,0}TX \to \Lambda^{n,0}TX
+\]
+given by the pointwise wedge product. Then using the natural pairing
+$\Lambda^{n,0}TX \otimes K_X \to X \times \C$, this puts $\Lambda^{p,0}\otimes K_X$
+in duality with $\Lambda^{n-p,0}TX$, so it is isomorphic to $\Lambda^{n-p}T^*X$.
+By Serre duality, we have that
 \begin{align*}
 h^{p,q} &= \dim H^q(X,\Lambda^{p,0}T^*X) \\
 &= \dim H^{n-q}(X, \Lambda^{p,0}TX \otimes K_X) \\
-&= \dim H^{n-q}(X, \Lambda^{n+p,0}T^*X) \\
-&= h^{n+p,n-q}
+&= \dim H^{n-q}(X, \Lambda^{n-p,0}T^*X) \\
+&= h^{n-p,n-q}
 \end{align*}
-
 These observations can be seen as symmetries of the \ib{Hodge diamond} of $X$, where
 we arrange the Hodge numbers $h^{p,q}$ in a diamond
 \begin{figure}[H]
