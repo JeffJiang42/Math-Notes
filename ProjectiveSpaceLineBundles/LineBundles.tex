@@ -1,0 +1,706 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathscr{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Line Bundles on $\CP^n$}
+%
+\setcounter{section}{1}
+%
+\maketitle
+%
+\begin{defn}
+\ib{Complex projective space}, denoted $\CP^n$ is the set of $1$-dimensional
+subspaces of $\C^{n+1}$.
+\end{defn}
+%
+Given a line $\ell \in \CP^n$, it can be recovered from any nonzero vector
+$v \in \ell$ by taking the span of $v$. If $v \in \ell$ has coordinates
+\[
+v = (z_0, \ldots, z_n)
+\]
+we denote the line $\ell$ with the notation
+\[
+\ell = [z_0 : \ldots : z_n]
+\]
+where it is understood that the coordinates in the square brackets are only determined
+up to scaling, since $\lambda v$ determines the same line as $v$ for any
+$\lambda \in \C^\times$. These are called \ib{homogeneous coordinates} for $\CP^n$.
+%
+\begin{prop}
+$\CP^n$ can be endowed with the structure of an $n$-dimensional complex manifold.
+\end{prop}
+%
+\begin{proof}
+It suffices to provide a covering of $\CP^n$ by charts with holomorphic
+transition functions. Define the set $U_i \subset \CP^n$ by
+\[
+U_i \defeq \set{[z_0: \cdots z_n] ~:~ z_i \neq 0}
+\]
+note that this is well defined, since if the $i^{th}$ component of a
+vector $v \in \ell$ is $0$, then the $i^{th}$ component of $\lambda v$ will be
+as well. Then define the maps
+\begin{align*}
+\varphi_i : U_i &\to \C^n \\
+[z_0: \ldots : z_n] &\mapsto \left( \frac{z_0}{z_i},\ldots,
+\widehat{\frac{z_i}{z_i}}, \ldots \frac{z_n}{z_i} \right)
+\end{align*}
+where $\widehat{\frac{z_i}{z_i}}$ denotes the fact that the term is missing.
+We note that this is well defined since we have that $z_i \neq 0$ for any line
+in $U_i$. The maps $\varphi_i$ are bijections, with inverses given by
+\begin{align*}
+\varphi_i\inv : \C^n &\to U_i \\
+(z_1,\ldots z_n) &\mapsto [z_1:\ldots: z_{i-1}: 1 : z_i \ldots : z_n]
+\end{align*}
+i.e. we insert a $1$ in the $i^{th}$ slot in homogeneous coordinates. We then check
+the transition functions. We compute for $i \neq j$
+\[
+(\varphi_j \circ \varphi_i\inv)(z_1,\ldots z_n)
+= \begin{cases}
+\left(\frac{z_1}{z_{j-1}}, \ldots ,\frac{z_{i-1}}{z_{j-1}}, \frac{1}{z_{j-1}},
+\frac{z_i}{z_{j-1}}, \ldots ,\widehat{\frac{z_{j-1}}{z_{j-1}}} ,
+\ldots,\frac{z_n}{z_{j-1}}\right) & j > i \\[20pt]
+\left(\frac{z_1}{z_j},\ldots,\widehat{\frac{z_j}{z_j}},\ldots\frac{z_{i-1}}{z_j},
+\ldots,\frac{1}{z_j},\frac{1}{z_j},\frac{z_i}{z_j},\ldots,\frac{z_n}{z_j} \right)
+& j < i
+\end{cases}
+\]
+which is visibly holomorphic, since in either case, the functions $1/z_j$ or $1/z_{j-1}$
+are holomorphic if $z_j$ or $z_{j-1}$ are nonzero.
+\end{proof}
+%
+\begin{defn}
+Let $X$ be a complex manifold. A \ib{holomorphic line bundle} over $X$ is a complex
+manifold $L$ equipped with a holomorphic map $\pi : L \to X$ such that for every
+$x \in X$,  the fiber $L_x \defeq \pi\inv(x)$ has the structure of a $1$-dimensional
+complex vector space. In addition, there exists an open set $U$ about $x$ and
+a map $\psi : \pi\inv(U) \to U \times \C$ such that $\psi\vert_{L_x}$ is a linear
+map and the following diagram commutes
+\[\begin{tikzcd}
+\pi\inv(U) \ar[dr, "\pi"'] \ar[rr, "\psi"] & & U \times \C \ar[dl, "\pi_U"]\\
+& U
+\end{tikzcd}\]
+where the map $\pi_U : U \times \C \to U$ is projection onto the first factor.
+The maps $\psi$ are called \ib{local trivializations}.
+\end{defn}
+%
+One example of a holomorphic line bundle is the product $X \times \C \to X$, where
+the bundle projection is just projection onto the first factor, which
+is called the \ib{trivial bundle}. A bundle isomorphic to the trivial bundle
+is said to be \ib{trivial} or \ib{trivializable}.
+One way to tell if a line bundle $L \to X$ is trivial is to provide a global
+nonvanishing section $\sigma : X \to L$. This determines a global trivialization of $L$
+in the following way: At each $x$, we have that $\sigma(x) \neq 0$ determines a basis for
+the fiber $L_x$. Therefore, for any element $v$ of the fiber $L_x$, we can map it
+to $(x, \lambda) \in X \times \C$, where $\lambda$ is the component of $v$ in the basis
+$\set{\sigma(x)}$ for $L_x$. This determines an bundle isomorphism
+$L \cong X \times \C$. \\
+
+Suppose we have a holomorphic line bundle $\pi : L \to X$, and two local trivializations
+$\psi_i : \pi\inv(U_i) \to U_i \times \C$ and $\psi_j : \pi\inv(U_j) \to U_j \to \C$.
+Then if we consider the map $(\psi_i \circ \psi_j\inv)$ after appropriately restricting
+and shrinking the domain and codomains, if we fix a $x \in U_i \cap U_j$,
+the map $(\psi_i \circ \psi_j\inv)\vert_{\set{x} \times \C}$ is a linear function
+from $\set{x} \times \C$ to itself. Therefore, the maps $(\psi_i \circ \psi_j)\inv$
+determines holomorphic maps $\psi_{ij} : U_i \cap U_j \to \GL_1\C$. Holomorphicity of the
+$\psi_{ij}$ comes from the fact that $L$ is a holomorphic line bundle. We can go the
+other direction as well. One way to construct line bundles is to use trivial bundles over
+sets in an open cover, and to glue them together by specifying the transition functions.
+%
+\begin{thm}[\ib{The gluing construction}]
+Let $X$ be a complex manifold, and $\set{U_i}$ an open cover of $X$. Then
+for each $U_i  \cap U_j$, let $\psi_{ij} : U_i\cap U_j \to \GL_1\C$ be holomorphic
+maps satisfying the \ib{cocycle condition}
+\[
+\psi_{ij}\psi_{jk} = \psi_{ik}
+\]
+Then the set
+\[
+L = \coprod_{i} U_i \times \C/\sim
+\]
+where the equivalence relation $\sim$ is defined by
+\[
+(x,\lambda) \sim (y,\mu) \iff x=y \text{ and there exist } i,j \text{ such that }
+\psi_{ij}(x)(\lambda) = \mu
+\]
+equipped with the natural projection $\pi : L \to X$ is a holomorphic line bundle.
+\end{thm}
+%
+With respect to a cover $\set{U_i}$, the pairs $(U_i, \psi_{ij})$ are called
+\ib{cocycles}, though the set $U_i$ is sometimes omitted, and the transition
+functions themselves are called coycles. The gluing construction tells us
+that the cocycles determine the line bundle up to isomorphism. In
+particular, if we have that all the cocycles are given by the constant map
+$\psi_{ij}(x) = \lambda$, then we know that the bundle is trivial. In a similar
+vein, if we have two bundles $L,L' \to X$, and we know that their transition
+functions differ by a constant, then we can conclude that $L$ and $L'$ are
+isomorphic as holomorphic line bundles.
+%
+\begin{defn}
+Let $\pi : L \to X$ be a holomorphic line bundle. A \ib{local section} is
+a holomorphic map $\sigma : U \to L$  from an open set $U \subset X$ such that
+$\pi \circ \sigma = \id_U$. If $U = X$, then $\sigma$ is said to be a
+\ib{global section}. If it is not specified whether a section is local
+or global, it is implicitly assumed to be global.
+\end{defn}
+%
+\begin{rem*}
+The idea of a section is to generalize the notion of a function. A section
+of the trivial bundle $X \times \C$ is just a holomorphic function on $X$. However,
+sections of nontrivial holomorphic line bundles are maps into holomorphically
+varying complex lines, and could possibly fail to exist.
+\end{rem*}
+%
+The gluing construction gives an alternate characterization of sections of a line bundle.
+%
+\begin{prop}
+Let $\pi : L \to X$ be a holomorphic line bundle, and $\set{U_i}$ an open cover of
+$X$ in which $L$ is trivialized over each $U_i$ with transition functions $\psi_{ij}$.
+Then the data of a section $\sigma : X \to L$ is equivalent to the data
+of holomorphic functions $\sigma_i : U_i \to \C$ with the compatibility condition
+$\sigma_i = \psi_{ij}\sigma_j$.
+\end{prop}
+%
+\begin{proof}
+Given a section $\sigma : X \to L$, by composing with the trivialization
+$\pi\inv(U_i) \to U_i \times \C$, we obtain smooth functions $\sigma_i : U \to \C$,
+and the fact that they satisfy the compatibility condition can be easily checked.
+In the other direction, given a a collection of compatible maps $\sigma_i$,
+we can define $\sigma$ by specifying $\sigma$ on each $U_i$ to be
+the map $\sigma_i$ composed with the inverse of the local trivialization.
+The fact that these local definitions glue to a well-defined holomorphic map
+$\sigma : X \to L$ is easily checked to be exactly the condition that they are
+compatible.
+\end{proof}
+%
+\begin{defn}
+The \ib{tautological bundle} over $\CP^n$, denoted $\O(-1)$, is the bundle
+where the fiber over $\ell \in \CP^n$ is the line $\ell$, i.e. as a set,
+\[
+\O(-1) \defeq \set{(\ell, v) ~:~ \ell \in \CP^n, v \in \ell}
+\]
+\end{defn}
+%
+\begin{prop}
+$\O(-1)$ actually is a holomorphic line bundle.
+\end{prop}
+%
+\begin{proof}
+Let $\pi : \O(-1) \to \CP^n$ denote the bundle projection.
+It suffices to produce local trivializations and then check that the transitions
+functions are holomorphic. Let $\varphi_i : \C^n \to U_i$ be the charts on
+$\CP^n$ defined earlier. These coordinates induce trivializations
+$\psi_i : \pi\inv(U_i) \to U_i \times \C$ as follows: \\
+
+Let $\ell = [z_0 : \ldots : z_n] \in \CP^n$. Then
+\[
+\varphi(\ell) = \left(\frac{z_0}{z_i},\ldots,\widehat{\frac{z_i}{z_i}},\ldots
+\frac{z_n}{z_i} \right)
+\]
+this determines a vector $v^i_\ell \in \ell$ via the mapping
+\[
+\left(\frac{z_0}{z_i},\ldots,\widehat{\frac{z_i}{z_i}},\ldots
+\frac{z_n}{z_i} \right) \mapsto v_\ell\defeq
+\left(\frac{z_0}{z_i},\ldots,\frac{z_{i-1}}{z_i},1,\frac{z_{i+1}}{z_i},\ldots
+\frac{z_n}{z_i} \right)
+\]
+Therefore, we can define the map $\psi_i$ by declaring $\psi_i(\ell,v^i_\ell) = (\ell,1)$
+and extending linearly to the rest of the fiber over $\ell$. This clearly makes
+the diagram
+\[\begin{tikzcd}
+\pi\inv(U_i) \ar[dr, "\pi"']\ar[rr, "\psi_i"] & & U_i \times \C \ar[dl, "\pi_{U_i}"] \\
+& U_i
+\end{tikzcd}\]
+commute, so we now check the transition functions. To do this, we compute the
+action of $(\psi_i\circ\psi_j\inv)$ on $(\ell, 1) \in U_i\cap U_j \times \C$. We
+compute, letting $\ell = [z_0:,\ldots : z_n]$
+\begin{align*}
+(\psi_i\circ\psi_j\inv)(\ell, 1)
+&= \psi_i\left(\ell, \left( \frac{z_0}{z_j},\ldots
+\frac{z_{j-1}}{z_j},1,\frac{z_{j+1}}{z_j},\ldots {z_n}{z_j} \right)\right) \\
+&= \left(\ell, \frac{z_i}{z_j}\right)
+\end{align*}
+where the last equality comes from the fact that the component of the vector
+\[
+v^j_\ell \defeq \left( \frac{z_0}{z_j},\ldots
+\frac{z_{j-1}}{z_j},1,\frac{z_{j+1}}{z_j},\ldots \frac{z_n}{z_j} \right)
+\]
+with respect to the basis $\set{v^i_\ell}$ for $\ell$ where
+\[
+v^i_\ell \defeq \left( \frac{z_0}{z_i},\ldots
+\frac{z_{i-1}}{z_i},1,\frac{z_{i+1}}{z_i},\ldots \frac{z_n}{z_i} \right)
+\]
+is just $z_i/z_j$. Therefore, we have that the transition functions $\psi_{ij}$
+are given by
+\[
+\psi_{ij}(\ell) = \begin{pmatrix}
+\frac{z_i}{z_j}
+\end{pmatrix}
+\]
+where $\ell = [z_0: \ldots : z_n]$. Since these functions are all holomorphic,
+this shows that $\O(-1)$ is a holomorphic line bundle.
+\end{proof}
+%
+To discuss all of the line bundles over $\CP^n$, we need to discuss how to
+construct new line bundles from existing ones.
+%
+\begin{prop}[\ib{New bundles from old}]
+Let $L,L'\to X$ be holomorphic line bundles over $X$. Then the following linear algebraic
+operations, done fiberwise, define another holomorphic line bundle.
+\begin{enumerate}
+  \item $L \otimes L' \to X$, where the fiber over $x$ is $L_x \otimes L'_x$.
+  \item $L^* \to X$, where the fiber over $x$ is the dual space $L^*_x$.
+\end{enumerate}
+\end{prop}
+%
+\begin{proof}
+It suffices to provide local trivializations and check the transition functions.
+By potentially shrinking sets, we can find an open cover $\set{U_i}$ of $X$
+such that both $L$ and $L'$ are trivialized over the $U_i$. Let
+$\varphi_i$ and $\varphi_i'$ denote the local trivializations for $L$ and $L'$
+respectively, and let $\psi_{ij}$, $\psi_{ij}'$ denote their respective transition
+functions.
+\begin{enumerate}
+  \item The local trivializations for $L \otimes L$ are just given by
+  $\varphi_i \otimes \varphi_i'$, where if $\varphi_i(\ell) = (x,\lambda)$
+  and $\varphi_i'(\ell) = (x,\lambda')$, we have
+  \[
+  (\varphi_i \otimes \varphi_i')(\ell) = (x, \lambda \otimes \lambda')
+  \]
+  the transition functions are given by $\psi_{ij} \otimes \psi'_{ij}$, where
+  \[
+  (\psi_{ij}\otimes\psi'_{ij})(\ell) = \psi_{ij}(\ell) \otimes \psi'_{ij}(\ell)
+  \]
+  where the $\otimes$ in the right hand side denotes the standard notion of
+  the tensor product of matrices/linear maps.
+  \item The trivializations for $L^*$ are just the trivializations
+  for $\varphi_i$ for $L$ composed with the isomorphism $\C \to \C^*$. The
+  transition functions are given by $(\psi_{ij}\inv)^T$, where $T$ denotes
+  the transpose (\emph{not} the conjugate transpose), where the inverse
+  comes into play due to the contravariance of taking dual spaces. In the
+  case of the line bundle, transposing a $1\times 1$ matrix is pointless, so
+  the transition functions are $\psi_{ij}\inv$ (i.e. inverting the matrix,
+  not inverting the function $\psi_{ij}$).
+\end{enumerate}
+\end{proof}
+%
+\begin{prop}
+For a holomorphic line bundle $L \to X$, The bundle $L \otimes L^*$ is isomorphic to
+the trivial bundle $X \times \C$.
+\end{prop}
+%
+\begin{proof}
+We know for a vector space $V$ that $V^*\otimes V$ is isomorphic to $\End(V)$.
+Therefore, the bundle $L \otimes L$ is isomorphic to the bundle
+$\End(L)$, where the fiber over $x \in X$ is the space of endomorphisms of $L_x$.
+To show that this is trivial, it suffices to provide a global nonvanishing section,
+$\sigma$, which we can do by defining $\sigma(x) = \id_{L_x}$.
+\end{proof}
+%
+\begin{defn}
+For a complex manifold $X$, the \ib{Picard group} of $X$, denoted
+$\mathrm{Pic}(X)$ is the group of isomorphism classes of holomorphic line bundles over
+$X$, where the group operation is given by the tensor product. The operation is
+associative, since tensor products are associative, and the trivial bundle is the
+identity with respect to the tensor product. Finally, for any bundle
+$L \in \mathrm{Pic}(X)$, it has an inverse given by the dual bundle $L^*$.
+\end{defn}
+%
+We now restrict our attention again to $\CP^n$.
+%
+\begin{defn}
+Define the bundle $\O(1) \defeq \O(-1)^*$. It is often referred to as the
+\ib{hyperplane bundle}. The define the bundle $\O(k) \defeq \O(1)^{\otimes^k}$
+and $\O(-k) \defeq \O(-1)^{\otimes^{-k}}$ for $k \in \Z^{>0}$. We let
+$\O(0)\defeq \CP^n \times \C$.
+\end{defn}
+%
+A fact that we will not prove is that all line bundles over $\CP^n$ are of
+the form $\O(k)$ for some integer $k$. Using our observations in Proposition 1.7,
+we can identify the transition functions for the line bundles $\O(k)$ with
+respect to the local trivializations defined for $\O(-1)$ in the open cover
+$\set{U_i}$. \\
+
+For the following discussion, fix $\ell \in \CP^n$ with $\ell = [z_0: \ldots : z_n]$.
+Then since the transition functions for the dual bundle are the inverses of the
+transition functions, we have that the transition functions for $\O(1)$ are
+$\psi_{ij}(\ell) = z_j/z_i$. Then for the tensor powers, the transition functions
+for $\O(k)$ where $k \geq 0$ are $\psi_{ij}(\ell) = (z_j/z_i)^{\otimes^k}$, and
+using the identification $\C^{\otimes^k}$ with $\C$, under the mapping
+\[
+\lambda_1 \otimes \cdots \otimes \lambda_k \mapsto \lambda_1\lambda_2\cdots\lambda_k
+\]
+this is the same as
+$\psi_{ij}(\ell) = z_j^k/z_i^k$. Likewise, the transition functions for $\O(-k)$
+are $\psi_{ij}(\ell) = z_i^k/z_j^k$. \\
+
+A natural question to ask is which of these bundles admit global sections. We work
+through the case of $\O(-1)$ explicitly.
+%
+\begin{thm}
+The bundle $\O(-1)$ admits no nonzero global holomorphic sections, i.e.
+\[
+\Gamma_{\CP^n}(\O(-1)) = 0
+\]
+\end{thm}
+%
+We give two proofs of this fact.
+%
+\begin{proof}[Proof 1]
+The line bundle naturally lives as a subbundle of the trivial bundle
+$\CP^n \times \C^{n+1}$, since each element $\ell \in \CP^n$ is a line in
+$\C^{n+1}$. Therefore, a global holomorphic section $\sigma : \CP^n \to \O(-1)$
+is also a global holomorphic section $\CP^n \to \CP^n \times \C^{n+1}$ by composing
+with the inclusion $\O(-1) \hookrightarrow \CP^n \times \C^{n+1}$. However,
+a a holomorphic section of $\CP^n \times \C^{n+1}$ is just a holomorphic map
+$\CP^n \to \C^{n+1}$. Then since $\CP^n$ is compact and connected, the map is constant by
+the maximum principle for holomorphic maps. However, $\sigma(\ell) \in \C^{n+1}$ must
+be a point in $\ell$ for every $\ell$, and the only point that lies in all lines
+in $\C^{n+1}$ is $0$. Therefore, $\sigma = 0$.
+\end{proof}
+%
+\begin{proof}[Proof 2]
+The transition functions for $\O(-1)$ are given by $\psi_{ij}(\ell) = z_i/z_j$
+with respect to the standard open cover $\set{U_i}$ of $\CP^n$. Since $\O(-1)$ is
+trivialized over the $U_i$, the data of a section $\sigma$ is the same as specifying
+a function $f_i : U_i \to \C$ with a compatibility condition on the intersections
+specified by the transition functions $\psi_{ij}$. To determine this compatibility
+condition, we have that by composing with the chart maps $\varphi_i\inv : \C^n \to U_i$,
+the function $f_i$ on the intersection $U_i \cap U_j$ can be interpreted as
+a holomorphic function of the variables $x_k \defeq z_k/z_i$ (where $x_i$ is missing).
+Likewise, $f_j$ can be interpreted as a holomorphic function of the variable
+$y_k \defeq z_k/z_j$ (where $y_j$ is missing). The compatibility condition is that these
+two functions are related by the transition function $\psi_{ij}$, i.e. at the point
+$\ell = [z_0: \ldots z_n] \in U_i \cap U_j$,
+\[
+f_i(x_0,\ldots,\widehat{x_i},\ldots, x_n) =
+\psi_{ij}(\ell)f_j(y_1,\ldots, \widehat{y_j},\ldots, y_n)
+\]
+But since $\psi_{ij}(\ell) = z_i/z_j = y_i = 1/x_j$, this condition is asking that
+\[
+f_i(x_0,\ldots,\widehat{x_i},\ldots, x_n) =
+\frac{f_j(y_1, \ldots y_{i-1}, 1/x_j, y_{i+1}, \ldots y_n)}{x_j}
+\]
+However this is not possible for any nonzero functions $f_i$ and $f_j$. To see
+this, we can fix all the variables other than $x_j$ and $y_i = 1/x_j$, and take
+series expansions of $f_i$ and $f_j$. Then the expansion for $f_i$ would be a power
+series in $x_j$ and the expansion for $f_j$ would be a Laurent series in $x_j$ with
+only negative degrees of $x_j$ (i.e. a power series in $1/x_j$), and the only way for
+the identity above to hold on the level of series is for $f_i = f_j = 0$, since
+holomorphic functions are determined by their series expansions.
+\end{proof}
+%
+However, not all is lost!
+%
+\begin{thm}
+The bundle $\O(1)$ admits global sections, and
+\[
+\Gamma_{\CP^n}(\O(1)) \cong \C^{n+1}
+\]
+\end{thm}
+%
+We again give two proofs of this fact, mirroring our proofs for Theorem 1.11 to
+illustrate the differences between $\O(-1)$ and $\O(1)$, which are a bit subtle at
+first.
+%
+\begin{proof}[Proof 1]
+Since $\O(-1)$ is a subbundle $\O(-1) \hookrightarrow \CP^n \times \C^{n+1}$, we
+have that the dual bundle $\O(-1)$ is a subbundle $\O(-1) \hookrightarrow (\C^{n+1})^*$.
+Again, any holomorphic section of $\O(1)$ is a holomorphic function
+$\CP^n \to \C^{n+1}$, which is constant by the maximum principle. However, any
+linear functional $\omega \in (\C^{n+1})^*$ determines a linear functional
+all the lines $\ell \in \CP^n$ by taking the restriction $\omega|_\ell$. Therefore,
+the space of sections is $(\C^{n+1})^* \cong \C^{n+1}$.
+\end{proof}
+%
+\begin{proof}[Proof 2]
+The transition functions for $\O(1)$ are given by $\psi_{ij}(\ell) = z_j/z_i$. Again,
+using the trivialization of $\O(1)$ in the standard open cover $\set{U_i}$ for
+$\CP^n$, we have that the data of a section $\CP^n \to \O(1)$ is equivalent to
+the data of holomorphic functions $f_i : U_i \to \C$, where in $U_i \cap U_j$, we again
+interpret $f_i$ as a holomorphic function of the variables  $x_k \defeq z_k/z_i$
+(where $x_i$ is missing) and $f_j$ as a holomorphic function of the variables
+$y_k \defeq z_k/z_j$ (where $y_j$ is missing). However, we now have that the transition
+functions are given by
+\[
+\psi_{ij} = z_j/z_i = x_j = 1/y_i
+\]
+We then have that the compatibility condition prescribed by the transition function
+is
+\[
+f_i(x_1,\ldots,\widehat{x_i},\ldots, x_n) =
+x_jf_j(y_1,\ldots y_{i-1}, 1/x_j, y_{i+1}, \ldots y_n)
+\]
+We again take the series expansions of $f_i$ and $f_j$ in the variables $x_j$
+and $1/x_j$ (holding the rest fixed)  and we find that if the identity were to hold,
+$f_j$ must be at most degree $1$ in $y_i$, i.e. at least degree $-1$ in $x_j$,
+and $f_i$ must be at most degree $1$ in $x_j$, since $f_j$ is holomorphic as a function
+of $y_i = 1/x_j$ and $f_i$ is holomorphic as a function of $x_j$. Doing this over
+all pairs $f_i$ and $f_j$, we find that the compatibility conditions force the
+function $f_i$ to be a polynomial of at most degree $1$ in all the
+$x_1, \ldots \widehat{x_i}, \ldots x_n$, and a choice of $f_i$ determines all the other
+functions $f_j$, since they must have the same coefficients (rearranged appropriately)
+as $f_i$. Therefore, the space of sections is isomorphic to the subspace of
+$\C[x_1,\ldots,\widehat{x_i},\ldots x_n]$ consisting of linear polynomials in the
+variables $x_0, \ldots, \widehat{x_i} x_n$, which is isomorphic to $\C^{n+1}$, or more
+suggestively, remembering that $x_i \defeq z_i/z_j$,  the subspace of the space
+\[
+\C\left[\frac{z_1}{z_i},\ldots \widehat{\frac{z_i}{z_i}}\ldots,\frac{z_n}{z_i}\right]
+\]
+of linear polynomials in the variables $z_1/z_i,\ldots \widehat{z_i/z_i},\ldots ,z_n/z_i$,
+which is isomorphic to the space of degree $1$ homogeneous polynomials in the
+$z_0,\ldots z_n$ via multiplication by $z_i$.
+\end{proof}
+%
+Using similar methods, we can determine the sections for $\O(k)$ for any
+$k \in \Z$, using either proof method. If $k > 0$, we have that
+$\O(-k)$ admits no holomorphic sections, which can be verified by checking the
+transition functions, or noting that $\O(-k)$ embeds as a subbundle of
+$\CP^n \times (\C^{n+1})^{\otimes^k}$, and repeating the maximum principle argument.
+In the case of $\O(k)$, we are in a similar situation as $\O(1)$, where by
+looking at how the transition functions interact with the series expansions of
+functions, we have that the space of sections is isomorphic to the
+space of polynomials in $n$ variables of degree $\leq k$, which by multiplying through
+by a the $k^{th}$ power of variable, is isomorphic to the space of homogeneous
+polynomials in $n+1$ variables of degree $k$. \\
+
+There is another, more geometric way to interpret why the space of sections of
+the bundle $\O(k)$ is the space of degree $k$ homogeneous polynomials, which
+echoes the discussion in the first proofs we gave for Theorem 1.11 and 1.12.
+A degree $k$ homogeneous polynomial $p \in \C[z_0,\ldots,z_n]_k$ determines is
+exactly a linear maps $(\C^{n+1})^{\otimes^k} \to \C$, so the
+constant maps $\CP^n \to \C[z_0,\ldots,z_n]_k$ mapping all of $\CP^n$ to a
+homogeneous polynomial $p$ are exactly the holomorphic sections of the
+trivial bundle $\CP^n \times [(\C^{n+1})^{\otimes^k}]^*$. Restricting
+these linear maps to $\ell^{\otimes^k} \subset (\C^{n+1})^{\otimes^k}$, for
+$\ell \in \CP^n$ this determines a section of $\O(k)$. \\
+
+As a final remark, note that while we started by working with complex geometry
+and holomorphic maps, we were quickly reduced to studying polynomials, which
+at the closely intertwined nature of complex and algebraic geometry.
+%
+\end{document}
