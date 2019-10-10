@@ -285,7 +285,7 @@ the transition functions. We compute for $i \neq j$
 \frac{z_i}{z_{j-1}}, \ldots ,\widehat{\frac{z_{j-1}}{z_{j-1}}} ,
 \ldots,\frac{z_n}{z_{j-1}}\right) & j > i \\[20pt]
 \left(\frac{z_1}{z_j},\ldots,\widehat{\frac{z_j}{z_j}},\ldots\frac{z_{i-1}}{z_j},
-\ldots,\frac{1}{z_j},\frac{1}{z_j},\frac{z_i}{z_j},\ldots,\frac{z_n}{z_j} \right)
+\ldots,\frac{1}{z_j},\frac{z_i}{z_j},\ldots,\frac{z_n}{z_j} \right)
 & j < i
 \end{cases}
 \]
@@ -314,7 +314,7 @@ is called the \ib{trivial bundle}. A bundle isomorphic to the trivial bundle
 is said to be \ib{trivial} or \ib{trivializable}.
 One way to tell if a line bundle $L \to X$ is trivial is to provide a global
 nonvanishing section $\sigma : X \to L$. This determines a global trivialization of $L$
-in the following way: At each $x$, we have that $\sigma(x) \neq 0$ determines a basis for
+in the following way: at each $x$, we have that $\sigma(x) \neq 0$ determines a basis for
 the fiber $L_x$. Therefore, for any element $v$ of the fiber $L_x$, we can map it
 to $(x, \lambda) \in X \times \C$, where $\lambda$ is the component of $v$ in the basis
 $\set{\sigma(x)}$ for $L_x$. This determines an bundle isomorphism
@@ -353,16 +353,18 @@ equipped with the natural projection $\pi : L \to X$ is a holomorphic line bundl
 With respect to a cover $\set{U_i}$, the pairs $(U_i, \psi_{ij})$ are called
 \ib{cocycles}, though the set $U_i$ is sometimes omitted, and the transition
 functions themselves are called coycles. The gluing construction tells us
-that the cocycles determine the line bundle up to isomorphism. In
+that the cocycles can almost determine the line bundle up to isomorphism . In
 particular, if we have that all the cocycles are given by the constant map
 $\psi_{ij}(x) = \lambda$, then we know that the bundle is trivial. In a similar
 vein, if we have two bundles $L,L' \to X$, and we know that their transition
 functions differ by a constant, then we can conclude that $L$ and $L'$ are
-isomorphic as holomorphic line bundles.
+isomorphic as holomorphic line bundles. In more generality, it is true that
+if the transition functions differ by something called a coboundary, then the
+bundles are isomorphic.
 %
 \begin{defn}
 Let $\pi : L \to X$ be a holomorphic line bundle. A \ib{local section} is
-a holomorphic map $\sigma : U \to L$  from an open set $U \subset X$ such that
+a holomorphic map $\sigma : U_i \to L$  from an open set $U \subset X$ such that
 $\pi \circ \sigma = \id_U$. If $U = X$, then $\sigma$ is said to be a
 \ib{global section}. If it is not specified whether a section is local
 or global, it is implicitly assumed to be global.
@@ -540,7 +542,7 @@ $\O(0)\defeq \CP^n \times \C$.
 \end{defn}
 %
 A fact that we will not prove is that all line bundles over $\CP^n$ are of
-the form $\O(k)$ for some integer $k$. Using our observations in Proposition 1.7,
+the form $\O(k)$ for some integer $k$. Using our observations in Proposition 1.9,
 we can identify the transition functions for the line bundles $\O(k)$ with
 respect to the local trivializations defined for $\O(-1)$ in the open cover
 $\set{U_i}$. \\
@@ -556,7 +558,14 @@ using the identification $\C^{\otimes^k}$ with $\C$, under the mapping
 \]
 this is the same as
 $\psi_{ij}(\ell) = z_j^k/z_i^k$. Likewise, the transition functions for $\O(-k)$
-are $\psi_{ij}(\ell) = z_i^k/z_j^k$. \\
+are $\psi_{ij}(\ell) = z_i^k/z_j^k$. By noting how transition functions behave
+under tensor product, we see that for integers $d,k \in \Z$ we have that
+\[
+\O(d) \otimes \O(k) \cong \O(d+k)
+\]
+If we assume the fact that all line bundles over $\CP^n$ are isomorphic to some
+$\O(k)$, this shows that $\mathrm{Pic}(\CP^n) \cong \Z$ via the mapping
+$\O(k)\mapsto k$. \\
 
 A natural question to ask is which of these bundles admit global sections. We work
 through the case of $\O(-1)$ explicitly.
@@ -623,7 +632,7 @@ The bundle $\O(1)$ admits global sections, and
 \]
 \end{thm}
 %
-We again give two proofs of this fact, mirroring our proofs for Theorem 1.11 to
+We again give two proofs of this fact, mirroring our proofs for Theorem 1.13 to
 illustrate the differences between $\O(-1)$ and $\O(1)$, which are a bit subtle at
 first.
 %
@@ -632,7 +641,7 @@ Since $\O(-1)$ is a subbundle $\O(-1) \hookrightarrow \CP^n \times \C^{n+1}$, we
 have that the dual bundle $\O(-1)$ is a subbundle $\O(-1) \hookrightarrow (\C^{n+1})^*$.
 Again, any holomorphic section of $\O(1)$ is a holomorphic function
 $\CP^n \to \C^{n+1}$, which is constant by the maximum principle. However, any
-linear functional $\omega \in (\C^{n+1})^*$ determines a linear functional
+linear functional $\omega \in (\C^{n+1})^*$ determines a linear functional on
 all the lines $\ell \in \CP^n$ by taking the restriction $\omega|_\ell$. Therefore,
 the space of sections is $(\C^{n+1})^* \cong \C^{n+1}$.
 \end{proof}
@@ -678,26 +687,26 @@ $z_0,\ldots z_n$ via multiplication by $z_i$.
 %
 Using similar methods, we can determine the sections for $\O(k)$ for any
 $k \in \Z$, using either proof method. If $k > 0$, we have that
-$\O(-k)$ admits no holomorphic sections, which can be verified by checking the
+$\O(-k)$ admits no nonzero holomorphic sections, which can be verified by checking the
 transition functions, or noting that $\O(-k)$ embeds as a subbundle of
 $\CP^n \times (\C^{n+1})^{\otimes^k}$, and repeating the maximum principle argument.
 In the case of $\O(k)$, we are in a similar situation as $\O(1)$, where by
 looking at how the transition functions interact with the series expansions of
 functions, we have that the space of sections is isomorphic to the
 space of polynomials in $n$ variables of degree $\leq k$, which by multiplying through
-by a the $k^{th}$ power of variable, is isomorphic to the space of homogeneous
+by a the $k^{th}$ power of a variable, is isomorphic to the space of homogeneous
 polynomials in $n+1$ variables of degree $k$. \\
 
 There is another, more geometric way to interpret why the space of sections of
 the bundle $\O(k)$ is the space of degree $k$ homogeneous polynomials, which
-echoes the discussion in the first proofs we gave for Theorem 1.11 and 1.12.
-A degree $k$ homogeneous polynomial $p \in \C[z_0,\ldots,z_n]_k$ determines is
-exactly a linear maps $(\C^{n+1})^{\otimes^k} \to \C$, so the
+echoes the discussion in the first proofs we gave for Theorem 1.13 and 1.14.
+A degree $k$ homogeneous polynomial $p \in \C[z_0,\ldots,z_n]_k$ determines
+a linear map $(\C^{n+1})^{\otimes^k} \to \C$, so the
 constant maps $\CP^n \to \C[z_0,\ldots,z_n]_k$ mapping all of $\CP^n$ to a
 homogeneous polynomial $p$ are exactly the holomorphic sections of the
 trivial bundle $\CP^n \times [(\C^{n+1})^{\otimes^k}]^*$. Restricting
-these linear maps to $\ell^{\otimes^k} \subset (\C^{n+1})^{\otimes^k}$, for
-$\ell \in \CP^n$ this determines a section of $\O(k)$. \\
+these linear maps to $\ell^{\otimes^k} \subset (\C^{n+1})^{\otimes^k}$ for
+$\ell \in \CP^n$ then determines a section of $\O(k)$. \\
 
 As a final remark, note that while we started by working with complex geometry
 and holomorphic maps, we were quickly reduced to studying polynomials, which
