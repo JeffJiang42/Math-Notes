@@ -1,0 +1,393 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+\usepackage{spectralsequences}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathscr{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{The Fr\"olicher Spectral Sequence and the $\partial\dbar$ Lemma}
+%
+\setcounter{section}{1}
+%
+\maketitle
+%
+For any complex manifold $X$, we have the Fr\"olicher spectral sequence, which
+computes the de Rham cohomology of a complex manifold in terms of the
+$\partial$ and $\dbar$ cohomology. On the $E_0$ page, it is given
+by the Dolbeault cohomology of the bundles $\Omega^{p,0}$, i.e. the item
+in the $(p,q)$ position is the bundle $\Omega^{p,q}$ of $(p,q)$ forms, and
+the differential on $E_0$ is just $\dbar$. For example, a small section of
+the $E_0$ page would be: \\
+%
+\begin{sseqdata}[name=Frolicher0, classes = {draw = none}, yscale=2, xscale=2]
+\class["\Omega^{0,0}"](0,0)
+\class["\Omega^{1,0}"](1,0)
+\class["\Omega^{2,0}"](2,0)
+\class["\Omega^{3,0}"](3,0)
+\class["\Omega^{0,1}"](0,1)
+%
+\class["\Omega^{1,1}"](1,1)
+\class["\Omega^{2,1}"](2,1)
+\class["\Omega^{3,1}"](3,1)
+\d["\dbar"']0(0,0)(0,1)
+\d["\dbar"']0(1,0)(1,1)
+\d["\dbar"']0(2,0)(2,1)
+\d["\dbar"']0(3,0)(3,1)
+%
+\class["\Omega^{0,2}"](0,2)
+\class["\Omega^{1,2}"](1,2)
+\class["\Omega^{2,2}"](2,2)
+\class["\Omega^{3,2}"](3,2)
+\d["\dbar"']0(0,1)(0,2)
+\d["\dbar"']0(1,1)(1,2)
+\d["\dbar"']0(2,1)(2,2)
+\d["\dbar"']0(3,1)(3,2)
+\end{sseqdata}
+\begin{center}
+\printpage[name=Frolicher0, page = 0]
+\end{center}
+%
+Then in the $E_1$ page, we have $E_1^{p,q}$ is the cohomology in the $(p,q)$ slot
+in the $E_0$ page, which is just $H^{p,q}(X)$ (abbreviated to $H^{p,q}$) by Hodge
+theory in the compact case. The differentials going from left to right are the
+operators $\partial$, which descends to cohomology because
+$\partial\dbar = -\dbar\partial$. A small section of the $E_1$ page would be : \\
+%
+\begin{sseqdata}[name=Frolicher1, classes = {draw = none}, yscale=2, xscale=2]
+\class["H^{0,0}"](0,0)
+\class["H^{1,0}"](1,0)
+\class["H^{2,0}"](2,0)
+\class["H^{3,0}"](3,0)
+\class["H^{0,1}"](0,1)
+%
+\class["H^{1,1}"](1,1)
+\class["H^{2,1}"](2,1)
+\class["H^{3,1}"](3,1)
+\d["\partial"']1(0,0)(1,0)
+\d["\partial"']1(1,0)(2,0)
+\d["\partial"']1(2,0)(3,0)
+%
+\class["H^{0,2}"](0,2)
+\class["H^{1,2}"](1,2)
+\class["H^{2,2}"](2,2)
+\class["H^{3,2}"](3,2)
+\d["\partial"']1(0,1)(1,1)
+\d["\partial"']1(1,1)(2,1)
+\d["\partial"']1(2,1)(3,1)
+%
+\d["\partial"']1(0,2)(1,2)
+\d["\partial"']1(1,2)(2,2)
+\d["\partial"']1(2,2)(3,2)
+\end{sseqdata}
+\begin{center}
+\printpage[name=Frolicher1, page = 1]
+\end{center}
+%
+For a general compact complex manifold $X$, this continues to the $E_2$ page,
+where the differential ``rotates," and the $(p,q)$ slot is the cohomology in
+the $(p,q)$ slot of the $E_1$ page. The big theorem we want to prove is:
+%
+\begin{thm}
+For a compact K\"ahler manifold $X$, the Fr\"olicher spectral sequence degenerates at
+the $E_1$ page, i.e. all the differentials are $0$.
+\end{thm}
+%
+In other words, we can terminate our spectral sequence computations at $E_1$.
+Going to the $E_1$ page is easy, since all the computations are done with the
+operators $\partial$ and $\dbar$. In practice, continuing on to further pages
+is difficult. The entire spectral sequence story seems very difficult (and it is),
+but in the compact K\"ahler story, it reduces to a simple lemma.
+%
+\begin{thm}[\ib{The $\partial\dbar$ lemma}]
+Let $X$ be a K\"ahler manifold, and $\eta$ a complex $k$-form that is $\partial$
+and $\dbar$-closed. Then if $\eta$ is $d$, $\partial$, or $\dbar$-exact, there exists
+a form $\xi$ such that $\eta = \partial\dbar\xi$.
+\end{thm}
+%
+The proof of this lemma requires the following results from Hodge Theory:
+%
+\begin{thm}[\ib{Comparison of the Laplacians}]
+Let $X$ be a compact K\"ahler manifold. Then
+\[
+\Delta = 2\Delta_\partial = 2\Delta_{\dbar}
+\]
+where $\Delta$, $\Delta_\partial$, and $\Delta_{\dbar}$ are the Laplacians
+\begin{align*}
+\Delta &= dd^* + d^*d \\
+\Delta_\partial &= \partial\partial^* + \partial^*\partial \\
+\Delta_{\dbar} &= \dbar\dbar^* + \dbar^*\dbar
+\end{align*}
+\end{thm}
+%
+The proof of this theorem requires certain commutation relations to hold, called
+the \ib{K\"ahler identities}. This identity is not true in general for an
+arbitrary compact complex manifold. The other result we need is
+%
+\begin{thm}[\ib{The Hodge Decomposition}]
+Any complex valued form $\alpha \in \Omega^{p,q}$ can be written as
+\[
+\alpha = \beta + \Delta\gamma
+\]
+where $\beta$ is harmonic, i.e. $\Delta\beta = 0$.
+\end{thm}
+%
+This theorem is true for general compact complex manifolds, not just K\"ahler manifolds.
+%
+\begin{proof}[Proof of the $\partial\dbar$ lemma]
+The proof for all three cases is much the same, so we do just the one where
+$\eta = \dbar\alpha$ is $\dbar$-exact. By the Hodge decomposition, we write
+$\alpha = \beta + \Delta\gamma$, with $\beta$ harmonic. Since
+$\Delta = 2\Delta_{\dbar}$, and $\beta$ is $\Delta_{\dbar}$-harmonic if and only
+if $\dbar\beta = \dbar^*\beta = 0$, we have that $\dbar\beta = 0$. Then
+using Lemma 7.8, we compute
+\begin{align*}
+\eta &= \dbar\alpha \\
+&= \dbar(\beta + \Delta\gamma) \\
+&= \dbar\beta + 2\dbar(\Delta_\partial\gamma) \\
+&= 0 + 2\dbar(\partial\partial^*\gamma + \partial^*\partial\gamma) \\
+&= 2\dbar\partial\partial^*\gamma - 2\partial^*\dbar\partial\gamma \\
+&= -2\partial\dbar\partial^*\gamma - 2\partial^*\dbar\partial\gamma
+\end{align*}
+Then since $\eta$ is $\partial$-closed, we have that $\partial^*\dbar\partial\gamma$
+must also be $\partial$-closed. By orthogonality of the image of $\partial^*$ with
+the kernel of $\partial$, we have that $\partial^*\dbar\partial\gamma = 0$,
+so $\eta = -2\partial\dbar\partial^*\gamma = 2\dbar\partial\partial^*\gamma$,
+so letting $\xi = \partial^*\gamma$, we are done.
+\end{proof}
+%
+We now use this to prove Theorem 1.1.
+%
+\begin{proof}[Proof of 1.1]
+We want to show that all the differentials on the $E_1$ page are $0$, i.e.
+for a cohomology class $[\alpha] \in H^{p,q}$, $[\partial\alpha] = 0$. Since
+$[\alpha]$ is a Dolbeault cohomology class, we know that $\alpha$ is $\dbar$-closed.
+Therefore, $\partial\alpha$ is both $\dbar$ and $\partial$ closed, since $\partial$
+and $\dbar$ anticommute. Then by the $\partial\dbar$ lemma, we have that
+$\partial\alpha = \partial\dbar\eta$ for some $\eta$. Therefore, using the
+fact that $\partial$ and $\dbar$ commute one final time, we find that
+$\partial\alpha$ is $\dbar$-exact, i.e. $[\partial\alpha] = 0$
+\end{proof}
+%
+\end{document}
