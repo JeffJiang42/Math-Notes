@@ -1,0 +1,1131 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+\usepackage{spectralsequences}\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage[unicode]{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathrm{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\PGL}{\mathrm{PGL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\PSL}{\mathrm{PSL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\Stab}{Stab}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{\v{C}ech Cohomology, Sheaf cohomology, and Line Bundles}
+%
+\maketitle
+%
+\section{\v{C}ech Cohomology}
+%
+For the most part, we will consider ``sufficiently nice" topological spaces.
+For the most part, think of a space $X$ as a (smooth, complex) manifold, an analytic
+space, or a quasicompact separated scheme if you're feeling adventurous.
+%
+\begin{defn}
+Let $X$ be a space and $\mathcal{F}$ a sheaf of abelian groups over $X$. Let
+$\mathcal{U} = \set{U_i}_{i \in \N}$ be a countable open cover of $X$ that is locally
+finite, i.e. for any $x \in X$, only finitely many $U_i$ contain $x$. For
+$I = \set{i_1, \ldots, i_k}$, let
+\[
+U_I \defeq \bigcap_{i \in I} U_i
+\]
+Then define the \ib{\v{C}ech cochain groups} of $\mathcal{F}$ for the cover
+$\mathcal{U}$ by
+\begin{align*}
+C^k(\mathcal{U}, \mathcal{F}) \defeq \prod_{|I| = k+1} \mathcal{F}(U_I)
+\end{align*}
+an element of $C^k(\mathcal{U},\mathcal{F})$ is called a \ib{\v{C}ech cochain}.
+For a $k$-cochain $\sigma$, and $I = \set{i_0,\ldots i_k}$, we denote the
+component of $\sigma$ over $U_I$ as $\sigma_I$ or $\sigma_{i_0,\ldots i_k}$.
+\end{defn}
+%
+The \v{C}ech cochain groups are equipped with a differential
+$d : C^k(\mathcal{U}, \mathcal{F}) \to C^{k+1}(\mathcal{U}, \mathcal{F})$
+where for $\sigma \in C^k(\mathcal{U}, \mathcal{F})$, the ${i_0, \ldots i_{k+1}}$
+component of $d\sigma$ is given by
+\[
+(d\sigma)_{i_0, \ldots i_{k+1}}
+= \sum_{j = 1}^{p+1}(-1)^j\sigma_{i_0, \ldots, \widehat{i_j}, \ldots, i_{k+1}}
+\vert_{U_0 \cap \cdots \cap U_{k+1}}
+\]
+where $\widehat{i_j}$ denotes that $i_j$ is missing. We have that $d^2 = 0$ for a
+similar reason that $d^2 = 0$ for singular cohomology, you get repeats of
+terms with opposite signs due to the omitted index. We denote the kernel of
+$d : C^i(\mathcal{U}, \mathcal{F}) \to C^{i+1}(\mathcal{U}, \mathcal{F})$ as
+$Z^i(\mathcal{U}, \mathcal{F})$, and we say that the element are $i$-cocycles.
+We denote the image of
+$d : C^{i-1}(\mathcal{U}, \mathcal{F}) \to C^i(\mathcal{U}, \mathcal{F})$ as
+$B^i(\mathcal{U}, \mathcal{F})$, and we call the elements $i$-coboundaries.
+%
+\begin{defn}
+The \ib{\v{C}ech cohomology groups} of $\mathcal{F}$ with respect to the cover
+$\mathcal{U}$, denoted $\check{H}^i(\mathcal{U}, \mathcal{F})$ is the cohomology of
+the \v{C}ech complex
+\[\begin{tikzcd}
+0 \ar[r, "d"] & C^0(\mathcal{U}, \mathcal{F}) \ar[r, "d"] &
+C^1(\mathcal{U}, \mathcal{F}) \ar[r, "d"]
+& \cdots
+\end{tikzcd}\]
+i.e. we have
+\[
+\check{H}^i(\mathcal{U}, \mathcal{F}) \defeq
+\frac{Z^i(\mathcal{U}, \mathcal{F})}{B^i(\mathcal{U}, \mathcal{F})}
+\]
+\end{defn}
+%
+\begin{defn}
+Given an open cover $\mathcal{U} = \set{U_i}$, a \ib{refinement} of $\mathcal{U}$
+is another open cover $\mathcal{V} = \set{V_j}$ such that every $V_j$ is contained
+in some $U_i$. If $\mathcal{V}$ is a refinement of $\mathcal{U}$, we write
+$\mathcal{V} < \mathcal{U}$.
+\end{defn}
+%
+If $\mathcal{V} < \mathcal{U}$, then we know we can find a map
+$\varphi : \N \to \N$ such that $V_i \subset U_\varphi(i)$. Consequently, we
+can restrict sections over $U_i$ to sections over $V_{\varphi(i)}$, so this
+induces a chain map
+$\rho_\varphi : C^k(\mathcal{U}, \mathcal{F}) \to C^k(\mathcal{V},\mathcal{F})$
+where
+\[
+(\rho_\varphi(\sigma))_{i_0,\ldots, i_k}
+= \sigma_{\varphi(i_0),\ldots \varphi(i_k)}\vert_{U_{i_0} \cap \cdots \cap U_{i_k}}
+\]
+This map commutes with the differentials for $C^\bullet(\mathcal{U},\mathcal{F})$
+and $C^\bullet(\mathcal{V},\mathcal{F})$, so it descends to homomorphisms
+$\check{H}^i(\mathcal{U},\mathcal{F}) \to \check{H}^i(\mathcal{V}, \mathcal{F})$.
+It can be shown that a different choice of chain map $\rho_\psi$ for
+$\psi : \N \to \N$ is chain homotopic to $\rho_\varphi$, so the induced maps
+on cohomology are independent of our choice of $\varphi$.
+%
+\begin{defn}
+The \ib{\v{C}ech cohomology groups} of a sheaf $\mathcal{F}$ over $X$ is the limit over
+refinements
+\[
+\check{H}^i(X, \mathcal{F})
+\defeq \lim_{\mathcal{V} < \mathcal{U}} \check{H}^i(\mathcal{V}, \mathcal{F})
+\]
+i.e. the quotient disjoint union
+$\amalg_\mathcal{U}\check{H}^i(\mathcal{U}, \mathcal{F}$
+over all refinements, where we identify $\sigma \in \check{H}^i(\mathcal{U}, \mathcal{F}$
+and $\tau \in \check{H}^i(\mathcal{V}, \mathcal{F})$ if
+$\mathcal{V}$ refines $\mathcal{U}$ and $\rho(\sigma) = \tau$ under the map induced on
+cohomology by the refinement.
+\end{defn}
+%
+This definition of the \v{C}ech cohomology groups is essentially useless for
+computation. It's true power comes from the following theorem, due to Leray.
+%
+\begin{thm}[\ib{Leray}]
+Suppose $\mathcal{U} = \set{U_i}$ is an open cover of $X$ that is \ib{acyclic} with
+respect to the sheaf $\mathcal{F}$, i.e. for $|I| > 1$ and any $i$,
+\[
+\check{H}^i(U_I, \mathcal{F}) = 0
+\]
+Then
+\[
+\check{H}^i(\mathcal{U}, \mathcal{F}) = \check{H}^i(X, \mathcal{F})
+\]
+\end{thm}
+%
+The intuition to keep in mind for an acyclic cover is the notion of a good cover
+in differential geometry. On a smooth manifold $M$, there exists a covering of
+$M$ by open sets $\set{U_i}$ such that any nonempty intersections are contractible,
+which is done by taking geodesic balls around each point in $M$. Since the
+homotopical information on each $U_i$ is trivial, the only nontrivial topological
+information in the cohomology of $M$ comes from how the sets are glued together to
+form $M$. As with exact sequences of chain complexes, short exact sequences
+of sheaves give long exact sequences in sheaf cohomology.
+%
+\begin{thm}
+Let
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r, "\alpha"] & \mathcal{F} \ar[r, "\beta"] & \mathcal{G}
+\ar[r] & 0
+\end{tikzcd}\]
+be an exact sequence of sheaves over $X$. Then this induces a long exact sequence in
+cohomology:
+\[\begin{tikzcd}
+0 \ar[r] & \check{H}^0(X,\mathcal{E}) \ar[r, "\alpha^*"]
+& \check{H}^0(X,\mathcal{F}) \ar[r, "\beta^*"] &
+\check{H}^0(X, \mathcal{G}) \ar[dll, "\delta"'] \\
+& \check{H}^1(X, \mathcal{E}) \ar[r, "\alpha^*"]
+& \check{H}^1(X, \mathcal{F})\ar[r, "\beta^*"]
+& \check{H}^1(X, \mathcal{G}) \ar[dll, "\delta"'] \\
+& ~ & \cdots & \cdots
+\end{tikzcd}\]
+\end{thm}
+%
+\begin{proof}
+We first define the maps
+$\alpha^* : \check{H}^i(X,\mathcal{E}) \to \check{H}^i(X, \mathcal{F})$
+and $\beta^* : H^i(X, \mathcal{F}) \to \check{H}^i(X, \mathcal{G})$, and will then define
+the connecting homomorphism
+$\delta : \check{H}^i(X,\mathcal{E}) \to \check{H}^{i+1}(X, \mathcal{G})$. Given
+an open cover $\mathcal{U} = \set{U_i}$ of $X$, the sheaf morphism $\alpha$ gives for
+each open set $U_i$ a homomorphism $\alpha(U_i) : \mathcal{E}(U_i) \to \mathcal{F}(U_i)$,
+which induces a chain map
+$C^\bullet(\mathcal{U},\mathcal{F}) \to C^\bullet(\mathcal{U}, \mathcal{G}))$. Since
+the maps $\alpha(U_i)$ commute with restriction maps, this chain map commutes with
+the differentials, so it descends to a map on cohomology
+$\check{H}^\bullet(\mathcal{U},\mathcal{F})\to\check{H}^\bullet(\mathcal{U},\mathcal{F})$,
+which, after taking the limit over refinements or choosing $\mathcal{U}$ to be
+simultaneously acyclic for $\mathcal{E}$ and $\mathcal{F}$, gives us the induced
+map $\alpha^* : \check{H}^\bullet(X,\mathcal{F})\to\check{H}^\bullet(X,\mathcal{F})$.
+The map $\beta^*$ is defined similarly. \\
+
+The construction of the connecting homomorphism
+mirrors the construction for singular (or de Rham) cohomology. We represent
+an element of $\check{H}^i(X,\mathcal{G})$ with a cocycle
+$\sigma \in Z^i(\mathcal{U}, \mathcal{G})$ with respect to some open cover $\mathcal{U}$.
+By surjectivity of $\beta$, by potentially passing to a refinement, we can
+write $\sigma = \beta(\tau)$ for some $\tau \in C^i(\mathcal{U}, \mathcal{F})$. Then
+since the induced map on chains commutes with the differentials, we have that
+$d\beta(\tau) = \beta(d\tau) = 0$, since $\tau$ is a cocycle. Therefore,
+$d\tau$ is in the kernel of $\beta^*$, so we can write $d\tau = \alpha(\eta)$
+for some $\eta \in C^{i+1}(\mathcal{U}, \mathcal{F})$. We then define
+$\delta(\sigma)$ to be the class of $\eta$ in the limit. We note that
+this is independent of our choice of $\tau$, since any other choice of
+preimage of $\sigma$ differs by an element of the form $\alpha(e)$ for some cocycle
+$e$ by exactness. Then since $\alpha$ commutes with the differentials, we get
+$d(\tau + \alpha(e)) = d\tau + d\alpha(e) = d\tau + \alpha(de) = d\tau$.
+\end{proof}
+%
+We make one observation about \v{C}ech cohomology
+%
+\begin{prop}
+The $0^{th}$ \v{C}ech cohomology group is isomorphic to the space of global sections, i.e.
+\[
+\check{H}^0(\mathcal{U}, \mathcal{F}) \cong \Gamma(X, \mathcal{F})
+\]
+\end{prop}
+%
+\begin{proof}
+The $0^{th}$ cohomology is just the kernel of the map
+$d : C^0(\mathcal{U},\mathcal{F}) \to C^1(\mathcal{U}, \mathcal{F})$.
+For a $0$-cochain $\sigma$, we have that
+\[
+(d\sigma)_{ij} = \sigma_j\vert_{U_i \cap U_j} - \sigma_i\vert_{U_i \cap U_j}
+\]
+We then claim that the map $\Gamma(X, \mathcal{F}) \to \ker d$ sending a section
+$\sigma$ to the cocycle $\tilde{\sigma}$ defined by
+\[
+\tilde{\sigma}_i = \sigma\vert_{U_i}
+\]
+is bijective. It is surjective, since any $0$-cocycle mapping in the kernel
+is a collection of local sections that agrees on intersections, which is exactly
+a global section of $\mathcal{F}$. In addition, it is injective, since if
+a section restricts to $0$ on every open set, it is the zero section.
+\end{proof}
+%
+\section{\v{C}ech Cohomology on $\CP^n$}
+%
+We now compute \v{C}ech cohomology for various sheaves over $\CP^n$. The main objects
+of interest are the line bundles $\O(k)$. We have that $\CP^n$ admits a nice cover
+$\mathcal{U} = \set{U_i}$ where $U_i$ is the open set where the coordinate $z_i$ does not
+vanish. We will soon show that this covering is acyclic for the structure sheaf
+$\O_{\CP^n}$, and since all line bundles are trivial on the open sets in this cover, this
+means that the covering will acyclic for any line bundle $\O(k)$. So it suffices to
+compute \v{C}ech cohomology with respect to this cover. In particular, we note that for
+any line bundle $\O(k) \to \CP^n$, the transition functions $\psi_{ij}$ for $\O(k)$
+are $\psi_{ij}(\ell) = (z_j/z_i)^k$. We already know one cohomology group:
+%
+\begin{thm}
+The $0^{th}$ cohomology group $\check{H}^0(\CP^n, \O(k))$ is isomorphic to the space
+$\C[x_0, \ldots x_n]_k$ of homogeneous degree $k$ polynomials in the variables
+$x_0, \ldots , x_n$.
+\end{thm}
+%
+We compute the rest of the cohomology now, which we do in stages.
+%
+\begin{thm}
+For any $i > n$, we have $\check{H}^n(\mathcal{U},\O(k)) = 0$.
+\end{thm}
+%
+\begin{proof}
+The cover of $\CP^i$ by the $U_i$ has cardinality $n+1$. Therefore,
+$C^{n+1}(\mathcal{U}, \O(k)) = 0$.
+\end{proof}
+%
+To compute the rest of the cohomology groups, we first prove a lemma characterizing
+local sections of $\O(k)$.
+%
+\begin{lem}
+Let $\pi : \C^{n-1} - \set{0} \to \CP^n$ be the usual projection sending
+$z \in C^{n-1}$ to $\mathrm{span}\set{z}$. Then the space of sections
+$\O(k)(U)$ is isomorphic to the space of homogeneous of degree $k$  holomorphic functions
+$f : \pi\inv(U) \to \C$ i.e.
+\[
+f(tz_0, \ldots, tz_n) = t^kf(z_0,\ldots, z_n)
+\]
+\end{lem}
+%
+\begin{proof}
+Let $\sigma \in \O(k)(U)$ be a section. Then the set $\set{U \cap U_i}$ is an
+open cover of $U$, so $\sigma$ is determined by its restrictions
+$\sigma_i \defeq \sigma_i\vert_{U \cap U_i}$. Since the bundle $\O(d)$ is trivial
+over the $U_i$, the local sections $\sigma_i$ can be identified with holomorphic
+functions $U \cap U_i \to \C$ with the compatibility condition
+\[
+\sigma_i([z_0 :\ldots : z_n])
+= \left(\frac{z_j}{z_i}\right)^k\sigma_j([z_0: \ldots : z_n])
+\]
+We then give maps in both directions. Given a section
+$\sigma \in \O(k)(U)$, define the function $f_\sigma$ by
+\[
+f_\sigma(z_0,\ldots z_n) = z_i^k\sigma_i(\pi(z_0,\ldots z_n))
+\]
+We must verify that this is well-defined, i.e. it is independent of our choice of $i$.
+We compute
+\begin{align*}
+f_\sigma(z_0,\ldots z_n)
+&=  z_i^k\sigma_i(\pi(z_0,\ldots z_n)) \\
+&=  \left(\frac{z_j}{z_i}\right)^kz_i^k\sigma_j(\pi(z_0,\ldots z_n)) \\
+&= z_j^k\sigma_k(\pi(z_0, \ldots z_n)) \\
+\end{align*}
+So this determines a well defined function on $\pi\inv(U)$. In addition, it is
+visibly homogeneous of degree $k$, since the $\sigma_i$ are constant on lines and
+$z_i^k$ is homogeneous of degree $k$. To show this is an isomorphism, we provide
+an inverse. Given a homogeneous function $f$ of degree $k$ on $\pi\inv(U)$, define
+the section $\sigma_f$ locally by
+\[
+(\sigma_f)_i([z_0: \ldots :z_n]) = \frac{f(z_0,\ldots z_n)}{z_i^k}
+\]
+then to show that this defines a section, we must show that they agree on intersections
+using the transition functions. We compute
+\[
+\left(\frac{z_i}{z_j}\right)^k(\sigma_f)_i\vert_{U \cap U_i \cap U_j}([z_0: \ldots : z_n])
+= \left(\frac{z_i}{z_j}\right)^k\frac{f(z_0,\ldots, z_n)}{z_i^k}
+= \frac{f(z_0, \ldots z_n)}{z_j^k}
+= (\sigma_f)_j
+\]
+The two mappings provided are visibly inverses, since one is essentially multiplication
+by $z_j^k$ and the other is essentially division by $z_j^k$.
+\end{proof}
+%
+Over intersections of the distinguished open sets $U_i$, the sections have
+a particularly nice form. Under the projection $\pi : \C^{n+1}-\set{0} \to \CP^n$,
+the preimage of $U_I$ for $I = \set{i_0, \ldots i_d}$ is just $\C^{n+1}$ minus
+the coordinate axes $z_{i_j} = 0$. By taking power series, a holomorphic
+function on $\pi\inv(U_I)$ is given by Laurent series where the $z_{i_j}$ can appear
+in negative degree. Being homogeneous of degree $d$ implies that all the
+terms in the series expansion must be homogeneous of degree $k$, where the
+degree of $(z_k)^a/(z_{i_j})^b$ is $a - b$. Consequently, all such holomorphic
+functions must be polynomials in $\C[z_0, \ldots z_n, z_{i_0}\inv, \ldots z_{i_d}\inv]$
+of degree $k$.
+% TODO Compute cohomology
+\iffalse
+We now compute the $n^{th}$ cohomology groups.
+%
+\begin{thm}
+\[
+\check{H}^i(\mathcal{U}, \O(k)) = \begin{cases}
+\C[z_0, \ldots z_n]_{-k-n-1} & -k-n-1 \geq 0 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+\end{thm}
+%
+\begin{proof}
+Since $C^{n+1}(\mathcal{U}, \O(k)) = 0$, we have that
+$\check{H}^n(\mathcal{U},\O(k))$ is just the cokernel of the differential
+$d : C^{n-1}(\mathcal{U}, \O(k)) \to C^n(\mathcal{U}, \O(k))$.
+\end{proof}
+\fi
+%
+%TODO Prove that the covering is acyclic
+%
+\section{\v{C}ech Cohomology and Line Bundles}
+%
+Let $\mathcal{U} = \set{U_i}$ be a covering of $X$, and $\mathcal{F}$ a sheaf
+of abelian groups over $X$. Then with respect to this cover, a \v{C}ech 2-cocycle
+$\sigma \in Z^2(\mathcal{U}, \mathcal{F})$ is defined by the equation
+\[
+0 = (d\sigma)_{ijk} = \sigma_{jk}\vert_{U_i \cap U_j \cap U_k}
+- \sigma_{ik}\vert_{U_i \cap U_j \cap U_k} + \sigma_{ij}\vert_{U_i \cap U_j \cap U_k}
+\]
+Written multiplicatively (and omitting the restriction), this becomes
+\[
+1 = \sigma_{jk}\sigma_{ik}\inv\sigma_{ij}
+\]
+which, since the group is abelian, is equivalent to
+\[
+\sigma_{ik} = \sigma_{ij}\sigma_{jk}
+\]
+which looks exactly like a cocycle condition for transition functions of a line
+bundle. Recall that given a holomorphic line bundle $\pi : L \to X$, we have local
+trivializations -- we can find a cover $\mathcal{U} = \set{U_i}$ with maps
+$\varphi_i : \pi\inv(U_i) \to U_i \times \C$ such that
+\[\begin{tikzcd}
+\pi\inv(U_i) \ar[rr, "\varphi_i"] \ar[dr] & & U_i \times \C \ar[dl] \\
+& U_i
+\end{tikzcd}\]
+commutes, where the maps to $U_i$ are the projections. Therefore, if we consider
+the map
+$\varphi_i \circ \varphi_k\inv : U_i \cap U_j \times \C \to U_i \cap U_j \times \C$,
+we have that $\varphi(x, \lambda) = (x, \psi_{ij}(x)(\lambda))$, where the functions
+$\psi_{ij} : U_i\cap U_j \to \GL_1\C$ are holomorphic. The $\psi_{ij}$
+are called the \ib{transition functions} of the line bundle $L$.
+%
+\begin{prop}
+The transition functions $\psi_{ij}$ satisfy the following conditions
+\begin{enumerate}
+  \item $\psi_{ij}\psi_{ji} = 1$ (i.e. the constant function $x \mapsto 1$)
+  \item $\psi_{ij}\psi_{jk} = \psi_{ik}$.
+\end{enumerate}
+The second condition is often called the \ib{cocycle condition}, in reference to the
+identity we derived above for the defining property of a \v{C}ech cocycle.
+\end{prop}
+%
+\begin{proof}
+Consider the map $\varphi_i\circ\varphi_j\inv\circ\varphi_j\circ\varphi_i\inv = \id$.
+We compute under the action on a general element $(x,\lambda)$
+\[\begin{tikzcd}
+(x,\lambda) \ar[r, "\varphi_j\circ\varphi_i\inv"] & (x,\psi_{ji}(x)(\lambda))
+\ar[r, "\varphi_i\circ\varphi_j\inv"] & (x,\psi_{ij}(x)\psi_{ji}(x)(\lambda))
+\end{tikzcd}\]
+Therefore, we have that $\psi_{ij}(x)\psi_{ji}(x) = 1$ for all $x$, showing the
+first property. For the second property, we do the same thing. Consider
+the function
+$\varphi_i\circ\varphi_j\inv\circ\varphi_j\circ\varphi_k = \varphi_i\circ\varphi_k\inv$.
+Then fore $(x,\lambda)$, we compute the action of this function to be
+\[\begin{tikzcd}
+(x,\lambda) \ar[r, "\varphi_j\circ\varphi_k\inv"] & (x,\psi_{jk}(x)(\lambda))
+\ar[r, "\varphi_i\circ\varphi_j\inv"] & (x,\psi_{ij}(x)\psi_{jk}(x)(\lambda))
+\end{tikzcd}\]
+So we get that $\psi_{ij}(x)\psi_{jk}(x) = \psi_{ik}(x)$ for all $x$.
+\end{proof}
+%
+Under the \v{C}ech differential, the image of a \v{C}ech $0$-cochain $\sigma$ is given
+by
+\[
+(d\sigma)_{ij} = \sigma_j - \sigma_i
+\]
+written multiplicatively, this becomes
+\[
+(d\sigma)_{ij} = \sigma_j\sigma_i\inv
+\]
+In the same spirit, we translate this to a statement regarding transition functions
+of a line bundle.
+%
+\begin{prop}
+Let $\pi L \to X$ be a holomorphic line bundle where the transition functions
+$\psi_{ij}$ with respect to a cover $\set{U_i}$ satisfy the \ib{coboundary condition},
+i.e. there exist holomorphic functions $\sigma_i : U_i \to \GL_1\C$ such that
+\[
+\psi_{ij} = \sigma_j\sigma_i\inv
+\]
+Then $L$ is a trivial line bundle.
+\end{prop}
+%
+\begin{proof}
+It suffices to provide a nonvanishing section $X \to L$. A section $s : X \to L$ is
+equivalent to functions $s_i : U_i \to \C$ with the compatibility condition
+\[
+s_i = \psi_{ij}s_j
+\]
+define the $s_i$ by $s_i = \sigma_i\inv$. Then they satisfy the compatibility condition,
+since
+\[
+\psi_{ij}\sigma_j = \sigma_j\sigma_i\inv\sigma_j\inv = \sigma_i\inv = s_i
+\]
+then since the $\sigma_i$ are functions to $\GL_1\C = \C^\times$, they glue to
+a global nonvanishing section, so $L$ is isomorphic to the trivial line bundle
+$X \times \C$.
+\end{proof}
+%
+Recall that isomorphism classes of line bundles over $X$ form a group
+under tensor product, where the inverse of a line bundle $L$ is the dual bundle
+$L^*$. Given line bundles $L,L' \to X$ and an open cover $\mathcal{U_i}$ of $X$
+in which both $L$ and $L'$ are trivialized over the $U_i$ (for instance, a good cover
+of $X$), let $\psi_{ij}$ be the transition functions for $L$ and let $\varphi_{ij}$
+be the transition functions for $L'$. Then the transition functions for $L\otimes L'$
+are $\psi_{ij}\varphi_{ij}$, and the transition functions for $L^*$ are given
+by $\varphi_{ij}\inv$.
+%
+\begin{thm}
+Let $X$ be a complex manifold, and $\O_X$ its sheaf of holomorphic functions.
+Then let $\O_X^\times$ be the sheaf of invertible functions, which is a
+sheaf of abelian groups under multiplication. Then we have a group isomorphism
+\[
+\check{H}^1(X,\O_X^\times) \cong \mathrm{Pic}(X)
+\]
+\end{thm}
+%
+\begin{proof}
+Fix a good cover $\mathcal{U} = \set{U_i}$ for $X$. Since all the sets and their
+nonempty intersections are contractible, we have that
+$\check{H}^i(U_i, \mathcal{F}) = 0$ for all $i > 0$ where $\mathcal{F}$ is the sheaf
+of sections of any line bundle. Since all the $U_i$ are contractible, we also
+have that any line bundle over $U_i$ is trivial, so it admits transition
+functions $\psi_{ij}$ with respect to this cover. As shown above, the
+functions $\psi_{ij}$ exactly define a \v{C}ech $1$-cocyle, and any
+\v{C}ech coboundary defines a trivial bundle. In addition, we have that
+the the transition functions of a tensor product are exactly the products
+of the transition functions. Putting everything together, this tells us that
+the mapping $L \mapsto \set{\psi_{ij}}$ is a bijective group homomorphism.
+\end{proof}
+%
+\section{Divisors}
+%
+%
+\section{Sheaf Cohomology}
+%
+Over a complex manifold $X$, we have many different cohomology theories at our disposal:
+\begin{enumerate}
+  \item The singular cohomology groups $H^i_{\text{sing}}(X,\Z)$.
+  \item The de Rham cohomology groups $H^i_{dR}(X)$.
+  \item The Dolbeault cohomology groups of a holomorphic vector bundle
+  $H^i_{\dbar}(X, E)$.
+  \item The \v{C}ech cohomology groups of a sheaf $\check{H}^i(X,\mathcal{F})$.
+\end{enumerate}
+%
+We want to compare these various cohomology theories. To do so, we show that many of
+these cohomology theories are computing the same thing : sheaf cohomology.
+%
+\begin{rem*}
+While we might explicitly work with sheaves of abelian groups, the following discussion
+is applicable to sheaves of $\mathcal{O}_X$ modules, $C^\infty$ modules, etc.
+\end{rem*}
+%
+\begin{defn}
+The \ib{global sections functor} $\Gamma(X,\cdot)$ is a functor
+$\mathsf{Ab}(X) \to \mathsf{Ab}$ of the category of sheaves of abelian groups over $X$ to
+the category of abelian groups, where given a sheaf of abelian groups $\mathcal{F}$,
+\[
+\Gamma(X,\mathcal{F}) \defeq \mathcal{F}(X)
+\]
+\end{defn}
+%
+The functor is left-exact, i.e. given an exact sequence of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r] & \mathcal{F} \ar[r] & \mathcal{G}
+\end{tikzcd}\]
+we get an exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & \Gamma(X,\mathcal{E}) \ar[r]
+& \Gamma(X,\mathcal{F}) \ar[r] & \Gamma(X,\mathcal{G})
+\end{tikzcd}\]
+%
+However, the functor is not right exact, which is due to the local definitions of
+injectivity and surjectivity. The sheaf axiom guarantees that being injective on
+stalks implies that a sheaf morphism is injective on sections, but it does not
+imply the same thing for surjectivity. As an example, let $\mathcal{Z}^k$ be
+the sheaf of closed smooth $k$-forms, and let $B^k$ be the sheaf of exact $k$-forms.
+Then the inclusion $\mathcal{B}^k \hookrightarrow \mathcal{Z}^k$ is surjective,
+since every closed $k$-form is exact in a sufficiently small neighborhood. However,
+if $H^k_{dR}(X) \neq 0$, then $\Gamma(X,\mathcal{Z}^k) \to \Gamma(X, \mathcal{B}^k)$
+is not surjective.
+%
+\begin{defn}
+The \ib{sheaf cohomology groups} $H^i(X, \mathcal{F})$ of a sheaf $\mathcal{F}$ over $X$
+are the right derived functors of the global sections functor applied to $\mathcal{F}$
+\[
+H^i(X,\mathcal{F}) \defeq R^i\Gamma(X,\mathcal{F})
+\]
+i.e, we take an injective resolution $\mathcal{I}^\bullet = \set{\mathcal{I}^j}$ of
+$\mathcal{F}$
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F} \ar[r] & \mathcal{I}^0 \ar[r] & \mathcal{I}^1 \ar[r] & \cdots
+\end{tikzcd}\]
+and apply $\Gamma(X,\cdot)$ term-wise to the sequence to get
+\[\begin{tikzcd}
+0 \ar[r] & \Gamma(X,\mathcal{F}) \ar[r] & \Gamma(X,\mathcal{I}^0) \ar[r]
+& \Gamma(X,\mathcal{I}^1) \ar[r] & \cdots
+\end{tikzcd}\]
+and then compute the cohomology of this sequence.
+\end{defn}
+%
+We note that in order for these right derived functors to be defined, there need to
+be \emph{enough injectives}. We say that an abelian category $\mathcal{A}$ has enough
+injectives if every object $A \in \mathrm{Ob}(\mathcal{A})$ admits an injective
+map $A \hookrightarrow I$ into an injective object $I$, where an injective object
+is defined to be an object $I$ where given any map $X \to I$ and an injection
+$X \hookrightarrow I$, there exists a map $Y \to Q$ such that the following diagram
+commutes
+\[\begin{tikzcd}
+X \ar[dr]\ar[rr,hookrightarrow] & & Y \ar[dl, dashed] \\
+& Q
+\end{tikzcd}\]
+Alternatively, the pullback map $\hom(Y,Q) \to \hom(X,Q)$ is surjective. We will take
+the following results on faith:
+%
+\begin{thm}
+The categories $\mathsf{Ab}$, $\mathsf{Ab}(X)$, $\mathsf{Mod}_{\O_X}$,
+and $\mathsf{Mod}_{C^\infty}$ have
+enough injectives.
+\end{thm}
+%
+Like with the definition of the \v{C}ech cohomology groups as limits, the
+definition in terms of injective resolutions is practically useless computationally,
+since injective sheaves are hard to write down and difficult to find in the wild.
+The name of the game here is to find a nicer class of resolutions we can take.
+%
+\begin{defn}
+Let $F : \mathcal{A} \to \mathcal{B}$ be a left-exact additive functor. An object
+$A \in \mathrm{Ob}(\mathcal{A})$ is \ib{acyclic} for the functor $F$ if
+$R^iF(A) = 0$ for all $i > 0$.
+\end{defn}
+%
+\begin{prop}
+Let $F : \mathcal{A} \to \mathcal{B}$ be an additive functor, and
+$A \in \mathrm{Ob}(\mathcal{A})$. Then let $A \to M^\bullet$ be a resolution of $A$
+by $F$-acyclic objects. Then $R^iF(A)$ is isomorphic to the $i^{th}$ cohomology
+of the complex $F(M^\bullet)$.
+\end{prop}
+%
+\begin{proof}
+Let $d^0 : M^0 \to M^1$. Then let $B = \coker d^0$ by exactness of
+\[\begin{tikzcd}
+0 \ar[r] & A \ar[r] & M^0 \ar[r, "d^0"] & M^1
+\end{tikzcd}\]
+we get a short exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & A \ar[r] & M^0 \ar[r] & B \ar[r] & 0
+\end{tikzcd}\]
+where the map $M^0 \to B$ is the composition of $d^0$ with the natural map
+$M^1 \to B$. We then take injective resolutions $A \to I^\bullet$,
+$M^0 \to J^\bullet$, and $B \to K^\bullet$. The maps $A \to M^0$ and $M^0 \to B$ induce
+a short exact sequence of chain maps between resolutions by using the defining property
+of injective objects, giving us
+\[\begin{tikzcd}
+0 \ar[r] & A \ar[r] \ar[d] & M^0 \ar[r] \ar[d] & B \ar[r] \ar[d] & 0 \\
+0 \ar[r] & I^0 \ar[r] \ar[d] & J^0 \ar[r] \ar[d] & K^0 \ar[r] \ar[d] & 0 \\
+0 \ar[r] & I^1 \ar[r] \ar[d] & J^1 \ar[r] \ar[d] & K^1 \ar[r] \ar[d] & 0 \\
+& \vdots  & \vdots  & \vdots &
+\end{tikzcd}\]
+which gives us a long exact sequence in cohomology. Noting that the cohomology
+of the respective sequences are just the right derived functors of $A$, $M^0$,
+and $B$, we get the long exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & R^0F(A) \ar[r] & R^0F(M^0) \ar[r] & R^0F(B) \ar[dll] \\
+& R^1F(A) \ar[r] & R^1F(M^0) \ar[r] & R^1F(B) \ar[dll] \\
+& R^2F(A) \ar[r] & R^2F(M^0) \ar[r] & R^2F(B) \ar[dll] \\
+& ~ & \cdots & \cdots
+\end{tikzcd}\]
+Then using the fact that $M^0$ is $F$-acyclic, along with the fact that $R^0F = F$, we
+get that this long exact sequence is actually
+\[\begin{tikzcd}
+0 \ar[r] & F(A) \ar[r] & F(M^0) \ar[r] & F(B) \ar[dll] \\
+& R^1F(A) \ar[r] & 0 \ar[r] & R^1F(B) \ar[dll] \\
+& R^2F(A) \ar[r] & 0 \ar[r] & R^2F(B) \ar[dll] \\
+& ~ & \cdots & \cdots
+\end{tikzcd}\]
+which gives us isomorphisms $R^iF(B) \to R^{i+1}F(A)$ for $i > 0$, as well as
+an isomorphism $R^1F(A) \cong \coker F(M^0) \to F(B)$. To compute the
+cokernel of that map, we note that $B$ admits the resolution
+\[\begin{tikzcd}
+0 \ar[r] & B \ar[r] & M^1 \ar[r] & \cdots
+\end{tikzcd}\]
+where the map $B \to M^1$ is the map induced by $d^0$, using exactness of acyclic
+resolution. Then since $F$ is left-exact, we get that
+\[\begin{tikzcd}
+0 \ar[r] & F(B) \ar[r] & F(M^1) \ar[r] & \cdots
+\end{tikzcd}\]
+is exact, giving us that $F(B)$ is isomorphic to the kernel of $F(M^1) \to F(M^2)$.
+Therefore, we get that
+\[
+R^1F(A) \cong \frac{\ker(F(M^1) \to F(M^2))}{\im(F(M^1) \to F(M^2))}
+= H^1(F(M^\bullet))
+\]
+Then to get the isomorphism for $R^2F(A)$, we note that since
+$R^1F(B) \cong R^2F(A)$, we can play the same game using the resolution of $B$
+to compute $R^1F(B)$ to be $H^2(F(M^\bullet))$, and then inductively repeat
+the process with the cokernel of $M^1 \to M^2$ to get $R^3F(A)$ and so on.
+\end{proof}
+%
+Something that is silly to observe, but useful.
+%
+\begin{prop}
+Injective objects are $F$-acyclic.
+\end{prop}
+%
+\begin{proof}
+Let $I$ be injective. Then take the injective resolution $0 \to I \to I \to 0$
+where the map is the identity map.
+\end{proof}
+%
+Therefore, to compute right derived functors, it suffices to find acyclic resolutions.
+This gets us one step closer to finding nice resolutions for computing sheaf cohomology.
+%
+\begin{defn}
+A sheaf $\mathcal{F}$ over $X$ is \ib{flasque} (also called \ib{flabby}) if
+the restriction maps are surjective.
+\end{defn}
+%
+Most sheaves in nature aren't flasque. However, flasque sheaves are useful for giving
+us acyclic resolutions. To do this, we'll need some lemmas.
+%
+\begin{lem}
+Let
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r, "\alpha"] & \mathcal{F} \ar[r,"\beta"]
+& \mathcal{G} \ar[r] & 0
+\end{tikzcd}\]
+be a short exact sequence where $\mathcal{E}$ is flasque. Then for any open set $U$,
+the sequence
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E}(U) \ar[r, "\alpha(U)"] & \mathcal{F}(U) \ar[r, "\beta(U)"]
+& \mathcal{G}(U) \ar[r] & 0
+\end{tikzcd}\]
+is exact.
+\end{lem}
+%
+\begin{proof}
+By left-exactness of taking sections, it suffices to show that
+$\beta(U) : \mathcal{F}(U) \to \mathcal{G}(U)$ is surjective. Let
+$\sigma \in \mathcal{G}(U)$. Since $\beta$ is a surjective sheaf morphism, for any
+$x \in U$, the induced map on stalks $\beta_x : \mathcal{F}_x \to \mathcal{G}_x$ is
+surjective, which implies that there exists a sufficiently small neighborhood
+$V_x \subset U$ of $x$ where
+$\beta(V_x) : \mathcal{F}(V_x) \to \mathcal{G}(V_x)$ is surjective,
+so we can find $\tau_x \in \mathcal{F}(V_x)$ such that
+$\beta(V_x)(\tau) = \sigma\vert_{V_x}$. Then let $y \in U$ such that
+$V_x \cap V_y \neq \emptyset$, and let $\tau_y \in \mathcal{F}(V_y)$ such that
+$\beta(V_y)(\tau_y) = \sigma\vert_{V_y}$. Then we know that
+$\tau_x\vert_{V_x \cap V_y} - \tau_y\vert_{V_x \cap V_y} \in \ker\beta(V_x \cap V_y)$,
+so it is the image of an element $k \in \mathcal{E}(V_x \cap V_y)$. Since $\mathcal{E}$
+is flasque, we know that we can lift $k$ to an section $\chi_{x,y} \in \mathcal{E}(V_x)$.
+Then the element $\tau_x' = \tau_x - \alpha(V_x)(\chi_{x,y})$ still maps to
+$\sigma\vert_{V_x}$  under $\beta(V_x)$ by exactness, and restricts to $\tau_y$ on
+$V_x \cap V_y$. Therefore, $\tau_x'$ and $\tau_y$ glue to a section over $V_x \cup V_y$
+that maps to $\sigma\vert_{V_x \cup V_y}$.  We then find a maximal pair $(W, \tau)$ such
+that $\tau \in \mathcal{F}(W)$ and $\beta(W)(\tau) = \sigma\vert_W$. Then we must
+necessarily have $W = U$, since otherwise, we can find another open subset $V$ of $U$
+and a section $\varphi$ over $V$ mapping to $\sigma\vert_V$, and extend $\tau$ to a
+section over $W \cup V$, since if $W \cap V \neq \emptyset$, we can use our above
+argument, and otherwise, no work needs to be done. Either way, finding such a $U$
+and $\varphi$ contradicts maximality of $(W,\tau)$.
+\end{proof}
+%
+\begin{lem}
+Let
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r,"\alpha"] & \mathcal{F} \ar[r,"\beta"]
+& \mathcal{G} \ar[r] & 0
+\end{tikzcd}\]
+be a short exact sequence of sheaves where $\mathcal{E}$ and $\mathcal{F}$ are flasque.
+Then $\mathcal{G}$ is flasque.
+\end{lem}
+%
+\begin{proof}
+Let $V \subset U$. Then given $\sigma \in \mathcal{G}(V)$, we want to show that
+there exits $\widetilde{\sigma} \in \mathcal{G}(U)$ that restricts to $\sigma$. Since
+$\mathcal{E}$ is flasque, we have that
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E}(V) \ar[r, "\alpha(V)"] & \mathcal{F}(V) \ar[r,"\beta(V)"]
+& \mathcal{G}(V) \ar[r] & 0
+\end{tikzcd}\]
+is exact, so we can find a section $\tau \in \mathcal{F}(V)$ with
+$\beta{V}(\tau) = \sigma$. Then since $\mathcal{F}$ is flasque, this lifts to
+an element $\widetilde{\tau} \in \mathcal{F}(U)$. Then taking
+$\widetilde{\sigma} = \beta(U)(\widetilde{\tau})$ gives us the desired section, since
+the properties of a sheaf morphism implies that the following diagram commutes:
+\[\begin{tikzcd}
+\mathcal{F}(U) \ar[r, "\beta(U)"] \ar[d] & \mathcal{G}(U) \ar[d] \\
+\mathcal{F}(V) \ar[r, "\beta(V)"'] & \mathcal{G}(V)
+\end{tikzcd}\]
+\end{proof}
+%
+\begin{prop}
+Flasque sheaves are acyclic for the global sections functor $\Gamma(X, \cdot)$.
+\end{prop}
+%
+\begin{proof}
+Let $\mathcal{F}$ be a flasque sheaf. We first embed $\mathcal{F}$ into an injective
+flasque sheaf $\mathcal{I}$. Since $\mathsf{Ab}$ has enough injectives, we can embed
+each stalk $\mathcal{F}_x$ into an injective group $I_x$. Then define the sheaf
+$\mathcal{I}$ by
+\[
+\mathcal{I}(U) = \prod_{x \in U} I_x
+\]
+and the restriction maps are the projection maps
+$\prod_{x \in U} I_x \to \prod_{x \in V} I_x$. Since these maps are surjective,
+$\mathcal{I}$ is flasque. In addition, it is injective by construction. Then
+$\mathcal{F}$ embeds into $\mathcal{I}$ by composing the inclusions
+$\mathcal{F}(U)\hookrightarrow\prod_{x\in U}\mathcal{F}_x\hookrightarrow\prod_{x\in V}I_x$
+Then let $\mathcal{G}$ be the cokernel of $\mathcal{F} \hookrightarrow \mathcal{I}$,
+giving us the exact sequence of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F} \ar[r] & \mathcal{I} \ar[r] & \mathcal{G} \ar[r] & 0
+\end{tikzcd}\]
+taking resolutions of $\mathcal{F}$, $\mathcal{I}$ and $\mathcal{G}$ gives
+us a long exact sequence in cohomology
+\[\begin{tikzcd}
+0 \ar[r] & H^0(X,\mathcal{F}) \ar[r] & H^0(X,\mathcal{I}) \ar[r]
+& H^0(X,\mathcal{G}) \ar[dll] \\
+& H^1(X,\mathcal{F}) \ar[r] & H^1(X, \mathcal{I}) \ar[r] & H^1(X,\mathcal{G})\ar[dll] \\
+& H^2(X,\mathcal{F}) \ar[r] & H^2(X, \mathcal{I}) \ar[r] & H^2(X,\mathcal{G})\ar[dll] \\
+& ~ & \cdots & \cdots
+\end{tikzcd}\]
+The since $H^0$ is just $\Gamma(X,\cdot)$ and $\mathcal{I}$ is injective, this becomes
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F}(X) \ar[r] & \mathcal{I}(X) \ar[r] & \mathcal{G}(X) \ar[dll] \\
+& H^1(X,\mathcal{F}) \ar[r] & 0 \ar[r] & H^1(X,\mathcal{G}) \ar[dll] \\
+& H^2(X,\mathcal{F}) \ar[r] & 0 \ar[r] & H^2(X,\mathcal{G}) \ar[dll] \\
+& ~ & \cdots & \cdots
+\end{tikzcd}\]
+Since $\mathcal{F}$ is flasque, we have that
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F}(X) \ar[r] & \mathcal{I}(X) \ar[r] & \mathcal{G}(X) \ar[r] & 0
+\end{tikzcd}\]
+is exact, so this implies that $H^1(X,\mathcal{F}) = 0$. In addition, for $i > 0$,
+we get isomorphisms $H^i(X,\mathcal{G}) \to H^{i+1}(X, \mathcal{F})$. To get that
+$H^2(X,\mathcal{F}) = 0$, we note that $\mathcal{G}$ is flasque, so we can
+repeat the argument to get that $H^1(X,\mathcal{G}) = H^2(X, \mathcal{F})$, and
+then continue for the other cohomology groups.
+\end{proof}
+%
+As a consequence, it suffices to find resolutions by flasque sheaves to compute sheaf
+cohomology. The good news here is that every sheaf admits a canonical
+acyclic resolution, the \ib{Godement resolution}. For a sheaf $\mathcal{F}$,
+let $\mathcal{F}_{\mathrm{God}}$ be the sheaf $U \mapsto \prod_{x \in U}\mathcal{F}_x$,
+which is clearly flasque. Then we construct a flasque resolution for
+$\mathcal{F}$ as follows : embed
+$\mathcal{F} \hookrightarrow \mathcal{F}_{\mathrm{God}}$, and let $\mathcal{G}^1$ be
+the cokernel. Then let the next sheaf in the sequence be $\mathcal{G}^1_{\mathrm{God}}$,
+where the map $\mathcal{F}_{\mathrm{God}} \to \mathcal{G}^1_{\mathrm{God}}$ is the
+quotient map $\mathcal{F}_{\mathrm{God}} \to \mathcal{G}^1$ composed in the the inclusion
+$\mathcal{G}^1 \hookrightarrow \mathcal{G}^1_{\mathrm{God}}$. Then take $\mathcal{G}^2$
+to be the cokernel of $\mathcal{F}_{\mathrm{God}} \to \mathcal{G}^1_{\mathrm{God}}$,
+and continue with $\mathcal{G}^2_{\mathrm{God}}$ and so on. Pictorially, the
+Godement construction is constructed as follows:
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F} \ar[r] & \mathcal{F}_{\mathrm{God}} \ar[dr] \ar[r]
+& \mathcal{G}^1 \ar[r] \ar[d] & 0 \\
+& & & \mathcal{G}^1_{\mathrm{God}} \ar[r] \ar[dr] & \mathcal{G}^2 \ar[r] \ar[d] & 0\\
+& & & & \mathcal{G}^2_{\mathrm{God}} \ar[r] \ar[dr] & \mathcal{G}^3 \ar[r] \ar[d] & 0 \\
+& & & & & \ddots
+\end{tikzcd}\]
+%
+Once more, this resolution is computationally useless, but it serves the purpose of
+showing that every sheaf admits a resolution by flasque sheaves. With this in hand,
+we can finally show that we can compute sheaf cohomology with a nice class of sheaves.
+%
+\begin{defn}
+Let $\mathcal{A}$ be a sheaf of rings over $X$ such that $\mathcal{A}$ admits
+\ib{partitions of unity}, i.e. for any open cover $\set{U_i}$ of $X$, there exist global
+sections $f_i \in \mathcal{A}(X)$ such that $\sum_i f_i = 1$ and $f_i$ is supported
+in $U_i$, and where over any particular open set, all but finitely many of the $f_i$
+are $0$. Then a sheaf of $\mathcal{A}$-modules is a \ib{fine sheaf}.
+\end{defn}
+%
+These are sheaves we care about, and appear in nature.
+%
+\begin{exmp}
+Let $M$ be a smooth manifold. Then the sheaf $C^\infty$ of smooth functions
+admits partitions of unity. Therefore, $\mathsf{Mod}_{C^\infty}$ consists of fine
+sheaves.
+\end{exmp}
+%
+The punchline is that fine sheaves are acyclic, which gives us a source of reasonable
+sheaves with which to build resolutions.
+%
+\begin{thm}
+Fine sheaves are acyclic with respect to $\Gamma(X,\cdot)$.
+\end{thm}
+%
+\begin{proof}
+Let $\mathcal{F}$ be a fine sheaf -- a sheaf of modules over a sheaf of rings
+$\mathcal{A}$ that admits partitions of unity. Then by taking the
+Godement resolution of $\mathcal{F}$, we get an injective resolution of
+flasque $\mathcal{A}$-modules.
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F} \ar[r] & \mathcal{I}^0 \ar[r, "d^0"] & \mathcal{I}^1 \ar[r, "d^1"]
+& \cdots
+\end{tikzcd}\]
+Then since flasque sheaves are acyclic, we get that we can compute the sheaf
+cohomology of $\mathcal{F}$ as
+\[
+H^i(X, \mathcal{F})
+= \frac{\ker d^{i+1}(X) : \mathcal{I}^i(X) \to \mathcal{I}^{i+1}(X)}
+{\im d^i(X) : \mathcal{I}^{i-1}(X) \to \mathcal{I}^i(X)}
+\]
+Then let $\alpha \in \ker d^{i+1}(X)$, by exactness, we know that locally, in a
+sufficiently small open cover $\set{U_j}$, the map $d^{i}(U_j)$ is surjective,
+so we can find $\beta_j \in \mathcal{I}^{i-1}(U_j)$ such that
+$d^i(V_j)(\beta_j) = \alpha\vert_{U_j}$. Then $f_i\beta_i$ determines a global
+section that is equal to $f_j\beta_j$ on $U_i$ and $0$ elsewhere, and we get that
+$\sum_jf_j\beta_j$ maps to $\sum_j f_j\alpha\vert_{U_j} = \alpha$ under $d^i(X)$.
+Therefore, the sequence is exact on global sections for $i > 0$, so $\mathcal{F}$
+is acyclic.
+\end{proof}
+%
+This tells us that many of the sheaves we know about, like sheaves of smooth sections
+of a vector bundle are trivial from the perspective of sheaf cohomology.
+%
+\section{Comparison of Cohomology Theories}
+%
+The fact that many of the sheaves we encounter naturally have trivial sheaf cohomology
+might come as a surprise, since we know we can extract topological data from
+these sheaves. The reason for this is that they provide good resolutions of
+other sheaves with nontrivial sheaf cohomology. U
+%
+\begin{prop}[Poincar\'e Lemma]
+Every closed smooth $k$-form $\omega$ is locally exact, i.e. for a sufficiently
+small $U$, we have that $\omega\vert_U = d\eta$ for some $k-1$-form $\eta$.
+\end{prop}
+%
+\begin{prop}[$\dbar$-Poincar\'e Lemma]
+Ever closed smooth $(p,q)$-form $\omega$ is locally $\dbar$-exact
+\end{prop}
+%
+\begin{cor}
+The de Rham complex
+\[\begin{tikzcd}
+A^0(X) \ar[r, "d"] & A^1(X) \ar[r, "d"] & \cdots
+\end{tikzcd}\]
+is an exact sequence of sheaves.
+\end{cor}
+%
+The constant sheaf $\underline{\R}$ of locally constant real-valued functions
+naturally lives as a subsheaf of $A^0(X)$, and we know that this exactly
+the kernel of $d : A^0(X) \to A^1(X)$. This tells us that the inclusion
+$0 \to \underline{\R} \to A^\bullet(X)$ is a resolution of $\underline{\R}$,
+called the \ib{de Rham resolution}. Furthermore,
+since all the $A^i(X)$ are sheaves of $C^\infty$-modules, they are fine, so
+the resolution is a resolution of $\underline{\R}$ by acyclic sheaves. Therefore,
+we get the isomorphisms
+\[
+H^i(X, \underline{\R}) \cong H^i_{dR}(X)
+\]
+A similar story holds for the sheaf cohomology of the sheaf of sections of a holomorphic
+vector bundle $E \to X$. The $\dbar$-Poincar\'e lemma implies that the Dolbeault
+complex
+\[\begin{tikzcd}
+\mathcal{A}^0(E) \ar[r, "\dbar_E"] & \mathcal{A}^1(E) \ar[r, "\dbar_e"] & \cdots
+\end{tikzcd}\]
+of sheaves of smooth sections of $(\Lambda^i T^*X)_\C \otimes E$ is an exact sequence,
+since $\dbar_E$ is defined locally in terms of the operator $\dbar$ on $X$.
+Then since the kernel of $\dbar_E : \mathcal{A}^0(E) \to \mathcal{A}^1(E)$ is
+exactly the sheaf $\mathcal{E}$ of holomorphic sections of $E$, we get that
+$0 \to \mathcal{E} \to \mathcal{A}^\bullet(E)$ is an acyclic resolution of
+$\mathcal{E}$, which gives us isomorphisms
+\[
+H^i(X,\mathcal{E}) \cong H^i_{\dbar}(X, E)
+\]
+%
+%TODO Cech vs derived functor cohomology
+%
+\newpage
+%
+\nocite{*}
+%
+\printbibliography
+%
+\end{document}

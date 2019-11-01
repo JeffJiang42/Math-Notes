@@ -105,7 +105,7 @@
 \newcommand{\Bord}{\mathsf{Bord}}
 \renewcommand{\hom}{\mathsf{Hom}}
 \renewcommand{\emptyset}{\varnothing}
-\renewcommand{\O}{\mathscr{O}}
+\renewcommand{\O}{\mathcal{O}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\ib}[1]{\textbf{\textit{#1}}}
 \newcommand{\Q}{\mathbb{Q}}
@@ -695,9 +695,63 @@ looking at how the transition functions interact with the series expansions of
 functions, we have that the space of sections is isomorphic to the
 space of polynomials in $n$ variables of degree $\leq k$, which by multiplying through
 by a the $k^{th}$ power of a variable, is isomorphic to the space of homogeneous
-polynomials in $n+1$ variables of degree $k$. \\
-
-There is another, more geometric way to interpret why the space of sections of
+polynomials in $n+1$ variables of degree $k$. In fact, we can give a very explicit
+description of all local sections of the bundles $\O(d)$.
+%
+\begin{thm}
+Let $\pi : \C^{n-1} - \set{0} \to \CP^n$ be the usual projection sending
+$z \in C^{n-1}$ to $\mathrm{span}\set{z}$. Then the space of sections
+$\O(k)(U)$ is isomorphic to the space of homogeneous of degree $k$  holomorphic functions
+$f : \pi\inv(U) \to \C$ i.e.
+\[
+f(tz_0, \ldots, tz_n) = t^kf(z_0,\ldots, z_n)
+\]
+\end{thm}
+%
+\begin{proof}
+Let $\sigma \in \O(k)(U)$ be a section. Then the set $\set{U \cap U_i}$ is an
+open cover of $U$, so $\sigma$ is determined by its restrictions
+$\sigma_i \defeq \sigma_i\vert_{U \cap U_i}$. Since the bundle $\O(d)$ is trivial
+over the $U_i$, the local sections $\sigma_i$ can be identified with holomorphic
+functions $U \cap U_i \to \C$ with the compatibility condition
+\[
+\sigma_i([z_0 :\ldots : z_n])
+= \left(\frac{z_j}{z_i}\right)^k\sigma_j([z_0: \ldots : z_n])
+\]
+We then give maps in both directions. Given a section
+$\sigma \in \O(k)(U)$, define the function $f_\sigma$ by
+\[
+f_\sigma(z_0,\ldots z_n) = z_i^k\sigma_i(\pi(z_0,\ldots z_n))
+\]
+We must verify that this is well-defined, i.e. it is independent of our choice of $i$.
+We compute
+\begin{align*}
+f_\sigma(z_0,\ldots z_n)
+&=  z_i^k\sigma_i(\pi(z_0,\ldots z_n)) \\
+&=  \left(\frac{z_j}{z_i}\right)^kz_i^k\sigma_j(\pi(z_0,\ldots z_n)) \\
+&= z_j^k\sigma_k(\pi(z_0, \ldots z_n)) \\
+\end{align*}
+So this determines a well defined function on $\pi\inv(U)$. In addition, it is
+visibly homogeneous of degree $k$, since the $\sigma_i$ are constant on lines and
+$z_i^k$ is homogeneous of degree $k$. To show this is an isomorphism, we provide
+an inverse. Given a homogeneous function $f$ of degree $k$ on $\pi\inv(U)$, define
+the section $\sigma_f$ locally by
+\[
+(\sigma_f)_i([z_0: \ldots :z_n]) = \frac{f(z_0,\ldots z_n)}{z_i^k}
+\]
+then to show that this defines a section, we must show that they agree on intersections
+using the transition functions. We compute
+\[
+\left(\frac{z_i}{z_j}\right)^k(\sigma_f)_i\vert_{U \cap U_i \cap U_j}([z_0: \ldots : z_n])
+= \left(\frac{z_i}{z_j}\right)^k\frac{f(z_0,\ldots, z_n)}{z_i^k}
+= \frac{f(z_0, \ldots z_n)}{z_j^k}
+= (\sigma_f)_j
+\]
+The two mappings provided are visibly inverses, since one is essentially multiplication
+by $z_j^k$ and the other is essentially division by $z_j^k$.
+\end{proof}
+%
+There is another, more geometric way to interpret why the space of global sections of
 the bundle $\O(k)$ is the space of degree $k$ homogeneous polynomials, which
 echoes the discussion in the first proofs we gave for Theorem 1.13 and 1.14.
 A degree $k$ homogeneous polynomial $p \in \C[z_0,\ldots,z_n]_k$ determines
@@ -710,6 +764,6 @@ $\ell \in \CP^n$ then determines a section of $\O(k)$. \\
 
 As a final remark, note that while we started by working with complex geometry
 and holomorphic maps, we were quickly reduced to studying polynomials, which
-at the closely intertwined nature of complex and algebraic geometry.
+hints at the closely intertwined nature of complex and algebraic geometry.
 %
 \end{document}
