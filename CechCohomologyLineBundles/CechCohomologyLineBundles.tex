@@ -11,7 +11,7 @@
 \usepackage{amsthm}
 \usepackage{mathpazo}
 \usepackage{float}
-\usepackage{spectralsequences}\usepackage[backend=biber]{biblatex}
+\usepackage[backend=biber]{biblatex}
 \addbibresource{bibliography.bib}
 %\usepackage{charter} %another font
 %\usepackage{eulervm} %Vakil font
@@ -21,7 +21,7 @@
 \usepackage{mathrsfs}
 \usepackage{fourier-orns}
 \usepackage[all]{xy}
-\usepackage[unicode]{hyperref}
+\usepackage{hyperref}
 \usepackage{url}
 \usepackage{mathtools}
 \usepackage{graphicx}
@@ -33,12 +33,6 @@
 \usepackage{pdfpages}
 \usepackage{transparent}
 
-\newcommand{\incfig}[2]{%
-    \fontsize{48pt}{50pt}\selectfont
-    \def\svgwidth{\columnwidth}
-    \scalebox{#2}{\input{#1.pdf_tex}}
-}
-%
 \usepackage{tgpagella}
 \usepackage[T1]{fontenc}
 %
@@ -104,7 +98,7 @@
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \renewcommand{\sl}{\mathfrak{sl}}
 \newcommand{\Bord}{\mathsf{Bord}}
-\renewcommand{\hom}{\mathrm{Hom}}
+\renewcommand{\hom}{\mathsf{Hom}}
 \renewcommand{\emptyset}{\varnothing}
 \renewcommand{\O}{\mathcal{O}}
 \newcommand{\R}{\mathbb{R}}
@@ -112,25 +106,22 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\N}{\mathbb{N}}
-\renewcommand{\C}{\mathbb{C}}
+\newcommand{\C}{\mathbb{C}}
 \newcommand{\A}{\mathbb{A}}
 \newcommand{\F}{\mathbb{F}}
 \newcommand{\M}{\mathcal{M}}
 \newcommand{\dbar}{\overline{\partial}}
 \newcommand{\zbar}{\overline{z}}
 \renewcommand{\S}{\mathbb{S}}
-\renewcommand{\P}{\mathbb{P}}
 \newcommand{\V}{\vec{v}}
 \newcommand{\RP}{\mathbb{RP}}
 \newcommand{\CP}{\mathbb{CP}}
 \newcommand{\B}{\mathcal{B}}
-\newcommand{\GL}{\mathrm{GL}}
-\newcommand{\PGL}{\mathrm{PGL}}
-\newcommand{\SL}{\mathrm{SL}}
-\newcommand{\PSL}{\mathrm{PSL}}
-\newcommand{\SP}{\mathrm{SP}}
-\newcommand{\SO}{\mathrm{SO}}
-\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\GL}{\mathsf{GL}}
+\newcommand{\SL}{\mathsf{SL}}
+\newcommand{\SP}{\mathsf{SP}}
+\newcommand{\SO}{\mathsf{SO}}
+\newcommand{\SU}{\mathsf{SU}}
 \newcommand{\gl}{\mathfrak{gl}}
 \newcommand{\g}{\mathfrak{g}}
 \newcommand{\Bun}{\mathsf{Bun}}
@@ -147,6 +138,12 @@
 \let\oldL\L
 \renewcommand\L{\mathfrak{L}}
 \makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
 \newcommand{\tpitchfork}{%
   \vbox{
     \baselineskip\z@skip
@@ -173,7 +170,6 @@
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\inter}{Int}
 \DeclareMathOperator{\sign}{sign}
-\DeclareMathOperator{\Stab}{Stab}
 \DeclareMathOperator{\sgn}{sgn}
 \DeclareMathOperator{\indx}{ind}
 \DeclareMathOperator{\alt}{Alt}
@@ -223,13 +219,16 @@
 %--------Graphics--------
 %
 %\graphicspath{ {images/} }
+%
 \begin{document}
 %
 \author{Jeffrey Jiang}
 %
-\title{\v{C}ech Cohomology, Sheaf cohomology, and Line Bundles}
+\title{Sheaf Cohomology, Line Bundles, and Divisors}
 %
 \maketitle
+%
+\tableofcontents
 %
 \section{\v{C}ech Cohomology}
 %
@@ -409,7 +408,8 @@ $d(\tau + \alpha(e)) = d\tau + d\alpha(e) = d\tau + \alpha(de) = d\tau$.
 We make one observation about \v{C}ech cohomology
 %
 \begin{prop}
-The $0^{th}$ \v{C}ech cohomology group is isomorphic to the space of global sections, i.e.
+The $0^{th}$ \v{C}ech cohomology group is isomorphic to the space of global sections,
+i.e.
 \[
 \check{H}^0(\mathcal{U}, \mathcal{F}) \cong \Gamma(X, \mathcal{F})
 \]
@@ -432,6 +432,8 @@ is a collection of local sections that agrees on intersections, which is exactly
 a global section of $\mathcal{F}$. In addition, it is injective, since if
 a section restricts to $0$ on every open set, it is the zero section.
 \end{proof}
+%
+%TODO Functoriality of Cech cohomology
 %
 \section{\v{C}ech Cohomology on $\CP^n$}
 %
@@ -678,11 +680,206 @@ functions $\psi_{ij}$ exactly define a \v{C}ech $1$-cocyle, and any
 \v{C}ech coboundary defines a trivial bundle. In addition, we have that
 the the transition functions of a tensor product are exactly the products
 of the transition functions. Putting everything together, this tells us that
-the mapping $L \mapsto \set{\psi_{ij}}$ is a bijective group homomorphism.
+the mapping $L \mapsto \set{\psi_{ij}}$ sending a line bundle to the cocycles
+determined by its transition functions is a bijective group homomorphism.
 \end{proof}
 %
 \section{Divisors}
 %
+Given a complex manifold $X$, a complex hypersurface $Y \subset X$ (also called an
+analytic hypersurface) is locally cut out a single holomorphic function, i.e. there is
+an open cover $\set{U_i}$ of $X$ such that $Y \cap U_i$ is the vanishing locus of a
+single holomorphic function $g_i$. We say that the functions $g_i$ are
+\ib{defining functions} for $Y$. The hypersurface $Y$ is said to be \ib{irreducible}
+if at any $p \in Y$, the defining function $g$ for $Y$ in a neighborhood about
+$p$ is irreducible in the local ring $\O_{X,p}$. If the defining function for a
+hypersurfaces is not irreducible, then it can be written as a product of irreducible
+functions $g_i$ in $\O_{X,p}$, in which case we can write $Y$ as the union of the
+irreducible hypersurfaces determined by the $g_i$. \\
+
+On the complex line $\C$, the irreducible hypersurfaces are just points $p \in \C$,
+which have defining functions $f(z) = (z-p)$. Recall that all meromorphic functions
+on $\C$ are of the form $p(z)/q(z)$ for polynomials $p(z),q(z) \in \C[z]$. A great
+deal of the study of meromorphic functions on $\C$ revolves around studying their zeroes
+and poles, which is something that divisors will encapsulate for higher dimensional
+complex manifolds.
+%
+\begin{defn}
+Let $Y \subset X$ be an irreducible hypersurface. Let $f \in \mathcal{K}(X)$ be a
+meromorphic function, and fix a point $y \in Y$. Then $Y$ is locally cut out by an
+irreducible holomorphic function $g \in \O_{X,y}$. The \ib{order} of $f$ at
+$y$, denoted $\mathrm{ord}_{Y,y}(f)$ is the smallest integer $n$ such that there exists
+an invertible holomorphic function $h \in \O_{X,y}$ such that $f= g^nh$.
+\end{defn}
+%
+We note that this definition is independent of our choice of defining function, since
+any two irreducible defining functions for $Y$ differ by a unit in $\O_{X,y}$. In
+addition, if $Y$ is irreducible, it is also independent of our choice of point $y \in Y$,
+since if a holomorphic function $g$ is irreducible in $\O_{X,y}$, then it is also
+irreducible in $\O_{X,y'}$ for any point $y'$ sufficiently close. Therefore, we can
+simply write $\mathrm{ord}_Y(f) \defeq \mathrm{ord}_{Y,y}(f)$ for any point $y \in Y$,
+provided that $Y$ is an irreducible hypersurface. The intuition behind the definition
+is that the order of $f$ at $y$ should be the degree to which the function vanishes
+at the point $y$, or the degree of the pole at $y$
+%
+\begin{exmp}
+Let $X = \C$, and $Y = \set{p}$, so $Y$ has locally (in fact globally) defining
+function $g(z) = (z-p)$. Then let $f$ be the meromorphic function
+\[
+f(z) = \frac{(z-p)^k}{q(z)}
+\]
+where $q(z)$ is a polynomial that does not vanish at $p$.
+Then the order of $f$ at $p$ is $k$, as you would expect, $k$. The role of $h$
+is played by the locally invertible function $1/q(z)$, which is a unit in the local
+ring $\O_{\C,p}$. If instead we have
+\[
+f(z) = \frac{q(z)}{(z-p)^k}
+\]
+for a polynomial $q(z)$ that does not vanish at $p$, then the order of $f$
+at $y$ is $-k$, where the role of $h$ is played by $q(z)$.
+\end{exmp}
+%
+A simple, but important observation is that order is additive on products.
+%
+\begin{prop}
+Let $Y \subset X$ be an irreducible hypersurface with locally defining function
+$g$ at $y \in Y$. Let $f_1,f_2 \in \mathcal{K}(X)$ be meromorphic functions. Then
+\[
+\mathrm{ord}_Y(f_1f_2) = \mathrm{ord}_Y(f_1) + \mathrm{ord}_Y(f_2)
+\]
+\end{prop}
+%
+Some more key observations are that for a nonvanishing holomorphic function $f$, we have
+that $\mathrm{ord}_Y(f) = 0$ for any irreducible hypersurface $Y \subset X$, and
+that $\mathrm{ord}_Y(f) = 0 \mathrm{ord}_Y(1/f)$.
+%
+\begin{proof}
+In the local ring $\O_{X,y}$, we have that
+\[
+f_1 = g^{\mathrm{ord}_Y(f_1)}h_1 \qquad f_2 = g^{\mathrm{ord}_Y(f_2)}h_2
+\]
+Therefore, we have that
+\[
+f_1f_2 = g^{\mathrm{ord}_Y(f_1) + \mathrm{ord}_Y(f_2)}h_1h_2
+\]
+The function $h_1h_2$ does not vanish at $y$, and we have that
+$\mathrm{ord}_Y(f_1) + \mathrm{ord}_Y(f_2)$ must be the smallest integer for
+$f_1f_2$, since $\mathrm{ord}_Y(f_1)$ and $\mathrm{ord}_Y(f_2)$ are minimal for
+$f_1$ and $f_2$ respectively.
+\end{proof}
+%
+\begin{defn}
+A \ib{divisor} $D$ on $X$ is a formal integral combination
+\[
+D = \sum a_i[Y_i]
+\]
+where $Y_i$ is an irreducible hypersurface for all $i$. The group of divisors on
+$X$ is denoted $\mathrm{Div}(X)$.
+\end{defn}
+%
+The intuition for a divisor is that it should interpreted as a prescription for zeroes
+and poles of a meromorphic function. For example, in $\C$, you should think of
+the divisor
+\[
+D = p_1 + 4p_2 - 4p_3 - 6p_4
+\]
+as corresponding the the meromorphic function
+\[
+f(z) = \frac{(z-p_1)(z-p_2)^4}{(z-p_3)^4(z-p_4)^6}
+\]
+Of course, this isn't exactly true or precise. For example, we could multiply the
+numerator or denominator by nonvanishing holomorphic functions and then obtain a function
+with the same poles and zeroes as $f$.
+%
+\begin{defn}
+Let $f \in \mathcal{K}(X)$ be a meromorphic function. Then the \ib{zero divisor} of
+$f$ is the divisor
+\[
+(f)_0 = \sum_{\mathrm{ord}_Y(f) > 0} \mathrm{ord}_Y(f)[Y]
+\]
+where the sum is taken over all irreducible hypersurfaces $Y > 0$. Likewise, the
+\ib{pole divisor} of $f$ is defined to be the divisor
+\[
+(f)_\infty = \sum_{\mathrm{ord}_Y(f) < 0} \mathrm{ord}_Y(f)[Y]
+\]
+The \ib{associated divisor} of $f$ is the divisor
+\[
+(f) = (f)_0 - (f)_\infty = \sum_Y \mathrm{ord}_Y(f)
+\]
+\end{defn}
+%
+This makes precise what we mean by divisors being prescriptions for poles and
+zeroes, but the correspondence between meromorphic functions and divisors is
+far from bijective, as we noted above. Our observation was that if any two meromorphic
+functions differed by a nonvanishing holomorphic function, then they will define the
+same divisor. This turns out to be the only redundancy.
+%
+\begin{thm}
+Let $X$ be a complex manifold. Then let $\mathcal{K}^\times_X$ denote the sheaf of
+nonzero meromorphic functions, and $\O_X^\times \subset \mathcal{K}^\times_X$ the sheaf
+of nonvanishing holomorphic functions, which are both sheaves of abelian groups
+under multiplication. Then we have an isomorphism
+\[
+\Gamma(X, \mathcal{K}^\times_X/\O^\times_X) \to \mathrm{Div}(X)
+\]
+\end{thm}
+%
+\begin{proof}
+An global section $\sigma$ of the quotient sheaf $\mathcal{K}_X^\times / \O_X^\times$ is a
+collection of pairs $(U_i, f_i)$ of meromorphic functions
+$f_i \in \mathcal{K}_X^\times(U_i)$ such that on the intersections $U_i \cap U_j$, their
+quotient  $f_i/f_j$ is an element of $\O_X^\times$, i.e. a nonvanishing holomorphic
+function over $U_i \cap U_j$. Therefore, over the intersection, we have that
+\[
+\mathrm{ord}_Y(f_i) - \mathrm{ord}_Y(f_j) = \mathrm{ord}_Y(f_i/f_j) = 0
+\]
+For any irreducible hypersurface $Y$. Therefore, we have that
+$\mathrm{ord}_Y(f_i) = \mathrm{ord}_Y(f_j)$. Therefore, the order
+$\mathrm{ord}_Y(\sigma)$ of $\sigma$ is well-defined for any irreducible hypersurface
+$Y \subset X$, so we get a well-defined map
+\begin{align*}
+\Gamma(X, \mathcal{K}^\times_X / \O_X^\times) &\to \mathrm{Div}(X) \\
+\sigma &\mapsto (\sigma) \defeq \sum_Y \mathrm{ord}_Y(\sigma)[Y]
+\end{align*}
+To show that this mapping is bijective, we provide an inverse map. Let
+$D = \sum_i a_i [Y_i] \in \mathrm{Div}(X)$. Then we can find an open cover $\set{U_i}$
+of $X$ where in each open set $U_j$, any irreducible hypersurface $Y_i$ intersecting
+$U_j$ nontrivially is the vanishing locus of a holomorphic function $g_{ij}$, which
+is unique up to multiplication by an element in $\O_X^\times(U_j)$. Then we claim that
+the functions $f_j \defeq \prod_i g_{ij}$ glue to a global section of
+$\mathcal{K}_X^\times / \O_X^\times$, i.e. on any $U_j \cap U_k$, we have that
+$f_j/f_k$ is a nonvanishing holomorphic function. However, on any intersection
+$U_j \cap U_k$, the functions $g_{ij}$ and $g_{ik}$ define the same irreducible
+hypersurface $Y_i$, so they differ by multiplication by a nonvanishing holomorphic
+function. Therefore, the $f_j$ glue to a global section. \\
+
+It is easily verified that these two constructions are inverses, so the maps
+are bijective. Furthermore, the map is a group homomorphism since order is
+additive on products of meromorphic functions, so it is a group isomorphism.
+\end{proof}
+%
+\begin{rem*}
+For complex manifolds, we have that global sections of the quotient sheaf and divisors
+are isomorphic, but in the algebro-geometric setting, this is not true without some
+smoothness assumptions. In algebraic geometry, elements of
+$\Gamma(X, \mathcal{K}_X^\times/\mathcal{O}_X^\times)$ are called \ib{Weil divisors},
+while the elements of what we called $\mathrm{Div}(X)$ are called \ib{Cartier divisors}.
+\end{rem*}
+%
+One of the big punchlines for divisors is their correspondence with holomorphic
+line bundles over $X$, which we can make explicit using the isomorphism with
+$\Gamma(X, \mathcal{K}^\times_X / O^\times_X)$. In the proof we gave above, we noted
+that a global section of $\mathcal{K}^\times_X / O^\times_X$ can be seen as a collection
+of meromorphic functions $f_i$ on an open cover $\set{U_i}$, such that on intersections,
+the function $f_i/f_j$ is a nonvanishing holomorphic function. In addition, it is easily
+seen that the functions satisfy the coycle condition, so they can be used
+to define transition functions for a line bundle, which we call $\O(D)$. The
+mapping $D \mapsto \O(D)$ is clearly a group homomorphism, so it defines a natural
+map $\mathrm{Div}(X) \to \mathrm{Pic}(X)$. In particular, this shows that line bundles
+are closely related to the codimension $1$ geometry of the complex manifold $X$.
+%
+%TODO Divisors in terms of sheaf cohomology, line bundle of a divisor corresponding to
+%the image under a boundary map
 %
 \section{Sheaf Cohomology}
 %
@@ -1120,8 +1317,84 @@ $\mathcal{E}$, which gives us isomorphisms
 H^i(X,\mathcal{E}) \cong H^i_{\dbar}(X, E)
 \]
 %
+%TODO Singular cohomology
+%
 %TODO Cech vs derived functor cohomology
 %
+\section{Connections and Chern Classes}
+%
+On any complex manifold $X$, we have the following exact sequence of sheaves:
+\[\begin{tikzcd}
+0 \ar[r] & \Z \ar[r] & \O_X \ar[r, "\mathrm{exp}"] & \O_X^\times \ar[r] & 0
+\end{tikzcd}\]
+where $\mathrm{exp}$ is the sheaf morphism where a function $f \in \O_X(U)$ is
+mapped to the function $e^f$. This gives us the long exact sequence in sheaf
+cohomology
+\[\begin{tikzcd}
+0 \ar[r] & H^0(X, \Z) \ar[r] & H^0(X, \O_X) \ar[r] & H^0(X, \O_X^\times) \ar[dll]\\
+& H^1(X, \Z) \ar[r] & H^1(X, \O_X) \ar[r] & H^1(X, \O_X^\times) \ar[dll, "c_1"']\\
+& H^2(X, \Z) \ar[r] & \cdots
+\end{tikzcd}\]
+%
+We are particularly interested in the boundary map $H^1(X,\O_X^\times) \to H^2(X, \Z)$,
+which we called $c_1$. Recall that we have an isomorphism
+$H^1(X,\O_X^\times) \cong \mathrm{Pic}(X)$.
+%
+\begin{defn}
+The \ib{first Chern class} of a line bundle $L$ is its image under the map
+$c_1$, using the canonical identification $H^1(X,\O_X^\times) \cong \mathrm{Pic}(X)$.
+\end{defn}
+%
+The first Chern class will prove to be a powerful invariant of line bundles, and
+our goal will be to understand these cohomology classes in terms of the geometry
+of the manifold $X$. We first note some properties of $c_1$ that can be immediately
+deduced from the definition and our knowledge of the group structure on $\mathrm{Pic}(X)$.
+%
+\begin{prop} \enumbreak
+\begin{enumerate}
+  \item $c_1(L_1 \otimes L_2) = c_1(L_1) + c_1(L_2)$
+  \item $c_1(L^*) = -c_1(L)$.
+  \item For a map $F : X \to Y$, we have $c_1(F^*L) = F^*c_1(L)$.
+\end{enumerate}
+\end{prop}
+%
+The first two observations are immediate, and the last one follows from functoriality
+of cohomology. \\
+
+One might first think that $c_1$ is an invariant of holomorphic line bundles,
+but the truth is that it is a slightly coarser invariant -- it cannot distinguish
+between holomorphic line bundles and smooth complex line bundles. To see
+this, we note that we also have the exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & \Z \ar[r] & C^\infty \ar[r, "\mathrm{exp}"] & (C^\infty)^\times \ar[r] & 0
+\end{tikzcd}\]
+which similarly induces a long exact sequence in cohomology, yielding a boundary
+map $\delta : H^1(X, (\C^\infty)^\times) \to H^2(X, \Z)$. Using functoriality
+of sheaf cohomology, the inclusions $\O_X \hookrightarrow C^\infty$ and
+$\O_X^\times \hookrightarrow (C^\infty)^\times$ induce maps on cohomology, giving
+us the commutative diagram
+\[\begin{tikzcd}
+H^1(X,C^\infty) \ar[r] & H^1(X, (C^\infty)^\times) \ar[r, "\delta"] & H^2(X,\Z) \\
+H^1(X, \O_X) \ar[r] \ar[u] & H^1(X, \O_X^\times)
+\ar[u] \ar[r, "c_1"] & H^(X, \Z) \ar[u, equal]
+\end{tikzcd}\]
+with exact rows. Given a holomorphic line bundle $L$, we can forget its complex
+structure, regarding it as a complex line bundle, i.e. an element of
+$H^1(X, (C^\infty)^\times)$, and then take the image under $\delta$. Commutativity
+of the diagram implies that this is the same thing as $c_1(L)$. Since
+$C^\infty$ is a fine sheaf, we have that this diagram is actually
+\[\begin{tikzcd}
+0 \ar[r] & H^1(X, (C^\infty)^\times) \ar[r, "\delta"] & H^2(X,\Z) \\
+H^1(X, \O_X) \ar[r] \ar[u] & H^1(X, \O_X^\times)
+\ar[u] \ar[r, "c_1"] & H^(X, \Z) \ar[u, equal]
+\end{tikzcd}\]
+which tells us that $\delta$ is injective. Therefore, on smooth complex line bundles,
+the first Chern class is a perfect invariant -- two complex line bundles are smoothly
+isomorphic if and only if they have the same first Chern class. However, this also
+reveals to us that it cannot distinguish between different holomorphic structures
+on the same underlying complex line bundle. This tells us that any characterization
+of $c_1$ should be in terms of smooth complex line bundles, rather than holomorphic
+ones.
 \newpage
 %
 \nocite{*}

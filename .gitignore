@@ -8,4 +8,7 @@
 *.toc
 *.fls
 *.swp
+*.bbl
+*.bcf 
+*.blg
 
