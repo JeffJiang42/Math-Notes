@@ -1,0 +1,631 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage{amsmath}
+\usepackage{accents}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{bibliography.bib}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand*{\dt}[1]{%
+   \accentset{\mbox{\large\bfseries .}}{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+%
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Chern-Weil Theory}
+%
+\maketitle
+%
+\tableofcontents
+%
+\section{Connections on Principal Bundles}
+%
+\begin{defn}
+Let $M$ be a smooth manifold and $G$ a Lie group. A \ib{principal $G$-bundle} is a
+smooth manifold $P$ equipped with a smooth right $G$ action and a map $\pi : P \to M$ such
+that
+\begin{enumerate}
+  \item $\pi$ is a submersion
+  \item The action of $G$ on $P$ preserves the fibers of $\pi$
+  \item The action of $G$ on $P$ is free and transitive on each fiber
+  \item For each $p \in M$, there exists a neighborhood $U$ containing $p$
+  and a $G$-equivariant diffeomorphism $\varphi : \pi\inv(U) \to U \times G$
+  such that the we get the commutative diagram
+  \[\begin{tikzcd}
+  \pi\inv(U) \ar[dr, "\pi"']\ar[rr] && U \times G \ar[dl] \\
+  & U
+  \end{tikzcd}\]
+  where the map $U \times G$ is projection onto the first factor, and the
+  $G$ action on $U \times G$ is right multiplication on the second factor.
+\end{enumerate}
+\end{defn}
+%
+\begin{exmp}
+Let $E \to M$ be a rank $k$ vector bundle. From $E$ we can construct the \ib{frame bundle}
+$\mathcal{B}(E)$, which as a set is
+\[
+\mathcal{B}(E) = \set{(p,b) ~:~ p \in M,~ b : \R^k \to E_p \text{ is an isomorphism.}}
+\]
+This comes with a natural projection $\mathcal{B}(E) \to M$ by forgetting the
+second factor, and local coordinates for $M$ and local trivializations for $E$ endow
+$\mathcal{B}(E)$ the structure of a smooth manifold such that the projection
+map is a submersion. There is a natural right action of $\GL_k\R$ on $\mathcal{B}(E)$
+given by precomposition, and it is clear that this action is both free and transitive
+on any given fiber $\mathcal{B}(E)_p$. In addition, local trivializations of $E$
+induce local trivializations for $\mathcal{B}(E)$, which are $\GL_k\R$-equivariant.
+Therefore, we have that $\mathcal{B}(E)$ is a principal $\GL_k\R$-bundle over
+$M$.
+\end{exmp}
+%
+An important construction is the \ib{associated bundle construction}, where given
+a principal $G$-bundle $P \to M$ and a space $F$ with a left $G$ action, we can
+construct a fiber bundle $P\times_G F \to M$ with model fiber $F$.
+%
+\begin{defn}
+Let $P \to M$ be a principal $G$-bundle, and $F$ a smooth manifold with a left $G$-action.
+The \ib{associated fiber bundle} $P\times_G F \to M$ is the set
+\[
+P \times_G F \defeq P \times F / (p,f) \sim (p\cdot g, g\inv\cdot f)
+\]
+\end{defn}
+%
+Local trivializations for $P$ induce local trivializations on $P \times_G F$, which
+allows us to equip the set $P \times_G F$ with a topology and smooth structure such
+that the induced map $P\times_G F \to M$ is a fiber bundle over $M$ with model fiber $F$.
+%
+\begin{exmp}
+For a Lie group $G$, we have the adjoint action $\Ad : G \to \GL(\g)$. Then given
+a principal $G$-bundle $P \to M$, we can construct the \ib{adjoint bundle}
+$\g_P \to M \defeq P \times_G \g$, which is a bundle with model fiber $\g$.
+\end{exmp}
+%
+\begin{exmp}
+Let $E \to M$ be a rank $k$ vector bundle, and $\pi : \mathcal{B}(E) \to M$ its associated
+$\GL_k\R$ bundle of frames. There is a natural action of $\GL_k\R$ on $\R^k$, which
+allows us to constructed the associated bundle $\mathcal{B}(E) \times_{\GL_k\R} \R^k$.
+We claim that this bundle is isomorphic to the original bundle $E$. \\
+
+To show this, we construct an explicit isomorphism. Let $[b,v]$ denote the equivalence
+class of $(b,v)$ in $\mathcal{B}(E) \times_{\GL_k\R} \R^k$. Define the map
+$\varphi : \mathcal{B}(E) \times_{\GL_k\R} \to E$ by $\varphi[b,v] = b(v)$.
+We first need to verify that this map is well defined. Suppose we have another
+representative $(a,w)$ for the equivalence class $[b,v]$. Then we know there
+exists some $g \in \GL_k\R$ such that $(a,w) = (b \circ g, g\inv(v))$. Then we would
+have $\varphi[a,w] = (b \circ g)(g\inv(v)) = b(v)$. Therefore $\varphi$ is well defined.
+In addition, it is clear that this map has an inverse. For any $e \in E$, define
+the map $\psi : E \to \mathcal{B}(E) \times_{\GL_k\R} \R^k$ by
+$\psi(e) = [b, e']$ where $b$ is a basis for the fiber containing $e$, and $e'$ is
+the coordinate representation of $e$ with respect to the basis $b$.
+\end{exmp}
+%
+The example with frame bundles gives us a good idea as to how to think of
+principal bundles and associated bundles. A principal bundle can be thought of as
+coordinates systems for an associated bundle, and the relation we used to define
+the associated bundle can be thought of as the transformation law of the associated
+bundle. \\
+
+We now move on to connections on principal bundles. Let $P \to M$ be a principal $G$-bundle.
+Since $\pi$ is a submersion, it is constant rank, so $\ker d\pi$ defines a
+subbundle $V$ called the \ib{vertical distribution}. This gives us the exact sequence
+of vector bundles
+\[\begin{tikzcd}
+0 \ar[r] & V \ar[r] & TP \ar[r] & \pi^*TM \ar[r] & 0
+\end{tikzcd}\]
+%
+\begin{defn}
+A \ib{connection} on $P$ is a distribution $H \subset TP$ such that
+\begin{enumerate}
+  \item $V \oplus H = TP$
+  \item $H_{p \cdot g} = d(R_g)_pH_p$, where $R_g : P \to P$ is the action of $g$
+\end{enumerate}
+\end{defn}
+%
+Equivalently, it is a choice of splitting of the exact sequence specified above. Another
+fruitful way to view connections is in terms of differential forms.
+%
+\begin{defn}
+let $E \to M$ be a vector bundle. An \ib{$E$-valued differential $k$-form} is
+a section of $\Lambda^kT^*M \otimes E$. The space of $E$-valued $k$-forms is denoted
+$\Omega^k_M(E)$. In the case that $E$ is a trivial bundle $M \times V$, we
+abbreviated this to $V$-valued $k$-forms, and denote this space by $\Omega^k_M(V)$.
+In a local trivialization of $E$, an element $\omega \in \Omega^k_M(E)$ can
+be thought of as a vector of $k$-forms.
+\end{defn}
+%
+One thing to keep in mid is that, unless $E$ is a trivial bundle, the
+vector of $k$-forms in a local trivialization does not transform tensorially --
+the transformation law depends both on the coordinates on $M$ as well was the
+transition functions of the bundle $E$. That being said, it is still extremely
+useful for local computations. \\
+
+For a Lie group $G$ with Lie algebra $\g$, we have an exponential map
+$\exp : \g \to G$, where given a left invariant vector field $X \in \g$, we have
+$\exp(X) = c_X(1)$, where $c_X : (-\varepsilon, \varepsilon) \to G$
+is the integral curve of $X$ with $c(0) = e$. Then if we have a principal $G$-bundle
+$P \to M$ and a point $p \in P$, we get a curve $\gamma_X$ defined by
+\[
+\gamma_X(t) = p\cdot \exp(tX)
+\]
+Since the action of $G$ preserves the fiber $P_p$, the tangent vector
+\[
+\dt{\gamma}_X = \frac{d}{dt}\bigg\vert_{t=0}\gamma_X(t)
+\]
+is contained in the vertical space $V_p$. In addition, since the action is free,
+we have that $\dt{\gamma}_X = 0$ if and only if $X = 0$. Therefore, we get
+an injective linear map given by $X \mapsto \dt{\gamma}_X$. By a dimension count,
+this gives an isomorphism $\g \to V_p$. Doing this over all points $p \in P$, we get
+a vertical vector field $\widehat{X}$ on $P$, and gives us an isomorphism
+$\underline{\g} \to V$, where $\underline{\g}$ denotes the trivial bundle $P \times \g$.
+Suppose we are given a connection $H \subset TP$. Then the decomposition
+$T_pP = V_p \oplus H_p$ gives us a projection map $T_pP \to V_p$ with kernel $H_p$.
+Using the identification $V_p \cong \g$, this gives us an element of $\g$. Doing
+this over all points, we see that $H$ is equivalent to the data of a
+$\g$-valued $1$-form $\Theta \in \Omega^1_P(\g)$, called the \ib{connection $1$-form}.
+The first thing we want to observe is how $\Theta$ transforms with respect to
+the $G$-action on $P$. To do this, we first observe how the vector fields
+we defined above transform.
+%
+\begin{prop}
+Let $X \in \g$ and let $\widehat{X} \in \mathfrak{X}(P)$ be the vector field
+induced by $X$. For $g \in G$, let $R_g$ denote the diffeomorphism given by
+the right action of $g$. Then
+\[
+(R_g)_*(\widehat{X}) = \widehat{\Ad_{g\inv}X}
+\]
+\end{prop}
+%
+\begin{proof}
+We compute
+\begin{align*}
+(R_g)_*(\widehat{X})_p
+&= (R_g)_* \left( \frac{d}{dt}\bigg\vert_{t=0}p\cdot\exp(tX) \right) \\
+&= \frac{d}{dt}\bigg\vert_{t=0}p\cdot(\exp(tX)g) \\
+&= \frac{d}{dt}\bigg\vert_{t=0}pg\cdot(g\inv\exp(tX)g) \\[5pt]
+&= \widehat{\Ad_{g\inv} X}
+\end{align*}
+\end{proof}
+%
+This allows us to compute how a connection $1$-form transforms.
+%
+\begin{prop}
+A connection $1$-form $\Theta \in \Omega^1_P(\g)$ satisfies
+\[
+R_g^*\Theta = \Ad_{g\inv}\Theta
+\]
+Where $\Ad_{g\inv}\Theta$ is $1$-form defined by
+\[
+(\Ad_{g\inv}\Theta)(v) = \Ad_{g\inv}(\Theta(v))
+\]
+\end{prop}
+%
+\begin{proof}
+For any $p$, we get a decomposition $T_pP = V_p \oplus H_p$, so any tangent vector
+$v \in T_pP$ can be uniquely decomposed as $v = \widehat{X} + h$ where $X \in \g$
+and $h \in H_p$. We compute
+\begin{align*}
+(R_g^*\Theta)_p(v) &= (R_g^*\Theta)_p(\widehat{X} + h) \\
+&= \Theta_{p \cdot g}((R_g)_*(\widehat{X}) + (R_g)_*(h)) \\
+&= \Theta_{p\cdot g}(\widehat{\Ad_{g\inv}X}) \\
+&= \widehat{\Ad_{g\inv} X} \\
+&= \Ad_{g\inv}\Theta_p(\widehat{X} + h)
+\end{align*}
+where we use the transformation law for $\widehat{X}$, the fact that $H_p$ is
+the kernel of $\Theta_p$, and the fact that $H$ is $G$-invariant.
+\end{proof}
+%
+%TODO descent to the base
+%
+The identification of the vertical bundle with the trivial bundle $\underline{\g}$ gives
+us a nice characterization of differential forms valued in an associated bundle of
+$P$.
+%
+\begin{thm}
+Let $P \to M$ be a principal $G$ bundle, and $E = P\times_G W$ an associated vector bundle
+induced by a representation $\rho : G \to \GL(W)$. Then there is a bijective correspondence
+\[
+\Omega^k(E) \leftrightarrow\set{\alpha \in \Omega^k_P(W) ~:~
+R_g^*\alpha = \rho(g)\inv\alpha, ~\forall\xi\in\g, \iota_\xi\alpha = 0}
+\]
+\end{thm}
+%
+This comes from a general principle that appropriately $G$-equivariant objects
+on $P$ should descend to objects on $M$.
+%
+\begin{defn}
+let $P \to M$ be a principal $G$ bundle with connection $\Theta$. The \ib{curvature form}
+of the connection $\Theta$ is a $2$-form $\Omega \in \Omega^2_P(\g)$ defined by
+\[
+\Omega = d\Theta + \frac{1}{2}[\Theta \wedge \Theta]
+\]
+where in a local trivialization, $d\Theta$ is a matrix of $2$-forms given by
+$(d\Theta)^i_j = d(\Theta)^i_j$, and
+\[
+[\Theta \wedge \Theta](X,Y) = [\Theta(X),\Theta(Y)] - [\Theta(Y), \Theta(X)] =
+2[\Theta(X), \Theta(Y)]
+\]
+\end{defn}
+%
+As with the connection $1$-form, we first observe how the curvature form $\Omega$
+transforms with respect to the $G$-action on $P$.
+%
+\begin{prop} \enumbreak
+\begin{enumerate}
+  \item $R_g^*\Omega = \Ad_{g\inv}\Omega$
+  \item $\iota_\xi(\Omega) = 0$ for all $\xi \in \g$.
+\end{enumerate}
+\end{prop}
+%
+Before proving the proposition, we state an extremely helpful formula.
+%
+\begin{lem}[\ib{Cartan's magic formula}]
+Let $\xi$ be a vector field, and let $\omega$ be a $k$-form. Let $\mathcal{L}_\xi$
+denote the Lie derivative along $\xi$. Then
+\[
+\mathcal{L}_\xi\omega = d(\iota_\xi(\omega)) + \iota_\xi(d\omega)
+\]
+\end{lem}
+%
+\begin{proof}[Proof of proposition] \enumbreak
+\begin{enumerate}
+  \item We compute
+  \begin{align*}
+  R_g^*\Omega &= R_g^*d\Theta + \frac{1}{2}R_g^*[\Theta \wedge \Theta] \\
+  &= d(R_g^*\Theta) + \frac{1}{2}[R_g^*\Theta\wedge R_g^*\Theta] \\
+  &= \Ad_{g\inv}d\Theta + \frac{1}{2}[\Ad_{g\inv}\Theta \wedge \Ad_{g\inv}\Theta] \\
+  & = \Ad_{g\inv}\Omega
+  \end{align*}
+  \item Let $\xi \in \g$. Then
+  \[
+  \iota_{\xi}(\Omega) = \iota_\xi(d\Theta) + \frac{1}{2}\iota_\xi[\Theta \wedge \Theta]
+  \]
+  Using Cartan's magic formula, we have that
+  \[
+  \mathcal{L}_\xi\Theta = d(\iota_\xi(\Theta)) + \iota_\xi(d\Theta) = \iota_\xi(\Theta)
+  \]
+  Since $\iota_\xi(\Theta) = \xi$, which is constant, which then implies that
+  $d\iota_\xi(\Theta) = 0$. We then compute
+  \begin{align*}
+  \mathcal{L}_\xi\Theta &= \frac{d}{dt}\bigg\vert_{t=0}R^*_{\exp(t\xi)}\Theta \\
+  &= \frac{d}{dt}\bigg\vert_{t=0}\Ad_{\exp(t\xi)\inv}\Theta \\
+  &= [-\xi,\Theta]
+  \end{align*}
+  We also compute
+  \[
+  \frac{1}{2}\iota_\xi[\Theta\wedge\Theta] = \frac{1}{2}[\iota_\xi(\Theta) \wedge \Theta]
+  = [\xi,\Theta]
+  \]
+  Therefore, $\iota_\xi(\Omega) = 0$.
+\end{enumerate}
+\end{proof}
+%
+As a result, the curvature form $\Omega$ descends to the base manifold, giving
+us a $2$-form valued in the adjoint bundle $\g_P$.
+%
+\begin{thm}[\ib{The Bianchi Identity}]
+\[
+d\Omega + [\Theta\wedge\Omega] = 0
+\]
+\end{thm}
+%
+\section{The Chern-Weil Homomorphism}
+%
+The fact that a curvature form $\Omega$ descends to a $\g_P$-valued $2$-form
+suggests that the curvature might have something to say about the topology
+of the base manifold $M$. As we'll see, this takes the form of characteristic
+classes.
+%
+\begin{defn}
+Let $G$ be a Lie group with Lie algebra $\g$. An \ib{invariant polynomial of degree $k$}
+is a function $p \in \mathrm{Sym}^k\g^*$ such that
+\[
+p(X_1, \ldots, X_k) = p(\Ad_g(X_1), \ldots \Ad_g(X_k))
+\]
+We denote the space of degree $k$ invariant polynomials by $I^k(G)$, and
+let $I(G) = \bigoplus_k I^k(G)$ denote the space of all invariant polynomials.
+\end{defn}
+%
+We'll discuss specific examples in detail later. For now, we move on with the general
+theory. But first, a short lemma
+%
+\begin{lem}
+Let $p \in I^k(G)$. Then for any $\xi, X_1, \ldots X_k \in \g$, we have the identity
+\[
+\sum_{i=1}^k p(X_1, \ldots [\xi, X_i], \ldots X_n) = 0
+\]
+\end{lem}
+%
+\begin{proof}
+Since $p$ is an invariant polynomial, we have the equation
+\[
+p(\Ad_{\exp(t\xi)}(X_1),\ldots,\Ad_{\exp(t\xi)}(X_n)) = p(X_1,\ldots,X_n)
+\]
+Differentiating with respect to $t$ at $t=0$, we get the desired identity, where
+we use the product rule, as well as the fact that
+\[
+\frac{d}{dt}\bigg\vert_{t=0}\Ad_{\exp(t\xi)}(X) = [\xi,X]
+\]
+\end{proof}
+%
+The algebra of invariant polynomials can be naturally identified with homogeneous
+polynomials on $\g$, where given an invariant polynomial $p \in I^k(G)$, we get a
+function on $\g$ via the function $X \mapsto p(X, \ldots, X)$. Upon fixing a basis
+for $\g$, we can recover a polynomial. In the case that $G$ is a matrix group, the idea
+is to think of $p$ as a polynomial in the entries of $X$.
+%
+\begin{thm}[\ib{The Chern-Weil Homomorphism}]
+Let $P \to M$ be a principal $G$-bundle over $M$, and $\Omega \in \Omega^2_P(\g)$
+the curvature form corresponding to some connection on $P$. Then we get a map
+$I(G) \to \Omega^\bullet_M$, where for $p \in I^k(G)$, we map
+\[
+p \mapsto \omega_p \defeq
+p(\underbrace{\Omega \wedge \cdots \wedge \Omega}_{k \text{ times}})
+\]
+\end{thm}
+%
+There's a lot to unpack here.
+\begin{proof}
+We first make sense of the formula. We have that $\Omega \in \Omega^2_P(\g)$, so
+a priori, $\omega_p$ doesn't descend to $M$. Our hope is that invariance of $p$, along
+with the transformation laws of $\Omega$ means that this form will descend to the base.
+Punting that problem to later, we can feed $2k$ tangent vectors to
+$\Omega \wedge\cdots\wedge \Omega$, giving us $k$ elements $X_1,\ldots, X_k \in \g$, which
+we can then feed to $p$, giving us a real number. Therefore, the types check out. \\
+
+We now check that the form $\omega_p \in \Omega^{2k}_P$ descends to $M$. This means we
+need to check two things :
+\begin{enumerate}
+  \item $R_g^*\omega_p = \Ad_{g\inv}\omega_p$
+  \item $\iota_\xi\omega_p = 0$ for any $\xi \in \g$.
+\end{enumerate}
+For the first property, we compute
+\begin{align*}
+R_g^*\omega_p &= R_g^*(p(\Omega \wedge\cdots\wedge\Omega)) \\
+&= p(R_g^*\Omega \wedge \cdots \wedge R_g^*\Omega) \\
+&= p(\Ad_{g\inv}\Omega \wedge\cdots\Ad_{g\inv}\Omega) \\
+&= p(\Omega\wedge\cdots\wedge\Omega)
+\end{align*}
+For the second property, let $\xi\in \g$. Then
+\begin{align*}
+(\iota_\xi\omega_p)
+&= \iota_\xi(p(\Omega\wedge\cdots\wedge\Omega)) \\
+&= \sum_i p(\Omega\wedge\cdots\wedge\iota_\xi\Omega\wedge\cdots\wedge\Omega) \\
+&= 0
+\end{align*}
+where we use the fact that $\iota_\xi\Omega = 0$. Therefore, we have that
+$\omega_p$ descends to the base, giving us a form in $\Omega^{2k}_M$.
+\end{proof}
+%
+\begin{thm}
+The Chern-Weil homomorphism maps an invariant polynomial $p \in I(G)$ to a closed
+form in $\Omega^{2k}_M$, so it descends to a map $I(G) \to H^{2k}(M,\R)$.
+\end{thm}
+%
+\begin{proof}
+Let $\Theta$ denote the connection $1$-form. We want to show that
+$\omega_p$ is closed. We compute, using the Leibniz rule for exterior differentiation,
+\begin{align*}
+d\omega_p &= d(p(\Omega \wedge\cdots\wedge\Omega)) \\
+&= \sum_i p(\Omega\wedge\cdots\wedge d\Omega\wedge\cdots\wedge\Omega) \\
+&= -\sum_i p(\Omega\wedge\cdots\wedge [\Theta\wedge\Omega]\cdots\wedge\Omega) \\
+&= 0
+\end{align*}
+where we use the Bianchi identity, along with the fact that $\Theta(\xi) = \xi$.
+\end{proof}
+%
+\end{document}

@@ -1,5 +1,5 @@
 % $ biblatex auxiliary file $
-% $ biblatex bbl format version 3.0 $
+% $ biblatex bbl format version 3.1 $
 % Do not modify the above lines!
 %
 % This is an auxiliary file used by the 'biblatex' package.
@@ -39,7 +39,7 @@
       \strng{authornamehash}{1950da273fe69e09772288622f0e66c2}
       \strng{authorfullhash}{1950da273fe69e09772288622f0e66c2}
       \field{sortinit}{G}
-      \field{sortinithash}{5e8d2bf9d38de41b1528bd307546008f}
+      \field{sortinithash}{62eb2aa29549e4fdbd3cb154ec5711cb}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Wiley}
@@ -62,7 +62,7 @@
       \strng{authornamehash}{b69119fab140a7f6fa8ccfe7172b1f9b}
       \strng{authorfullhash}{b69119fab140a7f6fa8ccfe7172b1f9b}
       \field{sortinit}{H}
-      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{sortinithash}{6db6145dae8dc9e1271a8d556090b50a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Springer}
@@ -85,7 +85,7 @@
       \strng{authornamehash}{80d2faf8688944b5b2b2b870c20c389a}
       \strng{authorfullhash}{80d2faf8688944b5b2b2b870c20c389a}
       \field{sortinit}{V}
-      \field{sortinithash}{75dd7385c90b2252c3ae853a80ca853b}
+      \field{sortinithash}{02432525618c08e2b03cac47c19764af}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Cambridge University Press}
