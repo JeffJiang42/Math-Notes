@@ -187,6 +187,7 @@
 \DeclareMathOperator{\dv}{div}
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
 \newcommand*\myhrulefill{%
    \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
@@ -233,6 +234,55 @@
 \maketitle
 %
 \tableofcontents
+%
+\section{Lie Algebra Valued Differential Forms}
+%
+\begin{defn}
+let $E \to M$ be a vector bundle. An \ib{$E$-valued differential $k$-form} is
+a section of $\Lambda^kT^*M \otimes E$. The space of $E$-valued $k$-forms is denoted
+$\Omega^k_M(E)$. In the case that $E$ is a trivial bundle $M \times V$, we
+abbreviated this to $V$-valued $k$-forms, and denote this space by $\Omega^k_M(V)$.
+In a local trivialization of $E$, an element $\omega \in \Omega^k_M(E)$ can
+be thought of as a vector of $k$-forms.
+\end{defn}
+%
+One thing to keep in mid is that, unless $E$ is a trivial bundle, the
+vector of $k$-forms in a local trivialization does not transform tensorially --
+the transformation law depends both on the coordinates on $M$ as well was the
+transition functions of the bundle $E$. That being said, it is still extremely
+useful for local computations. \\
+
+The situation we will be interested in is when $E$ is a trivial bundle $P \times \g$,
+where $\g$ is some Lie algebra. We will briefly discuss some of the common notation
+and operations on Lie algebra valued forms. Many of these operations are analogous to
+operations on real valued forms, but can differ in subtle ways. Fix a basis $\set{\xi_i}$
+for $\g$. Then any Lie algebra valued $k$-form $\Theta \in \Omega^k_P(\g)$ can be written
+uniquely as
+\[
+\Theta = \Theta^i \otimes \xi_i
+\]
+for real valued $k$-forms $\Theta^i \in \Omega^k_P$. For brevity, we usually omit the
+tensor symbol, and abbreviate this to $\Theta^i\xi_i$. Given a $k$-form
+$\Theta \in \Omega^k_P(\g)$ and an $\ell$-form $\Omega \in \Omega^\ell_P(\g)$, we
+define their wedge product $\Theta\wedge\Omega \in \Omega^{k+\ell}(\g\otimes\g)$to be
+\[
+\Theta \wedge \Omega \defeq (\Theta^i\wedge\Omega^j)\xi_i \otimes  \xi_j
+\]
+Using the usual wedge product on differential forms. Note that this wedge product
+does not have a normalizing factor, which will explain various factors of $2$
+and $1/2$ when doing computations with Lie algebra valued forms. In addition, we note
+that, unlike for real valued forms, we do not necessarily have $\Theta\wedge\Theta = 0$.
+We also note that this definition for the wedge product works for general vector bundle
+valued forms as well, but when we have a Lie algebra, we have a Lie bracket
+$[\cdot,\cdot]: \g \otimes \g \to \g$, which allows us to define
+\[
+[\Theta\wedge\Omega] \defeq (\Theta^i\wedge\Omega^j)[\xi_i,\xi_j]
+\]
+Finally, we can extend the usual exterior derivative $d : \Omega^k_P \to \Omega^{k+1}_P$
+to $\Omega^k_P(\g)$ in a natural way, namely
+\[
+d\Theta \defeq d\Theta^i\xi_i
+\]
 %
 \section{Connections on Principal Bundles}
 %
@@ -338,22 +388,6 @@ A \ib{connection} on $P$ is a distribution $H \subset TP$ such that
 %
 Equivalently, it is a choice of splitting of the exact sequence specified above. Another
 fruitful way to view connections is in terms of differential forms.
-%
-\begin{defn}
-let $E \to M$ be a vector bundle. An \ib{$E$-valued differential $k$-form} is
-a section of $\Lambda^kT^*M \otimes E$. The space of $E$-valued $k$-forms is denoted
-$\Omega^k_M(E)$. In the case that $E$ is a trivial bundle $M \times V$, we
-abbreviated this to $V$-valued $k$-forms, and denote this space by $\Omega^k_M(V)$.
-In a local trivialization of $E$, an element $\omega \in \Omega^k_M(E)$ can
-be thought of as a vector of $k$-forms.
-\end{defn}
-%
-One thing to keep in mid is that, unless $E$ is a trivial bundle, the
-vector of $k$-forms in a local trivialization does not transform tensorially --
-the transformation law depends both on the coordinates on $M$ as well was the
-transition functions of the bundle $E$. That being said, it is still extremely
-useful for local computations. \\
-
 For a Lie group $G$ with Lie algebra $\g$, we have an exponential map
 $\exp : \g \to G$, where given a left invariant vector field $X \in \g$, we have
 $\exp(X) = c_X(1)$, where $c_X : (-\varepsilon, \varepsilon) \to G$
@@ -523,10 +557,34 @@ d\Omega + [\Theta\wedge\Omega] = 0
 \]
 \end{thm}
 %
+\begin{proof}
+Fix a basis $\set{\xi_i}$ for $\g$, and let $\Theta = \Theta^i\xi_i$. We then compute
+\begin{align*}
+d\Omega &= d^2\Theta + \frac{1}{2}d[\Theta \wedge \Theta] \\
+&= \frac{1}{2}d(\Theta^i \wedge \Theta^j)[\xi_i,\xi_j] \\
+&= \frac{1}{2}(d\Theta^i \wedge \Theta^j - \Theta^i \wedge d\Theta^j)[\xi_i,\xi_j] \\
+&= \frac{1}{2}(d\Theta^i \wedge \Theta^j - d\Theta^j \wedge \Theta^i)[\xi_i,\xi_j] \\
+&= (d\Theta^i \wedge \Theta^j - d\Theta^j \wedge \Theta^i)[\xi_i,\xi_j]
+\end{align*}
+where the last equality comes from skew-symmetry of the Lie bracket. On the other hand,
+we compute
+\begin{align*}
+[\Theta\wedge\Omega]
+&= \left[\Theta\wedge\left(d\Theta + \frac{1}{2}[\Theta\wedge\Theta]\right)\right] \\
+&=[\Theta\wedge d\Theta] + \frac{1}{2}[[\Theta\wedge\Theta]\wedge\Theta] \\
+&= (\Theta^i\wedge d\Theta^j)[\xi_i,\xi_j] \\
+&= (d\Theta^j \wedge \Theta^i)[\xi_i,\xi_j] \\
+&= -(d\Theta^i \wedge \Theta^j - d\Theta^j\wedge\Theta^i)[\xi_i,\xi_j]
+\end{align*}
+Where we use skew symmetry of the bracket for the last equality, and use the
+Jacobi identity to deduce the vanishing of $[[\Theta\wedge\Theta]\wedge\Theta]$.
+Putting these two computations together yields the Bianchi identity.
+\end{proof}
+%
 \section{The Chern-Weil Homomorphism}
 %
-The fact that a curvature form $\Omega$ descends to a $\g_P$-valued $2$-form
-suggests that the curvature might have something to say about the topology
+The fact that a curvature form $\Omega$ descends to a $\g_P$-valued $2$-form on
+the base suggests that the curvature might have something to say about the topology
 of the base manifold $M$. As we'll see, this takes the form of characteristic
 classes.
 %
@@ -565,7 +623,9 @@ we use the product rule, as well as the fact that
 The algebra of invariant polynomials can be naturally identified with homogeneous
 polynomials on $\g$, where given an invariant polynomial $p \in I^k(G)$, we get a
 function on $\g$ via the function $X \mapsto p(X, \ldots, X)$. Upon fixing a basis
-for $\g$, we can recover a polynomial. In the case that $G$ is a matrix group, the idea
+for $\g$, we can recover a polynomial. We can recover the polynomial $p$ from this
+function via a formula analogous to the polarization  identity for recovering a bilinear
+form from its quadratic form. In the case that $G$ is a matrix group, the idea
 is to think of $p$ as a polynomial in the entries of $X$.
 %
 \begin{thm}[\ib{The Chern-Weil Homomorphism}]
@@ -627,5 +687,176 @@ d\omega_p &= d(p(\Omega \wedge\cdots\wedge\Omega)) \\
 \end{align*}
 where we use the Bianchi identity, along with the fact that $\Theta(\xi) = \xi$.
 \end{proof}
+%
+\section{The Case of $\GL_n\C$ : Chern Classes}
+%
+When we restrict our attention to $\GL_n\C$, and the principal bundle
+$P \to M$ is the $\GL_n\C$-bundle of frames for a complex vector bundle,
+the fruit of our labor will be the Chern classes of the vector bundle. To do this,
+we first need to understand the invariant polynomials on $\gl_n\C$. In this case,
+the adjoint action of $\GL_n\C$ on $\gl_n\C$ is conjugation. We also have a basis
+for $\gl_n\C$ given by the elementary matrices $E_{ij}$ that are zero everywhere except
+for a $1$ in the $(i,j)$ entry. The invariant polynomials on $\gl_n\C$ will come
+from a familiar friend : the determinant. We know that the $\det$ is multiplicative,
+so we clearly have that $\det(AXA\inv) = \det(X)$ for any $X \in \gl_n\C$ and
+any $A \in \GL_n\C$, so $\det$ is an invariant polynomial. The determinant will
+be the only tool we will need to construct all the invariant polynomials.
+%
+\begin{defn}
+The \ib{elementary invariant polynomials} $f_0, \ldots f_n \in I(\GL_n)$ are
+the polynomials defined by the formula
+\[
+\det(tI + X) = \sum_{i=0}^n f_i(X)t^{n-i}
+\]
+Where $t$ is an indeterminate variable, and $X = X^i_j$ is an $n\times n$ matrix
+of indeterminate variables.
+\end{defn}
+%
+\begin{exmp}[$n=2$]
+Let $X$ be the matrix
+\[
+X = \begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+\]
+where $a,b,c,d$ are indeterminate variables. Then we have that
+\begin{align*}
+\det(tI + X) &= \det \begin{pmatrix}
+t+a & b \\
+c & t+d
+\end{pmatrix} \\[5pt]
+&= (t+a)(t+d) - bc \\
+&= t^2 + (a+d)t +ad - bc
+\end{align*}
+This give us
+\begin{align*}
+f_0(X) &= 1 \\
+f_1(X) &= a+d \\
+f_2(X) &= ad - bc
+\end{align*}
+All the polynomials are visibly invariant, since $f_0$ is vacuously invariant,
+$f_1$ is the trace, and $f_2$ is the determinant
+\end{exmp}
+%
+\begin{exmp}[$n=3$]
+Let $X$ be the indeterminate matrix
+\[
+X = \begin{pmatrix}
+a & b & c \\
+p & q & r \\
+x & y & z
+\end{pmatrix}
+\]
+We then laboriously compute
+\begin{align*}
+  &\det \begin{pmatrix}
+  a+t & b & c \\
+  p & q+t & r \\
+  x & y & z+t
+  \end{pmatrix} \\[5pt]
+  &=  t^3 + (a+q+z)t^2 + (aq+az+qz-ry-bp+cx)t + aqz - ary - pbz + bxr + cpy - cxq
+\end{align*}
+Which gives us
+\begin{align*}
+f_0(X) &= 1 \\
+f_1(X) &= a+q+z \\
+f_2(X) &= (aq+az+qz-ry-bp+cx) \\
+f_3(X) &= aqz - ary - pbz + bxr + cpy - cxq
+\end{align*}
+While things look very complicated, these polynomials are just the usual culprits.
+$f_0$ and $f_1$ are analogous to the case of $\gl_2$. The polynomial $f_2$ is slightly
+tricky : it is the polynomial $1/2(\tr(X)^2 -\tr(X^2))$. The polynomial $f_3$ is just
+$\det$.
+\end{exmp}
+%
+We then make two key observations
+\begin{enumerate}
+  \item If $p \in I(\GL_n\C)$ and $X \in \gl_n\C$ is diagonalizable, conjugation
+  invariance then implies that $p$ is just a polynomial in the eigenvalues of $X$.
+  \item The polynomials $f_k$ suspiciously look like the elementary symmetric polynomials
+  \[
+  \sigma_k = \sum_{1 \leq i_1 < i_2 \ldots < i_k \leq n} t_{i_1}\cdots t_{i_k}
+  \]
+\end{enumerate}
+%
+To make use of the first observation, we need the following theorem.
+%
+\begin{thm}
+The set of diagonalizable matrices in $\GL_n\C$ is dense.
+\end{thm}
+%
+\begin{proof}
+We note that any matrix with distinct eigenvalues is diagonalizable. Given any
+non-diagonalizable matrix $A$, we can always find an arbitrarily small perturbation
+$A + \varepsilon B$ that has distinct eigenvalues.
+\end{proof}
+%
+\begin{thm}
+let $T$ be the indeterminate diagonal matrix
+\[
+T = \begin{pmatrix}
+t_1 & ~ & ~ \\
+~ & \ddots & ~ \\
+~ & ~ & t_n
+\end{pmatrix}
+\]
+Then the mapping $I(\GL_n\C) \to \C[t_1,\ldots t_n]^{S_n}$
+\[
+P \mapsto \widetilde{P}(t_1,\ldots t_n) \defeq P(T)
+\]
+is an isomorphism.
+\end{thm}
+%
+\begin{proof}
+The map is clearly an algebra homomorphism, so to check surjectivity, it suffices
+to check that the image contains the elementary symmetric polynomials, since any
+symmetric polynomial is a polynomial $f(\sigma_1, \ldots \sigma_n)$ in the
+elementary symmetric polynomials $\sigma_k$. For an indeterminate variable
+$\lambda$, we have that
+\[
+\det(\lambda I + X) \mapsto \det(\lambda I + T) = \prod_{i=1}^n (\lambda+t_i)
+= \sum_{k=0}^n\sigma_k(t_1,\ldots,t_k)\lambda^{n-k}
+\]
+We also know that
+\[
+\det(\lambda I + T) = \sum_{k=0}^n f_k(X)\lambda^{n-k}
+\]
+Then since the map is a homomorphism, we can compare the terms of degree $\lambda^j$
+to conclude that  $f_k(X) \mapsto \sigma_k(t_1,\ldots t_n)$. Consequently, the map is
+surjective, since given any symmetric polynomial $p(\sigma_1,\ldots \sigma_k)$,
+we have that it is the image of the invariant polynomial $p(f_1,\ldots f_k)$. \\
+
+For injectivity, we have that if an invariant polynomial $p$ is in the kernel, then
+it must vanish on all diagonal matrices. Since $p$ is continuous as a function of
+the entries of the matrix, and the set of diagonalizable matrices is dense,
+we must have that $p = 0$.
+\end{proof}
+%
+This gives a complete description of the invariant polynomials for $\GL_n\C$.
+%
+\begin{defn}
+Let $P \to M$ be a principal $\GL_k\C$ bundle  with curvature form $\Omega$.
+Then the \ib{$j^{th}$ Chern class} is the cohomology class
+\[
+\left[\frac{i}{2\pi}f_k(\Omega)\right]
+\]
+\end{defn}
+%
+The preceding discussion gives us something immediate
+%
+\begin{thm}
+The Chern classes generate the image of the Chern-Weil homomorphism : every
+cohomology class in the image can be written as a polynomial in Chern classes.
+\end{thm}
+%
+\section{The Story for Vector Bundles}
+%
+Every vector bundle $E \to M$ gives rise to a frame bundle $\mathcal{B}(E) \to M$.
+The discussion of Chern-Weil theory and characteristic classes for vector
+bundles is then subsumed by the principal bundle theory. However, we should
+make sure that what we have done agrees with the usual notions on vector bundles.
+In addition, we study the relationship between principal bundles and their
+associated vector bundles.
 %
 \end{document}
