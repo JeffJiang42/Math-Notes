@@ -1,0 +1,387 @@
+%
+\section{Sheaf Cohomology}
+%
+Over a complex manifold $X$, we have many different cohomology theories at our disposal:
+\begin{enumerate}
+  \item The singular cohomology groups $H^i_{\text{sing}}(X,\Z)$.
+  \item The de Rham cohomology groups $H^i_{dR}(X)$.
+  \item The Dolbeault cohomology groups of a holomorphic vector bundle
+  $H^i_{\dbar}(X, E)$.
+  \item The \v{C}ech cohomology groups of a sheaf $\check{H}^i(X,\mathcal{F})$.
+\end{enumerate}
+%
+We want to compare these various cohomology theories. To do so, we show that many of
+these cohomology theories are computing the same thing : sheaf cohomology.
+%
+\begin{rem*}
+While we might explicitly work with sheaves of abelian groups, the following discussion
+is applicable to sheaves of $\mathcal{O}_X$ modules, $C^\infty$ modules, etc.
+\end{rem*}
+%
+\begin{defn}
+The \ib{global sections functor} $\Gamma(X,\cdot)$ is a functor
+$\mathsf{Ab}(X) \to \mathsf{Ab}$ of the category of sheaves of abelian groups over $X$ to
+the category of abelian groups, where given a sheaf of abelian groups $\mathcal{F}$,
+\[
+\Gamma(X,\mathcal{F}) \defeq \mathcal{F}(X)
+\]
+\end{defn}
+%
+The functor is left-exact, i.e. given an exact sequence of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r] & \mathcal{F} \ar[r] & \mathcal{G}
+\end{tikzcd}\]
+we get an exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & \Gamma(X,\mathcal{E}) \ar[r]
+& \Gamma(X,\mathcal{F}) \ar[r] & \Gamma(X,\mathcal{G})
+\end{tikzcd}\]
+%
+However, the functor is not right exact, which is due to the local definitions of
+injectivity and surjectivity. The sheaf axiom guarantees that being injective on
+stalks implies that a sheaf morphism is injective on sections, but it does not
+imply the same thing for surjectivity. As an example, let $\mathcal{Z}^k$ be
+the sheaf of closed smooth $k$-forms, and let $\mathcal{B}^k$ be the sheaf of exact
+$k$-forms. Then the inclusion $\mathcal{B}^k \hookrightarrow \mathcal{Z}^k$ is surjective,
+since every closed $k$-form is exact in a sufficiently small neighborhood. However,
+if $H^k_{dR}(X) \neq 0$, then $\Gamma(X,\mathcal{Z}^k) \to \Gamma(X, \mathcal{B}^k)$
+is not surjective.
+%
+\begin{defn}
+The \ib{sheaf cohomology groups} $H^i(X, \mathcal{F})$ of a sheaf $\mathcal{F}$ over $X$
+are the right derived functors of the global sections functor applied to $\mathcal{F}$
+\[
+H^i(X,\mathcal{F}) \defeq R^i\Gamma(X,\mathcal{F})
+\]
+i.e, we take an injective resolution $\mathcal{I}^\bullet = \set{\mathcal{I}^j}$ of
+$\mathcal{F}$
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F} \ar[r] & \mathcal{I}^0 \ar[r] & \mathcal{I}^1 \ar[r] & \cdots
+\end{tikzcd}\]
+and apply $\Gamma(X,\cdot)$ term-wise to the sequence to get
+\[\begin{tikzcd}
+0 \ar[r] & \Gamma(X,\mathcal{F}) \ar[r] & \Gamma(X,\mathcal{I}^0) \ar[r]
+& \Gamma(X,\mathcal{I}^1) \ar[r] & \cdots
+\end{tikzcd}\]
+and then compute the cohomology of this sequence.
+\end{defn}
+%
+We note that in order for these right derived functors to be defined, there need to
+be \emph{enough injectives}. We say that an abelian category $\mathcal{A}$ has enough
+injectives if every object $A \in \mathrm{Ob}(\mathcal{A})$ admits an injective
+map $A \hookrightarrow I$ into an injective object $I$, where an injective object
+is defined to be an object $I$ where given any map $X \to I$ and an injection
+$X \hookrightarrow I$, there exists a map $Y \to Q$ such that the following diagram
+commutes
+\[\begin{tikzcd}
+X \ar[dr]\ar[rr,hookrightarrow] & & Y \ar[dl, dashed] \\
+& Q
+\end{tikzcd}\]
+Alternatively, the pullback map $\hom(Y,Q) \to \hom(X,Q)$ is surjective. We will take
+the following results on faith:
+%
+\begin{thm}
+The categories $\mathsf{Ab}$, $\mathsf{Ab}(X)$, $\mathsf{Mod}_{\O_X}$,
+and $\mathsf{Mod}_{C^\infty}$ have
+enough injectives.
+\end{thm}
+%
+Like with the definition of the \v{C}ech cohomology groups as limits, the
+definition in terms of injective resolutions is practically useless computationally,
+since injective sheaves are hard to write down and difficult to find in the wild.
+The name of the game here is to find a nicer class of resolutions we can take.
+%
+\begin{defn}
+Let $F : \mathcal{A} \to \mathcal{B}$ be a left-exact additive functor. An object
+$A \in \mathrm{Ob}(\mathcal{A})$ is \ib{acyclic} for the functor $F$ if
+$R^iF(A) = 0$ for all $i > 0$.
+\end{defn}
+%
+\begin{prop}
+Let $F : \mathcal{A} \to \mathcal{B}$ be an additive functor, and
+$A \in \mathrm{Ob}(\mathcal{A})$. Then let $A \to M^\bullet$ be a resolution of $A$
+by $F$-acyclic objects. Then $R^iF(A)$ is isomorphic to the $i^{th}$ cohomology
+of the complex $F(M^\bullet)$.
+\end{prop}
+%
+\begin{proof}
+Let $d^0 : M^0 \to M^1$. Then let $B = \coker (A \to M^0)$. By exactness of
+\[\begin{tikzcd}
+0 \ar[r] & A \ar[r] & M^0 \ar[r, "d^0"] & M^1
+\end{tikzcd}\]
+we get a short exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & A \ar[r] & M^0 \ar[r] & B \ar[r] & 0
+\end{tikzcd}\]
+where the map $M^0 \to B$ is the map $d^0$, which descends to $B$ by exactness.
+We then take injective resolutions $A \to I^\bullet$, $M^0 \to J^\bullet$, and
+$B \to K^\bullet$. The maps $A \to M^0$ and $M^0 \to B$, which gives a short exact
+sequence of chain maps between resolutions by using the defining property
+of injective objects, giving us
+\[\begin{tikzcd}
+0 \ar[r] & A \ar[r] \ar[d] & M^0 \ar[r] \ar[d] & B \ar[r] \ar[d] & 0 \\
+0 \ar[r] & I^0 \ar[r] \ar[d] & J^0 \ar[r] \ar[d] & K^0 \ar[r] \ar[d] & 0 \\
+0 \ar[r] & I^1 \ar[r] \ar[d] & J^1 \ar[r] \ar[d] & K^1 \ar[r] \ar[d] & 0 \\
+& \vdots  & \vdots  & \vdots &
+\end{tikzcd}\]
+which gives us a long exact sequence in cohomology. Noting that the cohomology
+of the respective sequences are just the right derived functors of $A$, $M^0$,
+and $B$, we get the long exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & R^0F(A) \ar[r] & R^0F(M^0) \ar[r] & R^0F(B) \ar[dll] \\
+& R^1F(A) \ar[r] & R^1F(M^0) \ar[r] & R^1F(B) \ar[dll] \\
+& R^2F(A) \ar[r] & R^2F(M^0) \ar[r] & R^2F(B) \ar[dll] \\
+& ~ & \cdots & \cdots
+\end{tikzcd}\]
+Then using the fact that $M^0$ is $F$-acyclic, along with the fact that $R^0F = F$, we
+get that this long exact sequence is actually
+\[\begin{tikzcd}
+0 \ar[r] & F(A) \ar[r] & F(M^0) \ar[r] & F(B) \ar[dll] \\
+& R^1F(A) \ar[r] & 0 \ar[r] & R^1F(B) \ar[dll] \\
+& R^2F(A) \ar[r] & 0 \ar[r] & R^2F(B) \ar[dll] \\
+& ~ & \cdots & \cdots
+\end{tikzcd}\]
+which gives us isomorphisms $R^iF(B) \to R^{i+1}F(A)$ for $i > 0$, as well as
+an isomorphism $R^1F(A) \cong \coker F(M^0) \to F(B)$. To compute the
+cokernel of that map, we note that $B$ admits the resolution
+\[\begin{tikzcd}
+0 \ar[r] & B \ar[r] & M^1 \ar[r] & \cdots
+\end{tikzcd}\]
+where the map $B \to M^1$ is the map induced by $d^0$, using exactness of the acyclic
+resolution. Then since $F$ is left-exact, we get that
+\[\begin{tikzcd}
+0 \ar[r] & F(B) \ar[r] & F(M^1) \ar[r] & \cdots
+\end{tikzcd}\]
+is exact, giving us that $F(B)$ is isomorphic to the kernel of $F(M^1) \to F(M^2)$. We
+then note that the image of $F(M^0) \to F(M^1)$ is contained in $F(B)$, regarded
+as the kernel of $F(M^1) \to F(M^2)$. We then get
+\[
+R^1F(A) \cong \frac{\ker(F(M^1) \to F(M^2))}{\im(F(M^1) \to F(M^2))}
+= H^1(F(M^\bullet))
+\]
+Then to get the isomorphism for $R^2F(A)$, we note that since
+$R^1F(B) \cong R^2F(A)$, we can play the same game using the resolution of $B$
+to compute $R^1F(B)$ to be $H^2(F(M^\bullet))$, and then inductively repeat
+the process with the cokernel of $M^1 \to M^2$ to get $R^3F(A)$ and so on.
+\end{proof}
+%
+Something that is silly to observe, but useful.
+%
+\begin{prop}
+Injective objects are $F$-acyclic.
+\end{prop}
+%
+\begin{proof}
+Let $I$ be injective. Then take the injective resolution $0 \to I \to I \to 0$
+where the map is the identity map.
+\end{proof}
+%
+Therefore, to compute right derived functors, it suffices to find acyclic resolutions.
+This gets us one step closer to finding nice resolutions for computing sheaf cohomology.
+%
+\begin{defn}
+A sheaf $\mathcal{F}$ over $X$ is \ib{flasque} (also called \ib{flabby}) if
+the restriction maps are surjective.
+\end{defn}
+%
+Most sheaves in nature aren't flasque. However, flasque sheaves are useful for giving
+us acyclic resolutions. To do this, we'll need some lemmas.
+%
+\begin{lem}
+Let
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r, "\alpha"] & \mathcal{F} \ar[r,"\beta"]
+& \mathcal{G} \ar[r] & 0
+\end{tikzcd}\]
+be a short exact sequence where $\mathcal{E}$ is flasque. Then for any open set $U$,
+the sequence
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E}(U) \ar[r, "\alpha(U)"] & \mathcal{F}(U) \ar[r, "\beta(U)"]
+& \mathcal{G}(U) \ar[r] & 0
+\end{tikzcd}\]
+is exact.
+\end{lem}
+%
+\begin{proof}
+By left-exactness of taking sections, it suffices to show that
+$\beta(U) : \mathcal{F}(U) \to \mathcal{G}(U)$ is surjective. Let
+$\sigma \in \mathcal{G}(U)$. Since $\beta$ is a surjective sheaf morphism, for any
+$x \in U$, the induced map on stalks $\beta_x : \mathcal{F}_x \to \mathcal{G}_x$ is
+surjective, which implies that there exists a sufficiently small neighborhood
+$V_x \subset U$ of $x$ where
+$\beta(V_x) : \mathcal{F}(V_x) \to \mathcal{G}(V_x)$ is surjective,
+so we can find $\tau_x \in \mathcal{F}(V_x)$ such that
+$\beta(V_x)(\tau) = \sigma\vert_{V_x}$. Then let $y \in U$ such that
+$V_x \cap V_y \neq \emptyset$, and let $\tau_y \in \mathcal{F}(V_y)$ such that
+$\beta(V_y)(\tau_y) = \sigma\vert_{V_y}$. Then we know that
+$\tau_x\vert_{V_x \cap V_y} - \tau_y\vert_{V_x \cap V_y} \in \ker\beta(V_x \cap V_y)$,
+so it is the image of an element $k \in \mathcal{E}(V_x \cap V_y)$. Since $\mathcal{E}$
+is flasque, we know that we can lift $k$ to an section $\chi_{x,y} \in \mathcal{E}(V_x)$.
+Then the element $\tau_x' = \tau_x - \alpha(V_x)(\chi_{x,y})$ still maps to
+$\sigma\vert_{V_x}$  under $\beta(V_x)$ by exactness, and restricts to $\tau_y$ on
+$V_x \cap V_y$. Therefore, $\tau_x'$ and $\tau_y$ glue to a section over $V_x \cup V_y$
+that maps to $\sigma\vert_{V_x \cup V_y}$.  We then find a maximal pair $(W, \tau)$ such
+that $\tau \in \mathcal{F}(W)$ and $\beta(W)(\tau) = \sigma\vert_W$. Then we must
+necessarily have $W = U$, since otherwise, we can find another open subset $V$ of $U$
+and a section $\varphi$ over $V$ mapping to $\sigma\vert_V$, and extend $\tau$ to a
+section over $W \cup V$, since if $W \cap V \neq \emptyset$, we can use our above
+argument, and otherwise, no work needs to be done. Either way, finding such a $U$
+and $\varphi$ contradicts maximality of $(W,\tau)$.
+\end{proof}
+%
+\begin{lem}
+Let
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r,"\alpha"] & \mathcal{F} \ar[r,"\beta"]
+& \mathcal{G} \ar[r] & 0
+\end{tikzcd}\]
+be a short exact sequence of sheaves where $\mathcal{E}$ and $\mathcal{F}$ are flasque.
+Then $\mathcal{G}$ is flasque.
+\end{lem}
+%
+\begin{proof}
+Let $V \subset U$. Then given $\sigma \in \mathcal{G}(V)$, we want to show that
+there exits $\widetilde{\sigma} \in \mathcal{G}(U)$ that restricts to $\sigma$. Since
+$\mathcal{E}$ is flasque, we have that
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E}(V) \ar[r, "\alpha(V)"] & \mathcal{F}(V) \ar[r,"\beta(V)"]
+& \mathcal{G}(V) \ar[r] & 0
+\end{tikzcd}\]
+is exact, so we can find a section $\tau \in \mathcal{F}(V)$ with
+$\beta{V}(\tau) = \sigma$. Then since $\mathcal{F}$ is flasque, this lifts to
+an element $\widetilde{\tau} \in \mathcal{F}(U)$. Then taking
+$\widetilde{\sigma} = \beta(U)(\widetilde{\tau})$ gives us the desired section, since
+the properties of a sheaf morphism implies that the following diagram commutes:
+\[\begin{tikzcd}
+\mathcal{F}(U) \ar[r, "\beta(U)"] \ar[d] & \mathcal{G}(U) \ar[d] \\
+\mathcal{F}(V) \ar[r, "\beta(V)"'] & \mathcal{G}(V)
+\end{tikzcd}\]
+\end{proof}
+%
+\begin{prop}
+Flasque sheaves are acyclic for the global sections functor $\Gamma(X, \cdot)$.
+\end{prop}
+%
+\begin{proof}
+Let $\mathcal{F}$ be a flasque sheaf. We first embed $\mathcal{F}$ into an injective
+flasque sheaf $\mathcal{I}$. Since $\mathsf{Ab}$ has enough injectives, we can embed
+each stalk $\mathcal{F}_x$ into an injective group $I_x$. Then define the sheaf
+$\mathcal{I}$ by
+\[
+\mathcal{I}(U) = \prod_{x \in U} I_x
+\]
+and the restriction maps are the projection maps
+$\prod_{x \in U} I_x \to \prod_{x \in V} I_x$. Since these maps are surjective,
+$\mathcal{I}$ is flasque. In addition, it is injective by construction. Then
+$\mathcal{F}$ embeds into $\mathcal{I}$ by composing the inclusions
+$\mathcal{F}(U)\hookrightarrow\prod_{x\in U}\mathcal{F}_x\hookrightarrow\prod_{x\in V}I_x$
+Then let $\mathcal{G}$ be the cokernel of $\mathcal{F} \hookrightarrow \mathcal{I}$,
+giving us the exact sequence of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F} \ar[r] & \mathcal{I} \ar[r] & \mathcal{G} \ar[r] & 0
+\end{tikzcd}\]
+taking resolutions of $\mathcal{F}$, $\mathcal{I}$ and $\mathcal{G}$ gives
+us a long exact sequence in cohomology
+\[\begin{tikzcd}
+0 \ar[r] & H^0(X,\mathcal{F}) \ar[r] & H^0(X,\mathcal{I}) \ar[r]
+& H^0(X,\mathcal{G}) \ar[dll] \\
+& H^1(X,\mathcal{F}) \ar[r] & H^1(X, \mathcal{I}) \ar[r] & H^1(X,\mathcal{G})\ar[dll] \\
+& H^2(X,\mathcal{F}) \ar[r] & H^2(X, \mathcal{I}) \ar[r] & H^2(X,\mathcal{G})\ar[dll] \\
+& ~ & \cdots & \cdots
+\end{tikzcd}\]
+The since $H^0$ is just $\Gamma(X,\cdot)$ and $\mathcal{I}$ is injective, this becomes
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F}(X) \ar[r] & \mathcal{I}(X) \ar[r] & \mathcal{G}(X) \ar[dll] \\
+& H^1(X,\mathcal{F}) \ar[r] & 0 \ar[r] & H^1(X,\mathcal{G}) \ar[dll] \\
+& H^2(X,\mathcal{F}) \ar[r] & 0 \ar[r] & H^2(X,\mathcal{G}) \ar[dll] \\
+& ~ & \cdots & \cdots
+\end{tikzcd}\]
+Since $\mathcal{F}$ is flasque, we have that
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F}(X) \ar[r] & \mathcal{I}(X) \ar[r] & \mathcal{G}(X) \ar[r] & 0
+\end{tikzcd}\]
+is exact, so this implies that $H^1(X,\mathcal{F}) = 0$. In addition, for $i > 0$,
+we get isomorphisms $H^i(X,\mathcal{G}) \to H^{i+1}(X, \mathcal{F})$. To get that
+$H^2(X,\mathcal{F}) = 0$, we note that $\mathcal{G}$ is flasque, so we can
+repeat the argument to get that $H^1(X,\mathcal{G}) = H^2(X, \mathcal{F})$, and
+then continue for the other cohomology groups.
+\end{proof}
+%
+As a consequence, it suffices to find resolutions by flasque sheaves to compute sheaf
+cohomology. The good news here is that every sheaf admits a canonical
+acyclic resolution, the \ib{Godement resolution}. For a sheaf $\mathcal{F}$,
+let $\mathcal{F}_{\mathrm{God}}$ be the sheaf $U \mapsto \prod_{x \in U}\mathcal{F}_x$,
+which is clearly flasque. Then we construct a flasque resolution for
+$\mathcal{F}$ as follows : embed
+$\mathcal{F} \hookrightarrow \mathcal{F}_{\mathrm{God}}$, and let $\mathcal{G}^1$ be
+the cokernel. Then let the next sheaf in the sequence be $\mathcal{G}^1_{\mathrm{God}}$,
+where the map $\mathcal{F}_{\mathrm{God}} \to \mathcal{G}^1_{\mathrm{God}}$ is the
+quotient map $\mathcal{F}_{\mathrm{God}} \to \mathcal{G}^1$ composed in the the inclusion
+$\mathcal{G}^1 \hookrightarrow \mathcal{G}^1_{\mathrm{God}}$. Then take $\mathcal{G}^2$
+to be the cokernel of $\mathcal{F}_{\mathrm{God}} \to \mathcal{G}^1_{\mathrm{God}}$,
+and continue with $\mathcal{G}^2_{\mathrm{God}}$ and so on. Pictorially, the
+Godement construction is constructed as follows:
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F} \ar[r] & \mathcal{F}_{\mathrm{God}} \ar[dr] \ar[r]
+& \mathcal{G}^1 \ar[r] \ar[d] & 0 \\
+& & & \mathcal{G}^1_{\mathrm{God}} \ar[r] \ar[dr] & \mathcal{G}^2 \ar[r] \ar[d] & 0\\
+& & & & \mathcal{G}^2_{\mathrm{God}} \ar[r] \ar[dr] & \mathcal{G}^3 \ar[r] \ar[d] & 0 \\
+& & & & & \ddots
+\end{tikzcd}\]
+%
+Once more, this resolution is computationally useless, but it serves the purpose of
+showing that every sheaf admits a resolution by flasque sheaves. With this in hand,
+we can finally show that we can compute sheaf cohomology with a nice class of sheaves.
+%
+\begin{defn}
+Let $\mathcal{A}$ be a sheaf of rings over $X$ such that $\mathcal{A}$ admits
+\ib{partitions of unity}, i.e. for any open cover $\set{U_i}$ of $X$, there exist global
+sections $f_i \in \mathcal{A}(X)$ such that $\sum_i f_i = 1$ and $f_i$ is supported
+in $U_i$, and where over any particular open set, all but finitely many of the $f_i$
+are $0$. Then a sheaf of $\mathcal{A}$-modules is a \ib{fine sheaf}.
+\end{defn}
+%
+These are sheaves we care about, and appear in nature.
+%
+\begin{exmp}
+Let $M$ be a smooth manifold. Then the sheaf $C^\infty$ of smooth functions
+admits partitions of unity. Therefore, $\mathsf{Mod}_{C^\infty}$ consists of fine
+sheaves.
+\end{exmp}
+%
+The punchline is that fine sheaves are acyclic, which gives us a source of reasonable
+sheaves with which to build resolutions.
+%
+\begin{thm}
+Fine sheaves are acyclic with respect to $\Gamma(X,\cdot)$.
+\end{thm}
+%
+\begin{proof}
+Let $\mathcal{F}$ be a fine sheaf -- a sheaf of modules over a sheaf of rings
+$\mathcal{A}$ that admits partitions of unity. Then by taking the
+Godement resolution of $\mathcal{F}$, we get an injective resolution of
+flasque $\mathcal{A}$-modules.
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F} \ar[r] & \mathcal{I}^0 \ar[r, "d^0"] & \mathcal{I}^1 \ar[r, "d^1"]
+& \cdots
+\end{tikzcd}\]
+Then since flasque sheaves are acyclic, we get that we can compute the sheaf
+cohomology of $\mathcal{F}$ as
+\[
+H^i(X, \mathcal{F})
+= \frac{\ker d^{i+1}(X) : \mathcal{I}^i(X) \to \mathcal{I}^{i+1}(X)}
+{\im d^i(X) : \mathcal{I}^{i-1}(X) \to \mathcal{I}^i(X)}
+\]
+Then let $\alpha \in \ker d^{i+1}(X)$, by exactness, we know that locally, in a
+sufficiently small open cover $\set{U_j}$, the map $d^{i}(U_j)$ is surjective,
+so we can find $\beta_j \in \mathcal{I}^{i-1}(U_j)$ such that
+$d^i(V_j)(\beta_j) = \alpha\vert_{U_j}$. Then $f_i\beta_i$ determines a global
+section that is equal to $f_j\beta_j$ on $U_i$ and $0$ elsewhere, and we get that
+$\sum_jf_j\beta_j$ maps to $\sum_j f_j\alpha\vert_{U_j} = \alpha$ under $d^i(X)$.
+Therefore, the sequence is exact on global sections for $i > 0$, so $\mathcal{F}$
+is acyclic.
+\end{proof}
+%
+This tells us that many of the sheaves we know about, like sheaves of smooth sections
+of a vector bundle are trivial from the perspective of sheaf cohomology.
+%

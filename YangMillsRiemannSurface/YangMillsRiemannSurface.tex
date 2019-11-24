@@ -1,0 +1,584 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage{amsmath}
+\usepackage{accents}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{bibliography.bib}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand*{\dt}[1]{%
+   \accentset{\mbox{\large\bfseries .}}{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+%
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Yang-Mills on Riemann Surfaces}
+%
+\maketitle
+%
+\tableofcontents
+%
+\section{Preliminary Setup}
+%
+To discuss the Yang-Mills functional, we must first fix some data. The setup will
+consist of the following ingredients
+\begin{enumerate}
+  \item A compact manifold $M$.
+  \item A compact connected Lie group $G$.
+  \item A principal $G$-bundle $P \to M$.
+\end{enumerate}
+%
+With this data, we have two associated bundles
+\begin{align*}
+\Ad P &\defeq P \times_G G \\
+\g_P &\defeq P \times_G \g
+\end{align*}
+%
+Where the action of $G$ on $G$ is by conjugation, and the action of $G$ on $\g$
+is induced by the differential of conjugation. We note that these bundles both
+contain additional structure -- $\Ad P$ is a bundle of groups (not a principal bundle),
+and $\g_P$ is a bundle of Lie algebras. The space of sections $\Gamma(M, \Ad P)$ has
+a natural group structure given by pointwise multiplication, and is called the
+\ib{gauge group} $\mathscr{G}(P)$. Likewise, the space of sections
+$\Gamma(M, \g_P)$ has a natural Lie algebra structure given by the pointwise Lie
+bracket, and can be naturally identified with the Lie algebra of $\mathscr{G}(P)$.
+An alternate characterization of these spaces of sections comes from a general
+characterization of sections of associated bundles
+%
+\begin{prop}
+We have natural correspondences
+\begin{align*}
+\Gamma(M, \Ad P) &\longleftrightarrow \set{f : P \to G ~:~ f(p\cdot g) = g\inv f(p)g} \\
+\Gamma(M, \g_P) &\longleftrightarrow \set{g : P \to \g ~:~ f(p\cdot g) = \Ad_{g\inv}f(p)}
+\end{align*}
+\end{prop}
+%
+From the above correspondence we a group isomorphism
+$\mathscr{G}(P) \to \Aut(P)$, where $\Aut(P)$ denotes the group of
+$G$-equivariant diffeomorphisms $\varphi : P \to P$ such that
+the following diagram commutes :
+\[\begin{tikzcd}
+P \ar[dr] \ar[rr, "\varphi"] && P \ar[dl] \\
+& M
+\end{tikzcd}\]
+The isomorphism is given by mapping a $G$-equivariant map $f : P \to g$
+to the automorphism $\varphi_f : P \to P$ defined by $\varphi_f(p) = p\cdot f(p)$.
+%
+In the the case of $\Gamma(M,\g_P)$, we can extend this to the spaces of
+$\g_P$ valued forms. The kernel of the differential of the projection $P \to M$ gives a
+subbundle of$TP$, which has a natural identification with the trivial bundle
+$\underline{\g} = P \times \g$. Then we can identify the space of sections of
+$\Lambda^kT^*M \otimes \g_P$, (i.e. the space $\Omega^k_M(\g_p)$ of $\g_p$ valued
+$k$-forms with a subspace of the space $\Omega^k_P(\g)$ of $\g$-valued $k$-forms $\omega$
+on $P$ satisfying :
+\begin{enumerate}
+  \item $R_g^*\omega = \Ad_{g\inv}\omega$, where $R_g : P \to P$ denotes the right
+  action of $g \in G$.
+  \item $\iota_\xi\omega = 0$ for any $\xi \in \g$, where $\iota$ denotes interior
+  multiplication, and we identify $\xi$ with the constant vector field
+  $\xi$ under the identification of the vertical space with $\g$.
+\end{enumerate}
+%
+We have a maps
+\begin{align*}
+\Omega^p_M(\g_p) \otimes \Omega^q_M(\g_P) &\to \Omega^{p+q}_M(\g_p \otimes \g_p) \\
+(\omega_1 \otimes \xi_1) \otimes (\omega_2 \otimes \xi_2)
+&\mapsto (\omega_1 \wedge \omega_2) \otimes (\xi_1 \otimes \xi_2)
+\end{align*}
+From now on, we will usually omit the tensor symbol for $\g_P$-valued forms in favor of
+juxtaposition, i.e. we write $\omega\xi$ instead of $\omega \otimes \xi$. Using the Lie
+bracket, we then get
+\begin{align*}
+\Omega^p_M(\g_p) \otimes \Omega^q_M(\g_P) &\to \Omega^{p+q}_M(\g_p) \\
+\omega \otimes \eta \mapsto [\omega,\eta]
+\end{align*}
+For any semisimple Lie group $G$ (in particular, for any compact Lie group $G$), we have
+an inner product $\langle\cdot,\cdot\rangle : \g \times \g \to \R$ that is invariant
+under the adjoint action (e.g. the Killing form). Fixing one such inner product
+induces a fiber product on the trivial bundle $P \times \g$, and invariance
+guarantees that this descends to a fiber product on $\g_P$. This give us pairings
+\begin{align*}
+\Omega^p_M(\g_P) \otimes \Omega^q_M(\g_P) &\to \Omega^{p+q}_M \\
+\omega \otimes \eta &\mapsto \langle \omega, \eta \rangle
+\end{align*}
+%
+We then fix an orientation and Riemannian metric on $M$, which gives us a Hodge
+star operator $\star : \Omega^p_M \to \Omega^{n-p}_M$ and a Riemannian volume form
+$dV_g$. The Hodge star extends to $\g_P$-valued $k$-forms, where given
+$\omega \in \Omega^p_M$ and $\xi \in \Gamma(M,\g_P)$, we define
+$\star(\omega\xi) = (\star\omega)\xi$. Then given
+$\omega_1\xi_1,\omega_2\xi_2 \in \Omega^p_M(\g_P)$, we have
+\[
+\langle\omega_1\xi_1,\star\omega_2\xi_2\rangle =
+\langle \omega_1,\omega_2\rangle_g\langle\xi_1,\xi_2\rangle
+\]
+where $\langle\cdot,\cdot\rangle_g$ denotes the fiber metric on $\Lambda^pT^*M$
+induced by $g$. This gives us an inner product on each $\Omega^p_M(\g_P)$ defined
+by
+\[
+(\theta,\varphi) = \int_M \langle \theta,\star\varphi\rangle
+\]
+Which gives us the $L_2$ norm on $\Omega^p_M(\g_P)$ with $\norm{F}_{L^2}^2 = (F,F)$.
+\begin{defn}
+A connection on a principal bundle $\pi : P \to M$ is a choice of $G$-invariant splitting
+of the exact sequence of vector bundles over $P$
+\[\begin{tikzcd}
+0 \ar[r] & \underline{\g} \ar[r] & TP \ar[r] & \pi^*TM \ar[r] & 0
+\end{tikzcd}\]
+i.e. a distribution $H \subset TP$ such that
+\begin{enumerate}
+  \item $(R_g)_*H_p = H_{p\cdot g}$
+  \item $H \oplus \underline{\g} = TP$
+\end{enumerate}
+Equivalently, it is the data of a $\g$-valued $1$-form $A \in \Omega^1_P(\g)$
+satisfying
+\begin{enumerate}
+  \item $R_g^*A = \Ad_{g\inv} A$
+  \item $\iota_\xi A = \xi$ for all $\xi \in \g$.
+\end{enumerate}
+\end{defn}
+%
+Note in particular that by a dimension count, we have that $\pi_*\vert_H : H \to TM$ is
+an isomorphism. This implies that given a tangent vector $v$ at $x$ and a point
+$p \in P$ in the fiber over $x$, we get a unique horizontal lift
+$\tilde{v} \in H_p$. For a fixed principal $G$-bundle $\pi : P \to M$, let
+$\mathscr{A}(P)$ denote the space of all connections on $P$, which is an affine space
+over $\Omega^1_M(\g_P)$. \\
+
+Given any distribution $E \subset TP$, we get a Frobenius tensor
+$\phi_E : E \otimes E \to TP/E$ given by $X \otimes Y \to [X,Y] \mod E$ where
+we extend $X$ and $Y$ to local vector fields. The Frobenius tensor should be
+thought of as the obstruction to the existence of an integral submanifold for the
+distribution $E$. In the case of a connection $H$ on a principal bundle $P \to M$,
+we can extend to all of $TP$ by first projecting onto $H$, and
+have an identification of $TP/H \cong \underline{\g}$, and the Frobenius
+tensor is given by $X \otimes Y \mapsto A([X,Y])$, where $A$ is the connection $1$-form,
+and is called the \ib{curvature form} of the connection, and is denoted $F_A$. In
+terms of differential forms, we have that for horizontal vectors $\xi_1,\xi_2$ on
+$TP$,
+\[
+dA(\xi_1,\xi_2) = \xi_1A(\xi_2) - \xi_2A(\xi_1) - A([\xi_1,\xi_2])
+\]
+The fact that $\xi_1$ and $\xi_2$ are horizontal implies that they are in the
+kernel of $A$, which gives us that
+\[
+dA + \frac{1}{2}[A,A] = -F_A\footnote{Our convention for the sign of the curvature
+is opposite from many other conventions, which usually sets
+$F_A = dA + \frac{1}{2}[A,A]$}
+\]
+It can be shown that $F_A$ transforms by the adjoint action under pullback, and
+vanishes on vertical vectors, so it descends to a $\g_P$-valued $2$-form on the base
+manifold $M$. \\
+
+Another thing to note is that there is a natural action of the gauge group
+$\mathscr{G}(P)$ on the space of connections $\mathscr{A}(P)$. Interpreting the
+elements of $\mathscr{G}(P)$ as bundle automorphisms $\varphi : P \to P$ and
+elements of $\mathscr{A}(P)$ as $\g$-valued $1$-forms $A$ on $P$, the action
+is simply pullback, $(\varphi,A) \mapsto \varphi^*A$. To show that
+this defines an action, we must check that $\varphi^*A$ satisfies the conditions
+%
+\begin{enumerate}
+  \item $R_g^*\varphi^*A = \Ad_{g\inv} \varphi^*A$
+  \item $\iota_\xi \varphi^*A = \xi$ for all $\xi \in \g$.
+\end{enumerate}
+%
+Which are all simple consequences of the $G$-equivariance of $\varphi$ and
+the transformation law for $A$. For a specific formula, let
+$\varphi : P \to P$ be an element of the gauge group, and let
+$g_\varphi : P \to G$ be its associated $G$-equivariant map. Then
+\[
+\varphi^*A = \Ad_{g_\varphi\inv} A + g_\varphi^*\theta
+\]
+where $\theta \in \Omega^1_G(\g)$ denotes the \ib{Maurer-Cartan form}
+\[
+\theta_g(v) = (dL_{g\inv})_g(v)
+\]
+which satisfies the \ib{Maurer-Cartan equation}
+\[
+d\theta + \frac{1}{2}[\theta,\theta] = 0
+\]
+%
+\begin{prop}
+Let $A \in \mathscr{A}(P)$ be a connection and $\varphi : P \to P$ an element
+of $\mathscr{G}(P)$ with associated $G$-equivariant map $g_\varphi : P \to G$.
+Then
+\[
+F_{\varphi^*A} = \Ad_{g_\varphi\inv} F_A
+\]
+\end{prop}
+%
+\begin{proof}
+Using the transformation law for $\varphi^*A$ we compute
+\begin{align*}
+F_{\varphi^*A} &= d(\Ad_{g_\varphi\inv} A + g_\varphi^*\theta)
++ \frac{1}{2}[\Ad_{g_\varphi\inv} A + g_\varphi^*\theta,
+\Ad_{g_\varphi\inv} A + g_\varphi^*\theta] \\
+&= \Ad_{g_\varphi\inv}dA + g_\varphi^*d\theta + \frac{1}{2}
+\left([\Ad_{g_\varphi\inv}A, \Ad_{g_\varphi\inv} A] + [\Ad_{g_\varphi\inv} A,
+g_\varphi^*\theta] + [g^*_\varphi\theta, \Ad_{g_\varphi\inv}]
++ [g_\varphi^*\theta,g_\varphi^*\theta] \right) \\
+&= \Ad_{g_\varphi\inv} dA + \frac{1}{2}[\Ad_{g_\varphi\inv}A, \Ad_{g_\varphi\inv} A]]
+\end{align*}
+Where we use skew-symmetry and the Maurer-Cartan equation.
+\end{proof}
+%
+\section{The Yang-Mills Functional}
+%
+With the setup done, we have the ingredients necessary to define the Yang-Mills
+functional.
+%
+\begin{defn}
+The \ib{Yang-Mills functional} is the map
+$L : \mathscr{A}(P) \to \R$ given by
+\[
+L(A) = \norm{F_A}_{L^2}^2 = \int_M \langle F_A,F_A \rangle
+\]
+\end{defn}
+%
+\begin{rem*}
+The bilinear form $\langle \cdot,\cdot\rangle$ should be thought of as a symplectic
+form on $\mathscr{A}(P)$, and the mapping $A \mapsto F_A$ should be thought of
+as the moment map to some action of $\mathscr{G}(P)$. In this context, the
+Yang-Mills functional is the norm-square of the moment map.
+\end{rem*}
+%
+We immediately see that the Yang-Mills equations are invariant under $\mathscr{G}(P)$
+in the following sense -- if we have any gauge transformation $\varphi$ with
+associated map $g_\varphi : P \to G$, we have that $L(\varphi^*A) = L(A)$,
+which follows immeidately from the invariance of $\langle\cdot,\cdot\rangle$
+and the transformation law for curvature. \\
+
+Our goal now will be to find the Euler-Lagrange
+equations for the Yang-Mills functional by computing the first and second variations.
+The connection form $A$ on $P$ induces an exterior covariant derivative on any
+associated vector bundle $E = P \times_G V$ arising from a linear representation
+$\rho : G \to \GL(V)$. Let $\dt{\rho} : \g \to \End(V)$ be the derivative of
+$\rho$ at the identity. Then the exterior covariant derivative is given by
+\begin{align*}
+d_A : \Omega^p_M(E) &\to \Omega^{p+1}_M(E) \\
+\psi &\mapsto d\psi + \dt{\rho}(A) \wedge \psi
+\end{align*}
+%
+In particular, we get an exterior covariant derivative on $\g_P$, which is given by
+\[
+d_A\psi = d\psi + [A,\psi]
+\]
+Using the Hodge star operator, we construct the formal adjoint with respect to
+the inner product $d_A^* : \Omega^{p}_M(\g_P) \to \Omega^{p-1}_M(\g_P)$ in the same manner
+as for classical Hodge theory on a Riemannian manifold. Explicitly, the formula
+on $p$-forms is given by
+\[
+d^*_A = (-1)^{n(p+1) + 1}\star d_A \star
+\]
+where $n = \dim M$. \\
+
+For any other connection $A + \eta$ with $\eta \in \Omega^1_M(\g_P)$, a quick computation
+yields
+\[
+F_{A+\eta} = F_A + \frac{1}{2}[\eta,\eta] + d_A\eta
+\]
+This allows us to compute the first variation of $L$.
+%
+\begin{prop}[\ib{The First Variation}]
+For a local extremum $A \in \mathscr{A}(P)$ of the Yang-Mills functional, we have
+\[
+d_A\star F_A = 0
+\]
+The local extremum connection $A$ is then callled a \ib{Yang-Mills connection}.
+\end{prop}
+%
+\begin{proof}
+Consider a variation $A + t\eta$ with $t \in \R$ and $\eta \in \Omega^1_M(\g_P)$.
+We have that the curvature is given by
+\[
+F_{A+t\eta} = F_A + \frac{t^2}{2}[\eta,\eta] + td_A\eta
+\]
+This then gives us
+\begin{align*}
+\norm{F_{A+t\eta}}_{L^2} &= \int_M \langle F_{A+t\eta},F_{A+t\eta}\rangle \\
+&= \int_M \langle F_A + \frac{t^2}{2}[\eta,\eta]
++ td_A\eta,\star (F_A + \frac{t^2}{2}[\eta,\eta] + td_A\eta \rangle \\
+\end{align*}
+Expanding this out, we get that the term that is linear in $t$ is
+
+\[
+\int_M \langle F_A, \star d_A\eta\rangle + \langle d_A\eta, \star F_A \rangle
+= 2(F_A,d_A\eta)
+\]
+where we use symmetry of $(\cdot,\cdot)$. Since $A$ is extremal, we have that
+this term must vanish, giving us that $(F_A,d_A\eta) = (d^*_A F,\eta) = 0$ for
+every $\eta$. Then since we have (up to sign) $d^*_A = \star d_A \star$, and
+$\star$ is an isomorphism, this implies $d_A\star F_A = 0$.
+\end{proof}
+%
+\begin{prop}[\ib{The Second Variation}]
+At a Yang-Mills connection $A \in \mathscr{A}(P)$, we have
+\[
+d^*_A d_A\eta + \star[\eta,\star F_A] = 0
+\]
+\end{prop}
+%
+\begin{proof}
+We differentiate the first variational equation with respect to $t$, i.e.
+we compute
+\[
+\frac{d}{dt}\bigg\vert_{t=0} d_{A+t\eta}^*F_{A+t\eta}
+\]
+We expand out
+\begin{align*}
+d_{A+t\eta}^*F_{A+t\eta} &= \pm \star d_{A+t\eta}\star F_{A+t\eta} \\
+&= \pm\left(\star d_A\star\left(F_A + td_A\eta + \frac{t^2}{2}[\eta,\eta]\right)
++ t\star
+\left[\eta, \star\left(F_A + td_A\eta + \frac{t^2}{2}[\eta,\eta]\right)\right]\right)
+\end{align*}
+Taking the term linear in $t$ yields
+\[
+\pm\left( \star d_A\star d_A\eta + \star[\eta,\star F_A] \right)
+\]
+Giving us that at an extremal connection $A$, we have
+\[
+d^*_A d_A\eta + \star[\eta,\star F_A] = 0
+\]
+\end{proof}
+%
+%TODO Hessian?
+%TODO Example with U(1)
+%
+\section{A Symplectic Viewpoint}
+%
+
+%
+\section{Yang-Mills Over a Riemann Surface}
+%
+We now restrict our attention to when $M$ is a surface, i.e. a $2$ dimensional real
+manifold. The Hodge star operator maps $\Omega^1_M \to \Omega^1_M$, and satisfies
+$\star^2 = -\id$, which induces an almost complex structure on $M$, giving us a
+decomposition $\Omega^1_M(\C) = \Omega^{1,0}_M(\C) \oplus \Omega^{0,1}_M(\C)$
+into the $\pm i$ eigenspaces of the complexified Hodge star. The operator
+$\dbar \defeq \pi^{0,1} \circ d$ (where $\pi^{0,1}$ denotes projection onto
+$\Omega^{0,1}_M(\C)$) satisfies $\dbar^2 = 0$ since by dimension reasons,
+$\Omega^{0,2}_M(\C) = 0$, so the induced almost complex structure is integrable by the
+Newlander-Nirenberg theorem. The same argument with projection onto $\Omega^{1,0}_M(\C)$
+gives an operator $\partial$ satisfying $\partial^2 = 0$, and we get a decomposition
+$d = \partial + \dbar$. Then given a principal bundle $P \to M$, We get a similar
+decomposition for $\Omega^1_M(\g_P)$ after complexification giving a decomposition
+$d_A = \partial_A + \dbar_A$ for any connection $A \in \mathscr{A}(P)$.
+%
+\end{document}

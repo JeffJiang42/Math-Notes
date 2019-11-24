@@ -1,0 +1,263 @@
+\section{The Chern Connection}
+%
+\begin{defn}
+Let $E \to X$ be a complex vector bundle. A \ib{Hermitian structure} on $E$
+is the data of a smoothly varying hermitian form $H(x)$ on each fiber $E_x$.
+If $E$ is a complex vector bundle equipped with a Hermitian structure, we call it
+a \ib{Hermitian vector bundle}.
+\end{defn}
+%
+Hermitian structures always exist due to convexity of the space of Hermitian forms.
+Therefore, we can define Hermitian forms locally in neighborhoods where the bundle
+$E$ is trivial, and then use a partition of unity to glue them together.
+%
+Like in the case of Riemannian geometry, we can ask for a connection to be compatible
+with a Hermitian structure.
+%
+\begin{defn}
+Let $E \to X$ be a Hermitian vector bundle. A connection $\nabla$ on $E$ is a
+\ib{Hermitian connection} if for sections $s_1, s_2$, we have
+\[
+dh(s_1,s_2) = h(\nabla s_1, s_2) + h(s_1,\nabla s_2)
+\]
+\end{defn}
+%
+In the complex world, we can also impose a holomorphic structure on vector bundles,
+and we can also ask for a compatibility condition with the holomorphic structure.
+%
+\begin{defn}
+Let $E \to X$ be a holomorphic structure. A connection $\nabla$ on $E$ is said
+to be \ib{compatible with the holomorphic structure} if the $(0,1)$ component
+$\nabla^{0,1}$ is equal to $\dbar_E$.
+\end{defn}
+%
+This leads us to a natural question : given a holomorphic vector bundle $E \to X$
+equipped with a Hermitian structure $h$, can we find a connection $\nabla$ that
+is compatible both with the Hermitian structure and the holomorphic structure?
+%
+\begin{thm}[\ib{The Chern connection}]
+Let $E \to X$ be a Hermitian holomorphic vector bundle. There exists a unique
+Hermitian connection $\nabla$, called the \ib{Chern connection} that is compatible
+with the holomorphic structure.
+\end{thm}
+%
+\begin{proof}
+The proof has a similar flavor to other proofs of existence and uniqueness of global
+objects. We use the compatibility conditions to determine local conditions that
+the connection must satisfy, and show that it uniquely specifies the connection.
+Therefore, the local definitions glue to a global one. In a local trivialization
+of $E$, we have that any connection $\nabla$ is of the form $d + A$ for a matrix
+valued $1$-form $A$. In addition, we have that the Hermitian structure gives a
+Hermitian form $H(x)$ at each point $x$. Let $\set{E_i}$ the local
+frame for $E$, where each $E_i$ is just the constant section $x \mapsto e_i$. Then we
+get a coordinate representation of the Hermitian form $H$.
+$H^i_j(x) = h(E_i,E_j)$. We clearly have that $dE_i = 0$, since all the sections
+are constant, so $\nabla E_i = AE_i$. The the condition that $\nabla$ is Hermitian gives
+us
+\[
+dH^i_j  = dH(E_i,E_j) = h(AE_i, E_j) + h(E_i, AE_j)
+\]
+Writing the matrix $A$ in coordinates $A^i_j$, this gives us
+\[
+dH^i_j = \overline{A^i_k}h(E_k, E_j) + h(E_i, E_k)A^k_j
+= \overline{A^i_k}H^k_j + H^i_kA^k_j
+\]
+which tells us that we must have that
+\[
+dH = A^\dagger H + HA
+\]
+We then consider the restrictions imposed on $\nabla$ by the condition that
+$\nabla$ is compatible with the holomorphic structure. Decomposing
+$\nabla = \nabla^{1,0} + \nabla^{0,1}$, we want $\nabla^{0,1} = \dbar_E$. In our local
+picture, we have that $\nabla = \partial + \dbar + A$, and $\dbar_E$ is just $\dbar$.
+Therefore, we must have that $A^{0,1} = 0$, so $A = A^{1,0}$. Decomposing
+$d = \partial + \dbar$ and applying it to our Hermitian condition, we find that
+\[
+\partial H + \dbar H = (A^{1,0})^\dagger H + HA^{1,0}
+\]
+comparing the bidegrees then gives
+\begin{align*}
+\partial H &= HA^{1,0}\\
+\dbar H &= (A^{1,0})^\dagger H
+\end{align*}
+Moving $H$ to the other side of the equation and conjugating the equation gives
+\[
+\partial\overline{H} (\overline{H\inv}) = (A^{1,0})^T = A^T
+\]
+which gives a unique characterization of the matrix $A$, as well as a local definition,
+showing existence and uniqueness of the Chern connection.
+\end{proof}
+%
+Unsurprisingly, if we have a connection compatible with a Hermitian or holomorphic
+structure, then the corresponding curvature forms are also compatible.
+%
+\begin{prop} \enumbreak
+\begin{enumerate}
+  \item Let $E \to X$ be a Hermitian vector bundle with Hermitian connection $\nabla$.
+  Then $F_\nabla$ is locally given by a skew-Hermitian matrix $C$ of $2$-forms.
+  Globally, we have
+  \[
+  h(F_\nabla s_1, s_2) + h(s_1, F_\nabla s_2) = 0
+  \]
+  \item Let $E \to X$ be a holomorphic vector bundle. Then $F_\nabla$ has
+  no $(0,2)$ part, i.e. $F_\nabla = F^{2,0}_\nabla + F^{1,1}_\nabla$.
+\end{enumerate}
+\end{prop}
+%
+\begin{proof} \enumbreak
+\begin{enumerate}
+  \item Locally $E$ is isomorphic to the trivial bundle with the standard Hermitian
+  structure, so $\nabla = d + A$ for a skew-Hermitian matrix $A$. Then using
+  the local formula
+  \[
+  F_\nabla = dA + A \wedge A
+  \]
+  we want to show that $F_\nabla^\dagger = -F_\nabla$. We compute
+  \begin{align*}
+  F_\nabla^\dagger &= d(A^\dagger) + (A \wedge A)^\dagger \\
+  &= d(A^\dagger) - A^\dagger \wedge A^\dagger
+  \end{align*}
+  The fact that $(A\wedge A)^\dagger = -A^\dagger \wedge A^\dagger$ is slightly tricky,
+  and comes from the skew symmetry of the wedge product. Explicitly in components,
+  we have
+  \begin{align*}
+  ((A \wedge A)^\dagger)^i_j &= (\overline{A} \wedge \overline{A})^j_i \\
+  &= \overline{A}^j_k \wedge \overline{A}^k_i \\
+  &= -\overline{A}^i_k \wedge \overline{A}^k_j \\
+  &= - (A^\dagger \wedge A^\dagger)^i_j
+  \end{align*}
+  We the complete the computation, using the fact that $A$ is skew-Hermitian
+  \begin{align*}
+  F_\nabla^\dagger &= d(A^\dagger) - A^\dagger \wedge A^\dagger \\
+  &= -dA - A \wedge A \\
+  &= -F_\nabla
+  \end{align*}
+  \item Locally, we may write $\nabla = d + A$ Since $\nabla$ is compatible with the
+  holomorphic structure, we also have that $A = A^{1,0}$. We have that locally
+  \[
+  F_\nabla = dA + A \wedge A
+  \]
+  Splitting $d = \partial + \dbar$, we get
+  \[
+  F_\nabla = (\partial + \dbar)(A) + A \wedge A = \dbar A + \partial A + A \wedge A
+  \]
+  and since $A$ is type $(1,0)$, we get that $\dbar A$ is type $(1,1)$ and
+  $\partial A + A \wedge A$ is type $(2,0)$.
+\end{enumerate}
+\end{proof}
+%
+Putting these together, we get a result on the type of the curvature of a Chern connection.
+%
+\begin{prop}
+Let $\nabla$ be the Chern connection for a Hermitian holomorphic vector bundle
+$E \to X$. Then $F_\nabla$ is type $(1,1)$.
+\end{prop}
+%
+\begin{proof}
+Since $\nabla$ is Hermitian, we have that $F_\nabla^\dagger = - F_\nabla$.
+Since $\nabla$ is compatible with the holomorphic structure, we have that
+$F_\nabla = F^{2,0}_\nabla + F^{1,1}_\nabla$. Then consider
+\[
+F_\nabla^\dagger = (F^{2,0}_\nabla)^\dagger + (F^{1,1}_\nabla)^\dagger
+\]
+We have that $(F^{2,0}_\nabla)^\dagger$ is type $(0,2)$ and $(F^{1,1}_\nabla)^\dagger$
+is type $(1,1)$. Therefore, in order to have $F_\nabla^\dagger = -F_\nabla$, we
+must have that $(F^{1,1}_\nabla)^\dagger = -F^{1,1}_\nabla$ and $F^{2,0}_\nabla = 0$
+by a simple type check.
+\end{proof}
+%
+This yields an important result regarding the curvature of of Chern connection.
+%
+\begin{thm}
+The curvature form $F_\nabla$ of a Chern connection on a holomorphic vector
+bundle $E \to X$ is $\dbar_E$-closed, so it defines a Dolbeault cohomology class
+$[F_\nabla] \in H^1(X, \Omega_X \otimes \End(E))$, where $\Omega_X$ denotes the
+bundle of holomorphic $1$-forms.
+\end{thm}
+%
+\begin{proof}
+Applying the Bianchi Identity to the curvature form $F_\nabla = F_\nabla^{1,1}$,
+we find
+\begin{align*}
+0 = \nabla(F_\nabla)^{1,2} = \dbar_E F_\nabla
+\end{align*}
+where we use the fact that the induced connection on $\End(E)$ is also
+compatible with the holomorphic structure.
+\end{proof}
+%
+This gives some intuition behind the Chern connection. For an arbitrary connection on
+a holomorphic vector bundle $E$, we need not have that the curvature is
+$\dbar_E$-closed. This shows that asking for a connection to be a Chern connection
+is a sort of integrability condition. In addition, it gives a generalization of the
+first Chern class for line bundles to holomorphic bundles of arbitrary rank. In
+the line bundle case, we did not have to worry about curvature being closed,
+but in the higher dimensional case, we have to restrict our attention to Chern
+connections.
+
+Given a holomorphic vector bundle $E \to X$, we now get a recipe for producing Dolbeault
+cohomology classes in $H^1(X, \Omega_X \otimes \End(E))$. In addition, We can
+place a Hermitian structure on $E$, and then compute the curvature of the Chern
+connection. Naturally, the next question is whether this cohomology class
+depends on the choice of Hermitian structure.
+%
+\begin{thm}
+The cohomology class $[F_\nabla]$ of the curvature of a Chern connection on
+a holomorphic vector bundle $E$ is independent on the choice of Hermitian structure.
+\end{thm}
+%
+\begin{proof}
+Let $\nabla$ be the Chern connection with respect to some Hermitian structure
+on $E$. Then any other connection is of the form $\nabla + A$ with curvature
+$F_{\nabla + A} = F_\nabla + \nabla A + A \wedge A$. Then if
+$\nabla' = \nabla + A$ is the Chern connection with respect to a different Hermitian
+structure, then $A$ must be type $(2,0)$. In addition, we know that both
+$F_\nabla$ and $F_{\nabla'} = F_\nabla + \nabla A + A \wedge A$ are both type $(1,1)$.
+In order for this to be true, we must have that $\nabla A + A \wedge A$ is
+of type $(1,1)$. Since $A \wedge A$ is of type $(2,0)$, we get
+\[
+(\nabla A + A \wedge A) = (\nabla A \wedge A)^{1,1} = \nabla A
+\]
+Then since $A$ is type $(1,0)$, the $(1,1)$ part of $A$ is $\nabla^{0,1}A = \dbar_E A$
+since $\nabla$ is compatible with the holomorphic structure. Therefore,
+we have that $\nabla A + A \wedge A = \dbar_E A$, giving us
+\[
+F_{\nabla'} = F_\nabla + \dbar_E A
+\]
+so $[F_{\nabla'}] = [F_\nabla]$.
+\end{proof}
+%
+\begin{defn}
+Let $E \to X$ be a holomorphic vector bundle of rank $k$, and
+$\mathcal{U} = \set{U_i}$ a good cover of $X$ with local trivializations
+$\varphi_i : E\vert_{U_i} \to U_i \times \C^k$ and transition functions
+$\psi_{ij} : U_i \cap U_j \to \GL_k\C$. The \ib{Atiyah class} of $E$, denoted
+$A(E)$ is the element $A(E) \in H^1(X, \Omega_X \otimes \End E)$ determined by
+the cocycle $\sigma_{ij} = \varphi_j\inv \circ (\psi_{ij}\inv d\psi_{ij}) \circ \varphi_j$,
+where $\Omega_X$ denotes the bundle of holomorphic $1$-forms.
+\end{defn}
+%
+We first make sense of the formula for the cocycle. A component $\sigma_{ij}$ of
+the \v{C}ech cocycle $\sigma$ should be a local section
+$\sigma_{ij} : U_i \cap U_j \to \Omega_X \otimes \End E$. What this means
+is that we should be able to feed $\sigma_{ij}$ the following data:
+\begin{enumerate}
+  \item A point $p \in U_i \cap U_j$
+  \item A tangent vector $v \in T_pX$
+  \item A vector $w \in E_p$ in the fiber
+\end{enumerate}
+%
+and we should expect another vector in $E_p$ to be the output. We have that
+$\varphi(p,w)$ should be a pair $(p, w') \in U_i \cap U_j \times \C^k$. Then
+since $\psi_{ij} : U_i \cap U_j \to \GL_k\C$, we have that
+$d(\psi_{ij})_p : T_pX \to M_n\C$. Therefore, we have that
+$d(\psi_{ij})_p(v)$ is a matrix, which we can then apply to $w'$.
+Then we can apply the matrix inverse $(\psi_{ij}(p))\inv$ to the result, leaving
+us with some other pair $(p,w'') \in U_i \cap U_j \times \C^k$, and then applying the
+inverse of the local trivialization $\varphi_j$ to this gives us the desired output.
+The fact that this defines a cocycle essentially boils down to the fact that the
+$\psi_{ij}$ satisfy the cocycle condition, along with using the chain rule for
+the differentials $d\psi_{ij}$.
+%
+%TODO Chern classes and Chern-Weil
+%
+%TODO Line bundles and maps to projective space

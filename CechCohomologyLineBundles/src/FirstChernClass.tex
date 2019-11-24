@@ -1,0 +1,376 @@
+\section{The First Chern Class}
+%
+On any complex manifold $X$, we have the following exact sequence of sheaves:
+\[\begin{tikzcd}
+0 \ar[r] & \Z \ar[r] & \O_X \ar[r, "\mathrm{exp}"] & \O_X^\times \ar[r] & 0
+\end{tikzcd}\]
+where $\mathrm{exp}$ is the sheaf morphism where a function $f \in \O_X(U)$ is
+mapped to the function $e^f$. This gives us the long exact sequence in sheaf
+cohomology
+\[\begin{tikzcd}
+0 \ar[r] & H^0(X, \Z) \ar[r] & H^0(X, \O_X) \ar[r] & H^0(X, \O_X^\times) \ar[dll]\\
+& H^1(X, \Z) \ar[r] & H^1(X, \O_X) \ar[r] & H^1(X, \O_X^\times) \ar[dll, "c_1"']\\
+& H^2(X, \Z) \ar[r] & \cdots
+\end{tikzcd}\]
+%
+We are particularly interested in the boundary map $H^1(X,\O_X^\times) \to H^2(X, \Z)$,
+which we called $c_1$. Recall that we have an isomorphism
+$H^1(X,\O_X^\times) \cong \mathrm{Pic}(X)$.
+%
+\begin{defn}
+The \ib{first Chern class} of a line bundle $L$ is its image under the map
+$c_1$, using the canonical identification $H^1(X,\O_X^\times) \cong \mathrm{Pic}(X)$.
+\end{defn}
+%
+The first Chern class will prove to be a powerful invariant of line bundles, and
+our goal will be to understand these cohomology classes in terms of the geometry
+of the manifold $X$. We first note some properties of $c_1$ that can be immediately
+deduced from the definition and our knowledge of the group structure on $\mathrm{Pic}(X)$.
+%
+\begin{prop} \enumbreak
+\begin{enumerate}
+  \item $c_1(L_1 \otimes L_2) = c_1(L_1) + c_1(L_2)$
+  \item $c_1(L^*) = -c_1(L)$.
+  \item For a map $F : X \to Y$, we have $c_1(F^*L) = F^*c_1(L)$.
+\end{enumerate}
+\end{prop}
+The first two observations are immediate, and the last one follows from functoriality
+of cohomology. \\
+
+Using some Hodge theory, we can already learn something about
+$\CP^n$ using the first Chern class
+%
+\begin{thm}
+\[
+\mathrm{Pic}(\CP^n) \cong \Z
+\]
+\end{thm}
+%
+\begin{proof}
+Hodge theory gives us the Hodge decomposition
+\[
+H^k(\CP^n, \C) = \bigoplus_{p+q=k} H^{p,q}(X, \C)
+\]
+as well as isomorphisms
+\[
+H^q(\CP^n, \Omega^p_{\CP^n}) \cong H^{p,q}(\CP^n, \C)
+\]
+We know the singular cohomology of $\CP^n$ is given by
+\[
+H^k(\CP^n, \C) \cong \begin{cases}
+\C & k \text{ is even} \\
+0 & \text{otherwise}
+\end{cases}
+\]
+In particular, if $p+q$ is odd, then we know that $H^{p,q}(X,\C) = 0$.
+A special case is
+\[
+0 = H^{1,0}(\CP^n, \C) \cong H^1(\CP^n, \Omega^0_{\CP^n}) = H^1(\CP^n, \O_{\CP^n})
+\]
+Therefore, we have that in the long exact sequence induced by the exponential exact
+sequence, we have
+\[\begin{tikzcd}
+0 \ar[r] & \mathrm{Pic}(\CP^n) \ar[r, "c_1"] & \Z
+\end{tikzcd}\]
+which tells us that $c_1$ is injective. Since the only subgroups of $\Z$
+are isomorphic to $\Z$, this gives $\mathrm{Pic}(\CP^n) \cong \Z$. In addition,
+it tell us that $c_1$ is a complete isomorphism invariant. Two holomorphic line bundles
+over $\CP^n$ are isomorphic if and only if they have the same first Chern class.
+\end{proof}
+%
+Given that the first Chern class is defined using sheaves of holomorphic functions,
+as well as our preliminary observation with $\CP^n$, one might first think that $c_1$ is
+an invariant of holomorphic line bundles, but the truth is that it is a slightly coarser
+invariant -- it cannot distinguish between holomorphic line bundles and smooth complex
+line bundles. To see this, let $C^\infty_\C$ denote the sheaf of smooth $\C$-valued
+functions on $X$. We note that we also have the exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & \Z \ar[r] & C_\C^\infty \ar[r, "\mathrm{exp}"] & (C_\C^\infty)^\times \ar[r] & 0
+\end{tikzcd}\]
+which similarly induces a long exact sequence in cohomology, yielding a boundary
+map $\delta : H^1(X, (C^\infty)^\times) \to H^2(X, \Z)$. Using functoriality
+of sheaf cohomology, the inclusions $\O_X \hookrightarrow C^\infty$ and
+$\O_X^\times \hookrightarrow (C^\infty)^\times$ induce maps on cohomology, giving
+us the commutative diagram
+\[\begin{tikzcd}
+H^1(X,C^\infty_\C) \ar[r] & H^1(X, (C^\infty_\C)^\times) \ar[r, "\delta"] & H^2(X,\Z) \\
+H^1(X, \O_X) \ar[r] \ar[u] & H^1(X, \O_X^\times)
+\ar[u] \ar[r, "c_1"'] & H^(X, \Z) \ar[u, equal]
+\end{tikzcd}\]
+with exact rows. Given a holomorphic line bundle $L$, we can forget its complex
+structure, regarding it as a complex line bundle, i.e. an element of
+$H^1(X, (C^\infty_\C)^\times)$, and then take the image under $\delta$. Commutativity
+of the diagram implies that this is the same thing as $c_1(L)$. Since
+$C^\infty_\C$ is a fine sheaf, we have that this diagram is actually
+\[\begin{tikzcd}
+0 \ar[r] & H^1(X, (C_\C^\infty)^\times) \ar[r, "\delta"] & H^2(X,\Z) \\
+H^1(X, \O_X) \ar[r] \ar[u] & H^1(X, \O_X^\times)
+\ar[u] \ar[r, "c_1"'] & H^(X, \Z) \ar[u, equal]
+\end{tikzcd}\]
+which tells us that $\delta$ is injective. Therefore, on smooth complex line bundles,
+the first Chern class is a perfect invariant -- two complex line bundles are smoothly
+isomorphic if and only if they have the same first Chern class. However, this also
+reveals to us that it cannot distinguish between different holomorphic structures
+on the same underlying complex line bundle. However, we can use the complex geometry as
+a tool  to compute certain quantities of a holomorphic bundle, which will turn out to be
+topological invariants of the bundle, independent of the holomorphic structure. Our goal
+will be to realize the first Chern class of a line bundle as the cohomology class
+associated to the curvature of a connection. Eventually, we will add a third characterization
+to the mix by introducing the Atiyah class. \\
+
+
+We first discuss the relationship of $c_1$ with the curvature of a connection on
+a complex line bundle. We will discuss connections on complex vector bundles in
+general, and will then specialize to the case of line bundles.
+%
+\begin{defn}
+Let $E \to X$ be a complex vector bundle, and let $\mathcal{A}^k(E)$ denote the
+sheaf of smooth $E$-valued $k$-forms, i.e. the sheaf of sections of the bundle
+$\Lambda^k(T^*X)_\C \otimes E$, which is a sheaf of $\C^\infty_\C$-modules. A
+\ib{connection} $\nabla$ is a $\C$-linear map
+$\nabla : \mathcal{A}^0 \to \mathcal{A}^1$
+where for a smooth function $f$ and local section $s$, we have the \ib{Leibniz rule}
+\[
+\nabla(fs) = df \otimes s + f\nabla s
+\]
+\end{defn}
+%
+A connection can be naturally extended to an operator
+$\nabla : \mathcal{A}^k \to \mathcal{A}^{k+1}$, where for a $k$-form $\alpha$
+and a local section $s$ of $E$, we define
+\[
+\nabla(\alpha \otimes s) = d\alpha \otimes s + (-1)^k \alpha \wedge \nabla s
+\]
+In a similar fashion, the connection $\nabla$ on $E$ induces connection on associated
+bundles (e.g. tensor powers, duals). In particular, it induces a connection on the bundle
+$\End(E)$, which by abuse of notation we also denote $\nabla$. Given a section $F$ of
+$\End(E)$, we have that the action of $\nabla F$ on a section $s$ is given by the formula
+\[
+(\nabla F)(s) = \nabla(F(s)) - F(\nabla s)
+\]
+\begin{prop}
+Let $\nabla_1$ and $\nabla_2$ be two connections on a complex vector bundle
+$E \to X$. Then $\nabla_1 - \nabla_2$ is an element of $\mathcal{A}^1(\End E)$.
+\end{prop}
+%
+\begin{proof}
+We want to show that the difference is $C^\infty_\C$-linear. We compute
+\begin{align*}
+(\nabla_1 - \nabla_2)(fs) &= \nabla_1(fs) - \nabla_2(fs) \\
+&= df \otimes s + f\nabla_1s - (df \otimes s + f\nabla_2s) \\
+&= f(\nabla_1 - \nabla_2)(s)
+\end{align*}
+\end{proof}
+%
+\begin{prop}
+Let $a \in \mathcal{A}^1(\End E)$ and let $\nabla$ be a connection on $E$. Then
+$\nabla + a$ is a connection on $E$, where given a local
+section $s$, we define $\nabla + a$ by
+\[
+(\nabla + a)s = \nabla s + as
+\]
+where given a tangent vector $v$, we have that $a$ acts on $s$ by $a(v)s$.
+\end{prop}
+%
+\begin{proof}
+We clearly have that $\nabla + a$ is $\C$-linear. To check that it satisfies the
+Leibniz rule, we compute
+\begin{align*}
+(\nabla + a)(fs) &= \nabla(fs) + a(fs) \\
+&= df \otimes s + f\nabla s + fas \\
+&= df \otimes s + f(\nabla + a)(s)
+\end{align*}
+\end{proof}
+%
+Therefore, given a complex vector bundle $E \to X$ equipped with connection, the
+connection is locally of the form $d + A$, where $d$ is the usual complexified
+de Rham differential and $A$ is a matrix of $1$-forms.
+%
+\begin{defn}
+Let $E \to X$ be a complex vector bundle equipped with a connection $\nabla$.
+The \ib{curvature} of $\nabla$ is defined to be the map
+$F_{\nabla} \defeq \nabla^2 : \mathcal{A}^0(E) \to \mathcal{A}^2(E)$.
+\end{defn}
+%
+One might expect the curvature to be a second order differential operator, but a
+small miracle happens.
+%
+\begin{prop}
+The curvature transformation $F_\nabla$ is $C^\infty_\C$-linear, i.e. it defines
+a global section of $\mathcal{A}^2(\End E)$.
+\end{prop}
+%
+\begin{proof}
+We compute for a function $f$ and local section $s$
+\begin{align*}
+F_\nabla(fs) &= \nabla(\nabla(fs)) \\
+&= \nabla(df \otimes s + f\nabla s) \\
+&= d^2f \otimes s - df \wedge \nabla s + \nabla(f\nabla s) \\
+&= -df \wedge \nabla s + df \wedge \nabla s + f\nabla^2 s \\
+&= f\nabla^2 s \\
+&= fF_\nabla(s)
+\end{align*}
+\end{proof}
+%
+\begin{thm}[\ib{The Bianchi Identity}]
+Let $F_\nabla$ be the curvature form of a connection on a vector bundle $E \to X$.
+Then
+\[
+\nabla(F_\nabla) = 0
+\]
+\end{thm}
+%
+\begin{proof}
+Let $s$ be a section of $E$. By the definition of the induced connection on $\End(E)$, we
+compute
+\begin{align*}
+(\nabla(F_\nabla))(s) &= \nabla(F_\nabla(s)) - F_\nabla(\nabla s) \\
+&= \nabla^3s - \nabla^3s \\
+&= 0
+\end{align*}
+\end{proof}
+%
+Finally we make one more observation
+%
+\begin{prop}
+Let $\nabla$ be a connection on $E \to X$, and $\nabla' = \nabla + A$. Then
+\[
+F_{\nabla'} = F_\nabla + dA + A \wedge A
+\]
+\end{prop}
+%
+\begin{proof}
+We compute locally for a section $s$,
+\begin{align*}
+F_{\nabla'} &= (d + A)((d+A)(s)) \\
+&= (d+A)(ds + A(s)) \\
+&= d^2s + A(ds) + d(A(s)) + (A \wedge A)(s) \\
+&= dA(s) + (A \wedge A)(s)
+\end{align*}
+\end{proof}
+%
+In the case of a line bundle $L \to X$, much of this discussion simplifies. First of all
+we have that the bundle $\End(L)$ is a trivial bundle, so we have that every
+connection is locally of the form $d + A$ for a $1$-form $A$. This allows several
+small miracles to occur.
+%
+\begin{prop}
+The curvature $F_\nabla$ of a connection on a complex line bundle $L \to M$
+is a globally defined $2$-form in $H^2(X, \C)$.
+\end{prop}
+%
+\begin{proof}
+We have that locally, $\nabla = d + A$, so we have locally
+\[
+F_\nabla =  dA + A \wedge A = dA
+\]
+We then need to show that these local definitions glue. In two trivializing
+neighborhoods $U_i$ and $U_j$ with transition functions $\psi_{ij}$ and $\psi_{ji}$,
+let $A_i$ and $A_j$ denote the connection $1-$forms over each trivialization.
+Let $s$ be a local section over $U_i \cap U_j$ that is nonzero and constant when viewed as a
+section of the trivial bundle $U_i \cap U_j \times \C$. Therefore, we have that
+Then the local representations $s_i$ and $s_j$ are related by $\psi_{ij}s_j = s_i$.
+In addition, we have that over $U_i$, $\nabla s = ds_i + A_is_i = A_is_i$, since
+$s_i$ is a constant function, and we have a similar picture over $U_j$. We then
+compute
+\[
+A_i\psi_{ij}s_j = \nabla(\psi_{ij}s_j) = d\psi_{ij}s_j + \psi_{ij}\nabla s_j
+= d\psi_{ij}s_j + \psi_{ij}A_js_j
+\]
+Therefore, we have
+\[
+A_i\psi_{ij} = d\psi_{ij} + \psi_{ij}A_j
+\]
+Multiplying both sides by $\psi_{ij}\inv$, moving terms around, we find
+\[
+A_j = A_i - \psi_{ij}\inv d\psi_{ij}
+\]
+We then verify that the local descriptions of $F_\nabla$ agree on the intersection. We
+compute
+\begin{align*}
+F_\nabla &= dA_i \\
+&= \psi_{ij}\inv d\psi_{ij} \wedge \psi_{ij}\inv d\psi_{ij} + dA_i \\
+&= \psi_{ij}^{-2}d\psi_{ij} \wedge d\psi_{ij} + dA_i \\
+&= -d\psi_{ij}\inv \wedge d\psi_{ij} + dA_i \\
+&= d(A_i - \psi_{ij}\inv d\psi_{ij}) \\
+&= dA_j
+\end{align*}
+Where we use the fact that $d(\psi_{ij}\inv) = \psi_{ij}^{-2}d\psi_{ij}$. Therefore,
+the local descriptions of $F_\nabla$ glue to a global $2$-form.
+\end{proof}
+%
+In addition, since we have locally that $F_\nabla$ is given by $dA_i$, we have that
+$F_\nabla$ is closed, so it defines a cohomology class in $H^2(X,\C)$. This gives us
+two ways of obtaining a cohomology class from a line bundle. The first is by taking
+the first Chern class from the exponential exact sequence, and the other is
+by taking the curvature form of a connection.
+%
+\begin{thm}
+Let $L \to X$ be a complex line bundle, and let $\nabla$ be any connection on $L$ with
+curvature form $F_\nabla$. Then
+\[
+\left[\frac{i}{2\pi}F_\nabla\right] = c_1(L)
+\]
+\end{thm}
+%
+\begin{proof}
+We first give an explicit formula for the \v{C}ech cocycle defining $c_1(L)$.
+Fix a good cover $\mathcal{U} = \set{U_i}$ for $X$, and let the $\psi_{ij}$ be the
+transition functions for $L$ with respect to this covering. The $\psi_{ij}$
+determine a \v{C}ech cocycle in $H^1(X, (C^\infty_\C)^\times)$. By surjectivity of
+$\exp$, by passing to a finer cover we may assume that we can find a branch of the
+logarithm for each $\psi_{ij}$, so $\log\psi_{ij}$ is well defined, and defines a
+\v{C}ech cocycle in $H^1(X, (C^\infty)^\times)$. Then since
+the $\psi_{ij}$ satisfy the cocycle condition
+\[
+\psi_{ij}\psi_{jk}\psi_{ik}\inv = 1
+\]
+we have that
+\[
+\log\psi_{ij} + \log\psi{jk} - \log\psi_{ik} \in 2\pi i\Z
+\]
+So we have that
+\[
+\frac{1}{2\pi i}\log\psi_{ij} + \log\psi_{jk} - \log\psi_{ik} \in \Z
+\]
+is the cocycle representing $c_1(L)$. In the natural map
+$H^2(X,\Z) \to H^2(X,\C)$, we have that the cocycle has the same formula (up to a sign
+depending on convention). \\
+
+Then let $\nabla$ be any connection on $L$, with local connection forms $A_i$.
+We have that $F_\nabla$ is a closed $2$-form, with local description $F_\nabla = dA_i$.
+Let $\mathcal{A}^k(X)$ denote the sheaf of smooth $k$-forms over $X$, and
+let $\mathcal{Z}^k(X)$ denote the sheaf of closed smooth $k$-forms over $X$.
+Then we have the exact sequences of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{Z}^1(X) \ar[r] & \mathcal{A}^1(X) \ar[r, "d"] & \mathcal{Z}^2(X)
+\ar[r] & 0
+\end{tikzcd}\]
+\[\begin{tikzcd}
+0 \ar[r] & \C \ar[r] & \mathcal{A}^0(X) \ar[r, "d"] & \mathcal{Z}^1(X) \ar[r] & 0
+\end{tikzcd}\]
+which give rise to boundary homomorphisms
+$\delta_1 : H^0(X, \mathcal{Z}^2(X)) \to H^1(X, \mathcal{Z}^2(X))$ and
+$\delta_2 : H^1(X, \mathcal{Z}^1(X)) \to H^2(X, \C)$ respectively. The
+fact that the local definitions $F_\delta = dA_i$ glue to a global form
+is exactly the statement that the $dA_i$ form a \v{C}ech cocycle in
+$H^0(X, \mathcal{Z}^2(X))$, i.e. $dA_i - dA_j = 0$ for all $i,j$ with
+$U_i \cap U_k \neq \emptyset$> Following the definition of the boundary homomorphism,
+this implies that it is the image of the cocycle determined by the $A_i$ under
+$d$, and then applying the \v{C}ech differential we get that
+$\delta_1(F_\nabla)$ is the cocycle $\set{A_j - A_i}$. Then recall from our earlier
+calculation that $A_j = A_i - \psi_{ij}\inv d\psi_{ij}$, we get that
+\[
+A_j - A_i = -\psi_{ij}\inv d\psi_{ij}
+\]
+which is exactly $-d\log\psi_{ij}$. Then tracing though the definition of the
+boundary homomorphism $\delta_2$, we have that $\delta_2(A_j - A_i)$
+is the preimage of the \v{C}ech differential applied to the cocycle
+$\log\psi_{ij}$, which is exactly $-(\log\psi_{ij} + \log\psi_{jk} - \log\psi_{ik})$.
+Putting everything together, we find that
+\[
+c_1(L) = \frac{1}{2\pi i}\log\psi_{ij} + \log\psi_{jk} - \log\psi_{ik}
+= \left[ \frac{i}{2\pi}F_\nabla \right]
+\]
+\end{proof}
+%

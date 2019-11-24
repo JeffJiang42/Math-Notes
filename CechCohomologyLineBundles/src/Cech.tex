@@ -1,0 +1,203 @@
+\section{\v{C}ech Cohomology}
+%
+For the most part, we will consider ``sufficiently nice" topological spaces.
+For the most part, think of a space $X$ as a (smooth, complex) manifold, an analytic
+space, or a quasicompact separated scheme if you're feeling adventurous.
+%
+\begin{defn}
+Let $X$ be a space and $\mathcal{F}$ a sheaf of abelian groups over $X$. Let
+$\mathcal{U} = \set{U_i}_{i \in \N}$ be a countable open cover of $X$ that is locally
+finite, i.e. for any $x \in X$, only finitely many $U_i$ contain $x$. For
+$I = \set{i_1, \ldots, i_k}$, let
+\[
+U_I \defeq \bigcap_{i \in I} U_i
+\]
+Then define the \ib{\v{C}ech cochain groups} of $\mathcal{F}$ for the cover
+$\mathcal{U}$ by
+\begin{align*}
+C^k(\mathcal{U}, \mathcal{F}) \defeq \prod_{|I| = k+1} \mathcal{F}(U_I)
+\end{align*}
+an element of $C^k(\mathcal{U},\mathcal{F})$ is called a \ib{\v{C}ech cochain}.
+For a $k$-cochain $\sigma$, and $I = \set{i_0,\ldots i_k}$, we denote the
+component of $\sigma$ over $U_I$ as $\sigma_I$ or $\sigma_{i_0,\ldots i_k}$.
+\end{defn}
+%
+The \v{C}ech cochain groups are equipped with a differential
+$d : C^k(\mathcal{U}, \mathcal{F}) \to C^{k+1}(\mathcal{U}, \mathcal{F})$
+where for $\sigma \in C^k(\mathcal{U}, \mathcal{F})$, the ${i_0, \ldots i_{k+1}}$
+component of $d\sigma$ is given by
+\[
+(d\sigma)_{i_0, \ldots i_{k+1}}
+= \sum_{j = 1}^{p+1}(-1)^j\sigma_{i_0, \ldots, \widehat{i_j}, \ldots, i_{k+1}}
+\vert_{U_0 \cap \cdots \cap U_{k+1}}
+\]
+where $\widehat{i_j}$ denotes that $i_j$ is missing. We have that $d^2 = 0$ for a
+similar reason that $d^2 = 0$ for singular cohomology, you get repeats of
+terms with opposite signs due to the omitted index. We denote the kernel of
+$d : C^i(\mathcal{U}, \mathcal{F}) \to C^{i+1}(\mathcal{U}, \mathcal{F})$ as
+$Z^i(\mathcal{U}, \mathcal{F})$, and we say that the element are $i$-cocycles.
+We denote the image of
+$d : C^{i-1}(\mathcal{U}, \mathcal{F}) \to C^i(\mathcal{U}, \mathcal{F})$ as
+$B^i(\mathcal{U}, \mathcal{F})$, and we call the elements $i$-coboundaries.
+%
+\begin{defn}
+The \ib{\v{C}ech cohomology groups} of $\mathcal{F}$ with respect to the cover
+$\mathcal{U}$, denoted $\check{H}^i(\mathcal{U}, \mathcal{F})$ is the cohomology of
+the \v{C}ech complex
+\[\begin{tikzcd}
+0 \ar[r, "d"] & C^0(\mathcal{U}, \mathcal{F}) \ar[r, "d"] &
+C^1(\mathcal{U}, \mathcal{F}) \ar[r, "d"]
+& \cdots
+\end{tikzcd}\]
+i.e. we have
+\[
+\check{H}^i(\mathcal{U}, \mathcal{F}) \defeq
+\frac{Z^i(\mathcal{U}, \mathcal{F})}{B^i(\mathcal{U}, \mathcal{F})}
+\]
+\end{defn}
+%
+\begin{defn}
+Given an open cover $\mathcal{U} = \set{U_i}$, a \ib{refinement} of $\mathcal{U}$
+is another open cover $\mathcal{V} = \set{V_j}$ such that every $V_j$ is contained
+in some $U_i$. If $\mathcal{V}$ is a refinement of $\mathcal{U}$, we write
+$\mathcal{V} < \mathcal{U}$.
+\end{defn}
+%
+If $\mathcal{V} < \mathcal{U}$, then we know we can find a map
+$\varphi : \N \to \N$ such that $V_i \subset U_\varphi(i)$. Consequently, we
+can restrict sections over $U_i$ to sections over $V_{\varphi(i)}$, so this
+induces a chain map
+$\rho_\varphi : C^k(\mathcal{U}, \mathcal{F}) \to C^k(\mathcal{V},\mathcal{F})$
+where
+\[
+(\rho_\varphi(\sigma))_{i_0,\ldots, i_k}
+= \sigma_{\varphi(i_0),\ldots \varphi(i_k)}\vert_{U_{i_0} \cap \cdots \cap U_{i_k}}
+\]
+This map commutes with the differentials for $C^\bullet(\mathcal{U},\mathcal{F})$
+and $C^\bullet(\mathcal{V},\mathcal{F})$, so it descends to homomorphisms
+$\check{H}^i(\mathcal{U},\mathcal{F}) \to \check{H}^i(\mathcal{V}, \mathcal{F})$.
+It can be shown that a different choice of chain map $\rho_\psi$ for
+$\psi : \N \to \N$ is chain homotopic to $\rho_\varphi$, so the induced maps
+on cohomology are independent of our choice of $\varphi$.
+%
+\begin{defn}
+The \ib{\v{C}ech cohomology groups} of a sheaf $\mathcal{F}$ over $X$ is the limit over
+refinements
+\[
+\check{H}^i(X, \mathcal{F})
+\defeq \lim_{\mathcal{V} < \mathcal{U}} \check{H}^i(\mathcal{V}, \mathcal{F})
+\]
+i.e. the quotient disjoint union
+$\amalg_\mathcal{U}\check{H}^i(\mathcal{U}, \mathcal{F}$
+over all refinements, where we identify $\sigma \in \check{H}^i(\mathcal{U}, \mathcal{F}$
+and $\tau \in \check{H}^i(\mathcal{V}, \mathcal{F})$ if
+$\mathcal{V}$ refines $\mathcal{U}$ and $\rho(\sigma) = \tau$ under the map induced on
+cohomology by the refinement.
+\end{defn}
+%
+This definition of the \v{C}ech cohomology groups is essentially useless for
+computation. It's true power comes from the following theorem, due to Leray.
+%
+\begin{thm}[\ib{Leray}]
+Suppose $\mathcal{U} = \set{U_i}$ is an open cover of $X$ that is \ib{acyclic} with
+respect to the sheaf $\mathcal{F}$, i.e. for $|I| > 1$ and any $i$,
+\[
+\check{H}^i(U_I, \mathcal{F}) = 0
+\]
+Then
+\[
+\check{H}^i(\mathcal{U}, \mathcal{F}) = \check{H}^i(X, \mathcal{F})
+\]
+\end{thm}
+%
+The intuition to keep in mind for an acyclic cover is the notion of a good cover
+in differential geometry. On a smooth manifold $M$, there exists a covering of
+$M$ by open sets $\set{U_i}$ such that any nonempty intersections are contractible,
+which is done by taking geodesic balls around each point in $M$. Since the
+homotopical information on each $U_i$ is trivial, the only nontrivial topological
+information in the cohomology of $M$ comes from how the sets are glued together to
+form $M$. As with exact sequences of chain complexes, short exact sequences
+of sheaves give long exact sequences in sheaf cohomology.
+%
+\begin{thm}
+Let
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r, "\alpha"] & \mathcal{F} \ar[r, "\beta"] & \mathcal{G}
+\ar[r] & 0
+\end{tikzcd}\]
+be an exact sequence of sheaves over $X$. Then this induces a long exact sequence in
+cohomology:
+\[\begin{tikzcd}
+0 \ar[r] & \check{H}^0(X,\mathcal{E}) \ar[r, "\alpha^*"]
+& \check{H}^0(X,\mathcal{F}) \ar[r, "\beta^*"] &
+\check{H}^0(X, \mathcal{G}) \ar[dll, "\delta"'] \\
+& \check{H}^1(X, \mathcal{E}) \ar[r, "\alpha^*"]
+& \check{H}^1(X, \mathcal{F})\ar[r, "\beta^*"]
+& \check{H}^1(X, \mathcal{G}) \ar[dll, "\delta"'] \\
+& ~ & \cdots & \cdots
+\end{tikzcd}\]
+\end{thm}
+%
+\begin{proof}
+We first define the maps
+$\alpha^* : \check{H}^i(X,\mathcal{E}) \to \check{H}^i(X, \mathcal{F})$
+and $\beta^* : H^i(X, \mathcal{F}) \to \check{H}^i(X, \mathcal{G})$, and will then define
+the connecting homomorphism
+$\delta : \check{H}^i(X,\mathcal{E}) \to \check{H}^{i+1}(X, \mathcal{G})$. Given
+an open cover $\mathcal{U} = \set{U_i}$ of $X$, the sheaf morphism $\alpha$ gives for
+each open set $U_i$ a homomorphism $\alpha(U_i) : \mathcal{E}(U_i) \to \mathcal{F}(U_i)$,
+which induces a chain map
+$C^\bullet(\mathcal{U},\mathcal{F}) \to C^\bullet(\mathcal{U}, \mathcal{G}))$. Since
+the maps $\alpha(U_i)$ commute with restriction maps, this chain map commutes with
+the differentials, so it descends to a map on cohomology
+$\check{H}^\bullet(\mathcal{U},\mathcal{F})\to\check{H}^\bullet(\mathcal{U},\mathcal{F})$,
+which, after taking the limit over refinements or choosing $\mathcal{U}$ to be
+simultaneously acyclic for $\mathcal{E}$ and $\mathcal{F}$, gives us the induced
+map $\alpha^* : \check{H}^\bullet(X,\mathcal{F})\to\check{H}^\bullet(X,\mathcal{F})$.
+The map $\beta^*$ is defined similarly. \\
+
+The construction of the connecting homomorphism
+mirrors the construction for singular (or de Rham) cohomology. We represent
+an element of $\check{H}^i(X,\mathcal{G})$ with a cocycle
+$\sigma \in Z^i(\mathcal{U}, \mathcal{G})$ with respect to some open cover $\mathcal{U}$.
+By surjectivity of $\beta$, by potentially passing to a refinement, we can
+write $\sigma = \beta(\tau)$ for some $\tau \in C^i(\mathcal{U}, \mathcal{F})$. Then
+since the induced map on chains commutes with the differentials, we have that
+$d\beta(\tau) = \beta(d\tau) = 0$, since $\tau$ is a cocycle. Therefore,
+$d\tau$ is in the kernel of $\beta^*$, so we can write $d\tau = \alpha(\eta)$
+for some $\eta \in C^{i+1}(\mathcal{U}, \mathcal{F})$. We then define
+$\delta(\sigma)$ to be the class of $\eta$ in the limit. We note that
+this is independent of our choice of $\tau$, since any other choice of
+preimage of $\sigma$ differs by an element of the form $\alpha(e)$ for some cocycle
+$e$ by exactness. Then since $\alpha$ commutes with the differentials, we get
+$d(\tau + \alpha(e)) = d\tau + d\alpha(e) = d\tau + \alpha(de) = d\tau$.
+\end{proof}
+%
+We make one observation about \v{C}ech cohomology
+%
+\begin{prop}
+The $0^{th}$ \v{C}ech cohomology group is isomorphic to the space of global sections,
+i.e.
+\[
+\check{H}^0(\mathcal{U}, \mathcal{F}) \cong \Gamma(X, \mathcal{F})
+\]
+\end{prop}
+%
+\begin{proof}
+The $0^{th}$ cohomology is just the kernel of the map
+$d : C^0(\mathcal{U},\mathcal{F}) \to C^1(\mathcal{U}, \mathcal{F})$.
+For a $0$-cochain $\sigma$, we have that
+\[
+(d\sigma)_{ij} = \sigma_j\vert_{U_i \cap U_j} - \sigma_i\vert_{U_i \cap U_j}
+\]
+We then claim that the map $\Gamma(X, \mathcal{F}) \to \ker d$ sending a section
+$\sigma$ to the cocycle $\tilde{\sigma}$ defined by
+\[
+\tilde{\sigma}_i = \sigma\vert_{U_i}
+\]
+is bijective. It is surjective, since any $0$-cocycle contained in the kernel
+is a collection of local sections that agrees on intersections, which is exactly
+a global section of $\mathcal{F}$. In addition, it is injective, since if
+a section restricts to $0$ on every open set, it is the zero section.
+\end{proof}
+%TODO Functoriality of Cech cohomology

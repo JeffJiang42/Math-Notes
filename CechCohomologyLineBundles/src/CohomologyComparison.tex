@@ -1,0 +1,57 @@
+\section{Comparison of Cohomology Theories}
+%
+The fact that many of the sheaves we encounter naturally have trivial sheaf cohomology
+might come as a surprise, since we know we can extract topological data from
+these sheaves. The reason for this is that they provide good resolutions of
+other sheaves with nontrivial sheaf cohomology. U
+%
+\begin{prop}[Poincar\'e Lemma]
+Every closed smooth $k$-form $\omega$ is locally exact, i.e. for a sufficiently
+small $U$, we have that $\omega\vert_U = d\eta$ for some $k-1$-form $\eta$.
+\end{prop}
+%
+\begin{prop}[$\dbar$-Poincar\'e Lemma]
+Ever closed smooth $(p,q)$-form $\omega$ is locally $\dbar$-exact
+\end{prop}
+%
+\begin{cor}
+The de Rham complex
+\[\begin{tikzcd}
+A^0(X) \ar[r, "d"] & A^1(X) \ar[r, "d"] & \cdots
+\end{tikzcd}\]
+is an exact sequence of sheaves.
+\end{cor}
+%
+The constant sheaf $\underline{\R}$ of locally constant real-valued functions
+naturally lives as a subsheaf of $A^0(X)$, and we know that this exactly
+the kernel of $d : A^0(X) \to A^1(X)$. This tells us that the inclusion
+$0 \to \underline{\R} \to A^\bullet(X)$ is a resolution of $\underline{\R}$,
+called the \ib{de Rham resolution}. Furthermore,
+since all the $A^i(X)$ are sheaves of $C^\infty$-modules, they are fine, so
+the resolution is a resolution of $\underline{\R}$ by acyclic sheaves. Therefore,
+we get the isomorphisms
+\[
+H^i(X, \underline{\R}) \cong H^i_{dR}(X)
+\]
+A similar story holds for the sheaf cohomology of the sheaf of sections of a holomorphic
+vector bundle $E \to X$. The $\dbar$-Poincar\'e lemma implies that the Dolbeault
+complex
+\[\begin{tikzcd}
+\mathcal{A}^0(E) \ar[r, "\dbar_E"] & \mathcal{A}^1(E) \ar[r, "\dbar_e"] & \cdots
+\end{tikzcd}\]
+of sheaves of smooth sections of $(\Lambda^i T^*X)_\C \otimes E$ is an exact sequence,
+since $\dbar_E$ is defined locally in terms of the operator $\dbar$ on $X$.
+Then since the kernel of $\dbar_E : \mathcal{A}^0(E) \to \mathcal{A}^1(E)$ is
+exactly the sheaf $\mathcal{E}$ of holomorphic sections of $E$, we get that
+$0 \to \mathcal{E} \to \mathcal{A}^\bullet(E)$ is an acyclic resolution of
+$\mathcal{E}$, which gives us isomorphisms
+\[
+H^i(X,\mathcal{E}) \cong H^i_{\dbar}(X, E)
+\]
+%
+%TODO Singular cohomology
+%
+%TODO Simplicial cohomology and another proof of de Rham?
+%
+%TODO Cech vs derived functor cohomology
+%

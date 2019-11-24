@@ -1,0 +1,132 @@
+\section{\v{C}ech Cohomology and Line Bundles}
+%
+Let $\mathcal{U} = \set{U_i}$ be a covering of $X$, and $\mathcal{F}$ a sheaf
+of abelian groups over $X$. Then with respect to this cover, a \v{C}ech 2-cocycle
+$\sigma \in Z^2(\mathcal{U}, \mathcal{F})$ is defined by the equation
+\[
+0 = (d\sigma)_{ijk} = \sigma_{jk}\vert_{U_i \cap U_j \cap U_k}
+- \sigma_{ik}\vert_{U_i \cap U_j \cap U_k} + \sigma_{ij}\vert_{U_i \cap U_j \cap U_k}
+\]
+Written multiplicatively (and omitting the restriction), this becomes
+\[
+1 = \sigma_{jk}\sigma_{ik}\inv\sigma_{ij}
+\]
+which, since the group is abelian, is equivalent to
+\[
+\sigma_{ik} = \sigma_{ij}\sigma_{jk}
+\]
+which looks exactly like a cocycle condition for transition functions of a line
+bundle. Recall that given a holomorphic line bundle $\pi : L \to X$, we have local
+trivializations -- we can find a cover $\mathcal{U} = \set{U_i}$ with maps
+$\varphi_i : \pi\inv(U_i) \to U_i \times \C$ such that
+\[\begin{tikzcd}
+\pi\inv(U_i) \ar[rr, "\varphi_i"] \ar[dr] & & U_i \times \C \ar[dl] \\
+& U_i
+\end{tikzcd}\]
+commutes, where the maps to $U_i$ are the projections. Therefore, if we consider
+the map
+$\varphi_i \circ \varphi_k\inv : U_i \cap U_j \times \C \to U_i \cap U_j \times \C$,
+we have that $\varphi(x, \lambda) = (x, \psi_{ij}(x)(\lambda))$, where the functions
+$\psi_{ij} : U_i\cap U_j \to \GL_1\C$ are holomorphic. The $\psi_{ij}$
+are called the \ib{transition functions} of the line bundle $L$.
+%
+\begin{prop}
+The transition functions $\psi_{ij}$ satisfy the following conditions
+\begin{enumerate}
+  \item $\psi_{ij}\psi_{ji} = 1$ (i.e. the constant function $x \mapsto 1$)
+  \item $\psi_{ij}\psi_{jk} = \psi_{ik}$.
+\end{enumerate}
+The second condition is often called the \ib{cocycle condition}, in reference to the
+identity we derived above for the defining property of a \v{C}ech cocycle.
+\end{prop}
+%
+\begin{proof}
+Consider the map $\varphi_i\circ\varphi_j\inv\circ\varphi_j\circ\varphi_i\inv = \id$.
+We compute under the action on a general element $(x,\lambda)$
+\[\begin{tikzcd}
+(x,\lambda) \ar[r, "\varphi_j\circ\varphi_i\inv"] & (x,\psi_{ji}(x)(\lambda))
+\ar[r, "\varphi_i\circ\varphi_j\inv"] & (x,\psi_{ij}(x)\psi_{ji}(x)(\lambda))
+\end{tikzcd}\]
+Therefore, we have that $\psi_{ij}(x)\psi_{ji}(x) = 1$ for all $x$, showing the
+first property. For the second property, we do the same thing. Consider
+the function
+$\varphi_i\circ\varphi_j\inv\circ\varphi_j\circ\varphi_k = \varphi_i\circ\varphi_k\inv$.
+Then fore $(x,\lambda)$, we compute the action of this function to be
+\[\begin{tikzcd}
+(x,\lambda) \ar[r, "\varphi_j\circ\varphi_k\inv"] & (x,\psi_{jk}(x)(\lambda))
+\ar[r, "\varphi_i\circ\varphi_j\inv"] & (x,\psi_{ij}(x)\psi_{jk}(x)(\lambda))
+\end{tikzcd}\]
+So we get that $\psi_{ij}(x)\psi_{jk}(x) = \psi_{ik}(x)$ for all $x$.
+\end{proof}
+%
+Under the \v{C}ech differential, the image of a \v{C}ech $0$-cochain $\sigma$ is given
+by
+\[
+(d\sigma)_{ij} = \sigma_j - \sigma_i
+\]
+written multiplicatively, this becomes
+\[
+(d\sigma)_{ij} = \sigma_j\sigma_i\inv
+\]
+In the same spirit, we translate this to a statement regarding transition functions
+of a line bundle.
+%
+\begin{prop}
+Let $\pi L \to X$ be a holomorphic line bundle where the transition functions
+$\psi_{ij}$ with respect to a cover $\set{U_i}$ satisfy the \ib{coboundary condition},
+i.e. there exist holomorphic functions $\sigma_i : U_i \to \GL_1\C$ such that
+\[
+\psi_{ij} = \sigma_j\sigma_i\inv
+\]
+Then $L$ is a trivial line bundle.
+\end{prop}
+%
+\begin{proof}
+It suffices to provide a nonvanishing section $X \to L$. A section $s : X \to L$ is
+equivalent to functions $s_i : U_i \to \C$ with the compatibility condition
+\[
+s_i = \psi_{ij}s_j
+\]
+define the $s_i$ by $s_i = \sigma_i\inv$. Then they satisfy the compatibility condition,
+since
+\[
+\psi_{ij}\sigma_j = \sigma_j\sigma_i\inv\sigma_j\inv = \sigma_i\inv = s_i
+\]
+then since the $\sigma_i$ are functions to $\GL_1\C = \C^\times$, they glue to
+a global nonvanishing section, so $L$ is isomorphic to the trivial line bundle
+$X \times \C$.
+\end{proof}
+%
+Recall that isomorphism classes of line bundles over $X$ form a group
+under tensor product, where the inverse of a line bundle $L$ is the dual bundle
+$L^*$. Given line bundles $L,L' \to X$ and an open cover $\mathcal{U} = \set{U_i}$ of $X$
+in which both $L$ and $L'$ are trivialized over the $U_i$ (for instance, a good cover
+of $X$), let $\psi_{ij}$ be the transition functions for $L$ and let $\varphi_{ij}$
+be the transition functions for $L'$. Then the transition functions for $L\otimes L'$
+are $\psi_{ij}\varphi_{ij}$, and the transition functions for $L^*$ are given
+by $\varphi_{ij}\inv$.
+%
+\begin{thm}
+Let $X$ be a complex manifold, and $\O_X$ its sheaf of holomorphic functions.
+Then let $\O_X^\times$ be the sheaf of invertible functions, which is a
+sheaf of abelian groups under multiplication. Then we have a group isomorphism
+\[
+\check{H}^1(X,\O_X^\times) \cong \mathrm{Pic}(X)
+\]
+\end{thm}
+%
+\begin{proof}
+Fix a good cover $\mathcal{U} = \set{U_i}$ for $X$. Since all the sets and their
+nonempty intersections are contractible, we have that
+$\check{H}^i(U_i, \mathcal{F}) = 0$ for all $i > 0$ where $\mathcal{F}$ is the sheaf
+of sections of any line bundle. Since all the $U_i$ are contractible, we also
+have that any line bundle over $U_i$ is trivial, so it admits transition
+functions $\psi_{ij}$ with respect to this cover. As shown above, the
+functions $\psi_{ij}$ exactly define a \v{C}ech $1$-cocycle, and any
+\v{C}ech coboundary defines a trivial bundle. In addition, we have that
+the the transition functions of a tensor product are exactly the products
+of the transition functions. Putting everything together, this tells us that
+the mapping $L \mapsto \set{\psi_{ij}}$ sending a line bundle to the cocycles
+determined by its transition functions is a bijective group homomorphism.
+\end{proof}
+%

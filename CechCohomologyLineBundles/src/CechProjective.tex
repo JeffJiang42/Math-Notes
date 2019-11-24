@@ -1,0 +1,118 @@
+%
+\section{\v{C}ech Cohomology on $\CP^n$}
+%
+We now compute \v{C}ech cohomology for various sheaves over $\CP^n$. The main objects
+of interest are the line bundles $\O(k)$. We have that $\CP^n$ admits a nice cover
+$\mathcal{U} = \set{U_i}$ where $U_i$ is the open set where the coordinate $z_i$ does not
+vanish. We will soon show that this covering is acyclic for the structure sheaf
+$\O_{\CP^n}$, and since all line bundles are trivial on the open sets in this cover, this
+means that the covering will acyclic for any line bundle $\O(k)$. So it suffices to
+compute \v{C}ech cohomology with respect to this cover. In particular, we note that for
+any line bundle $\O(k) \to \CP^n$, the transition functions $\psi_{ij}$ for $\O(k)$
+are $\psi_{ij}(\ell) = (z_j/z_i)^k$. We already know one cohomology group:
+%
+\begin{thm}
+The $0^{th}$ cohomology group $\check{H}^0(\CP^n, \O(k))$ is isomorphic to the space
+$\C[x_0, \ldots x_n]_k$ of homogeneous degree $k$ polynomials in the variables
+$x_0, \ldots , x_n$.
+\end{thm}
+%
+We compute the rest of the cohomology now, which we do in stages.
+%
+\begin{thm}
+For any $i > n$, we have $\check{H}^n(\mathcal{U},\O(k)) = 0$.
+\end{thm}
+%
+\begin{proof}
+The cover of $\CP^i$ by the $U_i$ has cardinality $n+1$. Therefore,
+$C^{n+1}(\mathcal{U}, \O(k)) = 0$.
+\end{proof}
+%
+To compute the rest of the cohomology groups, we first prove a lemma characterizing
+local sections of $\O(k)$.
+%
+\begin{lem}
+Let $\pi : \C^{n-1} - \set{0} \to \CP^n$ be the usual projection sending
+$z \in C^{n-1}$ to $\mathrm{span}\set{z}$. Then the space of sections
+$\O(k)(U)$ is isomorphic to the space of homogeneous of degree $k$  holomorphic functions
+$f : \pi\inv(U) \to \C$ i.e.
+\[
+f(tz_0, \ldots, tz_n) = t^kf(z_0,\ldots, z_n)
+\]
+\end{lem}
+%
+\begin{proof}
+Let $\sigma \in \O(k)(U)$ be a section. Then the set $\set{U \cap U_i}$ is an
+open cover of $U$, so $\sigma$ is determined by its restrictions
+$\sigma_i \defeq \sigma_i\vert_{U \cap U_i}$. Since the bundle $\O(d)$ is trivial
+over the $U_i$, the local sections $\sigma_i$ can be identified with holomorphic
+functions $U \cap U_i \to \C$ with the compatibility condition
+\[
+\sigma_i([z_0 :\ldots : z_n])
+= \left(\frac{z_j}{z_i}\right)^k\sigma_j([z_0: \ldots : z_n])
+\]
+We then give maps in both directions. Given a section
+$\sigma \in \O(k)(U)$, define the function $f_\sigma$ by
+\[
+f_\sigma(z_0,\ldots z_n) = z_i^k\sigma_i(\pi(z_0,\ldots z_n))
+\]
+We must verify that this is well-defined, i.e. it is independent of our choice of $i$.
+We compute
+\begin{align*}
+f_\sigma(z_0,\ldots z_n)
+&=  z_i^k\sigma_i(\pi(z_0,\ldots z_n)) \\
+&=  \left(\frac{z_j}{z_i}\right)^kz_i^k\sigma_j(\pi(z_0,\ldots z_n)) \\
+&= z_j^k\sigma_k(\pi(z_0, \ldots z_n)) \\
+\end{align*}
+So this determines a well defined function on $\pi\inv(U)$. In addition, it is
+visibly homogeneous of degree $k$, since the $\sigma_i$ are constant on lines and
+$z_i^k$ is homogeneous of degree $k$. To show this is an isomorphism, we provide
+an inverse. Given a homogeneous function $f$ of degree $k$ on $\pi\inv(U)$, define
+the section $\sigma_f$ locally by
+\[
+(\sigma_f)_i([z_0: \ldots :z_n]) = \frac{f(z_0,\ldots z_n)}{z_i^k}
+\]
+then to show that this defines a section, we must show that they agree on intersections
+using the transition functions. We compute
+\[
+\left(\frac{z_i}{z_j}\right)^k(\sigma_f)_i\vert_{U \cap U_i \cap U_j}([z_0: \ldots : z_n])
+= \left(\frac{z_i}{z_j}\right)^k\frac{f(z_0,\ldots, z_n)}{z_i^k}
+= \frac{f(z_0, \ldots z_n)}{z_j^k}
+= (\sigma_f)_j
+\]
+The two mappings provided are visibly inverses, since one is essentially multiplication
+by $z_j^k$ and the other is essentially division by $z_j^k$.
+\end{proof}
+%
+Over intersections of the distinguished open sets $U_i$, the sections have
+a particularly nice form. Under the projection $\pi : \C^{n+1}-\set{0} \to \CP^n$,
+the preimage of $U_I$ for $I = \set{i_0, \ldots i_d}$ is just $\C^{n+1}$ minus
+the coordinate axes $z_{i_j} = 0$. By taking power series, a holomorphic
+function on $\pi\inv(U_I)$ is given by Laurent series where the $z_{i_j}$ can appear
+in negative degree. Being homogeneous of degree $d$ implies that all the
+terms in the series expansion must be homogeneous of degree $k$, where the
+degree of $(z_k)^a/(z_{i_j})^b$ is $a - b$. Consequently, all such holomorphic
+functions must be polynomials in $\C[z_0, \ldots z_n, z_{i_0}\inv, \ldots z_{i_d}\inv]$
+of degree $k$.
+% TODO Compute cohomology
+\iffalse
+We now compute the $n^{th}$ cohomology groups.
+%
+\begin{thm}
+\[
+\check{H}^i(\mathcal{U}, \O(k)) = \begin{cases}
+\C[z_0, \ldots z_n]_{-k-n-1} & -k-n-1 \geq 0 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+\end{thm}
+%
+\begin{proof}
+Since $C^{n+1}(\mathcal{U}, \O(k)) = 0$, we have that
+$\check{H}^n(\mathcal{U},\O(k))$ is just the cokernel of the differential
+$d : C^{n-1}(\mathcal{U}, \O(k)) \to C^n(\mathcal{U}, \O(k))$.
+\end{proof}
+\fi
+%
+%TODO Prove that the covering is acyclic
+%

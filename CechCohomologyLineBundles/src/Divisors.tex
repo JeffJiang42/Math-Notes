@@ -1,0 +1,198 @@
+%
+\section{Divisors}
+%
+Given a complex manifold $X$, a complex hypersurface $Y \subset X$ (also called an
+analytic hypersurface) is locally cut out a single holomorphic function, i.e. there is
+an open cover $\set{U_i}$ of $X$ such that $Y \cap U_i$ is the vanishing locus of a
+single holomorphic function $g_i$. We say that the functions $g_i$ are
+\ib{defining functions} for $Y$. The hypersurface $Y$ is said to be \ib{irreducible}
+if at any $p \in Y$, the defining function $g$ for $Y$ in a neighborhood about
+$p$ is irreducible in the local ring $\O_{X,p}$. If the defining function for a
+hypersurfaces is not irreducible, then it can be written as a product of irreducible
+functions $g_i$ in $\O_{X,p}$, in which case we can write $Y$ as the union of the
+irreducible hypersurfaces determined by the $g_i$. \\
+
+On the complex line $\C$, the irreducible hypersurfaces are just points $p \in \C$,
+which have defining functions $f(z) = (z-p)$. Recall that all meromorphic functions
+on $\C$ are of the form $p(z)/q(z)$ for polynomials $p(z),q(z) \in \C[z]$. A great
+deal of the study of meromorphic functions on $\C$ revolves around studying their zeroes
+and poles, which is something that divisors will encapsulate for higher dimensional
+complex manifolds.
+%
+\begin{defn}
+Let $Y \subset X$ be an irreducible hypersurface. Let $f \in \mathcal{K}(X)$ be a
+meromorphic function, and fix a point $y \in Y$. Then $Y$ is locally cut out by an
+irreducible holomorphic function $g \in \O_{X,y}$. The \ib{order} of $f$ at
+$y$, denoted $\mathrm{ord}_{Y,y}(f)$ is the smallest integer $n$ such that there exists
+an invertible holomorphic function $h \in \O_{X,y}$ such that $f= g^nh$.
+\end{defn}
+%
+We note that this definition is independent of our choice of defining function, since
+any two irreducible defining functions for $Y$ differ by a unit in $\O_{X,y}$. In
+addition, if $Y$ is irreducible, it is also independent of our choice of point $y \in Y$,
+since if a holomorphic function $g$ is irreducible in $\O_{X,y}$, then it is also
+irreducible in $\O_{X,y'}$ for any point $y'$ sufficiently close. Therefore, we can
+simply write $\mathrm{ord}_Y(f) \defeq \mathrm{ord}_{Y,y}(f)$ for any point $y \in Y$,
+provided that $Y$ is an irreducible hypersurface. The intuition behind the definition
+is that the order of $f$ at $y$ should be the degree to which the function vanishes
+at the point $y$, or the degree of the pole at $y$
+%
+\begin{exmp}
+Let $X = \C$, and $Y = \set{p}$, so $Y$ has locally (in fact globally) defining
+function $g(z) = (z-p)$. Then let $f$ be the meromorphic function
+\[
+f(z) = \frac{(z-p)^k}{q(z)}
+\]
+where $q(z)$ is a polynomial that does not vanish at $p$.
+Then the order of $f$ at $p$ is, as you would expect, $k$. The role of $h$
+is played by the locally invertible function $1/q(z)$, which is a unit in the local
+ring $\O_{\C,p}$. If instead we have
+\[
+f(z) = \frac{q(z)}{(z-p)^k}
+\]
+for a polynomial $q(z)$ that does not vanish at $p$, then the order of $f$
+at $y$ is $-k$, where the role of $h$ is played by $q(z)$.
+\end{exmp}
+%
+A simple, but important observation is that order is additive on products.
+%
+\begin{prop}
+Let $Y \subset X$ be an irreducible hypersurface with locally defining function
+$g$ at $y \in Y$. Let $f_1,f_2 \in \mathcal{K}(X)$ be meromorphic functions. Then
+\[
+\mathrm{ord}_Y(f_1f_2) = \mathrm{ord}_Y(f_1) + \mathrm{ord}_Y(f_2)
+\]
+\end{prop}
+%
+Some more key observations are that for a nonvanishing holomorphic function $f$, we have
+that $\mathrm{ord}_Y(f) = 0$ for any irreducible hypersurface $Y \subset X$, and
+that $\mathrm{ord}_Y(f) = 0 \mathrm{ord}_Y(1/f)$.
+%
+\begin{proof}
+In the local ring $\O_{X,y}$, we have that
+\[
+f_1 = g^{\mathrm{ord}_Y(f_1)}h_1 \qquad f_2 = g^{\mathrm{ord}_Y(f_2)}h_2
+\]
+Therefore, we have that
+\[
+f_1f_2 = g^{\mathrm{ord}_Y(f_1) + \mathrm{ord}_Y(f_2)}h_1h_2
+\]
+The function $h_1h_2$ does not vanish at $y$, and we have that
+$\mathrm{ord}_Y(f_1) + \mathrm{ord}_Y(f_2)$ must be the smallest integer for
+$f_1f_2$, since $\mathrm{ord}_Y(f_1)$ and $\mathrm{ord}_Y(f_2)$ are minimal for
+$f_1$ and $f_2$ respectively.
+\end{proof}
+%
+\begin{defn}
+A \ib{divisor} $D$ on $X$ is a formal integral combination
+\[
+D = \sum a_i[Y_i]
+\]
+where $Y_i$ is an irreducible hypersurface for all $i$. The group of divisors on
+$X$ is denoted $\mathrm{Div}(X)$.
+\end{defn}
+%
+The intuition for a divisor is that it should interpreted as a prescription for zeroes
+and poles of a meromorphic function. For example, in $\C$, you should think of
+the divisor
+\[
+D = p_1 + 4p_2 - 4p_3 - 6p_4
+\]
+as corresponding the the meromorphic function
+\[
+f(z) = \frac{(z-p_1)(z-p_2)^4}{(z-p_3)^4(z-p_4)^6}
+\]
+Of course, this isn't exactly true or precise. For example, we could multiply the
+numerator or denominator by nonvanishing holomorphic functions and then obtain a function
+with the same poles and zeroes as $f$.
+%
+\begin{defn}
+Let $f \in \mathcal{K}(X)$ be a meromorphic function. Then the \ib{zero divisor} of
+$f$ is the divisor
+\[
+(f)_0 = \sum_{\mathrm{ord}_Y(f) > 0} \mathrm{ord}_Y(f)[Y]
+\]
+where the sum is taken over all irreducible hypersurfaces $Y > 0$. Likewise, the
+\ib{pole divisor} of $f$ is defined to be the divisor
+\[
+(f)_\infty = \sum_{\mathrm{ord}_Y(f) < 0} \mathrm{ord}_Y(f)[Y]
+\]
+The \ib{associated divisor} of $f$ is the divisor
+\[
+(f) = (f)_0 - (f)_\infty = \sum_Y \mathrm{ord}_Y(f)
+\]
+\end{defn}
+%
+This makes precise what we mean by divisors being prescriptions for poles and
+zeroes, but the correspondence between meromorphic functions and divisors is
+far from bijective, as we noted above. Our observation was that if any two meromorphic
+functions differed by a nonvanishing holomorphic function, then they will define the
+same divisor. This turns out to be the only redundancy.
+%
+\begin{thm}
+Let $X$ be a complex manifold. Then let $\mathcal{K}^\times_X$ denote the sheaf of
+nonzero meromorphic functions, and $\O_X^\times \subset \mathcal{K}^\times_X$ the sheaf
+of nonvanishing holomorphic functions, which are both sheaves of abelian groups
+under multiplication. Then we have an isomorphism
+\[
+\Gamma(X, \mathcal{K}^\times_X/\O^\times_X) \to \mathrm{Div}(X)
+\]
+\end{thm}
+%
+\begin{proof}
+An global section $\sigma$ of the quotient sheaf $\mathcal{K}_X^\times / \O_X^\times$ is a
+collection of pairs $(U_i, f_i)$ of meromorphic functions
+$f_i \in \mathcal{K}_X^\times(U_i)$ such that on the intersections $U_i \cap U_j$, their
+quotient  $f_i/f_j$ is an element of $\O_X^\times$, i.e. a nonvanishing holomorphic
+function over $U_i \cap U_j$. Therefore, over the intersection, we have that
+\[
+\mathrm{ord}_Y(f_i) - \mathrm{ord}_Y(f_j) = \mathrm{ord}_Y(f_i/f_j) = 0
+\]
+For any irreducible hypersurface $Y$. Therefore, we have that
+$\mathrm{ord}_Y(f_i) = \mathrm{ord}_Y(f_j)$. Therefore, the order
+$\mathrm{ord}_Y(\sigma)$ of $\sigma$ is well-defined for any irreducible hypersurface
+$Y \subset X$, so we get a well-defined map
+\begin{align*}
+\Gamma(X, \mathcal{K}^\times_X / \O_X^\times) &\to \mathrm{Div}(X) \\
+\sigma &\mapsto (\sigma) \defeq \sum_Y \mathrm{ord}_Y(\sigma)[Y]
+\end{align*}
+To show that this mapping is bijective, we provide an inverse map. Let
+$D = \sum_i a_i [Y_i] \in \mathrm{Div}(X)$. Then we can find an open cover $\set{U_i}$
+of $X$ where in each open set $U_j$, any irreducible hypersurface $Y_i$ intersecting
+$U_j$ nontrivially is the vanishing locus of a holomorphic function $g_{ij}$, which
+is unique up to multiplication by an element in $\O_X^\times(U_j)$. Then we claim that
+the functions $f_j \defeq \prod_i g_{ij}$ glue to a global section of
+$\mathcal{K}_X^\times / \O_X^\times$, i.e. on any $U_j \cap U_k$, we have that
+$f_j/f_k$ is a nonvanishing holomorphic function. However, on any intersection
+$U_j \cap U_k$, the functions $g_{ij}$ and $g_{ik}$ define the same irreducible
+hypersurface $Y_i$, so they differ by multiplication by a nonvanishing holomorphic
+function. Therefore, the $f_j$ glue to a global section. \\
+
+It is easily verified that these two constructions are inverses, so the maps
+are bijective. Furthermore, the map is a group homomorphism since order is
+additive on products of meromorphic functions, so it is a group isomorphism.
+\end{proof}
+%
+\begin{rem*}
+For complex manifolds, we have that global sections of the quotient sheaf and divisors
+are isomorphic, but in the algebro-geometric setting, this is not true without some
+smoothness assumptions. In algebraic geometry, elements of
+$\Gamma(X, \mathcal{K}_X^\times/\mathcal{O}_X^\times)$ are called \ib{Weil divisors},
+while the elements of what we called $\mathrm{Div}(X)$ are called \ib{Cartier divisors}.
+\end{rem*}
+%
+One of the big punchlines for divisors is their correspondence with holomorphic
+line bundles over $X$, which we can make explicit using the isomorphism with
+$\Gamma(X, \mathcal{K}^\times_X / O^\times_X)$. In the proof we gave above, we noted
+that a global section of $\mathcal{K}^\times_X / O^\times_X$ can be seen as a collection
+of meromorphic functions $f_i$ on an open cover $\set{U_i}$, such that on intersections,
+the function $f_i/f_j$ is a nonvanishing holomorphic function. In addition, it is easily
+seen that the functions satisfy the cocycle condition, so they can be used
+to define transition functions for a line bundle, which we call $\O(D)$. The
+mapping $D \mapsto \O(D)$ is clearly a group homomorphism, so it defines a natural
+map $\mathrm{Div}(X) \to \mathrm{Pic}(X)$. In particular, this shows that line bundles
+are closely related to the codimension $1$ geometry of the complex manifold $X$.
+%
+%TODO Divisors in terms of sheaf cohomology, line bundle of a divisor corresponding to
+%the image under a boundary map
+%
