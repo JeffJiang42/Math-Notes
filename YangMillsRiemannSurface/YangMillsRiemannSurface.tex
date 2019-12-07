@@ -252,21 +252,21 @@ With this data, we have two associated bundles
 \end{align*}
 %
 Where the action of $G$ on $G$ is by conjugation, and the action of $G$ on $\g$
-is induced by the differential of conjugation. We note that these bundles both
-contain additional structure -- $\Ad P$ is a bundle of groups (not a principal bundle),
-and $\g_P$ is a bundle of Lie algebras. The space of sections $\Gamma(M, \Ad P)$ has
+is the adjoint action. We note that these bundles both contain additional structure --
+$\Ad P$ is a bundle of groups (not a principal bundle), and $\g_P$ is a bundle of Lie
+algebras. The space of sections $\Gamma(M, \Ad P)$ has
 a natural group structure given by pointwise multiplication, and is called the
 \ib{gauge group} $\mathscr{G}(P)$. Likewise, the space of sections
 $\Gamma(M, \g_P)$ has a natural Lie algebra structure given by the pointwise Lie
-bracket, and can be naturally identified with the Lie algebra of $\mathscr{G}(P)$.
-An alternate characterization of these spaces of sections comes from a general
-characterization of sections of associated bundles
+bracket, and can be naturally identified with the Lie algebra of $\mathscr{G}(P)$,
+as we shall see. An alternate characterization of these spaces of sections comes from
+a general characterization of sections of associated bundles
 %
 \begin{prop}
 We have natural correspondences
 \begin{align*}
 \Gamma(M, \Ad P) &\longleftrightarrow \set{f : P \to G ~:~ f(p\cdot g) = g\inv f(p)g} \\
-\Gamma(M, \g_P) &\longleftrightarrow \set{g : P \to \g ~:~ f(p\cdot g) = \Ad_{g\inv}f(p)}
+\Gamma(M, \g_P) &\longleftrightarrow \set{f : P \to \g ~:~ f(p\cdot g) = \Ad_{g\inv}f(p)}
 \end{align*}
 \end{prop}
 %
@@ -280,10 +280,18 @@ P \ar[dr] \ar[rr, "\varphi"] && P \ar[dl] \\
 \end{tikzcd}\]
 The isomorphism is given by mapping a $G$-equivariant map $f : P \to g$
 to the automorphism $\varphi_f : P \to P$ defined by $\varphi_f(p) = p\cdot f(p)$.
-%
-In the the case of $\Gamma(M,\g_P)$, we can extend this to the spaces of
+In a similar fashion, we get a Lie algebra isomorphism of $\Gamma(M,\g_P)$ with
+the vertical vector fields on $P$, which lets us explicitly realize
+$\Gamma(M,\g_P)$ as the Lie algebra of the gauge group. Regarding a section
+$\phi \in \Gamma(M,\g_P)$ as a $G$-equivariant map $P \to \g$, we get
+a bundle automorphism $\exp(\phi)$ defined by $p\mapsto p\cdot\exp(\phi(p))$. From
+this perspective, we see that $\Gamma(M,\g_P)$ can be identified with the $G$-invariant
+vertical vector fields on $P$, which are the infinitesimal generators of the action
+of $\mathscr{G}(P)$ on $P$. \\
+
+In the the case of $\Gamma(M,\g_P)$, we can extend the correspondence to the spaces of
 $\g_P$ valued forms. The kernel of the differential of the projection $P \to M$ gives a
-subbundle of$TP$, which has a natural identification with the trivial bundle
+subbundle of $TP$, which has a natural identification with the trivial bundle
 $\underline{\g} = P \times \g$. Then we can identify the space of sections of
 $\Lambda^kT^*M \otimes \g_P$, (i.e. the space $\Omega^k_M(\g_p)$ of $\g_p$ valued
 $k$-forms with a subspace of the space $\Omega^k_P(\g)$ of $\g$-valued $k$-forms $\omega$
@@ -309,15 +317,43 @@ bracket, we then get
 \Omega^p_M(\g_p) \otimes \Omega^q_M(\g_P) &\to \Omega^{p+q}_M(\g_p) \\
 \omega \otimes \eta \mapsto [\omega,\eta]
 \end{align*}
+We note that this is \emph{not} skew-symmetric, instead, given
+$\omega \in \Omega^p_M(\g_P)$  and $\eta \in \Omega^q_M(\g_P)$, we have
+\[
+[\omega,\eta] = (-1)^{pq+1} [\eta,\omega]
+\]
 For any semisimple Lie group $G$ (in particular, for any compact Lie group $G$), we have
 an inner product $\langle\cdot,\cdot\rangle : \g \times \g \to \R$ that is invariant
-under the adjoint action (e.g. the Killing form). Fixing one such inner product
-induces a fiber product on the trivial bundle $P \times \g$, and invariance
-guarantees that this descends to a fiber product on $\g_P$. This give us pairings
+under the adjoint action (e.g. the Killing form). Invariance under the adjoint action
+gives us
+\begin{align*}
+\langle [\xi_1,\xi_2],\xi_3 \rangle &= \langle[-\xi_2,\xi_1],\xi_3 \rangle \\
+&= \frac{d}{dt}\bigg\vert_{t=0}\langle \Ad_{\exp(-t\xi_2)}\xi_1,\xi_3 \\
+&= \frac{d}{dt}\bigg\vert_{t=}\langle \Ad_{\exp(t\xi_2)}\Ad_{\exp(-t\xi_2)}\xi_1,
+\Ad_{\exp(t\xi_2)}\xi_3\rangle \\
+&= \langle \xi_1,[\xi_2,\xi_3]\rangle
+\end{align*}
+
+Fixing one such inner product induces a fiber product on the trivial bundle $P \times \g$,
+and invariance guarantees that this descends to a fiber product on $\g_P$. This give us
+pairings
 \begin{align*}
 \Omega^p_M(\g_P) \otimes \Omega^q_M(\g_P) &\to \Omega^{p+q}_M \\
 \omega \otimes \eta &\mapsto \langle \omega, \eta \rangle
 \end{align*}
+%
+which also satisfies the identity
+\[
+\langle[\omega,\eta],\xi\rangle = \langle \omega,[\eta,\xi]\rangle
+\]
+We again note that this is not symmetric or skew symmetric, and instead behaves
+like the wedge product, i.e. for $\omega \in \Omega^p_M(\g_P)$ and
+$\eta \in \Omega^q_M(\g_P)$, we have
+\[
+\langle \omega,\eta \rangle = (-1)^{pq}\langle \eta,\omega\rangle
+\]
+which can be seen by writing $\omega = \omega^i\xi_i$ and $\eta = \eta^i\xi_i$
+for an orthonormal basis $\set{\xi_i}$ for $\g$.
 %
 We then fix an orientation and Riemannian metric on $M$, which gives us a Hodge
 star operator $\star : \Omega^p_M \to \Omega^{n-p}_M$ and a Riemannian volume form
@@ -358,10 +394,51 @@ satisfying
 Note in particular that by a dimension count, we have that $\pi_*\vert_H : H \to TM$ is
 an isomorphism. This implies that given a tangent vector $v$ at $x$ and a point
 $p \in P$ in the fiber over $x$, we get a unique horizontal lift
-$\tilde{v} \in H_p$. For a fixed principal $G$-bundle $\pi : P \to M$, let
+$\tilde{v} \in H_p$. For a fixed principal $G$-bundle $\pi : P \to M$, we let
 $\mathscr{A}(P)$ denote the space of all connections on $P$, which is an affine space
-over $\Omega^1_M(\g_P)$. \\
-
+over $\Omega^1_M(\g_P)$. The connection form $A$ on $P$ induces an exterior covariant
+derivative on any associated vector bundle $E = P \times_G V$ arising from a linear
+representation $\rho : G \to \GL(V)$. Let $\dt{\rho} : \g \to \End(V)$ be the
+derivative of $\rho$ at the identity. Then the exterior covariant derivative is given
+by
+\begin{align*}
+d_A : \Omega^p_M(E) &\to \Omega^{p+1}_M(E) \\
+\psi &\mapsto d\psi + \dt{\rho}(A) \wedge \psi
+\end{align*}
+%
+In particular, we get an exterior covariant derivative on $\g_P$, which is given by
+\[
+d_A\psi = d\psi + [A,\psi]
+\]
+\begin{prop}
+Let $\phi \in \Omega^p_M(\g_P)$ and $\psi \in \Omega^q_M(\g_P)$. Then
+\[
+d\langle\phi,\psi\rangle = \langle d_A\phi,\psi\rangle
++ (-1)^p\langle \phi,d_A\psi\rangle
+\]
+\end{prop}
+%
+\begin{proof}
+We compute
+\begin{align*}
+\langle d_A\phi,\psi\rangle + (-1)^p\langle\phi,d_A\psi\rangle
+&= \langle d\phi,\psi\rangle + \langle[A,\phi],\psi\rangle
++ (-1)^p (\langle \phi,d\psi\rangle + \langle \phi,[A,\psi]) \\
+&= \langle d\phi,\psi\rangle + \langle[A,\phi],\psi\rangle
++ (-1)^p (\langle\phi,d\psi\rangle + \langle[\phi,A],\psi) \\
+&= \langle d\phi,\psi\rangle + \langle [A,\phi],\psi\rangle
++ (-1)^{2p+1}\langle [A,\phi],\psi + (-1)^p\langle\phi,d\psi\rangle \\
+&= \langle d\phi,\psi\rangle + (-1)^p\langle\phi,d\psi\rangle
+\end{align*}
+Writing $\phi = \phi^i\xi_i$ and $\psi=\psi^i\xi_i$ in an orthonormal basis
+$\set{\xi_i}$ for $\g$, this becomes
+\begin{align*}
+\langle d_A\phi,\psi\rangle + (-1)^p\langle\phi,d_A\psi\rangle
+&= \sum_i d\phi^i \wedge \psi^i + (-1)^p \phi^i\wedge d\psi^i \\
+&= d\langle\phi,\psi\rangle
+\end{align*}
+\end{proof}
+%
 Given any distribution $E \subset TP$, we get a Frobenius tensor
 $\phi_E : E \otimes E \to TP/E$ given by $X \otimes Y \to [X,Y] \mod E$ where
 we extend $X$ and $Y$ to local vector fields. The Frobenius tensor should be
@@ -377,7 +454,9 @@ $TP$,
 dA(\xi_1,\xi_2) = \xi_1A(\xi_2) - \xi_2A(\xi_1) - A([\xi_1,\xi_2])
 \]
 The fact that $\xi_1$ and $\xi_2$ are horizontal implies that they are in the
-kernel of $A$, which gives us that
+kernel of $A$, which gives us $dA(\xi_1,\xi_2) = -F_A(\xi_1,\xi_2)$. We also know
+that $F_A$ vanishes on vertical vectors, and since $A(X) = X$ for $X \in \g$,
+we get that
 \[
 dA + \frac{1}{2}[A,A] = -F_A\footnote{Our convention for the sign of the curvature
 is opposite from many other conventions, which usually sets
@@ -439,6 +518,43 @@ g_\varphi^*\theta] + [g^*_\varphi\theta, \Ad_{g_\varphi\inv}]
 Where we use skew-symmetry and the Maurer-Cartan equation.
 \end{proof}
 %
+We similarly compute the infinitesimal action of the Lie algebra $\Gamma(M,\g_P)$.
+%
+\begin{prop}
+The vector field corresponding to $\phi \in \Gamma(M,\g_P)$ is
+$A \mapsto d_A\phi \in \Omega_M^1(\g_P)$
+\end{prop}
+%
+\begin{proof}
+We compute the vector field at a connection $A \in \mathscr{A}(P)$ to be
+\begin{align*}
+&\frac{d}{dt}\bigg\vert_{t=0} \Ad_{\exp(t\phi)\inv} A + \exp(t\phi)^*\theta
+= -[\phi, A] + \frac{d}{dt}\bigg\vert_{t=0}(dL_{\exp(-t\phi)} d(\exp(t\phi))) \\
+&= [A,\phi] + \left(\frac{d}{dt}\bigg\vert_{t=0} dL_{\exp(-t\phi)}\right)d(\exp(0))
++ dL_{\exp(0)}\left(\frac{d}{dt}\bigg\vert_{t=0}d(\exp(t\phi))\right) \\[5pt]
+&= [A,\phi] + d\phi\\
+&= d_A\phi
+\end{align*}
+where for the third equality we use the product rule, and in the fourth equality
+we use the fact that $\exp(0) = \id$ and that the derivative of
+$\exp(t\phi)$ as $t \to 0$ is $\phi$.
+\end{proof}
+%
+For any other connection $A + \eta$ with $\eta \in \Omega^1_M(\g_P)$,
+a quick computation yields
+\[
+F_{A+\eta} = F_A + \frac{1}{2}[\eta,\eta] + d_A\eta
+\]
+From this description, we can relate the curvature $F_A$ with the covariant derivative.
+Note that for the line of connections $A + t\eta$, we have that
+\[
+\frac{d}{dt}\bigg\vert_{t=0} F_{a+t\eta} =
+\frac{d}{dt}\bigg\vert_{t=0} F_A + \frac{t^2}{2}[\eta,\eta] + td_A\eta
+= d_A\eta
+\]
+So $d_A\eta$ measures the infinitesimal change of the curvature $F_A$ in the direction
+$\eta$.
+%
 \section{The Yang-Mills Functional}
 %
 With the setup done, we have the ingredients necessary to define the Yang-Mills
@@ -448,38 +564,18 @@ functional.
 The \ib{Yang-Mills functional} is the map
 $L : \mathscr{A}(P) \to \R$ given by
 \[
-L(A) = \norm{F_A}_{L^2}^2 = \int_M \langle F_A,F_A \rangle
+L(A) = \norm{F_A}_{L^2}^2 = \int_M \langle F_A,\star F_A \rangle
 \]
 \end{defn}
-%
-\begin{rem*}
-The bilinear form $\langle \cdot,\cdot\rangle$ should be thought of as a symplectic
-form on $\mathscr{A}(P)$, and the mapping $A \mapsto F_A$ should be thought of
-as the moment map to some action of $\mathscr{G}(P)$. In this context, the
-Yang-Mills functional is the norm-square of the moment map.
-\end{rem*}
 %
 We immediately see that the Yang-Mills equations are invariant under $\mathscr{G}(P)$
 in the following sense -- if we have any gauge transformation $\varphi$ with
 associated map $g_\varphi : P \to G$, we have that $L(\varphi^*A) = L(A)$,
-which follows immeidately from the invariance of $\langle\cdot,\cdot\rangle$
+which follows immediately from the invariance of $\langle\cdot,\cdot\rangle$
 and the transformation law for curvature. \\
 
 Our goal now will be to find the Euler-Lagrange
 equations for the Yang-Mills functional by computing the first and second variations.
-The connection form $A$ on $P$ induces an exterior covariant derivative on any
-associated vector bundle $E = P \times_G V$ arising from a linear representation
-$\rho : G \to \GL(V)$. Let $\dt{\rho} : \g \to \End(V)$ be the derivative of
-$\rho$ at the identity. Then the exterior covariant derivative is given by
-\begin{align*}
-d_A : \Omega^p_M(E) &\to \Omega^{p+1}_M(E) \\
-\psi &\mapsto d\psi + \dt{\rho}(A) \wedge \psi
-\end{align*}
-%
-In particular, we get an exterior covariant derivative on $\g_P$, which is given by
-\[
-d_A\psi = d\psi + [A,\psi]
-\]
 Using the Hodge star operator, we construct the formal adjoint with respect to
 the inner product $d_A^* : \Omega^{p}_M(\g_P) \to \Omega^{p-1}_M(\g_P)$ in the same manner
 as for classical Hodge theory on a Riemannian manifold. Explicitly, the formula
@@ -487,21 +583,15 @@ on $p$-forms is given by
 \[
 d^*_A = (-1)^{n(p+1) + 1}\star d_A \star
 \]
-where $n = \dim M$. \\
-
-For any other connection $A + \eta$ with $\eta \in \Omega^1_M(\g_P)$, a quick computation
-yields
-\[
-F_{A+\eta} = F_A + \frac{1}{2}[\eta,\eta] + d_A\eta
-\]
-This allows us to compute the first variation of $L$.
+where $n = \dim M$. We then compute the first variation of $L$.
 %
 \begin{prop}[\ib{The First Variation}]
 For a local extremum $A \in \mathscr{A}(P)$ of the Yang-Mills functional, we have
 \[
 d_A\star F_A = 0
 \]
-The local extremum connection $A$ is then callled a \ib{Yang-Mills connection}.
+The local extremum connection $A$ is then called a \ib{Yang-Mills connection}, and the
+space of Yang-Mills connections is denoted $\mathscr{A}_{\mathrm{YM}}(P)$.
 \end{prop}
 %
 \begin{proof}
@@ -514,7 +604,7 @@ This then gives us
 \begin{align*}
 \norm{F_{A+t\eta}}_{L^2} &= \int_M \langle F_{A+t\eta},F_{A+t\eta}\rangle \\
 &= \int_M \langle F_A + \frac{t^2}{2}[\eta,\eta]
-+ td_A\eta,\star (F_A + \frac{t^2}{2}[\eta,\eta] + td_A\eta \rangle \\
++ td_A\eta,\star (F_A + \frac{t^2}{2}[\eta,\eta] + td_A\eta)\rangle \\
 \end{align*}
 Expanding this out, we get that the term that is linear in $t$ is
 
@@ -559,16 +649,37 @@ d^*_A d_A\eta + \star[\eta,\star F_A] = 0
 \end{proof}
 %
 %TODO Hessian?
-%TODO Example with U(1)
 %
-\section{A Symplectic Viewpoint}
+\section{The $U(1)$ Case}
 %
-
+We first restrict to the special case $G = U(1)$. In this case, the
+Lie algebra is abelian, so the adjoint action of $U(1)$ on $\mathfrak{u}(1)$ is trivial,
+giving us that $\g_P$ is a trivial bundle. Identifying $\mathfrak{u}(1)$ with
+$\R$, we can then identify $\mathfrak{u}(1)$ valued forms on $P$ with ordinary
+differential forms. Likewise, using triviality of $\g_P$, we can identify
+$\g_P$-valued forms with ordinary differential forms on $M$. The vertical bundle
+in this case is a trivial line bundle over $P$, and there is a unique $U(1)$-invariant
+vertical vector field on $P$, which on each fiber restricts to the vector field dual
+to $d\theta$. Then given a connection $A$ on $P$, we have that $dA = \pi^*F_A$,
+since $[A,A] = 0$. This immediately tells us that $F_A$ is closed, since $d$
+commutes with pullback. Furthermore, for any other connection $A + \eta$, we have that
+\[
+F_{A+\eta} = F_A + \frac{1}{2}[\eta,\eta] + d_A\eta
+\]
+Then since $d_A = d$ and $[\eta,\eta] = 0$, this gives us that
+$F_{A+\eta} = F_A + d\eta$, which tells us that the cohomology class of $F_A$ is
+independent of our choice of $A$. Using our sign convention, this is equal to
+$-2\pi i c_1(P)$. Furthermore, in this situation, the Yang-Mills functional reduces
+to the standard Hodge theory picture, since the $L^2$ norm will coincide with the
+$L^2$ norm on differential forms. Therefore, a Yang-Mills connection on $P$ is equivalent
+to finding the unique connection that minimizes the $L^2$ norm in the cohomology class
+$2\pi i c_1(P)$. By standard Hodge theory, this gives us that every $U(1)$-bundle $P$
+admits a Yang-Mills connection.
 %
 \section{Yang-Mills Over a Riemann Surface}
 %
-We now restrict our attention to when $M$ is a surface, i.e. a $2$ dimensional real
-manifold. The Hodge star operator maps $\Omega^1_M \to \Omega^1_M$, and satisfies
+\iffalse
+The Hodge star operator maps $\Omega^1_M \to \Omega^1_M$, and satisfies
 $\star^2 = -\id$, which induces an almost complex structure on $M$, giving us a
 decomposition $\Omega^1_M(\C) = \Omega^{1,0}_M(\C) \oplus \Omega^{0,1}_M(\C)$
 into the $\pm i$ eigenspaces of the complexified Hodge star. The operator
@@ -580,5 +691,185 @@ gives an operator $\partial$ satisfying $\partial^2 = 0$, and we get a decomposi
 $d = \partial + \dbar$. Then given a principal bundle $P \to M$, We get a similar
 decomposition for $\Omega^1_M(\g_P)$ after complexification giving a decomposition
 $d_A = \partial_A + \dbar_A$ for any connection $A \in \mathscr{A}(P)$.
+\fi
+We now restrict our attention to when $M$ is a orientable surface, with genus $g > 0$.
+Let $Q \to M$ be a principal $U(1)$ bundle with $c_1(Q) = 1$, i.e.
+\[
+\frac{1}{2\pi i} \int_M c_1(Q) = 1
+\]
+Then fix a Riemannian metric on $M$ with volume form $\omega$ such that
+$\int_M \omega = 1$, and Yang-Mills connection $A$ on $Q$. Since $c_1(Q) = 1$, we have
+that $[c_1(Q)] = [\omega]$. Furthermore, since $\star\omega = 1$ and
+$[-2\pi i c_1(Q)] = [F_A]$, we get that the curvature of $A$ must be equal to
+$-2\pi i \omega$ to minimize the Yang-Mills functional. Then let $\widetilde{M} \to M$
+be the universal cover of $M$. Since the genus of $M$ is at least $1$, $\widetilde{M}$
+is contractible, so the pullback of $Q$ along the covering projection gives us a
+trivial $U(1)$ bundle over $\widetilde{M}$
+\[\begin{tikzcd}
+\widetilde{M} \times U(1)\ar[d] \ar[r] & Q \ar[d]\\
+\widetilde{M} \ar[r] & M
+\end{tikzcd}\]
+%
+Then we have a covering map $\widetilde{M} \times \R \to U(1)$, using the usual
+covering $\R \to U(1)$, giving a principal $\R$-bundle over $\widetilde{M}$. Then
+if we consider the composite map $\widetilde{M} \times \R \to \widetilde{M} \to M$,
+this is a fiber bundle over $M$. Furthermore, since the action of $\R$
+on on $\widetilde{M} \times \R$ commutes with the $\pi_1(M)$ action on $\widetilde{M}$,
+we know that this is a principal bundle with structure group $\Gamma_\R$, where
+$\Gamma_\R$ is a central extension of $\pi_1(M)$ by $\R$. Let $J$ denote the
+element of $\R \subset \Gamma_\R$ corresponding to $1 \in \R$. Then consider
+$M$ as the quotient of the $2g$-gon. The holonomy about the path traversed by
+the boundary is exactly the product $\prod_i [a_i,b_i]$ of the commutators of
+representatives of generators of $\pi_1(M)$, and has holonomy equal to $2\pi$, which
+follows from the fact that the holonomy about any loop bounding a disk is equal to the
+integral of the curvature, and the fact that $c_1(Q)$ is represented by
+the curvature class of any connection, divided by $2\pi i$. Therefore, if we
+consider the pullback connection on $\widetilde{M} \times U(1)$, the holonomy
+about the lifts of the boundary paths to $\widetilde{M}$ will also be $2\pi$,
+which then lifts to translation by $1$ in the bundle $\widetilde{M} \times \R$.
+This gives the relation that $\prod_i [a_i,b_i] = J$, which gives us a presentation
+of the group $\Gamma_\R$. Since $\pi_1(M)$ is discrete, $\widetilde{M}$ is a flat
+bundle, so the pullback connection on $\widetilde{M} \times U(1)$ still has curvature
+$-2\pi i \omega$, and the curvature also remains unchanged after lifting to
+$\widetilde{M} \times \R$. \\
+
+Suppose we have a homomorphism $\rho : \Gamma_\R \to G$ to a compact group $G$.
+This then gives us an associated bundle
+$P = (\widetilde{M}\times \R) \times_{\Gamma_\R} G$, which is a principal $G$ bundle
+In addition to $\rho$, we get a Lie algebra homomorphism
+$\dt{\rho} : \R \to \g$. Using this, $\dt{\rho}(A) \in \Omega^1_P(\g)$ determines
+a connection on $P$, which has curvature $\dt{\rho}(F_A)$. Furthermore, we have that
+\[
+\dt{\rho}(d_A\star F_A) = d_{\dt{\rho}(A)}\star\dt{\rho}(F_A)
+\]
+which tells us that $\dt{\rho}(A)$ is a Yang-Mills connection on $P$. The main theorem
+is that every Yang-Mills connection on every principal bundle arises in this way.
+%
+\begin{thm}
+The above construction gives a bijective correspondence
+\[
+\hom(\Gamma_\R, G) / G \longleftrightarrow
+\set{G\text{-bundles } P \to M
+\text{ equipped with a Yang-Mills connection } A }/\mathscr{G}(P)
+\]
+Where the action of $G$ on $\hom(\Gamma_\R,G)$ is by conjugation.
+\end{thm}
+%
+\begin{proof}
+There are several things here to show. First, we must show that for any compact
+group $G$, any Yang-Mills connection on an associated bundle comes from such a
+homomorphism. Furthermore, we also must show that for any compact
+group $G$, every principal $G$-bundle can be realized as an associated bundle
+of $\widetilde{M} \times \R \to M$. \\
+
+We first tackle the first claim. Since $M$ is $2$-dimensional, we have that
+$\star F_A \in \Omega^0_M(\g_P)$, so we may regard it as a $G$-equivariant map
+$P \to \g$, i.e. $\star F_A(p\cdot g) = \Ad_{g\inv}\star F_A(p)$. This then
+tells us that the image of $\star F_A$ is exactly one orbit of $\g$ under the adjoint
+action.  Fix a nonzero element $X \in \g$ lying in the image of $\star F$, and then
+consider the preimage $P_X \defeq (\star F_A)\inv(X)$. Let $G_X \subset G$ be the
+stabilizer of $X$ under the adjoint action. Then $G_X$ acts on $P_X$, since given any
+$p \in P_X$, and $g \in G_X$, we have that $\star F_A(p\cdot g) = \Ad_{g\inv} F_A(p) = X$.
+This action is clearly transitive and free, so $P_X$ defines a reduction of structure
+group from $G$ to $G_X$, giving us a bundle isomorphism $P_X \times_{G_X} G \cong P$.
+Furthermore, since $d_A \star F = 0$, we have that $\star F$ is constant in
+the horizontal directions, so the differential of $\star F$ vanishes in the horizontal
+directions, so the horizontal distribution is contained in the tangent bundle
+of $P_X$. Therefore, the connection $A$ on $P$ restricts to a Yang-Mills connection on
+$P_X$ (which we also denote $A$). This restricted connection has the property
+that $\star F_A$ is the constant map with value $X \in \g$, so $F_A$ is
+just the $2$-form $X \otimes \omega \in \Omega^2_M(\g_{P_X})$. This tells us that
+every Yang-Mills connection on any bundle $P$ arises from such a connection on
+the reduced bundle $P_X$ for some $X \in \g$. \\
+
+Then suppose we have a homomorphism $\rho : \Gamma_\R \to G$ with derivative
+$\dt{\rho} : \R \to \g$. The image of $1 \in \R$ under $\dt{\rho}$ determines an
+element $X_\rho \in \g$. Centrality of $\R$ then implies that
+the image of $\Gamma_\R$ preserves $X_\rho$ under the adjoint action, so we may
+regard $\rho$ as a homomorphism $\Gamma_\R \to G_{X_\rho}$. Combining this observation
+with the previous one, we can then reduce to the case where $X$ is preserved
+by all of $G$ (i.e. $G = G_X$). \\
+
+To complete the proof of the first claim, we want to reduce to the cases where
+$G$ is either a torus or a semisimple group. This follows from the fact
+that any compact group $G$ arises as $H \times_D S$, where $H$ is a maximal torus
+and $S = [G,G]$ is the maximal connected semisimple subgroup, and $D = H \cap S$ is
+a finite subgroup of the center of $S$. Quotienting by $D$, we get a finite covering
+$G \to \overline{G} = \overline{H} \times \overline{S}$, where
+$\overline{H} = H/D$ and $\overline{S} = S/D$. We then claim that we can reduce to
+the case where the structure group is $\overline{G}$. To see this, we note that
+if we quotient $P$ by the action of $D$ to obtain $\overline{P}$, we get a finite
+sheeted covering $P \to \overline{P}$. Since this covering is a local diffeomorphism,
+we get an identification $TP \cong \pi^*T\overline{P}$ where $\pi : P \to \overline{P}$
+is the covering projection. Therefore, we get that the horizontal distribution on
+$P$ induces a horizontal distribution on $\overline{P}$, and conversely, we get
+that a connection on $\overline{P}$ lifts to a horizontal distribution on $P$.
+\end{proof}
+%
+\section{The Symplectic Viewpoint}
+%
+Even though the space $\mathscr{A}(P)$ is infinite dimensional, it has enough structure
+to be viewed as a symplectic ``manifold," but we will gloss over the formal details.
+Because $\mathcal{A}(P)$ is an affine space over $\Omega_M^1(\g_P)$, we may
+work with it as a manifold, where the tangent space at any point is $\Omega_M^1(\g_P)$.
+We will be relatively cavalier with the details, though all we are doing can be made
+formal by passing to Sobolev completions of spaces of sections. \\
+
+In the case that $M$ is a Riemann surface, then the Hodge star
+$\star : \Omega^1_M(\g_P) \to \Omega^1_M(\g_P)$ can be viewed as a complex
+structure on $\mathscr{A}(P)$. In addition, after fixing a Riemannian metric on $M$,
+we get a trivialization $\Omega_M^2 \cong \R$ using the natural orientation induced
+by the complex structure. This allows us to view the pairing
+\[
+(\omega,\eta) \mapsto \int_M \langle\omega,\eta\rangle
+\]
+as a symplectic form on $\mathscr{A}(P)$. In addition, these structures are
+visibly compatible, which gives $\mathscr{A}(P)$ a K\"ahler structure. \\
+
+Recall that if we have a symplectic left action of a group $G$ on a symplectic manifold
+$(M,\omega)$ we get an induced map $\g \to \mathfrak{X}(M)$ mapping $\xi$ to the vector
+field $X_\xi$ defined by
+\[
+(X_\xi)_p = \frac{d}{dt}\bigg\vert_{t=0} \exp(t\xi)\cdot p
+\]
+The action is \ib{Hamiltonian} if for all $\xi \in \g$ there exists a function
+$H_\xi : M \to \R$ called a \ib{Hamiltonian function} such that the vector field
+$X_\xi$ satisfies the identity
+\[
+\omega_p((X_\xi)_p, v) = (dH_\xi)_p v
+\]
+for all points $p \in M$ and tangent vectors $v \in T_pM$, and the mapping
+$\xi \mapsto H_\xi$ is $G$-equivariant with respect to the right actions
+$\xi\cdot g= \Ad_{g\inv}\xi$ and $f \cdot g = f \circ L_g$, where $L_g : M \to M$
+is the symplectomorphism determined by left multiplication by $g$. Given a
+Hamiltonian action of $G$ on $M$, a \ib{moment map} for the action is a map
+$\mu : M \to \g^*$ such that for any $p \in M$ and $\xi \in \g$, we have
+\[
+H_\xi(p) = \mu(p)((X_\xi)_p)
+\]
+We claim that the action of $\mathscr{G}(P)$ on $\mathscr{A}(P)$ is Hamiltonian.
+We first note that the action is symplectic, since
+$\langle\cdot,\cdot\rangle$ is $\Ad$-invariant, and the action of
+a gauge transformation $\varphi$ on a tangent vector $\eta \in \Omega^1_M(\g_P)$
+is by $\varphi\cdot\eta = \Ad_{g_\varphi\inv}\eta$ where
+$g_\varphi : P \to G$ is the associated $G$-equivariant map. To show that the
+action is Hamiltonian, we note that each $\phi \in \Omega^0_M(\g_P)$ determines
+a map $H_\phi : \mathscr{A}(P) \to \R$ given by
+\[
+H_\phi(A) = \int_M \langle F_A,\phi\rangle
+\]
+and the mapping $\phi \mapsto H_\phi$ is clearly $\mathscr{G}(P)$-equivariant.
+We then claim that mapping $\mu(A) = F_A$ defines a moment map. We see this, we first
+note that the map is $\mathscr{G}(P)$-equivariant by our formulas for how the connection
+and its curvature transform under a gauge transformation. We then compute
+\begin{align*}
+d(H_\phi)_A(\psi) &= \frac{d}{dt}\bigg\vert_{t=0}\int_M\langle F_{A+t\psi},\phi\rangle \\
+&= \int_M \langle d_A\psi,\phi\rangle \\
+&= \int_M d\langle\psi,\phi\rangle - \int_M \langle \psi,d_A\phi\rangle \\
+&= \int_M\langle d_A\phi,\psi\rangle
+\end{align*}
+%
+Then noting that $d_A\phi$ is the vector field determined by $\phi$, this
+shows that $\mu(A) = F_A$ is a moment map for the action.
 %
 \end{document}

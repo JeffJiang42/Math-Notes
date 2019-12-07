@@ -1,0 +1,310 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage{amsmath}
+\usepackage{accents}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{bibliography.bib}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand*{\dt}[1]{%
+   \accentset{\mbox{\large\bfseries .}}{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+%
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Fundamental Groups of Principal Circle Bundles Over Riemann Surfaces}
+%
+\maketitle
+%
+Let $\Sigma$ be a Riemann surface with genus $g > 0$, and $\pi : P \to \Sigma$
+a principal $U(1)$ bundle over $\Sigma$. This gives rise to a long exact sequence
+of homotopy groups
+\[\begin{tikzcd}
+\cdots \ar[r] & \pi_2(U(1)) \ar[r] & \pi_2(P) \ar[r] & \pi_2(\Sigma) \ar[dll]\\
+& \pi_1(U(1)) \ar[r] & \pi_1(P) \ar[r] & \pi_1(\Sigma) \ar[r] & 1
+\end{tikzcd}\]
+Since the genus of $\Sigma$ is greater than $0$, the universal cover of $\Sigma$
+is contractible, which implies that $\pi_2(\Sigma) = 1$, since the covering map
+induces isomorphisms on higher homotopy groups. Then since $\pi_1(U(1)) \cong \Z$,
+we get the short exact sequence of groups
+\[\begin{tikzcd}
+1 \ar[r] & \Z \ar[r] & \pi_1(P) \ar[r] & \pi_1(\Sigma) \ar[r] & 1
+\end{tikzcd}\]
+so the fundamental group of $P$ is an extension of $\pi_1(M)$ by $\Z$. \\
+
+Any principal $U(1)$-bundle $P \to \Sigma$ can be characterized up to isomorphism by
+its first Chern class $c_1(P) \in H^2(\Sigma,\Z) \cong \Z$, which can be explicitly realized
+as the cohomology class
+\[
+c_1(P) = \left[\frac{i}{2\pi}\Omega\right]
+\]
+where $\Omega$ is the curvature $2$-form of any connection $\Theta \in \Omega^1_P$ on $P$,
+where we make the identification of $\mathfrak{u}(1) \cong \R$. Given any connection
+$\Theta$, we get a $U(1)$-invariant horizontal distribution on $TP$ given by
+$\ker\Theta$, which allows us to lift paths $\gamma : [0,1] \to \Sigma$ to paths
+$\widetilde{\gamma}_p : [0,1] \to P$ for every lift $p$ of $\gamma(0)$. In particular, if
+$\gamma(0) = \gamma(1)$, (i.e. $\gamma$ is a  loop on $\Sigma$), the lifts may or may not
+lift to loops on $P$ : in general, for each lift $p$ of $\gamma(0)$, we have
+$\widetilde{\gamma}_p(1) = p\cdot \theta_\gamma$ for some $\theta_\gamma \in U(1)$,
+called the \ib{holonomy} associated to the loops $\gamma$. Then suppose we have a
+simple curve $\gamma$ bounding a disk $D \subset \Sigma$ contained
+in some open set in which $P$ is trivial. In this case, the curvature can
+be written locally as $dA$ for some $1$-form $A \in \Omega^1_M$, and the holonomy
+is computed by the integral
+\[
+\int_\gamma A = \int_D dA = \int_D \Omega
+\]
+This can be extended to simple curves that don't necessarily lie in neighborhoods
+where the bundle is trivial by applying a subdivision argument with a triangulation. \\
+
+We now return to the situation of computing the fundamental group of $P$. Recall
+that the fundamental group of $\Sigma$ is given by the presentation
+\[
+\langle a_1,b_1,\ldots a_g,b_g ~:~ [a_1,b_1]\cdots[a_g,b_g] = 1\rangle
+\]
+The image of the map $\Z \to \pi_1(P)$ is given by mapping $1$ to a curve $c$ traversing
+once around a fiber of $P \to \Sigma$. In addition, if we view $\Sigma$ as a quotient
+of a $2g$-gon with identifications at the boundaries, we have that the other
+generators of $\pi_1(P)$ will be lifts of the loops on the boundary With a slight abuse
+of notation, we also denote these lifted loops by $a_i,\ldots b_i$. Furthermore, we
+may assume that the $a_i$ and $b_i$ are horizontal lifts of the generators on the base
+with respect to some connection on $P$. This gives us the generators of for $\pi_1(P)$,
+namely the $a_i,b_i$, and the new generator $c$. For relations, we fix a connection on
+$P$ and consider the product of commutators $[a_1,b_1]\cdots[a_g,b_g]$, which traverses
+the boundary of the polygon once. By pushing this into the interior of the polygon by an
+arbitrarily small amount, we get a simple  curve that bounds a disk that covers almost
+all of $\Sigma$. We then have that the holonomy about this curve is the integral of the
+curvature. Taking the limit as the curve approaches the boundary, we get that this
+integral becomes $2\pi$ times the first Chern class of $P$, which tells us that the
+holonomy is traversing $c_1(P)$ times around $c$. This gives the relation
+\[
+[a_1,b_1]\cdots[a_g,b_g] = c_1(P)c
+\]
+We then claim that the element $c$ is central. To see this, we see that since $P$
+is orientable, it restricts to a trivial bundle over the $1$-skeleton of $\Sigma$.
+Since the bundle is trivial, the loop $c$ commutes with all the $a_i$ and $b_i$
+over the $1$-skeleton. Consequently, it commutes in $\Sigma$ as well. \\
+
+Putting everything together, we get a characterization of fundamental
+groups of principal $U(1)$-bundles $P \to \Sigma$ : they are central extensions
+of $\pi_1(M)$ by a cyclic group generated by a single loop $c$, along with
+the additional relation that $[a_1,b_1]\cdots [a_g,b_g] = c_1(P)c$.
+%
+\end{document}
