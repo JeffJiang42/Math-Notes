@@ -1,0 +1,591 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage{amsmath}
+\usepackage{accents}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{bibliography.bib}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand*{\dt}[1]{%
+   \accentset{\mbox{\large\bfseries .}}{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+%
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Local Cohomology}
+%
+\maketitle
+%
+\setcounter{section}{1}
+%
+\begin{defn}
+An $R$-module $I$ is \ib{injective} if for every injection $M \hookrightarrow N$,
+any homomorphism $M \to I$ extends to a homomorphism $N \to I$.
+\[\begin{tikzcd}
+M \ar[dr]\ar[rr, hookrightarrow] && N \ar[dl, dashed] \\
+& I
+\end{tikzcd}\]
+Equivalently, the functor $\hom_R(\cdot,I)$ is exact.
+\end{defn}
+%
+Over a PID, injective modules have a relatively nice characterization.
+%
+\begin{prop}
+Let $R$ be a PID and $M$ an $R$-module. Then $M$ is injective if and only if it
+is \ib{divisible}, i.e. given a non-zero divisor (nzd) $x$ and $u \in M$, there exists
+$v \in M$ such that $xv = u$.
+\end{prop}
+%
+\begin{cor} \enumbreak
+\begin{enumerate}
+  \item $\Q$ is an injective $\Z$-module.
+  \item Let $k$ be a field. Then $k(x)$ is an injective $k[x]$-module.
+\end{enumerate}
+\end{cor}
+%
+\begin{defn}
+Let $I \subset R$ be an ideal, and $M$ an $R$ module. The \ib{sections of $M$
+supported on $V(I)$} is the submodule
+\[
+\Gamma_I(M) \defeq \set{m \in M ~:~ I^nm = 0 \text{ for some $n$}}
+\]
+\end{defn}
+%
+Recall that for a ring $R$, the sets $V(I) = \set{P \in \Spec R ~:~ I \subset P}$
+are the closed sets in the Zariski topology on $R$, and an $R$-module can be thought
+of as a sheaf over $\Spec R$ (e.g. sections of a vector bundle). In this perspective,
+the elements of $M$ are the global sections, and the elements of $\Gamma_I(M)$ tell
+us the elements supported on the closed set $V(I)$. Using $\Gamma_I$, we can define a
+functor from $\mathsf{Mod}_R \to \mathsf{Mod}_R$ where $M\mapsto \Gamma_I(M)$, and
+given $\varphi : M \to N$, $\Gamma_I(\varphi)$ is just $\varphi$ restricted to the
+submodule $\Gamma_I(M)$. From this it is clear that $\Gamma_I$ is left-exact, since
+it clearly preserves injective maps.
+%
+\begin{defn}
+The \ib{local cohomology modules} $H^i_I(M)$ are obtained from the right derived functors
+of $\Gamma_I$, i.e. $H^i_I(M) = R^i\Gamma_I(M)$.
+\end{defn}
+%
+The idea here is that $H^i_I(M)$ should be like the relative cohomology with
+respect closed set $V(I)$, we'll explore this analogy more later. \\
+
+The modules $H^i_I(M)$ can be computed by taking an injective resolution
+\[\begin{tikzcd}
+0 \ar[r] & M \ar[r] & I^1 \ar[r] & \cdots
+\end{tikzcd}\]
+and taking the cohomology of the complex
+\[\begin{tikzcd}
+0 \ar[r] & \Gamma_I(M) \ar[r] & \Gamma_I(I^1) \ar[r] & \cdots
+\end{tikzcd}\]
+%
+As with other derived functors, we will always have $\Gamma_I(M) = H^0_I(M)$.
+%
+\begin{exmp}
+Let $I = (p) \subset \Z$. Then we have the injective resolution
+\[\begin{tikzcd}
+0 \ar[r] & \Z \ar[r] & \Q \ar[r] & \Q/\Z \ar[r] & 0
+\end{tikzcd}\]
+So we want to compute the cohomology of the sequence
+\[\begin{tikzcd}
+0 \ar[r] & \Gamma_{(p)}(\Z) \ar[r] & \Gamma_{(p)}(\Q) \ar[r] & \Gamma_{(p)}(\Q/\Z)
+\ar[r] & 0
+\end{tikzcd}\]
+We note that $\Gamma_(p)$ simply picks out the submodule of elements of $p^n$ torsion.
+Therefore, we have that $\Gamma_{(p)}(\Z) = H^0_{(p)}(\Z) = 0$. In addition, since
+$\Q$ is torsion-free, we also have that $\Gamma_{(p)}(\Q) = 0$. Therefore, we
+get that $H^1_{(p)}(\Z) = \Gamma_{(p)}(\Q/\Z)$. By factoring the numerator and
+denominator of a rational number into products of prime powers, we get the identification
+$H^1_{(p)}(\Z) = \Z[p\inv]/\Z$.
+\end{exmp}
+%
+\begin{exmp}
+Let $R = k[x]$ and $I = (x)$, where $k$ is a field. We have the injective resolution
+\[\begin{tikzcd}
+0 \ar[r] & R \ar[r] & k(x) \ar[r] & k(x)/R \ar[r] & 0
+\end{tikzcd}\]
+So we want to compute the cohomology of
+\[\begin{tikzcd}
+0 \ar[r] & \Gamma_{(x)}(R) \ar[r] & \Gamma_{(x)}(k(x)) \ar[r] & \Gamma_{(x)}(k(x)/R)
+\ar[r] & 0
+\end{tikzcd}\]
+Since $R$ and $k(x)$ are both domains, $\Gamma_{(x)}(R) = \Gamma_{(x)}(k(x)) = 0$,
+so we have that $H^0_{(x)}(R) = 0$ and $H^1_{(x)}(R) = \Gamma_{(x)}(k(x)/R)$.
+Which is similar to the case with $\Q/\Z$. Factoring the numerators and denominators,
+into products of irreducibles, we get an identification $H^1_{(x)}(R) = k[x,x\inv]/k[x]$.
+\end{exmp}
+%
+In general, injective modules are hard to write down, so we want an easier way to compute
+local cohomology. In the case that $R$ is Noetherian, we can do this using Koszul
+complexes. For $x \in R$, construct
+the complex
+\[\begin{tikzcd}
+K^\bullet(x,R) \defeq ~ 0 \ar[r] & R \ar[r] & R_x \ar[r] & 0
+\end{tikzcd}\]
+where $R$ is in degree $0$, and the map $R \to R_x$ is the localization map. Given
+multiple elements $x_1,\ldots x_n \in R$, we let
+$K^\bullet(x_1,\ldots x_n, R) \defeq
+K^\bullet(x_1,R) \otimes \cdots \otimes K^\bullet(x_n,R)$. We then define
+$K^\bullet(x_1,\ldots x_n, M) \defeq K^\bullet(x_1,\ldots x_n, R) \otimes M$. We
+denote the cohomology of this complex by $H^i(x_1,\ldots x_n, M)$.
+%
+\begin{prop}
+Let $R$ be Noetherian, and $I \subset R$ an ideal with
+$\sqrt{I} = \sqrt{(x_1,\ldots x_n)}$. Then
+\[
+H^i_I(M) = H^i(x_1,\ldots x_n, M)
+\]
+\end{prop}
+%
+This can be interpreted geometrically as follows. The complement of $V(I)$ is covered
+by the open sets $D(x_i) = \set{P \in \Spec R ~:~ x_i \notin P}$, where $x \in I$. The
+sections of $M$ over an open set $D(x)$ are given by the localized module
+$M_x = R_x \otimes_R M$. Then the complex $K^\bullet(x_1,\ldots x_n, M)$ is
+the \v{C}ech complex for the open covering $\set{D(x_i)}$. This shows that what we are
+doing is computing the sheaf cohomology of $M$ restricted to the complement of $V(I)$.
+In addition, this perspective sheds light on how $H^i_I(M)$ behaves like relative
+cohomology. If we look at the first terms in the Koszul complex, we have
+\[\begin{tikzcd}
+0 \ar[r] & M \ar[r] &  \bigoplus\limits_{x \notin \sqrt{I}} M_x
+\ar[r] & \bigoplus\limits_{x,y \notin \sqrt{I}} M_{x,y} \ar[r] & \cdots
+\end{tikzcd}\]
+the kernel of
+$\bigoplus_{x \notin \sqrt{I}} R_x \to \bigoplus_{x,y \notin \sqrt{I}} R_{x,y}$
+consists of tuples of elements of $M_x$ that map to the same element in $M_{x,y}$,
+which should be thought of as sections agreeing on intersections. The image
+of the first map should be thought of as sections that extend over $V(I)$ to a
+global section. In this way, we see that this is analogous to relative cohomology
+with respect to the closed subspace $V(I)$. \\
+
+The Koszul complex perspective also allows us to prove results about base change.
+%
+\begin{prop}
+Let $R$ be Noetherian, $I \subset R$ an ideal, and $M$ an $R$-module.
+\begin{enumerate}
+  \item Let $\varphi : R \to S$ be ring homomorphism such that $S$ is a flat $R$-module.
+  Then
+  \[
+  H^i_I(M) \otimes_R S \cong H^i_{IS}(M \otimes_R S)
+  \]
+  In particular, taking local cohomology commutes with localization and completion.
+  \item For any ring homomorphism $\varphi : R \to S$ and an $S$-module $N$,
+  \[
+  H^i_I(N) \cong H^i_{IS}(N)
+  \]
+\end{enumerate}
+\end{prop}
+%
+\begin{proof}
+The first claim is easy. Let $I = (x_1,\ldots x_n)$ We have that
+\[
+K^\bullet(x_1,\ldots x_n, M) \otimes_R S =
+K^\bullet(\varphi(x_1),\ldots \varphi(x_n), M \otimes_R S)
+\]
+Then since $S$ is flat, tensoring with $S$ is exact, so it commutes with taking
+cohomology. \\
+
+The second claim is also easy. This follows from
+\begin{align*}
+K^\bullet(x_1,\ldots x_n, N) &= K^\bullet(x_1,\ldots x_n, R) \otimes_R N \\
+&= K^\bullet(x_1,\ldots x_n,R) \otimes_R S \otimes_S N \\
+&= K^\bullet(\varphi(x_1),\ldots \varphi(x_n), S) \otimes_R N \\
+&= K^\bullet(\varphi(x_1),\ldots \varphi(x_n), N)
+\end{align*}
+The first equality comes from the definition of the Koszul complex. The second comes
+from the  definition of the $R$-module structure, the third comes from the first part,
+and the last comes from the the definition of the $R$-module structure
+as well as the definition of the Koszul complex.
+\end{proof}
+%
+For another geometric perspective, there's a ``Mayer-Vietoris"-like sequence in local
+cohomology. To do this, we need another perspective for local cohomology over Noetherian
+rings. Given a Noetherian ring $R$ and an $R$-module $M$, define the ideal quotients
+\[
+0:_M I^n \defeq \set{m \in M ~:~ I^nm =0}
+\]
+Then we have that $\Gamma_I$ is the direct limit of the $0:_M I^n$, which
+it can be identified with the quotient
+\[
+\bigoplus_{n \in \Z^{\geq 0}} (0:_MI^n) / \sim
+\]
+where we identify $x \in (0 :_M I^n) \in \bigoplus_{n \in \Z^{\geq 0}} (0:_MI^n)$ with
+its copies lying in $0 :_M I^m$ for $m < n$. Heuristically, it is best to think
+of the limit as the ``union" $\cup (0 :_M I^n)$. Furthermore, we can make
+the identification $0 :_M I^n \cong \hom_R(R/I^n, M)$, where we identify
+$m \in 0:_M I^n$ with the homomorphism determined by $1 \mapsto m$. This gives us
+\[
+\Gamma_I(M) = \lim_{\longrightarrow}\hom_R(R/I^n,M)
+\]
+Then if we take an injective resolution
+\[\begin{tikzcd}
+0 \ar[r] & M \ar[r] & E^1 \ar[r] & \cdots
+\end{tikzcd}\]
+and apply $\Gamma_I$, we get
+\[\begin{tikzcd}
+0 \ar[r] & \lim\limits_{\longrightarrow}\hom(R/I^n, M) \ar[r] &
+\lim\limits_{\longrightarrow}\hom(R/I^n, E^1) \ar[r] & \cdots
+\end{tikzcd}\]
+By abstract nonsense, we can commute the limit taking cohomology, giving us the
+identification $H^i_I(M) = \lim\limits_{\longrightarrow}\mathrm{Ext}^i_R(R/I^n, M)$.
+In fact, we see that we can do this for a slightly wider class of collections
+of ideals. Suppose we had some collection $\set{J_n}$ that is \ib{cofinal}
+with respect to the collection $\set{I^n}$, i.e. given $I^n$, it contains
+some $J_m$. Then the limits $\lim_{\longrightarrow}R/I^n$ and
+$\lim_{\longrightarrow}R/J_n$ coincide, so we can compute local cohomology with
+the $J_n$ as well. \\
+
+This interpretation of local cohomology gives us a ``Mayer-Vietoris" sequence.
+%
+\begin{thm}
+Let $I,J \subset R$ be ideals in a Noetherian ring $R$. Then there is a long
+exact sequence in local cohomology
+\[\begin{tikzcd}
+0 \ar[r] & H^0_{I+J}(M) \ar[r] & H^0_I(M) \oplus H^0_J(M) \ar[r] &
+H^0_{I \cap J}(M) \ar[dll]\\
+& H^1_{I+J}(M)\ar[r] & H^1_I(M) \oplus H^1_J(M) \ar[r] & H^1_{I \cap J}(M) \ar[dll]\\
+& \ldots
+\end{tikzcd}\]
+\end{thm}
+%
+\begin{proof}
+The ideals $\set{I^n + J^n}$ are cofinal with respect to $\set{(I+J)^n}$ and
+the $\set{I^n \cap J^n}$ are cofinal with $\set{(I\cap J )^n}$. We have a short exact
+sequence
+\[\begin{tikzcd}
+0 \ar[r] & R/(I^n \cap J^n) \ar[r] & R/I^n \oplus R/J^n \ar[r] & R/(I^n+J^n) \ar[r] & 0
+\end{tikzcd}\]
+Applying $\hom(\cdot, M)$, we get a long exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & \hom(R/(I^n \cap J^n, M) \ar[r] & \hom(R/I^n, M) \hom(R/J^n, M) \ar[r] &
+\hom(R/(I^n+J^n),M) \ar[dll] \\
+& \mathrm{Ext^1_R}(R/(I^n \cap J^n), M) \ar[r] & \mathrm{Ext}_R^1(R/I^n, M)
+\mathrm{Ext}^1_R(R/J^n, M) \ar[r] & \mathrm{Ext}_R^1(R/(I^n+J^n),M) \ar[dll] \\
+& \ldots
+\end{tikzcd}\]
+taking the limit then completes the proof.
+\end{proof}
+%
+Geometrically, recall
+\begin{align*}
+V(I + J) &= V(I) \cap V(J) \\
+V(I \cap J) &= V(I) \cup V(J)
+\end{align*}
+So, just like Mayer-Vietoris for topological spaces, this allows us to compute
+local cohomology supported in the union $V(I) \cup V(J)$ by knowing
+the local cohomology on $V(I)$, $V(J)$, and the intersection. In particular,
+if $I+J = R$, we have that $\Gamma_{I+J}(M) = \Gamma(M)$, so this allows us to express
+the sheaf cohomology of $M$ in terms of local cohomology.
+%
+\begin{defn}
+Let $M$ be an $R$-module. An \ib{associated prime} of $M$ is a prime ideal $P \subset R$
+of the form $P = \mathrm{Ann}(m)$ for some $m \in M$.
+\end{defn}
+%
+We can recover the old notion of associated prime for an ideal $I$ by taking the
+associated primes of $R/I$.
+%
+\section{Matlis Duality}
+%
+\begin{defn}
+Let $N$ be a submodule of $M$. $M$ is \ib{essential} over $N$ if every nonzero
+submodule of $M$ intersects $N$ nontrivially.
+\end{defn}
+%
+In some sense, injective modules are ``large." On the other hand, essential modules
+are ``small" in the sense that they are close to a submodule.
+%
+\begin{defn}
+A maximal essential extension of an $R$-module $M$ is the same as a minimal injective
+module containing $M$. In fact, any essential extension that is injective is maximal.
+Such a module is called the \ib{injective hull} of $M$, and we denote the injective hull
+of an $R$-module $M$ by $E_R(M)$.
+\end{defn}
+%
+\begin{thm}[\ib{Matlis}]
+Let $R$ be Noetherian.
+\begin{enumerate}
+  \item An $R$-module $E$ is an indecomposable injective if and only if
+  $E$ is of the injective hull $E_R(R/P)$ for some $P \in \Spec R$.
+  \item Every finitely generated submodule of $E_R(R/P)$ has $P$ as the unique
+  associated prime.
+  \item Every injective module is a direct sum of indecomposable injective modules.
+\end{enumerate}
+\end{thm}
+%
+From now on, we will assume that $(R,m)$ is a Noetherian local ring. We let $k$
+denote the residue field $R/m$, and we let $E$ denote the injective hull of
+$k$, thought of as an $R$-module.
+%
+\begin{defn}
+Let $M$ be an $R$-module. The \ib{Matlis dual} of $M$, denoted $M^\vee$, is the
+module $M^\vee \defeq \hom_R(M, E)$.
+\end{defn}
+%
+\begin{prop}
+Let $M$ and $N$ be $R$ modules. Then
+\[
+\mathrm{Tor}^R_i(M,N)^\vee \cong \mathrm{Ext}_R^i(M,N^\vee)
+\]
+\end{prop}
+%
+\begin{proof}
+Let
+\[\begin{tikzcd}
+0 \ar[r] & M \ar[r] & F^1 \ar[r] & \cdots
+\end{tikzcd}\]
+be a free resolution of $M$. Then $\mathrm{Tor}^R_i(M,N)$ is computed as
+the homology of the complex
+\[\begin{tikzcd}
+0 \ar[r] & M \otimes_R N \ar[r] & F^1 \otimes_R N \ar[r] & \cdots
+\end{tikzcd}\]
+Taking Matlis duals of each term, which commutes with taking homology since $E$ is
+injective, so $\mathrm{Tor}^R_i(M,N)^\vee$ is the homology of the complex
+\[\begin{tikzcd}
+0 \ar[r] & \hom_R(M \otimes_R N, E) \ar[r] & \hom_R(F^1\otimes_R N, E) \ar[r] & \cdots
+\end{tikzcd}\]
+Applying Tensor-Hom adjunction, this becomes
+\[\begin{tikzcd}
+0 \ar[r] & \hom_R(M, \hom_R(N,E)) \ar[r] & \hom_R(F^1, \hom_R(N,E)) \ar[r] & \cdots
+\end{tikzcd}\]
+And the homology of this sequence is exactly $\mathrm{Ext}^i_R(M,N^\vee)$.
+\end{proof}
+%
+If we assume that $M$ is finitely generated, we get a similar dual statement where
+\[
+\mathrm{Ext}^i_R(M,N)^\vee \cong \mathrm{Tor}^R_i(M,N^\vee)
+\]
+%
+\begin{thm}[\ib{Matlis duality}]
+Let $\hat{R} = \lim\limits_{\longleftarrow} R/m^n$ be the completion of $R$ with
+respect to the maximal ideal $m$. Then we have
+\begin{enumerate}
+  \item Any Artinian $R$-module is isomorphic to a submodule of $E^r$ for some $r$.
+  \item Taking Matlis duals gives a bijective correspondence
+  \[
+  \set{\text{finitely generated } \hat{R}\text{-modules}} \longleftrightarrow
+  \set{\text{Artinian } R\text{-modules}}
+  \]
+  In addition, $(N^\vee)^\vee  = N$.
+\end{enumerate}
+\end{thm}
+%
+
+%
+\end{document}
