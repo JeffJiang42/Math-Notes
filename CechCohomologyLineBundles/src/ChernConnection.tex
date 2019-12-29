@@ -2,9 +2,10 @@
 %
 \begin{defn}
 Let $E \to X$ be a complex vector bundle. A \ib{Hermitian structure} on $E$
-is the data of a smoothly varying hermitian form $H(x)$ on each fiber $E_x$.
-If $E$ is a complex vector bundle equipped with a Hermitian structure, we call it
-a \ib{Hermitian vector bundle}.
+is the data of a smoothly varying hermitian form\footnote{Our convention will be that
+Hermitian forms are complex linear in the first argument and conjugate linear in the
+second argument.} $H(x)$ on each fiber $E_x$. If $E$ is a complex vector bundle equipped
+with a Hermitian structure, we call it a \ib{Hermitian vector bundle}.
 \end{defn}
 %
 Hermitian structures always exist due to convexity of the space of Hermitian forms.
@@ -59,12 +60,12 @@ dH^i_j  = dH(E_i,E_j) = h(AE_i, E_j) + h(E_i, AE_j)
 \]
 Writing the matrix $A$ in coordinates $A^i_j$, this gives us
 \[
-dH^i_j = \overline{A^i_k}h(E_k, E_j) + h(E_i, E_k)A^k_j
-= \overline{A^i_k}H^k_j + H^i_kA^k_j
+dH^i_j = A^k_ih(E_k, E_j) + h(E_i, E_\ell)\overline{A^\ell_j}
+= A^k_iH^k_j + H^i_\ell \overline{A^\ell_j}
 \]
 which tells us that we must have that
 \[
-dH = A^\dagger H + HA
+dH = A^T H + H\overline{A}
 \]
 We then consider the restrictions imposed on $\nabla$ by the condition that
 $\nabla$ is compatible with the holomorphic structure. Decomposing
@@ -73,16 +74,16 @@ picture, we have that $\nabla = \partial + \dbar + A$, and $\dbar_E$ is just $\d
 Therefore, we must have that $A^{0,1} = 0$, so $A = A^{1,0}$. Decomposing
 $d = \partial + \dbar$ and applying it to our Hermitian condition, we find that
 \[
-\partial H + \dbar H = (A^{1,0})^\dagger H + HA^{1,0}
+\partial H + \dbar H = A^T H + H\overline{A}
 \]
 comparing the bidegrees then gives
 \begin{align*}
-\partial H &= HA^{1,0}\\
-\dbar H &= (A^{1,0})^\dagger H
+\partial H &= A^TH\\
+\dbar H &= H\overline{A}
 \end{align*}
-Moving $H$ to the other side of the equation and conjugating the equation gives
+The second equation then tells us that
 \[
-\partial\overline{H} (\overline{H\inv}) = (A^{1,0})^T = A^T
+\overline{H}\inv\partial \overline{H} = A
 \]
 which gives a unique characterization of the matrix $A$, as well as a local definition,
 showing existence and uniqueness of the Chern connection.
@@ -94,7 +95,7 @@ structure, then the corresponding curvature forms are also compatible.
 \begin{prop} \enumbreak
 \begin{enumerate}
   \item Let $E \to X$ be a Hermitian vector bundle with Hermitian connection $\nabla$.
-  Then $F_\nabla$ is locally given by a skew-Hermitian matrix $C$ of $2$-forms.
+  Then $F_\nabla$ is locally given by a skew-Hermitian matrix of $2$-forms.
   Globally, we have
   \[
   h(F_\nabla s_1, s_2) + h(s_1, F_\nabla s_2) = 0

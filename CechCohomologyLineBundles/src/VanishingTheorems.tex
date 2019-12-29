@@ -1,0 +1,380 @@
+%
+\section{Vanishing Theorems}
+%
+\iffalse
+\emph{It was said about Lefschetz that he had never stated a false theorem or gave a
+correct proof.} \\
+\fi
+
+For the following discussion, we will restrict our attention to a compact K\"ahler
+manifold $X$, which will allow us to use some tools from Hodge theory, which we will
+assume.
+%
+\begin{defn}
+A \ib{positive $(1,1)$ form} on $X$ is a
+differential form $\omega \in \mathcal{A}^{1,1}$ such that in local
+holomorphic coordinates $\set{z^i}$, we have that
+\[
+\omega = \frac{i}{2} \sum_{i,j} h_{ij}(z) dz^i \wedge d\zbar^j
+\]
+where $h_{ij}$ is a positive definite Hermitian matrix for all $z$. Equivalently,
+$\omega$ is a positive form if and only if it represents the K\"ahler form for some
+Hermitian metric on $X$.
+\end{defn}
+%
+\begin{defn}
+A holomorphic line bundle $L \to X$ is \ib{positive} if there exists a Hermitian metric
+$h$ on $X$ with Chern connection $\nabla$ such that $(i/2\pi)F_\nabla$ is a
+positive $(1,1)$ form.
+\end{defn}
+%
+Positivity of a line bundle turns out to only depend on the first Chern class of
+the line bundle. From our previous discussion, this tells us that it only cares
+about the topological isomorphism class of the line bundle, and is independent of
+a holomorphic structure. To show this, we'll need two useful lemmas.
+The first is a classic lemma from K\"ahler geometry.
+%
+\begin{lem}[\ib{The $\partial\dbar$-lemma}]
+Let $\eta$ be a smooth complex valued form such that $\eta$ is both $\partial$ and
+$\dbar$ closed. Then if $\eta$ is $d$, $\partial$, or $\dbar$-exact, then there
+exists a form $\xi$ such that $\eta = \partial\dbar\xi$. Furthermore, if $\eta$ is
+real (i.e. $\overline{\eta} = \eta$), we may take $i\xi$ to be real.
+\end{lem}
+%
+The other lemma characterizes curvatures of metric compatible connection on line
+bundles.
+%
+\begin{lem}
+Let $L \to X$ be a holomorphic line bundle equipped with Hermitian metric $h$. Locally,
+$h$ is given by a positive function $h(z)$ on $X$. Then the curvature $F_\nabla$ of
+the metric compatible connection $\nabla$ is given by the formula
+\[
+F_\nabla = -\partial\dbar\log h(z)
+\]
+\end{lem}
+%
+\begin{proof}
+This follows from our earlier computations for Chern connections. Locally, the Chern
+connection $\nabla$ is given by $d + A$ for a complex $1$-form $A$, which
+from our earlier computations, must be holomorphic and satisfy
+\[
+A = \overline{h}\inv \partial \overline{h}
+\]
+However, since $h$ is real, this is the same as $A = h\inv\partial h$.
+The curvature is then given by $F_\nabla = dA = (\partial A + \dbar A)$. However,
+we note that by a type check, $\partial A$ is of type $(2,0)$, and since the curvature
+of the Chern connection is of type $(1,1)$, we have that
+\[
+F_\nabla = \dbar\left(\frac{\partial h}{h}\right) = \dbar\partial\log h
+\]
+the desired identity then follows from the fact that $\partial$ and $\dbar$ anticommute.
+\end{proof}
+%
+\begin{prop}
+Let $L \to X$ be a line bundle and let $\omega$ be a real closed $(1,1)$ form such
+that the cohomology class of $\omega$ is equal to $c_1(L)$. Then there exists a
+Hermitian metric on $L$ with metric compatible connection $\nabla$ such that
+$\omega = (i/2\pi)F_\nabla$.
+\end{prop}
+%
+\begin{proof}
+Let $h$ be any Hermitian metric on $L$, and $\nabla$ the Chern connection for $h$.
+We know that the curvature $F_\nabla$ satisfies
+\[
+\left[\frac{i}{2\pi}F_\nabla\right] = c_1(L)
+\]
+Then suppose we have another Hermitian metric $h'$ with Chern connection $\nabla'$.
+We know that we can write $h'$ differs from $h$ by multiplication by a smooth positive
+function, so we may write $h' = e^\rho h$ for some smooth function $\rho$. Then the
+curvature of $\nabla'$ satisfies
+\begin{align*}
+F_{\nabla'} &= -\partial\dbar\log e^\rho h \\
+&= -\partial\dbar(\log e^\rho + \log h) \\
+&= -\partial\dbar\rho + F_\nabla
+\end{align*}
+Which tells us that $F_\nabla = \partial\dbar\rho + F_{\nabla'}$.
+Then given a real closed $(1,1)$ form $\omega$ with $[(i/2\pi)\omega] = c_1(L)$,
+if we solve the equation
+\[
+F_\nabla = \partial\dbar\rho + \omega
+\]
+Then the Chern connection $\nabla'$ of the Hermitian form $e^\rho h$ will satisfy
+$F_{\nabla} = \partial\dbar\rho + F_{\nabla'}$, which then implies that
+$F_{\nabla'} = \omega$. To solve the equation, we note that $\omega$ and
+$F_\nabla$ are cohomologous by assumption, so their difference $F_\nabla - \omega$
+is $d$-exact. Furthermore, from the local formula
+\[
+F_\nabla = -\partial\dbar\log h
+\]
+we see that $F_\nabla$ is both $\partial$ and $\dbar$-closed. Finally, the
+fact that $\omega$ is type $(1,1)$ and $d$-closed implies that it must be both
+$\partial$ and $\dbar$-closed by a simple type check, so we get that
+$F_\nabla - \omega$ satisfies the conditions of the $\partial\dbar$-lemma,
+giving us that $F_\nabla - \omega = \partial\dbar\rho$ for some real function
+$\rho$.
+\end{proof}
+%
+Recall that on a K\"ahler manifold $X$ with K\"ahler form $\omega$, we have the
+Lefschetz operator $L : \mathcal{A}^{p,q} \to \mathcal{A}^{p+1,q+1}$ given by
+wedging with $\omega$. The operator $L$, together with its adjoint
+$\Lambda : \mathcal{A}^{p,q} \to \mathcal{A}^{p-1,q-1}$
+satisfy the identities
+\begin{enumerate}
+  \item $[\Lambda, L] = (n-(p+q))\id_{\mathcal{A}^{p,q}(X)}$
+  \item $[\Lambda,\dbar] = -i\partial^*$
+\end{enumerate}
+%
+where $n$ is the complex dimension of $X$. The operators $\Lambda$ and $L$ can
+naturally be extended to vector bundle valued forms, and since $\Lambda$ and
+$L$ are both $0^{th}$ order operators, the first identity still holds for
+their extended versions. The second identity generalizes in a slightly modified
+form.
+%
+\begin{prop}[\ib{Nakano identity}]
+Let $E$ be a holomorphic vector bundle equipped with a Hermitian metric with
+Chern connection $\nabla$. Then
+\[
+[\Lambda, \dbar_E] = -i(\nabla^{1,0})^*
+\]
+where $(\nabla^{1,0})^*$ is the adjoint of $\nabla^{1,0}$ with respect to the
+Hermitian inner product on $\mathcal{A}^{p,q}(E)$, which is explicitly given by the
+formula
+\[
+(\nabla^{1,0})^* = \overline{\star}_E\nabla^{1,0}_{E^*}\overline{\star}_E
+\]
+where $\nabla_{E^*}$ is the Chern connection for the dual bundle equipped with
+the dual Hermitian form.
+\end{prop}
+%
+\begin{proof}
+Since it suffices to check in a local trivialization, we may assume that we have
+taken an orthonormal frame for $E$. However, this cannot be a holomorphic trivialization,
+so there will be some complications. We take inventory of the various operators in
+this trivialization. Since the trivialization was from an orthonormal frame, the
+operator $\star_E$ agrees with the usual Hodge star, so
+$\overline{\star}_E = \overline{\star}$. In addition, we can write the Chern connection
+$\nabla$ as $d + A$ for some skew-Hermitian matrix of $1$-forms $A$. This then gives
+us
+\[
+\nabla_{E^*} = d + A^\dagger = d - A
+\]
+The $\dbar_E$-operator is of the form  $\dbar + A^{0,1}$, which is one of the
+added complications when the trivialization is not holomorphic. If the trivialization
+were holomorphic, we would have had $\dbar_E = \dbar$. Putting things together, we find
+\begin{align*}
+(\nabla^{1,0})^* &= \overline{\star}_E\nabla_{E^*}^{1,0}\overline{\star}_E  \\
+&= \overline{\star}(\partial - A^{1,0})\overline{\star} \\
+&= \partial^* - (A^{1,0})^\dagger
+\end{align*}
+We then compute
+\begin{align*}
+[\Lambda,\dbar_E] + i(\nabla^{1,0})^* &=
+[\Lambda, \dbar + A^{0,1}] + i(\partial^* - (A^{1,0})^\dagger) \\
+&= [\Lambda,\dbar] + [\Lambda,A^{0,1}] + i\partial^* - i(A^{1,0})^\dagger
+\end{align*}
+The ordinary K\"ahler identity then gives us that this is equal to
+$[\Lambda,A^{0,1}] - i(A^{1,0})^\dagger$. Since this is an order $0$ operator,
+it suffices to verify that it vanishes when restricted to any fiber of $E$. However,
+since we can always pick a smooth local trivialization of $E$ in which $A = 0$,
+we have that $[\Lambda,A^{0,1}] - i(A^{1,0})^\dagger = 0$, which them
+implies that
+\[
+[\Lambda,\dbar_E] = -i(\nabla^{1,0})^*
+\]
+\end{proof}
+%
+We then prove one final lemma.
+%
+\begin{lem}
+Let $E$ be a holomorphic vector bundles with a Hermitian metric and Chern connection
+$\nabla$. Let $(\cdot,\cdot)$ denote the Hermitian inner product on
+$\mathcal{A}^{p,q}(E)$ induced by the Hermitian metric on $E$ and the Hermitian metric
+on $X$. Then for a harmonic form $\alpha \in \mathcal{H}^{p,q}(E)$, we have the
+following inequalities:
+\begin{align*}
+i(F_\nabla\Lambda\alpha,\alpha) &\leq 0 \\
+i(\Lambda F_\nabla\alpha,\alpha) &\geq 0
+\end{align*}
+\end{lem}
+%
+\begin{proof}
+Since the Chern connection satisfies $\nabla^{0,1} = \dbar_E$ and the curvature
+$F_\nabla$ is of type $(1,1)$. we know that
+\[
+F_\nabla = \nabla^{1,0}\dbar_E + \dbar_E\nabla^{1,0}
+\]
+We then compute
+\begin{align*}
+i(F_\nabla\Lambda\alpha,\alpha) &= i(\nabla^{1,0}\dbar_E\Lambda\alpha,\alpha)
++ i(\dbar_E\nabla^{1,0}\Lambda\alpha,\alpha) \\
+&= i(\dbar_E\Lambda\alpha,(\nabla^{1,0})^*\alpha)
++ i(\nabla^{1,0}\Lambda\alpha,\dbar_E^*\alpha) \\
+&= i(\dbar_E\Lambda\alpha,(\nabla^{1,0})^*\alpha)
++ i(\nabla^{1,0}\Lambda\alpha,0) \\
+&= -(\dbar_E\Lambda\alpha, i(\nabla^{1,0})^*\alpha) \\
+&= (\dbar_E\Lambda\alpha, [\Lambda,\dbar_E]\alpha) \\
+&= (\dbar_E\Lambda\alpha, \Lambda\dbar_E\alpha)
+- (\dbar_E\Lambda\alpha,\dbar_E\Lambda\alpha) \\
+&= -\norm{\dbar_E\Lambda\alpha}_{L^2}^2 \leq 0
+\end{align*}
+We perform a similar computation for the other inequalty.
+\begin{align*}
+i(\Lambda F_\nabla\alpha,\alpha) &= i(\Lambda\nabla^{1,0}\dbar_E\alpha,\alpha)
++ i(\Lambda\dbar_E\nabla^{1,0}\alpha,\alpha) \\
+&= i(\Lambda\dbar_E\nabla^{1,0}\alpha,\alpha) \\
+&= i([\Lambda,\dbar_E]\nabla^{1,0}\alpha,\alpha)
++i(\dbar_E\Lambda\nabla^{1,0}\alpha,\alpha) \\
+&= i(-i(\nabla^{1,0})^*\nabla^{1,0}\alpha,\alpha)
++ i(\Lambda\nabla^{1,0}\alpha,\dbar_E^*\alpha) \\
+&= (\nabla^{1,0}\alpha,\nabla^{1,0}\alpha) \\
+&= \norm{\nabla^{1,0}\alpha}_{L^2}^2 \geq 0
+\end{align*}
+\end{proof}
+%
+With all that done, we are ready to prove the Kodaira-Nakano vanishing theorem.
+%
+\begin{thm}[\ib{Kodaira-Nakano Vanishing}]
+Let $L \to X$ be a positive line bundle over a compact K\"ahler manifold $X$ of complex
+dimension $n$. Then for $p+1 > n$, we have
+\[
+H^q(X,\Omega^{p,0}_X\otimes L) = 0
+\]
+\end{thm}
+%
+\begin{proof}
+From Hodge theory we know that $H^q(X,\Omega_X^{p,0} \otimes L)$ is isomorphic
+to the space $\mathcal{H}^{p,q}(L)$ of harmonic $L$-valued $(p,q)$-forms. Therefore,
+it suffices to show that no harmonic $(p,q)$-forms exist when $p+q > n$. Since
+$L$ is a positive line bundle, it admits a Hermitian metric with such that
+$(i/2\pi)F_\nabla$ is equal to the K\"ahler form. Therefore, its action on
+$\mathcal{A}^{p,q}(L)$ is the same as the Lefschetz operator $L$. Using the
+commutation relation
+\[
+[\Lambda,L] = (n-(p+q))\id_{\mathcal{A}^{p,q}(L)}
+\]
+we get that
+\[
+\frac{i}{2\pi}([\Lambda,F_\nabla]\alpha,\alpha)
+= ([\Lambda,L]\alpha,\alpha) = (n-(p+q))\norm{\alpha}^2_{L^2}
+\]
+However, we know that
+\[
+i([\Lambda,F_\nabla]\alpha,\alpha) = i(\Lambda F_\nabla\alpha,\alpha)
+- i(F_\nabla\Lambda\alpha,\alpha) \geq 0
+\]
+So if $p+q > n$, we must have that $\norm{\alpha}^2_{L^2} = 0$, i.e. $\alpha = 0$.
+\end{proof}
+%
+The lemmas we proved earlier also give rise to another vanshing theorem due to
+Serre.
+%
+\begin{thm}[\ib{Serre Vanshing}]
+Let $L \to X$ be a positive line bundle. Then for any holomorphic vector bundle
+$E \to X$, there exists a positive integer $m_0$ such that
+\[
+H^q(X,E \otimes L^m) = 0
+\]
+For any $m \geq m_0$.
+\end{thm}
+%
+\begin{proof}
+We first fix Hermitian metrics on $E$ and $L$, where the Hermitian metric on $L$ is
+chosen such that the Chern connection $\nabla_L$ satisfies
+$(i/2\pi)F_{\nabla_L} = \omega$, where $\omega$ is the K\"ahler form of $X$. We
+note that an easy calculation gives us that $\nabla_{L^m} = m\omega$.
+Then let $\nabla_E$ denote the Chern connection for $E$, and let
+\[
+\nabla = \nabla_E \otimes \nabla_{L^m} = \nabla_E \otimes \id + \id \otimes \nabla_{L^m}
+\]
+The curvature of $\nabla$ is then given by
+\[
+F_\nabla = F_{\nabla_E} \otimes \id + m(\id \otimes \omega)
+\]
+Using our lemmas from before, we then compute for
+$\alpha \in \mathcal{H}^{p,q}(E \otimes L^m)$
+\begin{align*}
+i([\Lambda,F_\nabla]\alpha,\alpha) &= ([\Lambda,F_{\nabla_E}]\alpha,\alpha)
++ i([\Lambda,mL]\alpha,\alpha) \\
+&= i([\Lambda,F_{\nabla_E}]\alpha,\alpha) + (m(n-(p+q)))\norm{\alpha}^2_{L^2}
+\end{align*}
+The operator $[\Lambda,F_{\nabla_E}]$ is algebraic, so we can use a fiberwise
+Cauchy-Schwarz inequality
+\[
+|\langle[\Lambda,F_{\nabla_E}]\alpha,\alpha\rangle|
+\leq \norm{[\Lambda,F_{\nabla_E}]}\norm{\alpha}^2
+\]
+where we have chosen our favorite operator norm on $\End(E_x)$ for each fiber
+and we are computing the inner products and norms fiberwise. Compactness of $X$
+then ensures that we can obtain a global bound $C$ such that
+$C \geq |\langle[\Lambda,F_{\nabla_E}]\alpha,\alpha\rangle|$
+Then since
+$i([\Lambda,F_\nabla]\alpha,\alpha) \geq 0$, we have that when $p+q > n$, a
+sufficiently large choice of $m$ will make $m(n-(p+q))$ sufficiently negative
+such that the only we we can have $\alpha = 0$.
+\end{proof}
+%
+\section*{Another Way to Compute the Cohomology of $\CP^n$}
+%
+With the Kodaira-Nakano Vanishing Theorem and more help from Hodge theory, we have
+anotherway to compute the sheaf cohomology of line bundles over $\CP^n$. To
+do this we note two facts.
+\begin{enumerate}
+  \item $\O(1)$ is a positive line bundle.
+  \item $\O(-n-1) \cong K_{\CP^n}$.
+\end{enumerate}
+%
+The proof of the first fact follows from an easy computation of the curvature.
+$\O(1)$ embdeds into the trivial bundle $\CP^n \times (\C^{n+1})^*$, which gives
+it a Hermitian metric coming from the obvious one on $(\C^{n+1})^*$. Then it can be
+shown that the Chern connection of this metric is just the Fubini-Study metric on
+$\CP^n$ (in fact, the standard definition of the Fubini-Study is secretly
+this construction). The proof of the second fact amounts to checking the
+determinants of the Jacobians of the transition functions for the standard open
+cover of $\CP^n$, and noting that they agree with the transition functions
+for $\O(-n-1)$. We will also use the following result from Hodge theory.
+%
+\begin{thm}[\ib{Serre Duality}]
+Let $X$ be a compact K\"ahler manifold of complex dimension $n$ and let $E \to X$
+be a holomorphic vector bundle.
+Then
+\[
+H^{n-q}(X, E^*\otimes K_X) \cong H^q(X,E)^*
+\]
+\end{thm}
+%
+We then apply the Kodaira-Nakano Vanishing Theorem to deduce which cohomology
+groups are $0$. For $m > 0$, the vanishing theorem tells us that for $p+q > n$, we have
+$H^q(\CP^n,\Omega^{p,0} \otimes \O(m)) = 0$. Then since $\Omega^{n,0} = K_X = \O(-n-1)$,
+this tells us that $H^q(\CP^n,\O(m)) = 0$ for $q > 0$ and $m \geq -n$. Serre duality
+then gives a similar vanishing result for $K_X \otimes \O(m) = \O(-m-n-1)$.
+Putting everything together we get that
+\[
+H^q(\CP^n,\O(m)) = \begin{cases}
+0 & 0 < q < n \\
+0 & q = 0, m < 0 \\
+0 & q = n , m > -n-1
+\end{cases}
+\]
+Recall that the global sections of the line bundle $\O(m)$ are given by
+\[
+H^0(\CP^n,\O(m)) = \C[z_0,\ldots z_n]_m
+\]
+for $m \geq 0$, are are $0$ otherwise. Serre duality then tells us that
+\[
+H^n(X, \O(-m - n - 1)) \cong H^0(X,\O(m))^*
+\]
+Therefore, we get that if $m \geq 0$,
+\[
+H^q(\CP^n, \O(m)) = \begin{cases}
+\C[z_0,\ldots z_n]_m & q = 0 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+In the case that $m < 0$, we have
+\[
+H^q(\CP^n, \O(m)) = \begin{cases}
+\C[z_0,\ldots z_n]_{n-m+1}^* & q = n \\
+0 & \text{otherwise}
+\end{cases}
+\]
+%

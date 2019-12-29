@@ -17,6 +17,8 @@
 %\addbibresource{bibliography.bib}
 %\usepackage{charter} %another font
 %\usepackage{eulervm} %Vakil font
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
 \usepackage{yfonts}
 \usepackage{mathtools}
 \usepackage{enumitem}
@@ -211,8 +213,7 @@
     colorlinks,
     citecolor=black,
     filecolor=black,
-    linkcolor=blue,
-    urlcolor=blacksquare
+    linkcolor=blue
 }
 %
 %--------Solution--------
@@ -451,5 +452,11 @@ the space of closed forms. In the special case of a Riemann surface, fixing a co
 on the bundle $Q$ provided a reference connection on \emph{all} principal
 $U(1)$-bundles, since $U(1)$-bundles over $\Sigma$ are classified by integers via the
 first Chern class, so they can all be written as tensor powers of $L$ and $L^*$.
+%
+\newpage
+%
+\nocite{*}
+%
+\printbibliography
 %
 \end{document}

@@ -37,8 +37,8 @@ deduced from the definition and our knowledge of the group structure on $\mathrm
 The first two observations are immediate, and the last one follows from functoriality
 of cohomology. \\
 
-Using some Hodge theory, we can already learn something about
-$\CP^n$ using the first Chern class
+Using some Hodge theory, we can already learn something about $\CP^n$ using the
+first Chern class.
 %
 \begin{thm}
 \[
@@ -53,7 +53,7 @@ H^k(\CP^n, \C) = \bigoplus_{p+q=k} H^{p,q}(X, \C)
 \]
 as well as isomorphisms
 \[
-H^q(\CP^n, \Omega^p_{\CP^n}) \cong H^{p,q}(\CP^n, \C)
+H^q(\CP^n, \Omega^{p,0}_{\CP^n}) \cong H^{p,q}(\CP^n, \C)
 \]
 We know the singular cohomology of $\CP^n$ is given by
 \[
@@ -65,7 +65,7 @@ H^k(\CP^n, \C) \cong \begin{cases}
 In particular, if $p+q$ is odd, then we know that $H^{p,q}(X,\C) = 0$.
 A special case is
 \[
-0 = H^{1,0}(\CP^n, \C) \cong H^1(\CP^n, \Omega^0_{\CP^n}) = H^1(\CP^n, \O_{\CP^n})
+0 = H^{1,0}(\CP^n, \C) \cong H^1(\CP^n, \Omega^{0,0}_{\CP^n}) = H^1(\CP^n, \O_{\CP^n})
 \]
 Therefore, we have that in the long exact sequence induced by the exponential exact
 sequence, we have
@@ -352,10 +352,10 @@ Then we have the exact sequences of sheaves
 which give rise to boundary homomorphisms
 $\delta_1 : H^0(X, \mathcal{Z}^2(X)) \to H^1(X, \mathcal{Z}^2(X))$ and
 $\delta_2 : H^1(X, \mathcal{Z}^1(X)) \to H^2(X, \C)$ respectively. The
-fact that the local definitions $F_\delta = dA_i$ glue to a global form
+fact that the local definitions $F_\nabla = dA_i$ glue to a global form
 is exactly the statement that the $dA_i$ form a \v{C}ech cocycle in
 $H^0(X, \mathcal{Z}^2(X))$, i.e. $dA_i - dA_j = 0$ for all $i,j$ with
-$U_i \cap U_k \neq \emptyset$> Following the definition of the boundary homomorphism,
+$U_i \cap U_k \neq \emptyset$. Following the definition of the boundary homomorphism,
 this implies that it is the image of the cocycle determined by the $A_i$ under
 $d$, and then applying the \v{C}ech differential we get that
 $\delta_1(F_\nabla)$ is the cocycle $\set{A_j - A_i}$. Then recall from our earlier

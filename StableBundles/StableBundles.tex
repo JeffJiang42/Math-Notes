@@ -1,0 +1,566 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage{amsmath}
+\usepackage{accents}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand*{\dt}[1]{%
+   \accentset{\mbox{\large\bfseries .}}{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+%
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Stable Vector Bundles on Riemann Surfaces}
+%
+\maketitle
+%
+\section{The Harder-Narasimhan Filtration}
+%
+\begin{defn}
+Let $M$ be a compact Riemann surface and $E \to M$ a holomorphic vector bundle.
+The complex structure of $M$ induces a natural orientation on $M$, giving an
+isomorphism $H^2(M,\Z) \cong \Z$. The \ib{degree} of $E$, denoted
+$\mathrm{deg}(E)$, is the image of the first Chern class $c_1(E)$ under this
+isomorphism. The \ib{slope} of $E$, denoted $\mu(E)$, is the ratio
+\[
+\mu(E) = \frac{\mathrm{deg}(E)}{\mathrm{rank}(E)}
+\]
+\end{defn}
+%
+\begin{rem*}
+Note that for a holomorphic vector bundle $E \to M$ of rank $k$, we have
+\[
+\deg(E) = \deg(\Lambda^kE)
+\]
+\end{rem*}
+%
+One important property of degree is that it places heavy limitations on the existence
+of holomorphic sections.
+%
+\begin{prop}
+Let $L \to M$ be a holomorphic line bundle over a compact Riemann surface $M$ with
+$\deg(L) < 0$. Then $H^0(M,L) = 0$.
+\end{prop}
+%
+\begin{proof}
+Since $L$ is a negative line bundle, we have that $L^*$ is a positive line bundle.
+Kodaira vanishing gives us that $H^1(M, L^* \otimes K_M) = 0$, where
+$K_M \defeq \Omega^{1,0}_M$ is the canonical bundle. Serre duality then
+tells us that $H^0(M, L) = 0$.
+\end{proof}
+%
+A different, lower tech proof follows almost immediately from an alternate
+characterization of degree.
+%
+\begin{prop}
+Let $L \to M$ be a holomorphic line bundle over a compact Riemann surface $M$
+of degree $n$. Then for any nonzero meromorphic section $\sigma$ of $L$,
+the number of zeroes minus the number of poles, counted with multiplicity,
+is equal to $n$.
+\end{prop}
+%
+\begin{cor}
+Let $L_1,L_2 \to M$ be holomorphic line bundles over a compact Riemann surface $M$.
+If there exists a nonzero holomorphic bundle homomorphism $\varphi : L_1 \to L_2$, then
+$\deg(L_1) \leq \deg(L_2)$, with equality if and only if $\varphi$ is an isomorphism.
+\end{cor}
+%
+\begin{proof}
+We use the bundle isomorphism $\hom(L_1,L_2) \cong L_1^* \otimes L_2$. Since
+degree is additive on tensor products, we have
+$\deg(L_1^* \otimes L_2) = \deg(L_2) - \deg(L_2)$. Therefore, if
+$\deg(L_1)$ is less than $\deg(L_2)$, we know that $\hom(L_1,L_2)$ is of negative
+degree, so it admits no nonzero global sections. \\
+
+For the other part, we note that if the degrees of $L_1$ and $L_2$ are equal,
+then $\hom(L_1,L_2)$ is a degree $0$ bundle. We then note that if $\hom(L_1,L_2)$
+admits a nonzero holomorphic section, it must necessarily have no zeroes,
+which implies that it is isomorphic to the trivial line bundle $\O_M$, which
+implies that any global section of $\hom(L_1,L_2)$ is an isomorphism.
+\end{proof}
+%
+\begin{cor}
+Let $E,F \to M$ be holomorphic vector bundles of the same rank over a compact Riemann
+surface $M$. Then If there exists a nonzero holomorphic bundle homomorphism $E \to F$,
+we must have $\deg(E) \leq \deg(F)$.
+\end{cor}
+%
+\begin{proof}
+Apply the above corollary to the induced map $\Lambda^k E \to \Lambda^kF$, noting
+that the degree of $E$ and $F$ are equal to the degrees of their respective
+determinant line bundles.
+\end{proof}
+%
+\begin{prop}
+Let $E \to M$ be a holomorphic vector bundle over a compact Riemann surface $M$.
+Then there exists an integer $q > 0$ such that for any line bundle $L$
+with $\deg(L) > q$, the bundle $\hom(L,E)$ has no nonzero holomorphic sections.
+\end{prop}
+%
+\begin{proof}
+Since $M$ is projective, we can find an ample line bundle $H \to M$, which is
+necessarily of positive degree. Then by Serre Vanishing, we know that for
+a sufficiently large $m$, the bundle $H^m \otimes E^* \otimes K_M$ has no higher
+cohomology. Serre Duality then lets us conclude that $H^0(M,H^{-m}\otimes E) = 0$.
+Using the isomorphism $H^{-m}\otimes E \cong \hom(H^m, E)$, this tells us that there
+exist no nonzero holomorphic bundle homomorphisms $H^m \to E$. Riemann-Roch then
+tells us that for any line bundle $L$, we have
+\[
+h^0(M,H^{-m} \otimes L) - h^0(M, H^m \otimes L^*\otimes K_M)
+= \mathrm{deg}(H^{-m} \otimes L) + 1 - g
+\]
+where $K_M$ is the canonical bundle of $M$. Since degree is additive on tensor
+products, this tell us that
+\[
+h^0(M,H^{-m}\otimes L) \geq -m\deg(H) + \deg(L) + 1 - g
+\]
+Therefore, if $\deg(L)$ is sufficiently large, $H^0(M,H^{-m}\otimes L)$ is nonzero.
+Then using the fact that $H^{-m} \otimes L \cong \hom(H^m, L)$, this tells us
+that there exists a nonzero holomorphic bundle homomorphism $H^m \to L$. Therefore,
+when $L$ is of sufficiently high degree, $\hom(L, E)$ admits no global sections,
+since otherwise, this would imply the existence of a nonzero map
+$H^m \to E$, which is impossible since $H^0(M,\hom(H^m,E)) = 0$.
+\end{proof}
+%
+The previous proposition allows us to give a uniform bound on the slopes of
+holomorphic subbundles of a holomorphic vector bundle.
+%
+\begin{prop}
+Let $E \to M$ be a holomorphic vector bundle over a compact Riemann surface $M$.
+Then there exists a nonnegative integer $m \geq 0$ such that
+\[
+\mu(F) \leq m
+\]
+for all proper nontrivial holomorphic subbundles $F \subset E$.
+\end{prop}
+%
+\begin{proof}
+Consider the bundles $\Lambda^k E$. The previous proposition gives nonnegative
+integers $m(k)$ such that any holomorphic line bundle $L \to M$ with degree
+greater than $m(k)$ admits no nonzero holomorphic bundle homomorphisms to $\Lambda^kE$.
+Then let $F \subset E$ be a proper nontrivial holomorphic subbundle of rank $k$.
+The inclusion $F \hookrightarrow E$ induces an inclusion
+$\Lambda^k F \hookrightarrow \Lambda^kE$, which tells us that
+$\deg(F) = \deg(\Lambda^kF) \leq m(k)$. Therefore, any holomorphic subbundle
+$F \subset E$ of rank $k$ must satisfy $\mu(F) \leq m(k)/k$. Taking the
+maximum among the $m(k)/k$ over all $k$ less than the rank of $E$ then gives the
+desired slope bound.
+\end{proof}
+%
+We now collect a few facts about slopes.
+%
+\begin{lem}
+Let
+\[\begin{tikzcd}
+0 \ar[r] & E \ar[r] & F \ar[r] & G \ar[r] & 0
+\end{tikzcd}\]
+be an exact sequence of holomorphic vector bundles over a compact Riemann surface
+$M$. Then
+\[
+\mu(F) = \frac{\deg(E) + \deg(G)}{\mathrm{rank}(E) + \mathrm{rank}(G)}
+\]
+\end{lem}
+%
+\begin{proof}
+Since the degree is purely topological, we may forget the holomorphic structures,
+and treat the exact sequence as an exact sequence of smooth vector bundles.
+Any such exact sequence splits in the smooth category, giving us a direct
+sum decomposition $F = E \oplus G$ as smooth vector bundles. Then since the
+first Chern class is additive on direct sums, we get that
+$\deg(F) = \deg(E) + \deg(G)$. Rank is also clearly additive on exact sequences,
+and putting these two together gives the desired formula for the slope of $F$.
+\end{proof}
+%
+\begin{cor}
+Let
+\[\begin{tikzcd}
+0 \ar[r] & E \ar[r] & F \ar[r] & G \ar[r] & 0
+\end{tikzcd}\]
+be an exact sequence of holomorphic vector bundles over a compact Riemann surface
+$M$. Then if $\mu(E) \geq \mu(F)$, we have $\mu(F) \geq \mu(G)$. Likewise, if
+$\mu(E) \leq \mu(F)$, then $\mu(F) \leq \mu(G)$.
+\end{cor}
+%
+\begin{defn}
+A holomorphic vector bundle $E \to M$ over a compact Riemann surface is \ib{stable}
+if for all proper nontrivial vector subbundles $F \subset E$, we have the
+strict inequality
+\[
+\mu(F) < \mu(E)
+\]
+We say $E$ is \ib{semistable} if instead we have the inequality
+\[
+\mu(F) \leq \mu(E)
+\]
+\end{defn}
+%
+To iteratively construct the Harder-Narasimhan filtration for a holomorphic
+vector bundle, we will need to find some sort of maximal subbundles.
+%
+\begin{prop}
+Let $E \to M$ be a holomorphic vector bundle over a compact Riemann surface.
+Then there exists a unique holomorphic subbundle $E_1 \subset E$ such that
+for every holomorphic subbundle $F \subset E$, we have
+\begin{enumerate}
+  \item $\mu(F) \leq \mu(E_1)$
+  \item $\mathrm{rank}(F) \leq \mathrm{rank}(E_1)$ if $\mu(F) = \mu(E_1)$.
+\end{enumerate}
+Furthermore, $E_1$ is semistable, and is called the \ib{maximal semistable subbundle}.
+\end{prop}
+%
+\begin{proof}
+If $E$ is already semistable, then taking $E_1 = E$ works, so we assume that
+$E$ is not semistable. From the previous proposition, we know that the slopes
+$\mu(F)$ of all proper nontrivial subbundles is bounded by some integer $m$. We
+then claim that there exists a subbundle of maximal slope. To see this, we note
+that by definition, the slope of a proper subbundle $F \subset E$ of rank $k$ is
+given by
+\[
+\mu(F) \defeq \frac{\mathrm{deg}(F)}{k} \leq m
+\]
+Since the degree of $F$ is a nonnegative integer, this tells us that $\mu(F)$
+is contained in the finite set $\set{0, 1/k, \ldots, mk/k}$. Therefore, the set
+of all possible slopes is a finite set, so there exists bundles that attain this
+maximum. We then choose $E_1$ to be a bundle with maximal rank among those with
+maximal slope. Then $E_1$ satisfies the two specified conditions, and is semistable
+by the first condition. \\
+
+We then want to show uniqueness of $E_1$. Let $F$ be another subbundle satisfying the
+specified properties. If $F \subset E_1$, the the second property guarantees that
+$F = E_1$, so we assume that $F \not\subset E_1$. Then consider the holomorphic
+bundle $E/E_1$, and let $\varphi : F \to E/E_1$ be the restriction of the quotient
+map to $F$. By assumption, $\varphi$ is a nonzero holomorphic map. This
+gives us the exact sequence of coherent sheaves
+\[\begin{tikzcd}
+0 \ar[r] & \ker\varphi \ar[r] & F \ar[r,"\varphi"] & \varphi_*F \ar[r] & 0
+\end{tikzcd}\]
+We note that we must pass to sheaves, since the kernel and image of $\varphi$ may
+fail to be vector bundles. However, we may return to the land of vector bundles
+via the following observation : the stalks of the structure sheaf $\O_M$ are all
+principal ideal domains, so the stalks of $\ker\varphi$ and $\varphi_*F$ have
+direct sum decompositions into a torsion submodule and a free module, the
+free components define vector bundles $A \supset \ker\varphi$ and
+$B \supset \varphi_*F$, giving us the exact sequence of vector bundles
+\[\begin{tikzcd}
+0 \ar[r] & A \ar[r] & F \ar[r, "\varphi"] & B \ar[r] & 0
+\end{tikzcd}\]
+More explicitly, $A$ and $B$ may be realized as the smallest holomorphic subbundles
+containing $\ker\varphi$ and $\im\varphi$ respectively. To see this,
+let $k$ be the rank of $\varphi_*F$ as an $\O_M$-module, and let $\set{s_i}$ be
+a local holomorphic frame for $F$. Generically, we have that the set
+$\set{\varphi(s_i)}$ spans a $k$-dimensional subbundle of $E/E_1$, except when
+all the sections of $\Lambda^k(E/E_1)$ of the form
+\[
+\varphi(s_{i_1}) \wedge \cdots \wedge \varphi(s_{i_k})
+\]
+simultaneously vanish, i.e. there exists no linearly independent subset of
+$\set{\varphi(s_i)}$ of cardinality $k$. Then in a sufficiently small neighborhood
+of a point where all these sections vanish, we may fix local holomorphic coordinates
+and a holomorphic trivialization of $\Lambda^k(E/E_1)$ such that the sections
+$\varphi(s_{i_1})\wedge\cdots\wedge\varphi(s_{i_k})$ are identified with holomorphic
+functions $U \to \C$, where $U$ is an open subset in $\C$. Then we can factor out
+all of the zeroes of these sections to obtain a set of nonvanishing sections of
+$\Lambda^k(E/E_1)$, which then locally determine a rank $k$ subbundle of $E/E_1$.
+Gluing these local definitions together then gives us the bundle $B$. We construct
+$A$ from $\ker\varphi$ via a similar procedure. In total, we get the commutative
+diagram
+\[\begin{tikzcd}
+0 \ar[r] & A \ar[r] & F \ar[r] \ar[d,"\varphi"]
+& F/A \ar[r]\ar[d,"\widetilde{\varphi}"] & 0 \\
+0 & (E/E_1)/B \ar[l] & E/E_1 \ar[l] & B \ar[l] & 0 \ar[l]
+\end{tikzcd}\]
+Where $\widetilde{\varphi}$ is the natural map induced by $\varphi$. We then
+make the following observations:
+\begin{enumerate}
+  \item Since $F$ is semistable, we have that $\mu(A) \leq \mu(F)$. Then since
+  the top row is exact. this tells us that $\mu(F) \leq \mu(F/A)$.
+  \item We know that $F/A$ is the same rank as $B$, and by assumption, the map
+  $\widetilde{\varphi}$ is nonzero, so $\deg(F/A) \leq \deg(B)$. Therefore,
+  $\mu(F/A) \leq \mu(B)$.
+  \item We note that since $E_1$ is of maximal slope, we in particular have that
+  for any holomorphic subbundle $Q \subset E$ with $E_1 \subsetneq Q$, then
+  $\mu(Q) \leq \mu(E_1)$. Then if we consider the exact sequence
+  \[\begin{tikzcd}
+  0 \ar[r] & E_1 \ar[r] & Q \ar[r] & Q/E_1 \ar[r] & 0
+  \end{tikzcd}\]
+  this tells us that the slope of $\mu(Q/E_1) \leq \mu(Q)$. Since we may
+  regard subbundles of $E/E_1$ as quotients $Q/E_1$, this tells us that for
+  any holomorphic subbundle of $E/E_1$, the slope is bounded by $\mu(E_1)$. In
+  our case, this implies that $\mu(B) \leq \mu(E_1)$.
+\end{enumerate}
+We now put everything together. Our observations give us the chain of inequalities
+\[
+\mu(F) \leq \mu(F/A) \leq \mu(B) \leq \mu(E_1)
+\]
+We then observe that we have the exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & E_1 \ar[r] & \varphi\inv(B) \ar[r] & B \ar[r] & 0
+\end{tikzcd}\]
+By the first property of $E_1$, we have that $\mu(\varphi\inv(B)) \leq \mu(E_1)$.
+However, by assumption the rank of $\varphi\inv(B)$ is larger than the rank of $E_1$,
+so the second property guarantees that we have the strict inequality
+$\mu(\varphi\inv(B)) < \mu(E_1)$. The exact sequence then tells us that
+$\mu(\varphi\inv(B)) \geq \mu(B)$, so $\mu(B) < \mu(E_1)$. However,
+this tells us that our above chain of inequalities is actually
+\[
+\mu(F) \leq \mu(F/A) \leq \mu(B) < \mu(E_1)
+\]
+which in particular implies that $\mu(F) < \mu(E_1)$, contradicting maximality of
+$\mu(F)$.
+\end{proof}
+%
+\begin{thm}[\ib{Harder-Narasimhan Filtration}]
+Any holomorphic vector bundle $E \to M$ over a compact Riemann surface $M$ admits
+a filtration
+\[
+0 = E_0 \subset E_1 \subset \cdots \subset E_n = E
+\]
+by holomorphic subbundles $E_i$ such that $E_i/E_{i-1}$ is semistable and
+\[
+\mu(E_1/E_0) > \mu(E_2/E_1) > \cdots > \mu(E_n/E_{n-1})
+\]
+\end{thm}
+%
+\begin{proof}
+Let $E_1$ be the maximal semistable subbundle of $E$. Then let $E_2$ be
+the preimage of the maximal semistable subbundle of $E/E_1$ under the quotient
+map. We then iteratively construct the filtration by taking $E_i$ to be the
+preimage of the maximal semistable subbundle of $E/E_{i-1}$. By construction,
+the quotients $E_i/E_{i-1}$ are semistable. We then want to show the monotonicity
+of the slopes. We also note that since the slopes are strictly decreasing,
+this construction will eventually terminate. To show this, we use the exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & E_{i+1}/E_i \ar[r] & E/E_i \ar[r] & E/E_{i+1} \ar[r] & 0
+\end{tikzcd}\]
+By constuction, we have that $E_{i+1}/E_i$ is the maximal semistable bundle of
+$E/E_i$. Therefore, any subbundle of $E/E_{i+1}$ has a strictly smaller slope than
+$E_{i+1}/E_i$, in particular, this gives us that the slope of $E_{i+2}/E_{i+1}$
+is less than the slope of $E_{i+1}/E_i$, which is what we wanted to show.
+\end{proof}
+%
+\newpage
+%
+\nocite{*}
+%
+\printbibliography
+%
+\end{document}
