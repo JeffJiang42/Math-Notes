@@ -1,0 +1,394 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage{amsmath}
+\usepackage{accents}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{bibliography.bib}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand*{\dt}[1]{%
+   \accentset{\mbox{\large\bfseries .}}{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+%
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{The Classifying Space of a Product Group}
+%
+\maketitle
+%
+Let $G = H \times K$ be a product group. The goal is to show that the product
+space $BH \times BK$ has the homotopy type of $BG$.
+%
+\begin{lem}
+Let $\pi_H : P \to M$ be a principal $H$ bundle and $\pi_l : Q \to M$ a principal
+$K$-bundle. Then the pullback bundle $\pi_H^*Q$ is a principal $H \times K$ bundle
+over $M$.
+\end{lem}
+%
+\begin{proof}
+We have the pullback diagram
+\[\begin{tikzcd}
+\pi_H^*Q \ar[r] \ar[d] & Q \ar[d, "\pi_K"] \\
+P \ar[r, "\pi_H"'] & M
+\end{tikzcd}\]
+Let $U$ be a neighborhood where both $P$ and $Q$ are trivial. Then locally, the
+pullback diagram becomes
+\[\begin{tikzcd}
+U\times H \times K \ar[r] \ar[d] & U \times K \ar[d] \\
+U \times H \ar[r] & U
+\end{tikzcd}\]
+where all the maps are the obvious projections. This shows local triviality of
+$\pi^*_HQ$ as a bundle over $M$, and also shows that the fibers are $H \times K$
+torsors, so $\pi_H^*Q$ defines a principal $H\times K$ bundle over $M$.
+\end{proof}
+%
+\iffalse
+\begin{lem}
+Let $G$ be a group, and $H$ a subgroup. Then a principal $G$-bundle $P \to M$
+admits a reduction of structure group to $H$, i.e. a bundle isomorphism
+\[
+Q \times_H G \cong P
+\]
+where $Q \to M$ is a principal $H$ bundle, if and only if the associated bundle
+$P \times_G G/H$ admits a section.
+\end{lem}
+%
+\begin{proof}
+Suppose we have a reduction of structure group to $H$, so $P \cong Q \times_H G$
+for some principal $H$-bundle $Q$. This gives an isomorphism
+$Q \times_H G/H \cong P \times_G G/H$. Identifying sections of $Q \times_H G/H$ with
+$H$-equivariant maps $Q \to G/H$, we see that the constant map $q \mapsto H$ defines
+a section. \\
+
+In the other direction, suppose $P\times_G G/H$ admits a section
+$\sigma : M \to P\times_G G/H$. We have a principal $H$-bundle
+$P \times_G G \to P\times_G G/H$, so we can use $\sigma$ to get a pullback bundle
+$Q$ over $M$ with structure group $H$.
+\[\begin{tikzcd}
+Q \ar[r]\ar[d] & P\times_G G \ar[d] \\
+M \ar[r, "\sigma"'] & P\times_G G/H
+\end{tikzcd}\]
+We note that $P\times_G G \cong P$, so the map $Q \to P\times_G G$ defines
+an embedding of $Q$ as a subbundle of $P$, giving us that $Q \times_H G \cong P$.
+\end{proof}
+\fi
+%
+\begin{prop}
+Any principal $G = H \times K$ bundle $P \to M$ can be obtained as the pullback
+of a principal $K$-bundle by a principal $H$ bundle.
+\end{prop}
+%
+\begin{proof}
+The principal $H\times K$-bundle $P$ has free actions of $H$ and $K$ via their
+inclusions into the product $H \times K$, and the quotient spaces $P/K$ and $P/H$
+have natural structures as principal $H$ and $K$-bundles respectively, where
+we use the fact that the $H$-action and $K$-action on $P$ commute. We then want
+to show that $P \to M$ is isomorphic to the pullback bundle obtained from
+the pullback diagram
+\[\begin{tikzcd}
+\pi_H^*P_K \ar[r]\ar[d] & P/K \ar[d] \\
+P/H \ar[r, "\pi_H"'] & M
+\end{tikzcd}\]
+We note that $P$ admits maps to $P/K$ and $P/H$ by quotienting by the actions
+of $K$ and $H$ respectively, so by the universal property of the pullback, we get a
+unique map $P \to \pi_H^*P/K$. Furthermore, this map is $H\times K$-equivariant, so
+it is a map of principal $H\times K$-bundles over $M$, so it is an isomorphism.
+\end{proof}
+%
+In this way, we see that a principal $H\times K$-bundle is equivalent to
+the data of a principal $H$-bundle and a principal $K$-bundle. We know that
+the data of a principal $H\times K$-bundle is equivalent to a homotopy class
+of maps $M \to B(H\times K)$, and likewise for $H$ and $K$. Therefore, using the
+universal property of the product, this tells us that $BH \times BK$ has the homotopy
+type of $B(H \times K)$. \\
+
+In fact, more can be said. Let $\pi : P \to M$ be a principal $H\times K$-bundle, and
+let $P_H\to M$ and $P_K \to M$ be principal $H$ and $K$-bundles respectively such
+that $P$ is isomorphic to the pullback of one along the other. Then a connection
+on $P$ is equivalent to the data of connections on both $P_H$ and $P_K$. To see
+this, we use the characterization of a connection as a splitting of the
+exact sequence of vector bundles over $P$
+\[\begin{tikzcd}
+0 \ar[r] & \ker\pi_* \ar[r] & TP \ar[r] & \pi^*TM \ar[r] & 0
+\end{tikzcd}\]
+Since the bundle projections $P_H,P_K \to M$ are transverse (since they are both
+submersions), we have that the tangent space of the fiber product
+$P$ is the fiber product of the tangent spaces. Therefore, working fiberwise,
+it suffices to prove the following linear algebra fact
+%
+\begin{prop}
+Let $\alpha : A \to C$ and $\beta : B \to C$ be surjective linear maps, and
+let $D \defeq A \times_C B$, giving us the pullback diagram
+\[\begin{tikzcd}
+D \ar[r, "p_A"] \ar[d, "p_B"'] \ar[dr, "p"] & A \ar[d,"\alpha"]\\
+B \ar[r, "\beta"'] & C
+\end{tikzcd}\]
+Then a splitting of the exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & \ker p \ar[r] & D \ar[r, "p"] & C \ar[r] & 0
+\end{tikzcd}\]
+is equivalent to the data of splittings of the analogous exact sequences for
+$A$ and $B$.
+\end{prop}
+%
+\begin{proof}
+By the definition of the fiber product, we have that
+\[
+D = \set{(a,b) \in A \times B ~:~ \alpha(a) = \beta(b)}
+\]
+Therefore, if $(a,b) \in \ker p$, we must have that $\alpha(a) = \beta(b) = 0$.
+This gives us a canonical isomorphism $\ker p \cong \ker\alpha\oplus\ker\beta$
+and natural maps $\ker p \to \ker\alpha$ and $\ker p \to \ker\beta$. This
+gives us the commutative diagram
+\[\begin{tikzcd}
+0 \ar[r] & \ker\alpha \ar[r] & A \ar[r,"\alpha"] & C \ar[d,equal] \ar[r] & 0 \\
+0 \ar[r] & \ker p \ar[u]\ar[d]\ar[r] & D \ar[d, "p_B"']\ar[u, "p_A"]\ar[r,"p"]
+& C \ar[r] \ar[d, equal] & 0 \\
+0 \ar[r] & \ker\beta \ar[r] & B \ar[r,"\beta"] & C \ar[r] & 0
+\end{tikzcd}\]
+For one direction, suppose we have a splitting $j_D : C \to D$. Then we let
+$j_A : C \to A$ be defined by $j_A \defeq p_A\circ j_D$, and we define $j_B : C \to B$
+similarly. To see that $j_A$ is a splitting, we have that for $c \in C$
+\begin{align*}
+(\alpha \circ j_A)(c) &= (\alpha \circ p_A \circ j_D)(c) \\
+&= (p \circ j_D)(c) \\
+&= c
+\end{align*}
+So $j_A$ indeed defines a splitting. The same argument shows that $j_B$ is a
+splitting. \\
+
+In the other direction, suppose we are given splittings $j_A : C \to A$ and
+$j_B : C \to B$. Then $C$ fits into the diagram
+\[\begin{tikzcd}
+C \ar[r, "j_A" ] \ar[d, "j_B"'] & A \ar[d, "\alpha"]\\
+B \ar[r, "\beta"'] & C
+\end{tikzcd}\]
+So the universal property of the fiber product guarantees a map $j_D : C \to D$
+such that the following diagram commutes:
+\[\begin{tikzcd}
+C \ar[dr, "j_D"] \ar[ddr, "j_B"', bend right=20] \ar[drr, "j_A", bend left=20]\\
+& D \ar[r, "p_A" ] \ar[d, "p_B"']\ar[dr, "p"] & A \ar[d, "\alpha"]\\
+& B \ar[r, "\beta"'] & C
+\end{tikzcd}\]
+Then since $\beta \circ j_B = \id_C$, we have that $p \circ j_D = \id_C$, so
+$j_D$ defines a splitting.
+\end{proof}
+%
+\end{document}

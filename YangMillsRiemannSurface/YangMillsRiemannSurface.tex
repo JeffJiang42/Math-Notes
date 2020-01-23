@@ -13,8 +13,8 @@
 \usepackage{amsthm}
 \usepackage{mathpazo}
 \usepackage{float}
-%\usepackage[backend=biber]{biblatex}
-%\addbibresource{bibliography.bib}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
 %\usepackage{charter} %another font
 %\usepackage{eulervm} %Vakil font
 \usepackage{yfonts}
@@ -211,8 +211,7 @@
     colorlinks,
     citecolor=black,
     filecolor=black,
-    linkcolor=blue,
-    urlcolor=blacksquare
+    linkcolor=blue
 }
 %
 %--------Solution--------
@@ -232,6 +231,9 @@
 \title{Yang-Mills on Riemann Surfaces}
 %
 \maketitle
+%
+These are notes I've made while working through the paper \emph{The Yang-Mills
+Equations over Riemann Surfaces} \cite{10.2307/37156} by Atiyah and Bott.
 %
 \tableofcontents
 %
@@ -280,9 +282,7 @@ P \ar[dr] \ar[rr, "\varphi"] && P \ar[dl] \\
 \end{tikzcd}\]
 The isomorphism is given by mapping a $G$-equivariant map $f : P \to g$
 to the automorphism $\varphi_f : P \to P$ defined by $\varphi_f(p) = p\cdot f(p)$.
-In a similar fashion, we get a Lie algebra isomorphism of $\Gamma(M,\g_P)$ with
-the vertical vector fields on $P$, which lets us explicitly realize
-$\Gamma(M,\g_P)$ as the Lie algebra of the gauge group. Regarding a section
+We get a similar identification for $\Gamma(M, \g_P)$. Regarding a section
 $\phi \in \Gamma(M,\g_P)$ as a $G$-equivariant map $P \to \g$, we get
 a bundle automorphism $\exp(\phi)$ defined by $p\mapsto p\cdot\exp(\phi(p))$. From
 this perspective, we see that $\Gamma(M,\g_P)$ can be identified with the $G$-invariant
@@ -304,7 +304,7 @@ on $P$ satisfying :
   $\xi$ under the identification of the vertical space with $\g$.
 \end{enumerate}
 %
-We have a maps
+We have maps
 \begin{align*}
 \Omega^p_M(\g_p) \otimes \Omega^q_M(\g_P) &\to \Omega^{p+q}_M(\g_p \otimes \g_p) \\
 (\omega_1 \otimes \xi_1) \otimes (\omega_2 \otimes \xi_2)
@@ -334,9 +334,9 @@ gives us
 &= \langle \xi_1,[\xi_2,\xi_3]\rangle
 \end{align*}
 
-Fixing one such inner product induces a fiber product on the trivial bundle $P \times \g$,
-and invariance guarantees that this descends to a fiber product on $\g_P$. This give us
-pairings
+Fixing one such inner product induces a fiber product on the trivial bundle
+$P \times \g$, and invariance guarantees that this descends to a fiber product on
+$\g_P$. This give us pairings
 \begin{align*}
 \Omega^p_M(\g_P) \otimes \Omega^q_M(\g_P) &\to \Omega^{p+q}_M \\
 \omega \otimes \eta &\mapsto \langle \omega, \eta \rangle
@@ -371,7 +371,7 @@ by
 \[
 (\theta,\varphi) = \int_M \langle \theta,\star\varphi\rangle
 \]
-Which gives us the $L_2$ norm on $\Omega^p_M(\g_P)$ with $\norm{F}_{L^2}^2 = (F,F)$.
+Which gives us the $L^2$ norm on $\Omega^p_M(\g_P)$ with $\norm{F}_{L^2}^2 = (F,F)$.
 \begin{defn}
 A connection on a principal bundle $\pi : P \to M$ is a choice of $G$-invariant splitting
 of the exact sequence of vector bundles over $P$
@@ -466,7 +466,7 @@ It can be shown that $F_A$ transforms by the adjoint action under pullback, and
 vanishes on vertical vectors, so it descends to a $\g_P$-valued $2$-form on the base
 manifold $M$. \\
 
-Another thing to note is that there is a natural action of the gauge group
+Another thing to note is that there is a natural right action of the gauge group
 $\mathscr{G}(P)$ on the space of connections $\mathscr{A}(P)$. Interpreting the
 elements of $\mathscr{G}(P)$ as bundle automorphisms $\varphi : P \to P$ and
 elements of $\mathscr{A}(P)$ as $\g$-valued $1$-forms $A$ on $P$, the action
@@ -568,11 +568,10 @@ L(A) = \norm{F_A}_{L^2}^2 = \int_M \langle F_A,\star F_A \rangle
 \]
 \end{defn}
 %
-We immediately see that the Yang-Mills equations are invariant under $\mathscr{G}(P)$
-in the following sense -- if we have any gauge transformation $\varphi$ with
-associated map $g_\varphi : P \to G$, we have that $L(\varphi^*A) = L(A)$,
-which follows immediately from the invariance of $\langle\cdot,\cdot\rangle$
-and the transformation law for curvature. \\
+We immediately see that the Yang-Mills functional is invariant under $\mathscr{G}(P)$
+in the following sense -- for any gauge transformation $\varphi$ we have that
+$L(\varphi^*A) = L(A)$, which follows immediately from the invariance of
+$\langle\cdot,\cdot\rangle$ and the transformation law for curvature. \\
 
 Our goal now will be to find the Euler-Lagrange
 equations for the Yang-Mills functional by computing the first and second variations.
@@ -661,9 +660,10 @@ differential forms. Likewise, using triviality of $\g_P$, we can identify
 $\g_P$-valued forms with ordinary differential forms on $M$. The vertical bundle
 in this case is a trivial line bundle over $P$, and there is a unique $U(1)$-invariant
 vertical vector field on $P$, which on each fiber restricts to the vector field dual
-to the Maurer-Cartan form$\theta$. Then given a connection $A$ on $P$, we have that
-$dA = \pi^*F_A$, since $[A,A] = 0$. This immediately tells us that $F_A$ is closed, since $d$
-commutes with pullback. Furthermore, for any other connection $A + \eta$, we have that
+to the Maurer-Cartan form $\theta$. Then given a connection $A$ on $P$, we have that
+$dA = \pi^*F_A$, since $[A,A] = 0$. This immediately tells us that $F_A$ is closed,
+since $d$ commutes with pullback. Furthermore, for any other connection $A + \eta$, we
+have that
 \[
 F_{A+\eta} = F_A + \frac{1}{2}[\eta,\eta] + d_A\eta
 \]
@@ -675,10 +675,11 @@ of the curvature class can be realized as the curvature of some connection.
 Furthermore, in this situation, the Yang-Mills functional reduces
 to the standard Hodge theory picture, since the $L^2$ norm will coincide with the
 $L^2$ norm on differential forms. Therefore, a Yang-Mills connection on $P$ is equivalent
-to finding the unique connection that minimizes the $L^2$ norm in the cohomology class
-$2\pi i c_1(P)$. By standard Hodge theory, there exists a unique harmonic representative of
-the curvature class, and the Yang-Mills connections for $P$ are a torsor over the space
-$Z^1_P$ of closed $1$-forms. In total, this gives us the fibration
+to finding the unique connection whose curvature minimizes the $L^2$ norm in the
+cohomology class $2\pi i c_1(P)$. By standard Hodge theory, there exists a unique
+harmonic representative of the curvature class, and the Yang-Mills connections for $P$
+are a torsor over the space $Z^1_M$ of closed $1$-forms. In total, this gives us the
+fibration
 \[\begin{tikzcd}
 Z^1_M \ar[r] & \mathscr{A}_{\text{YM}}(P) \ar[d] \\
 & 2\pi i c_1(P)
@@ -752,7 +753,7 @@ Let $Q \to M$ be a principal $U(1)$ bundle with $c_1(Q) = 1$, i.e.
 \frac{1}{2\pi i} \int_M c_1(Q) = 1
 \]
 Then fix a Riemannian metric on $M$ with volume form $\omega$ such that
-$\int_M \omega = 1$, and Yang-Mills connection $A$ on $Q$. Since $c_1(Q) = 1$, we have
+$\int_M \omega = 1$ and Yang-Mills connection $A$ on $Q$. Since $c_1(Q) = 1$, we have
 that $[c_1(Q)] = [\omega]$. Furthermore, since $\star\omega = 1$ and
 $-2\pi i c_1(Q) = [F_A]$, we get that the curvature of $A$ must be equal to
 $-2\pi i \omega$ to minimize the Yang-Mills functional. Similarly, for any other
@@ -784,10 +785,11 @@ consider the pullback connection on $\widetilde{M} \times U(1)$, the holonomy
 about the lifts of the boundary path to $\widetilde{M}$ will also be $2\pi$,
 which then lifts to translation by $1$ in the bundle $\widetilde{M} \times \R$.
 This gives the relation that $\prod_i [a_i,b_i] = J$, which gives us a presentation
-of the group $\Gamma_\R$. Since $\pi_1(M)$ is discrete, $\widetilde{M}$ is a flat
-bundle, so the pullback connection on $\widetilde{M} \times U(1)$ still has curvature
-$-2\pi i \omega$, and the curvature also remains unchanged after lifting to
-$\widetilde{M} \times \R$. \\
+of the group $\Gamma_\R$. We let $\Gamma_\Z$ denote the central extension obtained
+in a similar manner using $\Z$ instead of $\R$. Since $\pi_1(M)$ is discrete,
+$\widetilde{M}$ is a flat bundle, so the pullback connection on
+$\widetilde{M} \times U(1)$ still has curvature $-2\pi i \omega$, and the curvature
+also remains unchanged after lifting to $\widetilde{M} \times \R$. \\
 
 Suppose we have a homomorphism $\rho : \Gamma_\R \to G$ to a compact group $G$.
 This then gives us an associated bundle
@@ -806,52 +808,61 @@ The above construction gives a bijective correspondence
 \[
 \hom(\Gamma_\R, G) / G \longleftrightarrow
 \set{G\text{-bundles } P \to M
-\text{ equipped with a Yang-Mills connection } A }/\mathscr{G}(P)
+\text{ equipped with a Yang-Mills connection}}/\sim
 \]
-Where the action of $G$ on $\hom(\Gamma_\R,G)$ is by conjugation.
+Where the action of $G$ on $\hom(\Gamma_\R,G)$ is by conjugation, and the
+equivalence relation $\sim$ is given by $(P_1,A_1) \sim (P_2,A_2)$ if
+there exists an isomorphism $\varphi : P_1 \to P_2$ of principal bundles such that
+$\varphi^*A_2 = A_1$.
 \end{thm}
 %
 \begin{proof}
-There are several things here to show. First, we must show that for any compact
-group $G$, any Yang-Mills connection on an associated bundle comes from such a
-homomorphism. Furthermore, we also must show that for any compact
-group $G$, every principal $G$-bundle can be realized as an associated bundle
-of $\widetilde{M} \times \R \to M$. \\
+We first give an outline of the proof strategy, since the proof is rather long
+and involved. Before that, we note that we have not fixed a principal bundle, so a
+homomorphism $\Gamma_\R \to G$ must provided us with the data of a principal
+$G$-bundle $P \to M$, as well as a Yang-Mills connection on $P$. Our strategy will
+be as follows:
+\begin{enumerate}
+  \item For any principal $G$-bundle $P$ with a Yang-Mills connection, use
+  $\star F_A$ to identify an orbit of the adjoint action on $\g$. Then reduce
+  to the case where $\star F_A$ takes the constant value $X \in \g$, where
+  $X$ is fixed by the adjoint action.
+  \item Pass the case where we can replace $G$ with a quotient group $\overline{G}$
+  that is the product of a torus and a semisimple group, which are easy cases that
+  are easily established.
+\end{enumerate}
+Since $M$ is $2$-dimensional, we have that $\star F_A \in \Omega^0_M(\g_P)$, so we
+may regard it as a $G$-equivariant map $P \to \g$, i.e.
+$\star F_A(p\cdot g) = \Ad_{g\inv}\star F_A(p)$. This then tells us that the image
+of $\star F_A$ is exactly one orbit of $\g$ under the adjoint action.  Fix a nonzero
+element $X \in \g$ lying in the image of $\star F$, and then consider the preimage
+$P_X \defeq (\star F_A)\inv(X)$. Let $G_X \subset G$ be the stabilizer of $X$ under
+the adjoint action. Then $G_X$ acts on $P_X$, since given any $p \in P_X$, and
+$g \in G_X$, we have that $\star F_A(p\cdot g) = \Ad_{g\inv} F_A(p) = X$. This action
+is clearly transitive and free, so $P_X$ defines a reduction of structure group from
+$G$ to $G_X$, giving us a bundle isomorphism $P_X \times_{G_X} G \cong P$. Furthermore,
+since $d_A \star F = 0$, we have that $\star F$ is constant in the horizontal
+directions, so the differential of $\star F$ vanishes in the horizontal directions,
+so the horizontal distribution is contained in the tangent bundle of $P_X$. Therefore,
+the connection $A$ on $P$ restricts to a Yang-Mills connection on $P_X$
+(which we also denote $A$). This restricted connection has the property that
+$\star F_A$ is the constant map with value $X \in \g$, so $F_A$ is just the $2$-form
+$X \otimes \omega \in \Omega^2_M(\g_{P_X})$. This tells us that every Yang-Mills
+connection on any bundle $P$ arises from such a connection on the reduced bundle
+$P_X$ for some $X \in \g$. Then suppose we have a homomorphism
+$\rho : \Gamma_\R \to G$ with derivative $\dt{\rho} : \R \to \g$. The image of
+$1 \in \R$ under $\dt{\rho}$ determines an element $X_\rho \in \g$. Centrality of
+$\R$ in $\Gamma_\R$ then implies that the image of $\Gamma_\R$ preserves
+$X_\rho$ under the adjoint action, so we may regard $\rho$ as a homomorphism
+$\Gamma_\R \to G_{X_\rho}$. Combining this observation with the previous one, we can
+then reduce to the case where $X$ is preserved by all of $G$ (i.e. $G = G_X$, which
+is equivalent to $X$ lying in the center of $\g$). \\
 
-We first tackle the first claim. Since $M$ is $2$-dimensional, we have that
-$\star F_A \in \Omega^0_M(\g_P)$, so we may regard it as a $G$-equivariant map
-$P \to \g$, i.e. $\star F_A(p\cdot g) = \Ad_{g\inv}\star F_A(p)$. This then
-tells us that the image of $\star F_A$ is exactly one orbit of $\g$ under the adjoint
-action.  Fix a nonzero element $X \in \g$ lying in the image of $\star F$, and then
-consider the preimage $P_X \defeq (\star F_A)\inv(X)$. Let $G_X \subset G$ be the
-stabilizer of $X$ under the adjoint action. Then $G_X$ acts on $P_X$, since given any
-$p \in P_X$, and $g \in G_X$, we have that $\star F_A(p\cdot g) = \Ad_{g\inv} F_A(p) = X$.
-This action is clearly transitive and free, so $P_X$ defines a reduction of structure
-group from $G$ to $G_X$, giving us a bundle isomorphism $P_X \times_{G_X} G \cong P$.
-Furthermore, since $d_A \star F = 0$, we have that $\star F$ is constant in
-the horizontal directions, so the differential of $\star F$ vanishes in the horizontal
-directions, so the horizontal distribution is contained in the tangent bundle
-of $P_X$. Therefore, the connection $A$ on $P$ restricts to a Yang-Mills connection on
-$P_X$ (which we also denote $A$). This restricted connection has the property
-that $\star F_A$ is the constant map with value $X \in \g$, so $F_A$ is
-just the $2$-form $X \otimes \omega \in \Omega^2_M(\g_{P_X})$. This tells us that
-every Yang-Mills connection on any bundle $P$ arises from such a connection on
-the reduced bundle $P_X$ for some $X \in \g$. \\
-
-Then suppose we have a homomorphism $\rho : \Gamma_\R \to G$ with derivative
-$\dt{\rho} : \R \to \g$. The image of $1 \in \R$ under $\dt{\rho}$ determines an
-element $X_\rho \in \g$. Centrality of $\R$ then implies that
-the image of $\Gamma_\R$ preserves $X_\rho$ under the adjoint action, so we may
-regard $\rho$ as a homomorphism $\Gamma_\R \to G_{X_\rho}$. Combining this observation
-with the previous one, we can then reduce to the case where $X$ is preserved
-by all of $G$ (i.e. $G = G_X$, which is equivalent to $X$ lying in the center of $\g$). \\
-
-To complete the proof of the first claim, we want to reduce to the cases where
-$G$ is either a torus or a semisimple group. This follows from the fact
-that any compact group $G$ arises as $H \times_D S$, where $H$ is a maximal torus
-and $S = [G,G]$ is the maximal connected semisimple subgroup, and $D = H \cap S$ is
-a finite subgroup of the center of $S$. Quotienting by $D$, we get a finite covering
-$G \to \overline{G} = \overline{H} \times \overline{S}$, where
+We then want to reduce to the cases where $G$ is either a torus or a semisimple group.
+This follows from the fact that any compact group $G$ arises as $H \times_D S$, where
+$H$ is a maximal torus and $S = [G,G]$ is the maximal connected semisimple subgroup,
+and $D = H \cap S$ is a finite subgroup of the center of $S$. Quotienting by $D$, we
+get a finite covering $G \to \overline{G} = \overline{H} \times \overline{S}$, where
 $\overline{H} = H/D$ and $\overline{S} = S/D$. We then claim that we can reduce to
 the case where the structure group is $\overline{G}$. To see this, we note that
 if we quotient $P$ by the action of $D$ to obtain $\overline{P}$, we get a finite
@@ -860,33 +871,63 @@ we get an identification $TP \cong \pi^*T\overline{P}$ where $\pi : P \to \overl
 is the covering projection. Therefore, we get that the horizontal distribution on
 $P$ induces a horizontal distribution on $\overline{P}$, and conversely, we get
 that a connection on $\overline{P}$ lifts to a horizontal distribution on $P$, so we
-may reduce to the case $P = \overline{P}$. In addition, since any map
-$\Gamma_\R \to G$ gives a map $\overline{\rho} : \Gamma_\R \to \overline{G}$ by
-composition with the quotient map. Then since we assume that $\dt{\rho}(1) = X$ is
-central, we have that the image of $\R \subset \Gamma_\R$ is a $1$-parameter subgroup
-of $G$ lying in the center. Furthermore, we have that $\Z$ is contained in the commutator
-subgroup $[\Gamma_\R,\Gamma_\R]$, so its image under $\rho$ is central in $G$ and
-lies in the maximal semisimple $S = [G,G]$, so $\rho(\Z) \subset D$. Therefore, the
-map $\overline{\rho}$ descends to a map $\Gamma_\R / \Z \to \overline{G}$. Then since
-$\Gamma_\R / \Z \cong U(1) \times \pi_1(M)$. Then since $\overline{G}$ is the
-product group $\overline{H} \times \overline{S}$, we have that $\overline{\rho}$
-is given by a pair of homomorphisms $\alpha : U(1) \times \pi_1(M) \to \overline{H}$
-and $\beta : U(1) \times \pi_1(M) \to \overline{S}$. Furthermore, since $\overline{S}$
+may reduce to the case $P = \overline{P}$. Then since $\overline{P}$ is a principal
+bundle where the structure group is a product group, $\overline{P}$ is isomorphic
+to a principal $\overline{H} \times \overline{K}$-bundle obtained by taking the
+fiber product of an $\overline{H}$-bundle with a $\overline{S}$-bundle, and
+the connection on $\overline{P}$ is equivalent to the data of a connection
+on each of these two bundles. Then since we assumed that the Lie algebra
+element $X \in \mathfrak{h} \oplus \mathfrak{s}$ is central, and the center of
+$S$ is finite, we have that $X \in \mathfrak{h}$. Therefore, we see that a Yang-Mills
+connection for $\overline{P}$ is equivalent to a flat connection for a principal
+$\overline{S}$-bundle and a Yang-Mills connection for a principal
+$\overline{H}$-bundle. Furthermore, any map  $\Gamma_\R \to G$ gives a map
+$\overline{\rho} : \Gamma_\R \to \overline{G}$ by composition with the quotient map.
+Then since we assume that $\dt{\rho}(1) = X$ is central, we have that the image of
+$\R \subset \Gamma_\R$ is a $1$-parameter subgroup of $G$ lying in the center.
+Furthermore, we have that $\Z$ is contained in the commutator subgroup
+$[\Gamma_\R,\Gamma_\R]$, so its image under $\rho$ is central in
+$G$ and lies in the maximal semisimple subgroup $S = [G,G]$, so $\rho(\Z) \subset D$.
+Therefore, the map $\overline{\rho}$ descends to a map
+$\Gamma_\R / \Z \to \overline{G}$. We note $\Gamma_\R / \Z \cong U(1) \times \pi_1(M)$.
+Then since $\overline{G}$ is the product group $\overline{H} \times \overline{S}$, we
+have that $\overline{\rho}$ is given by a pair of homomorphisms
+$\alpha : U(1) \times \pi_1(M) \to \overline{H}$ and
+$\beta : U(1) \times \pi_1(M) \to \overline{S}$. Furthermore, since $\overline{S}$
 is semisimple, it has a finite center, so centrality of $X$ implies that $\beta$
 is trivial on the $U(1)$ factor, so it is actually a map
 $\beta : \pi_1(M) \to \overline{S}$, which is exactly the data of a principal
 $\overline{S}$-bundle with flat connection, which in particular, is a
 $\overline{S}$-bundle with Yang-Mills connection. \\
 
-%TODO Verify in the U(1) case, pass to U(1) x ... x U(1) case
 We are left to consider the homomorphism $\alpha$, which amounts to understanding
 Yang-Mills connections when structure group is a torus $U(1) \times \cdots \times U(1)$.
-By passing to associate bundles, this is equivalent to passing to a direct sum
-of Hermitian line bundles, each equipped with a Yang-Mills connection. \\
-
-For the second part, we use the fact that for a group $G$, we have that principal
-$G$-bundles over the surface $M$ are classified by $H^2(M, \pi_1(G)) = \pi_1(G)$.
-In our case, $\overline{G} = \overline{H} \times \overline{S}$, so we have
+By passing to associated bundles, this is equivalent to passing to a direct sum
+of Hermitian line bundles, each equipped with a Yang-Mills connection. Therefore, it
+suffices to verify this for the case where the torus is just $U(1)$. In this case,
+the map $\rho$ necessarily factors through $\pi_1(M)$, since $U(1)$ is abelian, and
+the derivative $\dt{\rho}$ evaluated at the identity gives the first Chern class
+of the line bundle. Using our fixed reference bundle, this allows us to construct
+a Yang-Mills connection by tensoring our reference bundle tensored with
+itself $\dt{\rho}(1)$ many times with the flat line bundle determined by the induced map
+$\pi_1(M) \to U(1)$.
+\end{proof}
+%
+While we have shown that the data of a principal $G$-bundle $P \to M$ with
+Yang-Mills connection is equivalent to a homomorphism $\Gamma_\R \to G$, we have
+not yet shown how to recover the isomorphism class of the principal bundle associated
+to such a homomorphism. Moreover, we have not yet shown that an arbitrary
+principal $G$-bundle admits a single Yang-Mills connection.
+%
+\begin{thm}
+Every principal $G$-bundle admits a Yang-Mills connection.
+\end{thm}
+%
+\begin{proof}
+We use the fact that for a group $\overline{G}$, we have that
+principal $\overline{G}$-bundles over the surface $M$ are classified by
+$H^2(M, \pi_1(G)) = \pi_1(G)$. In our case, by the reductions we made in the proof
+of the previous theorem, $\overline{G} = \overline{H} \times \overline{S}$, so we have
 \[
 \pi_1(G) = \pi_1(\overline{H}) \oplus \pi_1(\overline{S})
 \]
@@ -896,11 +937,114 @@ choosing the first Chern class for each direct summand of a vector bundle.
 For $\beta$, we need to do some additional work. The homomorphism
 $\beta : \pi_1(M) \to \overline{S}$ defines a group action of $\pi_1(M)$ on
 $\overline{S}$, which can be lifted to an action of $\Gamma_\Z$ on the universal
-cover of $\overline{S}$. The image of the central element $J \in \Gamma_\Z$ in the
+cover of $\overline{S}$, giving a homomorphism of $\Gamma_\Z$ to the universal covering
+group. The image of the central element $J \in \Gamma_\Z$ in the
 universal cover is an element of the center (since we assumed that $G = G_X$),
 which is equivalent to an element of $\pi_1(\overline{S})$, since $\overline{S}$ is
-the quotient of the universal cover by a subgroup of the center.
+the quotient of the universal cover by a subgroup of the center. We then note
+that since $\overline{S}$ is compact and semisimple, every element of $\overline{S}$
+is a commutator. Therefore, we can always find a homomorphism
+$\pi_1(M) \to \overline{S}$ that maps $J$ to any element of the center
+$Z(\overline{S})$. Therefore, we can always find a map $\pi_1(M) \to \overline{S}$
+whose lift to $\Gamma_Z$ maps the central element $J$ to any element of
+$\pi_1(\overline{S})$, considered as a subgroup of the center of the universal cover.
+In addition, it is clear that any element of $\pi_1(\overline{H})$ is realized
+as the restriction of a map $U(1) \times \pi_1(M) \to \overline{H}$. Therefore,
+every element of $\pi_1(\overline{G})$ can be realized via the maps
+$\alpha$ and $\beta$ coming from the homomorphism
+$\overline{\rho} : \Gamma_\R \to \overline{G}$, so this shows that every
+isomorphism class of principal $G$-bundle can be obtained from a homomorphism
+$\Gamma_\R \to G$, and also shows that every principal $G$-bundle admits a Yang-Mills
+connection.
 \end{proof}
+%
+We now specialize to the case where $G = \mathrm{U}(n)$, which will be important for
+our study of holomorphic vector bundles over $M$. Given a principal
+$\mathrm{U}(n)$-bundle $P \to M$, we obtain a complex vector bundle $E \to M$ by
+taking the associated bundle corresponding to the defining representation
+$\mathrm{U}(n) \hookrightarrow \GL_n\C$. In the other direction, given a complex
+vector bundle $E \to M$, we obtain a principal $\mathrm{U}(n)$-bundle by fixing
+a Hermitian form on $E$ and taking the unitary frame bundle of $E$. Let $P \to M$ be
+a principal $\mathrm{U}(n)$ bundle with Yang-Mills connection $A$, and let
+$X \in \mathfrak{u}_n$ be the Lie algebra element determined by the curvature of $A$.
+Writing $X = -2\pi i \Lambda$ for a Hermitian matrix $\Lambda$, the Yang-Mills condition
+implies that the trace of $\Lambda$ is integral equal to the Chern class of $P$.
+Furthermore, using the eigenspace decomposition of $X$, we find that the stabilizer
+group $G_X$ is a product of $U(n_i)$, where $n_i$ is the multiplicity of the
+$i^{th}$ eigenvalue $\lambda_i$. It can then be shown (though we don't show it
+here) that we must have that $n_i\lambda_i \in \Z$. \\
+
+From the perspective of vector bundles, these constraints have a more natural
+interpretation. The reduction of structure group to $G_X$ corresponds to a direct
+sum decomposition of the vector bundle, while the constraint on the eigenvalues
+corresponds to the Chern classes of the factors coinciding with the Chern class
+of the total bundle, which follows from the formula for the determinant line bundle
+of a direct sum of vector bundles.
+%
+\section{The Holomorphic Viewpoint}
+%
+Fix a smooth complex vector bundle $E \to M$ of rank $n$ and first Chern class $k$.
+The data of a holomorphic structure on $E$ is equivalent to the data of a first
+order differential operator $\dbar_E : \Omega^0_M(E) \to \Omega^1_M(E)$ satisfying
+$\dbar_E^2 = 0$, and the holomorphic sections of $E$ are obtained by taking the
+kernel of $\dbar_E$. Much like connections, the any such operator may be written in
+a smooth local trivialization of $E$ as
+\[
+\dbar_E = \dbar + B
+\]
+where $\dbar$ is the usual operator on $\C^n$ and $B$ is $\GL_n\C$-valued
+$(0,1)$-form. This corresponds to the space of holomorphic structures being an
+affine space over $\Omega_M^{0,1}(\End E)$. The group $\Aut(E)$ of smooth bundle
+automorphisms of $E$ acts on the space of holomorphic structures by conjugation, i.e.
+under an automorphism $g \in \mathrm{Aut}(E)$, the action is given by the mapping
+$\dbar_E \mapsto g\dbar_E g\inv$. Furthermore, the orbits of this group action are
+exactly the isomorphism classes of holomorphic structures on $E$, so the quotient by
+this action would be the moduli space of holomorphic structures on $E$. However,
+the quotient by this group action is not very nice, so we must restrict ourselves to
+structures that are stable in the sense of GIT.
+%
+\begin{defn}
+The \ib{slope} of a complex vector bundle $E \to M$ is defined to be
+\[
+\mu(E) \defeq \frac{c_1(E)}{\mathrm{rank}(E)}
+\]
+where we use the orientation on $M$ to determine the isomorphism $H^2(M,\Z) \cong \Z$.
+\end{defn}
+%
+\begin{defn}
+A holomorphic vector bundle $E \to M$ is
+\begin{enumerate}
+  \item \ib{Stable} if for all holomorphic subbundles $F \subset E$, we have the
+  strict inequality $\mu(F) < \mu(E)$.
+  \item \ib{Semistable} if for all holomorphic subbundles $F \subset E$, we have
+  inequality $\mu(F) \leq \mu(E)$.
+\end{enumerate}
+\end{defn}
+%
+If we let $\mathscr{C}(E)$ denote the space of holomorphic structures on $E$ and let
+$\mathscr{C}_s(E)$ and $\mathscr{C}_{ss}(E)$ denote the subspace of stable and
+semistable holomorphic structures respectively, then we can construct the moduli space
+of of holomorphic vector bundles of rank $n$ and degree $k$ as
+\[
+\mathcal{N}(n,k) \defeq \mathscr{C}_{ss}(E)/\Aut(E)
+\]
+In the case that $n$ and $k$ are coprime, we have that stability and semistability
+coincide, and this will be the main situation of interest. \\
+
+Understanding the moduli space of semistable bundles will also give
+information regarding unstable holomorphic bundles. One reason for this is
+the existence of a canonical filtration of an arbitrary holomorphic vector bundle.
+%
+\begin{thm}
+Let $E \to M$ be a holomorphic vector bundle. Then there exists a filtration
+\[
+0 = E_0 \subset E_1 \subset \cdots \subset E_m = E
+\]
+of $E$ such that $E_{i+1}/E_i$ is semistable and we have
+\[
+\mu(E_1/E_0) > \mu(E_2/E_1) > \cdots > \mu(E_n/E_{n-1})
+\]
+\end{thm}
 %
 \section{The Symplectic Viewpoint}
 %
@@ -938,10 +1082,15 @@ for all points $p \in M$ and tangent vectors $v \in T_pM$, and the mapping
 $\xi \mapsto H_\xi$ is $G$-equivariant with respect to the right actions
 $\xi\cdot g= \Ad_{g\inv}\xi$ and $f \cdot g = f \circ L_g$, where $L_g : M \to M$
 is the symplectomorphism determined by left multiplication by $g$. Given a
-Hamiltonian action of $G$ on $M$, a \ib{moment map} for the action is a map
-$\mu : M \to \g^*$ such that for any $p \in M$ and $\xi \in \g$, we have
+Hamiltonian action of $G$ on $M$, a \ib{moment map} for the action is a
+$G$-equivariant map $\mu : M \to \g^*$ such that for any $p \in M$ and $\xi \in \g$,
+we have
 \[
-H_\xi(p) = \mu(p)((X_\xi)_p)
+d\mu_p(v)(\xi) = \omega_p((X_\xi)_p, v)
+\]
+in which case the Hamiltonian function is recovered by the formula
+\[
+H_\xi(p) = \mu(p)(\xi)
 \]
 We claim that the action of $\mathscr{G}(P)$ on $\mathscr{A}(P)$ is Hamiltonian.
 We first note that the action is symplectic, since
@@ -949,15 +1098,15 @@ $\langle\cdot,\cdot\rangle$ is $\Ad$-invariant, and the action of
 a gauge transformation $\varphi$ on a tangent vector $\eta \in \Omega^1_M(\g_P)$
 is by $\varphi\cdot\eta = \Ad_{g_\varphi\inv}\eta$ where
 $g_\varphi : P \to G$ is the associated $G$-equivariant map. To show that the
-action is Hamiltonian, we note that each $\phi \in \Omega^0_M(\g_P)$ determines
+action is Hamiltonian, we note that each
+$\phi \in \mathrm{Lie}(\mathscr{G}(P)) = \Omega^0_M(\g_P)$ determines
 a map $H_\phi : \mathscr{A}(P) \to \R$ given by
 \[
 H_\phi(A) = \int_M \langle F_A,\phi\rangle
 \]
 and the mapping $\phi \mapsto H_\phi$ is clearly $\mathscr{G}(P)$-equivariant.
-We then claim that mapping $\mu(A) = F_A$ defines a moment map. We see this, we first
-note that the map is $\mathscr{G}(P)$-equivariant by our formulas for how the connection
-and its curvature transform under a gauge transformation. We then compute
+We then compute for
+$A \in \mathscr{A}(P)$ and $\psi \in T_A\mathscr{A}(P) = \Omega^1_M(\g_P)$
 \begin{align*}
 d(H_\phi)_A(\psi) &= \frac{d}{dt}\bigg\vert_{t=0}\int_M\langle F_{A+t\psi},\phi\rangle \\
 &= \int_M \langle d_A\psi,\phi\rangle \\
@@ -966,6 +1115,273 @@ d(H_\phi)_A(\psi) &= \frac{d}{dt}\bigg\vert_{t=0}\int_M\langle F_{A+t\psi},\phi\
 \end{align*}
 %
 Then noting that $d_A\phi$ is the vector field determined by $\phi$, this
-shows that $\mu(A) = F_A$ is a moment map for the action.
+shows that the action is Hamiltonian, with the functions $H_\phi$ defining the
+Hamiltonian functions. We then claim that mapping $\mu(A) = F_A$ defines a moment map.
+We see this, we first note that $\mu$ is $\mathscr{G}(P)$-equivariant by our formulas
+regarding how a connection and its curvature transform under gauge transformation.
+For $\psi \in \Omega^1_M(\g_P)$, we have that
+\begin{align*}
+d\mu_A(\psi)(\phi) = \int_M \langle d_A\psi,\phi\rangle
+\end{align*}
+which from our above computation is equal to $\int_M \langle d_A\phi,\psi\rangle$,
+so $\mu$ defines a moment map for this Hamiltonian action.
+%
+\section{Comparison of the Holomorphic and Symplectic Perspectives}
+%
+Given a smooth complex vector bundle $E \to M$, a Hermitian metric on $E$ gives rise
+to the unitary frame bundle $\mathcal{B}_U(E)$, which is a principal $U(n)$-bundle.
+Furthermore, the isomorphism class of the bundle $\mathcal{B}_U(E)$ is
+independent of the choice of Hermitian metric, and is determined by the first
+Chern class of $E$. For notational compactness, let $P \to M$ denote the
+principal $U(n)$-bundle of unitary frames of $E$ with respect to a fixed
+Hermitian metric on $E$. This Hermitian structure allows us to relate holomorphic
+stuctures on $E$ with connections on $P$ -- given a holomorphic structure
+$\dbar_E$ on $E$, there exists a unique connection on $E$ called the
+\ib{Chern connection} that is compatible with both the holomorphic and Hermitian
+structures. Furthermore, a connection on $P$ induces a connection on $E$,
+and the $(0,1)$ component of this connection necessarily squares to $0$, since
+$\Omega^{2,0}_M = 0$, so it defines a holomorphic structure on $E$. Therefore, we
+have a bijection $\mathscr{A}(P) \to \mathscr{C}(E)$. \\
+
+Using this comparison, we can compare the groups $\mathscr{G}(P)$ and $\Aut(E)$.
+In a similar fashion to $\mathscr{G}(P)$, an element of $\Aut(E)$ can be
+thought of as a global section of the associated bundle
+$\mathcal{B}(E) \times_{\GL_n\C} \GL_n\C$ constructed with the conjugation action.
+Ignoring analytic difficulties, this identifies the Lie algebra of $\Aut(E)$ with
+the global sections of $\mathcal{B}(E) \times_{\GL_n\C} \mathfrak{gl}_n\C$. In this
+way, we see that $\Aut(E)$ is the complexification of $\mathscr{G}(P)$, which
+essentially boils down to the fact that every complex matrix $A$ can be expressed
+as $A = B + iC$ with $B$ Hermitian and $C$ skew-Hermitian. \\
+
+With this in mind, we want to appeal to the usual relationship between a GIT
+quotient by a complex group and the symplectic quotient by its maximal compact
+subgroup. The analogies can be summarized as follows:
+\begin{align*}
+\text{Complex reductive group } G &\longleftrightarrow \Aut(E) \\
+\text{Maximal compact subgroup } K &\longleftrightarrow \mathscr{G}(P) \\
+\text{Moment map } \mu &\longleftrightarrow \text{Curvature }
+F_A \text{ of a connection} \\
+\text{Norm square of the moment map} &\longleftrightarrow \text{Yang-Mills functional}
+\end{align*}
+%
+In the finite dimensional case, the Kempf-Ness theorem establishes a homeomorphism
+between the GIT quotient by $G$ and the symplectic quotient by $K$, which is a
+consequence of every $G$-orbit containing a unique $K$-orbit minimizing the norm square
+of the moment map. In the Yang-Mills situation, we have an infinite dimensional
+example, which is the Narasimhan-Seshadri theorem. Reformulating the statement in
+a more differential geometric way, the statement of the theorem is:
+%
+\begin{thm}[\ib{Narasimhan-Seshadri}]
+Let $\mathscr{A}_s(P) \subset \mathscr{A}(P)$ denote the subspace of connections of $P$
+that are absolute minima of the Yang-Mills and arise from irreducible representations
+$\Gamma_\R \to U(n)$. Then the identification of $\mathscr{A}(P)$ with
+$\mathscr{C}(E)$ induces a homeomorphism
+$\mathscr{A}_s(P)/\mathscr{G}(P) \to \mathscr{C}_s(E)/\Aut(E)$.
+\end{thm}
+%
+The reformulation and differential geometric proof of Narasimhan-Seshadri is due
+to Donaldson \cite{donaldson1983}, where he proved that a stability of a holomorphic
+vector bundle $E \to M$ is equivalent to the existence of a unitary connection $A$
+with central curvature satisfying the condition that $\star F_A = -2\pi i \mu(E)$.
+In the case that $E$ is degree $0$, this agrees with the classical statement of
+Narasimhan-Seshadri by passing to the correspondence between flat bundles and
+representations of the fundamental group. \\
+
+To continue this analogy, in the traditional GIT setting, the norm square of the
+moment map serves as a Morse function, which then gives a Morse stratification
+into stable and unstable submanifolds by looking at the gradient flow lines, which
+flow towards or away from the critical sets of the norm square of the moment map.
+In our case, we have a good candidate for the Morse strata of the Yang-Mills
+functional, which comes from the existence of Harder-Narasimhan filtrations.
+As before, let $E \to M$ be a holomorphic vector bundle with a fixed Hermitian metric
+and let $P \to M$ be its principal $U(n)$-bundle of unitary frames. Recall that
+the curvature of a Yang-Mills connection on $P$ is equivalent to the data of a
+skew-Hermitian matrix $X$, and writing at $X = -2\pi i \Lambda$ with $\Lambda$
+Hermitian, the eigenvalues of $X$ determine a reduction of structure group
+from $U(n)$ to the stabilizer subgroup o $X$, which is a subgroup isomorphic to
+$U(n_1) \times \ldots U(n_m)$ depending on the multiplicities of the eigenvalues.
+Comparing this with the holomorphic perspective, this exactly corresponds with the
+Harder-Narasimhan filtration of the bundle $E \to M$. In a paper of Shatz
+\cite{shatz1976}, the Harder-Narasimhan filtration gives a stratification of
+the space $\mathscr{C}(E)$ of holomorphic structures of $E$, where a holomorphic
+structure on $E$ is of type $\mu \in \Q^k$ (where $k$ is the length of the
+filtration) if the slopes of the quotients in the Harder-Narasimhan filtration
+(arranged in decreasing order) are given by the entries of $\mu$. We let
+$\mathscr{C}_\mu(E) \subset \mathscr{C}(E)$ denote the subspace of holomorphic
+structures on $E$ of type $\mu$. Using the type, one can construct the
+Harder-Narasimhan polygon using the slopes, which is a convex polygon whose
+vertices are determined by the numerators and denominators of the slopes
+specified by $\mu$. These polygons determine a partial ordering on the slope
+vectors, where we say $\lambda \geq \mu$ if the polygon corresponding to $\lambda$
+lies above the polygon corresponding to $\mu$. Then the subspaces
+$\mathscr{C}_\mu(E)$ give a stratification of $\mathscr{C}(E)$ where
+\[
+\mathscr{C}_\mu(E) \subset \bigcup_{\lambda \geq \mu} \mathscr{C}_\lambda(E)
+\]
+called the \ib{Harder-Narasimhan stratification}. Furthermore, since the
+Harder-Narasimhan filtration is canonical, it is preserved by the
+action of $\Aut(E)$, so the action of $\Aut(E)$ on $\mathscr{C}$ restricts
+to actions of $\Aut(E)$ on the strata $\mathscr{C}_\mu(E)$, which we will
+need to compute the equivariant cohomology of $\mathscr{C}(E)$.\\
+
+Using the identification of $\mathscr{C}(E)$ with $\mathscr{A}(P)$ to
+transport the Harder-Narasimhan stratification to $\mathscr{A}(P)$, and we can then
+give a more differential geometric interpretation of the strata $\mathscr{C}_\mu(E)$.
+Let $\mathscr{A}_\mu(P) \subset \mathscr{A}(P)$ denote the stratum corresponding
+to $\mathscr{C}_\mu(E)$, which under the identification
+$\mathscr{C}(E) \cong \mathscr{A}(P)$ corresponds to Yang-Mills minima whose Lie
+algebra element has eigenvalues coinciding with the type vector $\mu$.
+Our goal will be to draw analogies between these Harder-Narasimhan strata and the
+hypothetical Morse strata for the Yang-Mills functional, and use the strata to
+compute the cohomology of the moduli space $\mathcal{N}(n,k)$ when $n$ and $k$ are
+coprime. In the differential geometric perspective, we consider a
+larger class of functionals on $\mathscr{A}(P)$ arising from convex
+functions on $\mathfrak{u}(n)$ that are invariant under the adjoint action,
+which will have the same critical sets as the Yang-Mills functional. Using
+these functionals, one can show that the gradient flow of these functionals is
+tangential to the $\Aut(E)$ orbits, and applying some elliptic theory to
+the connection Laplacian $d_A^*d_A + d_Ad_A^*$ allows one to show that
+the critical sets have finite Morse index. Using these convex invariant
+functions also gives an alternative proof of the stratification
+\[
+\mathscr{A}_\mu(P) \subset \bigcup_{\lambda \geq \mu} \mathscr{A}_\lambda(P)
+\]
+Which suggests that the $\mathscr{A}_\mu$ play the role of Morse strata for the
+Yang-Mills functional modulo analytic difficulties with the critical sets, and
+problems regarding convergence of the gradient flow of the Yang-Mills functional.
+It was later shown by Daskalopoulos \cite{daskalopoulos1992} that these analytic
+difficulties can be resolved, and that the Yang-Mills functional is an equivariantly
+perfect Morse function on $\mathscr{A}(P)$. However, it is not strictly necessary to
+use this fact to compute the cohomology of $\mathcal{N}(n,k)$, provided that we can
+show that the Harder-Narasimhan stratification is something called
+\ib{equivariantly perfect}, which we will discuss later.
+%
+\section{The Cohomology of $\mathcal{N}(n,k)$}
+%
+We restrict to the case where $n$ and $k$ are coprime, so stable bundles coincide
+with semistable bundles, and most of the work will be done using the holomorphic
+perspective. The strategy will be to compute the $\Aut(E)$-equivariant
+cohomology of the strata $\mathscr{C}_\mu(E)$ and then establish the
+equivariant perfection of the stratification to use an inductive Mayer-Vietoris
+and Kunneth formula procedure to compute the equivariant cohomology of
+$\mathscr{C}(E)$. Then by quotienting $\Aut(E)$ by a certain subgroup, we obtain
+a free action on $\mathscr{C}_s(E)$, and the equivariant cohomology by this
+quotient group will be the ordinary cohomology of the quotient space
+$\mathcal{N}(n,k)$, since in the coprime case, $\mathscr{C}_{ss}(E)$ and
+$\mathscr{C}_s(E)$ coicide. \\
+
+We first tackle the problem of computing the $\Aut(E)$-equivariant cohomology of
+the strata $\mathscr{C}_\mu(E)$. To do this, we will first make some reductions
+to replace $\Aut(E)$ and $\mathscr{C}_\mu(E)$ with a smaller group and space
+that are homotopy equivalent to $\Aut(E)$ and $\mathscr{C}_\mu(E)$ respectively.
+Let $\mathscr{F}_\mu(E)$ denote the space of smooth filtrations of $E$ of
+type $\mu$, which can be interpreted as a subspace of the space of smooth
+sections of a flag bundle of $E$. There is a natural surjection
+$\mathscr{C}_\mu(E) \to \mathscr{F}_\mu(E)$ given by forgetting the holomorphic
+structures of the subbundles in the filtration, and the fiber $\mathscr{B}(E_\mu)$
+of this map over a fixed filtration $E_\mu$ is the space of holomorphic structures
+on the terms of the filtration. Let $\Aut(E_\mu)$ denote the group of smooth
+automorphisms of $E$ preserving the filtration $E_\mu$. Then we can identify
+$\mathscr{F}_\mu(E)$ with the quotient space $\Aut(E)/\Aut(E_\mu)$, which is
+analogous to the identification of the space of partial flags in $\C^n$ with
+$\GL_n\C/P$ for a parabolic subgroup $P$. This identification gives $\Aut(E)$ the
+structure of a principal $\Aut(E_\mu)$-bundle over $F_\mu(E)$. Furthermore,
+this gives an identification
+\[
+\mathscr{C}_\mu(E) \cong \Aut(E) \times_{\Aut(E_\mu)} \mathscr{B}(E_\mu)
+\]
+Then let $E\Aut(E) \to B\Aut(E)$ be a universal bundle for $\Aut(E)$. Then
+the $\Aut(E)$-equivariant cohomology of $\mathscr{C}_\mu(E)$ is defined to the
+the ordinary cohomology of the total space of the associated bundle
+$E\Aut(E) \times_{\Aut(E)} \mathscr{C}_\mu(E)$. By our above observation, this
+is the same as the space
+$E\Aut(E) \times_{\Aut(E)} (\Aut(E) \times_{\Aut(E_\mu)} \mathscr{B}(E_\mu))$.
+Noting that $E\Aut(E) \times_{\Aut(E)} \Aut(E) \cong E\Aut(E)$, we have that
+this is the same as the space $E\Aut(E) \times_{\Aut(E_\mu)} \mathscr{B}(E_\mu)$.
+We then note that $E\Aut(E)$ is a contractible space with an action of
+$\Aut(E_\mu)$ (coming from restriction), so it may serve as the total space
+for a universal bundle for $\Aut(E_\mu)$. Thus, we have have
+\[
+H^\bullet_{\Aut(E)}(\mathscr{C}_\mu(E)) \cong
+H^\bullet_{\Aut(E_\mu)}(\mathscr{B}(E_\mu))
+\]
+We then reduce further. Let $\set{E_i}$ denote the subbundles appearing in
+the filtration $E_\mu$ of $E$. We have exact sequences of smooth vector bundles
+\[\begin{tikzcd}
+0 \ar[r] & E_i \ar[r] & E_{i+1} \ar[r] & E_{i+1}/E_i \ar[r] & 0
+\end{tikzcd}\]
+which split in the smooth category. By fixing splittings for each of these
+sequences, we get a direct sum decomposition
+\[
+E = D_1 \oplus \cdots \oplus D_r
+\]
+compatible with the filtration $E_\mu$, which we denote by $E_\mu^0$. We
+then let $\Aut(E_\mu^0) \subset \Aut(E_\mu)$ be the automorphisms of $E$ that
+respect this direct sum decomposition, and let $\mathscr{B}(E_\mu^0)$ denote
+the holomorphic structures that give the $D_i$ the structure of semistable
+holomorphic bundles. We then clearly have that $\Aut(E^0_\mu) \cong \prod_i\Aut(D_i)$,
+which corresponds to writing an automorphism in block form. Similarly, we
+have that $\mathscr{B}(E_\mu^0) = \prod_i\mathscr{C}_{ss}(D_i)$. We then make
+two observations:
+\begin{enumerate}
+  \item $\Aut(E_\mu)$ deformations retracts onto $\Aut(E^0_\mu)$, which
+  roughly corresponds to a parabolic subgroup of $\GL_n\C$ deformation retracting
+  onto a product of $\GL_{n_i}\C$ via a Gram-Schmidt like procedure.
+  \item The forgetful map $\mathscr{B}(E_\mu) \to \mathscr{B}(E_\mu^0)$ is a
+  homotopy equivalence, which roughly corresponds to the space of splittings
+  of an exact sequence of vector spaces being affine.
+\end{enumerate}
+%
+These two observations give us the second reduction, which when combined with the first
+gives us
+\[
+H^\bullet_{\Aut(E)}(\mathscr{C}_\mu(E)) \cong
+H^\bullet_{\Aut(E_\mu^0)}(\mathscr{B}(E_\mu^0))
+\]
+Using Kunneth and the identification of $\Aut(E_\mu^0)$ and $\mathscr{B}(E_\mu^0)$
+with products, this gives us
+\[
+H^\bullet_{\Aut(E)}(\mathscr{C}_\mu(E),\Q) \cong
+\bigotimes_{i=1}^r H^\bullet_{\Aut(D_i)}(\mathscr{C}_{ss}(D_i),\Q)
+\]
+Which tells us that computing the equivariant cohomology for the semistable
+locus for lower rank bundles will give us the equivariant cohomology of
+the Harder-Narasimhan strata. \\
+
+With this in hand, our next goal is to establish equivariant perfection of the
+Harder-Narasimhan stratification, which will allow us to conclude that the
+equivariant Poincar\'e polyomial for $\mathscr{C}_{ss}(E)$ is equal to the
+``Morse polynomial" coming from the stratification, which is the polynomial
+\[
+\sum_\lambda t^{k_\mu} P_{t,\Aut(E_\mu)}(\mathscr{C}_\mu(E))
+\]
+where $k_\mu$ is the codimension of $\mathscr{C}_\mu(E)$ in $\mathscr{C}(E)$
+and $P_{t,\Aut(E_\mu}(\mathscr{C}_\mu(E))$ denotes the equivariant Poincar\'e
+polynomial of the stratum $\mathscr{C}_\mu(E)$. To do this, we will need to take
+some results on faith, which give conditions for equivariant perfection.
+%
+\begin{prop}
+If the equivariant Euler classes to the normal bundles $N_\mu$ of the strata
+$\mathscr{C}_\mu(E)$ are not zero divisors in $H^\bullet_{\Aut(E_\mu)}(N_\mu, k)$
+for a coefficient field $k$, then the stratification is equivariantly perfect
+with respect to $k$.
+\end{prop}
+%
+\begin{prop}
+Let $X$ be a connected $G$ space where a subtorus of $G$ acts trivially,
+and let $N \to X$ be an equivariant vector bundle. Then if the action of the
+subtorus on each fiber is a primitive representation and $H^\bullet(G,\Z)$
+has no torsion, then multiplication by the equivariant Euler class of
+$N$ on $H_G^\bullet(X,\F_p)$ is injective.
+\end{prop}
+%
+With this in mind, we want to identify the normal bundles to the strata
+and compute their equivariant Euler classes.
+%
+\newpage
+%
+\nocite{*}
+%
+\printbibliography
 %
 \end{document}
