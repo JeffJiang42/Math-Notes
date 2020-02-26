@@ -100,7 +100,7 @@
 \renewcommand{\qedsymbol}{$\blacksquare$}
 \renewcommand{\sl}{\mathfrak{sl}}
 \newcommand{\Bord}{\mathsf{Bord}}
-\renewcommand{\hom}{\mathsf{Hom}}
+\renewcommand{\hom}{\mathrm{Hom}}
 \renewcommand{\emptyset}{\varnothing}
 \renewcommand{\O}{\mathcal{O}}
 \newcommand{\R}{\mathbb{R}}
@@ -233,7 +233,8 @@
 \maketitle
 %
 These are notes I've made while working through the paper \emph{The Yang-Mills
-Equations over Riemann Surfaces} \cite{10.2307/37156} by Atiyah and Bott.
+Equations over Riemann Surfaces} \cite{10.2307/37156} by Atiyah and Bott. There
+are no claims to originality, and any errors are almost certainly mine.
 %
 \tableofcontents
 %
@@ -650,20 +651,20 @@ d^*_A d_A\eta + \star[\eta,\star F_A] = 0
 The second variation should be thought of as the Hessian to the Yang-Mills functional,
 which will allow us to apply Morse theory techniques to the space of connections.
 %
-\section{The $U(1)$ Case}
+\section{The $\mathrm{U}(1)$ Case}
 %
-We first restrict to the special case $G = U(1)$. In this case, the
-Lie algebra is abelian, so the adjoint action of $U(1)$ on $\mathfrak{u}(1)$ is trivial,
-giving us that $\g_P$ is a trivial bundle. Identifying $\mathfrak{u}(1)$ with
-$\R$, we can then identify $\mathfrak{u}(1)$ valued forms on $P$ with ordinary
+We first restrict to the special case $G = \mathrm{U}(1)$. In this case, the
+Lie algebra is abelian, so the adjoint action of $\mathrm{U}(1)$ on $\mathfrak{u}(1)$
+is trivial, giving us that $\g_P$ is a trivial bundle. Identifying $\mathfrak{u}(1)$
+with $\R$, we can then identify $\mathfrak{u}(1)$ valued forms on $P$ with ordinary
 differential forms. Likewise, using triviality of $\g_P$, we can identify
 $\g_P$-valued forms with ordinary differential forms on $M$. The vertical bundle
-in this case is a trivial line bundle over $P$, and there is a unique $U(1)$-invariant
-vertical vector field on $P$, which on each fiber restricts to the vector field dual
-to the Maurer-Cartan form $\theta$. Then given a connection $A$ on $P$, we have that
-$dA = \pi^*F_A$, since $[A,A] = 0$. This immediately tells us that $F_A$ is closed,
-since $d$ commutes with pullback. Furthermore, for any other connection $A + \eta$, we
-have that
+in this case is a trivial line bundle over $P$, and there is a unique
+$\mathrm{U}(1)$-invariant vertical vector field on $P$, which on each fiber restricts
+to the vector field dual to the Maurer-Cartan form $\theta$. Then given a connection
+$A$ on $P$, we have that $dA = \pi^*F_A$, since $[A,A] = 0$. This immediately tells us
+that $F_A$ is closed, since $d$ commutes with pullback. Furthermore, for any other
+connection $A + \eta$, we have that
 \[
 F_{A+\eta} = F_A + \frac{1}{2}[\eta,\eta] + d_A\eta
 \]
@@ -686,13 +687,13 @@ Z^1_M \ar[r] & \mathscr{A}_{\text{YM}}(P) \ar[d] \\
 \end{tikzcd}\]
 In the flat case $c_1(P) = 0$, the Yang-Mills connections
 are just flat connections, which are parameterized by conjugacy classes of homomorphisms
-$\pi_1(M) \to U(1)$. \\
+$\pi_1(M) \to \mathrm{U}(1)$. \\
 
 With this information, we can construct the Yang-Mills moduli space
 $\mathscr{A}_{\text{YM}}(P) / \mathscr{G}(P)$ in this simple case. Since the
 conjugation action is trivial, the bundle $\mathrm{Ad}(P)$ is a trivial bundle,
-so the gauge group is just $\mathscr{G}(P) = \mathrm{Map}(M,U(1))$. Given
-$f : M \to U(1)$, the action of $f$ on a connection $A$ is given by
+so the gauge group is just $\mathscr{G}(P) = \mathrm{Map}(M,\mathrm{U}(1))$. Given
+$f : M \to \mathrm{U}(1)$, the action of $f$ on a connection $A$ is given by
 \[
 A \mapsto A + \pi^*f^*\theta
 \]
@@ -722,7 +723,7 @@ $\mathscr{A}_{\text{YM}}(P)$ with $Z^1_M$, we need to fix a reference connection
 general, there is no canonical choice of reference except in the case where $P$ is a
 trivial bundle, in which case the trivial connection defines a canonical reference
 connection. As we'll see soon, this reflects the fact that $\mathscr{A}_{YM}(P)$
-is a $\mathrm{Jac}(M)$-torsor when $P$ is a $U(1)$-bundle.
+is a $\mathrm{Jac}(M)$-torsor when $P$ is a $\mathrm{U}(1)$-bundle.
 %
 %
 \section{Yang-Mills Over a Riemann Surface}
@@ -748,7 +749,7 @@ $d_A = \partial_A + \dbar_A$ for any connection $A \in \mathscr{A}(P)$.
 %Central element determines the topology, rest is a flat connection
 %Remark of action of Jacobian on the moduli space
 We now restrict our attention to when $M$ is a orientable surface, with genus $g > 0$.
-Let $Q \to M$ be a principal $U(1)$ bundle with $c_1(Q) = 1$, i.e.
+Let $Q \to M$ be a principal $\mathrm{U}(1)$ bundle with $c_1(Q) = 1$, i.e.
 \[
 \frac{1}{2\pi i} \int_M c_1(Q) = 1
 \]
@@ -757,19 +758,19 @@ $\int_M \omega = 1$ and Yang-Mills connection $A$ on $Q$. Since $c_1(Q) = 1$, we
 that $[c_1(Q)] = [\omega]$. Furthermore, since $\star\omega = 1$ and
 $-2\pi i c_1(Q) = [F_A]$, we get that the curvature of $A$ must be equal to
 $-2\pi i \omega$ to minimize the Yang-Mills functional. Similarly, for any other
-$U(1)$-bundle $P$, the curvature of a Yang-Mills connection must be
+$\mathrm{U}(1)$-bundle $P$, the curvature of a Yang-Mills connection must be
 $-2\pi i c_1(P)\omega$. Then let $\widetilde{M} \to M$ be the universal cover of $M$.
 Since the genus of $M$ is at least $1$, $\widetilde{M}$
 is contractible, so the pullback of $Q$ along the covering projection gives us a
-trivial $U(1)$ bundle over $\widetilde{M}$
+trivial $\mathrm{U}(1)$ bundle over $\widetilde{M}$
 \[\begin{tikzcd}
-\widetilde{M} \times U(1)\ar[d] \ar[r] & Q \ar[d]\\
+\widetilde{M} \times \mathrm{U}(1)\ar[d] \ar[r] & Q \ar[d]\\
 \widetilde{M} \ar[r] & M
 \end{tikzcd}\]
 %
-Then we have a covering map $\widetilde{M} \times \R \to U(1)$, using the usual
-covering $\R \to U(1)$, giving a principal $\R$-bundle over $\widetilde{M}$. Then
-if we consider the composite map $\widetilde{M} \times \R \to \widetilde{M} \to M$,
+Then we have a covering map $\widetilde{M} \times \R \to \mathrm{U}(1)$, using the usual
+covering $\R \to \mathrm{U}(1)$, giving a principal $\R$-bundle over $\widetilde{M}$.
+Then if we consider the composite map $\widetilde{M} \times \R \to \widetilde{M} \to M$,
 this is a fiber bundle over $M$. Furthermore, since the action of $\R$
 on on $\widetilde{M} \times \R$ commutes with the $\pi_1(M)$ action on $\widetilde{M}$,
 we know that this is a principal bundle with structure group $\Gamma_\R$, where
@@ -781,15 +782,15 @@ representatives of generators of $\pi_1(M)$, and has holonomy equal to $2\pi$, w
 follows from the fact that the holonomy about any loop bounding a disk is equal to the
 integral of the curvature, and the fact that $c_1(Q)$ is represented by
 the curvature class of any connection, divided by $2\pi i$. Therefore, if we
-consider the pullback connection on $\widetilde{M} \times U(1)$, the holonomy
+consider the pullback connection on $\widetilde{M} \times \mathrm{U}(1)$, the holonomy
 about the lifts of the boundary path to $\widetilde{M}$ will also be $2\pi$,
 which then lifts to translation by $1$ in the bundle $\widetilde{M} \times \R$.
 This gives the relation that $\prod_i [a_i,b_i] = J$, which gives us a presentation
 of the group $\Gamma_\R$. We let $\Gamma_\Z$ denote the central extension obtained
 in a similar manner using $\Z$ instead of $\R$. Since $\pi_1(M)$ is discrete,
 $\widetilde{M}$ is a flat bundle, so the pullback connection on
-$\widetilde{M} \times U(1)$ still has curvature $-2\pi i \omega$, and the curvature
-also remains unchanged after lifting to $\widetilde{M} \times \R$. \\
+$\widetilde{M} \times \mathrm{U}(1)$ still has curvature $-2\pi i \omega$, and the
+curvature also remains unchanged after lifting to $\widetilde{M} \times \R$. \\
 
 Suppose we have a homomorphism $\rho : \Gamma_\R \to G$ to a compact group $G$.
 This then gives us an associated bundle
@@ -889,28 +890,29 @@ Furthermore, we have that $\Z$ is contained in the commutator subgroup
 $[\Gamma_\R,\Gamma_\R]$, so its image under $\rho$ is central in
 $G$ and lies in the maximal semisimple subgroup $S = [G,G]$, so $\rho(\Z) \subset D$.
 Therefore, the map $\overline{\rho}$ descends to a map
-$\Gamma_\R / \Z \to \overline{G}$. We note $\Gamma_\R / \Z \cong U(1) \times \pi_1(M)$.
-Then since $\overline{G}$ is the product group $\overline{H} \times \overline{S}$, we
-have that $\overline{\rho}$ is given by a pair of homomorphisms
-$\alpha : U(1) \times \pi_1(M) \to \overline{H}$ and
-$\beta : U(1) \times \pi_1(M) \to \overline{S}$. Furthermore, since $\overline{S}$
-is semisimple, it has a finite center, so centrality of $X$ implies that $\beta$
-is trivial on the $U(1)$ factor, so it is actually a map
+$\Gamma_\R / \Z \to \overline{G}$. We note
+$\Gamma_\R / \Z \cong \mathrm{U}(1) \times \pi_1(M)$. Then since $\overline{G}$ is the
+product group $\overline{H} \times \overline{S}$, we have that $\overline{\rho}$ is
+given by a pair of homomorphisms $
+\alpha : \mathrm{U}(1) \times \pi_1(M) \to \overline{H}$ and
+$\beta : \mathrm{U}(1) \times \pi_1(M) \to \overline{S}$. Furthermore, since
+$\overline{S}$ is semisimple, it has a finite center, so centrality of $X$ implies that
+$\beta$ is trivial on the $\mathrm{U}(1)$ factor, so it is actually a map
 $\beta : \pi_1(M) \to \overline{S}$, which is exactly the data of a principal
 $\overline{S}$-bundle with flat connection, which in particular, is a
 $\overline{S}$-bundle with Yang-Mills connection. \\
 
 We are left to consider the homomorphism $\alpha$, which amounts to understanding
-Yang-Mills connections when structure group is a torus $U(1) \times \cdots \times U(1)$.
-By passing to associated bundles, this is equivalent to passing to a direct sum
-of Hermitian line bundles, each equipped with a Yang-Mills connection. Therefore, it
-suffices to verify this for the case where the torus is just $U(1)$. In this case,
-the map $\rho$ necessarily factors through $\pi_1(M)$, since $U(1)$ is abelian, and
-the derivative $\dt{\rho}$ evaluated at the identity gives the first Chern class
-of the line bundle. Using our fixed reference bundle, this allows us to construct
-a Yang-Mills connection by tensoring our reference bundle tensored with
-itself $\dt{\rho}(1)$ many times with the flat line bundle determined by the induced map
-$\pi_1(M) \to U(1)$.
+Yang-Mills connections when structure group is a torus
+$\mathrm{U}(1) \times \cdots \times \mathrm{U}(1)$. By passing to associated bundles,
+this is equivalent to passing to a direct sum of Hermitian line bundles, each equipped
+with a Yang-Mills connection. Therefore, it suffices to verify this for the case where
+the torus is just $\mathrm{U}(1)$. In this case, the map $\rho$ necessarily factors
+through $\pi_1(M)$, since $\mathrm{U}(1)$ is abelian, and the derivative $\dt{\rho}$
+evaluated at the identity gives the first Chern class of the line bundle. Using our
+fixed reference bundle, this allows us to construct a Yang-Mills connection by
+tensoring our reference bundle tensored with itself $\dt{\rho}(1)$ many times with the
+flat line bundle determined by the induced map $\pi_1(M) \to \mathrm{U}(1)$.
 \end{proof}
 %
 While we have shown that the data of a principal $G$-bundle $P \to M$ with
@@ -931,7 +933,7 @@ of the previous theorem, $\overline{G} = \overline{H} \times \overline{S}$, so w
 \[
 \pi_1(G) = \pi_1(\overline{H}) \oplus \pi_1(\overline{S})
 \]
-By restricting to a copy of $U(1)$, the map $\alpha$ determines
+By restricting to a copy of $\mathrm{U}(1)$, the map $\alpha$ determines
 a class in $\pi_1(\overline{H}) \cong \Z^n$, which can be thought of as
 choosing the first Chern class for each direct summand of a vector bundle.
 For $\beta$, we need to do some additional work. The homomorphism
@@ -949,7 +951,7 @@ $Z(\overline{S})$. Therefore, we can always find a map $\pi_1(M) \to \overline{S
 whose lift to $\Gamma_Z$ maps the central element $J$ to any element of
 $\pi_1(\overline{S})$, considered as a subgroup of the center of the universal cover.
 In addition, it is clear that any element of $\pi_1(\overline{H})$ is realized
-as the restriction of a map $U(1) \times \pi_1(M) \to \overline{H}$. Therefore,
+as the restriction of a map $\mathrm{U}(1) \times \pi_1(M) \to \overline{H}$. Therefore,
 every element of $\pi_1(\overline{G})$ can be realized via the maps
 $\alpha$ and $\beta$ coming from the homomorphism
 $\overline{\rho} : \Gamma_\R \to \overline{G}$, so this shows that every
@@ -968,9 +970,9 @@ a Hermitian form on $E$ and taking the unitary frame bundle of $E$. Let $P \to M
 a principal $\mathrm{U}(n)$ bundle with Yang-Mills connection $A$, and let
 $X \in \mathfrak{u}_n$ be the Lie algebra element determined by the curvature of $A$.
 Writing $X = -2\pi i \Lambda$ for a Hermitian matrix $\Lambda$, the Yang-Mills condition
-implies that the trace of $\Lambda$ is integral equal to the Chern class of $P$.
+implies that the trace of $\Lambda$ is integral and equal to the Chern class of $P$.
 Furthermore, using the eigenspace decomposition of $X$, we find that the stabilizer
-group $G_X$ is a product of $U(n_i)$, where $n_i$ is the multiplicity of the
+group $G_X$ is a product of $\mathrm{U}(n_i)$, where $n_i$ is the multiplicity of the
 $i^{th}$ eigenvalue $\lambda_i$. It can then be shown (though we don't show it
 here) that we must have that $n_i\lambda_i \in \Z$. \\
 
@@ -981,27 +983,29 @@ corresponds to the Chern classes of the factors coinciding with the Chern class
 of the total bundle, which follows from the formula for the determinant line bundle
 of a direct sum of vector bundles.
 %
-\section{The Holomorphic Viewpoint}
+\section{The Holomorphic Perspective}
 %
 Fix a smooth complex vector bundle $E \to M$ of rank $n$ and first Chern class $k$.
 The data of a holomorphic structure on $E$ is equivalent to the data of a first
 order differential operator $\dbar_E : \Omega^0_M(E) \to \Omega^1_M(E)$ satisfying
 $\dbar_E^2 = 0$, and the holomorphic sections of $E$ are obtained by taking the
-kernel of $\dbar_E$. Much like connections, the any such operator may be written in
+kernel of $\dbar_E$. Much like connections, any such operator may be written in
 a smooth local trivialization of $E$ as
 \[
 \dbar_E = \dbar + B
 \]
-where $\dbar$ is the usual operator on $\C^n$ and $B$ is $\GL_n\C$-valued
+where $\dbar$ is the usual operator on $\C^n$ and $B$ is smooth $\GL_n\C$-valued
 $(0,1)$-form. This corresponds to the space of holomorphic structures being an
 affine space over $\Omega_M^{0,1}(\End E)$. The group $\Aut(E)$ of smooth bundle
 automorphisms of $E$ acts on the space of holomorphic structures by conjugation, i.e.
 under an automorphism $g \in \mathrm{Aut}(E)$, the action is given by the mapping
 $\dbar_E \mapsto g\dbar_E g\inv$. Furthermore, the orbits of this group action are
-exactly the isomorphism classes of holomorphic structures on $E$, so the quotient by
-this action would be the moduli space of holomorphic structures on $E$. However,
-the quotient by this group action is not very nice, so we must restrict ourselves to
-structures that are stable in the sense of GIT.
+exactly the isomorphism classes of holomorphic structures on $E$ (which is most
+easily seen by characterizing an isomorphism of holomorphic vector bundles as
+a smooth bundle isomorphism intertwining the $\dbar$ operators), so the quotient by
+this action would be the moduli space of holomorphic bundles over $M$ of rank $n$ and
+degree $k$. However, the quotient by this group action is not very nice, so we must
+restrict ourselves to structures that are stable in the sense of GIT.
 %
 \begin{defn}
 The \ib{slope} of a complex vector bundle $E \to M$ is defined to be
@@ -1026,10 +1030,11 @@ $\mathscr{C}_s(E)$ and $\mathscr{C}_{ss}(E)$ denote the subspace of stable and
 semistable holomorphic structures respectively, then we can construct the moduli space
 of of holomorphic vector bundles of rank $n$ and degree $k$ as
 \[
-\mathcal{N}(n,k) \defeq \mathscr{C}_{ss}(E)/\Aut(E)
+\mathcal{N}(n,k) \defeq \mathscr{C}_{ss}(E)/\overline{\Aut(E)}
 \]
-In the case that $n$ and $k$ are coprime, we have that stability and semistability
-coincide, and this will be the main situation of interest. \\
+For an quotient $\overline{\Aut(E)}$ of $\Aut(E)$ that acts freely on
+$\mathscr{C}_{ss}(E)$.In the case that $n$ and $k$ are coprime, we have that stability
+and semistability coincide, and this will be the main situation of interest. \\
 
 Understanding the moduli space of semistable bundles will also give
 information regarding unstable holomorphic bundles. One reason for this is
@@ -1046,14 +1051,19 @@ of $E$ such that $E_{i+1}/E_i$ is semistable and we have
 \]
 \end{thm}
 %
-\section{The Symplectic Viewpoint}
+This filtration will also serve to give a stratification of the space of holomorphic
+structures, which will allow us to compute the cohomology of the quotient via
+equivariant cohomology.
+%
+\section{The Symplectic Perspective}
 %
 Even though the space $\mathscr{A}(P)$ is infinite dimensional, it has enough structure
 to be viewed as a symplectic ``manifold," but we will gloss over the formal details.
 Because $\mathcal{A}(P)$ is an affine space over $\Omega_M^1(\g_P)$, we may
 work with it as a manifold, where the tangent space at any point is $\Omega_M^1(\g_P)$.
 We will be relatively cavalier with the details, though all we are doing can be made
-formal by passing to Sobolev completions of spaces of sections. \\
+formal by passing to Sobolev completions of spaces of sections, or working with
+Frechet manifolds and tame maps.\\
 
 In the case that $M$ is a Riemann surface, then the Hodge star
 $\star : \Omega^1_M(\g_P) \to \Omega^1_M(\g_P)$ can be viewed as a complex
@@ -1064,7 +1074,8 @@ by the complex structure. This allows us to view the pairing
 (\omega,\eta) \mapsto \int_M \langle\omega,\eta\rangle
 \]
 as a symplectic form on $\mathscr{A}(P)$. In addition, these structures are
-visibly compatible, which gives $\mathscr{A}(P)$ a K\"ahler structure. \\
+visibly compatible, which gives $\mathscr{A}(P)$ a K\"ahler structure, if we
+ignore issues of integratibility. \\
 
 Recall that if we have a symplectic left action of a group $G$ on a symplectic manifold
 $(M,\omega)$ we get an induced map $\g \to \mathfrak{X}(M)$ mapping $\xi$ to the vector
@@ -1108,7 +1119,8 @@ and the mapping $\phi \mapsto H_\phi$ is clearly $\mathscr{G}(P)$-equivariant.
 We then compute for
 $A \in \mathscr{A}(P)$ and $\psi \in T_A\mathscr{A}(P) = \Omega^1_M(\g_P)$
 \begin{align*}
-d(H_\phi)_A(\psi) &= \frac{d}{dt}\bigg\vert_{t=0}\int_M\langle F_{A+t\psi},\phi\rangle \\
+d(H_\phi)_A(\psi)
+&= \frac{d}{dt}\bigg\vert_{t=0}\int_M\langle F_{A+t\psi},\phi\rangle \\
 &= \int_M \langle d_A\psi,\phi\rangle \\
 &= \int_M d\langle\psi,\phi\rangle - \int_M \langle \psi,d_A\phi\rangle \\
 &= \int_M\langle d_A\phi,\psi\rangle
@@ -1128,14 +1140,17 @@ so $\mu$ defines a moment map for this Hamiltonian action.
 %
 \section{Comparison of the Holomorphic and Symplectic Perspectives}
 %
+% TODO fix the HN-type vectors, length shound be rank of bundle - repeat slopes
+% depending on the rank of the subbundle in the filtration.
+%
 Given a smooth complex vector bundle $E \to M$, a Hermitian metric on $E$ gives rise
-to the unitary frame bundle $\mathcal{B}_U(E)$, which is a principal $U(n)$-bundle.
-Furthermore, the isomorphism class of the bundle $\mathcal{B}_U(E)$ is
-independent of the choice of Hermitian metric, and is determined by the first
-Chern class of $E$. For notational compactness, let $P \to M$ denote the
-principal $U(n)$-bundle of unitary frames of $E$ with respect to a fixed
+to the unitary frame bundle $\mathcal{B}_U(E)$, which is a principal
+$\mathrm{U}(n)$-bundle. Furthermore, the isomorphism class of the bundle
+$\mathcal{B}_U(E)$ is independent of the choice of Hermitian metric, and is determined
+by the first Chern class of $E$. For notational compactness, let $P \to M$ denote the
+principal $\mathrm{U}(n)$-bundle of unitary frames of $E$ with respect to a fixed
 Hermitian metric on $E$. This Hermitian structure allows us to relate holomorphic
-stuctures on $E$ with connections on $P$ -- given a holomorphic structure
+structures on $E$ with connections on $P$ -- given a holomorphic structure
 $\dbar_E$ on $E$, there exists a unique connection on $E$ called the
 \ib{Chern connection} that is compatible with both the holomorphic and Hermitian
 structures. Furthermore, a connection on $P$ induces a connection on $E$,
@@ -1174,7 +1189,7 @@ a more differential geometric way, the statement of the theorem is:
 \begin{thm}[\ib{Narasimhan-Seshadri}]
 Let $\mathscr{A}_s(P) \subset \mathscr{A}(P)$ denote the subspace of connections of $P$
 that are absolute minima of the Yang-Mills and arise from irreducible representations
-$\Gamma_\R \to U(n)$. Then the identification of $\mathscr{A}(P)$ with
+$\Gamma_\R \to \mathrm{U}(n)$. Then the identification of $\mathscr{A}(P)$ with
 $\mathscr{C}(E)$ induces a homeomorphism
 $\mathscr{A}_s(P)/\mathscr{G}(P) \to \mathscr{C}_s(E)/\Aut(E)$.
 \end{thm}
@@ -1194,22 +1209,22 @@ flow towards or away from the critical sets of the norm square of the moment map
 In our case, we have a good candidate for the Morse strata of the Yang-Mills
 functional, which comes from the existence of Harder-Narasimhan filtrations.
 As before, let $E \to M$ be a holomorphic vector bundle with a fixed Hermitian metric
-and let $P \to M$ be its principal $U(n)$-bundle of unitary frames. Recall that
-the curvature of a Yang-Mills connection on $P$ is equivalent to the data of a
+and let $P \to M$ be its principal $\mathrm{U}(n)$-bundle of unitary frames. Recall
+that the curvature of a Yang-Mills connection on $P$ is equivalent to the data of a
 skew-Hermitian matrix $X$, and writing at $X = -2\pi i \Lambda$ with $\Lambda$
 Hermitian, the eigenvalues of $X$ determine a reduction of structure group
-from $U(n)$ to the stabilizer subgroup o $X$, which is a subgroup isomorphic to
-$U(n_1) \times \ldots U(n_m)$ depending on the multiplicities of the eigenvalues.
-Comparing this with the holomorphic perspective, this exactly corresponds with the
-Harder-Narasimhan filtration of the bundle $E \to M$. In a paper of Shatz
+from $\mathrm{U}(n)$ to the stabilizer subgroup o $X$, which is a subgroup isomorphic to
+$\mathrm{U}(n_1) \times \ldots \mathrm{U}(n_m)$ depending on the multiplicities of the
+eigenvalues. Comparing this with the holomorphic perspective, this exactly corresponds
+to the Harder-Narasimhan filtration of the bundle $E \to M$. In a paper of Shatz
 \cite{shatz1976}, the Harder-Narasimhan filtration gives a stratification of
 the space $\mathscr{C}(E)$ of holomorphic structures of $E$, where a holomorphic
-structure on $E$ is of type $\mu \in \Q^k$ (where $k$ is the length of the
-filtration) if the slopes of the quotients in the Harder-Narasimhan filtration
-(arranged in decreasing order) are given by the entries of $\mu$. We let
-$\mathscr{C}_\mu(E) \subset \mathscr{C}(E)$ denote the subspace of holomorphic
-structures on $E$ of type $\mu$. Using the type, one can construct the
-Harder-Narasimhan polygon using the slopes, which is a convex polygon whose
+structure on $E$ is of type $\mu \in \Q^n$ if the slopes of the quotients in the
+Harder-Narasimhan filtration (arranged in decreasing order and repeated
+with muliplicity according to the rank of the quotients) are given by the entries
+of $\mu$. We let $\mathscr{C}_\mu(E) \subset \mathscr{C}(E)$ denote the subspace
+of holomorphic structures on $E$ of type $\mu$. Using the type, one can construct
+the Harder-Narasimhan polygon using the slopes, which is a convex polygon whose
 vertices are determined by the numerators and denominators of the slopes
 specified by $\mu$. These polygons determine a partial ordering on the slope
 vectors, where we say $\lambda \geq \mu$ if the polygon corresponding to $\lambda$
@@ -1221,8 +1236,7 @@ $\mathscr{C}_\mu(E)$ give a stratification of $\mathscr{C}(E)$ where
 called the \ib{Harder-Narasimhan stratification}. Furthermore, since the
 Harder-Narasimhan filtration is canonical, it is preserved by the
 action of $\Aut(E)$, so the action of $\Aut(E)$ on $\mathscr{C}$ restricts
-to actions of $\Aut(E)$ on the strata $\mathscr{C}_\mu(E)$, which we will
-need to compute the equivariant cohomology of $\mathscr{C}(E)$.\\
+to actions of $\Aut(E)$ on the strata $\mathscr{C}_\mu(E)$.\\
 
 Using the identification of $\mathscr{C}(E)$ with $\mathscr{A}(P)$ to
 transport the Harder-Narasimhan stratification to $\mathscr{A}(P)$, and we can then
@@ -1251,24 +1265,29 @@ Yang-Mills functional modulo analytic difficulties with the critical sets, and
 problems regarding convergence of the gradient flow of the Yang-Mills functional.
 It was later shown by Daskalopoulos \cite{daskalopoulos1992} that these analytic
 difficulties can be resolved, and that the Yang-Mills functional is an equivariantly
-perfect Morse function on $\mathscr{A}(P)$. However, it is not strictly necessary to
+perfect Morse function on $\mathscr{A}(P)$ whose Morse stata coincide with the
+Harder-Narasimhan stratification. However, it is not strictly necessary to
 use this fact to compute the cohomology of $\mathcal{N}(n,k)$, provided that we can
 show that the Harder-Narasimhan stratification is something called
 \ib{equivariantly perfect}, which we will discuss later.
 %
-\section{The Cohomology of $\mathcal{N}(n,k)$}
+\section{The Equivariant Cohomology of the Strata}
 %
-We restrict to the case where $n$ and $k$ are coprime, so stable bundles coincide
-with semistable bundles, and most of the work will be done using the holomorphic
-perspective. The strategy will be to compute the $\Aut(E)$-equivariant
-cohomology of the strata $\mathscr{C}_\mu(E)$ and then establish the
-equivariant perfection of the stratification to use an inductive Mayer-Vietoris
-and Kunneth formula procedure to compute the equivariant cohomology of
-$\mathscr{C}(E)$. Then by quotienting $\Aut(E)$ by a certain subgroup, we obtain
-a free action on $\mathscr{C}_s(E)$, and the equivariant cohomology by this
-quotient group will be the ordinary cohomology of the quotient space
-$\mathcal{N}(n,k)$, since in the coprime case, $\mathscr{C}_{ss}(E)$ and
-$\mathscr{C}_s(E)$ coicide. \\
+The $\Aut(E)$-equivariant cohomology of $\mathscr{C}(E)$ is just
+the ordinary cohomology $H^\bullet(B\Aut(E))$ since
+$\mathscr{C}(E)$ is contractible. We then note that $\Aut(E)$ deformation retracts
+onto the gauge group $\mathscr{G}(P)$ via Gram-Schmidt, so the cohomology of
+$B\Aut(E)$ is the same as the cohomology of $\mathscr{G}(P)$. Then blackboxing some
+results about the topology of $B\mathscr{G}(P)$, we can use the relation to understand
+the equivariant cohomology of the Harder-Narasimhan strata by establishing equivariant
+perfection of the stratification, which gives a formula for
+$H^\bullet_{\Aut(E)}(\mathscr{C}(E))$ (which we know) in terms of the equivariant
+cohomology of the strata (which we don't yet know), allowing us to deduce information
+about the equivariant cohomology of the strata. In particular, one of the strata is the
+semistable locus. Then by quotienting $\Aut(E)$ by a certain subgroup, we obtain a free
+action on $\mathscr{C}_s(E)$, and the equivariant cohomology by this quotient group
+will be the ordinary cohomology of the quotient space $\mathcal{N}(n,k)$, since in the
+coprime case, $\mathscr{C}_{ss}(E)$ and $\mathscr{C}_s(E)$ coincide. \\
 
 We first tackle the problem of computing the $\Aut(E)$-equivariant cohomology of
 the strata $\mathscr{C}_\mu(E)$. To do this, we will first make some reductions
@@ -1298,9 +1317,9 @@ is the same as the space
 $E\Aut(E) \times_{\Aut(E)} (\Aut(E) \times_{\Aut(E_\mu)} \mathscr{B}(E_\mu))$.
 Noting that $E\Aut(E) \times_{\Aut(E)} \Aut(E) \cong E\Aut(E)$, we have that
 this is the same as the space $E\Aut(E) \times_{\Aut(E_\mu)} \mathscr{B}(E_\mu)$.
-We then note that $E\Aut(E)$ is a contractible space with an action of
+We then note that $E\Aut(E)$ is a contractible space with a free action of
 $\Aut(E_\mu)$ (coming from restriction), so it may serve as the total space
-for a universal bundle for $\Aut(E_\mu)$. Thus, we have have
+for a universal bundle for $\Aut(E_\mu)$. Thus, we have
 \[
 H^\bullet_{\Aut(E)}(\mathscr{C}_\mu(E)) \cong
 H^\bullet_{\Aut(E_\mu)}(\mathscr{B}(E_\mu))
@@ -1350,14 +1369,14 @@ the Harder-Narasimhan strata. \\
 
 With this in hand, our next goal is to establish equivariant perfection of the
 Harder-Narasimhan stratification, which will allow us to conclude that the
-equivariant Poincar\'e polyomial for $\mathscr{C}_{ss}(E)$ is equal to the
+equivariant Poincar\'e series for $\mathscr{C}(E)$ is equal to the
 ``Morse polynomial" coming from the stratification, which is the polynomial
 \[
-\sum_\lambda t^{k_\mu} P_{t,\Aut(E_\mu)}(\mathscr{C}_\mu(E))
+\sum_\mu t^{k_\mu} P_{t,\Aut(E)}(\mathscr{C}_\mu(E))
 \]
 where $k_\mu$ is the codimension of $\mathscr{C}_\mu(E)$ in $\mathscr{C}(E)$
-and $P_{t,\Aut(E_\mu}(\mathscr{C}_\mu(E))$ denotes the equivariant Poincar\'e
-polynomial of the stratum $\mathscr{C}_\mu(E)$. To do this, we will need to take
+and $P_{t,\Aut(E)}(\mathscr{C}_\mu(E))$ denotes the equivariant Poincar\'e
+series of the stratum $\mathscr{C}_\mu(E)$. To do this, we will need to take
 some results on faith, which give conditions for equivariant perfection.
 %
 \begin{prop}
@@ -1367,6 +1386,13 @@ for a coefficient field $k$, then the stratification is equivariantly perfect
 with respect to $k$.
 \end{prop}
 %
+The other result we need to take on faith uses the notion of a primitive
+torus representation. Let $V$ be a finite dimensional $\mathbb{T}^n$-representation,
+which decomposes into a direct sum of characters $\chi_i$. We say that $V$ is
+\ib{primitive} if for all primes $p$, the characters $\chi_i$ are not divisible
+by $p$ in the character group of $\mathbb{T}^n$, i.e. there does not exist a character
+$\psi$ such that $\psi^p = \chi_i$.
+%
 \begin{prop}
 Let $X$ be a connected $G$ space where a subtorus of $G$ acts trivially,
 and let $N \to X$ be an equivariant vector bundle. Then if the action of the
@@ -1375,8 +1401,381 @@ has no torsion, then multiplication by the equivariant Euler class of
 $N$ on $H_G^\bullet(X,\F_p)$ is injective.
 \end{prop}
 %
-With this in mind, we want to identify the normal bundles to the strata
-and compute their equivariant Euler classes.
+With this in mind, we want to identify the normal bundles to the strata and
+verify that they satisfy the conditions of the previous proposition, which will
+imply equivariant perfection of the stratification. Fix a holomorphic bundle
+$E \to M$. The orbit of $E$ under $\Aut(E)$ consists of all holomorphic structures
+on the underlying smooth bundle that produce a holomorphic bundle isomorphic to $E$,
+so the normal should be the infinitesimal variation of the holomorphic structure
+of $E$. Identifying infinitesimal gauge transformations with smooth endomorphisms
+of $E$, the infinitesimal action of a smooth endomorphism $\phi$ on $E$
+corresponds to adding $\dbar_{\End E}\phi$ to $\dbar_E$. Therefore, the infinitesimal
+variations of $E$ correspond to the Dolbeault cohomology group
+$H^1_{\dbar}(M,\End E)$. In a similar fashion, we want to identify the normal
+to the strata $\mathscr{C}_\mu(E)$ with the infinitesimal variation of the holomorphic
+structure of $E$ that preserves the Harder-Narasimhan type. To that end,
+let $\End'(E)$ denote the holomorphic bundle of endomorphisms of $E$ that
+preserve the Harder-Narasimhan filtration, and let $\End''(E)$ denote the
+quotient of $\End(E)$ by $\End'(E)$. A similar analysis identifies
+$H^1_{\dbar}(M,\End''(E))$ with the normal direction to the strata
+$\mathscr{C}_\mu(E)$ at the point $E$. \\
+
+We then want to verify that multiplication by the equivariant Euler classes
+of the normal bundles is injective for all coefficient fields $\F_p$, which
+we will do by verifying the conditions of Proposition 8.2. The equivariant Euler
+class $e(N_\mu)$ lives in $H^\bullet_{\Aut(E)}(\mathscr{C}_\mu(E))$, but by a similar
+reduction, we can reduce to the restriction of $N_\mu$ to $\mathscr{B}(E^0_\mu)$,
+and compute the equivariant Euler class with respect to the group $\Aut(E_\mu^0)$.
+Recall that a point of $\mathscr{B}(E_\mu^0)$ is a holomorphic direct sum
+decomposition $E = D_1 \oplus \cdots \oplus D_r$ compatible with the smooth
+filtration of type $\mu$. We then note that the group $\Aut(E^0_\mu)$ contains
+a torus of dimension $r$, which acts on each factor $D_i$ by scaling by a scalar
+$\lambda_i$. This torus acts trivially on $\mathscr{B}(E_\mu^0)$, since scaling
+does not change the direct sum decomposition, nor the holomorphic structure. We
+then must check that the action on the fibers of the normal bundle is primitive.
+The fiber of the normal bundle over a holomorphic bundle $E$ is
+$H^1_{\dbar}(M,\End''(E))$, which admits an action by $\Aut(E_\mu^0)$ induced by
+the natural action on $\End''(E)$. Using the direct sum decomposition of $E$, the
+bundle $\End(E)$ of smooth endomorphisms of $E$ has a direct sum decomposition
+\[
+\End(E) = \bigoplus_{i,j}\hom(D_i,D_j)
+\]
+and we can then identify the subbundle $\End'(E)$ of smooth endomorphisms preserving
+the filtration as
+\[
+\End'(E) = \bigoplus_{i \geq j} \hom(D_i,D_j)
+\]
+which then allows us to identify the quotient $\End''(E)$ with the remaining
+factors, namely
+\[
+\End''(E) = \bigoplus_{i < j}\hom(D_i,D_j)
+\]
+identifying $\hom(D_i,D_j)$ with $D_i^*\otimes D_j$, this tells us that
+an element $(t_1,\ldots t_r)$ of the torus acts by $t_i\inv t_j$,
+on $\hom(D_i,D_j)$, and the induced action on $H^1(M,\hom(D_i,D_j))$ is the same
+scaling. This is primitive due to the fact that taking $p^{th}$ roots is a multivalued
+function. Then using the fact that taking cohomology commutes with direct sums,
+this gives us that the torus action on $H^1(M,\End''(E))$ is primitive.
+Thus we have verified the conditions of Proposition 8.2, and applying the result
+to Proposition 8.1, we get that the stratification is equivariantly perfect for
+all fields $\F_p$ and over the integers, giving us the equality
+\[
+P_{t,\Aut(E)}(\mathscr{C}(E)) = P_t(B\mathscr{G}(P)) =
+\sum_\mu t^{k_\mu} P_{t,\Aut(E_\mu)}(\mathscr{C}_\mu(E))
+\]
+over all coefficient field $\F_p$. We note that all the strata are complex subspaces,
+so they have even real codimension, so the numbers $k_\mu$ are all even. Then using the
+result that $H^\bullet(B\mathscr{G}(P))$ has no torsion in integer cohomology
+(which we are blackboxing), we know that the Poincare series for $\mathscr{C}(E)$
+remains unchanged when we change coefficients, so this allows us to conclude that the
+integer equivariant cohomology of all the strata contains no torsion. \\
+%TODO compute complex codimension using Riemann-Roch and vanishing of H^0
+
+We then want to determine the codimension $k_\mu$ of the stratum $\mathscr{C}_\mu(E)$,
+which amounts to computing the dimension of the cohomology group
+$H^1_{\dbar}(M,\End''(E))$. The way we will do this is by computing
+$H^0_{\dbar}(M,\End''(E))$, and the applying Riemann-Roch.
+%
+\begin{prop}
+\[
+H^0_{\dbar}(M,\End''(E)) = 0
+\]
+\end{prop}
+%
+\begin{proof}
+Recall that $\End''(E)$ is the quotient bundle $\End(E)/\End'(E)$, where $\End'(E)$
+is the subbundle of endomorphisms preserving the Harder-Narasimhan filtration.
+Therefore, we may identify $\End''(E)$ as the bundle of endomorphisms that do
+not preserve the filtration, and an element of $H^0_{\dbar}(M,\End''(E))$ is a global
+bundle endomorphism of $E$ that does not fix the filtration. Let
+$g \in H^0_{\dbar}(M,\End''(E))$ be a nonzero bundle endomorphism. By assumption,
+there exists some smallest nonzero $i$ such that $g(E_i) \not\subset E_i$.
+By construction, we note that by minimality of $i$, we have
+$g(E_{i-1}) \subset g(E_{i-1})$. Then let $k > i$ be the smallest integer such that
+$g(E_i) \subset g(E_k)$. Since $i-1 < k-1$, we get that $E_{i-1} \subset E_{k-1}$,
+and since $g$ preserves $E_{i-1}$, this implies that the restriction of $g$ to
+$E_k$ factors through the quotients to a nontrivial map $E_i/E_{i-1} \to E_k/E_{k-1}$.
+We note that both quotient bundles are semistable and
+$\mu(E_i/E_{i-1}) > \mu(E_k/E_{k-1})$ by the definition of the Harder-Narasimhan
+filtration. Then let $K \subset E_i/E_{i-1}$ be the smallest holomorphic subbundle
+containing the kernel of $g$, and let $A \subset E_k/E_{k-1}$ be the smallest
+holomorphic subbundle containing the image, giving us the exact sequence of
+holomorphic vector bundles
+\[\begin{tikzcd}
+0 \ar[r] & K \ar[r] & E_i/E_{i-1} \ar[r, "g"] & A \ar[r] & 0
+\end{tikzcd}\]
+We note that $\mu(A) \leq \mu(E_k/E_{k-1})$ by semistability, which implies that
+$\mu(A) < \mu(E_i/E_{i-1})$. However, we also have $\mu(K) \leq \mu(E_i/E_{i-1})$
+by semistability, and monotonicity of slopes in exact sequences would imply
+that $\mu(E_i/E_{i-1}) \leq \mu(A)$, a contradiction. Therefore, $g$ must be $0$.
+\end{proof}
+%
+Riemann-Roch give us the formula
+\[
+\chi(\End''(E)) = \dim H^0(\End''(E)) - \dim H^1(\End''(E))
+= c_1(\End''(E)) + (1-g)\mathrm{rank}(\End''(E))
+\]
+By the above proposition, this then gives us
+\[
+-\dim H^1(\End''(E)) = c_1(\End''(E)) + (1-g)\mathrm{rank}(\End''(E))
+\]
+So we must identify the rank and first Chern class of $\End''(E)$. We note that
+both of these are topological invariants of $E$ independent of the holomorphic
+structure, so we may work in the smooth category to compute these. The short
+exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & \End'(E) \ar[r] & \End(E) \ar[r] & \End''(E) \ar[r] & 0
+\end{tikzcd}\]
+splits in the smooth category, and since the first Chern class
+is additive in exact sequences, it suffices to identify the first Chern classes
+for $\End(E)$ and $\End'(E)$. Identifying $\End(E) \cong E^* \otimes E$,
+we then get a formula for $c_1(\End(E))$, which is
+\[
+c_1(\End(E)) = kn - nk = 0
+\]
+using the fact that the first Chern class of a bundle is equal to the first Chern
+class of its determinant line bundle, as well as the formula for the determinant
+line bundle of a tensor product. For the first Chern class of $\End'(E)$, we
+again appeal to the identification
+\[
+\End'(E) = \bigoplus_{i\geq j} \hom(D_i,D_j)
+\]
+Then using the fact that the first Chern class is additive with respect
+to direct sums, we get
+\[
+c_1(\End'(E)) = \sum_{i \geq j} k_jn_i - k_in_j
+\]
+where $\mu(D_i) = k_i/n_i$. However, when $i = j$, we have $c_1(\hom(D_i,D_j)) = 0$ by
+a similar discussion as with $c_1(\End(E))$, so we may rewrite this as
+\[
+c_1(\End'(E)) = \sum_{i > j} k_jn_i - k_in_j
+\]
+This then gives us $c_1(\End''(E))$, since by additivity, we must have
+$c_1(\End''(E)) = - c_1(\End'(E))$. The rank for $\End''(E)$ is easily computed
+via the identification
+\[
+\End''(E) = \bigoplus_{i < j}\hom(D_i,D_j)
+\]
+which gives us that $\mathrm{rank}(\End''(E)) = \sum_{i < j} n_in_j$, which by
+symmetry is equal to $\sum_{i > j}n_in_j$. Putting everything together, we have that
+\[
+k_\mu/2 = \dim H^1(M,\End''(E))
+= -\left( \sum_{i > j} k_in_j - k_jn_i + n_in_j(1-g)\right)
+= \sum_{i > j}n_ik_j-k_in_j + n_in_j(g-1)
+\]
+where we must divide by $2$ because Riemann-Roch computes the \emph{complex} dimension
+of $H^1_{\dbar}(M,\End''(E))$.
+%
+\section{The Cohomology of $\mathcal{N}(n,k)$}
+%
+We now restrict to the case where $n$ and $k$ are coprime, so stability
+and semistability coincide. The first order of business is to identify the
+stabilizers of the action of $\Aut(E)$ on $\mathscr{C}(E)$, so we may pass to a
+free action by a quotient of $\Aut(E)$, and the equivariant cohomology with
+respect to this action will compute the ordinary cohomology of $\mathcal{N}(n,k)$.
+%
+\begin{prop}
+The stabilizer of a stable holomorphic structure on $E$ is the central subgroup
+$\C^\times \subset \Aut(E)$ that acts by scaling the fibers.
+\end{prop}
+%
+\begin{proof}
+Clearly $\C^\times$ is contained in the stabilizer of a holomorphic structure, so it
+suffices to show that any automorphism $g \in \Aut(E)$ is multiplication by some
+nonzero complex number $\lambda$. Taking eigenspaces fiberwise, we get a
+direct sum decomposition of $E$ into holomorphic subbundles
+\[
+E = E_1 \oplus \cdots \oplus E_k
+\]
+We then claim that this direct sum decomposition only contains one term, i.e.
+the entire bundle $E$ is an eigenbundle for $g$, which would then imply that
+$g$ is multiplication by a constant scalar. We note that since $E$ is stable, $E_1$ has
+strictly smaller slope than $E$. Similarly, $E_2\oplus\cdots\oplus E_k$ has strictly
+smaller slope. Furthermore, we have an isomorphism of holomorphic
+bundles $E_1 \cong E/E_2 \oplus\cdots\oplus E_k$. Taking the exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & E_2\oplus\cdots\oplus E_k \ar[r] & E \ar[r] & E_1 \ar[r] & 0
+\end{tikzcd}\]
+monotonicity of slopes in exact sequences the implies that the slope of $E_1$
+is strictly larger than $E$, which is a contradiction. Therefore, the only way
+for this to hold is if $E = E_1$, and there exist no other terms in the
+decomposition.
+\end{proof}
+%
+Therefore, the action of $\overline{\mathscr{G}_\C} = \Aut(E)/\C^\times$ on
+$\mathscr{C}_s(E) = \mathscr{C}_{ss}(E)$ is free, which gives us
+\[
+H^\bullet_{\overline{\mathscr{G}}}(\mathscr{C}_{ss}(E)) = H^\bullet(\mathcal{N}(n,k))
+\]
+Consequently, we are interested in computing the equivariant cohomology of
+$\mathscr{C}_{ss}(E)$ with respect to the $\overline{\mathscr{G_\C}}$ action.
+In addition, if we let $\overline{\mathscr{G}}$ denote the quotient of
+$\mathscr{G}(P)$ by the central $\mathrm{U}(1)$ subgroup, we have that
+$\overline{\mathscr{G}}_\C$ deformation retracts onto $\overline{\mathscr{G}}$
+in a similar fashion to $\Aut(E)$ and $\mathscr{G}(P)$, so we can equivalently
+compute $\overline{\mathscr{G}}$-equivariant cohomology to obtain the cohomology
+of $\mathcal{N}(n,k)$. To do this, we must first understand the cohomology
+of the classifying space $B\overline{\mathscr{G}}$. Functoriality of classifying
+spaces gives us the fibration
+\[\begin{tikzcd}
+B\mathrm{U}(1) \ar[r] & B\mathscr{G}(P) \ar[d] \\
+& B\overline{\mathscr{G}}
+\end{tikzcd}\]
+One thing to note is that this fibration is always trivial in rational cohomology,
+even when $n$ and $k$ are not coprime. To see this it suffices to show that
+the inclusion $B\mathrm{U}(1) \to B\mathscr{G}(P)$ induces a surjection in rational
+cohomology, at which point Leray-Hirch gives us the desired result that
+\[
+H^\bullet(\mathscr{G}(P), \Q)
+\cong H^\bullet(B \mathrm{U}(1),\Q) \otimes H^\bullet(B\overline{\mathscr{G}},\Q)
+\]
+A model for $B\mathrm{U}(1)$ is $\CP^\infty$, which has Poincar\'e series
+\[
+P_t(\CP^\infty) = \frac{1}{1-t^2}  = 1 + t^2 + t^4 + \cdots
+\]
+Which would then give us
+\[
+P_t(B\overline{\mathscr{G}}) = P_t(\mathscr{G}(P))(1-t^2)
+\]
+To show that the pullback map induced by $B\mathrm{U}(1) \to B\mathscr{G}(P)$ is
+surjective in rational cohomology, we first construct a homomorphism
+$\mathscr{G}(P) \to \mathrm{U}(1)$ such that the composition
+$\mathrm{U}(1) \to \mathscr{G}(P) \to \mathrm{U}(1)$ induces a surjection in
+rational cohomology. Let $g \in \mathscr{G}(P)$, which we may regard as a bundle
+automorphism of $E$ that preserves the Hermitian fiber metric. Fix a point $x \in M$.
+Then restricting the action of $g$ to the fiber $E_x$ produces an element of
+$\mathrm{U}(n)$, and then taking the determinant gives an element of
+$\mathrm{U}(1)$. This map is degree $n$ since $E$ is rank $n$, which means that the
+composition of restriction to $E_x$ with taking determinants induces an isomorphism on
+rational cohomology. Using functoriality, we get maps
+$B\mathrm{U}(1) \to B\mathscr{G}(P) \to B\mathrm{U}(1)$ such the the pullback along
+the composition multiplies the generator of
+$H^\bullet(B\mathrm{U}(1)) \cong \Q[x]$ by $n$, so the fibration
+$B\mathrm{U}(1) \to B\mathscr{G}(P) \to B\overline{\mathscr{G}}$ satisfies the
+conditions of Leray-Hirsch. \\
+
+Then let $X$ be any $\overline{\mathscr{G}}$-space. The quotient map
+$\mathscr{G}(P) \to \overline{\mathscr{G}}$ gives $X$ the structure of a
+$\mathscr{G}(P)$-space, and we want to compare the equivariant cohomology of $X$
+with respect to both of these group actions. The map
+$B\mathscr{G}(P) \to B\overline{\mathscr{G}}$ induced by the quotient map induces
+a pullback of $E\overline{\mathscr{G}}\times_{\overline{\mathscr{G}}} X$ to a
+fibration over $B\mathscr{G}(P)$ which is a model for
+$E\mathscr{G}(P) \times_{\mathscr{G}(P)} X$. The map
+$E\mathscr{G}(P) \times_{\mathscr{G}(P)} X \to
+E\overline{\mathscr{G}}\times_{\overline{\mathscr{G}}} X$ then gives
+$E\mathscr{G}(P) \times_{\mathscr{G}(P)}$ the structure of a $B\mathrm{U}(1)$-bundle
+over $E\overline{\mathscr{G}}\times_{\overline{\mathscr{G}}} X$. These observations
+are summarized in the diagram
+\[\begin{tikzcd}
+& E\mathscr{G}(P) \times_{\mathscr{G}(P)} X \ar[r] \ar[d]
+& E\overline{\mathscr{G}}\times_{\overline{\mathscr{G}}} X \ar[d] \\
+B\mathrm{U}(1) \ar[ur]\ar[r] & B\mathscr{G}(P) \ar[r] & B\overline{\mathscr{G}}
+\end{tikzcd}\]
+The fact that the diagram commutes implies that the map
+$B\mathrm{U}(1) \to E\mathscr{G}(P) \times_{\mathscr{G}(P)} X$ induces a surjection on
+rational cohomology, so the bundle $E\mathscr{G}(P) \times_{\mathscr{G}(P)} X \to
+E\overline{\mathscr{G}}\times_{\overline{\mathscr{G}}} X$ also satisfies
+the conditions for Leray-Hirsch, giving us
+\[
+H^\bullet_{\mathscr{G}(P)}(X,\Q)
+\cong H^\bullet(B\mathrm{U}(1), \Q) \otimes H^\bullet_{\overline{\mathscr{G}}}(X,\Q)
+\]
+or, in terms of Poincar\'e polynomials
+\[
+P_{t,\mathscr{G}(P)}(X) = \frac{P_{t,\overline{\mathscr{G}}}(X)}{1-t^2}
+\]
+In our specific case, letting $X = \mathscr{C}_{ss}(E)$, we obtain a formula
+for the Poincar\'e polynomial of $\mathcal{N}(n,k)$, which is
+\[
+P_t(\mathcal{N}(n,k)) = (1-t^2)P_{t,\mathscr{G}(P)}(\mathscr{C}_{ss}(E))
+\]
+%
+\section{An Example : The Cohomology of $\mathcal{N}(2,1)$}
+%
+To compute the cohomology of the moduli space, we will have to take some results
+about the topology of $B\mathscr{G}(P)$ on faith.
+%
+\begin{thm}
+Let $P \to M$ be a $\mathrm{U}(n)$-bundle over a compact Riemann surface $M$ of
+genus $G$, and let $\mathscr{G}(P)$ be the gauge group. Then the Poincar\'e series
+of $B\mathscr{G}(P)$ is given by the formula
+\[
+P_t(B\mathscr{G}(P))
+= \frac{\prod_{k=1}^n(1+t^{2k-1})^{2g}}{(1-t^{2n})\prod_{k=1}^{n-1}(1-t^{2k})^2}
+\]
+\end{thm}
+%
+Fix a smooth complex vector bundle $E$ of rank $2$ and degree $1$, and let $P \to M$
+be its principal $\mathrm{U}(2)$ bundle of frames. We then want to use the formula we
+just derived, which is
+\[
+P_t(\mathcal{N}(2,1)) = (1-t^2)P_{t,\mathscr{G}(P)}(\mathscr{C}_{ss}(E))
+\]
+To compute $P_t{\mathscr{G}(P)}(\mathscr{G}_{ss}(E))$, we use a formula we derived
+earlier from equivariant perfection of the stratification, which is
+\[
+P_t(B\mathscr{G}(P)) = \sum_\mu t^{k_\mu} P_{t,\Aut(E)}(\mathscr{C}_\mu(E))
+\]
+Furthermore, we have a formula for $P_{t,\Aut(E)}(\mathscr{C}_\mu(E))$, which is
+\[
+P_{t,\Aut(E)}(\mathscr{C}_\mu(E)) = \prod_i P_{t,\Aut(D_i)}(\mathscr{C}_{ss}(D_i))
+\]
+where the $D_i$ are the quotients coming from the Harder-Narasimhan filtration.
+We first identify the possible Harder-Narasimhan types for a holomorphic structure
+on $E$. The semistable case corresponds to the filtration $0 \subset E$, and otherwise
+we have an intermediate subbundle $L$, which is necessarily a line bundle,
+giving the filtration $0 \subset L \subset E$. Therefore, the type of a holomorphic
+structure on $E$ is determined by a single integer, which is $c_1(L)$. Furthermore,
+we must have that $c_1(L) \geq 1$, since $L$ must be a maximal semistable subbundle of
+$E$, which has degree $1$. In terms of types, this corresponds to
+\[
+c_1(D_1) = c_1(E/L) = c_1(E) - c_1(L) = 1 - c_1(L)
+\]
+so the type vector would be $(c_1(L), 1-c_1(L))$. Let $\mathscr{C}_r(E)$ denote
+the stratum corresponding to the type vector $(r+1, -r)$ (this notation will make
+the codimension formula nicer). Then we have
+\[
+P_{t,\Aut(E)}(\mathscr{C}_r(E))
+= P_{t,(\Aut(L))}(\mathscr{C}_{ss}(L)) P_{t,\Aut(E/L)}(\mathscr{C}_{ss}(E/L))
+\]
+We then note that both $L$ and $E/L$ are both line bundles, which are automatically
+stable, so $\mathscr{C}_{ss}(L) = \mathscr{C}(L)$, so the equivariant cohomology
+of $\mathscr{C}_{ss}(L)$ is just the cohomology of $B\Aut(L)$, and the same
+is true for $E/L$. But the cohomology of $B\Aut(L)$ is the same as the cohomology
+of the classifying space of the gauge group for a $U(1)$-bundle, which by
+Theorem 10.1 is given by
+\[
+P_t(B\Aut(L)) = \frac{(1+t)^{2g}}{(1-t^2)}
+\]
+and the same holds for $E/L$, so we have
+\[
+P_{t,\Aut(E)}(\mathscr{C}_r(E)) = \left(\frac{(1+t)^{2g}}{(1-t^2)}\right)^2
+\]
+We then recall the codimension formula. For a type vector $\mu = (r+1,-r)$, the
+formula is
+\[
+k_\mu = 2(r+1-(-r) + g - 1) = 4r + 2g
+\]
+Putting everything together, we get
+\[
+P_t(B\mathscr{G}(P)) = \frac{(1+t)^{2g}(1+t^3)^{2g}}{(1-t^4)(1-t^2)^2}
+= P_{t,\Aut(E)}(\mathscr{C}_{ss}(E)) +
+\sum_{r=0}^\infty t^{4r+2g}\left(\frac{(1+t)^{2g}}{1-t^2}\right)^2
+\]
+Rearranging, and treating the infinite sum as a geometric series, this becomes
+\begin{align*}
+P_{t,\Aut(E)}(\mathscr{C}_{ss}(E)) &= \frac{(1+t)^{2g}(1+t^3)^{2g}}{(1-t^4)(1-t^2)^2}
+- \sum_{r=0}^\infty t^{4r+2g}\left(\frac{(1+t)^{2g}}{1-t^2}\right)^2 \\
+&= \frac{(1+t)^{2g}(1+t^3)^{2g} - t^{2g}(1+t)^{4g}}{(1-t^4)(1-t^2)^2}
+\end{align*}
+Then we use the fact that $\Aut(E)$ and $\mathscr{G}(P)$ give the same
+equivariant cohomology, so our original formula for the Poincar\'e polynomial of
+$\mathcal{N}(2,1)$ yields
+\begin{align*}
+P_t(\mathcal{N}(2,1)) &= (1-t^2)P_{t,\mathscr{G}(P)}(\mathscr{C}_{ss}(E)) \\
+&= \frac{(1+t)^{2g}(1+t^3)^{2g} - t^{2g}(1-t)^{4g}}{(1-t^4)(1-t^2)}
+\end{align*}
 %
 \newpage
 %

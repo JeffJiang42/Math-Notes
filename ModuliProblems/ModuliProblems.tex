@@ -1,0 +1,704 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage{amsmath}
+\usepackage{accents}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{bibliography.bib}
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathrm{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand*{\dt}[1]{%
+   \accentset{\mbox{\large\bfseries .}}{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+%
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Modern Moduli Theory Exercises}
+%
+\maketitle
+%
+\setcounter{section}{1}
+%
+\setcounter{thm}{1}
+%
+\begin{exer}
+Show that the restriction
+$\mathrm{Fun}(\mathsf{Sch}^{\mathrm{op}},\mathsf{Set}) \to
+\mathrm{Fun}(\mathsf{Ring},\mathsf{Set})$ is not fully faithful.
+\end{exer}
+%
+\begin{proof}
+Consider the functor $H^1$, which maps $X \mapsto H^1(X,\O_X)$ and the functor
+$F$ that maps every scheme to $\set{0}$ and every morphism to the identity map
+$\set{0} \to \set{0}$. On affine schemes, $H^1$ and $F$ agree. However, nonisomorphic
+schemes (e.g. any two nonisomorphic nonaffine schemes) get mapped to isomorphic
+objects in $\mathrm{Set}$, so the functor cannot be fully faithful.
+\end{proof}
+%
+\begin{exer} \enumbreak
+\begin{enumerate}
+  \item For schemes $T$ and $X$, the assignment $U \subset T \mapsto \mathrm{Map}(U,X)$
+  is a sheaf of sets over $T$.
+  \item Use this to show that the functor
+  $\mathrm{Sch}\to\mathrm{Fun}(\mathsf{Ring}, \mathsf{Set})$ is fully faithful.
+\end{enumerate}
+\end{exer}
+%
+\begin{proof} \enumbreak
+\begin{enumerate}
+  \item The assignment clearly forms a presheaf with the natural restriction maps
+  given by restricting a morphism to a subset. To verify that the assignment
+  defines a sheaf, we need to verify two more conditions. Let $\set{U_i}$ be
+  an open covering of an open set $U$. Then let $f,g \in \mathrm{Map}(U,X)$
+  such that $f\vert_{U_i} = g\vert_{U_i}$ for all $i$. Then $f$ and $g$ agree
+  on the points of $U$. In addition, $f$ and $g$ induce the same map on stalks,
+  so they induce the same map of sheaves. Therefore, $f$ and $g$ define the same
+  morphism. For the other condition, suppose we have $f_i \in \mathrm{Map}(U_i,X)$
+  such that $f_i$ and $f_j$ agree on $U_i \cap U_j$. Then since functions and
+  sheaf morphisms glue, the $f_i$ determine a morphism $f \in \mathrm{Map}(U,X)$
+  with $f\vert_{U_i} = f_i$.
+  \item To show that the functor is fully faithful, we want to show that for
+  schemes $X,T$, the map
+  \[
+  \mathrm{Map}(T,X) \to
+  \mathrm{Map}_{\mathrm{Fun}(\mathsf{Ring},\mathsf{Set})}
+  (\mathrm{Map}(\cdot, T), \mathrm{Map}(\cdot, X))
+  \]
+  is bijective. In the case that $T = \mathrm{Spec}(A)$ is affine, the standard
+  proof of the Yoneda lemma works, where given a natural transformation
+  $\eta : \mathrm{Map}(\cdot, T) \to \mathrm{Map}(\cdot, X))$, it is induced by
+  postcomposition with the map $\eta_T(\id_T) : T \to X$, where we note that $T$
+  is a valid input the the functors since it is affine. We then want to verify
+  bijectivity when $T$ is not necessarily affine. For injectivity, let $\set{U_i}$
+  be an affine open cover of $T$, and let $f,g : T \to X$ be two morphisms that
+  induce the same natural transformation
+  $\mathrm{Map}(\cdot,T) \to \mathrm{Map}(\cdot,X)$. Then let $f_i,g_i : U_i \to X$
+  be the restrictions of $f$ and $g$ to the $U_i$. Since the $U_i$ are affine,
+  we know that the natural transformations
+  $\mathrm{Map}(\cdot,U_i) \to \mathrm{Map}(\cdot,X)$ induced by the $f_i$ and $g_i$
+  are the same, so we know $f_i = g_i$ on $U_i$. Therefore, $f = g$ since
+  $U \mapsto \mathrm{Map}(U,X)$ is a sheaf. For surjectivity, let
+  $\eta : \mathrm{Map}(\cdot,T) \to \mathrm{Map}(\cdot,X)$ be a natural transformation.
+  We have natural inclusions
+  $\mathrm{Map}(\cdot, U_i) \hookrightarrow \mathrm{Map}(\cdot, T)$ given by
+  composition with the inclusions $U_i \hookrightarrow T$, and $\eta$ restricts
+  to natural transformations
+  $\eta_i : \mathrm{Map}(\cdot, U_i) \to \mathrm{Map}(\cdot, X)$, which are determined
+  by morphisms $f_i : U_i \to X$. By restricting the natural transformation to
+  intersections $U_i \cap U_j$, we find that $f_i$ and $f_j$ agree on $U_i \cap U_j$.
+  Therefore, the $f_i$ glue to a morphism $T \to X$, which much necessarily induce
+  $\eta$. Therefore, the map
+  \[
+  \mathrm{Map}(T,X) \to
+  \mathrm{Map}_{\mathrm{Fun}(\mathsf{Ring},\mathsf{Set})}
+  (\mathrm{Map}(\cdot, T), \mathrm{Map}(\cdot, X))
+  \]
+  is bijective in the non-affine case as well.
+\end{enumerate}
+\end{proof}
+%
+\setcounter{thm}{4}
+%
+\begin{exer}
+For any category $\mathcal{C}$ and an object $T \in \mathcal{C}$, the \ib{slice category}
+$\mathcal{C}_{/T}$ is the category where the objects are morphisms $X \to T$ in
+$\mathcal{C}$, and the morphisms $(X\to T) \to (Y \to T)$ are morphisms $X \to Y$
+in $\mathcal{C}$ such that
+\[\begin{tikzcd}
+X \ar[dr] \ar[rr]  & & Y \ar[dl] \\
+& T
+\end{tikzcd}\]
+is a commutative diagram. Show that the canonical functor
+$\mathcal{P}(\mathcal{C}_{/T}) \to \mathcal{P}(\mathcal{C})_{/h_T}$ is an equivalence.
+\end{exer}
+%
+\begin{proof}
+Let $A : \mathcal{P}(\mathcal{C}_{/T}) \to \mathcal{P}(\mathcal{C})_{/h_T}$ denote
+the canonical functor. Explicitly, given a functor
+$F \in \mathcal{P}(\mathcal{C}_{/T})
+= \mathrm{Fun}(\mathcal{C}^{\mathrm{op}}_{/T},\mathsf{Set})$, $A(F)$ is the
+functor $\mathcal{C}^{\mathrm{op}} \to \mathsf{Set}$ given on objects by
+\[
+[A(F)](X) = \coprod_{p \in \mathrm{Map}(X,T)} F\left(X \xrightarrow{p} T \right)
+\]
+Given a morphism $f : X \to Y$, we let
+\[
+[A(F)](f)  = \coprod_{\substack{p \in \mathrm{Map}(X,T) \\ q \text{ compatible}}}
+F\left(\begin{tikzcd}
+X \ar[rr, "f"] \ar[dr, "p"'] && Y \ar[dl, "q"] \\
+& T
+\end{tikzcd}\right)
+\]
+where $q \in \mathrm{Map}(Y,T)$ is compatible with $p$ if the diagram commutes.
+The functor $A(F)$ comes equipped with a canonical natural transformation $\eta$ to
+$h_T$ corresponding to forgetting everything except for the morphism $p : X \to T$.
+To show that $A$ is an equivalence, we provide an inverse functor
+$B : \mathcal{P}(\mathcal{C}_{/h_T}) \to \mathcal{P}(\mathcal{C}_{/T})$. Given a
+functor $F : \mathcal{C}^{\mathrm{op}} \to \mathsf{Set}$ with a natural transformation
+$\eta$ to $h_T$, define the functor $B(F) \in \mathcal{P}(\mathcal{C}_{/T})$ on
+objects by
+\[
+B(F)(X \xrightarrow{p} T) = \eta_X\inv(p) \subset F(X)
+\]
+On morphisms, we let
+\[
+B(F)\left(\begin{tikzcd}
+X \ar[rr,"f"] \ar[dr, "p"'] && Y \ar[dl, "q"]\\
+& T
+\end{tikzcd}\right) = F(f)\vert_{\eta_X\inv(p)}
+\]
+Where we use the fact that $\eta$ is a natural transformation and the
+fact that the diagram commutes to deduce that the image of $\eta_X\inv(p)$ under $F(f)$
+is contained in $\eta_Y\inv(q)$. \\
+
+We then show that $A$ and $B$ are inverses of each other. We first consider the
+functor $A \circ B:\mathcal{P}(\mathcal{C})_{/h_T}\to\mathcal{P}(\mathcal{C})_{/h_T}$.
+Given a functor $F \in \mathcal{P}(\mathcal{C})_{/h_T}$ equipped with a natural
+transformation $\eta$ to $h_T$, we have that
+\[
+[(A \circ B)(F)](X) = \coprod_{p \in \mathrm{Map}(X,T)} \eta_X\inv(p) = F(X)
+\]
+So $A \circ B$ is equivalent to the identity functor. In the other direction, given
+a functor $F \in \mathcal{P}(\mathcal{C}_{/T})$, we have that
+\[
+[(B \circ A)(F)](X\xrightarrow{p} T) = \eta_X\inv(p)
+\]
+where $\eta_X : F(X) \to \mathrm{Map}(X,T)$ is the map that takes an element of
+\[
+F(X \xrightarrow{p} T)
+\subset \coprod_{q \in \mathrm{Map}(X,T)} F(X\xrightarrow{q} T)
+\]
+and maps it to $p$, so $\eta_X\inv(p)$ is exactly $F(X \xrightarrow{p} T)$, so
+$B \circ A$ is also equivalent to the identity functor.
+\end{proof}
+%
+\setcounter{section}{2}
+%
+\setcounter{thm}{1}
+%
+\begin{exer}
+Show that if $X \to Y$ is an \'{e}tale morphism of smooth varieties over $\C$,
+the every point of $X$ has a neighborhood in the analytic topology which
+is a homeomorphism onto its image.
+\end{exer}
+%
+\begin{proof}
+It suffices to check on affine opens, and we may further assume that $X \to Y$ is
+standard \'{e}tale. Then the condition that the determinant of $[\partial_jf_i]$ is
+a unit implies that the morphism induces an isomorphism on cotangent spaces,
+which implies that the map is a local diffeomorphism. Therefore, in the analytic
+topology, we may find sufficeintly small open sets such that the map
+is a diffeomorphism onto its image.
+\end{proof}
+%
+\begin{exer}
+Use the adjunction between $f^*$ and $f_*$ to show that $\mathrm{Qcoh}_{/S}$
+is a fibered category over $\mathrm{Sch}/S$ and an arrow $(X,E) \to (Y,F)$ is
+cartesian if and only if the homomorphism $F \to f_*(E)$ induces an isomorphism
+$f^*(F) \cong E$.
+\end{exer}
+%
+\begin{proof}
+Let $p : \mathrm{Qcoh}_{/S} \to \mathrm{Sch}_{/S}$ denote the functor mapping
+a pair $(X,E)$ to $X$. To show that $\mathrm{Qcoh}_{/S}$ is a fibered category
+over $\mathrm{Sch}_{/S}$, we want to show that given a morphism of $S$-schemes
+$f : X \to Y$ and a quasi-coherent sheaf $F$ over $Y$ that there
+exists a $p$-cartesian morphism $\phi : (X,E) \to (Y,F)$ with
+$E$ quasi-coherent over $X$ and $p(\phi) = f$. \\
+
+Suppose we have a cartesian arrow $(X,E) \to (Y,F)$ given by a morphism $f : X \to Y$ of
+schemes and a sheaf morphism $\varphi_f : F \to f_*E$. Then for any other pair
+$(Z,G) \in \mathrm{Qcoh}_{/S}$ we know that that a scheme morphism $g : Z \to X$
+and an arrow $(Z,G) \to (Y,F)$ given by scheme morphism $h$ and sheaf map $\varphi_h$
+satisfying the compatibility condition $h = f \circ g$ is equivalent to an
+arrow $(Z,G) \to (X,E)$ which is given by $g$ and a sheaf morphism $\varphi_g$
+such that $\varphi_h : F \to h_*G = f_*g_*G$ is equal to the composition of
+$\varphi_f$ and the map $f_*E \to f_*g_*G$ induced by $\varphi_g$. Using
+the adjunction between $f^*$ and $f^*$, we get an isomorphism
+$F \to f_*f^*F$ by applying the adjunction to the identity map
+$f^*F \to f^*F$. We claim that the arrow $(X,f^*F) \to (Y,F)$ given by
+$f$ and  this isomorphism satisfies the conditions of a cartesian arrow.
+Let $g$ and $(h, \varphi_h)$ be as above. We want to show that
+this induces a unique arrow $(g,\varphi_g) : (Z,G) \to (X,f^*F)$. We know by
+the adjunction that a map $f^*F \to g_*G$ is equivalent to a map
+$F \to f_*g_*G$, so we can and must take $\varphi_g$ to be the map corresponding
+to $\varphi_h$. \\
+
+Now suppose we are given a cartesian arrow $(f,\varphi_f) : (X,E) \to (Y,F)$.
+We claim that the map $f^*F \to E$ induced by $\varphi_f$ is an isomorphism.
+It suffices to provide an inverse arrow. Since $(X,f^*F) \to (Y,F)$ is also
+cartesian, we have that $(f,\varphi_f)$ induces an arrow
+$(X,E) \to (X, f^*F)$. By standard arguments, this must be the
+inverse to $(f,\varphi_f)$, since the composition in both directions must
+be equal to the identity by the universal property of being cartesian.
+\end{proof}
+%
+\setcounter{section}{3}
+%
+\setcounter{thm}{0}
+%
+\begin{exer}
+If $\mathcal{F} = \mathrm{Qcoh}_{/S} \to \mathrm{Sch}_{/S}$ and $D$ is a diagram
+consisting of two schemes and two non-identity arrows $f,g : X \to Y$, then show That
+the category of cartesian sections of $\mathcal{F}$ over $D$ is equivalent to the
+category of quasi-coherent sheaves $E$ over $Y$ along with an isomorphism
+$f^*(E) \cong g^*(E)$.
+\end{exer}
+%
+\begin{proof}
+We first unpack some of the definitions. A cartesian section
+$\sigma \in \Gamma^{\mathrm{cart}}_{\mathrm{Sch}_{/S}}(D,\mathrm{Qcoh}_{/S})$ is a
+diagram in $\mathrm{Qcoh}_{/S}$ of the form
+\[\begin{tikzcd}
+(X,F) \ar[r, "{(f,\varphi_f)}", bend left=30] \ar[r, "{(g,\varphi_g)}"', bend right=30]
+& (Y,E)
+\end{tikzcd}\]
+where the arrows $(f,\varphi_f)$ and $(g,\varphi_g)$ are cartesian. By the
+previous problem, the arrows being cartesian implies that the maps $\psi_f : f^*E \to F$
+and $\psi_g : g^*E \to F$ by applying the adjunction to $\varphi_f$ and $\varphi_g$
+are isomorphisms. Given two cartesian sections $\sigma_1$ and $\sigma_2$ where
+\[
+\sigma_1 = \left(\begin{tikzcd}
+(X,F_1) \ar[r, "{(f_1,\varphi_{f_1})}", bend left=30]
+\ar[r, "{(g_1,\varphi_{g_1})}"', bend right=30]
+& (Y,E_1)
+\end{tikzcd}\right) \qquad
+\sigma_2 = \left( \begin{tikzcd}
+(X,F_2) \ar[r, "{(f_2,\varphi_{f_2})}", bend left=30]
+\ar[r, "{(g_2,\varphi_{g_2})}"', bend right=30]
+& (Y,E_2)
+\end{tikzcd}\right)
+\]
+a morphism $\sigma_1 \to \sigma_2$ is a natural transformation $\eta$, which
+is given by the data of two arrows $(\id_X, \eta_X) : (X,F_1) \to (X,F_2)$ and
+$(\id_Y, \eta_Y) : (Y, E_1) \to (Y, E_2)$  along with the condition that
+\[
+(f_2,\varphi_{f_2}) \circ (\id_X,\eta_X) = (\id_Y,\eta_Y) \circ (f_1, \varphi_{f_1})
+\]
+Then let $\mathcal{C}$ denote the category where the objects are pairs
+$(E, \rho)$ where $E \in \mathrm{Qcoh}_{/S}(Y)$ and $\rho : f^*E \to g^*E$ is
+an isomorphism, and the morphisms $(E_1,\rho_1) \to (E_2,\rho_2)$ are
+sheaf morphisms $\eta : E_1 \to E_2$ such that the following square commutes:
+\[\begin{tikzcd}
+f^*E_1 \ar[d, "f^*\eta"']\ar[r, "\rho_1"] & g^*E_1 \ar[d, "g^*\eta"] \\
+f^*E_2 \ar[r, "\rho_2"'] & g^*E_2
+\end{tikzcd}\]
+We want to show that there is an equivalence of categories
+$\Gamma^{\mathrm{cart}}_{\mathrm{Sch}_{/S}}(D, \mathrm{Qcoh}_{/S}) \to \mathcal{C}$.
+Consider the functor given on objects by mapping a cartesian section
+\[\begin{tikzcd}
+(X,F) \ar[r, "{(f,\varphi_f)}", bend left=30] \ar[r, "{(g,\varphi_g)}"', bend right=30]
+& (Y,E)
+\end{tikzcd}\]
+to the pair $(E, \psi_g\inv \circ \psi_f)$, where $\psi_g,\psi_f$ are the
+maps given by applying the adjunction to $\varphi_g$ and $\varphi_f$ respectively. On
+morphisms, we take a natural transformation $\eta$ to the sheaf morphism $\eta_Y$,
+noting that the following square commutes:
+\[\begin{tikzcd}
+f^*E_1 \ar[r, "\psi_{g_1}\inv \circ \psi_{f_1}"]
+\ar[d, "f^*\eta_Y"'] & g^*E_1 \ar[d, "g^*\eta_Y"] \\
+f^*E_2 \ar[r, "\psi_{g_2}\inv \circ \psi_{f_2}"'] & g^*E_2
+\end{tikzcd}\]
+To show that this functor is an equivalence, we show it is fully faithful and
+essentially surjective. The fact that the functor is essentially surjective is
+relatively clear, is we can realize any isomorphism $f^*E\to g^*E$ as going
+through some intermediate sheaf $F$ (for example, take $F = f^*E$). Showing that
+the functor is fully faithful amounts to showing that a natural transformation $\eta$
+\[
+\left(\begin{tikzcd}
+(X,F_1) \ar[r, "{(f_1,\varphi_{f_1})}", bend left=30]
+\ar[r, "{(g_1,\varphi_{g_1})}"', bend right=30]
+& (Y,E_1)
+\end{tikzcd}\right) \xrightarrow{\eta}
+\left( \begin{tikzcd}
+(X,F_2) \ar[r, "{(f_2,\varphi_{f_2})}", bend left=30]
+\ar[r, "{(g_2,\varphi_{g_2})}"', bend right=30]
+& (Y,E_2)
+\end{tikzcd}\right)
+\]
+%TODO fix this?
+is equivalent to a sheaf morphism $\alpha : E_1 \to E_2$. This
+is clear, since the condition that $\eta$ be a natural transformation is that
+\[
+(f_2,\varphi_{f_2}) \circ (\id_X,\eta_X) = (\id_Y,\eta_Y) \circ (f_1, \varphi_{f_1})
+\]
+which implies that we can recover $\eta_X$ from $\eta_Y$. Therefore, declaring
+$\eta_Y = \alpha$ specifies $\eta$ uniquely, so the functor is fully faithful,
+so it is an equivalence.
+\end{proof}
+%
+\begin{exer}
+Show that if the indexing category $\mathcal{I}$ has a terminal object $*$, then
+restricting any diagram $D : \mathcal{I} \to \mathcal{C}$ to $*$ defines an equivalence
+$\Gamma^{\mathrm{cart}}_{\mathcal{C}}(D,\mathcal{F}) \cong \mathcal{F}(D(*))$.
+\end{exer}
+%
+\begin{proof}
+Explicitly, the functor restricting $*$ is given by mapping a cartesian
+section $\sigma$ to $\sigma(*)$ and mapping a natural transformation
+$\eta : \sigma_1 \to \sigma_2$ to map $\eta_* : \sigma_1(*) \to \sigma_2(*)$. This
+is fully faithful by essentially the same argument in the previous exercise, so all
+that remains is to show that the functor is essentially surjective. This amounts
+to showing that given any object $\xi \in \mathcal{F}$ with $p(\xi) = D(*)$,
+there exists a cartesian section $\sigma$ with $\sigma(*) = \xi$. If we fix a
+cleavage for $F$, we can construct a cartesian section where an object
+$A \in \mathcal{I} $ maps to source of the unique cartesian arrow lifting the map
+$D(A) \to D(*)$, which gives us that the functor is essentially surjective.
+\end{proof}
+%
+\begin{exer}
+Let $p : \mathcal{F} \to \mathcal{C}$ be a fibered category, and fix a cleavage for
+$\mathcal{F}$. Show that for any cover $\mathcal{U} = \set{U_\alpha \to U}$,
+the category $\mathrm{Desc}_{\mathcal{F}}(\mathcal{U})$ is equivalent to the
+category $\mathcal{D}$ of pairs of collections
+$(\set{\xi_\alpha}, \set{\phi_{\alpha\beta}})$,
+of objects $\xi_\alpha \in \mathcal{F}(U_\alpha)$ and isomorphisms
+$\phi_{\alpha\beta} : \mathrm{pr}_1^*(\xi_\beta) \to \mathrm{pr}_0^*(\xi_\alpha)$
+such that for any $\alpha,\beta,\gamma$, we have
+\[
+\mathrm{pr}_{02}^*(\phi_{\alpha\gamma}) =
+\mathrm{pr}_{01}^*(\phi_{\alpha\beta}) \circ \mathrm{pr}_{12}^*(\phi_{\beta\gamma}):
+\mathrm{pr}_2^*(\xi_\gamma) \to \mathrm{pr}_0^*(\xi_\alpha)
+\]
+\end{exer}
+%
+\begin{proof}
+We first note that a morphism in $\mathcal{D}$ between
+$(\set{\xi_\alpha}, \set{\phi_{\alpha\beta}})$ and
+$(\set{\zeta_\alpha}, \set{\psi_{\alpha\beta}})$ consists of a collection of
+morphisms $\set{\rho_{\alpha} : \xi_\alpha \to \zeta_\alpha}$ such that for any
+$\alpha,\beta$, the following diagram commutes:
+\[\begin{tikzcd}
+\mathrm{pr}_1^*(\xi_\beta \ar[r, "\phi_{\alpha\beta}"]\ar[d,"\mathrm{pr}_1^*\rho_\beta"']
+& \mathrm{pr}_0^*(\xi_\alpha)\ar[d,"\mathrm{pr}_0^*\rho_\alpha"] \\
+\mathrm{pr}_1^*\zeta_\beta \ar[r, "\psi_{\alpha\beta}"'] & \mathrm{pr}_0^*\zeta_\alpha
+\end{tikzcd}\]
+We then define the functor $\mathrm{Desc}_{\mathcal{F}}(\mathcal{U}) \to \mathcal{D}$
+Let $D_{\mathcal{U}} : \mathcal{I}_I \to \mathcal{C}$ denote the diagram
+in $\mathcal{C}$, and let $\sigma : \mathcal{I}_I \to \mathcal{F}$ be a cartesian
+section. Then we map $\sigma$ to the pair
+$(\set{\sigma(J)}_{J \in \mathcal{I}}, \set{\sigma(\varphi)}_{\varphi \in K})$
+where $K \subset \mathrm{Mor}(\mathcal{I})$ is the set of arrows between the first
+two ``levels" of the descent diagram. We map a natural transformation
+$\eta : \sigma_1 \to \sigma_2$ to the collection
+$\set{\eta_J : \sigma_1(J) \to \sigma_2(J)}$. We first note that this functor
+is essentially surjective, since given an object
+$(\set{\xi_\alpha}, \set{\phi_{\alpha\beta}}) \in \mathcal{D}$, we can make a
+cartesian section $\sigma$, where the objects on the first ``level" are given
+by the $\xi_\alpha$, and we fill in the rest of the objects in the diagram using
+the cleavage. The morphisms are then induced using the isomorphisms from the cleavage
+and the isomorphism $\phi_{\alpha\beta}$, and the fact that the choice doesn't
+matter for the third ``level" amounts to the cocycle condition. \\
+
+We then show the functor is fully faithful. Let
+$\set{\rho_\alpha : \xi_\alpha \to \zeta_\alpha}$ be a morphism in $\mathcal{D}$.
+Then we can construct a natural transformation $\eta$, where the maps
+$\eta_\alpha : \xi_\alpha \to \zeta_\alpha$ is given by the $\rho_\alpha$,
+which then uniquely determines the rest of the maps of the diagram by using the cleavage
+and the pullbacks of the maps in a similar fashion to $3.2$ and $3.1$.
+\end{proof}
+%
+\begin{exer}
+We know that the composition of cartesian fibrations
+$\mathcal{F}' \to \mathcal{F} \to \mathcal{C}$ is again a cartesian fibration.
+Given a Grothendieck topology on $\mathcal{C}$, we can define a Grothendieck
+topology on $\mathcal{F}$ whose coverings consist of families of cartesian arrows
+$\set{\xi_i \to \xi}_{i \in I}$ such that $\set{p(\xi_i) \to p(\xi)}_{i \in I}$
+is a covering in $\mathcal{C}$. Show that if $\mathcal{F}$ is a stack over
+$\mathcal{C}$ and $\mathcal{F}'$ is a stack over $\mathcal{F}$ with the induced
+topology, then $\mathcal{F}'$ is a stack over $\mathcal{C}$.
+\end{exer}
+%
+\begin{proof}
+We want to show that for any covering $\mathcal{U} = \set{U_\alpha \to U}$ in
+$\mathcal{C}$, the restriction functor
+$\Gamma^{\mathrm{cart}}_{\mathcal{C}}(D_{\mathcal{U}}^+,\mathcal{F})
+\to \Gamma^{\mathrm{cart}}_{\mathcal{C}}(D_{\mathcal{U}},\mathcal{F})$ is an
+equivalence. Let $\mathcal{I}$ denote the indexing category for the descent diagram,
+and $\mathcal{I}_+$ the indexing category for the augmented descent diagram.
+Then let $\sigma$ be a cartesian section of $\mathcal{F}' \to \mathcal{C}$. We
+note that $\sigma$ is cartesian over $p \circ \sigma$. Then
+$p \circ \sigma$ is a cartesian section of $\mathcal{F} \to \mathcal{C}$, since
+any cartesian arrow of $\mathcal{F}' \to \mathcal{C}$ must project to a cartesian
+arrow of $\mathcal{F} \to \mathcal{C}$. Since $\mathcal{F} \to \mathcal{C}$ is a
+stack, this is equivalent to an augmented cartesian section
+$\sigma_+ : \mathcal{I}_+ \to \mathcal{F}$. Since $\mathcal{F}' \to \mathcal{F}$ is
+a cartesian fibration, we can lift the diagram $\sigma_+$ to a diagram
+$\widetilde{\sigma_+} : \mathcal{I}_+ \to \mathcal{F}'$, which is cartesian
+over $\mathcal{F}$, so since $\mathcal{F}' \to \mathcal{F}$ is a stack, this is
+equivalent to the original section $\sigma$.
+\end{proof}
+%
+\begin{exer}
+Show that if $f : \mathcal{C} \to \mathcal{D}$ and $\mathcal{F}$ is a fibered category
+over $\mathcal{D}$, then $f\inv(\mathcal{F}$) is a fibered category over $\mathcal{C}$,
+where an arrow in $f\inv(\mathcal{F})$ is cartesian if and only if the corresponding
+arrow in $\mathcal{F}$ is cartesian.
+\end{exer}
+%
+\begin{proof}
+We first show that arrows in $f\inv(\mathcal{F})$ are cartesian if and only if the
+corresponding arrows in $\mathcal{F}$ are cartesian. Suppose we have a cartesian arrow
+$(X,\xi) \to (Y,\eta)$ in $f\inv(\mathcal{F})$. Then
+$(Z,\alpha) \to (X,\xi)$ is equivalent data to a morphism $Z \to X$ in $\mathcal{C}$
+and a morphism $\alpha \to \eta$ in $\mathcal{D}$ such that $\alpha \to \eta$
+covers the map $f(Z) \to f(X)$. But this is equivalent to the arrow
+$\xi\to\eta$ covering $f(X) \to f(Y)$ being cartesian. To show that $f\inv(\mathcal{F})$
+is a fibered category, given a morphism $X \to Y$ in $\mathcal{C}$ and an object
+$(Y,\eta)$ lying over $Y$, we can pick any cartesian lift of the morphism
+$f(X \to Y)$ in $\mathcal{F}$, which gives us the desired cartesian lift in
+$f\inv(\mathcal{F})$
+\end{proof}
+%
+\setcounter{thm}{12}
+%
+\begin{exer}
+Let $\mathcal{F}$ be a fibered category over $\mathrm{Sch}_{/S}$ such that for
+any set of schemes $\set{U_i}$, the canonical morphism
+$\mathcal{F}(\coprod_iU_i) \to \prod_i \mathcal{F}(U_i)$ is an equivalence of
+categories. Show that if $\mathcal{F}$ satisfies descent with respect to the
+covering $\set{U_i \to U}$ if and only if it satisfies descent with respect to
+the covering $\set{U' \defeq \coprod_i U_i \to U}$. Use this to show that a fibered
+category over $\mathrm{Sch}_{/S}$ is a stack if and only if $\mathcal{F}$ maps disjoint
+unions of schemes to products of categories, and $\mathcal{F}$ satisfies descent
+to all coverings $U' \to U$.
+\end{exer}
+%
+\begin{proof}
+For the first part, let $D_{U'}$ denote the descent diagram for the
+covering $U'$, and let $D_U$ denote the descent diagram for the covering by
+all the $U_i$. Then let
+$\sigma \in \Gamma^{\mathrm{cart}}_{\mathrm{Sch}_{/S}}(D_{U'},\mathcal{F})$
+be a cartesian section. Then upon fixing a cleavage, we know that $\sigma$ is equivalent
+to an object $\xi$ over $\coprod_i U_i$ and an isomorphism
+$\phi : \mathrm{pr}_1^*\xi \to \mathrm{pr}_0^*\xi$. Then under canonical functor
+$\mathcal{F}(\coprod_i U_i) \to \prod_i \mathcal{F}(U_i)$, we have that
+$\xi$ is mapped to the tuple $(\xi_i)$ where $\xi_i$ is the source of the cartesian
+lift of the inclusion $U_i \hookrightarrow U$ determined by a cleavage. Similarly,
+the isomorphism $\phi$ becomes a tuple $(\phi_{ij})$ of maps
+$\phi_{ij} : \mathrm{pr}_1^*\xi_j \to \mathrm{pr}_0^*\xi_i$, which satisfy the
+cocycle condition because $\phi$ did. This is then equivalent to a cartesian
+section of the diagram $D_U$. Therefore, if $\mathcal{F}$ satisfies descent
+with respect to either cover, by going through the equivalence, we get that it
+satisfies descent with respect to the other cover, since we have that the
+category of cartesian sections over either augmented descent diagram is
+equivalent to $\mathcal{F}(U)$. \\
+
+For the second part, let $p : \mathcal{F} \to \mathrm{Sch}_{/S}$ be any fibered
+category. 
+\end{proof}
+%
+\end{document}

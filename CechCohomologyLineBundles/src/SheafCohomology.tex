@@ -385,3 +385,65 @@ is acyclic.
 This tells us that many of the sheaves we know about, like sheaves of smooth sections
 of a vector bundle are trivial from the perspective of sheaf cohomology.
 %
+\section{Extensions and $H^1$}
+%
+For a sheaf of $\O_X$-modules (where $X$ is a scheme or complex manifold) $\mathcal{F}$,
+the first sheaf cohomology group $H^1(X,\mathcal{F})$ has a fairly explicit geometric
+interpretation.
+%
+\begin{defn}
+Let $\mathcal{E},\mathcal{G}$ be sheaves of $\O_X$-modules. An \ib{extension} of
+$\mathcal{E}$ by $\mathcal{G}$ is a short exact sequence of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r] & \mathcal{F} \ar[r] & \mathcal{G} \ar[r] & 0
+\end{tikzcd}\]
+In other words, it is the data of a sheaf $\mathcal{F}$ containing $\mathcal{E}$
+as a subsheaf such that the quotient is $\mathcal{G}$.
+\end{defn}
+%
+\begin{prop}
+Let $\mathcal{E}$ be a sheaf of $\mathcal{O}_X$-modules. Then there is a
+bijective correspondence
+\[
+\set{\text{Extensions of }\mathcal{E} \text{ by } \O_X}
+\longleftrightarrow H^1(X,\mathcal{E})
+\]
+\end{prop}
+%
+\begin{proof}
+We provide maps in both directions. In one direction, let
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r] & \mathcal{F} \ar[r] & \O_X \ar[r] & 0
+\end{tikzcd}\]
+be an extension of $\mathcal{E}$ by $\O_X$. The long exact sequence in sheaf
+cohomology gives a boundary map $\delta : H^0(X,\O_X) \to H^1(X,\mathcal{E})$.
+So we can associate an extension to the element $\delta(1) \in H^1(X,\mathcal{E})$. \\
+
+In the other direction, let $\beta \in H^1(X,\mathcal{E})$. Fix an injective sheaf
+$\mathcal{I}$ with an injection $\mathcal{E} \hookrightarrow \mathcal{I}$, and
+let $\mathcal{Q}$ denote the quotient sheaf $\mathcal{I}/\mathcal{E}$. This gives us
+us the short exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r] & \mathcal{I} \ar[r] & \mathcal{Q} \ar[r] & 0
+\end{tikzcd}\]
+The long exact sequence in sheaf cohomology gives us
+\[\begin{tikzcd}
+H^0(X,\mathcal{Q}) \ar[r] & H^1(X,\mathcal{E}) \ar[r] & 0
+\end{tikzcd}\]
+where we use the fact that $\mathcal{I}$ is injective to deduce that
+$H^1(X,\mathcal{I}) = 0$. Therefore, we know that $\beta$ is the image of
+some $\widetilde{\beta} \in H^0(X,\mathcal{Q}) = \hom(\O_X,\mathcal{Q})$. Taking
+the fiber product, we get the diagram
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[d, equal] \ar[r] & \mathcal{I} \times_{\mathcal{Q}} \O_X
+\ar[r] \ar[d] & \O_X \ar[r]\ar[d,"\widetilde{\beta}"] & 0 \\
+0 \ar[r] & \mathcal{E} \ar[r] & \mathcal{I} \ar[r] & \mathcal{Q} \ar[r] & 0
+\end{tikzcd}\]
+We can then take the extension to be the upper row.
+\end{proof}
+%
+In the case where $\mathcal{E}$ is locally free (e.g. the sheaf of sections
+of a holomorphic vector bundle), then any extension of $\mathcal{E}$ by
+$\mathcal{O}_X$ is locally free. For instance, we can fix a good (or affine) cover,
+in which case the short exact sequence defined by the extension splits. 
+%

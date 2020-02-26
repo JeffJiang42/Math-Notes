@@ -4,6 +4,8 @@
 %
 \usepackage[h margin=1 in, v margin=1 in]{geometry}
 \usepackage{amssymb,amsfonts}
+\usepackage{amsmath}
+\usepackage{accents}
 \usepackage[all,arc]{xy}
 \usepackage{tikz-cd}
 \usepackage{enumerate}
@@ -11,8 +13,8 @@
 \usepackage{amsthm}
 \usepackage{mathpazo}
 \usepackage{float}
-\usepackage[backend=biber]{biblatex}
-\addbibresource{bibliography.bib}
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{bibliography.bib}
 %\usepackage{charter} %another font
 %\usepackage{eulervm} %Vakil font
 \usepackage{yfonts}
@@ -125,6 +127,8 @@
 \newcommand{\gl}{\mathfrak{gl}}
 \newcommand{\g}{\mathfrak{g}}
 \newcommand{\Bun}{\mathsf{Bun}}
+\newcommand*{\dt}[1]{%
+   \accentset{\mbox{\large\bfseries .}}{#1}}
 \newcommand{\inv}{^{-1}}
 \newcommand{\bra}[2]{ \left[ #1, #2 \right] }
 \newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
@@ -183,6 +187,7 @@
 \DeclareMathOperator{\dv}{div}
 \DeclareMathOperator{\grad}{grad}
 \DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\tr}{tr}
 \DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
 \newcommand*\myhrulefill{%
    \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
@@ -206,8 +211,7 @@
     colorlinks,
     citecolor=black,
     filecolor=black,
-    linkcolor=blue,
-    urlcolor=blacksquare
+    linkcolor=blue
 }
 %
 %--------Solution--------
@@ -224,34 +228,71 @@
 %
 \author{Jeffrey Jiang}
 %
-\title{Sheaf Cohomology, Line Bundles, and Divisors}
+\title{The Yoneda Lemma}
 %
 \maketitle
 %
-\tableofcontents
+Let $\mathcal{C}$ be a category. Any object $X \in \mathcal{C}$ determines a
+covariant functor $h_X : \mathcal{C} \to \mathsf{Set}$ where given an object
+$Y \in \mathcal{C}$, we let $h_X(Y) = \mathrm{Map}_\mathcal{C}(X,Y)$. Given a morphism
+$f : Y \to Z$, we let
+$h_X(f):\mathrm{Map}_{\mathcal{C}}(X,Y)\to\mathrm{Map}_{\mathcal{C}}(X,Z)$ be defined
+by $h_X(f)(\varphi) = f \circ \varphi$. This defines a contravariant functor
+$h : \mathcal{C} \to \mathrm{Fun}(\mathcal{C}, \mathsf{Set})$ assigning
+each object $X$ the functor $h_X$, and to each morphism $f : X \to Y$ a natural
+transformation $h_Y \to h_X$ that maps a morphism
+$\varphi \in \mathrm{Map}_{\mathcal{C}}(Y,Z)$ to
+$\varphi \circ f \in \mathrm{Map}_{\mathcal{C}}(X,Z)$
+for all objects $Z \in \mathcal{C}$.
 %
-\input{src/Cech.tex}
+\begin{thm}[\ib{The Yoneda Lemma}]
+The functor $h : \mathcal{C} \to \mathrm{Fun}(\mathcal{C}, \mathsf{Set})$ is
+fully faithful, i.e. for any objects $X,Y \in \mathcal{C}$, the map
+$\mathrm{Map}_\mathcal{C}(X,Y)\to
+\mathrm{Map}_{\mathrm{Fun}(\mathcal{C},\mathsf{Set})}(h_Y, h_X)$ is bijective.
+\end{thm}
 %
-\input{src/CechProjective.tex}
-%
-\input{src/CechLineBundles.tex}
-%
-\input{src/Divisors.tex}
-%
-\input{src/SheafCohomology.tex}
-%
-\input{src/CohomologyComparison.tex}
-%
-\input{src/FirstChernClass.tex}
-%
-\input{src/ChernConnection.tex}
-%
-\input{src/VanishingTheorems.tex}
-%
-\newpage
-%
-\nocite{*}
-%
-\printbibliography
+\begin{proof}
+Let $X,Y \in \mathcal{C}$. Suppose two functions $f,g : X \to Y$ induce
+the same natural transformation $h_Y \to h_X$. The mappings
+$\mathrm{Map}_{\mathcal{C}}(Y,Y) \to \mathrm{Map}_{\mathcal{C}}(X,Y)$ given by
+precomposition with $f$ and $g$ agree, so in particular, we must have that
+$\id_Y \circ f = \id_Y \circ g$, so $f = g$. This shows that the map
+$\mathrm{Map}_\mathcal{C}(X,Y)\to
+\mathrm{Map}_{\mathrm{Fun}(\mathcal{C},\mathsf{Set})}(h_Y, h_X)$
+is injective. For surjectivity, we want to show that any natural transformation
+$\eta : h_Y \to h_X$ is given by precomposition by some morphism $X \to Y$. Let
+$\eta_Y : \mathrm{Map}_{\mathcal{C}}(Y,Y) \to \mathrm{Map}_{\mathcal{C}}(X,Y)$
+be the map given by $\eta$. Then we claim that $\eta_Y$ is given by precomposition
+with the morphism $\eta_Y(\id_Y)$. Let $\varphi : X \to Y$ be a morphism.
+Then $\eta$ being a natural transformations gives us the commutative
+diagram
+\[\begin{tikzcd}
+\mathrm{Map}_{\mathcal{C}}(Y,Y) \ar[d,"\eta_Y"']
+& \ar[l, "\varphi \circ (-)"'] \mathrm{Map}_{\mathcal{C}}(Y,Y) \ar[d, "\eta_Y"]\\
+\mathrm{Map}_{\mathcal{C}}(X,Y)
+& \mathrm{Map}_{\mathcal{C}}(X,Y) \ar[l,"\varphi \circ (-)"]
+\end{tikzcd}\]
+Starting with $\id_Y$ in the top right we get
+\[
+\eta_Y(\varphi \circ \id_Y) = \varphi \circ \eta_Y(\id_Y)
+\]
+which is the desired result. Then given any $Z \in \mathcal{C}$, we want to show
+that $\eta_Z$ is also given by precomposition with $\eta_Y(\id_Y)$. Given
+a morphism $\varphi : Y \to Z$, we again get the diagram
+\[\begin{tikzcd}
+\mathrm{Map}_{\mathcal{C}}(Y,Z) \ar[d,"\eta_Z"']
+& \ar[l, "\varphi \circ (-)"'] \mathrm{Map}_{\mathcal{C}}(Y,Y) \ar[d, "\eta_Y"]\\
+\mathrm{Map}_{\mathcal{C}}(X,Z)
+& \mathrm{Map}_{\mathcal{C}}(X,Y) \ar[l,"\varphi \circ (-)"]
+\end{tikzcd}\]
+Then the fact that this commutes tells us that
+\[
+\eta_Z(\varphi \circ \id_Y) = \varphi \circ \eta_Y(\id_Y)
+\]
+which is the desired result. Therefore, the map $\mathrm{Map}_\mathcal{C}(X,Y)\to
+\mathrm{Map}_{\mathrm{Fun}(\mathcal{C},\mathsf{Set})}(h_Y, h_X)$
+is surjective
+\end{proof}
 %
 \end{document}

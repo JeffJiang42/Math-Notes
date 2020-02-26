@@ -1,0 +1,630 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage{amsmath}
+\usepackage{accents}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{bibliography.bib}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathrm{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand*{\dt}[1]{%
+   \accentset{\mbox{\large\bfseries .}}{#1}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\tr}{tr}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+%
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Hodge Theory and $\mathrm{U}(1)$ Yang-Mills}
+%
+\maketitle
+%
+\section{Hodge Theory on Riemannian Manifolds}
+%
+Fix an $n$-dimensional compact boundaryless Riemannian manifold $(X,g)$. The Riemannian
+metric gives us a volume form $\mathrm{Vol}_g \in \Omega^n_X$, which is uniquely
+characterized as the $n$-form whose representation in a local orthonormal frame
+$\set{E^i}$ of $T^*X$ is given by
+\[
+\mathrm{Vol}_g = E^1 \wedge\cdots\wedge E^n
+\]
+
+The Riemannian metric also induces an fiber metric on the bundles $\Lambda^kT^*M$ by
+declaring the sets
+\[
+\set{E^{i_1} \wedge \cdots \wedge E^{i_k} ~:~ 1 \leq i_1 < \cdots < i_k \leq n}
+\]
+to be orthonormal frames for the bundles $\Lambda^kT^*X$. The \ib{Hodge star}
+is an operator $\star : \Omega^k_X \to \Omega^{n-k}$, whose action on these
+orthonormal frames can be described as ``whatever is missing to get the volume form."
+For example, in $\R^4$, the volume form is $dx^1 \wedge dx^2 \wedge dx^3 \wedge dx^4$,
+and
+\[
+\star(dx^1\wedge dx^3) = -dx^2\wedge dx^4
+\]
+The negative sign accounts for the fact that we need to move $dx^2$ past
+the $dx^3$ to get the volume form, which picks up a negative sign due to
+skew symmetry of the wedge product of $1$-forms. Using the Hodge star, we
+define an inner product $(\cdot,\cdot)_g$ on the space $\Omega^k_X$ where
+\[
+(\omega,\eta)_g \defeq \int_X \omega\wedge\star\eta
+\]
+We then define the operator $d^* : \Omega^k_X \to \Omega^{k-1}_X$ by
+$d^* = (-1)^{n(k+1)+1}\star d\star$. As the notation suggests, $d^*$ is the formal
+adjoint to $d$, i.e.
+\[
+(\omega,d\eta)_g = (d^*\omega,\eta)_g
+\]
+%
+\begin{defn}
+The \ib{Hodge Laplacian} is the operator $\Delta \defeq dd^* + d^*d$. Forms $\omega$
+satisfying $\Delta\omega = 0$ are said to be \ib{harmonic}, and the space
+of harmonic $k$-forms is denoted $\mathcal{H}^k(X)$.
+\end{defn}
+%
+\begin{prop}
+A $k$ form $\omega$ is harmonic if and only if $d\omega = d^*\omega = 0$.
+\end{prop}
+%
+\begin{thm}[\ib{The Hodge Theorem}]
+Every de Rham cohomology class $[\omega] \in H^k_{\mathrm{dR}}(X)$ has a unique
+harmonic representative, i.e. the map
+\begin{align*}
+\mathcal{H}^k(X) &\to H^k_{\mathrm{dR}}(X) \\
+\alpha &\mapsto [\alpha]
+\end{align*}
+is an isomorphism.
+\end{thm}
+%
+One way to prove this is to characterize the harmonic forms as the unique minimizers of
+the norm $\norm{\cdot}$ induced by $(\cdot,\cdot)_g$, and this characterization
+is the one that fits best into the Yang-Mills picture, and is also the main
+takeaway from Hodge theory on a Riemannian manifold : every cohomology class has
+a distinguished representative that ``minimizes energy."
+%
+\section{Yang-Mills with Principal $\mathrm{U}(1)$-bundles}
+%
+In the more general story, Yang-Mills theory is a machine in which you specify
+some compact connected Lie group $G$ called the \ib{structure group} (though
+physics will often call this the gauge group, or global gauge group if they're feeling
+nice.) (e.g. $\mathrm{U}(n)$, $\mathrm{SO}(n)$), and the machine spits out some
+differential equations for you to solve. The story here involves principal $G$-bundles
+and connections on them. In the case where  $G = \mathrm{U}(1)$, the story simplifies
+greatly. The main reason for this is  the fact that $\mathrm{U}(1)$ is \emph{abelian}.
+When the structure group $G$ is nonabelian, many of the ideas in the $\mathrm{U}(1)$
+case generalize, but are in some sense \emph{twisted} by the noncommutativity of
+the group $G$. We will focus on the $\mathrm{U}(1)$ story.
+%
+\begin{defn}
+A \ib{principal $\mathrm{U}(1)$-bundle} over $X$ is a space $P$ equipped with a
+$\mathrm{U}(1)$ action and a smooth submersion $\pi : P \to X$ such that:
+\begin{enumerate}
+  \item The action of $\mathrm{U}(1)$ preserves the fibers of $\pi$.
+  \item $\mathrm{U}(1)$ acts freely and transitively on the fibers -
+  in particular, every fiber is diffeomorphic to $\mathrm{U}(1)$.
+  \item For every $x \in X$, there exists an open neighborhood $U$ of $x$
+  and a $\mathrm{U}(1)$-equivariant diffeomorphism
+  $\varphi : \pi\inv(U) \to U \times \mathrm{U}(1)$ such that the following diagram
+  commutes:
+  \[\begin{tikzcd}
+  \pi\inv(U) \ar[rr, "\varphi"] \ar[dr] && U \times \mathrm{U}(1) \ar[dl] \\
+  & U
+  \end{tikzcd}\]
+\end{enumerate}
+\end{defn}
+%
+Topologically, $\mathrm{U}(1)$ is a circle, so in particular, a principal
+$\mathrm{U}(1)$-bundle $P \to X$ is a circle bundle over $X$, which is a smoothly
+varying family of circles parameterized by the base space of $X$. However, the
+$\mathrm{U}(1)$ action is additional data -- not every circle bundle is a principal
+$\mathrm{U}(1)$-bundle. The distinguishing feature is orientability -- the
+$\mathrm{U}(1)$ action on $P$ gives a \emph{global} notion of ``rotate each fiber
+clockwise by angle $\theta$." However, there exist non-orientable circle bundles. For
+example, the Klein bottle is a nonorientable circle bundle over the circle. If you
+walked around the base circle of the Klein bottle and rotated the fiber above clockwise
+you as you walked, once you've gone around once you would be rotating counterclockwise!
+%
+\begin{defn}
+A \ib{connection} on a principal circle bundle $\pi : P \to X$ is a $1$-form
+$A \in \Omega^1_P$ such that the restriction of $A$ to any fiber $\pi\inv(x) \cong S^1$
+is $d\theta \in \Omega^1_{S^1}$\footnote{The name $d\theta$ for this form is a bit
+unfortunate -- it is not exact.}.
+\end{defn}
+%
+In the more general setting, a connection on a principal $G$-bundle is a Lie
+algebra valued $1$ form such that the restriction to a fiber is something called
+the \ib{Maurer-Cartan form}, and it must satisfy an additional property that doesn't
+appear here due to the fact that $\mathrm{U}(1)$ is abelian. \\
+
+One way to think of a connection is in terms of the kernel of the $1$-form $A$.
+This gives a rank $n$ subbundle of $TP$ called the \ib{horizontal distribution},
+and can be thought of as a distinguished ``manifold direction" on the space $P$,
+which locally looks like $X \times \mathrm{U}(1)$. The notion of a horizontal
+distribution generalizes to arbitrary fiber bundles. \\
+
+The space of connection on $P$ is denoted $\mathscr{A}(P)$, and it is an
+infinite dimensional affine space over the vector space $\Omega^1_X$. In
+other words, any two connections $A_1,A_2$ differ by the pullback of an element
+in $\Omega^1_X$ along $\pi$. However, the sum of two connections need not
+be a connection -- $\mathscr{A}(P)$ is not a vector space.
+%
+\begin{defn}
+Let $\pi : P \to X$ be a principal $\mathrm{U}(1)$-bundle with connection $A$.
+The \ib{curvature form} of $A$ is a $2$-form $F_A \defeq dA$.
+\end{defn}
+%
+In general, there is another term, but this term vanishes because $\mathrm{U}(1)$ is
+abelian. One thing to note is that $F_A$ actually descends to the base manifold $X$,
+i.e. $dA \in \Omega^2_P$ is actually the pullback of some $2$-form in $\Omega^2_X$.
+Because of this, we often use $F_A$ to refer to both the $2$-form on $P$ and the
+$2$-form on $X$, though technically we should be calling the $2$-form on $P$ something
+like $\pi^*F_A$. In most cases, the distinction will be unnecessary. You can think of
+the curvature form $F_A$ a measure of the failure of the existence of an integral
+submanifold to the horizontal distribution defined by $A$.  \\
+
+One consequence of $F_A = dA$ descending to a $2$-form on $X$ is that it defines
+a \emph{closed} form on $X$, which follows from $d$ commuting with $\pi^*$. Therefore,
+it defines a de Rham cohomology class $[F_A] \in H^2_{\mathrm{dR}}(X)$. Surprisingly,
+this cohomology class is independent of the connection, and is equal
+to $2\pi i$ times the \ib{first Chern class} of $P$. One other thing we will need is a
+formula for how the curvature of a connection changes when we vary the connection by a
+$1$-form $\eta \in \Omega^1_X$. This formula is given by
+\[
+F_{A+\eta} = F_A + d\eta
+\]
+which is another way to see that the cohomology class of $F_A$ is independent
+of the choice of $A$. In particular, note that if $\eta$ is closed, $F_{A+\eta} = F_A$.
+We now connect this discussion to Hodge theory.
+%
+\begin{defn}
+Let $P \to X$ be a principal $\mathrm{U}(1)$-bundle. The \ib{Yang-Mills functional}
+is the map $L : \mathscr{A}(P) \to \R$ defined by
+\[
+L(A) \defeq \norm{F_A} = \int_X F_A \wedge \star F_A
+\]
+\end{defn}
+%
+The Yang-Mills equations come from the Euler-Lagrange equations of the Yang-Mills
+functional.
+%
+\begin{prop}[\ib{The first variation}]
+Let $A \in \mathscr{A}(P)$ be a local extremum for the Yang-Mills functional
+Then $A$ satisfies
+\[
+d^*F_A = 0
+\]
+If $A$ is a \emph{global} minimum of $L$, the we say $A$ is a \ib{Yang-Mills connection}.
+The space of such connections is denoted by $\mathscr{A}_{\mathrm{YM}}(P)$.
+\end{prop}
+%
+\begin{proof}
+Let $\eta \in \Omega^1_X$. Then if we take a line of connections $A + t\eta$ in
+the direction $\eta$, we have that
+\[
+F_{A+t\eta} = F_A + td\eta
+\]
+If we compute $L(F_{A+t\eta})$, the term linear in $t$ will be $2(F_A,d\eta)_g$.
+So differentiating $\norm{F_{A+t\eta}}$ with respect to $t$ gives $2(d^*F_A,\eta)_g$.
+Since $A$ is a local extremum, we must have that $(d^*F_A,\eta)$ vanishes
+for all $\eta$, so $d^*F = 0$.
+\end{proof}
+%
+Recall that the curvature $F_A$ of a is always closed, so $dF_A = 0$.
+%
+\begin{defn}
+The \ib{Yang-Mills equations} are
+\begin{align*}
+dF_A = 0 \\
+d^*F_A = 0
+\end{align*}
+\end{defn}
+%
+From our earlier discussion, this exactly the condition that the curvature $F_A$
+of $A$ is harmonic! It is in this sense why people might say that $U(1)$ Yang-Mills
+is ``just Hodge Theory." \\
+
+As an aside, this also relates to physics. Another phrase that is sometimes said
+is that $U(1)$ Yang-Mills is ``just electromagnetism." If you know physics,
+this Yang-Mills equations are exactly Maxwell's equations in a vacuum. The connection
+$A$ is the electromagnetic potential, the curvature $F_A$ is the electromagnetic field,
+the equation $dF_A = 0$ is the homogeneous equation, and the equation $d^*F_A$ is the
+inhomogeneous equation. It's interesting to see another physical phenomenon (the other
+being gravity) being realized as curvature.
+%
+\section{The Gauge Group}
+%
+In physics you might have heard something along the lines of ``Maxwell's equations
+are gauge invariant." We will make this notion precise and explain what it means.
+%
+\begin{defn}
+Let $P \to X$ be a principal $\mathrm{U}(1)$-bundle. The \ib{gauge group} is the group
+\[
+\mathscr{G}(P) \defeq \mathrm{Map}(X,\mathrm{U}(1))
+\]
+where the group operation is pointwise multiplication.
+\end{defn}
+%
+One way to think of $\mathscr{G}(P)$ is as the group of bundle automorphism of $P$,
+i.e. $\mathrm{U}(1)$-equivariant maps $\varphi : P \to P$ such that
+\[\begin{tikzcd}
+P \ar[dr]\ar[rr,"\varphi"] && P \ar[dl]\\
+& X
+\end{tikzcd}\]
+commutes. A function $f : X \to \mathrm{U}(1)$ can be thought of as an automorphism
+of $P$ by saying ``rotate the fiber over $x$ counterclockwise by angle $f(x)$."
+Because of this, we also refer to elements of the gauge group as
+\ib{gauge transformations}. This is again a situation where $\mathrm{U}(1)$ being
+abelian simplifies the discussion. If the structure group was nonabelian, then the gauge
+group is more complicated -- the group of automorphisms becomes ``twisted" by the
+noncommutativity. \\
+
+The gauge group $\mathscr{G}(P)$ has a right action on $\mathscr{A}(P)$ by pullback,
+and can be described in relatively concrete terms
+%
+\begin{prop}
+Let $\varphi \in \mathscr{G}(P)$ be a gauge transformation associated to
+a map $g_\varphi : X \to \mathrm{U}(1)$ and $A \in \mathrm{A}(P)$ any connection.
+Then
+\[
+\varphi^*A = A + \pi^*g_\varphi^*d\theta
+\]
+where $d\theta$ is the unfortunately named $1$-form on the circle.
+\end{prop}
+%
+This yields the following observation
+%
+\begin{prop}
+The Yang-Mills functional is \ib{gauge invariant}, i.e. for a connection
+$A \in \mathscr{A}(P)$ and a gauge transformation $\varphi \in \mathscr{G}(P)$,
+we have
+\[
+L(A) = L(\varphi^*A)
+\]
+In particular, if $A$ is a Yang-Mills connection, $\varphi^*A$ is also a Yang-Mills
+connection.
+\end{prop}
+%
+\begin{proof}
+We compute
+\begin{align*}
+L(\varphi^*A) &= \int_X F_{\varphi^*A}\wedge\star F_{\varphi^*A} \\
+&= \int_X F_{A + \pi^*g_\varphi^*d\theta}\wedge\star
+F_{A + \varphi^*g_\varphi^*d\theta} \\
+&= \int_X F_A \wedge\star F_A \\
+&= L(A)
+\end{align*}
+where we use the formula for how the curvature changes and fact that $d\theta$ is closed.
+\end{proof}
+%
+Gauge invariant of $L$ suggests that we should only really care about Yang-Mills
+connections up to gauge equivalence. This is a common philosophy in physics. If your
+equations exhibit a lot of symmetry (in our case, we have an infinite dimensional
+group of symmetries!), then you can reduce the dimensionality of your problem to
+make finding solutions easier. One way this philosophy is made rigorous is
+through symplectic geometry via a process called \ib{symplectic reduction},
+which invovles something called a moment map for the group action
+(named after angular momentum). Yang-Mills theory is closely related to
+this notion of symplectic reduction -- for example, the mapping $A \mapsto F_A$
+can be realized as the moment map for the action of $\mathscr{G}(P)$ on $\mathscr{A}(P)$,
+and the Yang-Mills functional acts as the norm squared of the moment map. \\
+%
+\section{The Moduli Space}
+%
+With the previous discussion in mind, we want to answer the question:
+\begin{quest}
+What does the space $\mathscr{A}_{\mathrm{YM}}(P) / \mathscr{G}(P)$ look like?
+\end{quest}
+%
+The answer turns out to be surprisingly simple! \\
+
+Recall that the cohomology class  of the curvature form $F_A$ is independent
+of our choice of $A$. From Hodge theory, we know that there exists a unique
+$2$-form $\omega$ minimizing the norm in the class $[F_A]$. The Yang-Mills connections
+will be exactly the connections $A$ satisfying $F_A = \omega$. Furthermore,
+recall that adding a closed form $\eta \in \Omega^1_X$ to $A$ does not change
+the curvature form, which tells us that the space $\mathscr{A}_{\mathrm{YM}}(P)$
+is an affine space over the vector space $Z^1_X$ of closed $1$-forms on $X$. Furthermore,
+the gauge group acts on $Z^1_X$ on the right by
+\[
+\eta \cdot f = \eta + f^*d\theta
+\]
+Therefore, if we fix a reference connection $A_0 \in \mathscr{A}_{\mathrm{YM}}(P)$, we
+obtain an isomorphism $\mathscr{A}_{\mathrm{YM}}(P) \cong Z^1_X$, and this isomorphism
+is $\mathscr{G}(P)$-equivariant. As a result, to identify the space
+$\mathscr{A}_{\mathrm{YM}}(P)/\mathscr{G}(P)$, it suffices to identify the quotient
+space $Z^1_X/\mathscr{G}(P)$. \\
+
+We will do this in two steps. We first quotient $Z^1_X$ by the connected component of
+the identify, denoted $\mathscr{G}^0(P)$, which is a normal subgroup. We then quotient
+the resulting space by the action of the quotient group
+$\mathscr{G}(P)/\mathscr{G}^0(P)$, which is the group of components of $\mathscr{G}(P)$.
+We can identify paths in $\mathscr{G}(P)$ as homotopies between maps
+$X \to \mathrm{U}(1)$, so the identify component is the group of all
+nullhomotopic maps $X \to \mathrm{U}(1)$, while the group of components is the
+group of homotopy classes of maps. \\
+
+For the first step, let $f : X \to \mathrm{U}(1)$ be a nullhomotopic map. Since
+it is nullhomotpic, we can lift $f$ to a function $\widetilde{f} : X \to \R$,
+which satisfies $e^{i\widetilde{f}} = f$. The action of $f$ on a closed
+form $\eta$ is
+\[
+\eta \cdot f = \eta + f^*d\theta = \eta + \widetilde{f}^*dx = \eta + d\widetilde{f}
+\]
+which follows from the fact that $d\theta$ pulls back to $dx$ along the
+exponential map $\R \to \mathrm{U}(1)$. Since any function $h : X \to \R$
+descends to a nullhomotopic map $e^h : X \to \mathrm{U}(1)$, this tells us that
+the orbit of a closed form $\eta$ under the action of $\mathscr{G}^0(P)$ is
+exactly the cohomology class $[\eta]$, so the quotient $Z^1_X/\mathscr{G}^0(P)$ is
+$H^1_{\mathrm{dR}}(X) = H^1(X,\R)$. \\
+
+For the second step, we use the fact that $\mathrm{U}(1)$ is a $K(\Z,1)$, which
+tells us that homotopy classes of maps $X \to \mathrm{U}(1)$ are in bijection
+with the integral cohomology group $H^1(X,\Z)$. Quotienting by this group
+gives us that $Z^1_X / \mathscr{G}(P) = H^1(X,\R)/H^1(X,\Z)$, which is a torus
+of dimension $b_1(X) \defeq \dim H^1(X,\R)$. In other words, the space of
+solutions to Maxwell's equations (up to gauge equivalence) on a closed manifold
+is a torus!
+%
+\section{Final Remarks}
+%
+The Yang-Mills equations have found many uses in mathematics, and are beautifully
+interdisciplinary, attracting the attention of mathematicians working in algebraic
+geometry, symplectic geometry, mathematical physics, partial differential equations,
+and four manifold topology. \\
+
+On the analysis front, the Yang-Mills equations have provided many interesting
+problems. The space of connections and the gauge group are both infinite dimensional
+spaces, which requires one to be careful when working with these spaces, especially
+with issues of convergence. Much of the analytic underpinnings of gauge theory were
+developed by Karen Uhlenbeck --  notably in her ``Uhlenbeck compactness" result, which
+allows one to deduce convergence in situations of bounded curvature. \\
+
+Another fascinating development was done by Atiyah and Bott in their paper
+\emph{The Yang-Mills Equations Over Riemann Surfaces}. By studying Yang-Mills
+connections on principal bundles over Riemann surfaces with structure group
+$\mathrm{U}(n)$, Atiyah and Bott observed that the theory looked a lot like
+another topic of interest -- the moduli space of holomorphic bundles. Indeed,
+the Yang-Mills equations ended up being the ``symplectic" perpspective of
+an algebro-geometric problem, and parallels the relationship between a Geometric
+Invariant Theory (GIT) quotient and a symplectic quotient. Using this relationship,
+they used Morse theoretic ideas to compute the cohomology of the moduli spaces
+of holomorphic bundles. \\
+
+The ideas in this paper were expanded upon in further years. In one direction,
+Uhlenbeck and Yau used these ideas to equated the existence of special metrics
+on holomorphic vector bundles called \ib{Hermitian Yang-Mills metrics} (or
+\ib{Hermitian-Einstein metrics}) to a stability condition coming from GIT. This
+has been further built upon in recent years, where the existence of K\"ahler-Einstein
+metrics on Fano varieties has been related to something called $K$-\ib{stability},
+which was inspired by the stability criterion in the Hermitian-Yang-Mills case. In
+another direction, Hitchin and Simpson expanded these ideas to study objects called
+\ib{Higgs bundles}, and the work in this direction has branched out into fields like
+Hodge theory, integrable systems, and mirror symmetry. \\
+
+Another subject revolutionized by the Yang-Mills equations was four dimensional
+topology. By studying a modified version of the Yang-Mills equations with structure
+group $\mathrm{SU}(2)$ over a smooth four manifold, Donaldson was able to prove his
+famous theorem about intersection forms of four manifolds. Using results of
+Taubes and Uhlenbeck, Donaldson showed that on a simply connected smooth four manifold
+$X$ with definite intersection form, the space of solutions to these equations
+could be used to construct a cobordism from $X$ to a disjoint union of copies
+of $\CP^2$. Then using the fact that the intersection form (up to integer equivalence)
+is a cobordism invariant, this allowed him to conclude that any such smooth manifold
+must have an intersection form that is diagonalizable over the integers. This was
+exremely surprising, and combined with results of Freedman, proved the existence of
+many topological four manifolds that admit no smooth structure.
+%
+\end{document}
