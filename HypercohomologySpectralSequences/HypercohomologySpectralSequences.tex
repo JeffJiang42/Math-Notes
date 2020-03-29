@@ -1,0 +1,508 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
+%\usepackage{spectralsequences}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathrm{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+%
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Hypercohomology and Spectral Sequences}
+%
+\maketitle
+%
+\tableofcontents
+%
+\section*{Conventions and Notation}
+%
+We will use cohomological indexing -- for a complex $(A^\bullet, d)$, the differential
+increases the degree. We fix an abelian category $\mathcal{A}$ with enough
+injectives -- for our purposes it is harmless to assume that $\mathcal{A}$ is
+one of $\mathsf{Ab}$, $\mathsf{Mod}_R$, or a category of sheaves over a space
+(e.g. $\mathrm{Sh}_{\mathsf{Ab}}(X)$ or $\mathrm{QCoh}(X))$, because of this,
+we will be relatively cavalier about using elements when doing homological algebra.
+%
+\section{Derived Functors and Hypercohomology}
+%
+\begin{defn}
+A \ib{double complex} is a collection of objects $K^{p,q} \in \mathcal{A}$ with
+$p,q \in \Z$ equipped with differentials
+\begin{align*}
+D_1 : K^{p,q} &\to K^{p+1,q} \\
+D_2 : K^{p,q} &\to K^{p,q+1}
+\end{align*}
+such that $D_i^2 = 0$ and $D_1 \circ D_2 = D_2 \circ D_1$.
+\end{defn}
+%
+There is a sign convention with double complexes -- some prefer to replace
+the condition that the differetials commute with the condition that they
+\emph{anticommute}, i.e. $D_1 \circ D_2 = -D_2\circ D_1$. \\
+
+The way to visualize a double complex is to arrange the objects $K^{p,q}$ in a
+grid, with $K^{p,q}$ in the position with coordinate $(p,q)$.
+\[\begin{tikzcd}
+K^{0,3} \ar[r, "D_1"] & K^{1,3} \ar[r, "D_1"] & K^{2,3} \ar[r, "D_1"] & K^{3,3} \\
+K^{0,2} \ar[u, "D_2"] \ar[r, "D_1"] & K^{1,2} \ar[u, "D_2"] \ar[r, "D_1"]
+& K^{2,2} \ar[u, "D_2"] \ar[r, "D_1"] & K^{3,2} \ar[u, "D_2"] \\
+K^{0,1} \ar[u, "D_2"] \ar[r, "D_1"] & K^{1,1} \ar[u, "D_2"] \ar[r, "D_1"]
+& K^{2,1} \ar[u, "D_2"] \ar[r, "D_1"] & K^{3,1} \ar[u, "D_2"] \\
+K^{0,0} \ar[u, "D_2"] \ar[r, "D_1"] & K^{1,0} \ar[u, "D_2"] \ar[r, "D_1"]
+& K^{2,0} \ar[u, "D_2"] \ar[r, "D_1"] & K^{3,0} \ar[u, "D_2"]
+\end{tikzcd}\]
+Because of this, we refer to $D_1$ as the \ib{horizontal differential} and
+$D_2$ as the \ib{vertical differential}. One thing to note is that the defintion
+of a double complex has no finiteness or positivity assumption -- we can
+have a nonzero objects $K^{p,q}$ for arbitrarily large $p$ and $q$, and we may also
+have nonzero $K^{p,q}$ for $p,q < 0$.
+%
+\begin{exmp}
+Given a complex manifold $X$, we have the sheaves $\mathcal{A}^{p,q}_X$
+of smooth $(p,q)$-forms. These come equipped with differentials
+$\partial : \mathcal{A}^{p,q}_X \to \mathcal{A}^{p+1,q}_X$ and
+$\dbar : \mathcal{A}^{p,q}_X \to \mathcal{A}^{p,q+1}_X$. The operators $\partial$
+and $\dbar$ anticommute, so with our sign convention, we need to introduce
+the sign $(-1)^p$ to $\dbar$ to get the double complex of sheaves
+$(\mathcal{A}^{p,q}_X, \partial, (-1)^p\dbar)$.
+\end{exmp}
+%
+In the case of some finiteness conditions, we can produce a chain complex from
+a double complex.
+%
+\begin{defn}
+Let $(K^{p,q},D_1,D_2)$ be a double complex such that $K^{p,q} = 0$ when
+$p > p_0$ or $q > q_0$, for some fixed $p_0,q_0 \in \Z$ (i.e. all the objects
+become zero once we move far enough down and to the left). Then the
+\ib{total complex} (also called the \ib{simple complex}) associated to the double
+complex is the complex ($K^\bullet, D$) where
+\[
+K^n \defeq \bigoplus_{p+q=n}K^{p,q}
+\]
+and the differential $D$ is given by
+\[
+D \defeq \bigoplus_{p+q=n}(D_1 \oplus (-1)^pD_2)
+\]
+\end{defn}
+%
+For convenience, we will call a double complex that satisfies the
+conditions above to be \ib{bounded below}. Given a complex $(A^\bullet, d)$, we
+will also say that it is bounded below if there are only finitely many
+terms in negative degree. By shifting degrees, we may as well assume that
+a bounded below double complex begins indexing at $(0,0)$, and that a bounded
+below complex begins at index $0$.
+%
+\begin{prop}
+The total complex of a bounded below double complex actually forms a complex.
+\end{prop}
+%
+\begin{proof}
+It suffices to verify this on the component $K^{p,q} \subset K^n$.
+The differential $D^2$ on this component maps to
+\[
+K^{p+q+2} = K^{p+2} \oplus K^{p+1,q+1} \oplus K^{p,q+2}
+\]
+and is given component wise by the map
+$(D_1^2, (-1)^{p+1}(D_2\circ D_1) + (-1)^p(D_1 \circ D_2), D_2^2)$.
+Then since $D_i^2 = 0$ and the differentials commute, we have that this is the
+zero map.
+\end{proof}
+%
+To make use of double complexes, we first prove a useful fact.
+%
+\begin{prop}
+Let $(I^{p,q},D_1,D_2)$ be a double complex with total complex $(I^\bullet, D)$,
+and let $(M^\bullet, d)$ be another complex in $\mathcal{A}$. Then if there
+exist injective maps $i^p : M^p \to I^{p,0}$ such that $(I^{p,\bullet},D_2)$ is a
+resolution of $M^p$ (i.e. the complex $M^p \to I^{p,\bullet}$ is exact
+for all $p$), then the morphism $M^\bullet \to I^\bullet$ by the $i^p$ induces
+an isomorphism from the cohomology of $(M^\bullet,d)$ to the cohomology of the
+total complex $(I^\bullet, D)$.
+\end{prop}
+%
+Pictorially, the setup is given by the diagram
+\[\begin{tikzcd}
+\vdots & \vdots & \vdots & \vdots \\
+I^{0,2} \ar[u] \ar[r, "D_1"] & I^{1,2} \ar[u] \ar[r, "D_1"]
+& I^{2,2} \ar[u] \ar[r, "D_1"] & I^{3,2} \ar[u] \ar[r] & \cdots \\
+I^{0,0} \ar[u, "D_2"] \ar[r, "D_1"] & I^{1,0} \ar[u, "D_2"] \ar[r, "D_1"]
+& I^{2,0} \ar[u, "D_2"] \ar[r, "D_1"] & I^{3,0} \ar[u, "D_2"] \ar[r] & \cdots \\
+M^0 \ar[u, "i^0"] \ar[r, "d"] & M^1 \ar[u, "i^1"] \ar[r, "d"]
+& M^2 \ar[u, "i^2"] \ar[r, "d"] & M^3 \ar[u, "i^3"] \ar[r] & \cdots
+\end{tikzcd}\]
+Where the columns are all exact.
+%
+\begin{proof}[Proof of proposition]
+We prove this for abelian groups. The proof for $R$-modules is near identical,
+and the proof can also be adapted for an abelian category of sheaves by looking
+at the induced maps on stalks. \\
+
+Let $\alpha \in I^k \defeq \bigoplus_{p+q=k}I^{p,q}$ such that $D\alpha = 0$, and
+let $\alpha_{p,q} \in I^{p,q}$ denote the component of $\alpha$ lying in $I^{p,q}$,
+so $\alpha = \sum_{p,q}\alpha_{p,q}$. Then since $D\vert_{I^{p,q}}$ is given
+by $D = D_1 + (-1)^pD_2$, we have that $D_2\alpha_{0,k} = 0$, since no cancellation
+can occur, since you cannot obtain an element in $I^{0,k+1}$ by appplying $D_1$.
+Furthermore, we know that for $q < k$ we have
+$D_1\alpha_{p,q} + (-1)^p\alpha_{p+1,q-1} = 0$. By assumption, the complex
+$(I^{0,\bullet},D_2)$ is exact, since it is a resolution of $M^0$, so we have that
+$\alpha_{0,k} = D_2\beta$ for some $\beta \in I^{0,k-1}$. We then consider the
+element $\alpha' \defeq \alpha - D\beta$, which defines the same element
+as $\alpha$ in $H^k(I^\bullet)$. We note that $\alpha'$ has the property that
+$\alpha'_{0,k} = 0$. Because of this, the fact that $D\alpha' = 0$ implies
+that $D_2\alpha'_{1,k-1} = 0$, since the only way to get cancellation is
+by applying $D_1$ to $\alpha_{0,k}$, which we just noted was $0$. Repeating
+this argument, we obtain an element $\tilde{\alpha} \in I^{k,0}$ that defines
+the same element in $H^k(I^\bullet)$ as our original element $\alpha$. We
+then note that $D\tilde{\alpha} = 0$ implies that $D_i\tilde{\alpha} = 0$,
+again since there is no way to obtain cancellation. Then since
+$I^{k\bullet}$ is a resolution of $M^k$ via $i^k$, the fact that
+$D_2\tilde{\alpha} = 0$ implies by exactness that  $\tilde{\alpha} = i^k(\beta)$
+for some $\beta \in M^k$. The fact that $D_1\tilde{\alpha} = 0$ implies that
+$d\beta = 0$ by commutativity of the square
+\[\begin{tikzcd}
+I^{k,0} \ar[r, "D_1"] & I^{k+1,0} \\
+M^k \ar[u, "i^k"]\ar[r,"d"'] & M^{k+1} \ar[u, "i^{k+1}"']
+\end{tikzcd}\]
+Therefore, we have that in the induced map on cohomology, the cohomology class
+$[\alpha] = [\tilde{\alpha}] \in H^k(I^\bullet)$ is the image of the class
+$[\beta] \in H^k(M^\bullet)$, so the map $H^k(M^\bullet) \to H^k(I^\bullet)$ is
+surjective. \\
+
+For injectivity, suppose we have that a cohomology class $[\alpha] \in H^k(M^\bullet)$
+maps to $0$, so $i^k(\alpha) = D\beta$ for some $\beta \in I^{k-1}$. We note
+that $(D\beta)_{0,k} = 0$ since $i^k$ is a map $M^k \to I^{k,0}$. Furthermore,
+we note that $(D\beta)_{0,k} = D_2\beta_{0,k-1}$. Therefore, we can find a
+$\gamma \in I^{0,k-2}$ such that $\beta_{0,k-1} = D_2\gamma$. Then setting
+$\beta' = \beta - D\gamma$, we have that $D\beta' = D\beta = i^k(\alpha)$ but
+$\beta'$ has the property that $\beta'_{0,k-1} = 0$. By repeating this argument,
+we may assume that $i^k(\alpha) = D\beta$, where $\beta \in I^{k-1,0}$. Then
+since $D_2\beta \in I^{k-1,1}$ and there is no possibility of cancellation, we have
+that $D_2\beta = 0$ and $D_1\beta = \alpha$. In the case $k=1$,
+we can immediately write $\alpha = D\beta$ with $\beta \in I^{0,0}$, and the
+same reasoning as above lets us conclude that $D_2\beta = 0$ and $D_1\beta = \alpha$.
+By exactness, $D_2\beta = 0$ implies that $\beta = i^{k-1}(\gamma)$ for some
+$\gamma \in M^{k-1}$. Then commutativity of the square
+\[\begin{tikzcd}
+I^{k-1,0} \ar[r, "D_1"] & I^{k,0} \\
+M^{k-1} \ar[u, "i^{k-1}"]\ar[r,"d"'] & M^k \ar[u, "i^k"']
+\end{tikzcd}\]
+this implies that $d\gamma = \alpha$, so $[\alpha] = 0$. Therefore, the
+induced map on cohomology is injective.
+\end{proof}
+%
+We will use this to prove the next proposition.
+%
+\begin{prop}
+let $(M^\bullet,d)$ be a bounded below complex in $\mathcal{A}$. Then there exists
+another bounded below complex $(I^\bullet,D)$ in $\mathcal{A}$ and a quasi-isomorphism
+$\varphi : M^\bullet \to I^\bullet$ such that
+\begin{enumerate}
+  \item Each of the $I^k$ is an injective object in $\mathcal{A}$.
+  \item Each $\varphi^k : M^k \to I^k$ is injective.
+\end{enumerate}
+\end{prop}
+%
+\begin{proof}
+Our goal will be to construct a double complex of injective objects satisfying the
+conditions of the previous proposition, i.e. a double complex $(I^{p,q},D_1,D_2)$
+that is a levelwise resolution  of $M^\bullet$. The desired complex will then be
+the total complex of the double complex $I^{p,q}$. To do this, it suffices to
+produce a chain map $i^\bullet : M^\bullet \to I^{1,\bullet}$ such that each $i^k$
+is an injection into an injective object $I^{1,k}$. Once we do this, we can iteratively
+construct the double complex by repeating the argument with
+$M^\bullet = \coker i^\bullet$ to obtain a chain map
+$\coker i^\bullet \to I^{2,\bullet}$, and then defining the map
+$I^{1,\bullet} \to I^{2,\bullet}$ to be the composition  of the quotient map
+$I^{1,\bullet} \to \coker i^\bullet$ with the map
+$\coker i^\bullet \to I^{2,\bullet}$. \\
+
+We construct the complex $I^{1,\bullet}$ iteratively. To start, we pick
+an arbitrary injection $i^0 : M^0 \hookrightarrow  I^{0,0}$ from $M^0$ to an
+injective object $I^{0,0}$. We have an injective map $M^0 \to I^{0,0} \oplus M^1$
+given by $(i^0,-d)$. Let $j : M^1 \to I^{0,0} \oplus M^1$ and
+$k : I^{0,0} \to I^{0,0} \oplus M^1$ be the inclusions, and let
+$\pi : I^{0,0} \oplus M^1 \to \coker(I^0,-d)$ be the quotient map. Then fix
+an injection $\eta : \coker(i^0,-d) \to I^{1,0}$ for an arbitrary injective object
+$I^{1,0}$. Then define $i^1 : M^1 \to I^{1,0}$ by $i^1 \defeq \eta \circ \pi \circ j$,
+and define $D_1 : I^{0,0} \to I^{1,0}$ by $D_1 \defeq \eta \circ \pi \circ k$.
+We claim that the map $i^1$ is injective. By the definition of the cokernel,
+an element $\alpha \in M^1$ maps to $0$ if it is contained in the image of
+$(i^0,-d) : M^0 \to I^{0,0} \oplus M^1$. However, since $i^0$ is injective,
+the only element with a $0$ in the first component is $(0,0)$. Therefore,
+since $j$ and $\eta$ are injective, $i^1(\alpha) = 0$ if and only if $\alpha = 0$.
+We then claim that $D_1 \circ i^0 = i^1 \circ d$. We note that for $\alpha \in M^0$
+we have
+\begin{align*}
+i^1(d\alpha) &= (\eta \circ \pi)(0,d\alpha) \\
+D_1(i^0(\alpha)) &= (\eta \circ \pi)(i^0(\alpha),0)
+\end{align*}
+So if suffices to show that $\pi(0,d\alpha) = \pi(i^0(\alpha),0)$, but we have that
+$(i^0(\alpha),0) - (0,d_\alpha) = (i^0(\alpha),-d\alpha) \in \coker(i^0,-d)$, so
+this is true. In summary, what we have constructed so far can be summarized by the
+diagram
+\[\begin{tikzcd}
+I^{0,0} \ar[r, "D_1"] & I^{1,0} \\
+M^0 \ar[u, "i^0"]\ar[r, "d"] & M^1 \ar[r, "d"] \ar[u, "i^1"]& M^2
+\end{tikzcd}\]
+To continue this, let $\overline{i^1} : M^1 \to \coker D_1$ denote the composition
+of $i^1$ with the quotient map. This gives us a map
+$(\overline{i^1},-d) : M^1 \to \coker D_1 \oplus M^2$. As we did before,
+fix an injection $\eta : \coker(\overline{i^1},-d) \to I^{2,0}$, and define the
+maps $i^2$ and $D_1$ analogously to the previous construction. The map $i^2$ is
+injective and $D_1 \circ i^1 = i^2 \circ d$ by near identical reasoning to before.
+What's left to show is that $D_1^2 = 0$, but this comes immediately from
+the fact that $\eta \circ \pi$ vanishes on the image of $(\overline{i^1}, -d)$
+by construction. Continuing this process then constructs the desired complex
+$I^{\bullet,0}$ of injectives.
+\end{proof}
+%
+A consequence of this proposition is that for the purposes of cohomology,
+we can always assume we are computing the cohomology of a complex of injective
+objects. In more modern language, this says that any bounded below complex $M^\bullet$
+is isomorphic to a complex of injectives in the derived category $D(\mathcal{A})$. \\
+
+The goal of the preceding discussion is to extend the classical notion of
+the right derived functors of a left exact functor $F: \mathcal{A} \to \mathcal{B}$.
+The classical examples (e.g. $\mathrm{Ext}$ and $\mathrm{Tor}$) are defined
+on objects of $\mathcal{A}$. However, the preceding discussion allows us
+to extend the functors $R^iF$ to bounded below complexes $M^\bullet$ in $\mathcal{A}$.
+Echoing the classical definition, we would like to define $R^iF(M^\bullet)$ on
+a bounded below complex $M^\bullet$ to be the cohomology groups $H^i(F(I^\bullet))$,
+where $I^\bullet$ is a complex of injective objects admitting a quasi-isomorphism
+$i^\bullet : M^\bullet \to I^\bullet$, with each $i^k$ injective (which always exists
+by the previous discussion). Indeed, this is the correct definition, but there is work
+to be done to show that it is well defined. We first collect some lemmas.
+%
+\begin{lem}
+Let $i^\bullet : M^\bullet \to I^\bullet$
+be a quasi-isomorphism of a bounded below complex $M^\bullet$ into a complex $I^\bullet$
+of injective objects with each $i^k$ injective. Then for another complex
+of injective objects $J^\bullet$ with a quasi-isomorphism
+$j^\bullet : M^\bullet \to J^\bullet$ satisfying the same conditions as $i^\bullet$,
+there exists a chain map $\varphi^\bullet I^\bullet \to J^\bullet$, well defined up
+to homotopy, such that $\varphi^\bullet \circ j^\bullet$.
+\end{lem}
+%
+\newpage
+%
+\nocite{*}
+%
+\printbibliography
+%
+\end{document}

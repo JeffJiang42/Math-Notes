@@ -1,0 +1,95 @@
+%
+\section{The Adjunction Formula}
+%
+The relationship between line bundles and the codimension $1$ geometry of $X$ can also
+be seen through the Adjunction Formula, which relates the normal bundle of a
+hypersurface $S \subset X$ (a line bundle!) with the divisor $[S]$ it defines.
+%
+\begin{defn}
+Let $S \subset X$ be a complex submanifold. Then the \ib{normal bundle} of $S$, denoted
+$N_S$, is the quotient vector bundle
+\[
+N_S \defeq T^{1,0}X\vert_S/T^{1,0}S
+\]
+Where $T^{1,0}X$ and $T^{1,0}S$ denote the holomorphic tangent bundles of $X$
+and $S$ respectively. The \ib{conormal bundle} of $S$ is the dual bundle $N_S^*$.
+\end{defn}
+%
+From standard linear algebra, we can regard elements of $N_S^*$ as tangent covectors
+that vanish on the tangent space of $S$. \\
+
+In the case that $S$ is a hypersurface (i.e complex codimension $1$), then we have that
+$S$ defines a divisor $[S] \in \mathrm{Div}(X)$. In addition, $N_S$ is a line
+bundle. One would hope that the divisor $[S]$ and $N_S$ are closely related by the
+correspondence between divisors and line bundles. This turns out to be the case!
+%
+\begin{prop}
+\[
+N^*_S \cong \O(-S)\vert_{S}
+\]
+\end{prop}
+%
+\begin{proof}
+Let $\set{U_\alpha}$ be an open cover of $X$ such that $S$ is locally defined
+by holomorphic functions $f_\alpha \in \O_X(U_\alpha)$. Then the line bundle
+$\O(S)$ is given by the \v{C}ech cocycle $\set{g_{\alpha\beta}}$ where
+\[
+g_{\alpha\beta} = \frac{f_\alpha}{f_\beta}
+\]
+Since $f_\alpha$ vanishes along $V \cap U_\alpha$, the differential $df_\alpha$
+vanishes on the tangent vectors of $V \cap U_\alpha$ tangent to $V$, which is to say
+that it defines a local section of the conormal bundle $N^*_S$ over the open set
+$V \cap U_\alpha$. Furthermore, since $S$ is nonsingular, $df_\alpha$ is nonzero
+over every point of $V \cap U_\alpha$. Over $V \cap U_\alpha \cap U_\beta$, we have
+\begin{align*}
+df_\alpha &= d(g_{\alpha\beta}f_\beta) \\
+&= f_\beta dg_{\alpha\beta} + g_{\alpha\beta} df_\beta \\
+&= g_{\alpha\beta}df_\beta
+\end{align*}
+where we use the fact that $f_\beta$ vanishes on $V \cap U_\beta$. Therefore, we have
+that we can interpret the $\set{df_\alpha}$ as local sections of
+$N_S^* \otimes \O(S)\vert_S$ which glue together to form a global nonvanishing sections
+of $N_S^* \otimes \O(S)\vert_S$, which tells us that $N_S^* \otimes \O(S)\vert_S$ is
+a trivializable line bundle. Therefore, we have that $N_S^* \cong \O(-S)\vert_S$.
+\end{proof}
+%
+This gives us a particularly nice description of the canonical bundle
+$K_S \defeq (T^{n,0}S)^*$ of a hypersurface $S$ in terms of the canonical bundle of $X$.
+%
+\begin{prop}
+Let $S \subset X$ be a hypersurface. Then
+\[
+K_S \cong (K_X \otimes \O(S))\vert_S
+\]
+\end{prop}
+%
+\begin{proof}
+By the definition of the normal bundle, we have the exact sequence of vector bundles
+over $S$
+\[\begin{tikzcd}
+0 \ar[r] & T^{1,0}S \ar[r] & T^{1,0}X\vert_S \ar[r] & N_S \ar[r] & 0
+\end{tikzcd}\]
+Dualizing, this becomes
+\[\begin{tikzcd}
+0 \ar[r] & N_S^* \ar[r] & (T^{1,0}X\vert_S)^* \ar[r] & (T^{1,0}S)^* \ar[r] & 0
+\end{tikzcd}\]
+From this, a linear algebra fact gives us that the determinant line of
+$(T^{1,0}X\vert_S)^*$ is isomorphic to the tensor product of the determinant
+line bundle of the other two, i.e.
+\[
+K_X\vert_S \cong K_S \otimes N_S^*
+\]
+where we use the fact that $N_S^*$ is a line bundle to conclude that it is its own
+determinant line bundle. Then since $N_S^* \cong \O(-S)$, we get that
+\[
+K_X\vert_S \otimes \O(S)\vert_S \cong K_S
+\]
+\end{proof}
+%
+This is particularly useful for hypersurfaces in $\CP^n$, since we know that
+the canonical bundle of $\CP^n$ is $\O(-n-1)$ and we also can work with the
+conormal bundle in the form of an ideal sheaf. Indeed, the discussion above
+can be done on the levels of sheaves of sections, where we identify
+the sheaf of sections of $N^*_S$ with the sheaf $\mathcal{I}/\mathcal{I}^2$,
+where $\mathcal{I}$ denotes the ideal sheaf of holomorphic functions vanishing along $S$.
+%

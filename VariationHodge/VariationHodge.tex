@@ -1,0 +1,793 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+\usepackage[backend=biber]{biblatex}
+\addbibresource{bibliography.bib}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathrm{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+%
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{Variations of Hodge Structure}
+%
+\maketitle
+%
+\tableofcontents
+%
+\section*{Notation and Conventions}
+%
+For a complex manifold $X$, we let $\O_X$ denote its sheaf of holomorphic functions.
+We let $\Omega^k_X$ denote the sheaf of holomorphic $k$-forms on $X$, and
+we let $\mathcal{A}^k_X$ denote the sheaf of smooth complex $k$-forms on $X$.
+%
+\section{Hodge Structures}
+%
+The purpose of a Hodge structure is to abstract away the properties of the
+cohomology groups of a compact Kahler manifold into a linear algebraic gadget.
+%
+\section{Flat Bundles and Local Systems}
+%
+\begin{defn}
+Let $X$ be a complex manifold. A \ib{local system} on $X$ is a sheaf $H$ of
+abelian groups on $X$ that is isomorphic to the constant sheaf $\underline{A}$
+for some abelian group $A$.
+\end{defn}
+%
+In most cases, we will discuss local systems where the abelian group $A$ is
+a vector space over $\R$ or $\C$. Given a local system $H$ of $\C$-vector
+spaces, we can obtain a sheaf $\mathcal{H}$ of free $\O_X$-modules over $X$ by
+taking the tensor product
+\[
+\mathcal{H} \defeq H \otimes_{\underline{\C}} \O_X
+\]
+Where we regard $\O_X$ as a sheaf of $\underline{\C}$-algebras via the inclusion
+$\underline{\C} \hookrightarrow \O_X$. The same discussion holds if if $H$
+is a local system of abelian groups or $\R$ vector spaces by tensoring over
+$\underline{\Z}$ and $\underline{\R}$ respectively. We note that the sheaf
+$\mathcal{H}$ is isomorphic to $\O_X^n$, which is the sheaf of holomorphic sections of
+the trivial rank $n$ vector bundle $X \times \C^n$. However, we also have the
+data of our original sheaf $H$, which we can identify as a subsheaf of
+$\mathcal{H}$ via the mapping $h \mapsto h \otimes 1$. Our goal will be to identify
+$H$ as a subsheaf of distinguished sections of the trivial bundle $X \times \C^n$.
+%
+\begin{defn}
+Let $\mathcal{E}$ be a sheaf of $\O_X$-modules. A \ib{connection} on $\mathcal{E}$
+is a sheaf morphism $\nabla : \mathcal{E} \to \mathcal{E} \otimes_{\O_X} \Omega^1_X$
+such that
+\begin{enumerate}
+  \item $\nabla$ is $\underline{\C}$-linear.
+  \item For an open set $U$, a function $f \in \O_X(U)$, and a section
+  $s \in \mathcal{E}(U)$, we have that $\nabla$ satisfies the Leibniz rule
+  \[
+  \nabla(fs) = s \otimes df + f\nabla(s)
+  \]
+\end{enumerate}
+\end{defn}
+%
+In the case that $\mathcal{E}$ is the sheaf of holomorphic sections
+of a holomorphic vector bundle $E \to X$, the connection $\nabla$ is corresponds to
+the notion of a \emph{holomorphic} connection on $E$. By replacing $\O_X$ with the sheaf
+of smooth complex valued functions and $\Omega^1_X$ with $\mathcal{A}^1_X$, the same
+definition yields the more traditional definition of a connection on a smooth complex
+vector bundle.
+%
+\begin{defn}
+Let $\mathcal{E}$ be a sheaf of $\O_X$-modules equipped with a connection $\nabla$.
+A section $s \in \mathcal{E}(U)$ is \ib{flat} if $\nabla(s) = 0$.
+\end{defn}
+%
+Given a sheaf $\mathcal{E}$ with connection $\nabla$, the flat sections
+of $\mathcal{E}$ form a subsheaf. In the case that $\mathcal{E}$ comes from a
+vector bundle $\pi : E \to X$, the flat sections correspond to the equivalent
+interpretation of the connection $\nabla$ as a \ib{horizontal distribution} on
+the total space $E$, i.e. a vector subbundle $D \subset TE$ such that
+$D \oplus \ker d\pi = TE$. From this perspective, the flat sections of $\nabla$
+correspond to sections of $E$ that lie inside $D$. Another thing to note is
+that by a dimension count, we have that the rank of $D$ as a vector bundle
+over $E$ is the same as a the dimension of the base space $X$, which can be
+seen by noting that for any point $e \in E$, the fiber $D_e$ projects isomorphically
+onto the tangent space $T_{\pi(e)}X$ under $d\pi_e$ since it is complentary to the
+kernel.
+%
+\begin{prop}
+Let $H$ be a local system of $\C$-vector spaces, and
+$\mathcal{H} = H \otimes_{\underline{\C}} \O_X$ the sheaf of holomorphic sections of
+the associated vector bundle. Then there exists a connection $\nabla$ on $\mathcal{H}$
+such that $H$ is the sheaf of flat sections of $\nabla$.
+\end{prop}
+%
+\begin{proof}
+Over an open set $U \subset X$, we have that $\mathcal{H}(U)$ is isomorphic to
+$\O_X^n(U)$. Furthermore, we may choose the isomorphism $\O^n_X(U) \to \mathcal{H}(U)$
+such that the standard basis vector $e_i$ maps to an element $h_i$ of $H$, thought
+of as a subsheaf of $\mathcal{H}$. Then given a local section $s$, it can
+be written in this trivialization as $s = \sum_i f_ih_i$ for some holomorphic
+functions $f_i \in \O_X(U)$. Define $\nabla$ by the formula
+\[
+\nabla(s) = \sum_i h_i \otimes df_i
+\]
+Furthermore, we claim that this independent of our choice of trivialization. Given
+another trivialization $\set{h'_i}$, we have that $h_i$ and $h_i'$ are related by
+some matrix $A \in \GL_n\C$, (i.e. $h_i = A_i^jh'_j$, using Einstein summation
+convention) since $H$ is locally constant. Therefore, in the
+local trivialization $\set{h'_i}$, the section $s$ can be represented as
+$s = \sum_if_iA^j_ih'_j$. Therefore, if we use our definition of $\nabla$
+in this trivialization, we obtain
+\[
+\nabla(s) = \sum_{i,j} h'_j \otimes d(f_iA^j_i) = \sum_{i,j} h'_j \otimes A^j_i df_i
+= \sum_{i,j} A^j_ih'_j \otimes df_i = \sum_i h_i \otimes df_i
+\]
+where we use the fact that the matrix $A$ is locally constant on $U$ and $\C$-linearity
+of $d$. Therefore, our local definition of $\nabla$ is well-defined, and glues to a
+connection on all of $\mathcal{H}$. Furthermore, we see that a section $s$ is flat if
+and only if it is locally of the form $s = \sum_i \lambda_ih_i$ for scalars
+$\lambda_i \in \underline{\C}(U)$. Then by identifying $H$ with the subsheaf
+$H \otimes_{\underline{\C}} 1 \subset \mathcal{H}$, we immediately see that
+the flat sections are exactly the sections of $H$.
+\end{proof}
+%
+The connection $\nabla$ defined in the proof has a special property that
+is not shared by all connections. To identify this property, we need to define
+a notion of curvature. \\
+
+Let $\mathcal{E}$ be a sheaf of $\O_X$-modules equipped with a connection
+$\nabla : \mathcal{E} \to \mathcal{E} \otimes_{\O_X} \Omega^1_X$. This induces a map
+$\mathcal{E} \otimes_{\O_X} \Omega^k_X \to \mathcal{E} \otimes_{\O_X} \Omega^{k+1}_X$,
+which we also call $\nabla$, by the formula
+\[
+\nabla(s \otimes \omega) = \nabla(s) \wedge \omega + s \otimes d\omega
+\]
+Where $\nabla(s) \wedge \omega$ is obtained by writing $\nabla(s)$ locally as a sum
+of the form $\sum_i s_i \otimes \omega_i$ for $s_i \in \mathcal{E}(U)$ and
+$\omega_i \in \Omega^1_X(U)$ and wedging the $\omega_i$ with $\omega$.
+%
+\begin{prop}
+The extended connection
+$\nabla:\mathcal{E}\otimes_{\O_X}\Omega^k_X \to \mathcal{E}\otimes_{\O_X}\Omega^{k+1}_X$
+satisfies a graded Leibniz rule, i.e. for a function $f \in \O_X(U)$ and a local
+section $\theta \in \mathcal{E}(U) \otimes \Omega^k_X(U)$, we have
+\[
+\nabla(f\theta) = (-1)^k \theta \wedge df + f\nabla\theta
+\]
+\end{prop}
+%
+\begin{proof}
+By linearity, it suffices to check this when $\theta$ is of the form $s \otimes \omega$
+for a local section $s \in \mathcal{E}(U)$ and $\omega \in \Omega^1_X(U)$. We then
+compute
+\begin{align*}
+\nabla(f\theta) &= \nabla(f(s\otimes\omega)) \\
+&= \nabla(fs \otimes \omega) \\
+&= \nabla(fs) \wedge \omega + fs \otimes d\omega \\
+&= (s \otimes df + f\nabla(s))\wedge \omega + fs \otimes d\omega \\
+&= s \otimes(df\wedge\omega) + f\nabla(s)\wedge\omega + fs\otimes d\omega \\
+&= s \otimes (df \wedge \omega) + f\nabla(s \otimes \omega) \\
+&= (-1)^k s\otimes(\omega \wedge df) + f\nabla(s\otimes\omega) \\
+&= (-1)^k \theta\wedge df + f\nabla(\theta)
+\end{align*}
+\end{proof}
+%
+\begin{defn}
+The \ib{curvature} of a connection $\nabla$ is the map
+$\Omega : \mathcal{E} \to \mathcal{E} \otimes \Omega^2_X$ given by
+$\Omega \defeq \nabla \circ \nabla$.
+\end{defn}
+%
+\begin{prop}
+The curvature $\Omega$ of any connection $\nabla$ is $\O_X$-linear.
+\end{prop}
+%
+\begin{proof}
+Fix a local section $s$ and a holomorphic function $f$. Then we compute
+\begin{align*}
+\Omega(fs) &= \nabla(s \otimes df + f\nabla(s)) \\
+&= \nabla(s \otimes df) + \nabla(f\nabla(s)) \\
+&= (\nabla(s) \wedge df + s \otimes d^2f) - \nabla(s)\wedge df + f\nabla(\nabla(s)) \\
+&= f\Omega(s)
+\end{align*}
+\end{proof}
+%
+If a connection has curvature equal to zero, it is said to be \ib{flat}. \\
+
+From the perspective of horizontal distributions, the curvature tensor $\Omega$
+has an interpretation as the \ib{Frobenius tensor} of the horizontal distribution $D$,
+which measures the failure of $D$ to be \ib{involutive}, i.e. the failure of vector
+fields on $E$ lying in $D$ to be closed under the Lie bracket. By Frobenius' theorem,
+this is equivalent to $D$ being \ib{integrable}, so $\Omega$ measures the obstruction
+to the existence of integral submanifolds of $D$ inside of the total space $E$.
+From this perspective, flatness of a connection is exactly integrability of
+the horizontal distribution.
+%
+\begin{prop}
+The connection $\nabla$ on the vector bundle $\mathcal{H} \otimes_{\underline{\C}}\O_X$
+is flat.
+\end{prop}
+%
+\begin{proof}
+Fix a local trivialization of $\mathcal{H}$ such that a local basis of sections
+is given by a set $\set{h_i}$ with $h_i \in H(U)$. The local
+basis of sections determines an isomorphism $\O_X^n(U) \to \mathcal{H}(U)$,
+and identifies $\nabla$ with the operator that applies the de Rham differential $d$
+to each component of $\O_X^n(U)$. Then since $d^2 = 0 $, we have that
+$\Omega = \nabla\circ\nabla = 0$.
+\end{proof}
+%
+This suggests the following.
+%
+\begin{thm}
+There is an bijective correspondence
+\[
+\set{\text{Local systems of } \C \text{-vector spaces}} \longleftrightarrow
+\set{\text{Holomorphic vector bundles with flat connection}}
+\]
+\end{thm}
+%
+\begin{proof}
+In one direction, we can associate to a local system $H$ the vector bundle
+$\mathcal{H}$ with the connection we defined above. In the
+other direction, given a holomorphic vector bundle $\pi : E \to X$ with flat connection
+$\nabla$, we claim that the sheaf $H$ of flat sections of $E$ forms a local system.
+Once we do so, it's clear that the mappings specified above are inverses to
+each other, giving us the desired correspondence. \\
+
+Since the bundle $\pi : E \to X$ has a flat connection $\nabla$, we have that the
+horizontal distribution $D$ is integrable, so there exists a integral
+submanifolds of $E$ whose tangent spaces correspond to the fibers of $D \to E$.
+Fix a basepoint $x \in X$, and consider the zero element $0 \in E_x$ the the fiber
+lying over $x$. Then let $Y \subset E$ denote an integral submanifold of $D$ containing
+$0$. Since $D$ is complementary to $\ker d\pi$ and $T_0Y = D_0$, we have that
+$\pi\vert_Y : Y \to X$ is a local diffeomorphism at $0$, so there exists connected
+open neighborhoods $U \subset Y$ and $V \subset X$ such that $\pi\vert_U$ is a
+diffeomorphism $U \to V$. Furthermore, we note that by construction, $U$ is the union of
+the images of flat sections $V \to E$, since it is an integral submanifold of the
+horizontal distribution. Then since $U$ is an open neighborhood of the
+zero section $V \to E$, taking fiberwise linear combinations of elements
+of $U$ spans the fibers of $E$ lying over $V$. Since linear combinations of flat
+sections are flat, we have that the fibers of $E$ lying over $V$ are generated by flat
+sections. Therefore, we can identify the flat sections of $E$ over $U$ with elements
+of the fiber $E_0$, since a section $\sigma$ whose value at $x$ is a vector
+$v \in E_0$ is uniquely extended to a flat section in a neighborhood of $x$
+by existence and uniqueness of solutions to the differential equation $\nabla\sigma = 0$.
+Putting everything together, we find that the flat sections over $U$ can be
+identified with constant functions $U \to E_0$, which tells us that the sheaf
+of flat sections can be identified with the constant sheaf $\underline{E_0}$, so
+they form a local system.
+\end{proof}
+%
+\section{Derived Pushforwards of Sheaves}
+%
+To discuss the Gauss-Manin connection, we need to make a short digression into
+homological algebra and derived pushforwards of sheaves. For a topological space
+$X$, let $\mathrm{Sh}(X)$ denote the abelian category of sheaves of $R$-modules over
+$X$, where $R = \Z$, $\R$, or $\C$.
+%
+\begin{defn}
+Let $\pi : X \to Y$ be a continuous map. The \ib{pushforward} (also known as the
+\ib{direct image}) along $\pi$ is a functor $\pi_* : \mathrm{Sh}(X) \to \mathrm{Sh}(Y)$,
+where given a sheaf $\mathcal{F}$ over $X$, the sheaf $\pi_*\mathcal{F}$ is defined by
+the mapping
+\[
+\pi_*\mathcal{F}(U) \defeq \mathcal{F}(\pi\inv(U))
+\]
+Given a sheaf morphism $\varphi : \mathcal{F} \to \mathcal{G}$, the sheaf morphism
+$\pi_*\varphi : \pi_*\mathcal{F} \to \pi_*\mathcal{G}$ is given by
+\[
+\pi_*\varphi(U) \defeq \varphi(\pi\inv(U))
+\]
+\end{defn}
+%
+\begin{defn}
+Given a continuous map $\pi: X \to Y$ and the \ib{pullback} along $\pi$ is a functor
+$\pi^* : \mathrm{Sh}(Y) \to \mathrm{Sh}(X)$ where for a sheaf
+$\mathcal{F} \in \mathrm{Sh}(Y)$, the sheaf $\pi^*\mathcal{F}$ is the
+sheafification of the presheaf
+\[
+U \mapsto \lim_{V \supset \pi(U)} \mathcal{F}(V)
+\]
+Given a morphism $\varphi : \mathcal{F} \to \mathcal{G}$, the sheaf morphism
+$\pi^*\varphi : \pi^*\mathcal{F} \to \pi^*\mathcal{G}$ is given by the sheaf
+morphism induced by the map of presheaves
+\[
+\lim_{V \supset \pi(U)} \varphi(V) :
+\lim_{V \supset \pi(U)} \mathcal{F}(V) \to \lim_{V \supset \pi(U)} \mathcal{G}(V)
+\]
+\end{defn}
+%
+It's clear from the definition of the pullback that for a point
+$x \in X$, the stalk $(\pi^*\mathcal{F})_x$ is equal to the stalk
+$\mathcal{F}_{\pi(x)}$. Furthermore, given a morphism
+$\varphi : \mathcal{F} \to \mathcal{G}$ of sheaves over $Y$, we have that the
+morphism $\pi^*\varphi$ is given on stalks by the same maps induced by $\varphi$.
+Then since injectivity and surjectivity for sheaf maps can be checked on the level
+of stalks, this immediately yields the result:
+%
+\begin{prop}
+The functor $\pi^*$ is exact, i.e. for an exact sequence of sheaves over $Y$,
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \ar[r] & \mathcal{F} \ar[r] & \mathcal{G} \ar[r] & 0
+\end{tikzcd}\]
+the sequence  of sheaves over $X$ given by
+\[\begin{tikzcd}
+0\ar[r]& \pi^*\mathcal{E} \ar[r] & \pi^*\mathcal{F} \ar[r] & \pi^*\mathcal{G} \ar[r]&0
+\end{tikzcd}\]
+is exact.
+\end{prop}
+%
+The key fact we will need regarding $\pi^*$ and $\pi_*$ is the fact that they
+are adjoint functors.
+%
+\begin{prop}
+Let $\pi : X \to Y$ be a continuous map, and let $\mathcal{F} \in \mathrm{Sh}(X)$
+and $\mathcal{G} \in \mathrm{Sh}(Y)$. Then there is a bijection
+\[
+\hom(\pi^*\mathcal{G},\mathcal{F}) \longleftrightarrow \hom(\mathcal{G},\pi_*\mathcal{F})
+\]
+that is natural in $\mathcal{F}$ and $\mathcal{G}$, i.e. functorial with respect to
+maps into and out of $\mathcal{F}$ and $\mathcal{G}$.
+\end{prop}
+%
+\begin{proof}
+We provide maps in both directions. For one direction, let
+$\varphi \in \hom(\pi^*\mathcal{G},\mathcal{F})$. For an open set $U \subset X$,
+this gives us a map $\varphi(U) : \pi^*\mathcal{G}(U) \to \mathcal{F}(U)$.
+By definition, we have that
+$\pi^*\mathcal{G}(U) = \mathrm{lim}_{V\supset\pi(U)}\mathcal{G}(V)$, so the
+map $\varphi(U)$ is equivalent to the data of maps
+$\phi_V : \mathcal{G}(V) \to \mathcal{F}(U)$ for all open sets $V \supset \pi(U)$
+such that if $W \supset V$, then $\phi_W$ is equal to the composition of $\phi_V$
+with the restriction map $\mathcal{G}(W) \to \mathcal{G}(V)$. From this data,
+we want to produce a sheaf morphism $\mathcal{G} \to \pi_*\mathcal{F}$. To do this,
+for each open set $U \subset Y$,  we want to produce a map
+$\mathcal{G}(U) \to \mathcal{F}(\pi\inv(U))$. We note that $\pi(\pi\inv(U)) = U$,
+so if we consider the map
+$\varphi(\pi\inv(U)) : \lim_{V \supset U}\mathcal{G}(V) \to \mathcal{F}(\pi\inv(U))$,
+we may take the map $\phi_U : \mathcal{G}(U) \to \mathcal{F}(\pi\inv(U))$.
+Doing this for all open sets gives us the desired sheaf morphism
+$\mathcal{G} \to \pi_*\mathcal{F}$. \\
+
+In the other direction, suppose we are given a sheaf map
+$\psi \in \hom(\mathcal{G},\pi_*\mathcal{F})$. Then for an open set $U \subset Y$
+we have a map $\psi(U) : \mathcal{G}(U) \to \mathcal{F}(\pi\inv(U))$. From this we
+want to produce a sheaf map $\pi^*\mathcal{G} \to \mathcal{F}$. Let $W \subset X$
+be an open set. We then must give a map $\pi^*\mathcal{G}(W) \to \mathcal{F}(W)$.
+By definition, we have that
+$\pi^*\mathcal{G}(W) = \lim_{V \supset \pi(W)}\mathcal{G}(V)$. So we
+need to give the data of maps $\xi_V : \mathcal{G}(V) \to \mathcal{F}(W)$
+for every $V \supset \pi(W)$ that are compatible with the restriction maps of
+$\mathcal{G}$ in the same sense as we specified above with the $\phi_V$. We
+observe that for $V \supset \pi(W)$, we have that
+$\pi\inv(V) \supset \pi\inv(\pi(W)) \supset W$, so we have a restriction map
+$\mathcal{F}(\pi\inv(V)) \to \mathcal{F}(W)$. We can then define the maps
+$\xi_V$ to the composition of $\psi(V) : \mathcal{G}(V) \to \mathcal{F}(\pi\inv(V))$
+with the restriction $\mathcal{F}(\pi\inv(V)) \to \mathcal{F}(W)$.
+The fact that these maps are compatible follows from $\psi$ being a sheaf morphism. \\
+
+From here, it is a simple but tedious verification to show that the two constructions
+provided above are inverse to each other and are natural in $\mathcal{F}$ and
+$\mathcal{G}$, giving us the desired adjunction.
+ \end{proof}
+%
+With the preliminaries out of the way, we can discuss what we need for the
+Gauss-Manin connection. The first observation to make is that for a continuous
+map $\pi : X \to Y$, the pushforward functor $\pi_*$ is left-exact. This follows
+immediately from the definition and the fact that injectivity of a sheaf
+morphism can be checked on sections. However, $\pi_*$ is not right exact in
+general -- as with most things involving sheaves, the issue arises from the
+existence of surjective sheaf morphisms that are not surjective on sections.
+%
+\begin{defn}
+Let $\pi : X \to Y$ be a continuous map, and let $\mathcal{F} \in \mathrm{Sh}(X)$.
+The \ib{derived pushforward sheaves} of $\mathcal{F}$ (also referred to as
+\ib{higher direct image sheaves}) are the right derived  functors
+$R^i\pi_*\mathcal{F}$.
+\end{defn}
+%
+Explicitly, the derived pushforward sheaves of $\mathcal{F}$ can be computed
+by taking an injective resolution of $\mathcal{F}$
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{F} \ar[r, "d^0"] &
+\mathcal{I}^1 \ar[r, "d^1"] & \mathcal{I}^2 \ar[r, "d^2"] & \cdots
+\end{tikzcd}\]
+Applying $\pi_*$ to this resolution gives a complex of sheaves over $Y$
+\[\begin{tikzcd}
+0 \ar[r] & \pi_*\mathcal{F} \ar[r, "\pi_*d^0"] &
+\pi_*\mathcal{I}^1 \ar[r, "\pi_*d^1"] & \pi_*\mathcal{I}^2 \ar[r, "\pi_*d^2"] & \cdots
+\end{tikzcd}\]
+and we have that the sheaf $R^i\pi_*\mathcal{F}$ is the $i^{th}$ cohomology
+sheaf in this sequence, i.e.
+\[
+R^i\pi_*\mathcal{F} \defeq \frac{\ker \pi_*d^i}{\im \pi_*d^{i-1}}
+\]
+where we let $\pi_*d^{-1}$ denote the zero map $0 \to \pi_*\mathcal{F}$. \\
+
+To give a more usable characterization of the derived pushforward sheaves,
+we first prove a lemma.
+%
+\begin{lem}
+Let $\pi : X \to Y$ be a continuous map, and $\mathcal{I} \in \mathrm{Sh}(X)$
+an injective sheaf. Then $\pi_*\mathcal{I}$ is an injective sheaf.
+\end{lem}
+%
+\begin{proof}
+We want to show that given a sheaf morphism
+$\varphi : \mathcal{F} \to \pi_*\mathcal{I}$ and an injection
+$\mathcal{F} \to \mathcal{G}$, there exists a sheaf map
+$\widetilde{\varphi} : \mathcal{G} \to \pi_*\mathcal{I}$ such that the follwing
+diagram commutes:
+\[\begin{tikzcd}
+\mathcal{F} \ar[r, "\varphi"] \ar[d, hookrightarrow] & \pi_*\mathcal{I}  \\
+\mathcal{G} \ar[ur, "\widetilde{\varphi}"',dashed]
+\end{tikzcd}\]
+Using the adjunction of $\pi^*$ with $\pi_*$, this is equivalent to finding
+a map $\widehat{\varphi} : \pi^*\mathcal{G} \to \mathcal{I}$ such that
+the following diagram commutes :
+\[\begin{tikzcd}
+\pi^*\mathcal{F} \ar[d, hookrightarrow]\ar[r] & \mathcal{I} \\
+\pi^*\mathcal{G} \ar[ur, "\widehat{\varphi}"',dashed]
+\end{tikzcd}\]
+where the map $\pi^*\mathcal{F} \to \mathcal{I}$ is the composition of
+$\pi^*\varphi : \pi^*\mathcal{F} \to \pi^*\pi_*\mathcal{I}$ with the
+natural map $\pi^*\pi_*\mathcal{I} \to \mathcal{I}$ obtained by taking the image of
+$\id_{\pi_*\mathcal{I}}$ under the map
+$\hom(\pi_*\mathcal{I},\pi_*\mathcal{I}) \to \hom(\pi^*\pi_*\mathcal{I},\mathcal{I})$
+given by the adjunction. In addition, we use the fact that $\pi^*$ is exact to
+conclude that the map $\pi^*\mathcal{F} \to \pi^*\mathcal{G}$ is injective. We
+then note that since $\mathcal{I}$ is injective, such a $\widehat{\varphi}$ exists.
+\end{proof}
+%
+The lemma then lets us find the nice characterization we desire.
+%
+\begin{prop}
+For a continuous map $\pi : X \to Y$ and a sheaf $\mathcal{F} \in \mathrm{Sh}(X)$,
+the derived pushforward sheaves $R^i\pi_*\mathcal{F}$ are the sheafification
+of the presheaves defined by
+\[
+U \mapsto H^i(\pi\inv(U), \mathcal{F}\vert_{\pi\inv(U)})
+\]
+\end{prop}
+%
+\begin{proof}
+Consider the complex of sheaves over $Y$ obtained by applying $\pi_*$ to an
+injective resolution of $\mathcal{F}$.
+\[\begin{tikzcd}
+0 \ar[r] & \pi_*\mathcal{F} \ar[r, "\pi_*d^0"] &
+\pi_*\mathcal{I}^1 \ar[r, "\pi_*d^1"] & \pi_*\mathcal{I}^2 \ar[r, "\pi_*d^2"] & \cdots
+\end{tikzcd}\]
+By the previous lemma, this is an injective resolution of the sheaf
+$\pi_*\mathcal{F}$. For an open set $U \subset Y$, we have that the sections
+of $R^i\pi_*\mathcal{F}$ over $U$ are
+\[
+(R^i\pi_*\mathcal{F})(U) \defeq \left(\frac{\ker \pi_*d^i}{\im\pi_*d^{i-1}}\right)(U)
+\]
+By definition, the quotient sheaf $\ker\pi_*d^i/\im\pi_*d^{i-1}$ is the sheafification
+of the presheaf
+\[
+U \mapsto \frac{(\ker\pi_*d^i)(U)}{(\im\pi_*d^{i-1})(U)}
+\]
+We then note that since the complex of sheaves is an injective resolution for
+the sheaf $\pi_*\mathcal{F}$, the $R$-module given by
+$(\ker\pi_*d^i)(U)/(\im\pi_*d^{i-1})(U)$ is the $i^{th}$ right derived functor
+for the functor $\Gamma(U,-)$ that takes a sheaf over $Y$ to its sections over $U$.
+We then note that this is exactly the $i^{th}$ sheaf cohomology group
+$H^i(U,\pi_*\mathcal{F}\vert_U)$,  which is the same as
+$H^i(\pi\inv(U),\mathcal{F}\vert_{\pi\inv(U)})$.
+\end{proof}
+%
+In this way we see that the derived pushforwards behave like the sheaf cohomology
+groups for a sheaf relative to the map $\pi : X \to Y$. Indeed, if $Y$ is a point,
+then the functor $\pi_*$ is just taking global sections, and the derived
+pushforwards $R^i\pi_*\mathcal{F}$ become the constant sheaves associated
+to the sheaf cohomology groups $H^i(X,\mathcal{F})$.
+%
+\section{The Gauss-Manin Connection}
+%
+To study variations of Hodge structure, we first need a notion of what it means to vary
+the complex structure on a smooth manifold $X$.
+%
+\begin{defn}
+A \ib{family of complex manifolds} is a proper holomorphic submersion
+$\pi : \mathcal{X} \to B$.
+\end{defn}
+%
+If we fix a basepoint $b \in B$, then the fiber $X_b \defeq \pi\inv(b)$ is a
+complex submanifold of $\mathcal{X}$. The idea is that fibers near $X_b$ should
+be deformations of $X_b$. This is made precise by a theorem due to Ehresmann.
+%
+\begin{thm}[\ib{Ehresmann}]
+Let $\pi : \mathcal{X} \to B$ be a smooth proper submersion, where $B$ is contractible.
+Let $b \in B$ be a basepooint, and $X_b$ the fiber over $b$. Then there
+exists a difeomorphism $\mathcal{X} \to X_b \times B$ such that the following
+diagram commutes:
+\[\begin{tikzcd}
+\mathcal{X} \ar[dr, "\pi"']\ar[rr] && X_b \times B \ar[dl] \\
+& B
+\end{tikzcd}\]
+where the map $X_b \times B \to B$ is projection onto the second factor.
+\end{thm}
+%
+In particular, if $\pi$ is a family of complex manifolds, this statement
+can be refined further.
+%
+\begin{thm}
+Let $\pi : \mathcal{X} \to B$ be a proper holomorphic submersion where $B$ is
+contractible. Fix a basepoint $b \in B$. Then there exists a smooth map
+$T_b : \mathcal{X} \to X_b$ such that the map
+$(T_b,\pi) : \mathcal{X} \to X_b \times B$ is a trivialization of $\mathcal{X}$ and
+the fibers of $T_b$ are complex submanifolds of $\mathcal{X}$.
+\end{thm}
+%
+Note that the map $T_b$ need not be (and often is not) holomorphic. However, this
+tells us that in some sense, the complex structure is varying holomorphically. To
+make this more precise, we note that by forgetting the complex structure, we can view
+$X_b$ as a smooth manifold. From this perspective, a complex structure on $X_b$ can be
+interpreted as a diffeomorphism $X \to X_b$ where $X$ is a complex manifold -- by
+declaring this map to be an isomorphism of complex manfolds, this uniquely determines
+a complex structure on the smooth manifold $X_b$. Using this perspective,
+the map $T_b : \mathcal{X} \to X_b$ can be interpreted as a family of maps
+$X_p \to X_b$ parameterized by the points $p \in B$ via restriction to the fibers
+of $\pi$. If we pick a point $x$ in some fiber $X_p$, it lies in some fiber
+of the map $T_b\vert_{X_p}$, which is a complex manifold diffeomorphic to $B$.
+Moving in the ``$B$-direction" takes us though different fibers of $\pi$ (in other
+words, different complex structures on $X_b$), and since the fibers of $T_b$ are
+complex manifolds, this movement is ``holomorphic." Since all the points in the
+fiber  $T_b\vert_{X_p}$ map to the same point as $x$ under $T_b$, this can be seen as
+viewing the same point $T_b(x)$ of the underlying smooth manifold $X_b$ using the
+different complex structures holomorphically parameterized by $B$. \\
+
+We now make use of our detour into derived pushforwards. Let $\pi : \mathcal{X} \to B$
+be a family of complex manifolds over a contractible base $B$ with basepoint $b$.
+Letting $\underline{R}$ denote the constant sheaf over $\mathcal{X}$ with stalk
+$R$ where $R = \Z$, $\R$, or $\C$, we get the derived pushforward
+sheaves $R^i\pi_*\underline{R} \in \mathrm{Sh}(B)$. Over a neighborhood $U$ of $b$,
+we get that
+\[
+(R^i\pi_*\underline{R})(U) = H^i(\pi\inv(U),\underline{R}\vert_{\pi\inv(U)})
+\]
+Since $\underline{R}\vert_{\pi\inv(U)}$ is the same as the constant sheaf
+over $\pi\inv(U)$, these are the same as the singular cohomology groups
+$H^i(\pi\inv(U),R)$, which are topological invariants.
+Then using Ehresmann's theorem, we know that $\mathcal{X} \to B$ can be
+trivialized to $X_b \times B \to B$, so $\pi\inv(U) \cong X_b \times U$.
+By restricting our attention to contractible neighbrhoods $U$ of $b$
+(which we can do since $B$ is locally contractible), we have that
+$X_b \times U$ is homotopy equivalent to $X_b$. Putting this all together, we
+find that the sheaves $R^i\pi_*\underline{R}$ are local systems with
+stalks isomorphic to the singular cohomology groups $H^i(X_b,R)$.
+%
+\begin{defn}
+Let $\pi : \mathcal{X} \to B$ be a family of complex manifolds, and let $b \in B$
+be a basepoint. Let $\mathcal{H}^i$ denote the vector bundle obtained from the local
+system $R^i\pi_*\underline{R}$. Then the \ib{Gauss-Manin connection} on
+$\mathcal{H}^i$ is the flat connection $\nabla$ induced by the local system.
+\end{defn}
+%
+A section of $\mathcal{H}^i$ can be thought of as a family of cohomology classes
+$\alpha_t \in H^i(X_b,R)$ parameterized by $B$. From this perspective, the flat
+sections are exactly the ones that define the same cohomology class as $\alpha_b$,
+where we use the isomorphism $X_t \to X_b$ induced by the map
+$T_b : \mathcal{X} \to X_b$ obtained by trivializing $\pi : \mathcal{X} \to B$
+to identify the cohomology groups $H^i(X_t,R) \cong H^i(X_b,R)$.
+%
+\newpage
+%
+\nocite{*}
+%
+\printbibliography
+%
+\end{document}

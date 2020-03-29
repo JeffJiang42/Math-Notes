@@ -698,7 +698,115 @@ category of cartesian sections over either augmented descent diagram is
 equivalent to $\mathcal{F}(U)$. \\
 
 For the second part, let $p : \mathcal{F} \to \mathrm{Sch}_{/S}$ be any fibered
-category. 
+category.
+\end{proof}
+%
+\begin{exer}
+Use Corollary 3.14 to show that a fibered category over $\mathrm{Sch}_{/S}$ is a
+stack for the \'etale topology if and only if it is a stack for the smooth topology.
+\end{exer}
+%
+\begin{proof}
+Let $\mathcal{F}$ be a fibered category over $\mathrm{Sch}_{/S}$. If $\mathcal{F}$
+is a stack for the smooth topology, then it is certainly a stack for the \'etale
+topology, since every \'etale map is smooth. For the other direction, suppose
+we have a smooth covering $U_0 \to U$. By factoring the morphism $U_0 \to U$ locally
+into an \'etale map followed by the standard smooth morphism and taking disjoint
+unions, we get $V \to U_0 \to U$, where the first map is \'etale. This gives us
+an \'etale cover $V \to U$, and by assumption, $\mathcal{F}$ satisfies descent along
+$T \times_U V$ for any $T$ since $\mathcal{F}$ is a stack for the \'etale topology.
+Therefore, by Corollary 3.14, we have that $\mathcal{F}$ satisfies descent along
+the covering $U_0 \to U$.
+\end{proof}
+%
+\begin{exer}
+Show that a fibered category over $\mathrm{Sch}_{/S}$ is a stack for the \'etale
+topology if and only if it is a stack for the Zariski topology and satisfies descent
+along \'etale standard smooth morphisms.
+\end{exer}
+%
+\begin{proof}
+Let $\mathcal{F} \to \mathrm{Sch}_{/S}$ be a fibered category. If $\mathcal{F}$ is
+a stack for the \'etale topology, then it certainly is a stack for the Zariski
+topology, since every Zariski cover is an \'etale cover (since open immersions
+are \'etale). It also clear satisfies descent along standard \'etale maps. For the
+other direction, suppose $\mathcal{F}$ is a stack for the Zariski topology and
+satisfies descent along standard \'etale morphisms, and let $U \to X$ be an
+\'etale covering. By passing to a Zariski covering $Z \to X$, this factors
+as $U \to Z \to X$, where $U \to Z$ is standard \'etale. Then since $\mathcal{F}$
+satisfies descent along $U \to Z$ and is a stack for the Zariski topology, we have
+that $\mathcal{F}$ satisfies descent for the covering $U \to X$. Therefore, we get
+that $\mathcal{F}$ is a stack for the \'etale topology.
+\end{proof}
+%
+\setcounter{section}{5}
+%
+\setcounter{thm}{2}
+%
+\begin{exer}
+Show that any morphism between principal $G$-bundles is an isomorphism
+\end{exer}
+%
+\begin{proof}
+Suppose we have a morphism $f : T \times G \to T \times G$ of trivial $G$-bundles.
+We know that this morphism is equivalent to a section of the trivial bundle
+$T \times G \to T$, i.e. a morphism $\varphi_f : T \to G$. Then the inverse
+morphism $f\inv : T\times G \to T \times G$ is given by the morphism corresponding
+to the section $\varphi_f\inv$, where $\varphi_f\inv(t) \defeq \varphi_f(t)\inv$.
+Then suppose we have a morphism $f : P \to Q$ of $G$-bundles. Then since $P \to T$ is
+smooth, it admits sections \'etale locally on $T$, so $P\vert_U \cong U \times T$ for
+an \'etale cover $U \to G$. By refining $U$, we may assume that $Q\vert_U$ is also
+trivial. Then pulling back $f$ along $U \to T$ gives a morphism of trivial $G$-bundles
+over $U$, which is an isomorphism. Therefore, $f$ is an isomorphism.
+\end{proof}
+%
+\setcounter{section}{6}
+%
+\setcounter{thm}{2}
+%
+\begin{exer}
+Show that when $X_\bullet = (G\rightrightarrows \mathrm{pt})$ is a group scheme
+over $S$, then the category of $X_\bullet$ spaces over $T$ is equivalent to
+the usual category whose objects are algebraic spaces with a $G$-action relative to
+$T$, and whose morphisms are $G$-equivariant morphisms.
+\end{exer}
+%
+\begin{proof}
+Let $\pi_\bullet : P_\bullet \to (X_\bullet)_T$ be a $X_\bullet$-space, and let
+$s,t : P_1 \to P_0$ denote the source and target maps for $P_\bullet$. Then we have the
+cartesian square
+\[\begin{tikzcd}
+P_1 \ar[r, "s"] \ar[d, "\pi_1"']& P_0 \ar[d, "\pi_0"]\\
+G\times T \ar[r] &  \mathrm{pt}\times T
+\end{tikzcd}\]
+Where the map $G \times T \to \mathrm{pt} \times T$ is given by the terminal map
+$G \times T \to \mathrm{pt}$ and the projection to $T$. We first note that $\pi_0$
+gives $P_0$ the structure of a $T$-space. Furthermore, the square being cartesian
+allows us to identify $P_1$ as $P_1 = P_0 \times_T G$. Then the action map
+$t : P_1 \to P_0$ gives $P_0$ the structure of a $G$-space over $T$. This
+satisfies the usual axioms of a group action due to the fact that $P_\bullet$ is a
+groupoid. \\
+
+Then let $P_\bullet$ and $P'_\bullet$ be two $X_\bullet$-spaces over $T$ and let
+$F_\bullet : P_\bullet \to P'_\bullet$ be a morphism lying over the identity map
+$T \to T$. We note that the ``action" maps for both $P_0$ and $P'_0$ are just the
+terminal maps to $\mathrm{pt}$, so we may identify $P_1$ and $P_1'$ with the products
+\begin{align*}
+P_1 &= P_0 \times G \\
+P_1' &= P'_0\times G
+\end{align*}
+Furthermore, using these identifications, we know that $F_1$ is given on $U$-points by
+the mapping $F_1(p,g) = (F_0(p),g)$. Then the fact that $F_\bullet$ is a map
+of $X_\bullet$-spaces tells us that $t'(F_1(p,g)) = F_0(t(p,g))$. Putting these
+together, we find that
+\[
+t'(F_0(p), g) = F_0(t(p,g))
+\]
+Then since $t'$ and $t$ are the action maps for the $G$-actions on $P_0$ and $P'_0$
+respectively, this is exactly the statement that $F_0$ is $G$-equivariant. Therefore,
+the functor mapping $P_\bullet$ to the $G$-space $P_0$ and sending a map
+$F_\bullet$ to the $G$-equivariant map $F_0$ defines an equivalence of categories
+between $X_\bullet$-spaces over $T$ and $G$-spaces over $T$.
 \end{proof}
 %
 \end{document}
