@@ -195,6 +195,52 @@ that we can obtain a global bound $k$ such that no $x$ is a basepoint of $L^k$. 
 To show that the map is injective, we want to show that the map
 $\Gamma(X,L) \to \Gamma(L_{\set{x_1}} \oplus L_{\set{x_2}})$ is surjective.
 This follows from a near identical argument as above, where we replace
-$\widehat{X}$ with the blow up of $X$ at two points.
+$\widehat{X}$ with the blow up of $X$ at two points. \\
+
+Having shown that the map $\varphi_{L^k}$ (for $k$ sufficiently large)
+is well-defined and injective, all that is left to show is that the derivative
+at $x$ is injective for all $x \in X$. Again, let $\pi : \widehat{X} \to X$ denote the
+blow up of $X$ at $x$, and let $E = \pi\inv(x)$ denote the
+To this use the fact that the holomorphic
+sections of $\O(-nE)$ can be identified with the holomorphic functions on
+$\widehat{X}$ that vanish to $n^{th}$ order along $E$. Then since $E = \pi\inv(x)$,
+we get an identification of $\O(-nE)$ with the pullback sheaf
+$\pi^*\mathcal{I}_{\set{x}}^n$. Recall we have the exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{I}^2_{\set{x}} \ar[r] & \mathcal{I}_{\set{x}}
+\ar[r] & (T^{1,0}_xX)^* \ar[r] & 0
+\end{tikzcd}\]
+which, upon twisting with $L^k$, yields the short exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & L^k \otimes \mathcal{I}^2_{\set{x}} \ar[r] & L^k \otimes \mathcal{I}_{\set{x}}
+\ar[r] & L^k_x \otimes (T^{1,0}_xX)^* \ar[r] & 0
+\end{tikzcd}\]
+where use the fact that $L^k \otimes (T^{1,0}_xX)^* \cong L^k_x \otimes (T^{1,0}_xX)^*$.
+Taking global sections yields a map
+$\Gamma(X, L^k\otimes\mathcal{I}_{\set{x}}) \to L^k_x \otimes (T^{1,0}_xX)^*$, and
+from the preceding discussion, we want to show that this map is surjective.
+Like before, we do this by showing the cokernel is trivial. To do this, we first note
+that we have identification
+$\Gamma(X,L^k\otimes\mathcal{I}_{\set{x}})\cong\Gamma(\widehat{X},\pi^*L^k\otimes\O(-E))$.
+Next, we note that the exception divisor $E$ is just the projectivization
+of $T_x^{1,0}X$, and $\O_E(-E) \cong \O(1)$. Finally, we note that the global sections
+of $\O(1)$ over $\mathbb{P}(T_x^{1,0}X)$ is just $(T^{1,0}_xX)^*$. This identification
+yields an isomorphism
+$L^k_x \otimes (T^{1,0}_xX)^* \cong L^k_x \otimes \Gamma(E,\O_E(-E))$,
+and the taking global sections of the restriction map
+$\pi^*L^k\otimes\O(-E) \to L^k_x\O_E(-E)$ yields the following commutative diagram:
+\[\begin{tikzcd}
+\Gamma(X, L^k \otimes \mathcal{I}_{\set{x}}) \ar[d]\ar[r] &
+L^k_x \otimes (T^{1,0}_xX)^* \ar[d]\\
+\Gamma(\widehat{X},\pi^*L^k\otimes\O(-E)) \ar[r] & L^k_x \otimes \Gamma(E,\O_E(-E))
+\end{tikzcd}\]
+where the vertical maps are isomorphisms. Therefore, to conclude that the
+cokernel of $\Gamma(X, L^k\otimes\mathcal{I}_{\set{x}}) \to L^k_x \otimes (T^{1,0}_xX)^*$
+is trivial it suffices to show that $H^1(\widehat{X}, \pi^*L^k\otimes\O(-2E)) = 0$,
+which again follows from Kodaira vanishing when $k$ is sufficient large. Furthermore,
+compactness of $X$ again lets us find a global uniform bound $k$ such that
+$\varphi_{L^k}$ is injective for every $x \in X$, which concludes the proof,
+as we have shown that for $k$ sufficiently large, $\varphi_{L^k}$ is defined,
+injective, and an embedding.
 \end{proof}
 %
