@@ -16,6 +16,7 @@
 %\usepackage{spectralsequences}
 %\usepackage{charter} %another font
 %\usepackage{eulervm} %Vakil font
+\usepackage[mathcal]{eucal}
 \usepackage{yfonts}
 \usepackage{mathtools}
 \usepackage{enumitem}
@@ -253,7 +254,7 @@ such that $D_i^2 = 0$ and $D_1 \circ D_2 = D_2 \circ D_1$.
 \end{defn}
 %
 There is a sign convention with double complexes -- some prefer to replace
-the condition that the differetials commute with the condition that they
+the condition that the differentials commute with the condition that they
 \emph{anticommute}, i.e. $D_1 \circ D_2 = -D_2\circ D_1$. \\
 
 The way to visualize a double complex is to arrange the objects $K^{p,q}$ in a
@@ -487,17 +488,319 @@ a bounded below complex $M^\bullet$ to be the cohomology groups $H^i(F(I^\bullet
 where $I^\bullet$ is a complex of injective objects admitting a quasi-isomorphism
 $i^\bullet : M^\bullet \to I^\bullet$, with each $i^k$ injective (which always exists
 by the previous discussion). Indeed, this is the correct definition, but there is work
-to be done to show that it is well defined. We first collect some lemmas.
+to be done to show that it is well defined. We fix once and for all a left
+exact functor $F$. We first collect some lemmas.
 %
 \begin{lem}
 Let $i^\bullet : M^\bullet \to I^\bullet$
 be a quasi-isomorphism of a bounded below complex $M^\bullet$ into a complex $I^\bullet$
 of injective objects with each $i^k$ injective. Then for another complex
 of injective objects $J^\bullet$ with a quasi-isomorphism
-$j^\bullet : M^\bullet \to J^\bullet$ satisfying the same conditions as $i^\bullet$,
-there exists a chain map $\varphi^\bullet I^\bullet \to J^\bullet$, well defined up
-to homotopy, such that $\varphi^\bullet \circ j^\bullet$.
+$j^\bullet : M^\bullet \to J^\bullet$ (where each $j^k$ need not be injective),
+there exists a chain map $\varphi^\bullet I^\bullet \to J^\bullet$, well defined
+up to homotopy, such that $\varphi^\bullet \circ j^\bullet$.
 \end{lem}
+%
+\begin{proof}
+Let $d_M$, $d_I$, and $d_J$ denote the differentials for $M^\bullet$, $I^\bullet$,
+and $J^\bullet$ respectively. Since $i^0 : M^0 \to I^0$ is an injective map,
+and $J^0$ is an injective object, the map $j^0 : M^0 \to J^0$ extends to a map
+$\varphi^0 : I^0 \to J^0$ such that $j^0 = \varphi^0 \circ i^0$. We then define
+$\varphi^1 : I^1 \to J^1$. To do this, we first claim that the kernel
+of $d_I + i^1 : I^0 \oplus M^1 \to I^1$ is equal to the image of
+$(i^0,-d_M) : M^0 \to I^0 \oplus M^1$. The inclusion
+$\im(i^0,-d_M) \subset \ker(d_I + i^1)$ follows immediately from $i^\bullet$
+being a chain map. For the opposite inclusion, let $(x,m) \in \ker(d_I + i^1)$,
+so $i^1(m) = -d_Ix$. Therefore, $i^1(m)$ is $0$ in $H^1(I^\bullet)$. Then since
+$i^\bullet$ is a quasi-isomorphism, the induced map $H^1(M^\bullet) \to H^1(I^\bullet)$
+is injective, so we know that $m = d_Mm_0$ for some $m_0 \in M^0$.
+Then since $H^0(M^\bullet) \to H^0(I^\bullet)$ is surjective, and there exist
+no terms in negative degree, we have that $x = i^0(n)$ for some $n \in M^0$.
+Therefore, what remains is to show that $n = m_0$, which again follows immediately
+from the fact that there is no term in negative degree. Then if we
+consider the map $(d_J \circ \varphi^0) + j^1 : I^0\oplus M^1 \to J^1$,
+we have that $d_J \circ \varphi^0 \circ i^0 = d_J \circ j^0$, so we
+have that $(d_J \circ \varphi^0) + j^1$ vanishes on $\im(i^0,-d_M)$ since
+$j^\bullet$ is a chain map. Then since $d_I + i^1$ also vanishes on $\im(i^0,-d_M)$,
+we have that $(d_J \circ \varphi^0) + j^1$ factors through the
+inclusion $\im(d_I + i^1) \hookrightarrow I^1$. Then since $J^1$ is
+injective, this extends to a map $\varphi^1: I^1 \to J^1$. We construct
+the rest of the maps $\varphi^k$ in the same fashion, and omit the proof
+of the uniqueness of $\varphi^\bullet$ up to homotopy out of laziness.
+\end{proof}
+%
+With this, we can prove that our tentative definition of $R^iF(M^\bullet)$ is
+reasonable.
+%
+\begin{prop}
+The definition of $R^iF(M^\bullet)$ is independent (up to canonical isomorphism)
+from the choice of injective quasi-isomorphism $i^\bullet : M^\bullet \to I^\bullet$.
+In other words, given another injective quasi-isomorphism
+$j^\bullet : M^\bullet \to J^\bullet$, there exists a canonical isomorphism
+$H^i(F(I^\bullet)) \to H^i(F(J^\bullet)$).
+\end{prop}
+%
+\begin{proof}
+By the preceding lemma, we get chain maps $\varphi^\bullet : I^\bullet \to J^\bullet$
+and $\psi^\bullet : J^\bullet \to I^\bullet$ such that
+$j^\bullet = \varphi^\bullet \circ i^\bullet$ and
+$i^\bullet = \psi^\bullet \circ i^\bullet$. We have that
+$\id_{I^\bullet} - (\psi^\bullet \circ \varphi^\bullet)$ is zero on $M^\bullet$,
+regarded as asubcomplex  of $I^\bullet$ and similarly for
+$\id_{J^\bullet} - (\varphi^\bullet\circ \psi^\bullet)$,
+which show that $\varphi$ and $\psi$ induce isomorphisms on cohomology.
+In fact, it can be shown that the compositions are chain homotopic to the
+identity, so applying the functor $F$ gives a chain homotopy
+from $F(I^\bullet) \to F(J^\bullet)$, giving us the desired isomorphism
+$H^i(F(I^\bullet)) \to H^i(F(J^\bullet))$.
+\end{proof}
+%
+This definition is perfectly fine, but we want to weaken the assumptions for
+the quasi-isomorphism $i^\bullet : M^\bullet \to I^\bullet$ used to define
+$R^iF(M^\bullet)$. The first thing is to remove the requirement that the
+$i^k : M^k \to I^k$ be injective. To prove this, we first introduce some new defintions.
+%
+\begin{defn}
+Let $(A^\bullet, d_A)$ and $(B^\bullet, d_B)$ be complexes in $\mathcal{A}$,
+and let $\varphi^\bullet : A^\bullet \to B^\bullet$ be a chain map.
+The \ib{cone} of $\varphi^\bullet$, is the complex $(C^\bullet, d_C)$ where
+$C^k = A^k \oplus B^{k-1}$ and the differntial $d_C^k : C^k \to C^{k+1}$ is given by
+\[
+d_C^k \defeq \begin{pmatrix}
+d_A^k & (-1)^k\varphi^k \\
+0 & d^{k-1}_B
+\end{pmatrix}
+\]
+\end{defn}
+%
+\begin{defn}
+Given a chain complex $A^\bullet$, the \ib{shift} of $A$, denoted $A[n]^\bullet$
+is the chain complex such that $A[n]^k = A^{k-n}$.
+\end{defn}
+%
+Given a chain map $\varphi^\bullet : A^\bullet \to B^\bullet$ with cone $C^\bullet$,
+we get a split short exact sequence of chain complexes
+\[\begin{tikzcd}
+0 \ar[r] & B[1]^\bullet \ar[r] & C^\bullet \ar[r] & A^\bullet \ar[r] & 0
+\end{tikzcd}\]
+where the map $B[1]^k \to C^k$ is given by the inclusion
+$B[1]^k \defeq B^{k-1} \hookrightarrow C^k \defeq A^k \oplus B^{k-1}$ and
+the map $C^k \to A^k$ is given by projection onto $A^k$.
+%
+\begin{lem}
+Let $\varphi^\bullet : A^\bullet \to B^\bullet$ be a quasi-isomorphism, and let
+$C^\bullet$ be the cone of $\varphi^\bullet$. Then $H^i(C^\bullet) = 0$
+\end{lem}
+%
+\begin{proof}
+We use the long exact sequence induced by the short exact sequence
+\[\begin{tikzcd}
+0 \ar[r] & B[1]^\bullet \ar[r] & C^\bullet \ar[r] & A^\bullet \ar[r] & 0
+\end{tikzcd}\]
+A diagram chase reveals that the connecting homomorphism
+$H^k(A^\bullet) \to H^{k+1}(B[1]^\bullet) = H^k(B^\bullet)$ is the map induced
+by $\varphi^\bullet$, which is an isomorphism since $\varphi^\bullet$ is a
+quasi-isomorphism. Therefore, by exactness we can conclude that
+the cohomology groups of $C^\bullet$ vanish.
+\end{proof}
+%
+We will also use (but won't prove) a standard fact about injective objects
+%
+\begin{prop}
+Any exact complex $I^\bullet$ of injective objects is homotopy equivalent to the
+trivial complex, i.e. There exists a chain homotopy $H^k : I^k \to I^{k-1}$ such that
+$H^{k+1} \circ d^k + d^{k-1}+ \circ H^k = \id_{I^k}$.
+\end{prop}
+%
+\begin{cor}
+For an exact bounded below complex $I^\bullet$ of injective objects,
+the complex $F(I^\bullet)$ is exact.
+\end{cor}
+%
+\begin{proof}
+Appyling the functor $F$ to to the chain homotopy $H^k : I^k \to I^{k-1}$
+gives the desired chain homotopy for $F(I^\bullet)$ to the trivial complex in
+$\mathcal{B}$, so $F(I^\bullet)$ is exact.
+\end{proof}
+%
+\begin{prop}
+Let $\alpha^\bullet : M^\bullet \to I^\bullet$ be any quasi-isomorphism, where
+$I^\bullet$ is a complex of injective objects. Then $\alpha^\bullet$ induces
+an isomorphsim  $R^iF(M^\bullet) \cong H^i(F(I^\bullet))$.
+\end{prop}
+%
+\begin{proof}
+Let $i^\bullet : M^\bullet \to J^\bullet$ be a quasi-isomorphism, with
+each $i^k$ injective, so $R^iF(M^\bullet) = H^i(F(J^\bullet))$. Then by
+Lemma 1.7, we have that there exists a chain map
+$\varphi^\bullet : J^\bullet \to I^\bullet$ such that
+$\alpha^\bullet = \varphi^\bullet \circ i^\bullet$. Since $\alpha^\bullet$ and
+$i^\bullet$ are quasi-isomorphisms, $\varphi^\bullet$ is necessarily a
+quasi-isomorphism. Then consider the cone $C^\bullet$ of $\varphi^\bullet$.
+By Lemma 1.11, we have that $C^\bullet$ has trivial cohomology, and
+consists of injective objects, since $I^\bullet$ and $J^\bullet$ are complexes
+of injective objects. Applying $F$ to the short exact sequence gives us
+\[\begin{tikzcd}
+0 \ar[r] & F(I[1]^\bullet) \ar[r] & F(C^\bullet) \ar[r] & F(J^\bullet) \ar[r] & 0
+\end{tikzcd}\]
+which remains exact, since the original short exact sequence was split. Then
+taking the long exact sequence in cohomology, we use the Corollary 1.13 to
+conclude that $F(C^\bullet)$ has no cohomology, so the map
+$H^k(F(J^\bullet)) \to H^k(F(I^\bullet)) = R^iF(M^\bullet)$ induced by
+$F(\varphi^\bullet)$ is an isomorphism.
+\end{proof}
+%
+As a consequence, we get a functoriality property for the functors $R^iF$.
+%
+\begin{cor}
+Let $\alpha^\bullet : M^\bullet \to N^\bullet$ be a quasi-isomorphism
+of bounded below complexes. Then for any choice of injective quasi-isomorphisms
+$i^\bullet : M^\bullet \to I^\bullet$ and $j^\bullet : N^\bullet \to J^\bullet$
+into complexes $I^\bullet$ and $J^\bullet$ of injective objects, we get a
+canonical map
+\[
+R^iF(M^\bullet) = H^k(F(I^\bullet)) \to H^k(J^\bullet) = R^iF(N^\bullet)
+\]
+\end{cor}
+%
+\begin{proof}
+Apply the previous proposition to the quasi-isomorphism $j^\bullet \circ \alpha^\bullet$.
+\end{proof}
+%
+We close with some functoriality properties, but omit the proofs out of laziness.
+%
+\begin{prop}
+Let $\varphi^\bullet : A^\bullet \to B^\bullet$ be a chain map, and
+let $i^\bullet : A^\bullet \to I^\bullet$ and $j^\bullet : B^\bullet \to J^\bullet$
+be quasi-isomorphisms to injective complexes with $i^\bullet$ injective. Then
+there exists a chain map $\psi^\bullet : I^\bullet \to J^\bullet$, unique
+up to homotopy, such that the following diagram commutes:
+\[\begin{tikzcd}
+A^\bullet\ar[d, "i^\bullet"']\ar[r, "\varphi^\bullet"]&B^\bullet\ar[d, "j^\bullet"] \\
+I^\bullet \ar[r, "\psi^\bullet"'] & J^\bullet
+\end{tikzcd}\]
+\end{prop}
+%
+\begin{cor}
+Let $\varphi^\bullet : A^\bullet \to B^\bullet$ be any chain map. Then
+for injective quasi-isomorphisms $i^\bullet : A^\bullet \to I^\bullet$
+and $j^\bullet : B^\bullet \to J^\bullet$ into complexes of injectives,
+we get a canonical map
+\[
+R^iF(A^\bullet) = H^i(F(I^\bullet)) \to H^i(F(J^\bullet)) = R^iF(B^\bullet)
+\]
+\end{cor}
+%
+Using this, we can show that we can replace the injective complexes with
+$F$-acyclic objects, i.e. complexes $N^\bullet$ where $F(N^i) = 0$.
+%
+\begin{prop}
+Let $\varphi^\bullet : M^\bullet \to N^\bullet$ be a quasi-isomorphism
+from $M^\bullet$ to a complex of $N^\bullet$ of $F$-acyclic objects. Then
+$\varphi^\bullet$ induces an isomorphism $R^iF(M^\bullet) \to H^i(F(N^\bullet))$.
+\end{prop}
+%
+In summary, we have extended the notion of $R^iF$ to bounded below complexes --
+we can recover the original notion by considering an object $A$ in $\mathcal{A}$
+as a complex with a single term in degree $0$, and zeroes elsewhere.
+In this case, the new definition coincides with the original, since we may
+regard an injective resolution $0 \to A \to I^\bullet$ of $A$ as an
+injective quasi-isomorphism
+\[\begin{tikzcd}
+A \ar[d]\ar[r] & 0 \ar[d]\ar[r] & 0 \ar[d]\ar[r] & \cdots \\
+I^1 \ar[r] & I^2 \ar[r] & I^3 \ar[r] & \cdots
+\end{tikzcd}\]
+%
+\section{The Holomorphic de Rham Theorem}
+%
+We now apply our foray into derived functors to sheaves. Let
+$\mathcal{A}$ denote some abelian category of sheaves over a space $X$
+(e.g. $\mathrm{Sh}_{\mathsf{Ab}}(X)$, $\mathrm{Mod}_{\O_X}$, etc.).
+Let $\Gamma$ denote the global sections functor for $\mathcal{A}$.
+%
+\begin{defn}
+For a bounded below complex $\mathcal{F}^\bullet$ of sheaves, the \ib{hypercohomology}
+of $\mathcal{F}^\bullet$, denoted $\mathbb{H}^k(X,\mathcal{F}^\bullet)$,
+is
+\[
+\mathbb{H}^k(X,\mathcal{F}^\bullet) \defeq R^k\Gamma(\mathcal{F}^\bullet)
+\]
+\end{defn}
+%
+An resolution $0 \to \mathcal{F} \to \mathcal{G}^\bullet$ is
+the same thing as a quasi-isomorphism from $\mathcal{F}$, regarded as a complex
+with the complex $\mathcal{G}^\bullet$, giving us that
+$H^k(X,\mathcal{F}) \cong \mathbb{H}^k(X,\mathcal{G}^\bullet)$. \\
+
+We now restrict to the case where $X$ is a complex manifold of complex dimension $n$.
+Let $\O_X$ denote the sheaf of holomorphic functions on $X$, and let $\Omega^{p,0}_X$
+denote the sheaves of holomorphic $p$-forms on $X$. The de Rham differential
+$d : \mathcal{A}^k_X \to \mathcal{A}^{k+1}_X$ on the sheaves $\mathcal{A}^k_X$
+of smooth $k$-forms splits as $d = \partial + \dbar$, where
+$\partial : \mathcal{A}^{p,q}_X \to \mathcal{A}^{p+1}$ and
+$\dbar : \mathcal{A}^{p,q} \to \mathcal{A}^{p,q+1}_X$ that anticommute. Furthermore,
+the operator $\partial$ preserves holomorphic forms, i.e. it maps
+$\Omega^{p,0}_X \subset \mathcal{A}^{p,0}_X$ into
+$\Omega^{p+1,0}_X \subset \mathcal{A}^{p+1,0}$ since the holomorphic $p$-forms
+are exactly those annihilated by $\dbar$. This gives us the
+\ib{holomorphic de Rham complex}:
+\[\begin{tikzcd}
+0 \ar[r]  & \O_X \ar[r, "\partial"] & \Omega^{1,0} \ar[r, "\partial"] &
+\cdots \ar[r, "\partial"] & \Omega^{n,0} \ar[r] & 0
+\end{tikzcd}\]
+There is an inclusion $i : \underline{\C} \hookrightarrow \O_X$ of the locally
+constant functions into the sheaf of holomorphic functions.
+%
+\begin{prop}[\ib{The holomorphic Poincar\'e Lemma}]
+The map $i : \underline{\C} \to \Omega^{\bullet,0}$ is a resolution of the constant
+sheaf $\underline{\C}$, i.e. the complex
+\[\begin{tikzcd}
+0 \ar[r] & \underline{\C} \ar[r, "i"] & \O_X \ar[r, "\partial"] &
+\Omega^{1,0} \ar[r, "\partial"] & \cdots \ar[r, "\partial"] & \Omega^{n,0} \ar[r] & 0
+\end{tikzcd}\]
+is exact
+\end{prop}
+%
+\begin{proof}
+Consider the double complex $(\mathcal{A}^{p,q}_X, \partial, (-1)^p\dbar)$.
+We have inclusions $\Omega^{\bullet,0}_X \hookrightarrow \mathcal{A}^{\bullet,q}_X$,
+giving us
+\[\begin{tikzcd}
+\mathcal{A}^{0,n} \ar[r, "\partial"] & \mathcal{A}^{1,n} \ar[r,"\partial"]
+& \cdots \ar[r, "\partial"] & \mathcal{A}^{n,n} \\
+\vdots \ar[u, "\dbar"]& \vdots \ar[u, "-\dbar"]
+& \vdots \ar[u, "(-1)^p\dbar"] & \vdots \ar[u, "(-1)^n\dbar"]\\
+\mathcal{A}^{0,1} \ar[r, "\partial"] \ar[u, "\dbar"]
+& \mathcal{A}^{1,1} \ar[r,"\partial"] \ar[u, "-\dbar"]
+& \cdots \ar[r, "\partial"] \ar[u,"(-1)^p\dbar"]
+& \mathcal{A}^{n,1} \ar[u, "(-1)^n\dbar"]\\
+C^\infty_X(\C) \ar[r, "\partial"] \ar[u, "\dbar"]
+& \mathcal{A}^{1,0} \ar[r,"\partial"] \ar[u, "-\dbar"]
+& \cdots \ar[r, "\partial"] \ar[u, "(-1)^p\dbar"]
+& \mathcal{A}^{n,0} \ar[u, "(-1)^n\dbar"]\\
+\O_X \ar[r, "\partial"] \ar[u, hookrightarrow]
+& \Omega^{1,0}_X \ar[r, "\partial"] \ar[u, hookrightarrow]
+& \cdots \ar[r," \partial"] \ar[u, hookrightarrow] & \Omega^{n,0} \ar[u, hookrightarrow]
+\end{tikzcd}\]
+The columns are exact by the $\dbar$-Poincar\'e lemma, so by Proposition 1.5,
+the chain map from the holomorphic de Rham complex to the total complex of
+$(\mathcal{A}^{p,q}, \partial, (-1)^p\dbar)$ is a quasi-isomorphism.
+We then note that the total complex is nothing but the smooth de Rham
+complex $(\mathcal{A}^\bullet, d)$, which is exact by the smooth Poincar\'e lemma,
+and that the map to the total complex induced by the inclusions
+$\Omega^{p,0} \hookrightarrow \mathcal{A}^{p,0}$ is just the inclusion
+$\Omega^{p,0} \hookrightarrow \mathcal{A}^k$. Furthermore, the $0^{th}$ cohomology
+sheaf of the smooth de Rham complex is the constant sheaf $\underline{\C}$.
+Therefore, we have that the holomorphic de Rham complex is a resolution of
+$\underline{\C}$.
+\end{proof}
+%
+\begin{cor}[\ib{The Holomorphic de Rham Theorem}]
+There is an isomorphism
+\[
+H^k(X,\C) \cong \mathbb{H}^k(X, \Omega_X^{\bullet,0})
+\]
+\end{cor}
 %
 \newpage
 %

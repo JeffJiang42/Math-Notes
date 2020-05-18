@@ -1,0 +1,475 @@
+\documentclass[psamsfonts, 12pt]{amsart}
+%
+%-------Packages---------
+%
+\usepackage[h margin=1 in, v margin=1 in]{geometry}
+\usepackage{amssymb,amsfonts}
+\usepackage[all,arc]{xy}
+\usepackage{tikz-cd}
+\usepackage{enumerate}
+\usepackage{mathrsfs}
+\usepackage{amsthm}
+\usepackage{mathpazo}
+\usepackage{float}
+%\usepackage[backend=biber]{biblatex}
+%\addbibresource{bibliography.bib}
+%\usepackage{charter} %another font
+%\usepackage{eulervm} %Vakil font
+\usepackage[mathcal]{eucal}
+\usepackage{yfonts}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{fourier-orns}
+\usepackage[all]{xy}
+\usepackage{hyperref}
+\usepackage{url}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{pdfsync}
+\usepackage{mathdots}
+\usepackage{calligra}
+\usepackage{import}
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+
+\usepackage{tgpagella}
+\usepackage[T1]{fontenc}
+%
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=Matlab,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+  }
+%
+%--------Theorem Environments--------
+%
+\newtheorem{thm}{Theorem}[section]
+\newtheorem*{thm*}{Theorem}
+\newtheorem{cor}[thm]{Corollary}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem*{lem*}{Lemma}
+\newtheorem{conj}[thm]{Conjecture}
+\newtheorem{quest}[thm]{Question}
+%
+\theoremstyle{definition}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem*{defn*}{Definition}
+\newtheorem{defns}[thm]{Definitions}
+\newtheorem{con}[thm]{Construction}
+\newtheorem{exmp}[thm]{Example}
+\newtheorem{exmps}[thm]{Examples}
+\newtheorem{notn}[thm]{Notation}
+\newtheorem{notns}[thm]{Notations}
+\newtheorem{addm}[thm]{Addendum}
+\newtheorem{exer}[thm]{Exercise}
+%
+\theoremstyle{remark}
+\newtheorem{rem}[thm]{Remark}
+\newtheorem*{claim}{Claim}
+\newtheorem*{aside*}{Aside}
+\newtheorem*{rem*}{Remark}
+\newtheorem*{hint*}{Hint}
+\newtheorem*{note}{Note}
+\newtheorem{rems}[thm]{Remarks}
+\newtheorem{warn}[thm]{Warning}
+\newtheorem{sch}[thm]{Scholium}
+%
+%--------Macros--------
+\renewcommand{\qedsymbol}{$\blacksquare$}
+\renewcommand{\sl}{\mathfrak{sl}}
+\newcommand{\Bord}{\mathsf{Bord}}
+\renewcommand{\hom}{\mathrm{Hom}}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\ib}[1]{\textbf{\textit{#1}}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\A}{\mathbb{A}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\dbar}{\overline{\partial}}
+\newcommand{\zbar}{\overline{z}}
+\renewcommand{\S}{\mathbb{S}}
+\newcommand{\V}{\vec{v}}
+\newcommand{\RP}{\mathbb{RP}}
+\newcommand{\CP}{\mathbb{CP}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\SL}{\mathrm{SL}}
+\newcommand{\SP}{\mathrm{SP}}
+\newcommand{\SO}{\mathrm{SO}}
+\newcommand{\SU}{\mathrm{SU}}
+\newcommand{\gl}{\mathfrak{gl}}
+\newcommand{\g}{\mathfrak{g}}
+\newcommand{\Bun}{\mathsf{Bun}}
+\newcommand{\inv}{^{-1}}
+\newcommand{\bra}[2]{ \left[ #1, #2 \right] }
+\newcommand{\set}[1]{\left\lbrace #1 \right\rbrace}
+\newcommand{\abs}[1]{\left\lvert#1\right\rvert}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
+\newcommand{\transv}{\mathrel{\text{\tpitchfork}}}
+\newcommand{\defeq}{\vcentcolon=}
+\newcommand{\enumbreak}{\ \\ \vspace{-\baselineskip}}
+\let\oldexists\exists
+\renewcommand\exists{\oldexists~}
+\let\oldL\L
+\renewcommand\L{\mathfrak{L}}
+\makeatletter
+\newcommand{\incfig}[2]{%
+    \fontsize{48pt}{50pt}\selectfont
+    \def\svgwidth{\columnwidth}
+    \scalebox{#2}{\input{#1.pdf_tex}}
+}
+%
+\newcommand{\tpitchfork}{%
+  \vbox{
+    \baselineskip\z@skip
+    \lineskip-.52ex
+    \lineskiplimit\maxdimen
+    \m@th
+    \ialign{##\crcr\hidewidth\smash{$-$}\hidewidth\crcr$\pitchfork$\crcr}
+  }%
+}
+\makeatother
+\newcommand{\bd}{\partial}
+\newcommand{\lang}{\begin{picture}(5,7)
+\put(1.1,2.5){\rotatebox{45}{\line(1,0){6.0}}}
+\put(1.1,2.5){\rotatebox{315}{\line(1,0){6.0}}}
+\end{picture}}
+\newcommand{\rang}{\begin{picture}(5,7)
+\put(.1,2.5){\rotatebox{135}{\line(1,0){6.0}}}
+\put(.1,2.5){\rotatebox{225}{\line(1,0){6.0}}}
+\end{picture}}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\im}{Im}
+\DeclareMathOperator{\codim}{codim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+\DeclareMathOperator{\inter}{Int}
+\DeclareMathOperator{\sign}{sign}
+\DeclareMathOperator{\sgn}{sgn}
+\DeclareMathOperator{\indx}{ind}
+\DeclareMathOperator{\alt}{Alt}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\ad}{ad}
+\DeclareMathOperator{\End}{End}
+\DeclareMathOperator{\Ad}{Ad}
+\DeclareMathOperator{\Lie}{Lie}
+\DeclareMathOperator{\spn}{span}
+\DeclareMathOperator{\dv}{div}
+\DeclareMathOperator{\grad}{grad}
+\DeclareMathOperator{\Sym}{Sym}
+\DeclareMathOperator{\sheafhom}{\mathscr{H}\text{\kern -3pt {\calligra\large om}}\,}
+\newcommand*\myhrulefill{%
+   \leavevmode\leaders\hrule depth-2pt height 2.4pt\hfill\kern0pt}
+\newcommand\niceending[1]{%
+  \begin{center}%
+    \LARGE \myhrulefill \hspace{0.2cm} #1 \hspace{0.2cm} \myhrulefill%
+  \end{center}}
+\newcommand*\sectionend{\niceending{\decofourleft\decofourright}}
+\newcommand*\subsectionend{\niceending{\decosix}}
+\def\upint{\mathchoice%
+    {\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+    {\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+  \int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+%
+%--------Hypersetup--------
+%
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=blue,
+    urlcolor=blacksquare
+}
+%
+%--------Solution--------
+%
+\newenvironment{solution}
+  {\begin{proof}[Solution]}
+  {\end{proof}}
+%
+%--------Graphics--------
+%
+%\graphicspath{ {images/} }
+%
+\begin{document}
+%
+\author{Jeffrey Jiang}
+%
+\title{$(G,X)$-Structures}
+%
+\maketitle
+%
+\section{The Statement of Local Rigidity}
+%
+Before discussing $(G,X)$-structures, we first state the result we plan on
+working towards, which is local rigidity for semisimple Lie groups. Fix a
+semisimple lie group $G$ and $\Gamma \subset G$ an irreducible lattice
+Heuristically, $\Gamma$ being irreducible means that $\Gamma$ is not locally a product
+of lattices. More explicity, it is defined as follows: in the case that $G$ is
+simply connected, $G$ being semisimple implies that it is a product
+$G = \prod_i G_i$ of simple Lie groups $G_i$. Then $\Gamma \subset G_i$ being
+irreducible simply means that it is not a product $\Gamma = \prod_i\Gamma_i$ of
+lattices $\Gamma_i \subset G_i$. When $G$ isn't simply connected, $\Gamma$ being
+irreducible means that the preimage of $\Gamma$ under the universal covering
+$\widetilde{G} \to G$ is irreducible.Then let $\mathcal{R}(\Gamma,G)$ denote the
+space of maps $\Gamma \to G$ with the topology of pointwise convergence.
+%
+\begin{defn}
+A lattice $\Gamma$ is \ib{locally rigid} if there is a neighborhood $U$ of
+the inclusion map $\Gamma \hookrightarrow G$ in $\mathcal{R}(\Gamma,G)$
+such that any other homomorphism $\Gamma \to G$ contained in $U$ is conjugate
+to the inclusion.
+\end{defn}
+%
+Our goal will be to prove the following statement (at least for the rank $1$ case)
+%
+\begin{thm}
+Under some conditions on $G$ and $\Gamma$, if $\rho \in \mathcal{R}(\Gamma,G)$ is
+sufficiently close to the inclusion $\Gamma \hookrightarrow G$, then
+$\rho(\Gamma)$ is a lattice in $G$ and $\rho\vert_\Gamma$ is an isomorphism, i.e.
+$\Gamma$ is locally rigid.
+\end{thm}
+%
+The proof of this will use the notion of $(G,X)$ structures, where $G$ is
+the semisimple Lie group, and $X$ is a symmetric space.
+%
+\section{$(G,X)$-Structures}
+%
+Fix once and for all a manifold $X$ with a transitive action of a Lie group $G$
+by real analytic homeomorphisms. The idea of a $(G,X)$ structure is to use $X$
+as a ``model geometry," from which we can construct other manifolds that locally
+``look like" $X$, and have symmetries that ``look like the action" of $G$.
+%
+\begin{defn}
+A \ib{$(G,X)$-manifold} is a manifold $M$ that admits an open cover
+$\set{U_i}$ with charts $\varphi_i : U_i \to X$ (i.e. diffeomorphisms onto their images)
+such that the transition functions
+$\varphi_i \circ \varphi_j\inv : \varphi_j(U_j \cap U_j) \to \varphi_i(U_i)$
+are given by restrictions of the actions of group elements $g_{ij} \in G$. Two such
+charts will be called \ib{compatible}. Given a smooth manifold $M$, a $(G,X)$-stucture
+on $M$ is a choice of \ib{atlas}, which is a maximal set of compatible charts
+$\set{\varphi_i : U_i \to X}$ giving $M$ the structure of a $(G,X)$-manifold.
+\end{defn}
+%
+The discussion of the $(G,X)$-structure on a manifold $M$ involves fiber bundles
+and connections on them.
+%
+\begin{defn}
+Let $M$ and $F$ be smooth manifolds. A \ib{fiber bundle} with model fiber $F$ over
+$M$ is a smooth manifold $E$ equipped with a submersion $\pi : E \to M$ such that
+\begin{enumerate}
+  \item The fibers $E_p \defeq \pi\inv(p)$ are diffeomorphic to $F$
+  \item For every point $p$, there eixsts a \ib{local trivialization} of $E$,
+  i.e. a diffeomorphism $\varphi : \pi\inv(U) \to U \times F$ for a neighborhood
+  $U$ of $p$ such that the following diagram commutes:
+  \[\begin{tikzcd}
+  \pi\inv(U) \ar[rr,"\varphi"] \ar[dr, "\pi"']&& U \times F \ar[dl] \\
+  & U
+  \end{tikzcd}\]
+  where the map $U \times F \to U$ is projection onto the first factor.
+\end{enumerate}
+We refer to $E$ as the \ib{total space} and $M$ as the \ib{base space}.
+\end{defn}
+%
+For this discussion, we will be concerned with fiber bundles with model fiber $X$,
+so ``fiber bundle" without further modifiers will mean ``fiber bundle with model
+fiber $X$." Our goal will be to relate the $(G,X)$-structure on a manifold $M$
+to a fiber bundle equipped with the data of a connection. Given
+any fiber bundle $\pi : E \to M$, we can find an open cover $\set{U_i}$ of $M$ such
+that the fiber bundle $E\vert_{U_i} \defeq \pi\inv(U_i)$ admits local trivializations
+$\varphi_i : E\vert_{U_i} \to U_i \times X$. If we consider the maps
+$\varphi_i \circ \varphi_j\inv$, then we have that they are given in components
+by the mapping
+\[
+(u,x) \mapsto (u, [\psi_{ij}(u)](x))
+\]
+for \ib{transition functions} $\psi_{ij} : U_i \cap U_j \to \mathrm{Diff}(X)$.
+We can recover the original bundle $E \to M$ by gluing these bundles together
+using the transition functions $\psi_{ij}$, which is well defined because they
+agree in triple intersections and satisfy a cocycle condition. \\
+
+In our situation, we have a distinguished group of symmetries of $X$ coming
+from the action of $G$, which can be interpreted as a group
+homomorphism $G \to \mathrm{Diff}(X)$, so the fiber bundle $E \to M$ we want to
+construct from the $(G,X)$-structure on $M$ should have transition functions
+valued in $G$. Furthermore, we will impose the condition
+that the transition functions $\psi_{ij}$ are \emph{constant}, so
+the second components of the maps $\varphi_i\circ\varphi_j\inv$ are given by the
+action of a single group element $g_{ij} \in G$. We also want a notion of compatibility
+with the charts of the $(G,X)$-structure. Specifically, we want the domains $U_i$ of
+the local trivilizations to be the domains of charts $U_i \to X$, so we must be able to
+trivialize the bundle $E$ over the charts in the atlas defining the $(G,X)$-structure.
+Given a chart $\kappa : U \to X$ such that $E$ is trivialized
+over $U$, i.e. there is a local trivialization
+$\varphi_i : E\vert_{U_i} \to U_i \times X$. Then we get a section
+$s : U \to E\vert_{U_i}$, where $(\varphi_i \circ s)(p) = (p, \kappa(p))$, which
+embeds $U$ in $E\vert_{U_i}$, and is given as the graph of $\kappa$ under this
+choice of trivialization. Our next restriction is to require that
+two compatible charts $\kappa : U \to X$ and $\kappa' : U' \to X$ with intersecting
+domains have sections $s : U \to E\vert_U$ and $s' : U \to E\vert_{U'}$
+that agree on $U \cap U'$. Putting everything together, given a $(G,X)$-manifold
+$M$, we can construct a fiber bundle $E \to M$ where a point of $E$ is an equivalence
+class $[p,\kappa, x]$ where $p$ is a point of $M$, $\kappa : U \to X$ is a chart
+containing $p$, and $x$ is a point of $X$, where $[p,\kappa, x] = [p', \kappa', x']$
+if $p = p'$ and there exists a group element $g \in G$ such that
+$\kappa = g \circ \kappa'$ and $x' = gx$ on some neighborhood containing $p$. \\
+
+For those in the know, the requirement that the transition functions are constant
+suggests that the fiber bundles we constructed is analogous to a \ib{local system},
+which has an identification with vector bundles equipped with a flat connection.
+A similar story will hold here. To discuss this, we will use Ehresmann's notion
+of a connection on a fiber bundle, which generalizes the notion for vector
+bundles to general fiber bundles. \\
+
+Let $\pi : E \to M$ be a fiber bundle. This determines a rank $n$
+(where $n \defeq \dim X$) distribution $V \subset TE$ (i.e. a rank $n$ vector subbundle
+of $TE \to E$.) called the \ib{vertical distribution}, where the fiber $V_e$
+over $e \in E$ is $\ker d\pi_e$. Geometrically, one can identify
+$V_e$ as the tangent vectors in $T_eE$ that are tangent to the fiber
+$E_{\pi(e)}$.
+%
+\begin{defn}
+A \ib{connection} on a fiber bundle $E \to M$ is a choice of complementary
+subbundle to $V$, i.e. a distribution $H \subset TE$ such that
+$TP = V \oplus H$. The distribution $H$ is also referred to as the
+\ib{horizontal distribution}.
+\end{defn}
+%
+The horizontal distribution should be thought of as distinguished
+``manifold directions" on $E$, which is complementary to the ``fiber directions"
+specified by the vertical distribution. By a dimension count, we get
+that $d\pi_e\vert_{H_e} : H_e \to T_{\pi(e)}M$ is an isomorphism, so given
+$e \in E$, every tangent vector $v \in T_{\pi(e)}M$ has a unique \ib{horizontal lift}
+to a tangent vector $\tilde{v} \in H_e \subset T_eE$. This the allows
+us to uniquely lift paths on $M$ going through $\pi(e)$ to a path passing through $e$
+by taking horizontal lifts of velocity vectors, giving us a vector field, and then
+taking the integral curve passing through $e$. Using path lifting, we can then
+define the \ib{holonomy} of a connection. Fix a point $p \in M$, and let $\gamma$
+be a loop based at $p$. Then for a point $e \in E_p$, we can lift $\gamma$
+to a path $\widetilde{\gamma}$ based starting at $e$, whose endpoint
+is another point $e' \in E_p$. Doing this for all points $e \in E_p$, we obtain
+a diffeomorphism $E_p \to E_p$ (for the inverse, do the same construction with
+the reversed loop) called the \ib{holonomy} of loop $\gamma$. \\
+
+We then want to restrict our attention to a specific subset of connections
+that are compatible with the action of $G$ on $X$.
+%
+\begin{defn}
+Let $M$ be a smooth manifold (not necessarily with a $(G,X)$-structure).
+A \ib{$(G,X)$-connection} on $M$ is the data of
+\begin{enumerate}
+  \item A fiber bundle $E \to M$ with model fiber $X$.
+  \item A section $s : M \to E$.
+  \item A connection on $E$ such that the holonomy about any closed curve
+  $\gamma$ is given by the action of an element of $G$.
+\end{enumerate}
+A $(G,X)$-connection is \ib{flat} if the horizontal distribution is
+integrable (e.g. closed under Lie brackets), equivalently, if any contractible
+closed curve has trivial holonomy. For convenience, we might say ``let $E \to M$
+be a $(G,X)$-connection", and leave the section and connection implicit.
+\end{defn}
+%
+From our definition, we conveniently get the following:
+%
+\begin{prop}
+Let $M$ be a $(G,X)$-manifold, and $E \to M$ the fiber bundle we constructed
+above using the $(G,X)$-structure. Then $E$ can be equipped with a connection
+that gives it the structure of a flat $(G,X)$-connection.
+\end{prop}
+%
+\begin{proof}
+In the construction we made earlier, we got a distinguished section
+$s : M \to E$ given locally by taking charts $\kappa : U \to X$, and
+embedding $U \to E$ by taking the graph of $\kappa$ with respect to a local
+trivialization of $E$ over $U$. Explicitly, using the description of points
+of $E$ as equivalence classes of the form $[m,\kappa, x]$ with $m \in M$,
+$\kappa : U \to X$ a chart, and $x \in X$, the section $s$ is given by
+\[
+s(m) = [m,\kappa, \kappa(m)]
+\]
+for any choice of chart $\kappa$ about $m$. Furthermore, we have a foliation
+of $E$ by leaves diffeomorphic to $M$, where a leaf of the foliation is
+given by the points $\set{[m,\kappa,x] ~:~ m \in M}$. This gives rise to
+a horizontal distribution $H$ by taking the space $H_e$ at a point $e \in E$
+to be the tangent space of the leaf passing through $e$, and $H$ is integrable
+since it admits integral submanifolds, namely the leaves of the foliation. Therefore,
+$H$ is a flat connection. The final thing we need to check is that the holonomy
+is given by the action of $G$, and this follows from the equivalence relation
+we used to define $E$, namely identifying points that were related by the action of $G$.
+Having identified all of the pieces, this gives $E$ the structure of a
+flat $(G,X)$-connection.
+\end{proof}
+%
+The punchline is that the converse is also true!
+%
+\begin{prop}
+Let $M$ be manifold equipped with a flat $(G,X)$-connection $E \to M$. Then
+$M$ can be equipped with the structure of a $(G,X)$-manifold such that
+$E \to M$ is the bundle coming from the construction described above.
+\end{prop}
+%
+\begin{proof}
+The proof of this should be familiar to those familiar with principal bundles
+and local systems. Given a flat $(G,X)$-connection $E \to M$, we have that
+the holonomy of a loops $\gamma$ is determined by its homotopy class, since
+nullhomotopic maps have trivial holonomy. Therefore, the map taking
+a homotopy class $[\gamma] \in \pi_1(M, m_0)$ its holonomy $g \in G$ defines
+a group homomorphism $\pi_1(M,m_0) \to G$, which then determines
+an action of $\pi_1(M,m_0)$ on $X$. Then if we let $\widetilde{M}$ denote
+the universal cover of $M$, we can take the associated bundle
+\[
+\widetilde{M} \times_{\pi_1(M)} X = (\widetilde{M} \times X)/\pi_1(M)
+\]
+where the action on the product is the diagonal action. The associated
+bundle is a fiber bundle with model fiber $X$. Furthermore, it comes equipped
+with a natural connection, where the horizontal distribution is obtained
+by taking the image of $T\widetilde{M} \subset T(\widetilde{M} \times X)$ under the
+differential of the quotient map
+$\widetilde{M}\times X \to \widetilde{M} \times_{\pi_1(M)} X$. Furthermore, this
+connection is easily seen to be flat, since
+$T\widetilde{M} \subset T(\widetilde{M} \times X)$ is integrable,
+integrability of a distribution is a local property, and the fact that the quotient
+map is a covering map. The holonomy of this connection then corresponds exactly with
+the original homomorphism $\pi_1(M) \to G$, up to conjugation on $G$.
+Finally, one can show that the bundle $\widetilde{M} \times_{\pi_1(M)} X$ with the
+connection defined above is isomorphic to the $(G,X)$-connection $E \to M$,
+which allows us to identify a section $s : M \to \widetilde{M} \times_{\pi_1(M)} X$
+corresponding to the section $M \to E$. From this, we want to recover an atlas of
+charts on $M$, which we can do by taking an evenly covered
+neighborhood of a point $m_0 \in M$, which necessarily trivializes
+the associated bundle $\widetilde{M} \times_{\pi_1(M)} X$, and then
+taking the second component of the section $s$ with repect to this trivialization
+to obtain a chart about $m_0$.
+\end{proof}
+%
+\end{document}

@@ -1,0 +1,87 @@
+%
+\section{Maps to Projective Space}
+%
+Another application of the Kodaira-Nakano vanishing theorem is the Kodaira embedding
+theorem. To discuss this, we will need to first discuss two things:
+%
+\begin{enumerate}
+  \item The relationship between line bundles and maps to $\CP^n$.
+  \item Blow-ups, which allow us to turn points into divisors, which
+  allows us to pass through the divisor-line bundle correspondence.
+\end{enumerate}
+%
+Suppose we are given a holomorphic line bundle $L \to X$ over a complex manifold
+$X$. Then given a section $s : X \to L$ and an open cover $\set{U_i}$
+such that $L\vert_{U_i}$ is trivial, the section can be identified with
+a collection of holomorphic functions $s_i : U_i \to \C$ such that
+$s_i = \psi_{ij}s_j$, where the $\psi_{ij}$ are the transition functions of
+$L$ with respect to the cover $\set{U_i}$.
+%
+\begin{prop}
+Suppose $s_0,\ldots s_N$ are sections of a holomorphic line bundle $L \to X$ such
+that for any $x \in X$, we have $s_i(x) \neq 0$ for some $i$. Then the map
+$\varphi : X \to \CP^N$ defined in local trivializations by the mapping
+\[
+x \mapsto [s_0(x): \ldots :s_N(x)]
+\]
+is well defined and satisfies $\varphi^*\O_{\CP^N}(1) \cong L$.
+\end{prop}
+%
+\begin{proof}
+We first verify that $\varphi$ is well-defined. let $\set{U_\alpha}$ be
+an open cover trivializing $L$, with transition functions $\psi_{\alpha\beta}$.
+Then let $s_{i,\alpha} : U_\alpha \to \C$ the functions corresponding to the $s_i$
+with respect to these local trivializations, so
+$s_{i,\alpha} = \psi_{\alpha\beta}s_{i,\beta}$. We note that over any
+$U_\alpha$, the map we specified is well defined, since at least one
+$s_{i,\alpha}$ is nonzero by assumption. We then need to verify that
+the maps specified on the $U_\alpha$ agree on the intersections $U_{\alpha\beta}$,
+which amounts to the fact that for $x \in U_{\alpha\beta}$ we have
+\[
+[s_{i,\alpha}(x):\ldots :s_{N,\alpha}(x)] =
+[\psi_{\alpha\beta}(x)s_{i,\beta}(x): \ldots : \psi_{\alpha\beta}s_{N,\beta}(x)]
+\]
+since homogeneous coordinates are only defined up to scaling. This also shows
+that the map is independent of our choice of trivializations. \\
+
+To show that $\varphi^*\O_{\CP^N} \cong L$, it suffices to show that
+$\varphi^*\O_{\CP^N} \cong \O(Z(s_0))$. Conside the hyperplane divisor
+$H$ on $\CP^N$, corresponding to the hyperplane $\CP^{N-1}$ defined by
+the vanishing of the section $z_0$ of $\O(1)$. By intersecting the hyperplane
+with the image of $\varphi_L$, we get a divisor $D$ on the image of $\varphi_L$
+corresponding to restriction of $\O(1)$. Furthermore, we observe that
+$\varphi^*D = Z(s_0)$ by construction, since $s_0$ is the first component
+of the map $\varphi_L$. Therefore, $\varphi^*\O_{\CP^n} \cong \O(Z(s_0)) \cong L$.
+\end{proof}
+%
+If the $s_i$ simultaneously vanish, we do not get a map
+$X \to \CP^N$, but we do get a map $X / \mathrm{Bs}(s_0,\ldots s_N) \to \CP^N$, where
+$\mathrm{Bs}(s_0,\ldots s_N)$ is called the \ib{base locus} of the sections
+$s_i$, and is defined to be the subset of $X$ where the $s_i$ simultaneously vanish. \\
+
+We collect some terminology concerning this discussion regarding line bundles
+and maps to projective space.
+%
+\begin{defn}
+Let $L \to X$ be a holomorphic line bundle.
+\begin{enumerate}
+  \item A \ib{linear system} of $L$ is a subspace of $\Gamma(X,L)$.
+  The \ib{complete linear system} is the entire space $\Gamma(X,L)$.
+  \item If there exist sections $s_0,\ldots s_N$ of $L$ with
+  $\mathrm{Bs}(s_0,\ldots s_N) = \emptyset$, then $L$ is \ib{globally generated}.
+\end{enumerate}
+\end{defn}
+%
+Given a linear system $S \subset \Gamma(X,L)$ of $L$, upon fixing a basis
+$s_0,\ldots s_N$ of sections for $S$, we get a map
+$X-\mathrm{Bs}(s_0,\ldots s_N) \to \CP^N$. While the map depends on this
+choice of basis, we see from the formula for the associated map that the
+map associated to any other basis is related by the projective linear automorphism
+of $\CP^N$ corresponding to the change of basis matrix.
+%
+\begin{defn}
+A line bundle $L \to X$ is \ib{very ample} if the complete linear system
+$\Gamma(X,L)$ defines a map to $\CP^N$ for some $N$. The bundle $L$ is said to be
+\ib{ample} if some tensor power $L^k$ for $k > 0$ of $L$ is very ample.
+\end{defn}
+%

@@ -1,0 +1,200 @@
+%
+\section{The Kodaira Embedding Theorem}
+%
+Our goal is to prove the following theorem:
+%
+\begin{thm}[\ib{Kodaira Embedding}]
+A holomorphic line bundle $L \to X$ over a compact complex manifold $X$ is ample if and
+only if it is positive.
+\end{thm}
+%
+Recall that $L$ is positive if there exists a Hermitian metric on $H$ such
+that the curvature of the Chern connection is a K\"ahler form for
+some Hermitian metric on $X$. \\
+
+One direction of the implication is easy -- given an ample line bundle $L \to X$,
+the very ample line bundle $L^k \to X$ defines an embedding $\varphi_L : X \to \CP^N$
+such that $L^k$ is the restriction of $\O(1)$ to $X$. This gives us a Hermitian
+metric on $L^k$ such that the curvature of the Chern connection is the
+restriction of the Fubini-Study metric to $X$, so $L^k$ is positive. Then since
+$c_1(L^k) = kc_1(L)$ and any representative $c_1(L)$ can be represented by the
+curvature of some Hermitian metric, we get that $L$ is positive as well. \\
+
+Before we prove the Kodaira embedding theorem, we will identify some criteria
+to determine when a basis of sections $s_0,\ldots s_N$ for $\Gamma(X,L)$ determine
+an embedding. The first is that the base locus $\mathrm{Bs}(s_0,\ldots s_N)$ of points
+where the $s_i$ simultaneously vanish should be empty. One way to phrase
+this is to say that the map $\Gamma(X,L) \to L_x$ given by evaluating a section
+at $x$ is surjective. If we let $\mathcal{I}_{\set{x}}$ denote the ideal sheaf
+of the point $\set{x}$ (i.e. the sheaf of holomorphic functions vanishing at $x$),
+the evaluation map comes from the long exact sequence in sheaf cohomology from the
+short exact sequence of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & L \otimes \mathcal{I}_{\set{x}} \ar[r] & L \ar[r] & L_x \ar[r] & 0
+\end{tikzcd}\]
+where we abuse notation and let $L_x$ denote the skyscraper sheaf with
+stalk $L_x$ at $x$. \\
+
+Another requirement for the map to be embedding is that it is injective.
+We claim that this means for any distinct points $x_1,x_2 \in X$, there must exist
+a section $s$ of $L$ such that $s(x_1) = 0$ and $s(x_2) \neq 0$. To see this,
+suppose that there existed so such section. Then for any section $s$ of $L$,
+we would either have that $s(x_1) = s(x_2) = 0$ or that both $s(x_1),s_(x_2) \neq 0$,
+which implies that in any local trivializations about $x_1$ and $x_2,$ their images
+under $\varphi_L$ differ by some nonzero constant, i.e. define the same point in $\CP^N$.
+Therefore, the map cannot be injective. This is equivalent
+to the map $H^0(X,L) \to L_{x_1} \oplus L_{x_2}$ given by evaluating a section
+at $x_1$ and $x_2$ being surjective, since we can rescale sections by a complex
+number $\lambda$. This similarly comes from the long exact sequence induced
+by the short exact sequence of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & L \otimes \mathcal{I}_{\set{x_1,x_2}} \ar[r] & L \ar[r]
+& L_{x_1} \oplus L_{x_2} \ar[r] & 0
+\end{tikzcd}\]
+Finally, for the map to be embedding, it must be an immmersion, since $X$ is
+compact, it is automatically proper. Therefore, it suffices to verify the the
+derivative of the induced map is injective. We want to determine a criterion
+for the derivative of the map $\varphi_L : X \to \CP^N$ to be injective at $x \in X$.
+Fix a section $s_0 \in \Gamma(X,L)$ such that $s_0(x) \neq 0$, which must exist
+since $L$ is basepoint free. We can then complete $s_0$ to a basis
+$s_0, \ldots s_N$ of $\Gamma(X,L)$ such that the $s_i(x) = 0$ for each $i$.
+Then the map $\varphi_L$ (up to the action of some projective linear automorphism
+of $\CP^N$) is given in a local trivialization by $y \mapsto [s_0(y):\ldots : s_N(y)]$
+where we abuse notation by letting $s_i$ denote the function $U \to \C$ that $s_i$ is
+identified with. Since $s_0(x) \neq 0$, some neighborhood of $x$ is mapped into the
+subset of $\CP^N$ where the first coordinate is nonzero, so using the standard
+chart on $\CP^N$, the map $\varphi_L$ is represented by the map $U \to \C^N$
+given by
+\[
+y \mapsto \left(\frac{s_1(y)}{s_0(y)},\ldots , \frac{s_N(y)}{s_0(y)}\right)
+\]
+If we let $t_i$ denote the function $s_i/s_0$, the transpose of the
+derivative $d(\varphi_L)_x$ is given by the pullback map sending
+$dz_i$ to $dt_i$. Then since the derivative is injective if and only if its
+transpose is surjective, our criterion for $\varphi_L$ to be an immersion at
+$x$ is for the $dt_i$ to span the holomorphic cotangent space $(T^{1,0}_xX)^*$.
+As with the other criteria, we want to relate this to some short exact sequence of
+sheaves. Consider the map
+$\Gamma(X, L\otimes \mathcal{I}_{\set{x}}) \to L_x \otimes (T^{1,0}_xX)^*$
+given in a local trivialization by differentiating a section
+$s \in \Gamma(X, L\otimes \mathcal{I}_{\set{x}})$ at $x$.
+This is well defined since the term coming from the Leibniz rule vanishes
+due to the fact that the section $s$ vanishes at $x$. This
+again comes from the long exact sequence coming from the short
+exact sequence of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & L \otimes \mathcal{I}^2_{\set{x}} \ar[r] & L \otimes \mathcal{I}_{\set{x}}
+\ar[r] & L_x \otimes (T^{1,0}_xX)^* \ar[r] & 0
+\end{tikzcd}\]
+where we identify the holomorphic cotangent space with
+$\mathcal{I}_{\set{x}}/\mathcal{I}_{\set{x}}^2$ by taking power series expansions in a
+neighborhood of $x$. Furthermore, the functions $t_i$ can be interpreted
+as sections of $L \otimes \mathcal{I}_{\set{x}}$, and are mapped to
+the $dt_i$, interpreting them as sections of $L_x \otimes (T^{1,0}_xX)^*$.
+Therefore, injectivity of $d(\varphi_L)_x$ is equivalent to surjectivity of
+the map $\Gamma(X, L\otimes \mathcal{I}_{\set{x}}) \to L_x \otimes (T^{1,0}_xX)^*$ \\
+
+Having identified and reformulated the criteria we need to check, we
+prove a lemma. Let $\pi : \widehat{X} \to X$ denote the blow up of $X$
+at a finite number of distinct points $x_1,\ldots, x_\ell$, with corresponding
+exceptional divisors $E_i$.
+%
+\begin{lem}
+Let $L \to X$ be a positive line bundle, and $M \to X$ an arbitrary line bundle.
+Then for any positive integers $n_1,\ldots n_\ell$, the line bundle
+$\pi^*(L^k \otimes M) \otimes \O(-\sum_i n_iE_i)$ on $\widehat{X}$ is
+positive for $k$ sufficiently large.
+\end{lem}
+%
+\begin{proof}
+In neighborhoods $U_i$ of the points $x_i$, the blow up map
+$\pi : \widehat{X} \to U$ restricted to $\widehat{U_i} \defeq \pi\inv(U_i)$
+is given by the blow up of $U_i$ at the point $x_i$, where we can identify
+$U_i$ with a subset of $\C^n$, so the $\widehat{U_i}$ is given by the restriction of
+the projection $\O(-1) \to \C^n$ to $U_i$. This identifies $\O(E_i)\vert_{U_i}$
+with the pullback of $\O(-1)$ along the map $\widehat{U_i} \to \CP^{n-1}$.
+pulling back the standard Hermitian form on $\O(1)$, we get a Hermitian metric
+on $\O(-E_i)\vert_{U_i}$, and consequently on $\O(-n_iE_i)$ as well. By taking an
+arbitrary Hermitian metric on $\O(-\sum_i n_iE_i)$ over the complement of the
+$U_i$ and gluing with a partition of unity, we get a Hermitian metric on all
+of $\O(-\sum_i n_iE_i)$ where the curvature $F_\nabla$ of the Chern connection
+is positive in a neighborhood of the $x_i$. This gives us that
+$\pi*(k\alpha + \beta) + (i/2\pi)F_\nabla$ is positive for any real $(1,1)$
+forms $\alpha$ and $\beta$ with $\alpha$ positive and $k$ sufficiently large.
+Taking $\alpha$ and $\beta$ to be representatives for $c_1(L)$ and $c_1(M)$
+respectively, we get the desired result, using the fact that $L$ is positive.
+\end{proof}
+%
+Using the lemma, we are then ready to prove the Kodaira embedding theorem.
+%
+\begin{proof}[Proof of Kodaira embedding]
+As mentioned before, one direction is already proven, so all that is left
+to show is that positivity implies ampleness, i.e. given a positive line
+bundle $L \to X$, some positive tensor power $L^k$ defines an embedding
+$\varphi_{L^k} : X \to \CP^N$. \\
+
+We first show that for $k$ sufficiently large, the line bundle $L^k$ is
+basepoint-free, i.e. the map $\Gamma(X,L^k) \to L^k_x$ is surjective for every
+$x \in X$. Fix $x \in X$ and let $\pi : \widehat{X} \to X$ denote the blow up
+of $X$ along the point $x$, with exceptional divisor $E$. Then consider
+the map $\Gamma(X,L^k) \to \Gamma(\widehat{X}, \pi^*L^k)$ given by pulling
+back sections along $\pi$. Since $\pi$ is surjective, any two sections whose
+pullbacks agree must be the same, so the map is injective. If $\dim_\C X = 1$,
+the point $x$ is a divisor, so $\pi : \widehat{X} \to X$ is an isomorphism,
+and the map $\Gamma(X,L^k) \to \Gamma(\widehat{X}, \pi^*L^k)$ is bijective.
+Otherwise, the point $x$ is of codimension $\geq 2$, so given a section
+of $\pi^*L^k$, restricting to the complement of $X$ yields a
+section of $\pi^*L^k$ over $\widehat{X} - E$, which is the same as a section of
+$L^k$ over $X - \set{x}$, and then Hartog's theorem allows us to extend this
+to a section of $L^k$ over all of $X$ that pulls back to our original section of
+$\pi^*L^k$, so the map $\Gamma(X,L^k) \to \Gamma(\widehat{X}, \pi^*L^k)$ is
+bijective in this case as well. We then note that $\pi^*L^k\vert_E$ is a
+trivial bundle, and is isomorphic to the constant sheaf with fiber $L^k_x$,
+i.e. $\pi^*L^k\vert_E \cong \O_E \otimes L^k_x$. We want to show that
+$x$ is not contained in the base locus of $L^k$, which amounts to showing that
+the map $\Gamma(X,L^k) \to L^k_x$ is surjective. From the above observation,
+it suffices to show that the map
+$\Gamma(\widehat{X},\pi^*L^k) \to \Gamma(\widehat{X},\pi^*L^k\vert_E)$ is surjective.
+The restriction map
+$\Gamma(\widehat{X},L^k) \to \Gamma(\pi^*L^k\vert_E) \cong \Gamma(E,\O_E) \otimes L^k_x$
+is induced by the short exact sequence of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & \pi^*L^k \otimes \O(-E) \ar[r] & \pi^*L^k \ar[r] & \pi^*L^k\vert_E
+\ar[r] & 0
+\end{tikzcd}\]
+we want to show that the cokernel of
+$\Gamma(\widehat{X},L^k) \to \Gamma(\pi^*L^k\vert_E)$ is trivial. By exactness
+of the long exact sequence in sheaf cohomology, we have that the cokernel embeds
+in $H^1(\widehat{X},\pi^*L^k\otimes\O(-E))$, so it suffices to show that
+$H^1(\widehat{X},\pi^*L^k\otimes\O(-E))$ vanishes. We then use the fact that the
+canonical bundle of $\widehat{X}$ is given by
+$K_{\widehat{X}} \cong \pi^*K_X \otimes \O((n-1)E)$ where $n = \dim_\C X$,
+which gives us that
+\[
+\pi^*L^k\otimes K^*_{\widehat{X}}\otimes\O(-E)\cong\pi^*(L^k\otimes K^*_X)\otimes\O(-nE)
+\]
+We then apply the previous lemma with $M = K^*_X$ to conclude that
+the bundle $\pi^*(L^k\otimes K^*_X)\otimes\O(-nE)$ is positive for $k$ sufficiently
+large. Therefore by Kodaira vanishing, taking $k$ sufficently large also
+guarantees that
+$H^1(\widehat{X},K_{\widehat{X}} \otimes \pi^*(L^k\otimes K^*_X)\otimes\O(-nE)) = 0$.
+We then observe that
+$K_{\widehat{X}}\otimes\pi^*(L^k\otimes K^*_X)\otimes\O(-nE)\cong\pi^*L^k\otimes\O(-E)$,
+which gives us the desired result that $H^1(\widehat{X},\pi^*L^k\otimes\O(-E)) = 0$.
+Therefore, $x$ is not contained in the base locus of $L^k$ for $k$ sufficiently large.
+We note that the choice of $k$ depends on $x$. To conclude that there exists
+a $k$ such that the base locus is empty, we note that we have a map
+$\Gamma(X,L^k) \to \Gamma(X,L^{2k})$ given by $s \mapsto s \otimes s$.
+This gives us that the base locus of $L^k$ contains the base locus of $L^{2k}$,
+since the section $s$ vanishes if and only if $s \otimes s$ vanishes.
+This gives us a decreasing chain of closed subsets, which has empty intersection
+since for any $x \in X$, we have show that there exists some $k$ such that
+$x$ is not a basepoint of $L^k$. Then using compactness of $X$, we have
+that we can obtain a global bound $k$ such that no $x$ is a basepoint of $L^k$. \\
+
+To show that the map is injective, we want to show that the map
+$\Gamma(X,L) \to \Gamma(L_{\set{x_1}} \oplus L_{\set{x_2}})$ is surjective.
+This follows from a near identical argument as above, where we replace
+$\widehat{X}$ with the blow up of $X$ at two points.
+\end{proof}
+%

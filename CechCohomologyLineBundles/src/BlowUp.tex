@@ -1,0 +1,67 @@
+%
+\section{Blowing Up}
+%
+One use for blowing up is to transform higher codimenision information into
+codimension one information, i.e. given some submanifold $Y \subset X$, the
+blow up along $Y$ will be another complex manifold $\widehat{X}$ equipped with
+a map $\widehat{X} \to X$ such that the fiber over $Y$ is codimension one,
+which we can then use to define a divisor. The general case will be modeled
+on the blow up of a linear subspace $\C^m \subset \C^n$.
+%
+\begin{defn}
+The \ib{blow up} of $\C^n$ along $\C^m \subset \C^n$ is the space
+\[
+\mathrm{Bl}_{\C^m}(\C^n) \defeq \set{(\ell,z)
+~:~ \ell \in \CP^{n-m-1}, z \in \C^m + \ell}
+\]
+where we interpret $\ell$ as a line in the complementary subspace $\C^{n-m}$ of $\C^m$.
+\end{defn}
+%
+The blow up $\mathrm{Bl}_{\C^m}(\C^n)$ comes equipped with a pair of maps,
+one to $\CP^{n-m-1}$ and one to $\C^n$, given by forgetting one of the components.
+The map $\mathrm{Bl}_{\C^m}(\C^n) \to \CP^{n-m-1}$ has the structure of a holomorphic
+$\C^{m+1}$-bundle over $\CP^{n-m-1}$. The other map
+$\pi : \mathrm{Bl}_{\C^m}(\C^n) \to \C^n$ is the one we asked for above. To
+see why, we first observe that for any $z \notin \C^m$, the span $\ell_z$ of $s$
+is an element of $\CP^{n-m-1}$, and the point $(\ell_z,z)$ is the unique
+point in the fiber $\pi\inv(z)$. On the other hand, if $z \in \C^m$, then
+the fiber above $z$ is a copy of $\CP^{n-m-1}$, since $z$ lies
+in the span of $\C^m + \ell$ for every $\ell \in \CP^{n-m-1}$. To
+generalize this to manifolds, it's useful to note that we identified the
+normal bundle of $\C^m \subset \C^n$ with $\C^m \times \C^{n-m}$, and then
+the fiber bundle $\pi\inv(\C^m)$ is the projectivized normal bundle of $\C^m$.
+Another imporant thing to note is that $\pi\inv(\C^m)$ is $n-1$ dimensional,
+i.e. codiemension one, accomplishing the goal we set out with.\\
+
+An important special case is when $m = 0$, i.e. we are blowing up $0 \in \C^n$.
+In this case, the poins of $\mathrm{Bl}_0(\C^n)$ are described by pairs
+$(\ell,z)$ where $\ell \in \CP^n$ and $z \in \ell$. Then the fiber of
+$\pi$ over a nonzero point $v \in \C^n$ is the span of $v$, and the fiber
+over $0$ is $\CP^{n-1}$. Thinking of the line bundle $\O(-1)$ as a subbundle
+of the trivial vector bundle $\CP^{n-1} \times \C^n$, we see that
+the blow up $\mathrm{Bl}_0(\C^n)$ is isomorphic to the total space of $\O(-1)$,
+and the map $\pi$ is given by the map $\O(-1) \to \C^n$ by restricting the
+projection $\CP^{n-1} \times \C^n \to \C^n$ to $\O(-1)$. \\
+
+We now use this definition as the local model for a blow up of a general
+submanifold of a complex manifold. Let $Y \subset X$ be a complex submanifold
+of codimension $m$. Then locally, there exist holomorphic ``slice charts"
+$\varphi : U \to \C^n$ such that $\varphi(U \cap Y) = \varphi(U) \cap \C^{n-m}$.
+If we fix such covering of $X$ by such charts $\varphi_i : U_i \to \C^n$, then
+we can locally define the blow up of $X$ along $Y$ over $U_i$ to
+be the restriction of the blow up of $\C^m \subset \C^n$ to $\varphi_i(U_i)$.
+One must show that these local definitions glue to a well defined space
+with a map $\pi : \mathrm{Bl}_{Y}(X) \to X$, but we omit this. We note that
+we have that $\pi\inv(Y)$ is the projectivization of the normal bundle of $Y$ in
+$X$, since it is true locally. As a hypersurface in $\mathrm{Bl}_Y(X)$, it
+defines a divisor, which we call the \ib{exceptional divisor} of the blow up
+$\pi : \mathrm{Bl}_Y(X) \to X$.
+%
+We will need to following facts, but omit the proof.
+%
+\begin{prop}
+The canonical bundle of the blow up of $\pi : \widehat{X} \to X$ along a point $x \in X$
+is isomorphic to $\pi^*K_X \otimes \O_{\widehat{X}}((n-1)E)$, where $E$ is the
+exceptional divisor. Furthermore, $\O_{\widehat{X}}(E)\vert_E \cong \O(-1)$.
+\end{prop}
+%

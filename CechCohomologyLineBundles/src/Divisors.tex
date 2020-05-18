@@ -89,7 +89,8 @@ A \ib{divisor} $D$ on $X$ is a formal integral combination
 D = \sum a_i[Y_i]
 \]
 where $Y_i$ is an irreducible hypersurface for all $i$. The group of divisors on
-$X$ is denoted $\mathrm{Div}(X)$.
+$X$ is denoted $\mathrm{Div}(X)$. The divisor $D$ is said to be an
+\ib{effective divisor} if the $a_i$ are all nonnegative.
 \end{defn}
 %
 The intuition for a divisor is that it should interpreted as a prescription for zeroes
@@ -104,7 +105,8 @@ f(z) = \frac{(z-p_1)(z-p_2)^4}{(z-p_3)^4(z-p_4)^6}
 \]
 Of course, this isn't exactly true or precise. For example, we could multiply the
 numerator or denominator by nonvanishing holomorphic functions and then obtain a function
-with the same poles and zeroes as $f$.
+with the same poles and zeroes as $f$. From this perspective, and effective
+divisor is a divisor that only prescribes zeroes.
 %
 \begin{defn}
 Let $f \in \mathcal{K}(X)$ be a meromorphic function. Then the \ib{zero divisor} of
@@ -140,15 +142,15 @@ under multiplication. Then we have an isomorphism
 \end{thm}
 %
 \begin{proof}
-An global section $\sigma$ of the quotient sheaf $\mathcal{K}_X^\times / \O_X^\times$ is a
-collection of pairs $(U_i, f_i)$ of meromorphic functions
+An global section $\sigma$ of the quotient sheaf $\mathcal{K}_X^\times / \O_X^\times$
+is a collection of pairs $(U_i, f_i)$ of meromorphic functions
 $f_i \in \mathcal{K}_X^\times(U_i)$ such that on the intersections $U_i \cap U_j$, their
 quotient  $f_i/f_j$ is an element of $\O_X^\times$, i.e. a nonvanishing holomorphic
 function over $U_i \cap U_j$. Therefore, over the intersection, we have that
 \[
 \mathrm{ord}_Y(f_i) - \mathrm{ord}_Y(f_j) = \mathrm{ord}_Y(f_i/f_j) = 0
 \]
-For any irreducible hypersurface $Y$. Therefore, we have that
+for any irreducible hypersurface $Y$. Therefore, we have that
 $\mathrm{ord}_Y(f_i) = \mathrm{ord}_Y(f_j)$. Therefore, the order
 $\mathrm{ord}_Y(\sigma)$ of $\sigma$ is well-defined for any irreducible hypersurface
 $Y \subset X$, so we get a well-defined map
@@ -177,8 +179,8 @@ additive on products of meromorphic functions, so it is a group isomorphism.
 For complex manifolds, we have that global sections of the quotient sheaf and divisors
 are isomorphic, but in the algebro-geometric setting, this is not true without some
 smoothness assumptions. In algebraic geometry, elements of
-$\Gamma(X, \mathcal{K}_X^\times/\mathcal{O}_X^\times)$ are called \ib{Weil divisors},
-while the elements of what we called $\mathrm{Div}(X)$ are called \ib{Cartier divisors}.
+$\Gamma(X, \mathcal{K}_X^\times/\mathcal{O}_X^\times)$ are called \ib{Cartier divisors},
+while the elements of what we called $\mathrm{Div}(X)$ are called \ib{Weil divisors}.
 \end{rem*}
 %
 One of the big punchlines for divisors is their correspondence with holomorphic
@@ -191,7 +193,143 @@ seen that the functions satisfy the cocycle condition, so they can be used
 to define transition functions for a line bundle, which we call $\O(D)$. The
 mapping $D \mapsto \O(D)$ is clearly a group homomorphism, so it defines a natural
 map $\mathrm{Div}(X) \to \mathrm{Pic}(X)$. In particular, this shows that line bundles
-are closely related to the codimension $1$ geometry of the complex manifold $X$.
+are closely related to the codimension $1$ geometry of the complex manifold $X$. \\
+
+Like line bundles, divisors also pull back, but there is some more subtlety
+when working with divisors from the perspective of Weil divisors.
+Given a holomorphic map $f : X \to Y$ and a hypersurface $D \subset Y$,
+we would like to define the pullback $f^*[D]$ of the divisor $[D]$ to be
+$[f\inv(D)]$, and then extend linearly to all divisors. In most cases, this is fine,
+and $f\inv(D)$ is still codimension $1$, since locally it will be given by
+the vanishing of $f \circ g$ where $g$ is some locally defining function for
+$D$. However, if the image of $X$ is contained in $D$, then $f\inv(D) = X$, which
+isn't codimension $1$! One way to fix this is to restrict our attention to maps
+with dense image. The other is to just be careful when pulling back a divisor
+along a map. The other issue involves irreducibility. In general,
+given an irreducible hypersurface $D \subset Y$, the inverse image $f\inv(D)$
+need not be irreducible. This can be solved by defining $f^*[D]$ to be
+the divisor corresponding to the sum $\sum_{n_i}n_i[Y_i]$ where $n_i$ is the
+exponent of the locally definining function for $[Y_i]$ in a factorization
+of $f \circ g$, where $g$ is a locally defining function for $D$. Alternatively,
+one can instead use the perspective of Cartier divisors.
+Given a section of $\mathcal{K}_Y^\times/\O_Y^\times$, we can write it
+in terms of an open cover by a collection of pairs $\set{(U_i, f_i)}$ for
+open sets $U_i$ and $f_i \in \mathcal{K}_Y$ whose quotients are holomorphic
+on $U_i \cap U_j$. Then we define the pullback of this divisor to be
+the Cartier divisor $\set{(f\inv(U_i), f \circ f_i)}$. It is easy to verify
+that this coincides with the definition in terms of Weil divisors when that
+definition makes sense. Furthermore, unpacking the definition of the line
+bundle $\O(D)$ corresponding to a Cartier divisor
+$D \in \Gamma(Y,\mathcal{K}_Y^\times/\O_Y^\times)$, we find that
+\[
+\O(f^*D) \cong f^*\O(D)
+\]
+whenever the pullback divisor $f^*D$ makes sense. \\
+
+Given an irreducible hypersurface $D$, we get a line bundle $\O(D)$ -- the
+correspondence the other way comes in the form of sections. Given a holomorphic
+line bundle $L \to X$ and a global section $s \in \Gamma(X,L)$, we define a divisor.
+$Z(s)$ as follows : fix an open cover $\set{U_i}$ such that $L$ admits local
+holomorphic trivializations $\varphi_i :L\vert_{U_i} \to U_i \times \C$ with
+transition functions $\psi_{ij}$. This gives holomorphic functions
+$\varphi_i \circ s : U_i \to \C$, which together define a Cartier divisor
+$\set{(U_i, \varphi_i \circ s)}$ which we define to be $Z(s)$. It is easy to
+verify that this definition is independent of our choice of trivialization.
+%
+\begin{prop} \enumbreak
+\begin{enumerate}
+  \item Let $s \in \Gamma(X,L)$ be a nonzero section. Then $\O(Z(s)) \cong L$.
+  \item For an effective divisor $D$, there exists a nonzero section $s$ of $\O(D)$
+  such that $Z(s) = D$.
+\end{enumerate}
+\end{prop}
+%
+\begin{proof} \enumbreak
+\begin{enumerate}
+  \item Fix an open cover $\set{U_i}$ with trivializations
+  $\varphi_i : L\vert_{U_i} \to U_i \times \C$ and transition functions
+  $\psi_{ij}$. We want to show that the divisor $Z(s) = \set{(U_i, f_i)}$
+  (where $f_i \defeq \varphi_i \circ s$) defines a line bundle isomorphic to $L$.
+  The line bundle defined by $Z(s)$ is the line bundle given by the cocycle
+  $\set{(U_i, f_i/f_j)}$. We then note that since the $f_i$ came from a section $s$,
+  they satisfy the compatibility condition $f_i = \psi_{ij}f_j$, so
+  $f_i/f_j = \psi_{ij}$.
+  \item For an effetive divisor $D$, the associated Cartier divisor
+  $\set{(U_i,f_i)}$ has the property that the $f_i$ are all holomorphic,
+  since they will be products of holomorphic functions with irreducible germs
+  at some $p_i \in U_i$. The line bundle $\O(D)$ is given by the cocycle
+  $\set{(U_i, f_i/f_j)}$. Then by construction, the $f_i$ glue
+  together to a global section of $\O(D)$, since we have $f_i = f_i/f_j \cdot f_j$.
+\end{enumerate}
+\end{proof}
+%
+We note that the preceding discussion relies on the existence of a nonzero global
+holomorphic section of $L$, which may or may not exist. We also note that the
+correspondence only concerns effective divisors. We can generalize this to line
+bundles with no global sections with the idea of a \ib{meromorphic section} of a line
+bundle $L$, i.e. a global section of the sheaf $\mathcal{K}_X \otimes_{\O_X} L$. Much
+like holomorphic sections, a meromorphic section can be written in a trivializing open
+cover $\set{U_i}$ of $X$ as a collection of meromorphic functions
+$(f_i/g_i) \in \mathcal{K}_X(U_i)$ satisfying the compatibility condition
+$(f_i/g_i) = \psi_{ij}(f_j/g_j)$, where the $\psi_{ij}$ are the transition functions
+of $L$. Then given a meromorphic section $s$, we can define a divisor in a similar
+manner as $Z(s)$, except the Cartier divisor we obtain consists of meromorphic
+functions over the $U_i$ rather than just holomorphic functions. This gives us the
+following generalization of the previous proposition:
+%
+\begin{prop} \enumbreak
+\begin{enumerate}
+  \item Let $s \in \Gamma(X,\mathcal{K}_X\otimes_{\O_X}L)$ be a global meromorphic
+  section of $L$, and let $D(s)$ be the divisor associated to $s$. Then
+  $\O(D(s)) \cong L$.
+  \item For any divisor $D$, there exists a nonzero meromorphic section $s$
+  of $L$ such that $D(s) = D$.
+\end{enumerate}
+\end{prop}
+%
+The proof of this is near identical. One thing to note is that given
+a meromorphic section $s$, we get that $D(1/s) = -D$.\\
+
+Using these propositions, we can get a better understanding of the sheaf
+of sections of the line bundle $\O(D)$ Let $D \subset X$ be a
+divisor. Let $\mathcal{L}(D) \subset \mathcal{K}_X)$ denote the subsheaf of
+meromorphic functions on $X$ such that $D + (f) \geq 0$. If we write
+$D = \sum_i a_iV_i$ with $a_i \in \Z$ and $V_i$ irreducible hypersurfaces,
+the functions in $\mathcal{L}(D)$ are exactly the meromorphic functions $f$
+that are holomorphic on the complement of the $V_i$, and satisfy
+$\mathrm{ord}_{V_i}(f) \geq -a_i$. Working locally, suppose $g_i$ is a
+locally defining function for $V_i$. Then if $a_i$ is positive, then
+this condition says that $fg_i^{a_i}$ is holomorphic. If $a_i$ is negative,
+than this condition says that $f/g_i^{a_i}$ is holomorphic. Then let
+$s_0 \in \Gamma(X,\mathcal{K}_X\otimes_{\O_X} \O(D))$ be a nonzero global meromorphic
+section with $D(s_0) = D$. Then given a  holomorphic section $s$ of
+$\O(D)$, we get a meromorphic function $f_s \in \Gamma(X,\mathcal{K}_X)$
+defined locally by $f_s = s/s_0$. We then have that
+$(f_s) = D(s) - D(s_0) \geq - D$, so $f_s \in \mathcal{L}(D)$. In the
+other direction, we can obtain a holomorphic section of $\O(D)$ from
+a meromorphic function $f \in \mathcal{L}(D)$ by taking $fs_0$. Furthermore,
+these mappings are clearly inverses of each other, giving us an isomorphism
+of sheaves $\mathcal{L}(D) \cong \O(D))$. Similarly, multiplication with $1/s_0$
+gives an isomorphism $\mathcal{L}(-D) \cong \O(-D)$. Under this identification,
+we note that multipying a section of $\O(-D)$ with $s_0$ yields a meromorphic
+function which has no poles, and vanishes along the hypersurfaces appearing
+in $D$ to the specified orders. In particular, if $D$ is a hypersurface,
+then we get an exact sequence of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & \O(-D) \ar[r] & \O_X \ar[r] & \O(D)\vert_D \ar[r] & 0
+\end{tikzcd}\]
+where the first map is multiplication by $s_0$, and the second map is
+restricting sections from $X$ to $D$, and we are implicitly making the
+identifications $\mathcal{L}(D) \cong \O(D)$ and $L(-D) \cong \O(-D)$.
+In fact, we get an exact sequence for any holomorphic vector bundle
+$E$. If we let $\mathcal{E}$ denote the sheaf of holomorphic sections of $E$,
+then we get an exact sequence of sheaves
+\[\begin{tikzcd}
+0 \ar[r] & \mathcal{E} \otimes \O(-D) \ar[r] & \mathcal{E} \ar[r] & \mathcal{E}\vert_D
+\ar[r] & 0
+\end{tikzcd}\]
+where again the first map is multiplication by $s_0$ and the second map is
+restriction.
 %
 %TODO Divisors in terms of sheaf cohomology, line bundle of a divisor corresponding to
 %the image under a boundary map
